@@ -1,0 +1,38 @@
+function(filterEngineSources LIST)
+    foreach(FILE ${LIST})
+        get_filename_component(PARENT_DIR "${FILE}" DIRECTORY)
+        string(REPLACE "${CMAKE_SOURCE_DIR}" "" GROUP "${PARENT_DIR}")
+        string(REPLACE "/" "\\" GROUP "${GROUP}")
+        set(GROUP "${FOLDER}Engine${GROUP}")
+        source_group("${GROUP}" FILES "${FILE}")
+    endforeach()
+endfunction()
+
+function(filterThirdPartySources LIST)
+    foreach(FILE ${LIST})
+
+        get_filename_component(PARENT_DIR "${FILE}" DIRECTORY)
+        string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}" "" GROUP "${PARENT_DIR}")
+
+        if(${GROUP} STREQUAL ${PARENT_DIR})
+            string(REPLACE "${CMAKE_SOURCE_DIR}" "" GROUP "${PARENT_DIR}")
+            string(REPLACE "Source/" "" GROUP "${GROUP}")
+        endif()
+
+        string(REPLACE "Source/" "" GROUP "${GROUP}")
+        string(REPLACE "/" "\\" GROUP "${GROUP}")
+        set(GROUP "${FOLDER}${GROUP}")
+        source_group("${GROUP}" FILES "${FILE}")
+
+    endforeach()
+endfunction()
+
+function(filterDemoSources LIST DEMONAME)
+    foreach(FILE ${LIST})
+        get_filename_component(PARENT_DIR "${FILE}" DIRECTORY)
+        string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}" "" GROUP "${PARENT_DIR}")
+        string(REPLACE "/" "\\" GROUP "${GROUP}")
+        set(GROUP "${FOLDER}${DEMONAME}${GROUP}")
+        source_group("${GROUP}" FILES "${FILE}")
+    endforeach()
+endfunction()

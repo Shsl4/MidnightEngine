@@ -1,0 +1,71 @@
+cmake_minimum_required(VERSION 3.8)
+
+cmake_policy(SET CMP0091 NEW)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+set(MAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Source/SDLDemo.cpp)
+
+file(GLOB_RECURSE SDL_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Resources/*)
+file(GLOB_RECURSE MODULES ${CMAKE_CURRENT_SOURCE_DIR}/*.Module)
+
+project(SDLDemo VERSION 0.0.1)
+
+foreach(MODULE ${MODULES})
+
+    include(${MODULE})
+
+endforeach()
+
+add_executable(SDLDemo ${MAIN_FILE}
+                       ${SDL_CORE_SOURCES} 
+                       ${SDL_CORE_HEADERS} 
+                       ${SDL_RESOURCES}
+                       ${ENGINE_SOURCES} 
+                       ${ENGINE_HEADERS} 
+                       ${THIRD_PARTY_SOURCES} 
+                       ${THIRD_PARTY_HEADERS})
+
+filterDemoSources("${MAIN_FILE}" "SDLDemo")
+filterDemoSources("${SDL_CORE_SOURCES}" "SDLDemo")
+filterDemoSources("${SDL_CORE_HEADERS}" "SDLDemo")
+filterDemoSources("${SDL_RESOURCES}" "SDLDemo")
+filterEngineSources("${ENGINE_SOURCES}")
+filterEngineSources("${ENGINE_HEADERS}")
+filterThirdPartySources("${THIRD_PARTY_SOURCES}")
+filterThirdPartySources("${THIRD_PARTY_HEADERS}")
+
+target_include_directories(SDLDemo PUBLIC "${CMAKE_SOURCE_DIR}\\Source")
+target_include_directories(SDLDemo PUBLIC "${CMAKE_SOURCE_DIR}\\Source\\Core")
+target_include_directories(SDLDemo PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}\\Source")
+target_include_directories(SDLDemo PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}\\Source\\Core")
+target_include_directories(SDLDemo PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
+
+if(WIN32)
+
+add_custom_command(TARGET SDLDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources ${CMAKE_CURRENT_BINARY_DIR}/Resources)
+
+elseif(APPLE)
+
+find_library(FOUNDATION Foundation)
+find_library(COCOA Cocoa)
+find_library(IOKIT IoKit)
+
+target_link_libraries(SDLDemo ${FOUNDATION} ${COCOA} ${IOKIT})
+add_custom_command(TARGET SDLDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+
+elseif(UNIX AND NOT APPLE)
+
+add_custom_command(TARGET SDLDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+
+endif()
+
+target_link_libraries(SDLDemo debug ${THIRD_PARTY_DEBUG_LIBS} optimized ${THIRD_PARTY_RELEASE_LIBS})
+
+foreach(LIBRARY ${THIRD_PARTY_DEBUG_DYLIBS})
+
+    get_filename_component(FILENAME "${LIBRARY}" NAME)
+    add_custom_command(TARGET SDLDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME})
+
+endforeach()
