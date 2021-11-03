@@ -17,6 +17,8 @@ int main(int argc, char** argv) {
 
 #endif // _WIN64
 
+	SDL_SetMainReady();
+
 	UniquePtr<SDLEngine> engine = std::make_unique<SDLEngine>();
 
 	int ret = -1;
