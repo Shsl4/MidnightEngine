@@ -93,7 +93,7 @@ int GLFWEngine::init(int argc, char** argv)
 
 	glGenBuffers(1, &vertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
 
 	ShaderProgram prog = ShaderProgram("Default");
 	programs.push_back(prog);
@@ -133,25 +133,25 @@ void GLFWEngine::loop()
 	{
 		
 		Matrix4 id = Matrix4::identity();
-		id.rotateZ((float)time);
+		id.rotateY((float)time);
 		Matrix4 matrix = Matrix4::orthographic(-ratio, ratio, -1.0f, 1.0f, 1.0f, -1.0f) * id;
 		programs[i].bind();
 		int mvp_location = glGetUniformLocation(programs[i].getProgram(), "viewMatrix");
 		glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)matrix.data);
 		
-		
-		for (size_t j = 0; j < 4; ++j) {
-			square[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
-			square[j].color.setGreen(abs((float)cos(j % 3 + time)));
-			square[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
+		for (size_t j = 0; j < 3; ++j) {
+			triangle[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
+			triangle[j].color.setGreen(abs((float)cos(j % 3 + time)));
+			triangle[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
 		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
 
 	}
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
 	glfwSwapBuffers(mainWindow);
 	glfwPollEvents();
 

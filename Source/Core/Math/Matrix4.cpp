@@ -153,6 +153,40 @@ bool Matrix4::operator !=(Matrix4& other) {
 
 }
 
+void Matrix4::rotateX(float radians)
+{
+
+	float cosT = std::cos(radians);
+	float sinT = std::sin(radians);
+
+	Matrix4 newMatrix = Matrix4::identity();
+
+	newMatrix.data[1][1] = cosT;
+	newMatrix.data[1][2] = -sinT;
+	newMatrix.data[2][1] = sinT;
+	newMatrix.data[2][2] = cosT;
+
+	*this *= newMatrix;
+
+}
+
+void Matrix4::rotateY(float radians)
+{
+
+	float cosT = std::cos(radians);
+	float sinT = std::sin(radians);
+
+	Matrix4 newMatrix = Matrix4::identity();
+
+	newMatrix.data[0][0] = cosT;
+	newMatrix.data[0][2] = sinT;
+	newMatrix.data[2][0] = -sinT;
+	newMatrix.data[2][2] = cosT;
+
+	*this *= newMatrix;
+
+}
+
 void Matrix4::rotateZ(float radians)
 {
 
@@ -176,7 +210,7 @@ Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, 
 {
 
 	Matrix4 newMatrix;
-	
+
 	newMatrix.data[0][0] = 2.0f / (right - left);
 	newMatrix.data[0][1] = 0.0f;
 	newMatrix.data[0][2] = 0.0f;
@@ -196,6 +230,37 @@ Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, 
 	newMatrix.data[3][1] = -(top + bottom) / (top - bottom);
 	newMatrix.data[3][2] = -(far + near) / (far - near);
 	newMatrix.data[3][3] = 1.0f;
+
+	return newMatrix;
+
+}
+
+Matrix4 Matrix4::perspective(float left, float right, float bottom, float top, float near, float far)
+{
+
+	Matrix4 newMatrix;
+
+	float twoNear = 2.0f * near;
+
+	newMatrix.data[0][0] = twoNear / (right - left);
+	newMatrix.data[0][1] = 0.0f;
+	newMatrix.data[0][2] = 0.0f;
+	newMatrix.data[0][3] = 0.0f;
+
+	newMatrix.data[1][0] = 0.0f;
+	newMatrix.data[1][1] = twoNear / (top - bottom);
+	newMatrix.data[1][2] = 0.0f;
+	newMatrix.data[1][3] = 0.0f;
+
+	newMatrix.data[2][0] = (right + left) / (right - left);
+	newMatrix.data[2][1] = (top + bottom) / (top - bottom);
+	newMatrix.data[2][2] = -(far + near) / (far - near);
+	newMatrix.data[2][3] = 1.0f;
+
+	newMatrix.data[3][0] = 0.0f;
+	newMatrix.data[3][1] = 0.0f;
+	newMatrix.data[3][2] = -twoNear * far / (far - near);
+	newMatrix.data[3][3] = 0.0f;
 
 	return newMatrix;
 

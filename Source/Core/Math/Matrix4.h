@@ -19,9 +19,13 @@ public:
 	bool operator==(const Matrix4& other);
 	bool operator!=(Matrix4& other);
 
+	void rotateX(float radians);
+	void rotateY(float radians);
 	void rotateZ(float radians);
 
-	static Matrix4 orthographic(float near, float far, float bottom, float top, float left, float right);
+	static Matrix4 orthographic(float left, float right, float bottom, float top, float near, float far);
+	static Matrix4 perspective(float left, float right, float bottom, float top, float near, float far);
+
 	static Matrix4 empty();
 	static Matrix4 identity();
 	static Matrix4 fill(float value);
