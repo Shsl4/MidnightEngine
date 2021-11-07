@@ -9,9 +9,9 @@
 Vertex triangle[3] =
 {
 
-	Vertex(-0.6f, -0.4f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	Vertex(0.6f, -0.4f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	Vertex(0.0f, 0.6f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f)
+	Vertex(0.0f, 0.69282f - 0.23094f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	Vertex(-0.4f, -0.23094f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	Vertex(0.4f, -0.23094f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
 
 };
 
@@ -133,7 +133,7 @@ void GLFWEngine::loop()
 	{
 		
 		Matrix4 id = Matrix4::identity();
-		id.rotateY((float)time);
+		id.rotateZ((float)time);
 		Matrix4 matrix = Matrix4::orthographic(-ratio, ratio, -1.0f, 1.0f, 1.0f, -1.0f) * id;
 		programs[i].bind();
 		int mvp_location = glGetUniformLocation(programs[i].getProgram(), "viewMatrix");
@@ -150,7 +150,7 @@ void GLFWEngine::loop()
 
 	}
 
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glfwSwapBuffers(mainWindow);
 	glfwPollEvents();

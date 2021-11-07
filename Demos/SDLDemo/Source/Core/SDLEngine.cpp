@@ -10,9 +10,9 @@
 Vertex triangle[3] =
 {
 
-    Vertex(-0.6f, -0.4f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-    Vertex(0.6f, -0.4f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-    Vertex(0.0f, 0.6f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f)
+    Vertex(0.0f, 0.69282f - 0.23094f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+    Vertex(-0.4f, -0.23094f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+    Vertex(0.4f, -0.23094f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
 
 };
 
@@ -26,7 +26,7 @@ int SDLEngine::init(int argc, char** argv)
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
 
-        getLogger()->fatal("Failed to initialize SDL! Error: {1} {2} {0}", SDL_GetError(), 5, 3);
+        getLogger()->fatal("Failed to initialize SDL! Error: {}", SDL_GetError());
         return -1;
     }
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);

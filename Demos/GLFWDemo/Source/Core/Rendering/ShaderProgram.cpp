@@ -20,8 +20,8 @@ ShaderProgram::ShaderProgram(std::string programName)
 	}
 
 	// Load our vertex and fragment shader codes
-	std::string vertexCode = FileHelper::getFileContents("Resources\\Shaders\\Vertex\\" + programName + ".vert");
-	std::string fragmentCode = FileHelper::getFileContents("Resources\\Shaders\\Fragment\\" + programName + ".frag");
+	std::string vertexCode = FileHelper::getFileContents("Resources/Shaders/Vertex/" + programName + ".vert");
+	std::string fragmentCode = FileHelper::getFileContents("Resources/Shaders/Fragment/" + programName + ".frag");
 
 	if (vertexCode.empty() || fragmentCode.empty()) {
 		throw new std::runtime_error("Failed to load shader code! Is the path valid?");

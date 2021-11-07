@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
-
+set(MAIN_FILE ${CMAKE_SOURCE_DIR}/Source/MidnightEngine.cpp)
 project(MidnightEngine VERSION 0.0.1)
 
 include(${CMAKE_SOURCE_DIR}/Functions.cmake)
@@ -18,7 +18,7 @@ foreach(MODULE ${MODULES})
 
 endforeach()
 
-add_executable(MidnightEngine ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS} ${ENGINE_RESOURCES})
+add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS} ${ENGINE_RESOURCES})
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
@@ -56,5 +56,6 @@ endif()
 target_link_libraries(MidnightEngine debug ${THIRD_PARTY_DEBUG_LIBS})
 target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 
-add_subdirectory("${CMAKE_SOURCE_DIR}\\Demos\\GLFWDemo")
-add_subdirectory("${CMAKE_SOURCE_DIR}\\Demos\\SDLDemo")
+add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/GLFWDemo")  
+add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/SDLDemo")
+add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/BGFXDemo")
