@@ -50,10 +50,8 @@ public:
             capacity *= 2;
             
         }
-        
-        T* copy = allocator.copy(other);
-        
-        data[count] = copy;
+                
+        data[count] = &other;
         ++count;
         
         return true;
@@ -88,12 +86,7 @@ public:
                 
         for (int i = 0; i < capacity; ++i) {
             
-            if(data[i] != nullptr){
-                
-                allocator.deallocate(data[i]);
-                data[i] = nullptr;
-                
-            }
+            data[i] = nullptr;
             
         }
         

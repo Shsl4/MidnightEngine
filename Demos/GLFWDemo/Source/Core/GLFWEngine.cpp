@@ -33,9 +33,9 @@ int GLFWEngine::init(int argc, const char** argv)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-#ifdef TRANSPARENT
+#ifdef _TRANSPARENT
     
-    glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
+    glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, true);
     glfwWindowHint(GLFW_DECORATED, false);
     
 #endif
@@ -44,7 +44,7 @@ int GLFWEngine::init(int argc, const char** argv)
 
 	GLFWmonitor* mainMonitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(mainMonitor);
-	mainWindow = glfwCreateWindow(mode->width, mode->height, "MidnightEngine", glfwGetPrimaryMonitor(), nullptr);
+	mainWindow = glfwCreateWindow(mode->width, mode->height, "MidnightEngine", mainMonitor, nullptr);
 
 #else
 
@@ -66,9 +66,9 @@ int GLFWEngine::init(int argc, const char** argv)
 	glfwSwapInterval(1);
 
 	this->inputManager = std::make_unique<InputManager>(mainWindow);
-        
+      
     Triangle tri = Triangle();
-    Grid grid = Grid("Default", 32);
+	Grid grid = Grid("Default", 16);
     
     objects.append(tri);
     objects.append(grid);
@@ -98,7 +98,7 @@ void GLFWEngine::loop()
 	glfwGetFramebufferSize(mainWindow, &width, &height);
 	ratio = width / (float)height;
 	glViewport(0, 0, width, height);
-
+	
 	glClear(GL_COLOR_BUFFER_BIT);
     
     float color = 0x30 / 255.0f;

@@ -9,6 +9,7 @@
 #include <vector>
 #include <bgfx/bgfx.h>
 #include <bgfx/bgfx_utils.h>
+#include <SDL2/SDL.h>
 #include <UI/PerformanceWindow.h>
 
 class BGFXEngine : public IMidnightEngine {
@@ -39,6 +40,12 @@ public:
 	}
 
 private:
+
+#ifndef __APPLE__
+
+	SDL_Window* mainWindow;
+
+#endif
 
 	void cleanup();
 

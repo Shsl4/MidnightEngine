@@ -18,7 +18,7 @@ Triangle::Triangle(const char* shaderName){
     glGenVertexArrays(1, &this->vertexArrayId);
     glBindVertexArray(this->vertexArrayId);
     
-    program = new ShaderProgram(shaderName);
+    program = allocator.instantiate<ShaderProgram>("Default");
     
 }
 
@@ -26,7 +26,8 @@ Triangle::~Triangle(){
     
     glDeleteVertexArrays(1, &this->vertexArrayId);
     glDeleteBuffers(1, &this->vertexBufferId);
-    
+    allocator.deallocate(program);
+
 }
 
 void Triangle::render(float deltaTime){

@@ -30,6 +30,11 @@ public:
         return new T(other);
         
     }
+
+    template <class T, class... Args>
+    T* instantiate(Args&&... _Args) { 
+        return new T(std::forward<Args>(_Args)...);
+    }
     
     template<typename T>
     T* allocate(size_t count){
@@ -39,9 +44,11 @@ public:
     }
     
     template<typename T>
-    void deallocate(T* pointer){
+    void deallocate(T*& pointer){
         
+        if (!pointer) return;
         delete pointer;
+        pointer = nullptr;
         
     }
     

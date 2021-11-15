@@ -18,6 +18,10 @@ using SharedPtr = std::shared_ptr<T>;
 
 #undef assert
 
+#if !defined(__PRETTY_FUNCTION__) && !defined(__GNUC__)
+#define __PRETTY_FUNCTION__ __FUNCSIG__
+#endif
+
 #define assert(condition, message)                          \
                                                             \
 if(!(condition)){                                           \

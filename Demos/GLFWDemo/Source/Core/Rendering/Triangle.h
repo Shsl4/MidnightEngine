@@ -9,6 +9,7 @@
 #include <Rendering/RenderObject.h>
 #include <Rendering/ShaderProgram.h>
 #include <Rendering/Vertex.h>
+#include <Memory/Allocator.h>
 
 class Triangle : public RenderObject{
     
@@ -34,5 +35,6 @@ private:
     unsigned int vertexBufferId = 0;
     unsigned int vertexArrayId = 0;
     ShaderProgram* program;
+    Allocator allocator;
     
 };

@@ -21,12 +21,14 @@ Grid::Grid(const char* shaderName, const int size){
     glGenVertexArrays(1, &this->vertexArrayId);
     glBindVertexArray(this->vertexArrayId);
     
-    program = new ShaderProgram(shaderName);
+    program = allocator.instantiate<ShaderProgram>("Default");
 
 }
 
 Grid::~Grid(){
     
+    allocator.deallocate(program);
+    allocator.deallocate(lines);
     glDeleteVertexArrays(1, &this->vertexArrayId);
     glDeleteBuffers(1, &this->vertexBufferId);
 

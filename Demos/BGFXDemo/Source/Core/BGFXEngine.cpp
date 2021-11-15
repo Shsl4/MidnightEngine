@@ -168,6 +168,38 @@ int BGFXEngine::init(int argc, const char** argv) {
     init.resolution.height = m_height;
     init.resolution.reset = m_reset;
 
+#ifndef __APPLE__
+
+    mainWindow = SDL_CreateWindow("MidnightEngine",
+        SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED,
+        m_width, m_height, SDL_WINDOW_SHOWN);
+
+    SDL_SysWMinfo wmi;
+    SDL_VERSION(&wmi.version);
+    if (!SDL_GetWindowWMInfo(mainWindow, &wmi)) {
+        return 1;
+    }
+
+    bgfx::PlatformData pd;
+#	if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
+#		if ENTRY_CONFIG_USE_WAYLAND
+    pd.ndt = wmi.info.wl.display;
+#		else
+    pd.ndt = wmi.info.x11.display;
+#		endif
+#	else
+    pd.ndt = NULL;
+#	endif // BX_PLATFORM_
+    pd.nwh = sdlNativeWindowHandle(mainWindow);
+
+    pd.context = NULL;
+    pd.backBuffer = NULL;
+    pd.backBufferDS = NULL;
+    bgfx::setPlatformData(pd);
+
+#endif
+
     if (!bgfx::init(init)) {
 
         getLogger()->fatal("Failed to initialize BGFX!");
@@ -290,7 +322,69 @@ bool left = false, right = false, middle = false;
 
 void BGFXEngine::loop() {
     
-    int mouseX, mouseY;
+
+#ifndef __APPLE__
+
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+
+
+        switch (event.type)
+        {
+        case SDL_KEYDOWN:
+            if (event.key.keysym.sym == SDLK_ESCAPE) {
+                shouldRun = false;
+            }
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+
+            switch (event.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                left = true;
+            case SDL_BUTTON_MIDDLE:
+                middle = true;
+            case SDL_BUTTON_RIGHT:
+                right = true;
+            default:
+                break;
+            }
+
+            break;
+        case SDL_MOUSEBUTTONUP:
+
+            switch (event.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                left = false;
+            case SDL_BUTTON_MIDDLE:
+                middle = false;
+            case SDL_BUTTON_RIGHT:
+                right = false;
+            default:
+                break;
+            }
+
+            break;
+        case SDL_QUIT:
+            shouldRun = false;
+            break;
+        default:
+            break;
+        }
+
+    }
+
+#endif
+
+    int mouseX = 0, mouseY = 0;
+
+#ifndef __APPLE__
+
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+#endif
 
     imguiBeginFrame(mouseX
         , mouseY
@@ -361,6 +455,12 @@ void BGFXEngine::cleanup()
 {
 
     imguiDestroy();
+
+#ifndef __APPLE__
+
+    SDL_DestroyWindow(mainWindow);
+
+#endif
 
     bgfx::destroy(triangleBuffer);
     bgfx::destroy(program);
