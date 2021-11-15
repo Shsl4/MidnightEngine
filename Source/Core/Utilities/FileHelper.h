@@ -11,7 +11,8 @@ public:
 
 	static std::string getFileContents(std::string path) {
 
-		std::ifstream fStream(path);
+        std::string _path = std::filesystem::current_path().string() + "/" + path;
+		std::ifstream fStream(_path);
 
 		if (!fStream.is_open()) { return ""; }
 

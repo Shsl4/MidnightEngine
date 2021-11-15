@@ -27,7 +27,7 @@
 #ifndef TINYSTL_NEW_H
 #define TINYSTL_NEW_H
 
-#include <TINYSTL/stddef.h>
+#include <tinystl/stddef.h>
 
 namespace tinystl {
 

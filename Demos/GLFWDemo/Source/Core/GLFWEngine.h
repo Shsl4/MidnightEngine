@@ -10,6 +10,9 @@
 #include <Math/MathUtils.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <Rendering/RenderObject.h>
+#include <Rendering/Triangle.h>
+#include <Memory/Array.h>
 #include <vector>
 
 class GLFWEngine : public IMidnightEngine
@@ -20,12 +23,13 @@ public:
 
     }
     
-    virtual int init(int argc, char** argv) override;
+    virtual int init(int argc, const char** argv) override;
 
     virtual void loop() override;
 
-    virtual FORCEINLINE double getDeltaTime() const { return this->deltaTime; }
+    virtual FORCEINLINE double getDeltaTime() const override { return this->deltaTime; }
     virtual FORCEINLINE double getTime() const override { return this->time; }
+    virtual FORCEINLINE GLFWwindow* getMainWindow() { return this->mainWindow; }
 
 private:
 
@@ -36,9 +40,8 @@ private:
     GLFWwindow* mainWindow = nullptr;
 
     UniquePtr<InputManager> inputManager;
-    std::vector<ShaderProgram> programs;
+    Array<RenderObject> objects;
 
-    unsigned int vertexBufferId = 0;
-    unsigned int elementBufferId = 0;
+    unsigned int linesBufferId = 0;
     
 };

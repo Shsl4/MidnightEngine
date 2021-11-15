@@ -9,7 +9,6 @@
 #include <vector>
 #include <bgfx/bgfx.h>
 #include <bgfx/bgfx_utils.h>
-#include <SDL2/SDL.h>
 #include <UI/PerformanceWindow.h>
 
 class BGFXEngine : public IMidnightEngine {
@@ -20,7 +19,7 @@ public:
 
 	~BGFXEngine();
 
-	virtual int init(int argc, char** argv) override;
+	virtual int init(int argc, const char** argv) override;
 	virtual void loop() override;
 
 	virtual void stop();
@@ -54,8 +53,6 @@ private:
 
 	bool shouldRun = true;
 	bool shouldRestart = false;
-
-	SDL_Window* mainWindow = nullptr;
 
 	bgfx::VertexBufferHandle triangleBuffer;
 	bgfx::ProgramHandle program;

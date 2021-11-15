@@ -16,7 +16,7 @@ Vertex triangle[3] =
 
 };
 
-int SDLEngine::init(int argc, char** argv)
+int SDLEngine::init(int argc, const char** argv)
 {
     int width = 640;
     int height = 480;
@@ -29,7 +29,6 @@ int SDLEngine::init(int argc, char** argv)
         getLogger()->fatal("Failed to initialize SDL! Error: {}", SDL_GetError());
         return -1;
     }
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -58,7 +57,7 @@ int SDLEngine::init(int argc, char** argv)
     glGenBuffers(1, &vertexBufferId);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
-
+    
     program = std::make_unique<ShaderProgram>("Default");
 
     while (shouldRun) {
@@ -111,7 +110,6 @@ void SDLEngine::loop()
     program->bind();
     int mvp_location = glGetUniformLocation(program->getProgram(), "viewMatrix");
     glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)matrix.data);
-
 
     for (size_t j = 0; j < 3; ++j) {
         triangle[j].color.setRed(abs((float)sin(j % 3 + SDL_GetTicks() * 0.001 + 3.14f / 4.0f)));

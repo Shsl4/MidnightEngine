@@ -10,7 +10,7 @@ set(MAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Source/BGFXDemo.cpp)
 file(GLOB_RECURSE BGFX_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_CURRENT_SOURCE_DIR}/*.Module)
 
-project(BGFXDemo VERSION 0.0.1)
+project(BGFXDemo VERSION 0.0.1 LANGUAGES C CXX Swift)
 
 foreach(MODULE ${MODULES})
 
@@ -56,13 +56,15 @@ elseif(APPLE)
 find_library(FOUNDATION Foundation)
 find_library(COCOA Cocoa)
 find_library(IOKIT IoKit)
+find_library(METAL Metal)
+find_library(QUARTZCORE QuartzCore)
 
-target_link_libraries(BGFXDemo ${FOUNDATION} ${COCOA} ${IOKIT})
-add_custom_command(TARGET BGFXDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+target_link_libraries(BGFXDemo ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
+add_custom_command(TARGET BGFXDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:BGFXDemo>/Resources)
 
 elseif(UNIX AND NOT APPLE)
 
-add_custom_command(TARGET BGFXDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+add_custom_command(TARGET BGFXDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:BGFXDemo>/Resources)
 
 endif()
 

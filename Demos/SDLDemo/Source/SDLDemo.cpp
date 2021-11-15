@@ -8,7 +8,7 @@
 
 #include <Core/SDLEngine.h>
 
-int main(int argc, char** argv) {
+int main(int argc, const char** argv) {
 
 #ifdef _WIN64
 

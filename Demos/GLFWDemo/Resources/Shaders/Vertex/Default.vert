@@ -1,11 +1,11 @@
-#version 110
+#version 410 core
 
 uniform mat4 viewMatrix;
 
-attribute vec4 inColor;
-attribute vec3 position;
+layout (location = 0) in vec4 inColor;
+layout (location = 1) in vec3 position;
 
-varying vec4 color;
+out vec4 color;
 
 void main()
 {

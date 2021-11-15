@@ -52,12 +52,12 @@ find_library(FOUNDATION Foundation)
 find_library(COCOA Cocoa)
 find_library(IOKIT IoKit)
 
-target_link_libraries(SDLDemo ${FOUNDATION} ${COCOA} ${IOKIT})
-add_custom_command(TARGET GLFWDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+target_link_libraries(GLFWDemo ${FOUNDATION} ${COCOA} ${IOKIT})
+add_custom_command(TARGET GLFWDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:GLFWDemo>/Resources)
 
 elseif(UNIX AND NOT APPLE)
 
-add_custom_command(TARGET GLFWDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+add_custom_command(TARGET GLFWDemo POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:GLFWDemo>/Resources)
 
 endif()
 

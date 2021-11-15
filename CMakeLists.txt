@@ -10,6 +10,8 @@ file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
 set(MAIN_FILE ${CMAKE_SOURCE_DIR}/Source/MidnightEngine.cpp)
 project(MidnightEngine VERSION 0.0.1)
 
+set(CMAKE_XCODE_ATTRIBUTE_SWIFT_OBJC_BRIDGING_HEADER "${PROJECT_SOURCE_DIR}/Demos/BGFXDemo/Source/Core/Platform/macOS/Bridge.h")	
+
 include(${CMAKE_SOURCE_DIR}/Functions.cmake)
 
 foreach(MODULE ${MODULES})
@@ -26,8 +28,8 @@ filterEngineSources("${ENGINE_RESOURCES}")
 filterThirdPartySources("${THIRD_PARTY_SOURCES}")
 filterThirdPartySources("${THIRD_PARTY_HEADERS}")
 
-target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}\\Source")
-target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}\\Source\\Core")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Core")
 target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
 if(WIN32)
@@ -41,7 +43,7 @@ find_library(COCOA Cocoa)
 find_library(IOKIT IoKit)
 
 target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT})
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Resources)
 
 elseif(UNIX AND NOT APPLE)
 

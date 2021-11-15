@@ -4,37 +4,11 @@
 
 #include <Core/GLFWEngine.h>
 #include <Rendering/Vertex.h>
+#include <Rendering/Triangle.h>
+#include <Rendering/Grid.h>
 #include <cmath>
 
-Vertex triangle[3] =
-{
-
-	Vertex(0.0f, 0.69282f - 0.23094f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	Vertex(-0.4f, -0.23094f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	Vertex(0.4f, -0.23094f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-
-};
-
-Vertex square[4] =
-{
-
-	//Top Right
-	Vertex(0.5f, 0.5f, 0.0f, LinearColors::black),
-	//Top Left
-	Vertex(-0.5f, 0.5f, 1.0f, LinearColors::black),
-	//Bottom Right
-	Vertex(0.5f, -0.5f, 0.0f, LinearColors::black),
-	//Bottom Left
-	Vertex(-0.5f, -0.5f, 0.0f, LinearColors::black)
-
-};
-
-GLuint elements[] = {
-	0, 1, 2,
-	2, 3, 0
-};
-
-int GLFWEngine::init(int argc, char** argv)
+int GLFWEngine::init(int argc, const char** argv)
 {
 
 #ifdef _WIN64
@@ -54,10 +28,17 @@ int GLFWEngine::init(int argc, char** argv)
 
 	glfwSetErrorCallback(ErrorHandler::onError);
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    
+#ifdef TRANSPARENT
+    
     glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, 1);
     glfwWindowHint(GLFW_DECORATED, false);
+    
+#endif
 
 #ifdef FULLSCREEN
 
@@ -74,7 +55,6 @@ int GLFWEngine::init(int argc, char** argv)
 
 #endif
 
-
 	if (!mainWindow)
 	{
 		getLogger()->fatal("Failed to create window!");
@@ -86,25 +66,17 @@ int GLFWEngine::init(int argc, char** argv)
 	glfwSwapInterval(1);
 
 	this->inputManager = std::make_unique<InputManager>(mainWindow);
-	
-	glGenBuffers(1, &elementBufferId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-	glGenBuffers(1, &vertexBufferId);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
-
-	ShaderProgram prog = ShaderProgram("Default");
-	programs.push_back(prog);
+        
+    Triangle tri = Triangle();
+    Grid grid = Grid("Default", 32);
+    
+    objects.append(tri);
+    objects.append(grid);
 
 	while (!glfwWindowShouldClose(mainWindow))
 	{
-		loop();
+        loop();
 	}
-
-	glDeleteBuffers(1, &this->elementBufferId);
-	glDeleteBuffers(1, &this->vertexBufferId);
     
 	glfwDestroyWindow(mainWindow);
 	getLogger()->info("Destroying engine...");
@@ -128,29 +100,15 @@ void GLFWEngine::loop()
 	glViewport(0, 0, width, height);
 
 	glClear(GL_COLOR_BUFFER_BIT);
+    
+    float color = 0x30 / 255.0f;
+    
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	for (size_t i = 0; i < programs.size(); i++)
+	for (size_t i = 0; i < objects.getCount(); i++)
 	{
-		
-		Matrix4 id = Matrix4::identity();
-		id.rotateZ((float)time);
-		Matrix4 matrix = Matrix4::orthographic(-ratio, ratio, -1.0f, 1.0f, 1.0f, -1.0f) * id;
-		programs[i].bind();
-		int mvp_location = glGetUniformLocation(programs[i].getProgram(), "viewMatrix");
-		glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)matrix.data);
-		
-		for (size_t j = 0; j < 3; ++j) {
-			triangle[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
-			triangle[j].color.setGreen(abs((float)cos(j % 3 + time)));
-			triangle[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
-		}
-
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
-
+        objects[i]->render(deltaTime);
 	}
-
-	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glfwSwapBuffers(mainWindow);
 	glfwPollEvents();

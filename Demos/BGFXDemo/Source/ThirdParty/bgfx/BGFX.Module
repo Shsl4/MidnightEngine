@@ -15,7 +15,14 @@ set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/bgfxRelease.lib ${RELEASE_PATH}/bxRelease.
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/bx/compat/msvc)
 
 elseif (APPLE) 
-message(FATAL_ERROR "Need to compile libraries for macOS.")
+
+set(DEBUG_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/macOS/arm64/Debug)
+set(RELEASE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/macOS/arm64/Release)
+
+set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/libbgfxRelease.a ${RELEASE_PATH}/libbxRelease.a ${RELEASE_PATH}/libbimgRelease.a ${RELEASE_PATH}/libbimg_decodeRelease.a)
+
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/bx/compat/osx)
+
 elseif (LINUX)
 message(FATAL_ERROR "Need to compile libraries for Linux.")
 endif()

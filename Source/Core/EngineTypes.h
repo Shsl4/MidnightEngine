@@ -15,3 +15,18 @@ using SharedPtr = std::shared_ptr<T>;
 #else
 #define FORCEINLINE __forceinline
 #endif // !WIN64
+
+#undef assert
+
+#define assert(condition, message)                          \
+                                                            \
+if(!(condition)){                                           \
+                                                            \
+    std::cout << "Assertion failed in file: " << __FILE__   \
+              << " function: " << __PRETTY_FUNCTION__       \
+              << ", line: " << __LINE__                     \
+              << ". Message: " << message                   \
+              << std::endl;                                 \
+                                                            \
+    abort();                                                \
+}

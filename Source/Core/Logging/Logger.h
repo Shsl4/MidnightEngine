@@ -44,6 +44,7 @@ public:
     inline void fatal(std::string formatString, Args&&... args) const
     {
         this->log(fg(fmt::color::dark_red), "FATAL", formatString, args...);
+        abort();
     }
 
     std::string getId() const { return this->id; }
@@ -51,11 +52,11 @@ public:
 private:
         
     template<typename ... Args>
-    inline void log(fmt::text_style color, std::string type, std::string format, Args&& ...args) const {
+    void log(fmt::text_style color, std::string type, std::string format, Args&& ...args) const {
         
-        auto preFormat = fmt::format("[{}] ({}) | ", type, this->getId());
-        const auto formatArgs = fmt::make_format_args(args...);
-        std::string formatted = preFormat + fmt::vformat(format, formatArgs) + '\n';
+        const fmt::basic_format_args<fmt::format_context> formatArgs = fmt::make_format_args(args...);
+        std::string formatted = fmt::vformat(format, formatArgs) + '\n';
+        fmt::print(color, "[{}] ({}) | ", type, this->getId());
         fmt::print(color, formatted);
         
     }

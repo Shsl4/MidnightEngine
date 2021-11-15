@@ -139,7 +139,7 @@ static void* sdlNativeWindowHandle(SDL_Window* _window)
 
 }
 
-int BGFXEngine::init(int argc, char** argv) {
+int BGFXEngine::init(int argc, const char** argv) {
 
     getLogger()->info("Initializing MidnightEngine...");
 
@@ -148,8 +148,6 @@ int BGFXEngine::init(int argc, char** argv) {
     m_width = 1280;
     m_height = 720;
     m_debug = BGFX_DEBUG_TEXT;
-
-#define VSYNC
 
 #ifdef VSYNC
 
@@ -169,34 +167,6 @@ int BGFXEngine::init(int argc, char** argv) {
     init.resolution.width = m_width;
     init.resolution.height = m_height;
     init.resolution.reset = m_reset;
-
-    mainWindow = SDL_CreateWindow("MidnightEngine",
-        SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED,
-        m_width, m_height, SDL_WINDOW_SHOWN);
-
-    SDL_SysWMinfo wmi;
-    SDL_VERSION(&wmi.version);
-    if (!SDL_GetWindowWMInfo(mainWindow, &wmi)) {
-        return 1;
-    }
-
-    bgfx::PlatformData pd;
-#	if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
-#		if ENTRY_CONFIG_USE_WAYLAND
-    pd.ndt = wmi.info.wl.display;
-#		else
-    pd.ndt = wmi.info.x11.display;
-#		endif
-#	else
-    pd.ndt = NULL;
-#	endif // BX_PLATFORM_
-    pd.nwh = sdlNativeWindowHandle(mainWindow);
-
-    pd.context = NULL;
-    pd.backBuffer = NULL;
-    pd.backBufferDS = NULL;
-    bgfx::setPlatformData(pd);
 
     if (!bgfx::init(init)) {
 
@@ -319,60 +289,8 @@ std::string BGFXEngine::getNiceGPUName() {
 bool left = false, right = false, middle = false;
 
 void BGFXEngine::loop() {
-
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-
-
-        switch (event.type)
-        {
-        case SDL_KEYDOWN:
-            if (event.key.keysym.sym == SDLK_ESCAPE) {
-                shouldRun = false;
-            }
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-
-            switch (event.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                left = true;
-            case SDL_BUTTON_MIDDLE:
-                middle = true;
-            case SDL_BUTTON_RIGHT:
-                right = true;
-            default:
-                break;
-            }
-
-            break;
-        case SDL_MOUSEBUTTONUP:
-
-            switch (event.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                left = false;
-            case SDL_BUTTON_MIDDLE:
-                middle = false;
-            case SDL_BUTTON_RIGHT:
-                right = false;
-            default:
-                break;
-            }
-
-            break;
-        case SDL_QUIT:
-            shouldRun = false;
-            break;
-        default:
-            break;
-        }
-
-    }
-
+    
     int mouseX, mouseY;
-    SDL_GetMouseState(&mouseX, &mouseY);
 
     imguiBeginFrame(mouseX
         , mouseY
@@ -443,8 +361,6 @@ void BGFXEngine::cleanup()
 {
 
     imguiDestroy();
-
-    SDL_DestroyWindow(mainWindow);
 
     bgfx::destroy(triangleBuffer);
     bgfx::destroy(program);

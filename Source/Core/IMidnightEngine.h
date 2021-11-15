@@ -18,7 +18,7 @@ public:
 
     }
     
-    virtual int init(int argc, char** argv) = 0;
+    virtual int init(int argc, const char** argv) = 0;
     virtual void loop() = 0;
 
     virtual FORCEINLINE double getDeltaTime() const = 0;

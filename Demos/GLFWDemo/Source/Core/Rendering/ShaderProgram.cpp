@@ -16,7 +16,6 @@ ShaderProgram::ShaderProgram(std::string programName)
 
 	if (!programId) {
 		logger->fatal("Failed to create shader program!");
-		throw new std::runtime_error("Failed to create shader program!");
 	}
 
 	// Load our vertex and fragment shader codes
@@ -24,7 +23,7 @@ ShaderProgram::ShaderProgram(std::string programName)
 	std::string fragmentCode = FileHelper::getFileContents("Resources/Shaders/Fragment/" + programName + ".frag");
 
 	if (vertexCode.empty() || fragmentCode.empty()) {
-		throw new std::runtime_error("Failed to load shader code! Is the path valid?");
+        logger->fatal("Failed to load shader code! Is the path valid?");
 	}
 
 	// Create vertex and fragment shaders
@@ -32,7 +31,7 @@ ShaderProgram::ShaderProgram(std::string programName)
 	this->fragmentId = makeShader(fragmentCode, GL_FRAGMENT_SHADER);
 
 	if(!vertexId || !fragmentId) {
-		throw new std::runtime_error("Failed to create shader program!");
+        logger->fatal("Failed to create shader program.");
 	}
 
 	glLinkProgram(programId);
@@ -41,7 +40,6 @@ ShaderProgram::ShaderProgram(std::string programName)
 	if (!linkSuccessful) {
 		glGetProgramInfoLog(programId, 1024, NULL, log);
 		logger->fatal("Failed to link shader! Error: {}", log);
-		throw new std::runtime_error("Failed to create shader program!");
 	}
 
 	glValidateProgram(programId);
@@ -50,7 +48,6 @@ ShaderProgram::ShaderProgram(std::string programName)
 	if (!valid) {
 		glGetProgramInfoLog(programId, 1024, NULL, log);
 		logger->fatal("Shader validation failed! Error: {}", log);
-		throw new std::runtime_error("Failed to create shader program!");
 	}
 
 	glDetachShader(programId, vertexId);
@@ -60,11 +57,11 @@ ShaderProgram::ShaderProgram(std::string programName)
     int col = glGetAttribLocation(programId, "inColor");
 
 	glEnableVertexAttribArray(pos);
+    glEnableVertexAttribArray(col);
+
 	glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
-
-	glEnableVertexAttribArray(col);
 	glVertexAttribPointer(col, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
-
+    
 }
 
 ShaderProgram::~ShaderProgram()
