@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
 set(MAIN_FILE ${CMAKE_SOURCE_DIR}/Source/MidnightEngine.cpp)
-project(MidnightEngine VERSION 0.0.1)
+project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX)
 
 set(CMAKE_XCODE_ATTRIBUTE_SWIFT_OBJC_BRIDGING_HEADER "${PROJECT_SOURCE_DIR}/Demos/BGFXDemo/Source/Core/Platform/macOS/Bridge.h")	
 
@@ -22,6 +22,7 @@ endforeach()
 
 add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS} ${ENGINE_RESOURCES})
 
+filterEngineSources("${MAIN_FILE}")
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
 filterEngineSources("${ENGINE_RESOURCES}")
@@ -30,6 +31,7 @@ filterThirdPartySources("${THIRD_PARTY_HEADERS}")
 
 target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source")
 target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Core")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/UI")
 target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
 if(WIN32)
@@ -41,8 +43,10 @@ elseif(APPLE)
 find_library(FOUNDATION Foundation)
 find_library(COCOA Cocoa)
 find_library(IOKIT IoKit)
+find_library(METAL Metal)
+find_library(QUARTZCORE QuartzCore)
 
-target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT})
+target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
 add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Resources)
 
 elseif(UNIX AND NOT APPLE)
@@ -58,6 +62,9 @@ endif()
 target_link_libraries(MidnightEngine debug ${THIRD_PARTY_DEBUG_LIBS})
 target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 
-add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/GLFWDemo")  
-add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/SDLDemo")
-add_subdirectory("${CMAKE_SOURCE_DIR}/Demos/BGFXDemo")
+foreach(LIBRARY ${THIRD_PARTY_DEBUG_DYLIBS})
+
+    get_filename_component(FILENAME "${LIBRARY}" NAME)
+    add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME})
+
+endforeach()
