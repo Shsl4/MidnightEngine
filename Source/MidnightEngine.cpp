@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <bx/thread.h>
 #include <SDL2/SDL_syswm.h>
-
+/*
 MEngine* engine = nullptr;
 
 static int32_t threadFunc(bx::Thread* _thread, void* _userData){
@@ -100,3 +100,4 @@ int main(int argc, const char** argv) {
 	return 0;
 
 }
+*/

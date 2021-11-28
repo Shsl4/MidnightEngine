@@ -11,16 +11,18 @@
 #include <Memory/Allocator.h>
 
 template<typename T>
-class Array{
+class ManagedArray{
    
 public:
     
-    Array(size_t capacity = 15){
+    ManagedArray(size_t capacity = 15){
     
         data = allocator.allocate<T*>(capacity);
         
         for (int i = 0; i < capacity; ++i) {
+            
             data[i] = nullptr;
+            
         }
         
         this->count = 0;
@@ -28,16 +30,18 @@ public:
                         
     }
 
-    ~Array(){
+    ~ManagedArray(){
         
         clear();
         capacity = 0;
-        delete data;
+        allocator.deallocate(data);
                 
     }
     
     template<class S>
-    bool append(S& other){
+    bool append(S* other){
+        
+        static_assert(std::is_base_of<T, S>::value, "S should inherit from T");
         
         if(count == capacity) {
         
@@ -51,21 +55,64 @@ public:
             
         }
                 
-        data[count] = &other;
+        data[count] = other;
         ++count;
         
         return true;
         
     }
     
-    bool remove(size_t index, T* out = nullptr){
+    template<class S>
+    bool remove(S* other){
                 
-        if(index > count) { return false; }
+        int index;
         
-        if(out) { *out = *data[index]; }
+        for (index = 0; index < count; ++index) {
+            
+            if(other == data[index]){
+                
+                break;
+                
+            }
+            
+        }
+
+        if(index == count) { return false; }
+                
+        allocator.deallocate(data[index]);
+        data[index] = nullptr;
+        --count;
+
+        size_t i;
+
+        for (i = index; i < count; ++i) {
+            
+            data[i] = data[i + 1];
+            
+        }
+        
+        data[i] = nullptr;
+        
+        return true;
+        
+    }
+    
+    bool remove(size_t index, T** out = nullptr){
+                
+        if(index >= count) { return false; }
+        
+        if(out) {
+            
+            *out = data[index];
+            
+        }
+        else{
+            
+            allocator.deallocate(data[index]);
+            
+        }
                 
         data[index] = nullptr;
-        allocator.deallocate(data[index]);
         --count;
 
         size_t i;
@@ -86,6 +133,7 @@ public:
                 
         for (int i = 0; i < capacity; ++i) {
             
+            allocator.deallocate(data[i]);
             data[i] = nullptr;
             
         }

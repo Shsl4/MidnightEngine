@@ -1,79 +1,72 @@
 #pragma once
 
-#include <Core/EngineTypes.h>
-#include <Core/Logging/Logger.h>
-#include <UI/PerformanceWindow.h>
+#include <EngineTypes.h>
+#include <Object.h>
 #include <Math/MathUtils.h>
+#include <Memory/Array.h>
+#include <Rendering/RenderObject.h>
+#include <SDL2/SDL.h>
+
 #include <bx/timer.h>
 #include <bx/commandline.h>
 #include <bgfx/bgfx_utils.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
-#include <SDL2/SDL.h>
 
-class MEngine
+class MEngine : public Object
 {
 public:
 
-    MEngine() {
-        
-        instance = this;
-        logger = std::make_unique<Logger>("MidnightEngine");
-
-    }
+    MEngine();
     
     virtual ~MEngine();
     
     virtual int init(int argc, const char** argv);
+    virtual void loop();
     virtual void render();
-    virtual void tick();
 
     virtual void stop();
     virtual void restart();
-    
-    inline static bgfx::RendererType::Enum renderer = bgfx::RendererType::Vulkan;
-
+        
     std::string getNiceRendererName();
     std::string getNiceGPUName();
 
-    virtual FORCEINLINE double getDeltaTime() const { return this->deltaTime; }
-    virtual FORCEINLINE double getTime() const { return this->time; }
-
-    FORCEINLINE const Logger* getLogger() const { return logger.get(); };
     FORCEINLINE static MEngine* getInstance() { return instance; };
+    FORCEINLINE bool isRunning() { return this->running; }
+    FORCEINLINE double getDeltaTime() const { return this->deltaTime; }
+    FORCEINLINE double getTime() const { return 0.0; }
+    FORCEINLINE const class Logger* getLogger() const { return logger.get(); };
     
     FORCEINLINE void selectGPU(uint16_t deviceId, uint16_t vendorId) {
         this->deviceId = deviceId;
         this->vendorId = vendorId;
     }
     
-    bool shouldRun = true;
-    bool shouldRender = false;
+    static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
+
 
 private:
 
+    void onEscape();
+    void onLeftMousePressed();
+    void onLeftMouseReleased();
+    
     void cleanup();
     
-    float time;
+    inline static MEngine* instance = nullptr;
+    
     float lastTime;
     float deltaTime;
-        
-    inline static MEngine* instance = nullptr;
-    UniquePtr<Logger> logger;
+    bool running;
     
-    uint32_t m_width;
-    uint32_t m_height;
-    uint32_t m_debug;
-    uint32_t m_reset;
+    unsigned int deviceId;
+    unsigned int vendorId;
     int64_t timeOffset;
 
-    uint16_t deviceId = BGFX_PCI_ID_NONE;
-    uint16_t vendorId = 0;
-
-    bool shouldRestart = false;
-
-    bgfx::VertexBufferHandle triangleBuffer;
-    bgfx::ProgramHandle program;
-    PerformanceWindow perfWindow = PerformanceWindow();
+    UniquePtr<class InputManager> inputManager;
+    UniquePtr<class Logger> logger;
+    UniquePtr<class PerformanceWindow> perfWindow;
+    
+    ManagedArray<RenderObject> objects;
 
 };

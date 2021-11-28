@@ -4,13 +4,12 @@ cmake_policy(SET CMP0091 NEW)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_Swift_LANGUAGE_VERSION, 5.0)
 
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
 set(MAIN_FILE ${CMAKE_SOURCE_DIR}/Source/MidnightEngine.cpp)
-project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX)
-
-set(CMAKE_XCODE_ATTRIBUTE_SWIFT_OBJC_BRIDGING_HEADER "${PROJECT_SOURCE_DIR}/Demos/BGFXDemo/Source/Core/Platform/macOS/Bridge.h")	
+project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX Swift)
 
 include(${CMAKE_SOURCE_DIR}/Functions.cmake)
 
@@ -36,7 +35,7 @@ target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
 if(WIN32)
 
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Resources)
+add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
 elseif(APPLE)
 
@@ -47,7 +46,7 @@ find_library(METAL Metal)
 find_library(QUARTZCORE QuartzCore)
 
 target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Resources)
+add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
 elseif(UNIX AND NOT APPLE)
 

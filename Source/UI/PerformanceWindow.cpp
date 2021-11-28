@@ -1,4 +1,5 @@
 #include <bx/timer.h>
+#include <UI/PerformanceWindow.h>
 #include <bgfx/bgfx_utils.h>
 #include <Engine.h>
 
@@ -182,7 +183,7 @@ void PerformanceWindow::render(const char* _errorText)
 
 		if (ImGui::Combo("###Renderer", &current, items, num - 1))
 		{
-			MEngine::renderer = supportedRenderers[current + 1];
+			//MEngine::renderer = supportedRenderers[current + 1];
             MEngine::getInstance()->restart();
 		}
 
