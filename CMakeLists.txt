@@ -9,7 +9,7 @@ set(CMAKE_Swift_LANGUAGE_VERSION, 5.0)
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
 set(MAIN_FILE ${CMAKE_SOURCE_DIR}/Source/MidnightEngine.cpp)
-project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX Swift)
+project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX)
 
 include(${CMAKE_SOURCE_DIR}/Functions.cmake)
 

@@ -2,7 +2,7 @@
 
 struct RenderData{
     
-    RenderData(float t, float dt, float w, float h){
+    RenderData(float t, float dt, unsigned int w, unsigned int h){
         
         this->time = t;
         this->deltaTime = dt;

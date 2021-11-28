@@ -4,7 +4,6 @@
 #include <Object.h>
 #include <Math/MathUtils.h>
 #include <Memory/Array.h>
-#include <Rendering/RenderObject.h>
 #include <SDL2/SDL.h>
 
 #include <bx/timer.h>
@@ -17,16 +16,15 @@ class MEngine : public Object
 {
 public:
 
-    MEngine();
+    MEngine(SDL_Window* mainWindow);
     
     virtual ~MEngine();
     
     virtual int init(int argc, const char** argv);
-    virtual void loop();
+    virtual void update();
     virtual void render();
 
     virtual void stop();
-    virtual void restart();
         
     std::string getNiceRendererName();
     std::string getNiceGPUName();
@@ -34,39 +32,32 @@ public:
     FORCEINLINE static MEngine* getInstance() { return instance; };
     FORCEINLINE bool isRunning() { return this->running; }
     FORCEINLINE double getDeltaTime() const { return this->deltaTime; }
-    FORCEINLINE double getTime() const { return 0.0; }
+    FORCEINLINE double getTime() const { return time; }
     FORCEINLINE const class Logger* getLogger() const { return logger.get(); };
-    
-    FORCEINLINE void selectGPU(uint16_t deviceId, uint16_t vendorId) {
-        this->deviceId = deviceId;
-        this->vendorId = vendorId;
-    }
-    
-    static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
+    FORCEINLINE const class Scene* getActiveScene() const { return activeScene.get(); };
 
+    static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
 
 private:
 
-    void onEscape();
-    void onLeftMousePressed();
-    void onLeftMouseReleased();
-    
     void cleanup();
     
     inline static MEngine* instance = nullptr;
     
+    float time;
     float lastTime;
     float deltaTime;
     bool running;
     
-    unsigned int deviceId;
-    unsigned int vendorId;
     int64_t timeOffset;
+
+    int windowWidth;
+    int windowHeight;
 
     UniquePtr<class InputManager> inputManager;
     UniquePtr<class Logger> logger;
-    UniquePtr<class PerformanceWindow> perfWindow;
-    
-    ManagedArray<RenderObject> objects;
+    UniquePtr<class Scene> activeScene;
+
+    SDL_Window* mainWindow;
 
 };

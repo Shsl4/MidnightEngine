@@ -1,10 +1,3 @@
-//
-//  Main.h
-//  MidnightEngine
-//
-//  Created by Pierre on 27/11/2021.
-//
-
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
@@ -16,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int) initEngine:(NSWindow*)window;
 
-- (void) loop;
+- (void) update;
 
 + (NSEvent*) getNextEvent;
 

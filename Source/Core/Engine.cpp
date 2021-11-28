@@ -1,27 +1,30 @@
 #include <Engine.h>
+
 #include <Rendering/ShaderLoader.h>
 #include <Rendering/Vertex.h>
-#include <Rendering/Triangle.h>
 #include <Rendering/RenderData.h>
 #include <Input/InputManager.h>
-#include <UI/PerformanceWindow.h>
 
 #include <bgfx/imgui/imgui.h>
 #include <SDL2/SDL_syswm.h>
 #include <Scene/Scene.h>
 
-MEngine::MEngine(){
+MEngine::MEngine(SDL_Window* mainWindow){
     
     MEngine::instance = this;
+
     this->logger = std::make_unique<Logger>("MidnightEngine");
     this->inputManager = std::make_unique<InputManager>();
-    this->perfWindow = std::make_unique<PerformanceWindow>();
+
+    this->running = false;
+    this->mainWindow = mainWindow;
+
+    SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
     
 }
 
 MEngine::~MEngine() {
 
-    getLogger()->debug("Destroying MidnightEngine...");
     cleanup();
 
 }
@@ -38,50 +41,24 @@ int MEngine::init(int argc, const char** argv){
 
     }
     
-    running = true;
-
-    const bgfx::Caps* caps = bgfx::getCaps();
-
-    for (uint8_t ii = 0; ii < caps->numGPUs; ++ii)
-    {
-        const bgfx::Caps::GPU& gpu = caps->gpu[ii];
-        if (caps->vendorId == gpu.vendorId
-            && caps->deviceId == gpu.deviceId)
-        {
-
-            vendorId = caps->gpu[ii].vendorId;
-            deviceId = caps->gpu[ii].deviceId;
-            break;
-        }
-
-    }
-
-    bgfx::setDebug(BGFX_DEBUG_TEXT);
-
     bgfx::setViewClear(0
         , BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH
         , 0x303030ff
         , 1.0f
         , 0
     );
-    
-    inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::IE_PRESSED, &MEngine::onEscape);
 
-    inputManager->bindEvent(this, KeyBind(SDL_BUTTON_LEFT), EInputEvent::IE_PRESSED, &MEngine::onLeftMousePressed);
-    
-    inputManager->bindEvent(this, KeyBind(SDL_BUTTON_LEFT), EInputEvent::IE_RELEASED, &MEngine::onLeftMouseReleased);
-    
-    Triangle* tri = new Triangle("Default");
-    
-    objects.append(tri);
-    
-    imguiCreate();
-
-    getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {} (Device ID: {})", getNiceRendererName(), getNiceGPUName(), deviceId);
-    
     timeOffset = bx::getHPCounter();
-    
+
     logger->info("Desc: {}", getDescription());
+
+    inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &MEngine::stop);
+
+    this->activeScene = std::make_unique<Scene>();
+
+    getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
+
+    running = true;
     
     while (isRunning()) {
         
@@ -93,77 +70,29 @@ int MEngine::init(int argc, const char** argv){
     
 }
 
-bool left = false, right = false, middle = false;
-
-void MEngine::loop(){
-    
-    inputManager->update();
-    
-}
-
-void MEngine::onEscape(){
-    
-    running = false;
-    
-}
-
-void MEngine::onLeftMousePressed(){
-    
-    logger->debug("Pressed!");
-    
-}
-
-
-void MEngine::onLeftMouseReleased(){
-    
-    logger->debug("Released!");
-    
-}
-
-
-void MEngine::render(){
-    
-    uint32_t m_width = 1280;
-    uint32_t m_height = 720;
-    
-    imguiBeginFrame(inputManager->getMouseX(),
-                    inputManager->getMouseY(),
-                    (inputManager->leftMousePressed() ? IMGUI_MBUT_LEFT : 0) |
-                    (inputManager->rightMousePressed() ? IMGUI_MBUT_RIGHT : 0) |
-                    (inputManager->middleMousePressed() ? IMGUI_MBUT_MIDDLE : 0),
-                    0,
-                    uint16_t(m_width),
-                    uint16_t(m_height)
-        );
-
-    perfWindow->render(nullptr);
-    
-    imguiEndFrame();
+void MEngine::update(){
     
     const int64_t now = bx::getHPCounter();
     const double freq = double(bx::getHPFrequency());
-    float time = (float)((now - timeOffset)/freq);
-    
-    bgfx::setViewRect(0, 0, 0, uint16_t(m_width), uint16_t(m_height));
+    time = (float)((now - timeOffset) / freq);
+    deltaTime = time - lastTime;
+    lastTime = time;
 
-    bgfx::touch(0);
-    
-    RenderData data = RenderData(time, deltaTime, m_width, m_height);
-    
-    for (int i = 0; i < objects.getCount(); ++i) {
-        
-        objects[i]->render(data);
-        
-    }
-    
-    bgfx::frame();
-        
+    inputManager->update();
+    activeScene->updateScene(deltaTime);
+
 }
 
-void MEngine::restart(){
+void MEngine::render(){
     
-    getLogger()->info("Restarting engine...");
-    
+    bgfx::setViewRect(0, 0, 0, uint16_t(windowWidth), uint16_t(windowHeight));
+
+    bgfx::touch(0);
+
+    activeScene->renderComponents();
+
+    bgfx::frame();
+        
 }
 
 void MEngine::stop(){
@@ -173,12 +102,16 @@ void MEngine::stop(){
 }
 
 void MEngine::cleanup(){
-    
-    imguiDestroy();
-    bgfx::shutdown();
+
+    getLogger()->info("Destroying MidnightEngine...");
+
+    MEngine::instance = nullptr;
+
+    this->logger = nullptr;
+    this->inputManager = nullptr;
+    this->activeScene = nullptr;
 
 }
-
 
 std::string MEngine::getNiceRendererName() {
 
@@ -210,6 +143,7 @@ std::string MEngine::getNiceGPUName() {
     const bgfx::Caps* caps = bgfx::getCaps();
 
     int current = 0;
+
     for (uint8_t ii = 0; ii < caps->numGPUs; ++ii)
     {
         const bgfx::Caps::GPU& gpu = caps->gpu[ii];

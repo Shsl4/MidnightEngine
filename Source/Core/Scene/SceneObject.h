@@ -6,6 +6,15 @@
 #include <Scene/Component.h>
 #include <Object.h>
 
-class SceneObject : public Component {
+class SceneObject : public Object {
+
+public:
+
+	void start();
+	void update(float deltaTime);
+
+private:
+
+	Component* rootComponent;
   
 };

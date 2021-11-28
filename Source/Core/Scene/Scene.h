@@ -4,14 +4,17 @@
 #include <Scene/SceneObject.h>
 #include <Scene/Component.h>
 #include <Memory/Array.h>
+#include <Logging/Logger.h>
 
 class Scene : public Object {
     
 public:
     
-    Scene(){
+    Scene() : registeredComponents(15), registeredObjects(15) {
         
-        
+        this->logger = std::make_unique<Logger>("Scene");
+        logger->info("Constructed scene.");
+
     }
     
     template<class T, typename ... Args>
@@ -36,7 +39,14 @@ public:
     
     
 private:
-    
+
+    friend class MEngine;
+
+    void renderComponents();
+    void updateScene(float deltaTime);
+
+    UniquePtr<Logger> logger;
+
     ManagedArray<SceneObject> registeredObjects;
     ManagedArray<Component> registeredComponents;
     Allocator allocator;

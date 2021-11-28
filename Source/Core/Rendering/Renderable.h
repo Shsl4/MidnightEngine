@@ -1,26 +1,19 @@
-//
-//  RenderObject.h
-//  MidnightEngine
-//
-//  Created by Pierre on 24/11/2021.
-//
-
 #pragma once
 
 #include <bgfx/bgfx.h>
 #include <Rendering/RenderData.h>
 
-class RenderObject{
+class Renderable{
     
 public:
     
-    RenderObject() { }
+    Renderable() { }
     
-    virtual void render(RenderData data) = 0;
+    virtual void render() = 0;
     
     virtual bgfx::VertexLayout getVertexLayout() = 0;
   
-    virtual ~RenderObject() {
+    virtual ~Renderable() {
         
         bgfx::destroy(vertexBufferId);
         bgfx::destroy(programId);

@@ -6,11 +6,12 @@
 #include <Memory/Array.h>
 #include <SDL2/SDL.h>
 #include <map>
+#include <functional>
 
 enum class EInputEvent{
     
-    IE_PRESSED,
-    IE_RELEASED,
+    Pressed,
+    Released,
     
 };
 
@@ -47,7 +48,7 @@ struct KeyBind{
     }
     
     bool operator <(const KeyBind& other) const{
-        return true;
+        return this->key < other.key;
     }
     
     KeyBind(uint8_t button){
@@ -101,10 +102,10 @@ public:
         std::function<void()> function = std::bind(f, object);
        
         switch (type) {
-            case EInputEvent::IE_PRESSED:
+            case EInputEvent::Pressed:
                 keyDownEvents.insert(std::pair<KeyBind, std::function<void()>>(key, function));
                 break;
-            case EInputEvent::IE_RELEASED:
+            case EInputEvent::Released:
                 keyUpEvents.insert(std::pair<KeyBind, std::function<void()>>(key, function));
                 break;
         }

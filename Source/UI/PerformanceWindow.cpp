@@ -145,7 +145,7 @@ void PerformanceWindow::render(const char* _errorText)
 
 		if (ImGui::Button(ICON_FA_REPEAT " Restart", ImVec2(ImGui::GetContentRegionAvail().x / 2, 0.0f)))
 		{
-			(MEngine::getInstance())->restart();
+			//(MEngine::getInstance())->restart();
 		}
 
 		ImGui::SameLine();
@@ -184,7 +184,7 @@ void PerformanceWindow::render(const char* _errorText)
 		if (ImGui::Combo("###Renderer", &current, items, num - 1))
 		{
 			//MEngine::renderer = supportedRenderers[current + 1];
-            MEngine::getInstance()->restart();
+            //MEngine::getInstance()->restart();
 		}
 
 		num = caps->numGPUs;
@@ -213,8 +213,8 @@ void PerformanceWindow::render(const char* _errorText)
 
 			if (ImGui::Combo("###GPU", &current, items, num))
 			{
-                MEngine::getInstance()->selectGPU(caps->gpu[current].deviceId, caps->gpu[current].vendorId);
-                MEngine::getInstance()->restart();
+                //MEngine::getInstance()->selectGPU(caps->gpu[current].deviceId, caps->gpu[current].vendorId);
+                //MEngine::getInstance()->restart();
 			}
 
 		}

@@ -14,7 +14,7 @@ class Component : public Object {
 public:
     
     virtual void start();
-    virtual void tick();
+    virtual void update(float deltaTime);
     
     bool attachTo(class SceneObject* object);
     bool attachTo(Component* other);
@@ -27,13 +27,13 @@ public:
 
     FORCEINLINE class SceneObject* getParentObject() { return this->parentObject; }
     FORCEINLINE Component* getParentComponent() { return this->parentComponent; }
-    FORCEINLINE ManagedArray<Component> getChildComponents() { return this->childComponents; }
+    FORCEINLINE Array<Component> getChildComponents() { return this->childComponents; }
     FORCEINLINE bool isRootComponent() { return parentComponent; }
 
 
 protected:
     
-    Component(){
+    Component() : parentComponent(nullptr), parentObject(nullptr) {
      
     }
     
@@ -44,8 +44,7 @@ private:
     class SceneObject* parentObject;
     
     Component* parentComponent;
-    
-    ManagedArray<Component> childComponents;
+    Array<Component> childComponents;
     
     bool registered;
     
@@ -58,8 +57,7 @@ class MyComponent : public Component{
     typedef Component Super;
     
 public:
-    
-    
+        
     MyComponent() : Super(){
         
     }

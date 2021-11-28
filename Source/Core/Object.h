@@ -13,5 +13,19 @@ public:
         return typeid(*this).name();
         
     }
+
+    template<class T>
+    T* cast() {
+
+        return dynamic_cast<T*>(this);
+
+    }
+
+    template<class T>
+    bool instanceOf() {
+
+        return cast<T>() != nullptr;
+
+    }
         
 };
