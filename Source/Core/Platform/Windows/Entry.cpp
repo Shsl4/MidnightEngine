@@ -1,14 +1,12 @@
+#ifdef _WIN64
+
 #include <Platform/Windows/Entry.h>
 #include <bgfx/bgfx.h>
 #include <thread>
 
-#ifdef _WIN64
-
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
-
-#endif
 
 int Entry::entry(int argc, const char** argv) {
     
@@ -75,13 +73,9 @@ void Entry::update() {
 
 int main(int argc, const char** argv) {
 
-#ifdef _WIN64
-
     // Enables memory leak check on Windows
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-#endif // _WIN64
 
     std::unique_ptr<Entry> entry = std::make_unique<Entry>();
 
@@ -90,3 +84,5 @@ int main(int argc, const char** argv) {
     return 0;
 
 }
+
+#endif

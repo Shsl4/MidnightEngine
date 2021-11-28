@@ -1,12 +1,4 @@
-//
-//  Main.m
-//  MidnightEngine
-//
-//  Created by Pierre on 27/11/2021.
-//
-
-#import "Entry.h"
-#import <SDL2/SDL.h>
+#import <Platform/macOS/Entry.h>
 #import <SDL2/SDL_syswm.h>
 #import <bgfx/bgfx.h>
 #import <bgfx/platform.h>

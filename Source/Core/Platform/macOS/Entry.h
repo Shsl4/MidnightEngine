@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import <SDL2/SDL.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -7,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int) entry:(int)argc argv:(const char* _Nonnull * _Nonnull)argv;
 
-- (int) initEngine:(NSWindow*)window;
+- (int) initEngine:(SDL_Window*)window;
 
 - (void) update;
 
