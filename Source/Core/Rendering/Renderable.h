@@ -25,5 +25,4 @@ protected:
     bgfx::ProgramHandle programId;
     bgfx::VertexBufferHandle vertexBufferId;
 
-    
 };

@@ -15,6 +15,6 @@ public:
 
 private:
 
-	Component* rootComponent;
+	SceneComponent* rootComponent;
   
 };

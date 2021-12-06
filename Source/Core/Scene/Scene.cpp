@@ -4,7 +4,7 @@
 void Scene::renderComponents()
 {
 
-	for (Component* component : registeredComponents)
+	for (SceneComponent* component : registeredComponents)
 	{
 		if (component->instanceOf<Renderable>()) {
 

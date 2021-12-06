@@ -20,10 +20,11 @@ public:
     template<class T, typename ... Args>
     T* createComponent(Transform relativeTransform, Args&&... args){
 
-        static_assert(std::is_base_of<Component, T>::value, "T should inherit from Component");
-        static_assert(!std::is_same<T, Component>::value, "T should not directly be Component");
+        static_assert(std::is_base_of<SceneComponent, T>::value, "T should inherit from SceneComponent");
     
         T* component = allocator.instantiate<T>(args...);
+
+        component->registered = true;
         
         registeredComponents.append(component);
         
@@ -31,7 +32,7 @@ public:
         
     }
     
-    bool destroyComponent(Component* component){
+    bool destroyComponent(SceneComponent* component){
         
         registeredComponents.remove(component);
         
@@ -48,7 +49,8 @@ private:
     UniquePtr<Logger> logger;
 
     ManagedArray<SceneObject> registeredObjects;
-    ManagedArray<Component> registeredComponents;
+    ManagedArray<SceneComponent> registeredComponents;
+
     Allocator allocator;
     
 };

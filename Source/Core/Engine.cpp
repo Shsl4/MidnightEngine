@@ -52,7 +52,7 @@ int MEngine::init(int argc, const char** argv){
 
     logger->info("Desc: {}", getDescription());
 
-    inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &MEngine::stop);
+    inputManager->bindEvent(this, KeyBind(SDL_BUTTON_LEFT), EInputEvent::Pressed, &MEngine::stop);
 
     this->activeScene = std::make_unique<Scene>();
 
