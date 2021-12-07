@@ -15,6 +15,13 @@ enum class EInputEvent{
     
 };
 
+enum class EAxisType {
+
+    MouseX,
+    MouseY
+
+};
+
 enum class EKeyModifier{
     
     Shift = 1,
@@ -87,6 +94,7 @@ struct KeyBind{
 };
 
 typedef std::map<KeyBind, std::function<void()>> KeyBindMap;
+typedef std::map<EAxisType, std::function<void(int)>> AxisBindMap;
 
 class InputManager
 {
@@ -103,13 +111,21 @@ public:
        
         switch (type) {
             case EInputEvent::Pressed:
-                keyDownEvents.insert(std::pair<KeyBind, std::function<void()>>(key, function));
+                keyDownEvents.insert(std::make_pair(key, function));
                 break;
             case EInputEvent::Released:
-                keyUpEvents.insert(std::pair<KeyBind, std::function<void()>>(key, function));
+                keyUpEvents.insert(std::make_pair(key, function));
                 break;
         }
         
+    }
+
+    template<class T>
+    void bindAxis(T* object, EAxisType axisType, void(T::* f)(int)) {
+        
+        std::function<void(int)> function = std::bind(f, object, std::placeholders::_1);
+        axisEvents.insert(std::make_pair(axisType, function));
+
     }
     
     FORCEINLINE bool leftMousePressed() { return lmbPressed; }
@@ -125,6 +141,7 @@ private:
     UniquePtr<Logger> logger;
     KeyBindMap keyDownEvents;
     KeyBindMap keyUpEvents;
+    AxisBindMap axisEvents;
 
     int mouseX;
     int mouseY;

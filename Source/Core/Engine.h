@@ -2,6 +2,7 @@
 
 #include <EngineTypes.h>
 #include <Object.h>
+#include <Math/Matrix4.h>
 #include <Math/MathUtils.h>
 #include <Memory/Array.h>
 #include <SDL2/SDL.h>
@@ -37,8 +38,25 @@ public:
     FORCEINLINE const class Scene* getActiveScene() const { return activeScene.get(); };
 
     static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
+    void mouseXMoved(int delta);
+    void mouseYMoved(int delta);
+
+#define inputCreation(name) void name##Pressed() {  _##name##Pressed = true; } \
+                        void name##Released() {  _##name##Pressed = false; } \
+                        bool _##name##Pressed = false;
+
+    inputCreation(w)
+    inputCreation(a)
+    inputCreation(s)
+    inputCreation(d)
+    inputCreation(space)
+    inputCreation(shift)
 
 private:
+
+
+    Vector3 cameraPosition = Vector3(0.0f, 0.0f, -2.0f);
+    Vector3 cameraRotation = Vector3(0.0f, 0.0f, 0.0f);
 
     void cleanup();
     

@@ -11,6 +11,7 @@
 int Entry::entry(int argc, const char** argv) {
     
     SDL_Window* window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
 
     hasTerminated = false;
 

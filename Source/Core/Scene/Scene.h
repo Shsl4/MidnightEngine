@@ -2,7 +2,7 @@
 
 #include <Object.h>
 #include <Scene/SceneObject.h>
-#include <Scene/Component.h>
+#include <Scene/SceneComponent.h>
 #include <Memory/Array.h>
 #include <Logging/Logger.h>
 

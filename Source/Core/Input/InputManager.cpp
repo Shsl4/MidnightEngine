@@ -19,15 +19,32 @@ void InputManager::invokeIfMatch(KeyBind& kb, KeyBindMap& map){
 void InputManager::update(){
     
     SDL_Event event;
-    
+
+
     while (SDL_PollEvent(&event))
     {
-        
+       
         SDL_Keysym keySym = event.key.keysym;
         KeyBind kb = KeyBind(0);
 
         switch (event.type)
         {
+            case SDL_MOUSEMOTION:
+
+                for (auto i : this->axisEvents) {
+
+                    if (i.first == EAxisType::MouseX) {
+                        i.second(event.motion.xrel);
+                    }
+
+                    if (i.first == EAxisType::MouseY) {
+                        i.second(event.motion.yrel);
+                    }
+
+                }
+
+                break;
+
             case SDL_MOUSEBUTTONDOWN:
                 
                 kb = KeyBind(event.button.button);

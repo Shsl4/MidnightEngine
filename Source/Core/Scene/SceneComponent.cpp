@@ -1,4 +1,4 @@
-#include <Scene/Component.h>
+#include <Scene/SceneComponent.h>
 
 void SceneComponent::start(){
     
