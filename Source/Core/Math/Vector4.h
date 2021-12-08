@@ -1,21 +1,42 @@
 #pragma once
 
+#include <Math/MathUtils.h>
+#include <math.h>
+
 struct Vector4 {
 
 public:
 
-	Vector4 operator*(const float scale) {
+	Vector4 operator*(const float scale);
+	Vector4 operator+(const Vector4& other);
+	Vector4 operator-(const Vector4& other);
+	Vector4 operator/(const float scale);
 
-		return Vector4(x * scale, y * scale, z * scale, w * scale);
+	void operator-=(Vector4& other);
+	void operator+=(Vector4& other);
+	void operator*=(const float scale);
+	void operator/=(const float scale);
 
+	FORCEINLINE float dot(Vector4 other)
+	{
+		return (this->x * other.x + this->y * other.y + this->z * other.z + this->w + other.w);
 	}
 
-	Vector4 operator+(const Vector4& other) {
+	FORCEINLINE void normalize()
+	{
+		float norm = this->norm();
 
-		return Vector4(x + other.x, y + other.y, z + other.z, w + other.w);
-
+		if (norm==0){ return; }
+		
+		*this/=norm;
 	}
 
+	FORCEINLINE float norm() {
+		
+		return (sqrt(x*x)+sqrt(y*y)+sqrt(z*z)+sqrt(w*w));
+	}
+
+		
 	Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {
 	}
 

@@ -4,6 +4,7 @@
 #include <Rendering/Vertex.h>
 #include <Rendering/RenderData.h>
 #include <Math/Matrix4.h>
+#include <Math/Matrix3.h>
 #include <Input/InputManager.h>
 
 #include <bgfx/imgui/imgui.h>
@@ -248,6 +249,13 @@ void MEngine::render(){
 void MEngine::stop(){
     
     running = false;
+    Vector3 v = Vector3(1, 2, 3);
+    Matrix3 m1 = Matrix3::fill(1);
+    Matrix3 m2 = Matrix3::fill(2);
+    Matrix3 m3 = Matrix3::empty();
+    v=m2.operator*(v);
+    std::cout << v.x << std::endl;
+    m3.print();
     
 }
 
