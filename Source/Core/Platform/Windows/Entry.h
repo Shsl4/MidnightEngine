@@ -18,7 +18,7 @@ public:
 
 private:
 
-	bool hasTerminated;
+	bool hasTerminated = false;
 	UniquePtr<MEngine> engine;
 
 };

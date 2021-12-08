@@ -41,37 +41,21 @@ public:
   
     void mouseMotion(int x, int y);
 
-#define inputCreation(name) void name##Pressed() {  _##name##Pressed = true; } \
-                        void name##Released() {  _##name##Pressed = false; } \
-                        bool _##name##Pressed = false;
+#define inputBoilerplate(name) void name##Pressed() {  _##name##Pressed = true; } \
+                               void name##Released() {  _##name##Pressed = false; } \
+                               bool _##name##Pressed = false;
 
-    inputCreation(w)
-    inputCreation(a)
-    inputCreation(s)
-    inputCreation(d)
-    inputCreation(space)
-    inputCreation(shift)
+    inputBoilerplate(w)
+    inputBoilerplate(a)
+    inputBoilerplate(s)
+    inputBoilerplate(d)
+    inputBoilerplate(space)
+    inputBoilerplate(shift)
 
 private:
 
+    class CameraComponent* camera;
 
-    Vector3 cameraPosition = Vector3(0.0f, 0.0f, -2.0f);
-    Vector3 cameraRight = Vector3(0.0f, 0.0f, -2.0f);
-    Vector3 cameraUp = Vector3(0.0f, 0.0f, -2.0f);
-    Vector3 cameraFront = Vector3(0.0f, 0.0f, -1.0f);
-    Vector3 cameraRotation = Vector3(0.0f, 0.0f, 0.0f);
-    Vector3 viewTarget = Vector3(0.0f, 0.0f, 0.0f);
-    
-    Vector3 direction;
-    
-    float cameraYaw = -90.0f;
-    float cameraPitch = 0.0f;
-
-    bool firstMouse = true;
-    int lastX = 0;
-    int lastY = 0;
-
-    
     void cleanup();
     
     inline static MEngine* instance = nullptr;
@@ -89,6 +73,8 @@ private:
     UniquePtr<class InputManager> inputManager;
     UniquePtr<class Logger> logger;
     UniquePtr<class Scene> activeScene;
+    UniquePtr<class PerformanceWindow> perfWindow;
+    
 
     SDL_Window* mainWindow;
 

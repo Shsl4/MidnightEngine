@@ -41,6 +41,13 @@ void InputManager::update(){
 
                 }
 
+
+                for (auto func : mouseMotionEvents) {
+
+                    func(event.motion.xrel, event.motion.yrel);
+
+                }
+
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -68,15 +75,6 @@ void InputManager::update(){
                 break;
 
                 
-        }
-        
-        int mouseX, mouseY;
-        SDL_GetMouseState(&mouseX, &mouseY);
-        
-        for(auto func : mouseMotionEvents){
-            
-            func(mouseX, mouseY);
-            
         }
         
     }

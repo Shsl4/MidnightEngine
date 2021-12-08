@@ -46,9 +46,18 @@ public:
         this->log(fg(fmt::color::dark_red), "FATAL", formatString, args...);
         abort();
     }
+    
+    template<typename ... Args>
+    static inline void check(bool condition, std::string formatString, Args&&... args) {
+
+        if (!condition) {
+            assertLogger.fatal(formatString, args...);
+        }
+
+    }
 
     std::string getId() const { return this->id; }
-    
+
 private:
         
     template<typename ... Args>
@@ -62,5 +71,6 @@ private:
     }
 
     const std::string id;
-    
+    static Logger assertLogger;
+
 };

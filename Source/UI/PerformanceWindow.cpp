@@ -104,7 +104,7 @@ void PerformanceWindow::render(const char* _errorText)
 		, ImGuiCond_FirstUseEver
 	);
 	ImGui::SetNextWindowSize(
-		ImVec2(250.0f, 220.0f)
+		ImVec2(250.0f, 140.0f)
 		, ImGuiCond_FirstUseEver
 	);
 
@@ -131,96 +131,6 @@ void PerformanceWindow::render(const char* _errorText)
 		ImGui::Separator();
 		ImGui::PopStyleColor();
 	}
-	
-	{
-
-		const bgfx::Caps* caps = bgfx::getCaps();
-		if (0 != (caps->supported & BGFX_CAPS_GRAPHICS_DEBUGGER))
-		{
-			ImGui::SameLine();
-			ImGui::Text(ICON_FA_SNOWFLAKE_O);
-		}
-
-		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(3.0f, 3.0f));
-
-		if (ImGui::Button(ICON_FA_REPEAT " Restart", ImVec2(ImGui::GetContentRegionAvail().x / 2, 0.0f)))
-		{
-			//(MEngine::getInstance())->restart();
-		}
-
-		ImGui::SameLine();
-
-		if (ImGui::Button(ICON_KI_EXIT " Exit", ImVec2(ImGui::GetContentRegionAvail().x, 0.0f)))
-		{
-			(MEngine::getInstance())->stop();
-		}
-
-		ImGui::PopStyleVar();
-	}
-
-	{
-		bgfx::RendererType::Enum supportedRenderers[bgfx::RendererType::Count];
-		uint8_t num = bgfx::getSupportedRenderers(BX_COUNTOF(supportedRenderers), supportedRenderers);
-
-		const bgfx::Caps* caps = bgfx::getCaps();
-
-		const char* items[bgfx::RendererType::Count];
-
-		int32_t current = 0;
-
-		for (uint8_t ii = 1; ii < num; ++ii)
-		{
-			items[ii-1] = bgfx::getRendererName(supportedRenderers[ii]);
-
-			if (supportedRenderers[ii] == caps->rendererType)
-			{
-				current = ii - 1;
-			}
-
-		}
-
-		ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
-
-		if (ImGui::Combo("###Renderer", &current, items, num - 1))
-		{
-			//MEngine::renderer = supportedRenderers[current + 1];
-            //MEngine::getInstance()->restart();
-		}
-
-		num = caps->numGPUs;
-
-		if (num) {
-
-			current = 0;
-			for (uint8_t ii = 0; ii < num; ++ii)
-			{
-				const bgfx::Caps::GPU& gpu = caps->gpu[ii];
-
-				items[ii] = gpu.vendorId == BGFX_PCI_ID_AMD ? "AMD GPU"
-					: gpu.vendorId == BGFX_PCI_ID_INTEL ? "Intel GPU"
-					: gpu.vendorId == BGFX_PCI_ID_NVIDIA ? "NVidia GPU"
-					: "Unknown GPU"
-					;
-
-				if (caps->vendorId == gpu.vendorId
-					&& caps->deviceId == gpu.deviceId)
-				{
-					current = ii;
-				}
-			}
-
-			ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
-
-			if (ImGui::Combo("###GPU", &current, items, num))
-			{
-                //MEngine::getInstance()->selectGPU(caps->gpu[current].deviceId, caps->gpu[current].vendorId);
-                //MEngine::getInstance()->restart();
-			}
-
-		}
-
-	}
-
 
 	const bgfx::Stats* stats = bgfx::getStats();
 	const double toMsCpu = 1000.0 / stats->cpuTimerFreq;

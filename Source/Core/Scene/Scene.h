@@ -24,6 +24,7 @@ public:
     
         T* component = allocator.instantiate<T>(args...);
 
+        component->construct(relativeTransform);
         component->registered = true;
         
         registeredComponents.append(component);

@@ -8,9 +8,15 @@ public:
     
     virtual ~Object() = default;
     
+    const char* getClassName() {
+
+        return typeid(*this).name();
+
+    }
+
     virtual const char* getDescription(){
         
-        return typeid(*this).name();
+        return getClassName();
         
     }
 

@@ -16,6 +16,7 @@ public:
     
     virtual void start();
     virtual void update(float deltaTime);
+    virtual void construct(Transform transform);
     
     bool attachTo(class SceneObject* object);
     bool attachTo(SceneComponent* other);
@@ -42,34 +43,21 @@ public:
 
 protected:
     
-    SceneComponent() : parentComponent(nullptr), parentObject(nullptr) {
+    SceneComponent() : registered(false), parentComponent(nullptr), parentObject(nullptr) {
      
     }
     
-private:
+protected:
     
     Transform transform;
+
+private:
     
     class SceneObject* parentObject;
-    
     SceneComponent* parentComponent;
-
     Array<SceneComponent> childComponents;
     
     bool registered;
-    
     std::string name;
-    
-};
-
-class MyComponent : public SceneComponent {
-    
-    typedef SceneComponent Super;
-    
-public:
-        
-    MyComponent() : Super(){
-        
-    }
     
 };

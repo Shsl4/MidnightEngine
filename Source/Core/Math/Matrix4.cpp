@@ -156,7 +156,7 @@ bool Matrix4::operator==(const Matrix4& other) {
 }
 
 
-bool Matrix4::operator !=(Matrix4& other) {
+bool Matrix4::operator !=(const Matrix4& other) {
 
 	for (size_t i = 0; i < 4; i++)
 	{

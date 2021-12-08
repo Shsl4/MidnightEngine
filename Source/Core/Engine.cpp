@@ -1,15 +1,19 @@
 #include <Engine.h>
 
+#include <Scene/CameraComponent.h>
 #include <Rendering/ShaderLoader.h>
 #include <Rendering/Vertex.h>
 #include <Rendering/RenderData.h>
 #include <Math/Matrix4.h>
 #include <Math/Matrix3.h>
 #include <Input/InputManager.h>
+#include <UI/PerformanceWindow.h>
 
 #include <bgfx/imgui/imgui.h>
 #include <SDL2/SDL_syswm.h>
 #include <Scene/Scene.h>
+
+Logger Logger::assertLogger = Logger("Assert");
 
 struct VertexLayout
 {
@@ -48,6 +52,7 @@ MEngine::MEngine(SDL_Window* mainWindow){
 
     this->running = false;
     this->mainWindow = mainWindow;
+    this->deltaTime = 0.0f;
 
     SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
     
@@ -61,30 +66,8 @@ MEngine::~MEngine() {
 
 void MEngine::mouseMotion(int x, int y){
     
-    float xoffset = x - lastX;
-    float yoffset = lastY - y;
-    lastX = x;
-    lastY = y;
-
-    float sensitivity = 0.1f;
-    xoffset *= sensitivity;
-    yoffset *= sensitivity;
-
-    cameraYaw   -= xoffset;
-    cameraPitch += yoffset;
-
-    if(cameraPitch > 89.0f)
-        cameraPitch = 89.0f;
-    if(cameraPitch < -89.0f)
-        cameraPitch = -89.0f;
-    
-    auto pitchRad = Math::toRadians(cameraPitch);
-    auto yawRad = Math::toRadians(cameraYaw);
-
-    direction.x = cos(yawRad) * cos(pitchRad);
-    direction.y = sin(pitchRad);
-    direction.z = sin(yawRad) * cos(pitchRad);
-    cameraFront = Vector3::normalize(direction);
+    camera->addCameraPitchInput(y / 10.0f);
+    camera->addCameraYawInput(x / 10.0f);
     
 }
 
@@ -92,7 +75,19 @@ int MEngine::init(int argc, const char** argv){
     
     getLogger()->info("Initializing MidnightEngine...");
 
-    if (!bgfx::init()) {
+    bgfx::Init init;
+
+#ifdef VSYNC
+
+    init.resolution.reset = BGFX_RESET_VSYNC;
+
+#else
+
+    init.resolution.reset = 0;
+
+#endif
+
+    if (!bgfx::init(init)) {
 
         getLogger()->fatal("Failed to initialize BGFX!");
         bgfx::shutdown();
@@ -129,7 +124,6 @@ int MEngine::init(int argc, const char** argv){
 
     this->activeScene = std::make_unique<Scene>();
 
-    getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
 
     VertexLayout::init();
 
@@ -137,14 +131,15 @@ int MEngine::init(int argc, const char** argv){
 
     program = ShaderLoader::loadProgram("Default");
     
-    cameraPosition = Vector3(0.0f, 0.0f, 3.0f);
-    viewTarget = Vector3(0.0f, 0.0f, 0.0f);
-    cameraRotation = Vector3::normalize(cameraPosition - viewTarget);
-    cameraRight = Vector3::normalize(Vector3::cross(Vector3::Up, cameraRotation));
-    cameraUp = Vector3::cross(cameraRotation, cameraRight);
-    
-    lastX = windowWidth / 2;
-    lastY = windowHeight / 2;
+    float ratio;
+    ratio = windowWidth / (float)windowHeight;
+
+    camera = activeScene->createComponent<CameraComponent>(Transform(Vector3(0.0, 0.0, 3.0f), Vector3(-90.0f, 0.0f, 0.0f)), 90.0f, ratio, 500.0f);
+    perfWindow = std::make_unique<PerformanceWindow>();
+
+    imguiCreate();
+
+    getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
 
     running = true;
     
@@ -153,7 +148,7 @@ int MEngine::init(int argc, const char** argv){
         render();
         
     }
-        
+    
     return 0;
     
 }
@@ -167,34 +162,13 @@ void MEngine::update() {
     lastTime = time;
 
     inputManager->update();
+
+    camera->addMovementInput(camera->getForwardVector(), (float)(_wPressed - _sPressed), deltaTime);
+    camera->addMovementInput(camera->getRightVector(), (float)(_dPressed - _aPressed), deltaTime);
+    camera->addMovementInput(camera->getUpVector(), (float)(_spacePressed - _shiftPressed), deltaTime);
+
     activeScene->updateScene(deltaTime);
 
-    float speed = 2.5f * deltaTime;
-    auto a = cameraFront * speed;
-    auto w = (a * _wPressed);
-    auto x = (a * _sPressed);
-    auto b = Vector3::normalize(Vector3::cross(cameraFront, cameraUp)) * ((_dPressed - _aPressed) * speed);
-    
-    float upDiff = (_spacePressed - _shiftPressed) * speed;
-    Vector3 newVec = Vector3(0.0f, upDiff, 0.0f);
-    
-    cameraPosition += w;
-    cameraPosition -= x;
-    cameraPosition -= b;
-    cameraPosition += newVec;
-    
-    if(cameraPitch > 89.0f)
-        cameraPitch = 89.0f;
-    if(cameraPitch < -89.0f)
-        cameraPitch = -89.0f;
-    
-    auto pitchRad = Math::toRadians(cameraPitch);
-    auto yawRad = Math::toRadians(cameraYaw);
-
-    direction.x = cos(yawRad) * cos(pitchRad);
-    direction.y = sin(pitchRad);
-    direction.z = sin(yawRad) * cos(pitchRad);
-    cameraFront = Vector3::normalize(direction);
 }
 
 
@@ -204,39 +178,46 @@ void MEngine::render(){
 
     bgfx::touch(0);
 
+    int mouseX, mouseY;
+
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    imguiBeginFrame(mouseX
+        , mouseY
+        , (0 ? IMGUI_MBUT_LEFT : 0)
+        | (0 ? IMGUI_MBUT_RIGHT : 0)
+        | (0 ? IMGUI_MBUT_MIDDLE : 0)
+        , 0
+        , uint16_t(windowWidth)
+        , uint16_t(windowHeight)
+    );
+
+    perfWindow->render(nullptr);
+
+    imguiEndFrame();
+
     activeScene->renderComponents();
-    
-    float ratio;
-    ratio = windowWidth / (float)windowHeight;
-
-    const float radius = 10.0f;
-    const float camX = sin(time) * radius;
-    const float camZ = cos(time) * radius;
-    
-    Matrix4 perspective = Matrix4::perspective(60.0f, ratio, 0.1f, 100.0f);
-    Matrix4 viewMatrix = Matrix4::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
-
-    uint64_t  _state = 0
+  
+    uint64_t _state = 0
         | BGFX_STATE_WRITE_RGB
         | BGFX_STATE_DEPTH_TEST_LESS
         | BGFX_STATE_MSAA;
     
     bgfx::setState(_state);
     
-    bgfx::setViewTransform(0, viewMatrix.data, perspective.data);
+    bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
+
     bgfx::setVertexBuffer(0, triangleBuffer);
     bgfx::submit(0, program);
 
     Matrix4 rotMatrix = Matrix4::identity();
-    //rotMatrix.rotateY(sin(time) / 10.0f);
-    rotMatrix.rotateX(cos(time) / 10.0f);
+    rotMatrix.rotateZ(cos(time) * 3.0f * deltaTime);
 
     for (size_t j = 0; j < 3; ++j) {
         triangle[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
         triangle[j].color.setGreen(abs((float)cos(j % 3 + time)));
         triangle[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
         triangle[j].position = rotMatrix * triangle[j].position;
-        triangle[j].position.x += sin(time) / 100.0f;
     }
 
     bgfx::destroy(triangleBuffer);
@@ -268,6 +249,7 @@ void MEngine::cleanup(){
     this->logger = nullptr;
     this->inputManager = nullptr;
     this->activeScene = nullptr;
+    this->perfWindow = nullptr;
 
 }
 

@@ -20,7 +20,7 @@ void Scene::renderComponents()
 void Scene::updateScene(float deltaTime)
 {
 
-	for (SceneObject* object : registeredObjects) {
+	for (SceneComponent* object : registeredComponents) {
 
 		object->update(deltaTime);
 

@@ -7,7 +7,8 @@ struct Vector3 {
 
 public:
 
-	Vector3() : x(0.0f), y(0.0f), z(0.0f){
+	Vector3() : x(0.0f), y(0.0f), z(0.0f) {
+
 	}
 
 	Vector3(float v) : x(v), y(v), z(v) {

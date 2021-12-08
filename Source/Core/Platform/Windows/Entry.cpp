@@ -2,6 +2,8 @@
 
 #include <Platform/Windows/Entry.h>
 #include <bgfx/bgfx.h>
+#include <bgfx/imgui/imgui.h>
+
 #include <thread>
 
 #define _CRTDBG_MAP_ALLOC
@@ -31,7 +33,7 @@ int Entry::entry(int argc, const char** argv) {
     thread.join();
 
     SDL_DestroyWindow(window);
-    
+        
     return 0;
 
 }
@@ -57,6 +59,7 @@ int Entry::initEngine(SDL_Window* window) {
     engine = std::make_unique<MEngine>(window);
     engine->init(0, nullptr);
 
+    imguiDestroy();
     bgfx::shutdown();
 
     hasTerminated = true;
@@ -74,9 +77,13 @@ void Entry::update() {
 
 int main(int argc, const char** argv) {
 
+#ifdef DEBUG
+
     // Enables memory leak check on Windows
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+#endif
 
     std::unique_ptr<Entry> entry = std::make_unique<Entry>();
 
