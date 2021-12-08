@@ -38,8 +38,8 @@ public:
     FORCEINLINE const class Scene* getActiveScene() const { return activeScene.get(); };
 
     static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
-    void mouseXMoved(int delta);
-    void mouseYMoved(int delta);
+  
+    void mouseMotion(int x, int y);
 
 #define inputCreation(name) void name##Pressed() {  _##name##Pressed = true; } \
                         void name##Released() {  _##name##Pressed = false; } \
@@ -56,8 +56,22 @@ private:
 
 
     Vector3 cameraPosition = Vector3(0.0f, 0.0f, -2.0f);
+    Vector3 cameraRight = Vector3(0.0f, 0.0f, -2.0f);
+    Vector3 cameraUp = Vector3(0.0f, 0.0f, -2.0f);
+    Vector3 cameraFront = Vector3(0.0f, 0.0f, -1.0f);
     Vector3 cameraRotation = Vector3(0.0f, 0.0f, 0.0f);
+    Vector3 viewTarget = Vector3(0.0f, 0.0f, 0.0f);
+    
+    Vector3 direction;
+    
+    float cameraYaw = -90.0f;
+    float cameraPitch = 0.0f;
 
+    bool firstMouse = true;
+    int lastX = 0;
+    int lastY = 0;
+
+    
     void cleanup();
     
     inline static MEngine* instance = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Math/MathUtils.h>
+#include <math.h>
 
 struct Vector3 {
 
@@ -24,12 +25,6 @@ public:
 	void operator+=(Vector3& other);
 	void operator*=(const float scale);
 	void operator/=(const float scale);
-
-	FORCEINLINE static Vector3 up() {
-
-		return Vector3(0.0f, 1.0f, 0.0f);
-
-	}
 
 	FORCEINLINE float dot(Vector3 other) {
 
@@ -123,5 +118,4 @@ public:
 	static const Vector3 Right;
 	static const Vector3 Left;
 
-    
 };

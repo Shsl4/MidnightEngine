@@ -1,7 +1,6 @@
 #include <Input/InputManager.h>
 
-InputManager::InputManager() : lmbPressed(false), rmbPressed(false),
-                               mmbPressed(false), mouseY(0), mouseX(0)
+InputManager::InputManager()
 {
     this->logger = std::make_unique<Logger>("InputManager");
 }
@@ -9,7 +8,7 @@ InputManager::InputManager() : lmbPressed(false), rmbPressed(false),
 void InputManager::invokeIfMatch(KeyBind& kb, KeyBindMap& map){
     
     for (auto i : map) {
-        if(i.first == kb){
+        if(i.first == kb || (i.first.isModifierKey && i.first.key == kb.key)){
             i.second();
         }
     }
@@ -19,7 +18,6 @@ void InputManager::invokeIfMatch(KeyBind& kb, KeyBindMap& map){
 void InputManager::update(){
     
     SDL_Event event;
-
 
     while (SDL_PollEvent(&event))
     {
@@ -49,46 +47,12 @@ void InputManager::update(){
                 
                 kb = KeyBind(event.button.button);
                 invokeIfMatch(kb, keyDownEvents);
-                
-                if(event.button.button == SDL_BUTTON_LEFT){
-                    
-                    lmbPressed = true;
-                    
-                }
-                else if(event.button.button == SDL_BUTTON_RIGHT){
-                    
-                    rmbPressed = true;
-                    
-                }
-                else if(event.button.button == SDL_BUTTON_MIDDLE){
-                    
-                    mmbPressed = true;
-
-                }
-                
                 break;
                 
             case SDL_MOUSEBUTTONUP:
                 
                 kb = KeyBind(event.button.button);
                 invokeIfMatch(kb, keyUpEvents);
-                
-                if(event.button.button == SDL_BUTTON_LEFT){
-                    
-                    lmbPressed = false;
-                    
-                }
-                else if(event.button.button == SDL_BUTTON_RIGHT){
-                    
-                    rmbPressed = false;
-                    
-                }
-                else if(event.button.button == SDL_BUTTON_MIDDLE){
-                    
-                    mmbPressed = false;
-
-                }
-                
                 break;
                 
             case SDL_KEYDOWN:
@@ -106,7 +70,14 @@ void InputManager::update(){
                 
         }
         
+        int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);
+        
+        for(auto func : mouseMotionEvents){
+            
+            func(mouseX, mouseY);
+            
+        }
         
     }
     

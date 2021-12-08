@@ -58,63 +58,33 @@ MEngine::~MEngine() {
 
 }
 
-void MEngine::mouseXMoved(int delta) {
+void MEngine::mouseMotion(int x, int y){
+    
+    float xoffset = x - lastX;
+    float yoffset = lastY - y;
+    lastX = x;
+    lastY = y;
 
-    /*
-    int x = inputManager->getMouseX();
-    int y = inputManager->getMouseY();
-    float sensitivity = 1.0f;
+    float sensitivity = 0.1f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
 
-    const float RotX = sensitivity * (float)(y - (windowHeight / 2)) / windowHeight;
-    const float RotY = sensitivity * (float)(x - (windowHeight / 2)) / windowHeight;
-      
-    auto norm = Vector3::normalize(Vector3::cross(cameraRotation, Vector3::Up));
-    auto rotMatrix = Matrix4::rotation(Math::toRadians(-(float)RotX), norm);
-    auto newRot = rotMatrix * cameraRotation;
+    cameraYaw   -= xoffset;
+    cameraPitch += yoffset;
 
-    if (!((Vector3::angle(newRot, Vector3::Up) <= Math::toRadians(5.0f) || (Vector3::angle(newRot, Vector3::Down) <= Math::toRadians(5.0f))))) {
-        cameraRotation = newRot;
-    }
+    if(cameraPitch > 89.0f)
+        cameraPitch = 89.0f;
+    if(cameraPitch < -89.0f)
+        cameraPitch = -89.0f;
+    
+    auto pitchRad = Math::toRadians(cameraPitch);
+    auto yawRad = Math::toRadians(cameraYaw);
 
-    cameraRotation = Matrix4::rotation(Math::toRadians(-RotY), Vector3::Up) * cameraRotation;
-
-    SDL_WarpMouseInWindow(mainWindow, (windowWidth / 2), (windowHeight / 2));*/
-    float test = 4.0f;
-
-    if (cameraRotation.x + delta / 1000.0f > test) {
-
-        cameraRotation.x = -test;
-
-    }
-    else if (cameraRotation.x + delta / 1000.0f < -test) {
-
-        cameraRotation.x = test;
-
-    }
-    else {
-
-        cameraRotation.x += delta / 1000.0f;
-
-    }
-
-}
-
-void MEngine::mouseYMoved(int delta) {
-
-    /*
-    int x = inputManager->getMouseX();
-    int y = inputManager->getMouseY();
-    float sensitivity = 1.0f;
-
-    const float RotX = sensitivity * (float)(y - (windowHeight / 2)) / windowHeight;
-    const float RotY = sensitivity * (float)(x - (windowHeight / 2)) / windowHeight;
-
-    auto norm = Vector3::normalize(Vector3::cross(cameraRotation, Vector3::Up));
-    auto rotMatrix = Matrix4::rotation(Math::toRadians(-(float)RotX), norm);
-    cameraRotation = rotMatrix * cameraRotation;*/
-
-    cameraRotation.y = Math::clamp(cameraRotation.y -= delta / 1000.0f, -2.0f, 2.0f);
-
+    direction.x = cos(yawRad) * cos(pitchRad);
+    direction.y = sin(pitchRad);
+    direction.z = sin(yawRad) * cos(pitchRad);
+    cameraFront = Vector3::normalize(direction);
+    
 }
 
 int MEngine::init(int argc, const char** argv){
@@ -138,8 +108,6 @@ int MEngine::init(int argc, const char** argv){
 
     timeOffset = bx::getHPCounter();
 
-    logger->info("Desc: {}", getDescription());
-
     inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &MEngine::stop);
 
     inputManager->bindEvent(this, KeyBind(SDLK_w), EInputEvent::Pressed, &MEngine::wPressed);
@@ -156,21 +124,28 @@ int MEngine::init(int argc, const char** argv){
     inputManager->bindEvent(this, KeyBind(SDLK_LSHIFT), EInputEvent::Released, &MEngine::shiftReleased);
     inputManager->bindEvent(this, KeyBind(SDLK_SPACE), EInputEvent::Released, &MEngine::spaceReleased);
 
-    inputManager->bindAxis(this, EAxisType::MouseX, &MEngine::mouseXMoved);
-    inputManager->bindAxis(this, EAxisType::MouseY, &MEngine::mouseYMoved);
+    inputManager->bindMouseMovement(this, &MEngine::mouseMotion);
 
     this->activeScene = std::make_unique<Scene>();
 
     getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
-
-    running = true;
 
     VertexLayout::init();
 
     triangleBuffer = bgfx::createVertexBuffer(bgfx::makeRef(triangle, sizeof(triangle)), VertexLayout::ms_layout);
 
     program = ShaderLoader::loadProgram("Default");
+    
+    cameraPosition = Vector3(0.0f, 0.0f, 3.0f);
+    viewTarget = Vector3(0.0f, 0.0f, 0.0f);
+    cameraRotation = Vector3::normalize(cameraPosition - viewTarget);
+    cameraRight = Vector3::normalize(Vector3::cross(Vector3::Up, cameraRotation));
+    cameraUp = Vector3::cross(cameraRotation, cameraRight);
+    
+    lastX = windowWidth / 2;
+    lastY = windowHeight / 2;
 
+    running = true;
     
     while (isRunning()) {
         
@@ -193,14 +168,32 @@ void MEngine::update() {
     inputManager->update();
     activeScene->updateScene(deltaTime);
 
-    float rightDiff = (_dPressed - _aPressed) * 10.0f * deltaTime;
-    float fwdDiff = (_wPressed - _sPressed) * 10.0f * deltaTime;
-    float upDiff = (_spacePressed - _shiftPressed) * 10.0f * deltaTime;
+    float speed = 2.5f * deltaTime;
+    auto a = cameraFront * speed;
+    auto w = (a * _wPressed);
+    auto x = (a * _sPressed);
+    auto b = Vector3::normalize(Vector3::cross(cameraFront, cameraUp)) * ((_dPressed - _aPressed) * speed);
+    
+    float upDiff = (_spacePressed - _shiftPressed) * speed;
+    Vector3 newVec = Vector3(0.0f, upDiff, 0.0f);
+    
+    cameraPosition += w;
+    cameraPosition -= x;
+    cameraPosition -= b;
+    cameraPosition += newVec;
+    
+    if(cameraPitch > 89.0f)
+        cameraPitch = 89.0f;
+    if(cameraPitch < -89.0f)
+        cameraPitch = -89.0f;
+    
+    auto pitchRad = Math::toRadians(cameraPitch);
+    auto yawRad = Math::toRadians(cameraYaw);
 
-    Vector3 newVec = Vector3(rightDiff, upDiff, fwdDiff);
-
-    //cameraPosition += newVec;
-
+    direction.x = cos(yawRad) * cos(pitchRad);
+    direction.y = sin(pitchRad);
+    direction.z = sin(yawRad) * cos(pitchRad);
+    cameraFront = Vector3::normalize(direction);
 }
 
 
@@ -215,29 +208,34 @@ void MEngine::render(){
     float ratio;
     ratio = windowWidth / (float)windowHeight;
 
+    const float radius = 10.0f;
+    const float camX = sin(time) * radius;
+    const float camZ = cos(time) * radius;
+    
     Matrix4 perspective = Matrix4::perspective(60.0f, ratio, 0.1f, 100.0f);
-    Matrix4 viewMatrix = Matrix4::lookAt(cameraPosition, cameraRotation, Vector3::Up);
+    Matrix4 viewMatrix = Matrix4::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
 
     uint64_t  _state = 0
         | BGFX_STATE_WRITE_RGB
         | BGFX_STATE_DEPTH_TEST_LESS
-        | BGFX_STATE_MSAA
-        ;
+        | BGFX_STATE_MSAA;
+    
     bgfx::setState(_state);
-
+    
     bgfx::setViewTransform(0, viewMatrix.data, perspective.data);
-
     bgfx::setVertexBuffer(0, triangleBuffer);
     bgfx::submit(0, program);
 
-    Matrix4 id = Matrix4::identity();
-    id.rotateY(-sin(time) / 500.0f);
+    Matrix4 rotMatrix = Matrix4::identity();
+    //rotMatrix.rotateY(sin(time) / 10.0f);
+    rotMatrix.rotateX(cos(time) / 10.0f);
 
     for (size_t j = 0; j < 3; ++j) {
         triangle[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
         triangle[j].color.setGreen(abs((float)cos(j % 3 + time)));
         triangle[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
-        triangle[j].position = id * triangle[j].position;
+        triangle[j].position = rotMatrix * triangle[j].position;
+        triangle[j].position.x += sin(time) / 100.0f;
     }
 
     bgfx::destroy(triangleBuffer);
@@ -268,6 +266,7 @@ void MEngine::cleanup(){
 std::string MEngine::getNiceRendererName() {
 
     switch (renderer) {
+            
     case bgfx::RendererType::Direct3D9:
         return "DirectX 9";
     case bgfx::RendererType::Direct3D11:

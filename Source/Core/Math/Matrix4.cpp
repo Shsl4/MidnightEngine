@@ -283,7 +283,6 @@ Matrix4 Matrix4::rotation(float radians, Vector3 axis)
 
 }
 
-
 // https://en.wikipedia.org/wiki/Orthographic_projection
 Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, float near, float far)
 {
@@ -307,13 +306,14 @@ Matrix4 Matrix4::perspective(float fov, float aspectRatio, float near, float far
 
 	Matrix4 newMatrix = Matrix4::empty();
 
-	float tanfov = tan(Math::toRadians(fov) / 2.0f);
-
+	const float tanfov = tan(Math::toRadians(fov) / 2.0f);
+    const float fmn = (far - near);
+    
 	newMatrix.data[0][0] = 1.0f / (aspectRatio * tanfov);
 	newMatrix.data[1][1] = 1.0f / tanfov;
-	newMatrix.data[2][2] = (far + near) / (far - near);
+	newMatrix.data[2][2] = (far + near) / fmn;
 	newMatrix.data[2][3] = 1.0f;
-	newMatrix.data[3][2] = -(near * far) / (far - near);
+	newMatrix.data[3][2] = -(near * far) / fmn;
 
 	return newMatrix;
 

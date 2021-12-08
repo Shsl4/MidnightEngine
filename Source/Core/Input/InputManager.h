@@ -6,6 +6,7 @@
 #include <Memory/Array.h>
 #include <SDL2/SDL.h>
 #include <map>
+#include <vector>
 #include <functional>
 
 enum class EInputEvent{
@@ -41,7 +42,8 @@ struct KeyBind{
     bool alt;
     bool command;
     bool isMouseButton;
-    
+    bool isModifierKey;
+
     bool operator ==(const KeyBind& other) const{
         
         if(other.key != this->key) return false;
@@ -49,6 +51,8 @@ struct KeyBind{
         if(other.command != this->command) return false;
         if(other.control != this->control) return false;
         if(other.alt != this->alt) return false;
+        if(other.isMouseButton != this->isMouseButton) return false;
+        if(other.isModifierKey != this->isModifierKey) return false;
 
         return true;
         
@@ -66,17 +70,19 @@ struct KeyBind{
         this->alt = false;
         this->command = false;
         this->isMouseButton = true;
-        
+        this->isModifierKey = false;
+
     }
     
     KeyBind(SDL_KeyCode key){
         
         this->key = key;
-        this->shift = false;
-        this->control = false;
-        this->alt = false;
-        this->command = false;
+        this->shift = (key == SDLK_LSHIFT) || (key == SDLK_RSHIFT);
+        this->control = (key == SDLK_LCTRL) || (key == SDLK_RCTRL);
+        this->alt = (key == SDLK_LALT) || (key == SDLK_RALT);
+        this->command = (key == SDLK_LGUI) || (key == SDLK_RGUI);;
         this->isMouseButton = false;
+        this->isModifierKey = shift || control || command || alt;
         
     }
     
@@ -88,7 +94,8 @@ struct KeyBind{
         this->alt = bitCheck(mods, 8);
         this->command = bitCheck(mods, 10);
         this->isMouseButton = false;
-
+        this->isModifierKey = shift || control || command || alt;
+        
     }
     
 };
@@ -128,26 +135,23 @@ public:
 
     }
     
-    FORCEINLINE bool leftMousePressed() { return lmbPressed; }
-    FORCEINLINE bool rightMousePressed() { return rmbPressed; }
-    FORCEINLINE bool middleMousePressed() { return mmbPressed; }
-    FORCEINLINE int getMouseX() { return this->mouseX; }
-    FORCEINLINE int getMouseY() { return this->mouseY; }
-
+    template<class T>
+    void bindMouseMovement(T* object, void(T::* f)(int, int)){
+        
+        std::function<void(int, int)> function = std::bind(f, object, std::placeholders::_1, std::placeholders::_2);
+        mouseMotionEvents.push_back(function);
+        
+    }
+    
 private:
     
     void invokeIfMatch(KeyBind& kb, KeyBindMap& map);
     
     UniquePtr<Logger> logger;
+    
     KeyBindMap keyDownEvents;
     KeyBindMap keyUpEvents;
     AxisBindMap axisEvents;
-
-    int mouseX;
-    int mouseY;
+    std::vector<std::function<void(int, int)>> mouseMotionEvents;
     
-    bool lmbPressed;
-    bool rmbPressed;
-    bool mmbPressed;
-
 };
