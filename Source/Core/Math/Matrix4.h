@@ -5,27 +5,24 @@
 #include <Math/Vector4.h>
 
 struct Matrix4 {
+	
+	Matrix4 operator+(Matrix4 const& other) const;
+	Matrix4 operator-(Matrix4 const& other) const;
+	Matrix4 operator*(Matrix4 const& other) const;
+	Matrix4 operator*(float scale) const;
 
-public:
+	Vector3 operator*(Vector3 other) const;
 
-	Matrix4 operator+(const Matrix4& other);
-	Matrix4 operator-(const Matrix4& other);
-	Matrix4 operator*(const Matrix4& other);
-	Matrix4 operator*(const float scale);
-
-	Vector3 operator*(const Vector3 other);
-
-	void operator+=(const Matrix4& other);
-	void operator-=(const Matrix4& other);
-	void operator*=(const Matrix4& other);
-	void operator*=(const float scale);
+	void operator+=(Matrix4 const& other);
+	void operator-=(Matrix4 const& other);
+	void operator*=(Matrix4 const& other);
+	void operator*=(float scale);
 
 	void operator=(const float newData[4][4]);
 
-	bool operator==(const Matrix4& other);
-	bool operator!=(const Matrix4& other);
+	bool operator==(Matrix4 const& other) const;
 
-	Vector4 operator[](const int i);
+	Vector4 operator[](int i) const;
 
 	void rotateX(float radians);
 	void rotateY(float radians);
@@ -35,7 +32,7 @@ public:
 	static Matrix4 rotation(float radians, Vector3 axis);
 	static Matrix4 orthographic(float left, float right, float bottom, float top, float near, float far);
 	static Matrix4 perspective(float fov, float aspectRatio, float near, float far);
-	static Matrix4 lookAt(Vector3 eye, Vector3 at, Vector3 up = Vector3::Up);
+	static Matrix4 lookAt(Vector3 eye, Vector3 at, Vector3 up = Vector3::up);
 
 	static Matrix4 empty();
 	static Matrix4 identity();
@@ -43,12 +40,10 @@ public:
 	static Matrix4 copyingData(const float newData[4][4]);
 	static Matrix4 copyingData(const float* newData);
 
-	void print();
+	void print() const;
 
 	float data[4][4] = {};
 
-	Matrix4() {
-
-	}
+	Matrix4() = default;
 
 };

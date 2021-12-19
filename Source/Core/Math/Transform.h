@@ -4,42 +4,22 @@
 
 struct Transform{
     
-public:
+    Transform() = default;
     
-    Transform(){
-        
-        this->position = Vector3();
-        this->rotation = Vector3();
-        this->scale = Vector3(1.0f, 1.0f, 1.0f);
+    explicit Transform(Vector3 const& position) : position(position), rotation(), scale(1.0f) {
+ 
+    }
+    
+    Transform(Vector3 const& position, Vector3 const& rotation) : position(position), rotation(rotation), scale(1.0f) {
 
     }
     
-    Transform(Vector3 position){
-        
-        this->position = position;
-        this->rotation = Vector3();
-        this->scale = Vector3(1.0f, 1.0f, 1.0f);
+    Transform(Vector3 const& position, Vector3 const& rotation, Vector3 const& scale) : position(position), rotation(rotation), scale(scale) {
 
     }
     
-    Transform(Vector3 position, Vector3 rotation){
-        
-        this->position = position;
-        this->rotation = rotation;
-        this->scale = Vector3(1.0f, 1.0f, 1.0f);
-
-    }
-    
-    Transform(Vector3 position, Vector3 rotation, Vector3 scale){
-        
-        this->position = position;
-        this->rotation = rotation;
-        this->scale = scale;
-
-    }
-    
-    Vector3 position;
-    Vector3 rotation;
-    Vector3 scale;
+    Vector3 position = Vector3();
+    Vector3 rotation = Vector3();
+    Vector3 scale = Vector3(1.0f);
     
 };

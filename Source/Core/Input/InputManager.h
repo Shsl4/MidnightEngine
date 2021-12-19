@@ -1,9 +1,7 @@
 #pragma once
 
-#include <Core/Object.h>
 #include <Core/EngineTypes.h>
 #include <Core/Logging/Logger.h>
-#include <Memory/Array.h>
 #include <SDL2/SDL.h>
 #include <map>
 #include <vector>
@@ -61,8 +59,8 @@ struct KeyBind{
     bool operator <(const KeyBind& other) const{
         return this->key < other.key;
     }
-    
-    KeyBind(uint8_t button){
+
+    explicit KeyBind(const uint8_t button){
         
         this->key = button;
         this->shift = false;
@@ -73,8 +71,8 @@ struct KeyBind{
         this->isModifierKey = false;
 
     }
-    
-    KeyBind(SDL_KeyCode key){
+
+    explicit KeyBind(const SDL_KeyCode key){
         
         this->key = key;
         this->shift = (key == SDLK_LSHIFT) || (key == SDLK_RSHIFT);
@@ -86,7 +84,7 @@ struct KeyBind{
         
     }
     
-    KeyBind(SDL_Keycode key, uint16_t mods){
+    KeyBind(const SDL_Keycode key, uint16_t mods){
         
         this->key = key;
         this->shift = bitCheck(mods, 0);
@@ -109,7 +107,7 @@ public:
     
     InputManager();
     
-    void update();
+    void update() const;
     
     template<class T>
     void bindEvent(T* object, KeyBind key, EInputEvent type, void(T::*f)()){
@@ -130,22 +128,20 @@ public:
     template<class T>
     void bindAxis(T* object, EAxisType axisType, void(T::* f)(int)) {
         
-        std::function<void(int)> function = std::bind(f, object, std::placeholders::_1);
+        const auto function = std::bind(f, object, std::placeholders::_1);
         axisEvents.insert(std::make_pair(axisType, function));
 
     }
     
     template<class T>
     void bindMouseMovement(T* object, void(T::* f)(int, int)){
-        
-        std::function<void(int, int)> function = std::bind(f, object, std::placeholders::_1, std::placeholders::_2);
+        const auto function = std::bind(f, object, std::placeholders::_1, std::placeholders::_2);
         mouseMotionEvents.push_back(function);
         
     }
     
 private:
-    
-    void invokeIfMatch(KeyBind& kb, KeyBindMap& map);
+    static void invokeIfMatch(const KeyBind& kb, const KeyBindMap& map);
     
     UniquePtr<Logger> logger;
     

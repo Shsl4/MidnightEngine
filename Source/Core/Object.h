@@ -8,13 +8,13 @@ public:
     
     virtual ~Object() = default;
     
-    const char* getClassName() {
+    const char* getClassName() const {
 
         return typeid(*this).name();
 
     }
 
-    virtual const char* getDescription(){
+    virtual const char* getDescription() const {
         
         return getClassName();
         

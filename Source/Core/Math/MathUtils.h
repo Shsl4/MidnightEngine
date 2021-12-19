@@ -23,7 +23,7 @@ public:
 
 	template<typename NumberType>
 	FORCEINLINE static NumberType toRadians(NumberType degrees) {
-		return degrees * (NumberType)0.01745329252f;
+		return degrees * static_cast<NumberType>(0.01745329252f);
 	}
 
 

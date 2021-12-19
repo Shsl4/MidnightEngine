@@ -15,7 +15,7 @@ class Array{
    
 public:
     
-    Array(size_t capacity = 15){
+    explicit Array(size_t capacity = 15){
     
         data = allocator.allocate<T*>(capacity);
         
@@ -41,7 +41,7 @@ public:
     template<class S>
     bool append(S* other){
         
-        static_assert(std::is_base_of<T, S>::value, "S should inherit from T");
+        static_assert(std::is_base_of_v<T, S>, "S should inherit from T");
         
         if(count == capacity) {
         
@@ -164,7 +164,6 @@ public:
     
     T* operator[](size_t index) {
         
-        assert(index < count, "Array out of bounds!");
         return data[index];
         
     }
@@ -187,8 +186,8 @@ public:
 
     }
     
-    FORCEINLINE const size_t getCount(){ return count; }
-    FORCEINLINE const size_t getCapacity(){ return capacity; }
+    FORCEINLINE size_t getCount() const { return count; }
+    FORCEINLINE size_t getCapacity() const { return capacity; }
     
 private:
     
@@ -203,8 +202,8 @@ template<typename T>
 class ManagedArray {
 
 public:
-
-    ManagedArray(size_t capacity = 15) {
+    
+    explicit ManagedArray(size_t capacity = 15) {
 
         data = allocator.allocate<T*>(capacity);
 
@@ -230,7 +229,7 @@ public:
     template<class S>
     bool append(S* other) {
 
-        static_assert(std::is_base_of<T, S>::value, "S should inherit from T");
+        static_assert(std::is_base_of_v<T, S>, "S should inherit from T");
 
         if (count == capacity) {
 
@@ -360,7 +359,6 @@ public:
 
     T* operator[](size_t index) {
 
-        assert(index < count, "Array out of bounds!");
         return data[index];
 
     }
@@ -371,20 +369,20 @@ public:
 
     }
 
-    T** begin() {
+    T** begin() const {
 
         return data;
 
     }
 
-    T** end() {
+    T** end() const {
 
         return data + count;
 
     }
 
-    FORCEINLINE const size_t getCount() { return count; }
-    FORCEINLINE const size_t getCapacity() { return capacity; }
+    FORCEINLINE size_t getCount() const { return count; }
+    FORCEINLINE size_t getCapacity() const { return capacity; }
 
 private:
 

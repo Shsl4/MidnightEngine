@@ -9,55 +9,49 @@
 
 class SceneComponent : public Object {
     
-    typedef Object Super;
+    using Super = Object;
     friend class Scene;
     
 public:
     
     virtual void start();
     virtual void update(float deltaTime);
-    virtual void construct(Transform transform);
+    virtual void construct(Transform const& relativeTransform);
     
     bool attachTo(class SceneObject* object);
     bool attachTo(SceneComponent* other);
     bool detachFromComponent();
     
-    FORCEINLINE Vector3 getRelativePosition() { return this->transform.position; }
-    FORCEINLINE Vector3 getRelativeRotation() { return this->transform.rotation; }
-    FORCEINLINE Vector3 getRelativeScale() { return this->transform.scale; }
+    FORCEINLINE Vector3 getRelativePosition() const { return this->transform.position; }
+    FORCEINLINE Vector3 getRelativeRotation() const { return this->transform.rotation; }
+    FORCEINLINE Vector3 getRelativeScale() const { return this->transform.scale; }
 
     FORCEINLINE Vector3 getWorldPosition() { return this->transform.position; }
     FORCEINLINE Vector3 getWorldRotation() { return this->transform.rotation; }
     FORCEINLINE Vector3 getWorldScale() { return this->transform.scale; }
 
-    FORCEINLINE Transform getRelativeTransform() { return this->transform; }
-    FORCEINLINE Transform getWorldTransform() { return this->transform; }
+    FORCEINLINE Transform getRelativeTransform() const { return this->transform; }
+    FORCEINLINE Transform getWorldTransform() const { return this->transform; }
 
     FORCEINLINE class SceneObject* getParentObject() { return this->parentObject; }
     FORCEINLINE SceneComponent* getParentComponent() { return this->parentComponent; }
 
-    FORCEINLINE Array<SceneComponent> getChildComponents() { return this->childComponents; }
+    FORCEINLINE Array<SceneComponent> getChildComponents() const  { return this->childComponents; }
 
-    FORCEINLINE bool isRootComponent() { return !parentComponent; }
+    FORCEINLINE bool isRootComponent() const { return !parentComponent; }
 
 
 protected:
     
-    SceneComponent() : registered(false), parentComponent(nullptr), parentObject(nullptr) {
-     
-    }
-    
-protected:
-    
+    SceneComponent() = default;    
     Transform transform;
 
 private:
     
-    class SceneObject* parentObject;
-    SceneComponent* parentComponent;
     Array<SceneComponent> childComponents;
-    
-    bool registered;
-    std::string name;
+    class SceneObject* parentObject = nullptr;
+    SceneComponent* parentComponent = nullptr;    
+    bool registered = false;
+    std::string name = "";
     
 };

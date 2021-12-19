@@ -1,7 +1,6 @@
 #include <Math/Matrix3.h>
-#include <cmath>
 
-Matrix3 Matrix3::operator+(const Matrix3& other)
+Matrix3 Matrix3::operator+(Matrix3 const& other) const
 {
 	Matrix3 m;
 	for (int i = 0; i < 3; i++)
@@ -14,7 +13,7 @@ Matrix3 Matrix3::operator+(const Matrix3& other)
 	return m;
 }
 
-Matrix3 Matrix3::operator-(const Matrix3& other)
+Matrix3 Matrix3::operator-(Matrix3 const& other) const
 {
 	Matrix3 m;
 	for (int i = 0; i < 3; i++)
@@ -27,7 +26,7 @@ Matrix3 Matrix3::operator-(const Matrix3& other)
 	return m;
 }
 
-Matrix3 Matrix3::operator*(const Matrix3& other)
+Matrix3 Matrix3::operator*(Matrix3 const& other) const
 {
 	Matrix3 m;
 
@@ -50,7 +49,7 @@ Matrix3 Matrix3::operator*(const Matrix3& other)
 	return m;
 }
 
-Matrix3 Matrix3::operator*(const float scale)
+Matrix3 Matrix3::operator*(const float scale) const
 {
 	Matrix3 m;
 	for (int i = 0; i < 3; i++)
@@ -63,7 +62,7 @@ Matrix3 Matrix3::operator*(const float scale)
 	return m;
 }
 
-Vector3 Matrix3::operator*(const Vector3 other)
+Vector3 Matrix3::operator*(const Vector3 other) const
 {
 	Vector3 v;
 	
@@ -74,7 +73,7 @@ Vector3 Matrix3::operator*(const Vector3 other)
 	return v;
 }
 
-void Matrix3::operator+=(const Matrix3& other)
+void Matrix3::operator+=(Matrix3 const& other)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -85,7 +84,7 @@ void Matrix3::operator+=(const Matrix3& other)
 	}
 }
 
-void Matrix3::operator-=(const Matrix3& other)
+void Matrix3::operator-=(Matrix3 const& other)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -96,10 +95,11 @@ void Matrix3::operator-=(const Matrix3& other)
 	}
 }
 
-void Matrix3::operator*=(const Matrix3& other)
+void Matrix3::operator*=(Matrix3 const& other) const
 {
 
 }
+
 void Matrix3::operator*=(const float scale)
 {
 	for (int i = 0; i < 3; i++)
@@ -122,7 +122,7 @@ void Matrix3::operator=(const float newData[3][3])
 	}
 }
 
-bool Matrix3::operator==(const Matrix3& other)
+bool Matrix3::operator==(Matrix3 const& other) const
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -137,21 +137,6 @@ bool Matrix3::operator==(const Matrix3& other)
 	}
 	return true;
 }
-bool Matrix3::operator!=(Matrix3& other)
-{
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			if (this->data[i][j] != other.data[i][j]) {
-
-				return true;
-
-			}
-		}
-	}
-	return false;
-}
 
 Matrix3 Matrix3::empty()
 {
@@ -159,6 +144,7 @@ Matrix3 Matrix3::empty()
 	memset(m.data, 0, 9 * sizeof(float));
 	return m;
 }
+
 Matrix3 Matrix3::identity()
 {
 	Matrix3 m;
@@ -176,20 +162,19 @@ Matrix3 Matrix3::identity()
 
 Matrix3 Matrix3::fill(float value)
 {
+	Matrix3 m;
+	for (int i = 0; i < 3; i++)
 	{
-		Matrix3 m;
-		for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
 		{
-			for (int j = 0; j < 3; j++)
-			{
-				m.data[i][j] = value;
-			}
+			m.data[i][j] = value;
 		}
-		return m;
 	}
+	return m;
 }
 
-void Matrix3::print() {
+void Matrix3::print() const
+{
 
 	std::cout << data[0][0] << " " << data[0][1] << " " << data[0][2] << std::endl;
 	std::cout << data[1][0] << " " << data[1][1] << " " << data[1][2] << std::endl;

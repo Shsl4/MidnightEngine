@@ -3,12 +3,12 @@
 #include <Scene/SceneComponent.h>
 #include <Rendering/Renderable.h>
 
-class MeshComponent : public SceneComponent, Renderable
+class MeshComponent : public SceneComponent, public Renderable
 {
 
-    virtual void render() override;
+    void render() override;
 
-    virtual bgfx::VertexLayout getVertexLayout() override;
+    bgfx::VertexLayout getVertexLayout() override;
 
 };
 

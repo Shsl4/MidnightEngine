@@ -1,41 +1,39 @@
 #pragma once
 
 #include <Math/MathUtils.h>
-#include <math.h>
 
 struct Vector3 {
+	
+	Vector3() = default;
 
-public:
-
-	Vector3() : x(0.0f), y(0.0f), z(0.0f) {
+	Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) {
 
 	}
 
-	Vector3(float v) : x(v), y(v), z(v) {
+	explicit Vector3(const float v) : Vector3(v, v, v) {
+	
 	}
 
-	Vector3(float x, float y, float z) : x(x), y(y), z(z) {
-	}
+	Vector3 operator-(Vector3 const& other) const;
+	Vector3 operator+(Vector3 const& other) const;
+	Vector3 operator*(float scale) const;
+	Vector3 operator/(float scale) const;
 
-	Vector3 operator-(Vector3& other);
-	Vector3 operator+(Vector3& other);
-	Vector3 operator*(const float scale);
-	Vector3 operator/(const float scale);
+	void operator-=(Vector3 const& other);
+	void operator+=(Vector3 const& other);
+	void operator*=(float scale);
+	void operator/=(float scale);
 
-	void operator-=(Vector3& other);
-	void operator+=(Vector3& other);
-	void operator*=(const float scale);
-	void operator/=(const float scale);
-
-	FORCEINLINE float dot(Vector3 other) {
+	FORCEINLINE float dot(Vector3 const& other) const
+	{
 
 		return (this->x * other.x) + (this->y * other.y) + (this->z * other.z);
 		
 	}
 
 	FORCEINLINE void normalize() {
-
-		float norm = this->norm();
+		
+		const float norm = this->norm();
 
 		if (norm == 0.0f) { return; }
 
@@ -43,7 +41,8 @@ public:
 
 	}
 
-	FORCEINLINE float norm() {
+	FORCEINLINE float norm() const
+	{
 
 		return sqrt((x * x) + (y * y) + (z * z));
 
@@ -57,7 +56,8 @@ public:
 
 	}
 
-	FORCEINLINE Vector3 cross(Vector3 other) {
+	FORCEINLINE Vector3 cross(Vector3 const& other) const
+	{
 
 		Vector3 vec;
 
@@ -69,7 +69,7 @@ public:
 
 	}
 
-	FORCEINLINE static Vector3 cross(Vector3 a, Vector3 b) {
+	FORCEINLINE static Vector3 cross(Vector3 const& a, Vector3 const& b) {
 
 		Vector3 vec;
 
@@ -81,9 +81,9 @@ public:
 
 	}
 
-	FORCEINLINE static Vector3 normalize(Vector3 other) {
+	FORCEINLINE static Vector3 normalize(Vector3 const& other) {
 
-		float norm = other.norm();
+		const float norm = other.norm();
 
 		if (norm == 0.0f) { return other; }
 
@@ -91,32 +91,32 @@ public:
 
 	}
 
-	FORCEINLINE static float dot(Vector3 a, Vector3 b) {
+	FORCEINLINE static float dot(Vector3 const& a, Vector3 const& b) {
 
 		return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 
 	}
 
-	FORCEINLINE static float angle(Vector3 a, Vector3 b) {
+	FORCEINLINE static float angle(Vector3 const& a, Vector3 const& b) {
 
-		float dp = Vector3::dot(a, b);
-		float aNorm = a.norm();
-		float bNorm = b.norm();
+		const float dp = Vector3::dot(a, b);
+		const float aNorm = a.norm();
+		const float bNorm = b.norm();
 
 		return acos(dp / (aNorm * bNorm));
 
 	}
 
-	float x;
-	float y;
-	float z;
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
 
-	static const Vector3 Zero;
-	static const Vector3 Up;
-	static const Vector3 Down;
-	static const Vector3 Forward;
-	static const Vector3 Backward;
-	static const Vector3 Right;
-	static const Vector3 Left;
+	static const Vector3 zero;
+	static const Vector3 up;
+	static const Vector3 down;
+	static const Vector3 forward;
+	static const Vector3 backward;
+	static const Vector3 right;
+	static const Vector3 left;
 
 };

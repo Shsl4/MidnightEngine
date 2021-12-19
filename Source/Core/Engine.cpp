@@ -3,7 +3,6 @@
 #include <Scene/CameraComponent.h>
 #include <Rendering/ShaderLoader.h>
 #include <Rendering/Vertex.h>
-#include <Rendering/RenderData.h>
 #include <Math/Matrix4.h>
 #include <Math/Matrix3.h>
 #include <Input/InputManager.h>
@@ -40,19 +39,44 @@ Vertex triangle[3] =
 
 };
 
+static Vertex s_cubeVertices[] =
+{
+    {-1.0f,  1.0f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    { 1.0f,  1.0f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    {-1.0f, -1.0f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    { 1.0f, -1.0f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    {-1.0f,  1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    { 1.0f,  1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    {-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+    { 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f },
+};
+
+static const uint16_t s_cubeTriList[] =
+{
+    0, 1, 2, // 0
+    1, 3, 2,
+    4, 6, 5, // 2
+    5, 6, 7,
+    0, 2, 4, // 4
+    4, 2, 6,
+    1, 5, 3, // 6
+    5, 7, 3,
+    0, 4, 1, // 8
+    4, 5, 1,
+    2, 3, 6, // 10
+    6, 3, 7,
+};
+
+
 bgfx::ProgramHandle program;
 bgfx::VertexBufferHandle triangleBuffer;
+bgfx::IndexBufferHandle indexBuffer;
 
-MEngine::MEngine(SDL_Window* mainWindow){
-    
-    MEngine::instance = this;
+MEngine::MEngine(SDL_Window* mainWindow) : mainWindow(mainWindow) {
+    instance = this;
 
     this->logger = std::make_unique<Logger>("MidnightEngine");
     this->inputManager = std::make_unique<InputManager>();
-
-    this->running = false;
-    this->mainWindow = mainWindow;
-    this->deltaTime = 0.0f;
 
     SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
     
@@ -66,8 +90,8 @@ MEngine::~MEngine() {
 
 void MEngine::mouseMotion(int x, int y){
     
-    camera->addCameraPitchInput(y / 10.0f);
-    camera->addCameraYawInput(x / 10.0f);
+    camera->addCameraPitchInput(static_cast<float>(y) / 10.0f);
+    camera->addCameraYawInput(static_cast<float>(x) / 10.0f);
     
 }
 
@@ -127,12 +151,11 @@ int MEngine::init(int argc, const char** argv){
 
     VertexLayout::init();
 
-    triangleBuffer = bgfx::createVertexBuffer(bgfx::makeRef(triangle, sizeof(triangle)), VertexLayout::ms_layout);
-
+    triangleBuffer = createVertexBuffer(bgfx::makeRef(s_cubeVertices, sizeof(s_cubeVertices)), VertexLayout::ms_layout);
+    indexBuffer = createIndexBuffer(bgfx::makeRef(s_cubeTriList, sizeof(s_cubeTriList)));
     program = ShaderLoader::loadProgram("Default");
     
-    float ratio;
-    ratio = windowWidth / (float)windowHeight;
+    float ratio = static_cast<float>(windowWidth) / static_cast<float>(windowHeight);
 
     camera = activeScene->createComponent<CameraComponent>(Transform(Vector3(0.0, 0.0, 3.0f), Vector3(-90.0f, 0.0f, 0.0f)), 90.0f, ratio, 500.0f);
     perfWindow = std::make_unique<PerformanceWindow>();
@@ -156,16 +179,16 @@ int MEngine::init(int argc, const char** argv){
 void MEngine::update() {
 
     const int64_t now = bx::getHPCounter();
-    const double freq = double(bx::getHPFrequency());
-    time = (float)((now - timeOffset) / freq);
+    const int64_t freq = bx::getHPFrequency();
+    time = static_cast<float>(now - timeOffset) / static_cast<float>(freq);
     deltaTime = time - lastTime;
     lastTime = time;
 
     inputManager->update();
 
-    camera->addMovementInput(camera->getForwardVector(), (float)(_wPressed - _sPressed), deltaTime);
-    camera->addMovementInput(camera->getRightVector(), (float)(_dPressed - _aPressed), deltaTime);
-    camera->addMovementInput(camera->getUpVector(), (float)(_spacePressed - _shiftPressed), deltaTime);
+    camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
+    camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
+    camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);
 
     activeScene->updateScene(deltaTime);
 
@@ -174,55 +197,47 @@ void MEngine::update() {
 
 void MEngine::render(){
     
-    bgfx::setViewRect(0, 0, 0, uint16_t(windowWidth), uint16_t(windowHeight));
+    bgfx::setViewRect(0, 0, 0, static_cast<uint16_t>(windowWidth), static_cast<uint16_t>(windowHeight));
 
     bgfx::touch(0);
 
-    int mouseX, mouseY;
+    int mouseX;
+    int mouseY;
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    imguiBeginFrame(mouseX
-        , mouseY
-        , (0 ? IMGUI_MBUT_LEFT : 0)
-        | (0 ? IMGUI_MBUT_RIGHT : 0)
-        | (0 ? IMGUI_MBUT_MIDDLE : 0)
-        , 0
-        , uint16_t(windowWidth)
-        , uint16_t(windowHeight)
-    );
+    imguiBeginFrame(mouseX, mouseY, 0, 0, static_cast<uint16_t>(windowWidth), static_cast<uint16_t>(windowHeight));
 
     perfWindow->render(nullptr);
 
     imguiEndFrame();
 
     activeScene->renderComponents();
-  
-    uint64_t _state = 0
-        | BGFX_STATE_WRITE_RGB
-        | BGFX_STATE_DEPTH_TEST_LESS
-        | BGFX_STATE_MSAA;
+
+    constexpr uint64_t state = 0 | BGFX_STATE_WRITE_R | BGFX_STATE_WRITE_G | BGFX_STATE_WRITE_B | BGFX_STATE_WRITE_A | 
+        BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_CULL_CW | BGFX_STATE_MSAA;
     
-    bgfx::setState(_state);
+    bgfx::setState(state);
     
     bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
 
-    bgfx::setVertexBuffer(0, triangleBuffer);
-    bgfx::submit(0, program);
+    setIndexBuffer(indexBuffer);
+    setVertexBuffer(0, triangleBuffer);
+    submit(0, program);
 
     Matrix4 rotMatrix = Matrix4::identity();
-    rotMatrix.rotateZ(cos(time) * 3.0f * deltaTime);
+    rotMatrix.rotateX(cos(time) * 3.0f * deltaTime);
 
-    for (size_t j = 0; j < 3; ++j) {
-        triangle[j].color.setRed(abs((float)sin(j % 3 + time + 3.14f / 4.0f)));
-        triangle[j].color.setGreen(abs((float)cos(j % 3 + time)));
-        triangle[j].color.setBlue(abs((float)sin(j % 3 + time - 3.14f)));
-        triangle[j].position = rotMatrix * triangle[j].position;
+    for (size_t j = 0; j < 8; ++j) {
+        s_cubeVertices[j].color.setRed(abs(sin(j % 2 + time + 3.14f / 4.0f)));
+        s_cubeVertices[j].color.setGreen(abs(cos(j % 2 + time)));
+        s_cubeVertices[j].color.setBlue(abs(sin(j % 2 + time - 3.14f)));
+        s_cubeVertices[j].position = rotMatrix * s_cubeVertices[j].position;
     }
 
-    bgfx::destroy(triangleBuffer);
-    triangleBuffer = bgfx::createVertexBuffer(bgfx::makeRef(triangle, sizeof(triangle)), VertexLayout::ms_layout);
-
+    destroy(triangleBuffer);
+    triangleBuffer = createVertexBuffer(bgfx::makeRef(s_cubeVertices, sizeof(s_cubeVertices)), VertexLayout::ms_layout);
+    
     bgfx::frame();
         
 }
@@ -230,13 +245,6 @@ void MEngine::render(){
 void MEngine::stop(){
     
     running = false;
-    Vector3 v = Vector3(1, 2, 3);
-    Matrix3 m1 = Matrix3::fill(1);
-    Matrix3 m2 = Matrix3::fill(2);
-    Matrix3 m3 = Matrix3::empty();
-    v=m2.operator*(v);
-    std::cout << v.x << std::endl;
-    m3.print();
     
 }
 
@@ -244,7 +252,7 @@ void MEngine::cleanup(){
 
     getLogger()->info("Destroying MidnightEngine...");
 
-    MEngine::instance = nullptr;
+    instance = nullptr;
 
     this->logger = nullptr;
     this->inputManager = nullptr;
@@ -253,7 +261,7 @@ void MEngine::cleanup(){
 
 }
 
-std::string MEngine::getNiceRendererName() {
+std::string MEngine::getNiceRendererName() const {
 
     switch (renderer) {
             
@@ -279,7 +287,7 @@ std::string MEngine::getNiceRendererName() {
 
 }
 
-std::string MEngine::getNiceGPUName() {
+std::string MEngine::getNiceGPUName() const {
 
     const bgfx::Caps* caps = bgfx::getCaps();
 

@@ -5,25 +5,25 @@ InputManager::InputManager()
     this->logger = std::make_unique<Logger>("InputManager");
 }
 
-void InputManager::invokeIfMatch(KeyBind& kb, KeyBindMap& map){
+void InputManager::invokeIfMatch(const KeyBind& kb, const KeyBindMap& map){
     
-    for (auto i : map) {
-        if(i.first == kb || (i.first.isModifierKey && i.first.key == kb.key)){
-            i.second();
+    for (auto [key, func] : map) {
+        if(key == kb || (key.isModifierKey && key.key == kb.key)){
+            func();
         }
     }
     
 }
 
-void InputManager::update(){
+void InputManager::update() const
+{
     
     SDL_Event event;
 
     while (SDL_PollEvent(&event))
     {
-       
-        SDL_Keysym keySym = event.key.keysym;
-        KeyBind kb = KeyBind(0);
+        const SDL_Keysym keySym = event.key.keysym;
+        auto kb = KeyBind(0);
 
         switch (event.type)
         {
@@ -73,8 +73,8 @@ void InputManager::update(){
                 kb = KeyBind(keySym.sym, keySym.mod);
                 invokeIfMatch(kb, keyUpEvents);
                 break;
-
-                
+            default:
+                break;
         }
         
     }

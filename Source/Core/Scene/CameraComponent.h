@@ -9,16 +9,16 @@ class CameraComponent : public SceneComponent
 
 private:
 
-	typedef SceneComponent Super;
+	using Super = SceneComponent;
 
 public:
 
 	CameraComponent();
 	CameraComponent(float fieldOfView, float aspectRatio, float renderDistance);
 
-	virtual void start() override;
-	virtual void update(float deltaTime) override;
-	virtual void construct(Transform transform) override;
+	void start() override;
+	void update(float deltaTime) override;
+	void construct(Transform const & relativeTransform) override;
 
 	void setFieldOfView(float newFov);
 	void setAspectRatio(float newRatio);
@@ -33,12 +33,12 @@ public:
 	FORCEINLINE float getAspectRatio() const { return this->aspectRatio; }
 	FORCEINLINE float getRenderDistance() const { return this->renderDistance; }
 
-	FORCEINLINE const Matrix4 getViewMatrix() const { return this->viewMatrix; }
-	FORCEINLINE const Matrix4 getProjectionMatrix() const { return this->projectionMatrix; }
+	FORCEINLINE Matrix4 getViewMatrix() const { return this->viewMatrix; }
+	FORCEINLINE Matrix4 getProjectionMatrix() const { return this->projectionMatrix; }
 
-	FORCEINLINE const Vector3 getRightVector() const { return this->rightVector; }
-	FORCEINLINE const Vector3 getUpVector() const { return this->upVector; }
-	FORCEINLINE const Vector3 getForwardVector() const { return this->forwardVector; }
+	FORCEINLINE Vector3 getRightVector() const { return this->rightVector; }
+	FORCEINLINE Vector3 getUpVector() const { return this->upVector; }
+	FORCEINLINE Vector3 getForwardVector() const { return this->forwardVector; }
 
 private:
 
@@ -56,7 +56,7 @@ private:
 	float fieldOfView;
 	float aspectRatio;
 	float renderDistance;
-	float speed;
+	float speed = 2.5f;
 
 };
 

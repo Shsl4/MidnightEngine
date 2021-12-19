@@ -1,7 +1,8 @@
 #include <Math/Matrix4.h>
 #include <cmath>
 
-Matrix4 Matrix4::operator+(const Matrix4& other) {
+Matrix4 Matrix4::operator+(Matrix4 const& other) const
+{
 
 	Matrix4 m;
 
@@ -17,7 +18,8 @@ Matrix4 Matrix4::operator+(const Matrix4& other) {
 
 }
 
-Matrix4 Matrix4::operator-(const Matrix4& other) {
+Matrix4 Matrix4::operator-(Matrix4 const& other) const
+{
 
 	Matrix4 m;
 
@@ -33,7 +35,7 @@ Matrix4 Matrix4::operator-(const Matrix4& other) {
 
 }
 
-Matrix4 Matrix4::operator*(const Matrix4& other)
+Matrix4 Matrix4::operator*(Matrix4 const& other) const
 {
 	Matrix4 newMatrix = Matrix4();
 
@@ -57,7 +59,8 @@ Matrix4 Matrix4::operator*(const Matrix4& other)
 }
 
 
-Matrix4 Matrix4::operator*(const float scale) {
+Matrix4 Matrix4::operator*(const float scale) const
+{
 
 	Matrix4 m;
 
@@ -73,7 +76,7 @@ Matrix4 Matrix4::operator*(const float scale) {
 
 }
 
-Vector3 Matrix4::operator*(const Vector3 other)
+Vector3 Matrix4::operator*(const Vector3 other) const
 {
 
 	const float x = this->data[0][0] * other.x + this->data[1][0] * other.y + this->data[2][0] * other.z;
@@ -107,12 +110,12 @@ void Matrix4::operator=(const float newData[4][4])
 	}
 }
 
-void Matrix4::operator*=(const Matrix4& other)
+void Matrix4::operator*=(Matrix4 const& other)
 {
 	*this = *this * other;
 }
 
-void Matrix4::operator+=(const Matrix4& other) {
+void Matrix4::operator+=(Matrix4 const& other) {
 
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -124,7 +127,7 @@ void Matrix4::operator+=(const Matrix4& other) {
 
 }
 
-void Matrix4::operator-=(const Matrix4& other) {
+void Matrix4::operator-=(Matrix4 const& other) {
 
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -136,7 +139,8 @@ void Matrix4::operator-=(const Matrix4& other) {
 
 }
 
-bool Matrix4::operator==(const Matrix4& other) {
+bool Matrix4::operator==(Matrix4 const& other) const
+{
 
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -155,38 +159,18 @@ bool Matrix4::operator==(const Matrix4& other) {
 
 }
 
-
-bool Matrix4::operator !=(const Matrix4& other) {
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		for (size_t j = 0; j < 4; j++)
-		{
-			if (this->data[i][j] != other.data[i][j]) {
-
-				return true;
-
-			}
-
-		}
-	}
-
-	return false;
-
-}
-
-Vector4 Matrix4::operator[](const int i)
+Vector4 Matrix4::operator[](const int i) const
 {
 	return Vector4(data[i][0], data[i][1], data[i][2], data[i][3]);
 }
 
-void Matrix4::rotateX(float radians)
+void Matrix4::rotateX(const float radians)
 {
 
-	float cosT = std::cos(radians);
-	float sinT = std::sin(radians);
+	const float cosT = std::cos(radians);
+	const float sinT = std::sin(radians);
 
-	Matrix4 newMatrix = Matrix4::identity();
+	Matrix4 newMatrix = identity();
 
 	newMatrix.data[1][1] = cosT;
 	newMatrix.data[1][2] = -sinT;
@@ -197,13 +181,13 @@ void Matrix4::rotateX(float radians)
 
 }
 
-void Matrix4::rotateY(float radians)
+void Matrix4::rotateY(const float radians)
 {
 
-	float cosT = std::cos(radians);
-	float sinT = std::sin(radians);
+	const float cosT = std::cos(radians);
+	const float sinT = std::sin(radians);
 
-	Matrix4 newMatrix = Matrix4::identity();
+	Matrix4 newMatrix = identity();
 
 	newMatrix.data[0][0] = cosT;
 	newMatrix.data[0][2] = sinT;
@@ -214,13 +198,12 @@ void Matrix4::rotateY(float radians)
 
 }
 
-void Matrix4::rotateZ(float radians)
+void Matrix4::rotateZ(const float radians)
 {
+	const float cosT = std::cos(radians);
+	const float sinT = std::sin(radians);
 
-	float cosT = std::cos(radians);
-	float sinT = std::sin(radians);
-
-	Matrix4 newMatrix = Matrix4::identity();
+	Matrix4 newMatrix = identity();
 
 	newMatrix.data[0][0] = cosT;
 	newMatrix.data[0][1] = sinT;
@@ -233,17 +216,15 @@ void Matrix4::rotateZ(float radians)
 
 void Matrix4::rotate(float radians, Vector3 axis) {
 
-	Matrix4 rotation = Matrix4::rotation(radians, axis);
-	Matrix4 temp = Matrix4::empty();
+	const Matrix4 rotation = Matrix4::rotation(radians, axis);
+	const auto r = rotation.data;
 
-	auto r = rotation.data;
+	const Vector4 a = (*this)[0] * r[0][0] + (*this)[1] * r[0][1] + (*this)[2] * r[0][2];
+	const Vector4 b = (*this)[0] * r[1][0] + (*this)[1] * r[1][1] + (*this)[2] * r[1][2];
+	const Vector4 c = (*this)[0] * r[2][0] + (*this)[1] * r[2][1] + (*this)[2] * r[2][2];
+	const Vector4 d = (*this)[3];
 
-	Vector4 a = (*this)[0] * r[0][0] + (*this)[1] * r[0][1] + (*this)[2] * r[0][2];
-	Vector4 b = (*this)[0] * r[1][0] + (*this)[1] * r[1][1] + (*this)[2] * r[1][2];
-	Vector4 c = (*this)[0] * r[2][0] + (*this)[1] * r[2][1] + (*this)[2] * r[2][2];
-	Vector4 d = (*this)[3];
-
-	float da[4][4] = {
+	const float da[4][4] = {
 	
 		{ a.x, a.y, a.z, a.w },
 		{ b.x, b.y, b.z, a.w },
@@ -252,42 +233,42 @@ void Matrix4::rotate(float radians, Vector3 axis) {
 
 	};
 
-	*this = Matrix4::copyingData(da);
+	*this = copyingData(da);
 
 }
 
 
-Matrix4 Matrix4::rotation(float radians, Vector3 axis)
+Matrix4 Matrix4::rotation(const float radians, Vector3 axis)
 {
 
 	axis.normalize();
-	const float _c = cos(radians);
-	const float _s = sin(radians);
-	const float _o = 1.0f - _c;
+	const float c = cos(radians);
+	const float s = sin(radians);
+	const float o = 1.0f - c;
 
-	Matrix4 rotate = Matrix4::identity();
+	Matrix4 rotate = identity();
 
-	rotate.data[0][0] = _c + (axis.x * axis.x) * _o;
-	rotate.data[1][0] = (axis.x * axis.y * _o) - (axis.z * _s);
-	rotate.data[2][0] = axis.x * axis.z * _o + axis.y * _s;
+	rotate.data[0][0] = c + (axis.x * axis.x) * o;
+	rotate.data[1][0] = (axis.x * axis.y * o) - (axis.z * s);
+	rotate.data[2][0] = axis.x * axis.z * o + axis.y * s;
 
-	rotate.data[0][1] = (axis.x * axis.y * _o) + (axis.z * _s);
-	rotate.data[1][1] = _c + (axis.y * axis.y) * _o;
-	rotate.data[2][1] = axis.y * axis.z * _o - axis.x * _s;
+	rotate.data[0][1] = (axis.x * axis.y * o) + (axis.z * s);
+	rotate.data[1][1] = c + (axis.y * axis.y) * o;
+	rotate.data[2][1] = axis.y * axis.z * o - axis.x * s;
 
-	rotate.data[0][2] = (axis.x * axis.z * _o) - (axis.y * _s);
-	rotate.data[1][2] = axis.y * axis.z * _o + axis.x * _s;
-	rotate.data[2][2] = _c + (axis.z * axis.z) * _o;
+	rotate.data[0][2] = (axis.x * axis.z * o) - (axis.y * s);
+	rotate.data[1][2] = axis.y * axis.z * o + axis.x * s;
+	rotate.data[2][2] = c + (axis.z * axis.z) * o;
 
 	return rotate;
 
 }
 
 // https://en.wikipedia.org/wiki/Orthographic_projection
-Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, float near, float far)
+Matrix4 Matrix4::orthographic(const float left, const float right, const float bottom, const float top, const float near, const float far)
 {
 
-	Matrix4 newMatrix = Matrix4::empty();
+	Matrix4 newMatrix = empty();
 
 	newMatrix.data[0][0] = 2.0f / (right - left);
 	newMatrix.data[1][1] = 2.0f / (top - bottom);
@@ -301,16 +282,16 @@ Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, 
 
 }
 
-Matrix4 Matrix4::perspective(float fov, float aspectRatio, float near, float far)
+Matrix4 Matrix4::perspective(const float fov, const float aspectRatio, const float near, const float far)
 {
 
-	Matrix4 newMatrix = Matrix4::empty();
+	Matrix4 newMatrix = empty();
 
-	const float tanfov = tan(Math::toRadians(fov) / 2.0f);
+	const float tanFov = tan(Math::toRadians(fov) / 2.0f);
     const float fmn = (far - near);
     
-	newMatrix.data[0][0] = 1.0f / (aspectRatio * tanfov);
-	newMatrix.data[1][1] = 1.0f / tanfov;
+	newMatrix.data[0][0] = 1.0f / (aspectRatio * tanFov);
+	newMatrix.data[1][1] = 1.0f / tanFov;
 	newMatrix.data[2][2] = (far + near) / fmn;
 	newMatrix.data[2][3] = 1.0f;
 	newMatrix.data[3][2] = -(near * far) / fmn;
@@ -319,16 +300,16 @@ Matrix4 Matrix4::perspective(float fov, float aspectRatio, float near, float far
 
 }
 
-Matrix4 Matrix4::lookAt(Vector3 eye, Vector3 at, Vector3 up)
+Matrix4 Matrix4::lookAt(Vector3 eye, Vector3 at, const Vector3 up)
 {
 
 	Vector3 zAxis = Vector3::normalize(at - eye);
-	Vector3 xAxis = Vector3::normalize(Vector3::cross(up, zAxis));
-	Vector3 yAxis = Vector3::cross(zAxis, xAxis);
+	const Vector3 xAxis = Vector3::normalize(Vector3::cross(up, zAxis));
+	const Vector3 yAxis = Vector3::cross(zAxis, xAxis);
 
 	zAxis.negate();
 
-	Matrix4 newMatrix = Matrix4::empty();
+	Matrix4 newMatrix = empty();
 
 	newMatrix.data[0][0] = xAxis.x;
 	newMatrix.data[1][0] = xAxis.y;
@@ -374,7 +355,7 @@ Matrix4 Matrix4::identity() {
 
 }
 
-Matrix4 Matrix4::fill(float value) {
+Matrix4 Matrix4::fill(const float value) {
 
 	Matrix4 m;
 
@@ -408,7 +389,8 @@ Matrix4 Matrix4::copyingData(const float* newData)
 
 }
 
-void Matrix4::print() {
+void Matrix4::print() const
+{
 
 	std::cout << data[0][0] << " " << data[0][1] << " " << data[0][2] << " " << data[0][3] << std::endl;
 	std::cout << data[1][0] << " " << data[1][1] << " " << data[1][2] << " " << data[1][3] << std::endl;

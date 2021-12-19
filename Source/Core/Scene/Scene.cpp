@@ -1,10 +1,10 @@
 #include "Scene.h"
 #include <Rendering/Renderable.h>
 
-void Scene::renderComponents()
+void Scene::renderComponents() const
 {
 
-	for (SceneComponent* component : registeredComponents)
+	for (auto component : registeredComponents)
 	{
 		if (component->instanceOf<Renderable>()) {
 
@@ -17,10 +17,10 @@ void Scene::renderComponents()
 
 }
 
-void Scene::updateScene(float deltaTime)
+void Scene::updateScene(float deltaTime) const
 {
 
-	for (SceneComponent* object : registeredComponents) {
+	for (auto object : registeredComponents) {
 
 		object->update(deltaTime);
 

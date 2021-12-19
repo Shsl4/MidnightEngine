@@ -35,7 +35,7 @@ target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
 if(WIN32)
 
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
+add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/../Resources)
 
 elseif(APPLE)
 

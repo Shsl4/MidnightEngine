@@ -14,7 +14,6 @@ class ShaderLoader
 public:
 
 	static bgfx::ProgramHandle loadProgram(const char* programeName);
-
 	static bgfx::ShaderHandle loadShader(const char* _name);
 
 private:

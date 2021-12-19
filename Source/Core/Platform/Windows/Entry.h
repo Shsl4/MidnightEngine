@@ -2,9 +2,7 @@
 
 #define SDL_MAIN_HANDLED
 #include <Core/Engine.h>
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_syswm.h>
-
 
 class Entry {
 
@@ -14,7 +12,7 @@ public:
 
 	int initEngine(SDL_Window* window);
 
-	void update();
+	void update() const;
 
 private:
 

@@ -13,14 +13,12 @@ class Allocator{
     
 public:
     
-    Allocator(){
-                
-    }
+    Allocator() = default;
     
     template<typename T>
-    T* resize(T* ptr, size_t count){
+    T* resize(T* ptr, const size_t count){
         
-        return (T*)realloc(ptr, sizeof(T) * count);
+        return static_cast<T*>(realloc(ptr, sizeof(T) * count));
         
     }
     
@@ -32,14 +30,14 @@ public:
     }
 
     template <class T, class... Args>
-    T* instantiate(Args&&... _Args) { 
-        return new T(std::forward<Args>(_Args)...);
+    T* instantiate(Args&&... args) { 
+        return new T(std::forward<Args>(args)...);
     }
     
     template<typename T>
-    T* allocate(size_t count){
+    T* allocate(const size_t count){
       
-        return (T*)operator new(sizeof(T) * count);
+        return static_cast<T*>(operator new(sizeof(T) * count));
         
     }
     

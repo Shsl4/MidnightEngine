@@ -1,14 +1,9 @@
-#include "CameraComponent.h"
+#include <Scene/CameraComponent.h>
 #include <Engine.h>
-#include <bgfx/bgfx_utils.h>
 
-CameraComponent::CameraComponent(float fieldOfView, float aspectRatio, float renderDistance)
+CameraComponent::CameraComponent(const float fieldOfView, const float aspectRatio, const float renderDistance)
+	: fieldOfView(fieldOfView), aspectRatio(aspectRatio), renderDistance(renderDistance)
 {
-
-	this->fieldOfView = fieldOfView;
-	this->aspectRatio = aspectRatio;
-	this->renderDistance = renderDistance;
-	this->speed = 2.5f;
 
 }
 
@@ -17,11 +12,11 @@ CameraComponent::CameraComponent() : CameraComponent(90.0f, 16.0f / 9.0f, 150.0f
 
 }
 
-void CameraComponent::construct(Transform transform)
+void CameraComponent::construct(Transform const & relativeTransform)
 {
 
-	Super::construct(transform);
-	upVector = Vector3::Up;
+	Super::construct(relativeTransform);
+	upVector = Vector3::up;
 	updateMatrices();
 
 }
@@ -34,39 +29,39 @@ void CameraComponent::update(float deltaTime)
 {
 }
 
-void CameraComponent::setFieldOfView(float newFov)
+void CameraComponent::setFieldOfView(const float newFov)
 {
 	fieldOfView = newFov;
 	updateProjectionMatrix();
 }
 
-void CameraComponent::setAspectRatio(float newRatio)
+void CameraComponent::setAspectRatio(const float newRatio)
 {
 	aspectRatio = newRatio;
 	updateProjectionMatrix();
 }
 
-void CameraComponent::setRenderDistance(float newDistance)
+void CameraComponent::setRenderDistance(const float newDistance)
 {
 	renderDistance = newDistance;
 	updateProjectionMatrix();
 }
 
-void CameraComponent::addCameraYawInput(float yaw)
+void CameraComponent::addCameraYawInput(const float yaw)
 {
 	transform.rotation.x -= yaw;
 	updateViewMatrix();
 }
 
-void CameraComponent::addCameraPitchInput(float pitch)
+void CameraComponent::addCameraPitchInput(const float pitch)
 {
 	transform.rotation.y = Math::clamp(this->transform.rotation.y - pitch, -89.0f, 89.0f);
 	updateViewMatrix();
 }
 
-void CameraComponent::addMovementInput(Vector3 direction, float scale, float deltaTime)
+void CameraComponent::addMovementInput(const Vector3 direction, const float scale, const float deltaTime)
 {
-	Vector3 newVector = direction * scale * speed * deltaTime;
+	const Vector3 newVector = direction * scale * speed * deltaTime;
 	transform.position += newVector;
 	updateViewMatrix();
 
@@ -80,19 +75,18 @@ void CameraComponent::updateMatrices()
 
 void CameraComponent::updateViewMatrix()
 {
+	const float pitchRad = Math::toRadians(transform.rotation.y);
+	const float yawRad = Math::toRadians(transform.rotation.x);
 
-	float pitchRad = Math::toRadians(transform.rotation.y);
-	float yawRad = Math::toRadians(transform.rotation.x);
+	const float cy = cos(yawRad);
+	const float cp = cos(pitchRad);
+	const float sy = sin(yawRad);
+	const float sp = sin(pitchRad);
 
-	float _cy = cos(yawRad);
-	float _cp = cos(pitchRad);
-	float _sy = sin(yawRad);
-	float _sp = sin(pitchRad);
-
-	Vector3 direction = Vector3(_cy * _cp, _sp, _sy * _cp);
+	const auto direction = Vector3(cy * cp, sp, sy * cp);
 
 	forwardVector = Vector3::normalize(direction);
-	rightVector = Vector3::normalize(Vector3::cross(Vector3::Up, forwardVector));
+	rightVector = Vector3::normalize(Vector3::cross(Vector3::up, forwardVector));
 
 	viewMatrix = Matrix4::lookAt(getWorldPosition(), getWorldPosition() + forwardVector, upVector);
 

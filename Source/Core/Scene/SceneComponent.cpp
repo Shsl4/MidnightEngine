@@ -23,12 +23,12 @@ void SceneComponent::update(float deltaTime){
     
 }
 
-void SceneComponent::construct(Transform transform)
+void SceneComponent::construct(Transform const & relativeTransform)
 {
-    this->transform = transform;
+    this->transform = relativeTransform;
 }
 
-bool SceneComponent::attachTo(class SceneObject* object){
+bool SceneComponent::attachTo(SceneObject* object){
     
     return false;
 

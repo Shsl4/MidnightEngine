@@ -7,10 +7,9 @@
 #include <thread>
 
 #define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
 #include <crtdbg.h>
 
-int Entry::entry(int argc, const char** argv) {
+int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) {
     
     SDL_Window* window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);
     SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -19,7 +18,7 @@ int Entry::entry(int argc, const char** argv) {
 
     bgfx::renderFrame();
 
-    std::thread thread = std::thread(&Entry::initEngine, this, window);
+    auto thread = std::jthread(&Entry::initEngine, this, window);
 
     // Wait for engine creation before looping.
     while (!engine || !engine->isRunning()) {
@@ -30,8 +29,6 @@ int Entry::entry(int argc, const char** argv) {
         this->update();
     }
 
-    thread.join();
-
     SDL_DestroyWindow(window);
         
     return 0;
@@ -41,7 +38,7 @@ int Entry::entry(int argc, const char** argv) {
 int Entry::initEngine(SDL_Window* window) {
     
     SDL_SysWMinfo wmi;
-    SDL_VERSION(&wmi.version);
+    SDL_VERSION(&wmi.version)
 
     if (!SDL_GetWindowWMInfo(window, &wmi))
     {
@@ -68,7 +65,7 @@ int Entry::initEngine(SDL_Window* window) {
 
 }
 
-void Entry::update() {
+void Entry::update() const {
     
     bgfx::renderFrame();
     engine->update();
@@ -85,7 +82,7 @@ int main(int argc, const char** argv) {
 
 #endif
 
-    std::unique_ptr<Entry> entry = std::make_unique<Entry>();
+    auto entry = std::make_unique<Entry>();
 
     entry->entry(argc, argv);
 

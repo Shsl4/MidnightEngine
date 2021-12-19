@@ -17,9 +17,9 @@ class MEngine : public Object
 {
 public:
 
-    MEngine(SDL_Window* mainWindow);
+    explicit MEngine(SDL_Window* mainWindow);
     
-    virtual ~MEngine();
+    ~MEngine() override;
     
     virtual int init(int argc, const char** argv);
     virtual void update();
@@ -27,18 +27,20 @@ public:
 
     virtual void stop();
         
-    std::string getNiceRendererName();
-    std::string getNiceGPUName();
+    std::string getNiceRendererName() const;
+    std::string getNiceGPUName() const;
 
     FORCEINLINE static MEngine* getInstance() { return instance; };
-    FORCEINLINE bool isRunning() { return this->running; }
+    FORCEINLINE bool isRunning() const { return this->running; }
     FORCEINLINE double getDeltaTime() const { return this->deltaTime; }
     FORCEINLINE double getTime() const { return time; }
     FORCEINLINE const class Logger* getLogger() const { return logger.get(); };
     FORCEINLINE const class Scene* getActiveScene() const { return activeScene.get(); };
+  
+private:
 
     static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
-  
+
     void mouseMotion(int x, int y);
 
 #define inputBoilerplate(name) void name##Pressed() {  _##name##Pressed = true; } \
@@ -52,30 +54,25 @@ public:
     inputBoilerplate(space)
     inputBoilerplate(shift)
 
-private:
-
-    class CameraComponent* camera;
-
     void cleanup();
     
     inline static MEngine* instance = nullptr;
-    
-    float time;
-    float lastTime;
-    float deltaTime;
-    bool running;
-    
-    int64_t timeOffset;
+    class CameraComponent* camera = nullptr;
+    SDL_Window* mainWindow = nullptr;
 
-    int windowWidth;
-    int windowHeight;
+    float time = 0.0f;
+    float lastTime = 0.0f;
+    float deltaTime = 0.0f;
+    bool running = false;
+    
+    int64_t timeOffset = 0;
+
+    int windowWidth = 0;
+    int windowHeight = 0;
 
     UniquePtr<class InputManager> inputManager;
     UniquePtr<class Logger> logger;
     UniquePtr<class Scene> activeScene;
     UniquePtr<class PerformanceWindow> perfWindow;
     
-
-    SDL_Window* mainWindow;
-
 };

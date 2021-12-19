@@ -1,13 +1,12 @@
 #pragma once
 
 #include <bgfx/bgfx.h>
-#include <Rendering/RenderData.h>
 
 class Renderable{
     
 public:
     
-    Renderable() { }
+    Renderable() = default;
     
     virtual void render() = 0;
     
@@ -22,7 +21,7 @@ public:
     
 protected:
     
-    bgfx::ProgramHandle programId;
-    bgfx::VertexBufferHandle vertexBufferId;
+    bgfx::ProgramHandle programId = {};
+    bgfx::VertexBufferHandle vertexBufferId = {};
 
 };

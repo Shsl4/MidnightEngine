@@ -4,7 +4,7 @@ const bgfx::Memory* ShaderLoader::loadMem(bx::FileReaderI* _reader, const char* 
 {
 	if (bx::open(_reader, _filePath))
 	{
-		uint32_t size = (uint32_t)bx::getSize(_reader);
+		auto size = (uint32_t)bx::getSize(_reader);
 		const bgfx::Memory* mem = bgfx::alloc(size + 1);
 		bx::read(_reader, mem->data, size, bx::ErrorAssert{});
 		bx::close(_reader);
@@ -14,7 +14,7 @@ const bgfx::Memory* ShaderLoader::loadMem(bx::FileReaderI* _reader, const char* 
 
 	logger.error("Failed to load file {}!", _filePath);
 
-	return NULL;
+	return nullptr;
 
 }
 
@@ -39,8 +39,7 @@ bgfx::ShaderHandle ShaderLoader::loadShader(const char* _name)
 	case bgfx::RendererType::OpenGLES:   shaderPath = "Resources/Shaders/ESSL/";  break;
 	case bgfx::RendererType::Vulkan:     shaderPath = "Resources/Shaders/SPIRV/"; break;
 	case bgfx::RendererType::WebGPU:     shaderPath = "Resources/Shaders/SPIRV/"; break;
-
-	case bgfx::RendererType::Count:
+	default:
 		BX_ASSERT(false, "You should not be here!");
 		break;
 	}
