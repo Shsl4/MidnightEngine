@@ -12,7 +12,7 @@ CameraComponent::CameraComponent() : CameraComponent(90.0f, 16.0f / 9.0f, 150.0f
 
 }
 
-void CameraComponent::construct(Transform const & relativeTransform)
+void CameraComponent::construct(Transform const& relativeTransform)
 {
 
 	Super::construct(relativeTransform);

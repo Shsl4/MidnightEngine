@@ -10,9 +10,11 @@ struct Matrix3 {
 	Matrix3 operator*(float scale) const;
 	Vector3 operator*(Vector3 other) const;
 
+    void operator=(Matrix3 const& other);
+
 	void operator+=(Matrix3 const& other);
 	void operator-=(Matrix3 const& other);
-	void operator*=(Matrix3 const& other) const;
+	void operator*=(Matrix3 const& other);
 	void operator*=(float scale);
 
 	void operator=(const float newData[3][3]);

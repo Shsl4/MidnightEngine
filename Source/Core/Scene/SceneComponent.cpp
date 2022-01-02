@@ -1,4 +1,5 @@
 #include <Scene/SceneComponent.h>
+#include <Scene/SceneObject.h>
 #include <Logging/Logger.h>
 
 void SceneComponent::start(){
@@ -30,18 +31,44 @@ void SceneComponent::construct(Transform const & relativeTransform)
 
 bool SceneComponent::attachTo(SceneObject* object){
     
-    return false;
-
+    if(!object || !object->isValid()) { return false; }
+    
+    bool result = attachTo(object->getRootComponent());
+    
+    if(result){
+        
+        this->parentObject = object;
+        object->onComponentAttached(this);
+        
+    }
+    
+    return result;
+    
+        
 }
 
 bool SceneComponent::attachTo(SceneComponent* other){
     
-    return false;
+    if(parentComponent) { detachFromComponent(); }
+    
+    if(!other || !other->isValid()) { return false; }
+    
+    if(other == this) { return true; }
+    
+    other->childComponents.append(this);
+    this->parentComponent = other;
+    
+    return true;
 
 }
 
-bool SceneComponent::detachFromComponent(){
+void SceneComponent::detachFromComponent(){
     
-    return false;
+    if(!parentObject || !parentComponent) { return; }
+    
+    parentComponent->childComponents.remove(this);
+    parentObject->onComponentDetached(this);
+    parentComponent = nullptr;
+    parentObject = nullptr;
 
 }

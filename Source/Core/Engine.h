@@ -36,28 +36,15 @@ public:
     FORCEINLINE double getTime() const { return time; }
     FORCEINLINE const class Logger* getLogger() const { return logger.get(); };
     FORCEINLINE const class Scene* getActiveScene() const { return activeScene.get(); };
-  
+    FORCEINLINE class InputManager* getInputManager() const { return inputManager.get(); };
+
 private:
 
     static inline bgfx::RendererType::Enum renderer = bgfx::RendererType::Metal;
 
-    void mouseMotion(int x, int y);
-
-#define inputBoilerplate(name) void name##Pressed() {  _##name##Pressed = true; } \
-                               void name##Released() {  _##name##Pressed = false; } \
-                               bool _##name##Pressed = false;
-
-    inputBoilerplate(w)
-    inputBoilerplate(a)
-    inputBoilerplate(s)
-    inputBoilerplate(d)
-    inputBoilerplate(space)
-    inputBoilerplate(shift)
-
     void cleanup();
     
     inline static MEngine* instance = nullptr;
-    class CameraComponent* camera = nullptr;
     SDL_Window* mainWindow = nullptr;
 
     float time = 0.0f;
@@ -74,5 +61,6 @@ private:
     UniquePtr<class Logger> logger;
     UniquePtr<class Scene> activeScene;
     UniquePtr<class PerformanceWindow> perfWindow;
-    
+    UniquePtr<class CharacterInfoWindow> characterWindow;
+
 };

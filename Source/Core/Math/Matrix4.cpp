@@ -48,7 +48,7 @@ Matrix4 Matrix4::operator*(Matrix4 const& other) const
 
 			for (size_t k = 0; k < 4; k++)
 			{
-				newMatrix.data[i][j] += this->data[k][j] * other.data[i][k];
+				newMatrix.data[i][j] += this->data[i][k] * other.data[k][j];
 			}
 
 		}
@@ -200,6 +200,7 @@ void Matrix4::rotateY(const float radians)
 
 void Matrix4::rotateZ(const float radians)
 {
+    
 	const float cosT = std::cos(radians);
 	const float sinT = std::sin(radians);
 
@@ -331,6 +332,27 @@ Matrix4 Matrix4::lookAt(Vector3 eye, Vector3 at, const Vector3 up)
 
 }
 
+void Matrix4::scale(Vector3 const& factor){
+    
+    this->data[0][0] *= factor.x;
+    this->data[1][1] *= factor.y;
+    this->data[2][2] *= factor.z;
+
+}
+
+Matrix4 Matrix4::modelMatrix(Transform const& transform){
+    
+    Matrix4 m = Matrix4::identity();
+    
+    m.rotateX(Math::toRadians(transform.rotation.x));
+    m.rotateY(Math::toRadians(transform.rotation.y));
+    m.rotateZ(Math::toRadians(transform.rotation.z));
+    m.translate(transform.position);
+    m.scale(transform.scale);
+
+    return m;
+}
+
 Matrix4 Matrix4::empty() {
 
 	Matrix4 m;
@@ -368,6 +390,27 @@ Matrix4 Matrix4::fill(const float value) {
 	}
 
 	return m;
+
+}
+
+void Matrix4::translate(Vector3 const& translate){
+    
+    this->data[3][0] += translate.x;
+    this->data[3][1] += translate.y;
+    this->data[3][2] += translate.z;
+    
+}
+
+
+Matrix4 Matrix4::translation(Vector3 const& translate){
+    
+    Matrix4 m = Matrix4::identity();
+    
+    m.data[3][0] = translate.x;
+    m.data[3][1] = translate.y;
+    m.data[3][2] = translate.z;
+    
+    return m;
 
 }
 

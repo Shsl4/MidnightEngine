@@ -3,6 +3,7 @@
 Matrix3 Matrix3::operator+(Matrix3 const& other) const
 {
 	Matrix3 m;
+    
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -10,7 +11,14 @@ Matrix3 Matrix3::operator+(Matrix3 const& other) const
 			m.data[i][j] = this->data[i][j] + other.data[i][j];
 		}
 	}
+    
 	return m;
+}
+
+void Matrix3::operator=(Matrix3 const& other){
+    
+    memcpy(this->data, other.data, 9 * sizeof(float));
+    
 }
 
 Matrix3 Matrix3::operator-(Matrix3 const& other) const
@@ -39,7 +47,7 @@ Matrix3 Matrix3::operator*(Matrix3 const& other) const
 
 			for (int k = 0; k < 3; k++)
 			{
-				m.data[i][j] += this->data[k][j] * other.data[i][k];
+				m.data[i][j] += this->data[i][k] * other.data[k][j];
 			}
 
 		}
@@ -52,6 +60,7 @@ Matrix3 Matrix3::operator*(Matrix3 const& other) const
 Matrix3 Matrix3::operator*(const float scale) const
 {
 	Matrix3 m;
+    
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -59,6 +68,7 @@ Matrix3 Matrix3::operator*(const float scale) const
 			m.data[i][j] = this->data[i][j] * scale;
 		}
 	}
+    
 	return m;
 }
 
@@ -95,9 +105,9 @@ void Matrix3::operator-=(Matrix3 const& other)
 	}
 }
 
-void Matrix3::operator*=(Matrix3 const& other) const
+void Matrix3::operator*=(Matrix3 const& other)
 {
-
+    *this = *this * other;
 }
 
 void Matrix3::operator*=(const float scale)
@@ -135,6 +145,7 @@ bool Matrix3::operator==(Matrix3 const& other) const
 			}
 		}
 	}
+    
 	return true;
 }
 
@@ -163,6 +174,7 @@ Matrix3 Matrix3::identity()
 Matrix3 Matrix3::fill(float value)
 {
 	Matrix3 m;
+    
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -170,6 +182,7 @@ Matrix3 Matrix3::fill(float value)
 			m.data[i][j] = value;
 		}
 	}
+    
 	return m;
 }
 

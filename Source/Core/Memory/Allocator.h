@@ -1,10 +1,3 @@
-//
-//  Allocator.hpp
-//  BGFXDemo
-//
-//  Created by Pierre on 14/11/2021.
-//
-
 #pragma once
 
 #include <stdlib.h>
@@ -35,7 +28,7 @@ public:
     }
     
     template<typename T>
-    T* allocate(const size_t count){
+    T* allocate(size_t count) const {
       
         return static_cast<T*>(operator new(sizeof(T) * count));
         
@@ -49,6 +42,5 @@ public:
         pointer = nullptr;
         
     }
-    
     
 };

@@ -1,9 +1,13 @@
+#import <Core/Engine.h>
 #import <Platform/macOS/Entry.h>
+
 #import <SDL2/SDL_syswm.h>
+
 #import <bgfx/bgfx.h>
+#import <bgfx/imgui/imgui.h>
+
 #import <bgfx/platform.h>
 #import <bx/thread.h>
-#import <Core/Engine.h>
 
 @implementation Entry{
     
@@ -15,7 +19,7 @@
 - (int) entry:(int)argc argv:(const char* _Nonnull * _Nonnull)argv{
 
     [NSApplication sharedApplication];
-    NSApp.delegate = self;
+    [NSApp setDelegate:self];
     [NSApp setActivationPolicy: NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps: YES];
     [NSApp finishLaunching];
@@ -70,6 +74,7 @@
     engine = std::make_unique<MEngine>(window);
     engine->init(0, nil);
     
+    imguiDestroy();
     bgfx::shutdown();
     
     hasTerminated = YES;
@@ -110,9 +115,9 @@
 
 int main(int argc, const char** argv){
 
-    @autoreleasepool {
+    //@autoreleasepool{
         [[[Entry alloc] init] entry:argc argv:argv];
-    }
+    //}
     
     return 0;
     

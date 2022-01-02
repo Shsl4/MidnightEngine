@@ -20,7 +20,9 @@ public:
     
     bool attachTo(class SceneObject* object);
     bool attachTo(SceneComponent* other);
-    bool detachFromComponent();
+    void detachFromComponent();
+    
+    FORCEINLINE bool isValid() const { return registered; }
     
     FORCEINLINE Vector3 getRelativePosition() const { return this->transform.position; }
     FORCEINLINE Vector3 getRelativeRotation() const { return this->transform.rotation; }
@@ -36,7 +38,7 @@ public:
     FORCEINLINE class SceneObject* getParentObject() { return this->parentObject; }
     FORCEINLINE SceneComponent* getParentComponent() { return this->parentComponent; }
 
-    FORCEINLINE Array<SceneComponent> getChildComponents() const  { return this->childComponents; }
+    //FORCEINLINE Array<SceneComponent> getChildComponents() const  { return this->childComponents; }
 
     FORCEINLINE bool isRootComponent() const { return !parentComponent; }
 
@@ -48,9 +50,9 @@ protected:
 
 private:
     
-    Array<SceneComponent> childComponents;
+    Array<SceneComponent*> childComponents;
+    SceneComponent* parentComponent = nullptr;
     class SceneObject* parentObject = nullptr;
-    SceneComponent* parentComponent = nullptr;    
     bool registered = false;
     std::string name = "";
     
