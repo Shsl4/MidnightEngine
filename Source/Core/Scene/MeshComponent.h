@@ -97,18 +97,20 @@ class MeshComponent : public SceneComponent, public Renderable
 
 public:
     
-    MeshComponent(std::string const& path);
+    explicit MeshComponent(std::string const& path);
     void update(float deltaTime) override;
     void construct(Transform const& relativeTransform) override;
+
+    virtual ~MeshComponent();
 
     
 private:
     
     using Super = SceneComponent;
 
-    void setUniforms();
+    void setUniforms() const;
     void render() override;
-    class Mesh* mesh;
+    struct Mesh* mesh;
     
     bgfx::UniformHandle ambientLightHandle;
     PointLightHandles pointLightHandles;

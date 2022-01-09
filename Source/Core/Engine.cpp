@@ -23,8 +23,8 @@ MEngine::MEngine(SDL_Window* mainWindow) : mainWindow(mainWindow) {
 
     this->logger = std::make_unique<Logger>("MidnightEngine");
     this->inputManager = std::make_unique<InputManager>();
-    perfWindow = std::make_unique<PerformanceWindow>();
-
+    this->perfWindow = std::make_unique<PerformanceWindow>();
+    this->meshLoader = std::make_unique<MeshLoader>();
     SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
     
 }
@@ -154,6 +154,7 @@ void MEngine::cleanup(){
     this->activeScene = nullptr;
     this->perfWindow = nullptr;
     this->characterWindow = nullptr;
+    this->meshLoader = nullptr;
     
 }
 

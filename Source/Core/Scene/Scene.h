@@ -92,8 +92,8 @@ private:
     UniquePtr<Logger> logger;
     UniquePtr<CameraManager> cameraManager;
     
-    Array<SceneObject*> registeredObjects = Array<SceneObject*>(50);
-    Array<SceneComponent*> registeredComponents = Array<SceneComponent*>(50);
+    AutoReleaseArray<SceneObject*> registeredObjects = AutoReleaseArray<SceneObject*>(50);
+    AutoReleaseArray<SceneComponent*> registeredComponents = AutoReleaseArray<SceneComponent*>(50);
 
     Allocator allocator = Allocator();
     

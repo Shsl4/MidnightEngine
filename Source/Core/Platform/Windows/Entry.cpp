@@ -6,8 +6,12 @@
 
 #include <thread>
 
+#ifdef _DEBUG
+
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
+
+#endif
 
 int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) {
     
@@ -56,6 +60,7 @@ int Entry::initEngine(SDL_Window* window) {
     engine = std::make_unique<MEngine>(window);
     engine->init(0, nullptr);
 
+    engine = nullptr;
     imguiDestroy();
     bgfx::shutdown();
 
@@ -68,13 +73,16 @@ int Entry::initEngine(SDL_Window* window) {
 void Entry::update() const {
     
     bgfx::renderFrame();
+
+    if (!engine) { return; }
+
     engine->update();
 
 }
 
 int main(int argc, const char** argv) {
 
-#ifdef DEBUG
+#ifdef DEBUG_LEAKS
 
     // Enables memory leak check on Windows
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);

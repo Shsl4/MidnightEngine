@@ -62,5 +62,6 @@ private:
     UniquePtr<class Scene> activeScene;
     UniquePtr<class PerformanceWindow> perfWindow;
     UniquePtr<class CharacterInfoWindow> characterWindow;
+    UniquePtr<class MeshLoader> meshLoader;
 
 };

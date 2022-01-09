@@ -29,14 +29,14 @@ public:
     
     template<typename T>
     T* allocate(size_t count) const {
-      
+
         return static_cast<T*>(operator new(sizeof(T) * count));
         
     }
     
     template<typename T>
     void deallocate(T*& pointer){
-        
+
         if (!pointer) return;
         delete pointer;
         pointer = nullptr;

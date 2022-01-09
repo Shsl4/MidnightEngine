@@ -50,7 +50,7 @@ protected:
 
 private:
     
-    Array<SceneComponent*> childComponents;
+    AutoReleaseArray<SceneComponent*> childComponents;
     SceneComponent* parentComponent = nullptr;
     class SceneObject* parentObject = nullptr;
     bool registered = false;

@@ -35,7 +35,7 @@ DirectionalLightHandles createDirectionalLightUniforms(){
     
 }
 
-void MeshComponent::setUniforms(){
+void MeshComponent::setUniforms() const {
 
     float texRef[4] = { static_cast<float>(mat.hasTexture), mat.reflectance, 0.0f, 0.0f };
     float pos[4] = { light.position.x, light.position.y, light.position.z, 1.0f };
@@ -46,6 +46,7 @@ void MeshComponent::setUniforms(){
     bgfx::setUniform(materialHandles.diffuse, &mat.diffuse);
     bgfx::setUniform(materialHandles.specular, &mat.specular);
     bgfx::setUniform(materialHandles.texRef, texRef);
+
     /*
     bgfx::setUniform(dirLightHandles.direction, &dirLight.direction);
     bgfx::setUniform(dirLightHandles.ambient, &dirLight.ambient);
@@ -57,8 +58,7 @@ void MeshComponent::setUniforms(){
     bgfx::setUniform(pointLightHandles.position, pos);
     bgfx::setUniform(pointLightHandles.icle, icle);
     bgfx::setUniform(ambientLightHandle, ambient);
-    
-    
+        
     bgfx::setTransform(Matrix4::modelMatrix(transform).data);
     
 }
@@ -91,6 +91,27 @@ void MeshComponent::construct(Transform const& relativeTransform){
     lightPos.y += 3.0f;
     this->light = PointLight(LinearColor::fromRGB(155.0f, 39.0f, 227.0f), lightPos, 5.0f, Attenuation(0.0f, 0.0f, 0.5f));
     
+}
+
+MeshComponent::~MeshComponent()
+{
+
+    bgfx::destroy(ambientLightHandle);
+    
+    bgfx::destroy(dirLightHandles.ambient);
+    bgfx::destroy(dirLightHandles.specular);
+    bgfx::destroy(dirLightHandles.diffuse);
+    bgfx::destroy(dirLightHandles.direction);
+    
+    bgfx::destroy(materialHandles.ambient);
+    bgfx::destroy(materialHandles.specular);
+    bgfx::destroy(materialHandles.diffuse);
+    bgfx::destroy(materialHandles.texRef);
+
+    bgfx::destroy(pointLightHandles.color);
+    bgfx::destroy(pointLightHandles.icle);
+    bgfx::destroy(pointLightHandles.position);    
+
 }
 
 

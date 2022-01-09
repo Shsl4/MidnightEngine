@@ -3,24 +3,55 @@
 #include <sstream>
 #include <fstream>
 
-class String{
+Mesh::Mesh(Array<Vertex> const& vertices, size_t numIndices, MeshType type, std::string const& name) :
+    vertexCount(vertices.getSize()), indexCount(numIndices), meshType(type), meshName(name) {
+
+    data = allocator.allocate<Vertex>(vertexCount);
+    indices = allocator.allocate<uint16_t>(indexCount);
+
+    for (uint16_t i = 0; i < indexCount; ++i) {
+
+        indices[i] = (uint16_t)indexCount - 1 - i;
+
+    }
+
+    memcpy(data, vertices.getRawData(), vertexCount * sizeof(Vertex));
+
+    vertexBuffer = createVertexBuffer(bgfx::makeRef(data, (uint32_t)vertexCount * sizeof(Vertex)), Mesh::getVertexLayout());
+    indexBuffer = bgfx::createIndexBuffer(bgfx::makeRef(indices, (uint32_t)indexCount * sizeof(uint16_t)));
+    programHandle = ShaderLoader::loadProgram("Advanced");
+
+}
+
+Mesh::~Mesh() {
+
+    bgfx::destroy(vertexBuffer);
+    bgfx::destroy(indexBuffer);
+    bgfx::destroy(programHandle);
+    allocator.deallocate(data);
+    allocator.deallocate(indices);
+
+}
+
+struct String{
     
 public:
     
     static Array<std::string> split(std::string str, const char separator){
         
         Array<std::string> arr;
-        int from = 0;
-        int to = 0;
-        const unsigned int size = str.size();
-        for (int i = 0; i < size; ++i) {
+
+        size_t from = 0;
+        size_t to = 0;
+
+        const size_t size = str.size();
+
+        for (size_t i = 0; i < size; ++i) {
             
             if(str[i] == separator){
-                
                 to = i;
-                arr += std::string(&str[from], &str[to]);
+                arr += std::string(&str[from], &str[to]);         
                 from = to + 1;
-                
             }
             
             
@@ -49,7 +80,7 @@ enum class OBJDataType{
     
 };
 
-OBJDataType getDataType(std::string string) {
+OBJDataType getDataType(std::string_view string) {
     
     if(string == "#"){
         return OBJDataType::Comment;
@@ -74,106 +105,100 @@ OBJDataType getDataType(std::string string) {
     
 }
 
-Mesh* MeshLoader::loadOBJ(std::string const& file){
-    
+Mesh* MeshLoader::loadOBJ(std::string const& file) {
+
     Array<Vector3> vertexPositions;
     Array<Vector3> vertexNormals;
     Array<Vector2> vertexTexCoords;
 
-    Array<unsigned short> vPosIndices;
-    Array<unsigned short> vTexCoordIndices;
-    Array<unsigned short> vNormalsIndices;
-    
+    Array<uint16_t> vPosIndices;
+    Array<uint16_t> vTexCoordIndices;
+    Array<uint16_t> vNormalsIndices;
+
     Array<Vertex> vertices;
-    
-    std::fstream fstream = std::fstream("Resources/Models/" + file);
+
+    auto fstream = std::fstream("Resources/Models/" + file);
+
     std::string currentLine = "";
-    
     std::string objectName = "";
-    
-    if(fstream.is_open()){
-        
-        while (fstream.good()) {
-            
-            std::getline(fstream, currentLine);
-            
-            if(currentLine.empty()) { continue; }
-            
-            Array<std::string> elements = String::split(currentLine, ' ');
-            
-            OBJDataType dataType = getDataType(elements[0]);
-            
-            switch (dataType) {
-                    
-                case OBJDataType::Invalid:
-                case OBJDataType::Comment:
-                case OBJDataType::Object:
-                    break;
-                    
-                case OBJDataType::Vertex: {
-                    
-                    vertexPositions += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
-                    break;
-                    
-                }
-                    
-                case OBJDataType::Normal:{
-                    
-                    vertexNormals += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
-                    break;
-                    
-                }
-                    
-                case OBJDataType::TexCoordinate: {
-                    
-                    vertexTexCoords += Vector2(std::stof(elements[1]), std::stof(elements[2]));
-                    break;
-                    
-                }
-                    
-                case OBJDataType::Face: {
-                    
-                    for(int i = 0; i < elements.getSize() - 1; ++i){
-                        
-                        Array<std::string> data = String::split(elements[i + 1], '/');
-                        vPosIndices += std::stoi(data[0]) - 1;
-                        vTexCoordIndices += data[1].empty() ? 0 : std::stoi(data[1]) - 1;
-                        vNormalsIndices += std::stoi(data[2]) - 1;
 
-                    }
+    Logger::check(fstream.is_open(), "The file {} does not exist.", file);
 
-                    break;
-                    
-                }
-                    
-            }
-            
+    while (fstream.good()) {
+
+        std::getline(fstream, currentLine);
+
+        if (currentLine.empty()) { continue; }
+
+        Array<std::string> elements = String::split(currentLine, ' ');
+        OBJDataType dataType = getDataType(elements[0]);
+
+        switch (dataType) {
+
+        case OBJDataType::Vertex: {
+
+            vertexPositions += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
+            break;
+
         }
-        
-    }
-    else{
-        
-        Logger::check(false, "The file {} does not exist.", file);
+
+        case OBJDataType::Normal: {
+
+            vertexNormals += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
+            break;
+
+        }
+
+        case OBJDataType::TexCoordinate: {
+
+            vertexTexCoords += Vector2(std::stof(elements[1]), std::stof(elements[2]));
+            break;
+
+        }
+
+        case OBJDataType::Face: {
+
+            size_t size = elements.getSize();
+
+            for (size_t i = 0; i < size - 1; ++i) {
+
+                auto data = String::split(elements[i + 1], '/');
+                vPosIndices += std::stoi(data[0]) - 1;
+                vTexCoordIndices += data[1].empty() ? 0 : std::stoi(data[1]) - 1;
+                vNormalsIndices += std::stoi(data[2]) - 1;
+
+            }
+
+            break;
+
+        }
+
+        default:
+            break;
+
+        }
 
     }
-    
+
     vertices.resize(vPosIndices.getSize());
-    
-    for (int i = 0; i < vertices.getCapacity(); ++i){
-        
-        Vertex vtx = Vertex(vertexPositions[vPosIndices[i]],
-                            vertexNormals[vNormalsIndices[i]],
-                            vertexTexCoords[vTexCoordIndices[i]],
-                            LinearColors::white);
- 
+
+    size_t capacity = vertices.getCapacity();
+
+    for (size_t i = 0; i < capacity; ++i) {
+
+        auto vtx = Vertex(vertexPositions[vPosIndices[i]],
+            vertexNormals[vNormalsIndices[i]],
+            vertexTexCoords[vTexCoordIndices[i]],
+            LinearColors::white);
+
         vertices += vtx;
-        
+
     }
-    
-    Mesh* mesh = Allocator().instantiate<Mesh>(vertices, vPosIndices.getSize(), MeshType::OBJ, objectName);
-    
-    loadedMeshes += mesh;
-    
+
+    Mesh* mesh = instance->allocator.instantiate<Mesh>(vertices, vPosIndices.getSize(), MeshType::OBJ, objectName);
+
+    instance->loadedMeshes += mesh;
+
     return mesh;
-        
+
 }

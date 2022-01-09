@@ -16,34 +16,12 @@ enum class MeshType{
 
 struct Mesh{
     
-    Mesh(Array<Vertex> const& vertices, unsigned short numIndices, MeshType type, std::string const& name){
-        
-        vertexCount = vertices.getSize();
-        indexCount = numIndices;
-        meshType = type;
-        meshName = name;
-        
-        data = allocator.allocate<Vertex>(vertexCount);
-        indices = allocator.allocate<unsigned short>(indexCount);
+    Mesh(Array<Vertex> const& vertices, size_t numIndices, MeshType type, std::string const& name);
 
-        for(int i = 0; i < indexCount; ++i){
-            
-            indices[i] = indexCount - 1 - i;
-            
-        }
-        
-        memcpy(data, vertices.getRawData(), vertexCount * sizeof(Vertex));
-
-        vertexBuffer = createVertexBuffer(bgfx::makeRef(data, vertexCount * sizeof(Vertex)), Mesh::getVertexLayout());
-        
-        indexBuffer = bgfx::createIndexBuffer(bgfx::makeRef(indices, indexCount * sizeof(unsigned short)));
-        
-        programHandle = ShaderLoader::loadProgram("Advanced");
-        
-    }
+    virtual ~Mesh();
     
     static bgfx::VertexLayout getVertexLayout() {
-        
+
         bgfx::VertexLayout layout;
 
         layout.begin()
@@ -52,9 +30,9 @@ struct Mesh{
             .add(bgfx::Attrib::Normal, 3, bgfx::AttribType::Float)
             .add(bgfx::Attrib::Color0, 4, bgfx::AttribType::Float, true)
             .end();
-        
+
         return layout;
-        
+
     }
     
     bgfx::ProgramHandle programHandle;
@@ -65,25 +43,31 @@ struct Mesh{
     size_t indexCount = 0;
     
     Vertex* data = nullptr;
-    unsigned short* indices = nullptr;
+    uint16_t* indices = nullptr;
     
     MeshType meshType;
     std::string meshName;
 
-private:
-    
-    constexpr static const Allocator allocator = Allocator();
-    
+    inline static Allocator allocator = Allocator();
+
 };
 
 class MeshLoader{
 
 public:
     
+    MeshLoader() {
+        Logger::check(!MeshLoader::instance, "This shouldn't be built twice.");
+        MeshLoader::instance = this;
+    }
+
     static Mesh* loadOBJ(std::string const& file);
 
 private:
+
+    static inline MeshLoader* instance = nullptr;
     
-    inline static Array<Mesh*> loadedMeshes;
-    
+    AutoReleaseArray<Mesh*> loadedMeshes;
+    Allocator allocator = Allocator();
+
 };

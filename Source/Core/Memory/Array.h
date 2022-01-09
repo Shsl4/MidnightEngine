@@ -2,18 +2,28 @@
 
 #include <Core/EngineTypes.h>
 #include <Memory/Allocator.h>
+#include <type_traits>
 
 template<typename T>
 struct Array{
     
     explicit Array(size_t capacity = 15){
-        
+
         this->capacity = capacity;
         this->data = allocator.allocate<T>(capacity);
         memset(data, 0, capacity * sizeof(T));
-        
+
     }
-    
+
+    Array(const Array<T>& other) {
+
+        this->count = other.count;
+        this->capacity = other.capacity;
+        this->data = allocator.allocate<T>(capacity);
+        memcpy(this->data, other.data, this->count * sizeof(T));
+
+    }
+        
     virtual ~Array(){
         
         count = 0;
@@ -29,8 +39,14 @@ struct Array{
             this->data = allocator.resize(data, count == 0 ? 15 : capacity * 2);
             capacity *= 2;
         }
+
+        if (std::is_pointer_v<T>) {
+            this->data[count] = other;
+        }
+        else {
+            this->data[count] = S(other);
+        }
         
-        this->data[count] = other;
         ++count;
         
     }
@@ -132,7 +148,7 @@ struct Array{
     
     T operator[](size_t index) const {
         
-        return data[index];
+        return *(data + index);
         
     }
     
@@ -142,16 +158,45 @@ struct Array{
         append(other);
         
     }
-    
+
     FORCEINLINE bool isEmpty() const { return count == 0; }
     FORCEINLINE size_t getSize() const { return count; }
     FORCEINLINE size_t getCapacity() const { return capacity; }
 
 protected:
+
+    const Allocator* getAllocator() { return &allocator; }
+
+private:
     
     T* data = nullptr;
     size_t count = 0;
     size_t capacity = 0;
     Allocator allocator = Allocator();
       
+};
+
+template<typename T>
+struct AutoReleaseArray : public Array<T> {
+
+public:
+
+    explicit AutoReleaseArray(size_t capacity = 15) : Array<T>(capacity) {
+
+        static_assert(std::is_pointer_v<T>, "T must be a pointer.");
+
+    }
+
+    virtual ~AutoReleaseArray() {
+
+        T* data = this->getRawData();
+        Allocator allocator = Allocator();
+
+        for (size_t i = 0; i < this->getSize(); i++)
+        {
+            allocator.deallocate(data[i]);
+        }
+
+    }
+
 };
