@@ -63,8 +63,6 @@ int MEngine::init(int argc, const char **argv) {
 
     inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &MEngine::stop);
 
-    float ratio = static_cast<float>(windowWidth) / static_cast<float>(windowHeight);
-
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, 5.0f)), "Monkey.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(5.0f, 0.0f, 0.0f)), "Lantern_Sphere.obj");

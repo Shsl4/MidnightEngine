@@ -21,12 +21,12 @@ if [[ ! -d "./Build/Resources/Shaders/SPIRV" ]]; then mkdir "./Build/Resources/S
 VERTEX_FILE="vs_$1.bin"
 FRAGMENT_FILE="fs_$1.bin"
 
-./shaderc_macOS -i "./include" -f $VERTEX_FILE_PATH -p 410 -o "./Build/Resources/Shaders/GLSL/$VERTEX_FILE" --platform windows --type vertex
-./shaderc_macOS -i "./include" -f $VERTEX_FILE_PATH -p spirv -o "./Build/Resources/Shaders/SPIRV/$VERTEX_FILE" --platform windows --type vertex
-./shaderc_macOS -i "./include" -f $VERTEX_FILE_PATH -p metal -o "./Build/Resources/Shaders/Metal/$VERTEX_FILE" --platform osx --type vertex
+./shaderc_macOS -i "./Include" -f "$VERTEX_FILE_PATH" -p 410 -o "./Build/Resources/Shaders/GLSL/$VERTEX_FILE" --platform windows --type vertex
+./shaderc_macOS -i "./Include" -f "$VERTEX_FILE_PATH" -p spirv -o "./Build/Resources/Shaders/SPIRV/$VERTEX_FILE" --platform windows --type vertex
+./shaderc_macOS -i "./Include" -f "$VERTEX_FILE_PATH" -p metal -o "./Build/Resources/Shaders/Metal/$VERTEX_FILE" --platform osx --type vertex
 
-./shaderc_macOS -i "./include" -f $FRAGMENT_FILE_PATH -p 410 -o "./Build/Resources/Shaders/GLSL/$FRAGMENT_FILE" --platform windows --type fragment
-./shaderc_macOS -i "./include" -f $FRAGMENT_FILE_PATH -p spirv -o "./Build/Resources/Shaders/SPIRV/$FRAGMENT_FILE" --platform windows --type fragment
-./shaderc_macOS -i "./include" -f $FRAGMENT_FILE_PATH -p metal -o "./Build/Resources/Shaders/Metal/$FRAGMENT_FILE" --platform osx --type fragment
+./shaderc_macOS -i "./Include" -f "$FRAGMENT_FILE_PATH" -p 410 -o "./Build/Resources/Shaders/GLSL/$FRAGMENT_FILE" --platform windows --type fragment
+./shaderc_macOS -i "./Include" -f "$FRAGMENT_FILE_PATH" -p spirv -o "./Build/Resources/Shaders/SPIRV/$FRAGMENT_FILE" --platform windows --type fragment
+./shaderc_macOS -i "./Include" -f "$FRAGMENT_FILE_PATH" -p metal -o "./Build/Resources/Shaders/Metal/$FRAGMENT_FILE" --platform osx --type fragment
 
 cp -r "./Build/Resources/Shaders" "../../Resources"

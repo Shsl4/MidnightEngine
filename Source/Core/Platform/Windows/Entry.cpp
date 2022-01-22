@@ -22,9 +22,10 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) 
 
     bgfx::renderFrame();
 
-    auto thread = std::jthread(&Entry::initEngine, this, window);
+    /// Creates our engine thread
+    std::jthread(&Entry::initEngine, this, window);
 
-    // Wait for engine creation before looping.
+    /// Wait for engine creation before looping.
     while (!engine || !engine->isRunning()) {
         bgfx::renderFrame();
     }
@@ -84,7 +85,7 @@ int main(int argc, const char** argv) {
 
 #ifdef DEBUG_LEAKS
 
-    // Enables memory leak check on Windows
+    /// Enables memory leak check on Windows
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 

@@ -61,9 +61,6 @@ bgfx::ShaderHandle ShaderLoader::loadShader(const char *_name) {
     bx::strCopy(filePath, BX_COUNTOF(filePath), shaderPath);
     bx::strCat(filePath, BX_COUNTOF(filePath), _name);
     bx::strCat(filePath, BX_COUNTOF(filePath), ".bin");
-
-    std::string path = fmt::format("{}/{}", std::filesystem::current_path().string(), filePath);
-
     bgfx::ShaderHandle handle = bgfx::createShader(loadMem(fileReader, filePath));
     bgfx::setName(handle, _name);
 

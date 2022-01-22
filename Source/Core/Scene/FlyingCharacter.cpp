@@ -40,13 +40,9 @@ void FlyingCharacter::update(float deltaTime) {
 
     Super::update(deltaTime);
 
-    Vector3 rot = camera->getWorldRotation();
-
     camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
     camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
     camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);
-
-    auto pos = getRootComponent()->getWorldPosition();
 
 }
 
