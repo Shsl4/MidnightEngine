@@ -8,28 +8,27 @@
 #include <bx/file.h>
 #include <filesystem>
 
-class ShaderLoader
-{
+class ShaderLoader {
 
 public:
 
-	static bgfx::ProgramHandle loadProgram(const char* programeName);
-	static bgfx::ShaderHandle loadShader(const char* _name);
+    static bgfx::ProgramHandle loadProgram(const char *programeName);
+
+    static bgfx::ShaderHandle loadShader(const char *_name);
 
 private:
 
-	static const bgfx::Memory* loadMem(bx::FileReaderI* _reader, const char* _filePath);
+    static const bgfx::Memory *loadMem(bx::FileReaderI *_reader, const char *_filePath);
 
-	inline static const Logger logger = Logger("ShaderLoader");
+    inline static const Logger logger = Logger("ShaderLoader");
 
-	static bx::AllocatorI* getDefaultAllocator()
-	{
-		static bx::DefaultAllocator __allocator;
-		return &__allocator;
-	}
+    static bx::AllocatorI *getDefaultAllocator() {
+        static bx::DefaultAllocator __allocator;
+        return &__allocator;
+    }
 
-	inline static bx::AllocatorI* defaultAllocator = getDefaultAllocator();
-	inline static bx::FileReaderI* fileReader = BX_NEW(defaultAllocator, bx::FileReader);
+    inline static bx::AllocatorI *defaultAllocator = getDefaultAllocator();
+    inline static bx::FileReaderI *fileReader = BX_NEW(defaultAllocator, bx::FileReader);
 
 };
 

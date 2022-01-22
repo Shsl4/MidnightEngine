@@ -3,121 +3,127 @@
 #include <Math/MathUtils.h>
 #include <math.h>
 
+/*!
+ *  A 3 dimensional vector structure containing operators and primitives.
+ */
 struct Vector3 {
-	
-	Vector3() = default;
 
-	Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) {
+    Vector3() = default;
 
-	}
+    Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) {
 
-	explicit Vector3(const float v) : Vector3(v, v, v) {
-	
-	}
+    }
 
-	Vector3 operator-(Vector3 const& other) const;
-	Vector3 operator+(Vector3 const& other) const;
-	Vector3 operator*(float scale) const;
-	Vector3 operator/(float scale) const;
+    explicit Vector3(const float v) : Vector3(v, v, v) {
 
-	void operator-=(Vector3 const& other);
-	void operator+=(Vector3 const& other);
-	void operator*=(float scale);
-	void operator/=(float scale);
+    }
 
-	FORCEINLINE float dot(Vector3 const& other) const
-	{
+    Vector3 operator-(Vector3 const &other) const;
 
-		return (this->x * other.x) + (this->y * other.y) + (this->z * other.z);
-		
-	}
+    Vector3 operator+(Vector3 const &other) const;
 
-	FORCEINLINE void normalize() {
-		
-		const float norm = this->norm();
+    Vector3 operator*(float scale) const;
 
-		if (norm == 0.0f) { return; }
+    Vector3 operator/(float scale) const;
 
-		*this /= norm;
+    void operator-=(Vector3 const &other);
 
-	}
+    void operator+=(Vector3 const &other);
 
-	FORCEINLINE float norm() const
-	{
+    void operator*=(float scale);
 
-		return sqrt((x * x) + (y * y) + (z * z));
+    void operator/=(float scale);
 
-	}
+    FORCEINLINE float dot(Vector3 const &other) const {
 
-	FORCEINLINE void negate() {
+        return (this->x * other.x) + (this->y * other.y) + (this->z * other.z);
 
-		this->x = -this->x;
-		this->y = -this->y;
-		this->z = -this->z;
+    }
 
-	}
+    FORCEINLINE void normalize() {
 
-	FORCEINLINE Vector3 cross(Vector3 const& other) const
-	{
+        const float norm = this->norm();
 
-		Vector3 vec;
+        if (norm == 0.0f) {return;}
 
-		vec.x = this->y * other.z - this->z * other.y;
-		vec.y = this->z * other.x - this->x * other.z;
-		vec.z = this->x * other.y - this->y * other.x;
+        *this /= norm;
 
-		return vec;
+    }
 
-	}
+    FORCEINLINE float norm() const {
 
-	FORCEINLINE static Vector3 cross(Vector3 const& a, Vector3 const& b) {
+        return sqrt((x * x) + (y * y) + (z * z));
 
-		Vector3 vec;
+    }
 
-		vec.x = a.y * b.z - a.z * b.y;
-		vec.y = a.z * b.x - a.x * b.z;
-		vec.z = a.x * b.y - a.y * b.x;
+    FORCEINLINE void negate() {
 
-		return vec;
+        this->x = -this->x;
+        this->y = -this->y;
+        this->z = -this->z;
 
-	}
+    }
 
-	FORCEINLINE static Vector3 normalize(Vector3 const& other) {
+    FORCEINLINE Vector3 cross(Vector3 const &other) const {
 
-		const float norm = other.norm();
+        Vector3 vec;
 
-		if (norm == 0.0f) { return other; }
+        vec.x = this->y * other.z - this->z * other.y;
+        vec.y = this->z * other.x - this->x * other.z;
+        vec.z = this->x * other.y - this->y * other.x;
 
-		return other / norm;
+        return vec;
 
-	}
+    }
 
-	FORCEINLINE static float dot(Vector3 const& a, Vector3 const& b) {
+    FORCEINLINE static Vector3 cross(Vector3 const &a, Vector3 const &b) {
 
-		return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+        Vector3 vec;
 
-	}
+        vec.x = a.y * b.z - a.z * b.y;
+        vec.y = a.z * b.x - a.x * b.z;
+        vec.z = a.x * b.y - a.y * b.x;
 
-	FORCEINLINE static float angle(Vector3 const& a, Vector3 const& b) {
+        return vec;
 
-		const float dp = Vector3::dot(a, b);
-		const float aNorm = a.norm();
-		const float bNorm = b.norm();
+    }
 
-		return acos(dp / (aNorm * bNorm));
+    FORCEINLINE static Vector3 normalize(Vector3 const &other) {
 
-	}
+        const float norm = other.norm();
 
-	float x = 0.0f;
-	float y = 0.0f;
-	float z = 0.0f;
+        if (norm == 0.0f) {return other;}
 
-	static const Vector3 zero;
-	static const Vector3 up;
-	static const Vector3 down;
-	static const Vector3 forward;
-	static const Vector3 backward;
-	static const Vector3 right;
-	static const Vector3 left;
+        return other / norm;
+
+    }
+
+    FORCEINLINE static float dot(Vector3 const &a, Vector3 const &b) {
+
+        return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+
+    }
+
+    FORCEINLINE static float angle(Vector3 const &a, Vector3 const &b) {
+
+        const float dp = Vector3::dot(a, b);
+        const float aNorm = a.norm();
+        const float bNorm = b.norm();
+
+        return acos(dp / (aNorm * bNorm));
+
+    }
+
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+
+    static const Vector3 zero;
+    static const Vector3 up;
+    static const Vector3 down;
+    static const Vector3 forward;
+    static const Vector3 backward;
+    static const Vector3 right;
+    static const Vector3 left;
 
 };

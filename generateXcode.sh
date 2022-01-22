@@ -10,8 +10,3 @@ fi
 
 cd Build
 cmake .. -G Xcode
-
-if [ $? -eq 0 ]
-then
-open MidnightEngine.xcodeproj
-fi

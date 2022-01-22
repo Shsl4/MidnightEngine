@@ -8,13 +8,14 @@
 #include <iconfontheaders/icons_font_awesome.h>
 #include <Core/Logging/Logger.h>
 
-class CharacterInfoWindow{
-    
-    class FlyingCharacter* character;
-    
+class CharacterInfoWindow {
+
+    class FlyingCharacter *character;
+
 public:
-    
-    CharacterInfoWindow(class FlyingCharacter* character);
-    void render(const char* _errorText);
-    
+
+    CharacterInfoWindow(class FlyingCharacter *character);
+
+    void render(const char *_errorText);
+
 };

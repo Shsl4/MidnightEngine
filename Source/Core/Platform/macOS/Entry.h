@@ -4,15 +4,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Entry : NSObject<NSApplicationDelegate>
+@interface Entry : NSObject <NSApplicationDelegate>
 
-- (int) entry:(int)argc argv:(const char* _Nonnull * _Nonnull)argv;
+- (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv;
 
-- (int) initEngine:(SDL_Window*)window;
+- (int)initEngine:(SDL_Window *)window;
 
-- (void) update;
+- (void)update;
 
-+ (NSEvent*) getNextEvent;
++ (NSEvent *)getNextEvent;
 
 @end
 
