@@ -23,7 +23,7 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) 
     bgfx::renderFrame();
 
     /// Creates our engine thread
-    std::jthread(&Entry::initEngine, this, window);
+    auto jthread = std::jthread(&Entry::initEngine, this, window);
 
     /// Wait for engine creation before looping.
     while (!engine || !engine->isRunning()) {

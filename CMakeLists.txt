@@ -18,7 +18,7 @@ foreach(MODULE ${MODULES})
 
 endforeach()
 
-add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS} ${ENGINE_RESOURCES})
+add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
