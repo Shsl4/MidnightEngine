@@ -174,6 +174,13 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The default logger constructor. Initializes the id.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>The <a class="el" href="class_logger.html">Logger</a> identifier. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -219,6 +226,15 @@ template&lt;typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >An assertion function. If the input condition is not met, the message is printed and a fatal error is thrown.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">condition</td><td>The condition to check </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">format</td><td>The format string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The variable arguments for the format string </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -382,6 +398,8 @@ template&lt;typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Returns the logger's identifier.</p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_logger.html">Logger</a> id. </dd></dl>
 
 </div>
 </div>
@@ -603,6 +621,7 @@ template&lt;typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >A static private logger used for assertion checks. </p>
 
 </div>
 </div>
@@ -625,6 +644,7 @@ template&lt;typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The logger id </p>
 
 </div>
 </div>

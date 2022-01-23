@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa22c9e88cbb15cf6996ac86917a75867"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:aa22c9e88cbb15cf6996ac86917a75867"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_array.html#aa22c9e88cbb15cf6996ac86917a75867">remove</a> (S const &amp;other)</td></tr>
 <tr class="separator:aa22c9e88cbb15cf6996ac86917a75867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fcda012633d9331148e501722c05c3"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:ae1fcda012633d9331148e501722c05c3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_array.html#ae1fcda012633d9331148e501722c05c3">contains</a> (S const &amp;other) const</td></tr>
+<tr class="separator:ae1fcda012633d9331148e501722c05c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a9f79d202fb8f44f22e92a7a23dcb2e"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a6a9f79d202fb8f44f22e92a7a23dcb2e"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_array.html#a6a9f79d202fb8f44f22e92a7a23dcb2e">contains</a> (S const &amp;other, size_t &amp;index) const</td></tr>
 <tr class="separator:a6a9f79d202fb8f44f22e92a7a23dcb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,7 +227,7 @@ template&lt;typename T &gt; </div>
 <p >The <a class="el" href="struct_array.html">Array</a> copy constructor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>The array to copy </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The array to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -360,8 +363,52 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="ae1fcda012633d9331148e501722c05c3" name="ae1fcda012633d9331148e501722c05c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1fcda012633d9331148e501722c05c3">&#9670;&nbsp;</a></span>contains() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_array.html">Array</a>&lt; T &gt;::contains </td>
+          <td>(</td>
+          <td class="paramtype">S const &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Checks whether the array contains a specific object.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>The type of object to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The object to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the array contains other </dd></dl>
+
+</div>
+</div>
 <a id="a6a9f79d202fb8f44f22e92a7a23dcb2e" name="a6a9f79d202fb8f44f22e92a7a23dcb2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a9f79d202fb8f44f22e92a7a23dcb2e">&#9670;&nbsp;</a></span>contains()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9f79d202fb8f44f22e92a7a23dcb2e">&#9670;&nbsp;</a></span>contains() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -397,7 +444,7 @@ template&lt;typename S &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Checks whether the array contains a specific object.</p>
+<p >Checks whether the array contains a specific object and returns the index.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">S</td><td>The type of object to check </td></tr>

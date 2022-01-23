@@ -6,6 +6,7 @@ var struct_array =
     [ "append", "struct_array.html#a168c1e68bd07667ad6f5366ec6e171e7", null ],
     [ "begin", "struct_array.html#aaf18518240a1b31286ec08be533ec1d3", null ],
     [ "clear", "struct_array.html#a7e552b6ba76a0aeae7bd6009700da81f", null ],
+    [ "contains", "struct_array.html#ae1fcda012633d9331148e501722c05c3", null ],
     [ "contains", "struct_array.html#a6a9f79d202fb8f44f22e92a7a23dcb2e", null ],
     [ "end", "struct_array.html#aad13caeae3ab3b3bc4990f10e03fadad", null ],
     [ "getCapacity", "struct_array.html#ad34db9600b15c663d65673406ab33d40", null ],

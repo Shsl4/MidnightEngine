@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"struct_directional_light.html#abaf1ac3b7602dfae1deef7fc8239f50f":[6,0,7,3],
 "struct_directional_light_handles.html":[6,0,8],
 "struct_directional_light_handles.html#a08c720041a394e374fd97f186770cf30":[6,0,8,0],
 "struct_directional_light_handles.html#a1a3e39da0b8efdf1d7ed51e1b2449f85":[6,0,8,2],

@@ -231,8 +231,8 @@ template&lt;class T , typename ... Args&gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relativeTransform</td><td>The relative <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_component.html">SceneComponent</a> </td></tr>
-    <tr><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_component.html">SceneComponent</a>'s constructor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeTransform</td><td>The relative <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_component.html">SceneComponent</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_component.html">SceneComponent</a>'s constructor </td></tr>
   </table>
   </dd>
 </dl>
@@ -285,8 +285,8 @@ template&lt;class T , typename ... Args&gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">transform</td><td>The world <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
-    <tr><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_object.html">SceneObject</a>'s constructor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transform</td><td>The world <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_object.html">SceneObject</a>'s constructor </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,9 +299,6 @@ template&lt;class T , typename ... Args&gt; </div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Scene::destroyComponent </td>
@@ -311,16 +308,11 @@ template&lt;class T , typename ... Args&gt; </div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p >Destroys a <a class="el" href="class_scene_component.html">SceneComponent</a> from the <a class="el" href="class_scene.html">Scene</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">component</td><td>The component to destroy </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">component</td><td>The component to destroy </td></tr>
   </table>
   </dd>
 </dl>
@@ -407,7 +399,7 @@ template&lt;class T , typename ... Args&gt; </div>
 <p >Allows a newly created <a class="el" href="class_scene_object.html">SceneObject</a> to bind input events.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">object</td><td>The target <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The target <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -440,7 +432,7 @@ template&lt;class T , typename ... Args&gt; </div>
 <p >Updates every object on the scene.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deltaTime</td><td>The engine delta time </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deltaTime</td><td>The engine delta time </td></tr>
   </table>
   </dd>
 </dl>

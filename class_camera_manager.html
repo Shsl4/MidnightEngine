@@ -111,6 +111,8 @@ Inheritance diagram for CameraManager:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad705ec0f705bcf5cc0db5168e215bcb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#ad705ec0f705bcf5cc0db5168e215bcb0">CameraManager</a> (class <a class="el" href="class_scene.html">Scene</a> *owner)</td></tr>
 <tr class="separator:ad705ec0f705bcf5cc0db5168e215bcb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0182f58638e66d90e403495370ddb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#a6d0182f58638e66d90e403495370ddb0">CameraManager</a> ()=delete</td></tr>
+<tr class="separator:a6d0182f58638e66d90e403495370ddb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec123c2494958a78608195d713a18c66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_camera_component.html">CameraComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#aec123c2494958a78608195d713a18c66">getActiveCamera</a> () const</td></tr>
 <tr class="separator:aec123c2494958a78608195d713a18c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a1f31c68d5adaf09a1c1c24dcb5c46b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> const class <a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#a3a1f31c68d5adaf09a1c1c24dcb5c46b">getScene</a> ()</td></tr>
@@ -139,8 +141,6 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aae7d0d207d9640867956ee9c4a70289f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_array.html">Array</a>&lt; <a class="el" href="class_camera_component.html">CameraComponent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#aae7d0d207d9640867956ee9c4a70289f">cameras</a></td></tr>
 <tr class="separator:aae7d0d207d9640867956ee9c4a70289f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a435b928543cd1cbc45505ec6a83f8c0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_allocator.html">Allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#a435b928543cd1cbc45505ec6a83f8c0a">allocator</a></td></tr>
-<tr class="separator:a435b928543cd1cbc45505ec6a83f8c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fc3b4acabc0432f1b6767caf802e21d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera_component.html">CameraComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#a9fc3b4acabc0432f1b6767caf802e21d">activeCamera</a> = nullptr</td></tr>
 <tr class="separator:a9fc3b4acabc0432f1b6767caf802e21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc9d55324e49bc3fcc28accd82858b15"><td class="memItemLeft" align="right" valign="top">const class <a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_manager.html#abc9d55324e49bc3fcc28accd82858b15">scene</a></td></tr>
@@ -150,7 +150,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p >The <a class="el" href="class_camera_manager.html">CameraManager</a> is an object keeping references to every camera in a scene. It allows easy camera access and manipulation. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad705ec0f705bcf5cc0db5168e215bcb0" name="ad705ec0f705bcf5cc0db5168e215bcb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad705ec0f705bcf5cc0db5168e215bcb0">&#9670;&nbsp;</a></span>CameraManager()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad705ec0f705bcf5cc0db5168e215bcb0">&#9670;&nbsp;</a></span>CameraManager() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,6 +164,39 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The <a class="el" href="class_camera_manager.html">CameraManager</a> constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">owner</td><td>The scene this <a class="el" href="class_camera_manager.html">CameraManager</a> belongs to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6d0182f58638e66d90e403495370ddb0" name="a6d0182f58638e66d90e403495370ddb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0182f58638e66d90e403495370ddb0">&#9670;&nbsp;</a></span>CameraManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CameraManager::CameraManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Remove the default constructor. </p>
 
 </div>
 </div>
@@ -318,28 +351,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a435b928543cd1cbc45505ec6a83f8c0a" name="a435b928543cd1cbc45505ec6a83f8c0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a435b928543cd1cbc45505ec6a83f8c0a">&#9670;&nbsp;</a></span>allocator</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a> CameraManager::allocator</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p >The camera currently used for rendering. </p>
 
 </div>
 </div>
@@ -362,6 +374,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p ><a class="el" href="struct_array.html">Array</a> containing the cameras in the scene. </p>
 
 </div>
 </div>
@@ -384,6 +397,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The <a class="el" href="class_scene.html">Scene</a> this <a class="el" href="class_camera_manager.html">CameraManager</a> belongs to. </p>
 
 </div>
 </div>

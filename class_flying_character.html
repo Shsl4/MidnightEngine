@@ -214,6 +214,14 @@ Private Types</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Function called by the scene when the object is created. SceneObjects must override this method to create their SceneComponents.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">scene</td><td>The scene this object was created in. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transform</td><td>The <a class="el" href="class_scene_object.html">SceneObject</a> world transform. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="class_scene_object.html#afd09a16ec4c2b17f2fb0a2348c4a6640">SceneObject</a>.</p>
 
@@ -278,6 +286,13 @@ Private Types</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Called after the <a class="el" href="class_scene_object.html">SceneObject</a> is created. It allows input binding.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">manager</td><td>The engine <a class="el" href="class_input_manager.html">InputManager</a> </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_scene_object.html#afcb92a61348746861577c2fad1bbe935">SceneObject</a>.</p>
 
@@ -306,6 +321,13 @@ Private Types</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called directly from the scene.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">deltaTime</td><td>The engine tick delta time </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_scene_object.html#aba8272571e82e5b7082e130f8825c681">SceneObject</a>.</p>
 
