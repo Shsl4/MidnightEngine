@@ -2,17 +2,17 @@
 #include <Input/InputManager.h>
 
 void SceneObject::start() {
+    
+    // Call start on the root component
     rootComponent->start();
+    
 }
 
 void SceneObject::update(float deltaTime) {
+    
+    // Call update on the root component
     rootComponent->update(deltaTime);
-}
-
-void SceneObject::onComponentAttached(SceneComponent *component) {
-
-    //logger.info("Attached component {} to {}", component->getDescription(), this->getDescription());
-
+    
 }
 
 void SceneObject::setRootComponent(SceneComponent *component) {
@@ -22,11 +22,14 @@ void SceneObject::setRootComponent(SceneComponent *component) {
 
 }
 
-void SceneObject::setupInput(InputManager *manager) {
+void SceneObject::onComponentAttached(SceneComponent *component) {
 
 }
 
 void SceneObject::onComponentDetached(SceneComponent *component) {
 
+}
+
+void SceneObject::setupInput(InputManager *manager) {
 
 }

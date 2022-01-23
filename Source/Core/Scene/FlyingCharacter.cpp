@@ -3,6 +3,7 @@
 
 void FlyingCharacter::mouseMotion(Int32 x, Int32 y) {
 
+    // Add camera input on mouse movement.
     camera->addCameraPitchInput(static_cast<float>(y) / 10.0f);
     camera->addCameraYawInput(static_cast<float>(x) / 10.0f);
 
@@ -10,14 +11,15 @@ void FlyingCharacter::mouseMotion(Int32 x, Int32 y) {
 
 void FlyingCharacter::createComponents(Scene *scene, Transform transform) {
 
+    // Create a CameraComponent and set it as root.
     this->camera = scene->createComponent<CameraComponent>(transform, 90.0f, 16.0f / 9.0f, 500.0f);
-
     setRootComponent(camera);
 
 }
 
 void FlyingCharacter::setupInput(InputManager *manager) {
 
+    // Bind all the required controls.
     manager->bindEvent(this, KeyBind(SDLK_w), EInputEvent::Pressed, &FlyingCharacter::wPressed);
     manager->bindEvent(this, KeyBind(SDLK_s), EInputEvent::Pressed, &FlyingCharacter::sPressed);
     manager->bindEvent(this, KeyBind(SDLK_a), EInputEvent::Pressed, &FlyingCharacter::aPressed);
@@ -40,6 +42,7 @@ void FlyingCharacter::update(float deltaTime) {
 
     Super::update(deltaTime);
 
+    // Add movement input.
     camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
     camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
     camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);

@@ -118,7 +118,9 @@ void MeshComponent::render() {
 
     setIndexBuffer(mesh->indexBuffer);
     setVertexBuffer(0, mesh->vertexBuffer);
+    
     setUniforms();
+    
     submit(0, mesh->programHandle);
 
 }

@@ -28,7 +28,7 @@ struct Array {
     /*!
      * The Array copy constructor.
      *
-     * @param other The array to copy
+     * @param[in] other The array to copy
      */
     Array(const Array<T> &other) {
 
@@ -137,6 +137,33 @@ struct Array {
 
     /*!
      * Checks whether the array contains a specific object.
+     *
+     *  @tparam S The type of object to check
+     *  @param[in] other The object to check
+     *  @return Whether the array contains other
+     */
+    template<typename S>
+    bool contains(S const &other) const {
+
+        // For each element in the array
+        for (size_t i = 0; i < count; ++i) {
+
+            // If other was found
+            if (other == data[i]) {
+
+                return true;
+
+            }
+
+        }
+
+        // The element wasn't found in the array.
+        return false;
+
+    }
+    
+    /*!
+     * Checks whether the array contains a specific object and returns the index.
      *
      *  @tparam S The type of object to check
      *  @param[in] other The object to check

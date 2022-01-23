@@ -12,7 +12,17 @@ class CameraManager : public Object {
 
 public:
 
+    /*!
+     *  The CameraManager constructor.
+     *
+     *  @param[in] owner The scene this CameraManager belongs to.
+     */
     CameraManager(class Scene *owner);
+    
+    /*!
+     * Remove the default constructor.
+     */
+    CameraManager() = delete;
 
     /*!
      * Returns the camera currently used for rendering.
@@ -57,11 +67,20 @@ public:
 
 protected:
 
+    /*!
+     * Array containing the cameras in the scene.
+     */
     Array<CameraComponent *> cameras;
-    Allocator allocator;
+    
+    /*!
+     * The camera currently used for rendering.
+     */
     CameraComponent *activeCamera = nullptr;
+    
+    /*!
+     * The Scene this CameraManager belongs to.
+     */
     const class Scene *scene;
-
 
 };
 

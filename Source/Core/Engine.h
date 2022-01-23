@@ -22,7 +22,7 @@ public:
     /*!
      * The engine constructor. Initializes engine resources.
      *
-     * @param mainWindow The application window.
+     * @param[in] mainWindow The application window.
      */
     explicit Engine(SDL_Window *mainWindow);
 
@@ -34,8 +34,8 @@ public:
     /*!
      *  The engine's initialization function. It is called after the constructor.
      *
-     *  @param argc The console argument count.
-     *  @param argv The console arguments.
+     *  @param[in] argc The console argument count.
+     *  @param[in] argv The console arguments.
      *  @return The engine exit code.
      */
     int init(int argc, const char **argv);

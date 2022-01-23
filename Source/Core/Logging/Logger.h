@@ -10,6 +10,11 @@ class Logger {
 
 public:
 
+    /*!
+     * The default logger constructor. Initializes the id.
+     *
+     * @param[in] id The Logger identifier.
+     */
     explicit Logger(const std::string id) : id(id) {
     }
 
@@ -80,6 +85,13 @@ public:
         abort();
     }
 
+    /*!
+     *  An assertion function. If the input condition is not met, the message is printed and a fatal error is thrown.
+     *
+     *  @param[in] condition The condition to check
+     *  @param[in] format The format string
+     *  @param[in] args The variable arguments for the format string
+     */
     template<typename ... Args>
     static void check(bool condition, std::string format, Args &&... args) {
 
@@ -89,6 +101,11 @@ public:
 
     }
 
+    /*!
+     *  Returns the logger's identifier.
+     *
+     *  @return The Logger id.
+     */
     std::string getId() const {
         return this->id;
     }
@@ -106,14 +123,23 @@ private:
     template<typename ... Args>
     void log(const fmt::text_style color, std::string const &type, std::string const &format, Args &&...args) const {
 
+        // Format the string.
         const fmt::basic_format_args<fmt::format_context> formatArgs = fmt::make_format_args(args...);
         const std::string formatted = vformat(format, formatArgs) + '\n';
-        print(color, "[{}] ({}) | ", type, this->getId());
-        print(color, formatted);
+        
+        // Print the formatted string.
+        print(color, "[{}] ({}) | {}", type, this->getId(), formatted);
 
     }
 
+    /*!
+     * The logger id
+     */
     const std::string id;
+    
+    /*!
+     * A static private logger used for assertion checks.
+     */
     static Logger assertLogger;
 
 };

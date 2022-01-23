@@ -32,6 +32,8 @@ public:
     /*!
      * Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate).
      * It is called from the parent SceneObject.
+     *
+     *  @param[in] deltaTime The engine tick delta time
      */
     virtual void update(float deltaTime);
 

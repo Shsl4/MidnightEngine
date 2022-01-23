@@ -25,29 +25,38 @@ public:
      *
      *  @tparam T The SceneObject class to instantiate
      *  @tparam Args A variadic arguments template type
-     *  @param transform The world Transform of the SceneObject
-     *  @param args The arguments to pass to the SceneObject's constructor
+     *  @param[in] transform The world Transform of the SceneObject
+     *  @param[in] args The arguments to pass to the SceneObject's constructor
      *  @return The newly created SceneObject
      *
      */
     template<class T, typename ... Args>
     T *createObject(Transform const &transform, Args &&... args) {
 
+        // Check if the class we are trying to instantiate is a SceneObject.
         static_assert(std::is_base_of_v<SceneObject, T>, "T should inherit from SceneComponent");
 
+        // Instantiate the SceneObject
         T *object = allocator.instantiate<T>(args...);
+        
+        // Create the components
         object->createComponents(this, transform);
 
+        // If the SceneObject did not setup a root component, destroy it.
         if (!object->rootComponent) {
 
             allocator.deallocate(object);
-            logger->info("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
+            
+            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
+            
             return nullptr;
 
         }
 
+        // Setup the input on the created SceneObject
         setupInput(object);
 
+        // Register the SceneObject
         registeredObjects.append(object);
         return object;
 
@@ -58,22 +67,23 @@ public:
      *
      *  @tparam T The SceneComponent class to instantiate
      *  @tparam Args A variadic arguments template type
-     *  @param relativeTransform The relative Transform of the SceneComponent
-     *  @param args The arguments to pass to the SceneComponent's constructor
+     *  @param[in] relativeTransform The relative Transform of the SceneComponent
+     *  @param[in] args The arguments to pass to the SceneComponent's constructor
      *  @return The newly created SceneComponent
      *
      */
     template<class T, typename ... Args>
     T *createComponent(Transform const &relativeTransform, Args &&... args) {
 
+        // Check if the class we are trying to instantiate is a SceneComponent.
         static_assert(std::is_base_of_v<SceneComponent, T>, "T should inherit from SceneComponent");
 
+        // Instantiate the SceneComponent
         T *component = allocator.instantiate<T>(args...);
-
         component->construct(relativeTransform);
+        
+        // Mark it as registered (bad, will probably be changed later)
         component->registered = true;
-
-        registeredComponents.append(component);
 
         // If the created component is a CameraComponent, it is passed to the camera manager.
         if (component->template instanceOf<CameraComponent>()) {
@@ -82,6 +92,8 @@ public:
 
         }
 
+        // Register the SceneComponent
+        registeredComponents.append(component);
         return component;
 
     }
@@ -89,24 +101,10 @@ public:
     /*!
      * Destroys a SceneComponent from the Scene.
      *
-     *  @param component The component to destroy
+     *  @param[in] component The component to destroy
      *  @return Whether the component was destroyed
      */
-    bool destroyComponent(SceneComponent *component) {
-
-        if (!component) {return false;}
-
-        component->detachFromComponent();
-
-        if (component->template instanceOf<CameraComponent>()) {
-
-            cameraManager->unregisterCamera(component->template cast<CameraComponent>());
-
-        }
-
-        return registeredComponents.remove(component);
-
-    }
+    bool destroyComponent(SceneComponent *component);
 
     /*!
      * Gets this Scene's CameraManager.
@@ -129,14 +127,14 @@ private:
     /*!
      *  Updates every object on the scene.
      *
-     *  @param deltaTime The engine delta time
+     *  @param[in] deltaTime The engine delta time
      */
     void updateScene(float deltaTime) const;
 
     /*!
      * Allows a newly created SceneObject to bind input events.
      *
-     *  @param object The target SceneObject
+     *  @param[in] object The target SceneObject
      */
     void setupInput(SceneObject *object);
 
