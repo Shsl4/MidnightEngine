@@ -14,7 +14,9 @@
  */
 class SceneComponent : public Object {
 
-    /// Defining Super class
+    /*!
+     *  Defining Super class
+     */
     using Super = Object;
 
     friend class Scene;
@@ -181,18 +183,41 @@ public:
 
 protected:
 
+    /*!
+     * The SceneComponent constructor.
+     */
     SceneComponent() = default;
 
+    /*!
+     * The component world Transform.
+     */
     Transform transform;
 
 private:
 
+    /*!
+     * The SceneComponents directly attached to this component.
+     */
     Array<SceneComponent *> childComponents;
+    
+    /*!
+     * The SceneComponent this component is attached to.
+     */
     SceneComponent *parentComponent = nullptr;
-
+    
+    /*!
+     * The SceneObject this SceneComponent is attached to.
+     */
     class SceneObject *parentObject = nullptr;
 
+    /*!
+     *  Whether this component was registered by the scene.
+     */
     bool registered = false;
+    
+    /*!
+     * The name of the component.
+     */
     std::string name = "";
 
 };

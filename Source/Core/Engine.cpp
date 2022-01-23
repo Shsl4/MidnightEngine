@@ -13,130 +13,153 @@
 
 Logger Logger::assertLogger = Logger("Assert");
 
-MEngine::MEngine(SDL_Window *mainWindow) : mainWindow(mainWindow) {
-    instance = this;
+Engine::Engine(SDL_Window *mainWindow) : mainWindow(mainWindow) {
+    
+    // If an engine instance has already been created, abort the program. (Should never happen)
+    if(Engine::instance) { abort(); }
+    
+    Engine::instance = this;
 
+    // Initialize our variables.
     this->logger = std::make_unique<Logger>("MidnightEngine");
     this->inputManager = std::make_unique<InputManager>();
     this->perfWindow = std::make_unique<PerformanceWindow>();
     this->meshLoader = std::make_unique<MeshLoader>();
+    this->activeScene = std::make_unique<Scene>();
+    this->startTime = bx::getHPCounter();
+
+    // Store the window size.
     SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
 
 }
 
-MEngine::~MEngine() {
+Engine::~Engine() {
 
+    // Release resources.
     cleanup();
 
 }
 
-int MEngine::init(int argc, const char **argv) {
+int Engine::init(int argc, const char **argv) {
 
-    getLogger()->info("Initializing MidnightEngine...");
+    logger->info("Initializing MidnightEngine...");
 
-    bgfx::Init init;
+    // Initialize BGFX.
+    if (!bgfx::init()) {
 
-#ifdef VSYNC
-
-    init.resolution.reset = BGFX_RESET_VSYNC;
-
-#else
-
-    init.resolution.reset = 0;
-
-#endif
-
-    if (!bgfx::init(init)) {
-
-        getLogger()->fatal("Failed to initialize BGFX!");
+        // If it fails, print an error message and return.
+        logger->fatal("Failed to initialize BGFX!");
         bgfx::shutdown();
         return -1;
 
     }
 
-    bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff, 1.0f, 0
-    );
-
-    timeOffset = bx::getHPCounter();
-
-    this->activeScene = std::make_unique<Scene>();
-
-    inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &MEngine::stop);
-
+    // Sets the world "void" to be a grey color.
+    bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff, 1.0f, 0);
+    
+    // Add elements in our scene. This is temporary and will be moved elsewhere later.
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, 5.0f)), "Monkey.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(5.0f, 0.0f, 0.0f)), "Lantern_Sphere.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(-5.0f, 0.0f, 0.0f)), "Lamp1.obj");
+    
+    // Create our controllable character.
     auto character = activeScene->createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));
 
+    // Create our character info window.
     characterWindow = std::make_unique<CharacterInfoWindow>(character);
+    
+    // Add an input event. If the escape key is pressed, the engine will exit. This will be removed later.
+    inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &Engine::stop);
 
+    // Initializes our UI system.
     imguiCreate();
 
-    getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
+    // As everything went fine, print an info message.
+    logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
 
     running = true;
 
+    // Starts our render loop.
     while (isRunning()) {
-
         render();
-
     }
 
     return 0;
 
 }
 
-void MEngine::update() {
+void Engine::update() {
 
     const Int64 now = bx::getHPCounter();
     const Int64 freq = bx::getHPFrequency();
-    time = static_cast<float>(now - timeOffset) / static_cast<float>(freq);
+    
+    // Calculate the current frame time, last frame time and delta time.
+    time = static_cast<float>(now - startTime) / static_cast<float>(freq);
     deltaTime = time - lastTime;
     lastTime = time;
-
+    
+    // Update our input system.
     inputManager->update();
+    
+    // Update the current scene.
     activeScene->updateScene(deltaTime);
 
 }
 
-void MEngine::render() {
+void Engine::render() {
 
-    bgfx::setViewRect(0, 0, 0, static_cast<UInt16>(windowWidth), static_cast<UInt16>(windowHeight));
+    // Submit an empty draw call in case nothing is drew to the screen.
     bgfx::touch(0);
-
+    
+    // Sets the current viewport dimensions.
+    bgfx::setViewRect(0, 0, 0, static_cast<UInt16>(windowWidth), static_cast<UInt16>(windowHeight));
+    
+    // Begin UI drawing.
     imguiBeginFrame(0, 0, 0, 0, static_cast<UInt16>(windowWidth), static_cast<UInt16>(windowHeight));
+    
+    // Render the windows.
     perfWindow->render(nullptr);
     characterWindow->render(nullptr);
+    
+    // End UI drawing.
     imguiEndFrame();
 
+    // Set our renderer state properties.
     constexpr UInt64 state = 0 | BGFX_STATE_WRITE_R | BGFX_STATE_WRITE_G | BGFX_STATE_WRITE_B | BGFX_STATE_WRITE_A |
             BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_CULL_CW | BGFX_STATE_MSAA;
 
     bgfx::setState(state);
 
+    // Get the active camera.
     CameraComponent *camera = activeScene->getCameraManager()->getActiveCamera();
 
+    // Give the view and projection matrices to the vertex shader.
     bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
 
+    // Render the components in our scene.
     activeScene->renderComponents();
 
+    // Render the frame.
     bgfx::frame();
 
 }
 
-void MEngine::stop() {
+void Engine::stop() {
 
+    // Stops the engine.
     running = false;
 
 }
 
-void MEngine::cleanup() {
+void Engine::cleanup() {
 
-    getLogger()->info("Destroying MidnightEngine...");
-
-    instance = nullptr;
-
+    logger->info("Destroying MidnightEngine...");
+    
+    // Remove reference to the instance
+    Engine::instance = nullptr;
+    
+    // Release the allocated engine resources.
     this->logger = nullptr;
     this->inputManager = nullptr;
     this->activeScene = nullptr;
@@ -146,8 +169,9 @@ void MEngine::cleanup() {
 
 }
 
-std::string MEngine::getNiceRendererName() const {
+std::string Engine::getNiceRendererName() const {
 
+    // Return a nice string with the renderer name.
     switch (bgfx::getRendererType()) {
 
         case bgfx::RendererType::Direct3D9:
@@ -172,10 +196,11 @@ std::string MEngine::getNiceRendererName() const {
 
 }
 
-std::string MEngine::getNiceGPUName() const {
+std::string Engine::getNiceGPUName() const {
 
     const bgfx::Caps *caps = bgfx::getCaps();
 
+    // Return a nice string with the GPU vendor.
     switch (caps->vendorId) {
         case BGFX_PCI_ID_AMD:
             return "AMD GPU";

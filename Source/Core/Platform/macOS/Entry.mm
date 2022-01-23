@@ -8,7 +8,7 @@
 @implementation Entry {
 
     BOOL hasTerminated;
-    std::unique_ptr<MEngine> engine;
+    std::unique_ptr<Engine> engine;
 
 }
 
@@ -66,7 +66,7 @@
     data.backBufferDS = nil;
     bgfx::setPlatformData(data);
 
-    engine = std::make_unique<MEngine>(window);
+    engine = std::make_unique<Engine>(window);
     engine->init(0, nil);
 
     imguiDestroy();

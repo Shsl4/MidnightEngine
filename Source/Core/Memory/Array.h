@@ -12,23 +12,41 @@
 template<typename T>
 struct Array {
 
-    explicit Array(size_t capacity = 15) {
+    /*!
+     * The default array constructor. Holds 10 object by default.
+     */
+    explicit Array(size_t capacity = 10) : capacity(capacity) {
 
-        this->capacity = capacity;
+        // Allocate our data.
         this->data = allocator.allocate<T>(capacity);
+        
+        // Fill our buffer with zeroes.
         memset(data, 0, capacity * sizeof(T));
 
     }
 
+    /*!
+     * The Array copy constructor.
+     *
+     * @param other The array to copy
+     */
     Array(const Array<T> &other) {
 
+        // Copy the variables.
         this->count = other.count;
         this->capacity = other.capacity;
+        
+        // Allocate our data.
         this->data = allocator.allocate<T>(capacity);
+        
+        // Copy the data from the other array into this array.
         memcpy(this->data, other.data, this->count * sizeof(T));
 
     }
 
+    /*!
+     * The Array destructor. It releases the allocated resources.
+     */
     virtual ~Array() {
 
         count = 0;
@@ -46,16 +64,32 @@ struct Array {
     template<typename S>
     void append(S const &other) {
 
+        // If the array is full
         if (count == capacity) {
-            this->data = allocator.resize(data, count == 0 ? 15 : capacity * 2);
-            capacity *= 2;
+            
+            // If the capacity is 0, set it to 10, otherwise, double the array capacity.
+            size_t newCapacity = capacity == 0 ? 10 : capacity * 2;
+            
+            // Resize our data buffer.
+            this->data = allocator.resize(data, newCapacity);
+            capacity = newCapacity;
+            
         }
 
+        // If T is a pointer type
         if (std::is_pointer_v<T>) {
+            
+            // Directly store the pointer.
             this->data[count] = other;
+            
         } else {
+            
+            // Else, copy the object as the argument is passed by reference.
             this->data[count] = S(other);
+            
         }
+        
+        // Increase the number of held objects.
         ++count;
 
     }
@@ -66,21 +100,29 @@ struct Array {
      *  @tparam S The type of object to remove
      *  @param[in] other The object to remove
      *  @return Whether the object was removed
+     *
+     *  @warning If T is a pointer type, removing an element from the array does not release it.
      */
     template<typename S>
     bool remove(S const &other) {
 
+        // For each element in the array
         for (size_t i = 0; i < count; ++i) {
 
+            // If other was found if the array
             if (other == data[i]) {
 
+                // Move back all the elements after
                 for (size_t j = i; j < count - 1; ++j) {
 
                     data[j] = data[j + 1];
 
                 }
 
+                // Reduce the count.
                 --count;
+                
+                // Fill the last moved element with zeroes.
                 memset(&data[count], 0, sizeof(T));
                 return true;
 
@@ -88,6 +130,7 @@ struct Array {
 
         }
 
+        // The element wasn't found in the array
         return false;
 
     }
@@ -97,21 +140,27 @@ struct Array {
      *
      *  @tparam S The type of object to check
      *  @param[in] other The object to check
+     *  @param[out] index The index of the element in the array.
      *  @return Whether the array contains other
      */
     template<typename S>
-    bool contains(S const &other) const {
+    bool contains(S const &other, size_t &index) const {
 
+        // For each element in the array
         for (size_t i = 0; i < count; ++i) {
 
+            // If other was found
             if (other == data[i]) {
 
+                // Set the index and return true.
+                index = i;
                 return true;
 
             }
 
         }
 
+        // The element wasn't found in the array.
         return false;
 
     }
@@ -119,11 +168,14 @@ struct Array {
     /*!
      * Clears the array.
      *
-     *  @warning If the array contains pointers, those will not be freed.
+     *  @warning If the array contains pointers, clearing the array does not release them.
      */
-    void clear() {
+    virtual void clear() {
 
+        // Fill the array with zeroes.
         memset(data, 0, capacity * sizeof(T));
+        
+        // Empty the count.
         this->count = 0;
 
     }
@@ -131,9 +183,12 @@ struct Array {
     /*!
      * Shrinks the array buffer to the minimal size.
      */
-    void shrink() {
+    virtual void shrink() {
 
-        if (count == capacity) {return;}
+        // If the array can't be shrunk, return.
+        if (count == capacity) { return; }
+        
+        // Shrink the array to the number of elements contained.
         this->data = allocator.resize(data, count);
         this->capacity = count;
 
@@ -143,20 +198,22 @@ struct Array {
      * Resizes the array buffer to support a specific object count.
      *
      *  @param[in] size The number of objects the array can hold.
+     *  @warning Resizing the array can leak memory if T is a pointer type.
      *
      */
-    void resize(size_t size) {
+    virtual void resize(size_t size) {
 
+        // Resize the data buffer.
         this->data = allocator.resize(data, size);
         this->capacity = size;
-        if (count > size) {count = size;}
+        if (count > size) { count = size; }
 
     }
 
     /*!
      * Points to the beginning of the array buffer. This functions allows range based for-loops to be used, or to access the raw memory.
      */
-    T *begin() const {
+    virtual T *begin() const {
 
         return this->data;
 
@@ -165,7 +222,7 @@ struct Array {
     /*!
      * Points to the end of the array buffer. This functions allows range based for-loops to be used.
      */
-    T *end() const {
+    virtual T *end() const {
 
         return this->data + count;
 
@@ -176,7 +233,7 @@ struct Array {
      *
      *  @param[in] index The index of the object.
      */
-    T operator[](size_t index) const {
+    virtual T operator[](size_t index) const {
 
         return *(data + index);
 
@@ -195,23 +252,53 @@ struct Array {
 
     }
 
+    /*!
+     * Returns whether the array is empty.
+     *
+     * @return Whether the array is empty.
+     */
     FORCEINLINE bool isEmpty() const {
         return count == 0;
     }
 
+    /*!
+     * Returns the number of elements contained in the array.
+     *
+     * @return The number of elements in the array.
+     */
     FORCEINLINE size_t getSize() const {
         return count;
     }
 
+    /*!
+     * Returns the number of elements the array can hold without resizing the data buffer.
+     *
+     * @return The array capacity.
+     */
     FORCEINLINE size_t getCapacity() const {
         return capacity;
     }
 
 private:
 
+    /*!
+     *  The data contained in the array.
+     */
     T *data = nullptr;
+    
+    /*!
+     * The number of elements in the array.
+     */
     size_t count = 0;
+    
+    /*!
+     * The size of the data buffer.
+     */
     size_t capacity = 0;
+    
+    /*!
+     * The allocator used to allocate and resize buffers.
+     */
     Allocator allocator = Allocator();
 
 };
@@ -227,7 +314,7 @@ struct AutoReleaseArray : public Array<T> {
 
 public:
 
-    explicit AutoReleaseArray(size_t capacity = 15) : Array<T>(capacity) {
+    explicit AutoReleaseArray(size_t capacity = 10) : Array<T>(capacity) {
 
         static_assert(std::is_pointer_v<T>, "T must be a pointer.");
 

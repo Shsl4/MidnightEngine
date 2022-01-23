@@ -8,18 +8,18 @@
 #include <Memory/Array.h>
 #include <Logging/Logger.h>
 
+/*!
+ * A scene is an object that represents the world. It holds SceneComponents and SceneObjects, and manages their lifetimes.
+ */
 class Scene : public Object {
 
 public:
 
-    Scene() {
-
-        this->logger = std::make_unique<Logger>("Scene");
-        this->cameraManager = std::make_unique<CameraManager>(this);
-        logger->info("Constructed scene.");
-
-    }
-
+    /*!
+     * The scene constuctor. Initializes the private variables.
+     */
+    Scene();
+    
     /*!
      *  Instantiates a new SceneObject in the scene
      *
@@ -75,7 +75,7 @@ public:
 
         registeredComponents.append(component);
 
-        /// If the created component is a CameraComponent, pass it to the camera manager.
+        // If the created component is a CameraComponent, it is passed to the camera manager.
         if (component->template instanceOf<CameraComponent>()) {
 
             cameraManager->registerCamera(component->template cast<CameraComponent>());
@@ -119,7 +119,7 @@ public:
 
 private:
 
-    friend class MEngine;
+    friend class Engine;
 
     /*!
      * Renders all renderable components in the scene. This function is called on the render thread.
