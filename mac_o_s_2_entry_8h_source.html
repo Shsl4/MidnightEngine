@@ -91,9 +91,9 @@ $(document).ready(function(){initNavTree('mac_o_s_2_entry_8h_source.html',''); i
   <div class="headertitle"><div class="title">Entry.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="mac_o_s_2_entry_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#import &lt;SDL2/SDL.h&gt;</span></div>
+<a href="mac_o_s_2_entry_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#import &lt;<a class="code" href="_platform_data_8h.html">Platform/PlatformData.h</a>&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>NS_ASSUME_NONNULL_BEGIN</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
@@ -101,20 +101,19 @@ $(document).ready(function(){initNavTree('mac_o_s_2_entry_8h_source.html',''); i
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>- (int)<a class="code hl_function" href="interface_entry.html#ad348ff37bb6a2b0cac4d1aa663c31506">entry</a>:(<span class="keywordtype">int</span>)argc argv:(const <span class="keywordtype">char</span> *_Nonnull *_Nonnull)argv;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>- (int)<a class="code hl_function" href="interface_entry.html#a37c8ab733e6ec60b6312de2da9d79f85">initEngine</a>:(SDL_Window *)window;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>- (int)<a class="code hl_function" href="interface_entry.html#aabb623c8e6ed73d509b89944535f9f73">initEngine</a>:(<a class="code hl_struct" href="struct_platform_data.html">PlatformData</a>)data;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>- (void)<a class="code hl_function" href="interface_entry.html#a4c8f3d25223906fa30dfb1ead5c1c1eb">update</a>;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>+ (NSEvent *)<a class="code hl_function" href="interface_entry.html#acd2f9f34ee6a69062840a98b4d53d221">getNextEvent</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">@end</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">@end</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>NS_ASSUME_NONNULL_END</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>NS_ASSUME_NONNULL_END</div>
+<div class="ttc" id="a_platform_data_8h_html"><div class="ttname"><a href="_platform_data_8h.html">PlatformData.h</a></div></div>
 <div class="ttc" id="ainterface_entry_html"><div class="ttname"><a href="interface_entry.html">Entry</a></div><div class="ttdef"><b>Definition:</b> Entry.h:7</div></div>
-<div class="ttc" id="ainterface_entry_html_a37c8ab733e6ec60b6312de2da9d79f85"><div class="ttname"><a href="interface_entry.html#a37c8ab733e6ec60b6312de2da9d79f85">-[Entry initEngine]</a></div><div class="ttdeci">int initEngine(SDL_Window *window)</div></div>
-<div class="ttc" id="ainterface_entry_html_a4c8f3d25223906fa30dfb1ead5c1c1eb"><div class="ttname"><a href="interface_entry.html#a4c8f3d25223906fa30dfb1ead5c1c1eb">-[Entry update]</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> Entry.mm:81</div></div>
-<div class="ttc" id="ainterface_entry_html_acd2f9f34ee6a69062840a98b4d53d221"><div class="ttname"><a href="interface_entry.html#acd2f9f34ee6a69062840a98b4d53d221">+[Entry getNextEvent]</a></div><div class="ttdeci">NSEvent * getNextEvent()</div><div class="ttdef"><b>Definition:</b> Entry.mm:99</div></div>
+<div class="ttc" id="ainterface_entry_html_a4c8f3d25223906fa30dfb1ead5c1c1eb"><div class="ttname"><a href="interface_entry.html#a4c8f3d25223906fa30dfb1ead5c1c1eb">-[Entry update]</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> Entry.mm:86</div></div>
+<div class="ttc" id="ainterface_entry_html_aabb623c8e6ed73d509b89944535f9f73"><div class="ttname"><a href="interface_entry.html#aabb623c8e6ed73d509b89944535f9f73">-[Entry initEngine]</a></div><div class="ttdeci">int initEngine(PlatformData data)</div></div>
 <div class="ttc" id="ainterface_entry_html_ad348ff37bb6a2b0cac4d1aa663c31506"><div class="ttname"><a href="interface_entry.html#ad348ff37bb6a2b0cac4d1aa663c31506">-[Entry entry]</a></div><div class="ttdeci">int entry(int argc, const char **argv)</div></div>
+<div class="ttc" id="astruct_platform_data_html"><div class="ttname"><a href="struct_platform_data.html">PlatformData</a></div><div class="ttdef"><b>Definition:</b> PlatformData.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

@@ -30,6 +30,7 @@ var annotated_dup =
     [ "MeshObject", "class_mesh_object.html", "class_mesh_object" ],
     [ "Object", "class_object.html", "class_object" ],
     [ "PerformanceWindow", "class_performance_window.html", "class_performance_window" ],
+    [ "PlatformData", "struct_platform_data.html", "struct_platform_data" ],
     [ "PointLight", "struct_point_light.html", "struct_point_light" ],
     [ "PointLightHandles", "struct_point_light_handles.html", "struct_point_light_handles" ],
     [ "Scene", "class_scene.html", "class_scene" ],

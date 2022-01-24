@@ -1,6 +1,6 @@
 var class_engine =
 [
-    [ "Engine", "class_engine.html#a28388c385a4cebf50dc67ef3d440fd70", null ],
+    [ "Engine", "class_engine.html#ad63a7f4b626a64ea1adfbe36de569620", null ],
     [ "~Engine", "class_engine.html#a11f791f3b49728bec8288ba122e4a9ff", null ],
     [ "cleanup", "class_engine.html#a18dcb065818c6ec7e76168452eb45001", null ],
     [ "getActiveScene", "class_engine.html#a722db7898212dce5c0f5f57c920c9ac1", null ],
@@ -9,6 +9,7 @@ var class_engine =
     [ "getInstance", "class_engine.html#a8af63dff5b862e2ce1e7be221db09a2a", null ],
     [ "getNiceGPUName", "class_engine.html#a7b07226b00fec412273f11f86d89decc", null ],
     [ "getNiceRendererName", "class_engine.html#ae77f95ffd5f49fdd27923e68c5a79d4f", null ],
+    [ "getPlatformData", "class_engine.html#aba1056af35da45f130eb61baeae96c90", null ],
     [ "getTime", "class_engine.html#a336e5795112f3c21242255b8dfeba7e9", null ],
     [ "init", "class_engine.html#a7622a22bb887c6fe9dd2bbf709e7a9c3", null ],
     [ "isRunning", "class_engine.html#ab2c9f8f5a98bc20f7a2bb69c1319b18b", null ],
@@ -25,9 +26,8 @@ var class_engine =
     [ "mainWindow", "class_engine.html#a5d3be69d6ed948753529c6c4ae8ae4d8", null ],
     [ "meshLoader", "class_engine.html#a74a3be5c7088421edf81214f7727476a", null ],
     [ "perfWindow", "class_engine.html#af8e41f2e8e34c78d99d730d6ad522ba4", null ],
+    [ "platformData", "class_engine.html#a03d3d6c635f4636c577eb238d0ac5ae4", null ],
     [ "running", "class_engine.html#a1c5f934e8ab38cf076170f8e8fe25a24", null ],
     [ "startTime", "class_engine.html#a349e2ac3e17cde5189a57fe9eefafdbc", null ],
-    [ "time", "class_engine.html#a09d8101856c9aac14f8bd67c1817f851", null ],
-    [ "windowHeight", "class_engine.html#ab7283efb60937d4df61f38537c1fd6db", null ],
-    [ "windowWidth", "class_engine.html#a7082e7dfc3e7f3ea8bdb732c3954731a", null ]
+    [ "time", "class_engine.html#a09d8101856c9aac14f8bd67c1817f851", null ]
 ];

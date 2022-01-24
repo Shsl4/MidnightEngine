@@ -47,6 +47,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "PerformanceWindow", "class_performance_window.html", null ],
+    [ "PlatformData", "struct_platform_data.html", null ],
     [ "PointLight", "struct_point_light.html", null ],
     [ "PointLightHandles", "struct_point_light_handles.html", null ],
     [ "PerformanceWindow::SampleData", "struct_performance_window_1_1_sample_data.html", null ],
