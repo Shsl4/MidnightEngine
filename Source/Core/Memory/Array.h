@@ -19,7 +19,7 @@ struct Array {
 
         // Allocate our data.
         this->data = allocator.allocate<T>(capacity);
-        
+
         // Fill our buffer with zeroes.
         memset(data, 0, capacity * sizeof(T));
 
@@ -64,31 +64,12 @@ struct Array {
     template<typename S>
     void append(S const &other) {
 
-        // If the array is full
-        if (count == capacity) {
-            
-            // If the capacity is 0, set it to 10, otherwise, double the array capacity.
-            size_t newCapacity = capacity == 0 ? 10 : capacity * 2;
-            
-            // Resize our data buffer.
-            this->data = allocator.resize(data, newCapacity);
-            capacity = newCapacity;
-            
-        }
-
-        // If T is a pointer type
-        if (std::is_pointer_v<T>) {
-            
-            // Directly store the pointer.
-            this->data[count] = other;
-            
-        } else {
-            
-            // Else, copy the object as the argument is passed by reference.
-            this->data[count] = S(other);
-            
-        }
+        // Extend the array if necessary.
+        extend();
         
+        // Store the new element.
+        this->data[count] = S(other);
+
         // Increase the number of held objects.
         ++count;
 
@@ -113,11 +94,7 @@ struct Array {
             if (other == data[i]) {
 
                 // Move back all the elements after
-                for (size_t j = i; j < count - 1; ++j) {
-
-                    data[j] = data[j + 1];
-
-                }
+                std::memmove(&data[i], &data[i + 1], (count - i) * sizeof(T));
 
                 // Reduce the count.
                 --count;
@@ -133,6 +110,62 @@ struct Array {
         // The element wasn't found in the array
         return false;
 
+    }
+    
+    /*!
+     *  Removes the object located at the index and sets it to other if it is valid.
+     *
+     *  @tparam S The type of object to remove
+     *  @param[in] index The index of the object to remove
+     *  @param[out] other The object to set
+     *  @return Whether the object was removed
+     *
+     *  @warning If T is a pointer type, removing an element from the array does not release it.
+     */
+    template<typename S>
+    bool remove(size_t index, S &other) {
+
+        // For each element in the array
+        if(index < count) {
+
+            other = std::move(data[index]);
+            
+            // Move back all the elements after
+            std::memmove(&data[index], &data[index + 1], (count - index) * sizeof(T));
+
+            // Reduce the count.
+            --count;
+            
+            // Fill the last moved element with zeroes.
+            memset(&data[count], 0, sizeof(T));
+            return true;
+
+        }
+
+        // The element wasn't found in the array
+        return false;
+
+    }
+    
+    template<typename S>
+    void insert(S const& other, size_t index){
+        
+        if(index >= count) {
+            append(other);
+            return;
+        }
+         
+        // Extend the array if necessary.
+        extend();
+        
+        // Move forward all the elements after the index
+        std::memmove(&data[index + 1], &data[index], (count - index) * sizeof(T));
+        
+        // Store the new element.
+        this->data[index] = S(other);
+
+        ++count;
+        
     }
 
     /*!
@@ -306,8 +339,29 @@ struct Array {
         return capacity;
     }
 
-private:
+protected:
 
+    /*!
+     * Function called when adding an element. It extends the data buffer the array is full.
+     */
+    void extend(){
+        
+        // If the array is full
+        if (count == capacity) {
+            
+            // If the capacity is 0, set it to 10, otherwise, double the array capacity.
+            size_t newCapacity = capacity == 0 ? 10 : capacity * 2;
+            
+            // Resize our data buffer.
+            this->data = allocator.resize(data, newCapacity);
+            capacity = newCapacity;
+            
+        }
+        
+    }
+    
+private:
+    
     /*!
      *  The data contained in the array.
      */

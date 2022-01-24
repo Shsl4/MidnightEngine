@@ -1,81 +1,98 @@
 #include <Rendering/ShaderLoader.h>
+#include <fstream>
 
-const bgfx::Memory *ShaderLoader::loadMem(bx::FileReaderI *_reader, const char *_filePath) {
-    if (bx::open(_reader, _filePath)) {
-        auto size = (UInt32) bx::getSize(_reader);
-        const bgfx::Memory *mem = bgfx::alloc(size + 1);
-        bx::read(_reader, mem->data, size, bx::ErrorAssert{});
-        bx::close(_reader);
-        mem->data[mem->size - 1] = '\0';
-        return mem;
+Array<UInt8> ShaderLoader::loadFile(std::string const& path){
+    
+    // Create an array with a default size of 512.
+    Array<uint8_t> array = Array<uint8_t>(512);
+    
+    // Create our file stream in binary mode.
+    std::ifstream fStream(path, std::ios::binary);
+
+    // If the file does not exist or is inaccessible, return.
+    if (!fStream.is_open()) { return array; }
+    
+    // Store the file contents in the array.
+    while(fStream.good()){
+        array += fStream.get();
     }
-
-    logger.error("Failed to load file {}!", _filePath);
-
-    return nullptr;
-
+    
+    // Return the array.
+    return array;
+    
 }
 
-bgfx::ShaderHandle ShaderLoader::loadShader(const char *_name) {
-
-    char filePath[512];
-
-    const char *shaderPath = "";
-
+std::string ShaderLoader::getShaderResourcePath() {
+    
+    // Switch on the renderer type.
     switch (bgfx::getRendererType()) {
+            
         case bgfx::RendererType::Noop:
         case bgfx::RendererType::Direct3D9:
-            shaderPath = "Resources/Shaders/DX9/";
-            break;
+            return "Resources/Shaders/DX9/";
+            
         case bgfx::RendererType::Direct3D11:
         case bgfx::RendererType::Direct3D12:
-            shaderPath = "Resources/Shaders/DX11/";
-            break;
+            return "Resources/Shaders/DX11/";
+            
         case bgfx::RendererType::Agc:
         case bgfx::RendererType::Gnm:
-            shaderPath = "Resources/Shaders/PSSL/";
-            break;
+            return "Resources/Shaders/PSSL/";
+            
         case bgfx::RendererType::Metal:
-            shaderPath = "Resources/Shaders/Metal/";
-            break;
+            return "Resources/Shaders/Metal/";
+            
         case bgfx::RendererType::Nvn:
-            shaderPath = "Resources/Shaders/Nvn/";
-            break;
+            return "Resources/Shaders/Nvn/";
+            
         case bgfx::RendererType::OpenGL:
-            shaderPath = "Resources/Shaders/GLSL/";
-            break;
+            return "Resources/Shaders/GLSL/";
+            
         case bgfx::RendererType::OpenGLES:
-            shaderPath = "Resources/Shaders/ESSL/";
-            break;
+            return "Resources/Shaders/ESSL/";
+            
         case bgfx::RendererType::Vulkan:
-            shaderPath = "Resources/Shaders/SPIRV/";
-            break;
+             return "Resources/Shaders/SPIRV/";
+            
         case bgfx::RendererType::WebGPU:
-            shaderPath = "Resources/Shaders/SPIRV/";
-            break;
+            return "Resources/Shaders/SPIRV/";
+            
         default:
-            BX_ASSERT(false, "You should not be here!");
-            break;
+            return "";
     }
+    
+}
 
-    bx::strCopy(filePath, BX_COUNTOF(filePath), shaderPath);
-    bx::strCat(filePath, BX_COUNTOF(filePath), _name);
-    bx::strCat(filePath, BX_COUNTOF(filePath), ".bin");
-    bgfx::ShaderHandle handle = bgfx::createShader(loadMem(fileReader, filePath));
-    bgfx::setName(handle, _name);
+bgfx::ShaderHandle ShaderLoader::loadShader(std::string const& name) {
+    
+    // Format the file path.
+    std::string filePath = fmt::format("{}{}.bin", getShaderResourcePath(), name);
+    
+    // Load the file content
+    const Array<UInt8> fileData = loadFile(filePath);
+    
+    // Convert the data to bgfx::Memory.
+    const bgfx::Memory* mem = bgfx::copy(fileData.begin(), fileData.getSize());
+
+    // Create our shader and name it.
+    bgfx::ShaderHandle handle = bgfx::createShader(mem);
+    bgfx::setName(handle, name.c_str());
 
     return handle;
 
 }
 
-bgfx::ProgramHandle ShaderLoader::loadProgram(const char *programeName) {
+bgfx::ProgramHandle ShaderLoader::loadProgram(std::string const& name) {
 
-    std::string vertexShaderName = fmt::format("vs_{}", programeName);
-    std::string fragmentShaderName = fmt::format("fs_{}", programeName);
+    // Format our fragment and vertex shader file names.
+    std::string vertexShaderName = fmt::format("vs_{}", name);
+    std::string fragmentShaderName = fmt::format("fs_{}", name);
 
+    // Load the fragment and vertex shaders.
     bgfx::ShaderHandle vertexShader = loadShader(vertexShaderName.c_str());
     bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName.c_str());
 
+    // Create the shader program from the loaded shaders.
     return bgfx::createProgram(vertexShader, fragmentShader, true);
 
 }

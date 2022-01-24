@@ -3,6 +3,8 @@
 
 #import <SDL2/SDL_syswm.h>
 
+#import <bgfx/bgfx.h>
+#import <bgfx/platform.h>
 #import <bgfx/imgui/imgui.h>
 
 @implementation Entry {
@@ -20,16 +22,33 @@
     [NSApp activateIgnoringOtherApps:YES];
     [NSApp finishLaunching];
 
-    SDL_Window *window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);
+    SDL_Window *window = SDL_CreateWindow("Main Window", 0, 0, 0, 0, 1);
     SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    
+    SDL_SysWMinfo wmi;
+    SDL_VERSION(&wmi.version);
 
+    if (!SDL_GetWindowWMInfo(window, &wmi)) {
+        return;
+    }
+    
+    bgfx::PlatformData platformData;
+    platformData.nwh = wmi.info.cocoa.window;
+    bgfx::setPlatformData(platformData);
+    
+    CGFloat scaleFactor = wmi.info.cocoa.window.screen.backingScaleFactor;
+    
+    PlatformData data = PlatformData(argc, argv, window, scaleFactor);
+    
     hasTerminated = NO;
 
     bgfx::renderFrame();
 
+    /// @todo Implement a correct multi-threaded paradigm
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
-        [self initEngine:window];
+        [self initEngine:data];
 
     });
 
@@ -49,26 +68,12 @@
 
 }
 
-- (int)initEngine:(SDL_Window *)window {
+- (int)initEngine:(PlatformData)data {
 
-    SDL_SysWMinfo wmi;
-    SDL_VERSION(&wmi.version);
-
-    if (!SDL_GetWindowWMInfo(window, &wmi)) {
-        return 0;
-    }
-
-    bgfx::PlatformData data;
-    data.ndt = nil;
-    data.nwh = wmi.info.cocoa.window;
-    data.context = nil;
-    data.backBuffer = nil;
-    data.backBufferDS = nil;
-    bgfx::setPlatformData(data);
-
-    engine = std::make_unique<Engine>(window);
+    engine = std::make_unique<Engine>(data);
     engine->init(0, nil);
 
+    engine = nullptr;
     imguiDestroy();
     bgfx::shutdown();
 
@@ -82,36 +87,18 @@
 
     bgfx::renderFrame();
 
+    if (!engine) { return; }
+    
     engine->update();
 
-    NSEvent *event = [Entry getNextEvent];
-
-    if (event != nil) {
-
-        [NSApp sendEvent:event];
-
-    }
-
-    [NSApp updateWindows];
-
 }
-
-+ (NSEvent *)getNextEvent {
-
-    return [NSApp nextEventMatchingMask:NSEventMaskAny
-                              untilDate:nil
-                                 inMode:NSDefaultRunLoopMode
-                                dequeue:YES];
-
-}
-
 
 @end
 
 int main(int argc, const char **argv) {
-
+    
     //@autoreleasepool{
-    [[[Entry alloc] init] entry:argc argv:argv];
+        [[[Entry alloc] init] entry:argc argv:argv];
     //}
 
     return 0;

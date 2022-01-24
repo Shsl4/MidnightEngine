@@ -15,15 +15,30 @@
 
 int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) {
     
-    SDL_Window* window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);
+    SDL_Window* window = SDL_CreateWindow("Main Window", 0, 0, 0, 0, 0);
     SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    
+    SDL_SysWMinfo wmi;
+    SDL_VERSION(&wmi.version)
 
+    if (!SDL_GetWindowWMInfo(window, &wmi))
+    {
+        return 0;
+    }
+
+    bgfx::PlatformData platformData;
+    data.nwh = wmi.info.win.window;
+    bgfx::setPlatformData(platformData);
+    
+    PlatformData data = PlatformData(argc, argv, window, 1.0f);
+    
     hasTerminated = false;
 
     bgfx::renderFrame();
 
     // Creates our engine thread
-    auto jthread = std::jthread(&Entry::initEngine, this, window);
+    auto jthread = std::jthread(&Entry::initEngine, this, data);
 
     // Wait for engine creation before looping.
     while (!engine || !engine->isRunning()) {
@@ -40,25 +55,9 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) 
 
 }
 
-int Entry::initEngine(SDL_Window* window) {
-    
-    SDL_SysWMinfo wmi;
-    SDL_VERSION(&wmi.version)
+int Entry::initEngine(PlatformData data) {
 
-    if (!SDL_GetWindowWMInfo(window, &wmi))
-    {
-        return 0;
-    }
-
-    bgfx::PlatformData data;
-    data.ndt = nullptr;
-    data.nwh = wmi.info.win.window;
-    data.context = nullptr;
-    data.backBuffer = nullptr;
-    data.backBufferDS = nullptr;
-    bgfx::setPlatformData(data);
-
-    engine = std::make_unique<Engine>(window);
+    engine = std::make_unique<Engine>(data);
     engine->init(0, nullptr);
 
     engine = nullptr;

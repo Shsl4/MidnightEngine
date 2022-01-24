@@ -1,17 +1,11 @@
 #pragma once
 
-#include <EngineTypes.h>
 #include <Object.h>
+#include <EngineTypes.h>
 #include <Math/Matrix4.h>
 #include <Math/MathUtils.h>
 #include <Memory/Array.h>
-#include <SDL2/SDL.h>
-
-#include <bx/timer.h>
-#include <bx/commandline.h>
-#include <bgfx/bgfx_utils.h>
-#include <bgfx/bgfx.h>
-#include <bgfx/platform.h>
+#include <Platform/PlatformData.h>
 
 /*!
  *  The main engine class.
@@ -22,9 +16,9 @@ public:
     /*!
      * The engine constructor. Initializes engine resources.
      *
-     * @param[in] mainWindow The application window.
+     * @param[in] data The platform data.
      */
-    explicit Engine(SDL_Window *mainWindow);
+    explicit Engine(PlatformData data);
 
     /*!
      * The engine destructor. It deallocates all resources used by the class.
@@ -78,6 +72,16 @@ public:
         return instance;
     };
 
+    /*!
+     * Returns the platform data.
+     *
+     *  @return The platform data.
+     */
+    FORCEINLINE const PlatformData getPlatformData() const {
+        return platformData;
+    };
+
+    
     /*!
      * Checks whether the engine is running.
      *
@@ -166,14 +170,9 @@ private:
     Int64 startTime = 0;
     
     /*!
-     * The main window width.
+     * Holds info about the window and render resolutions.
      */
-    Int32 windowWidth = 0;
-    
-    /*!
-     * The main window height.
-     */
-    Int32 windowHeight = 0;
+    PlatformData platformData;
 
     /*!
      * The engine InputManager.

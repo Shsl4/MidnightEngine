@@ -8,7 +8,7 @@
 class FileHelper {
 
 public:
-
+    
     static std::string getFileContents(std::string const &path) {
 
         std::string _path = std::filesystem::current_path().string() + "/" + path;

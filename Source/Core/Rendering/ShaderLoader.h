@@ -2,6 +2,7 @@
 
 #include <Core/EngineTypes.h>
 #include <Core/Logging/Logger.h>
+#include <Memory/Array.h>
 #include <bgfx/bgfx.h>
 #include <bx/bx.h>
 #include <bx/readerwriter.h>
@@ -9,7 +10,7 @@
 #include <filesystem>
 
 /*!
- * A utility class used to load BGFX shaders.
+ * A utility class used to load and compile shader files.
  */
 class ShaderLoader {
 
@@ -18,36 +19,35 @@ public:
     /*!
      * Loads a ShaderProgram.
      *
-     * @param[in] programName The name of the program to load.
+     * @param[in] name The name of the program to load.
      */
-    static bgfx::ProgramHandle loadProgram(const char *programName);
+    static bgfx::ProgramHandle loadProgram(std::string const& name);
 
     /*!
      * Loads a Shader file.
      *
-     * @param[in] _name The name of the shader file to load.
-     * @deprecated This function was copy/pasted from the bgfx source and needs to be written correctly for the engine.
-     * @todo Rewrite the function.
+     * @param[in] name The name of the shader file to load.
      */
-    static bgfx::ShaderHandle loadShader(const char *_name);
+    static bgfx::ShaderHandle loadShader(std::string const& name);
 
+    /*!
+     * Opens a file in binary mode and stores all the data in an UInt8 Array.
+     *
+     *  @param[in] path The path of the file to load.
+     *  @return An array containing the binary data.
+     */
+    static Array<UInt8> loadFile(std::string const& path);
+    
+    /*!
+     * Gets the shader resource path for the current renderer.
+     */
+    static std::string getShaderResourcePath();
+    
 private:
 
-    /// @deprecated This function was copy/pasted from the bgfx source and needs to be written correctly for the engine.
-    static const bgfx::Memory *loadMem(bx::FileReaderI *_reader, const char *_filePath);
-
-    /// @deprecated This function was copy/pasted from the bgfx source and needs to be written correctly for the engine.
-    static bx::AllocatorI *getDefaultAllocator() {
-        static bx::DefaultAllocator __allocator;
-        return &__allocator;
-    }
-
-    /// @deprecated This member was copy/pasted from the bgfx source and will be removed.
-    inline static bx::AllocatorI *defaultAllocator = getDefaultAllocator();
-    
-    /// @deprecated This member was copy/pasted from the bgfx source and will be removed.
-    inline static bx::FileReaderI *fileReader = BX_NEW(defaultAllocator, bx::FileReader);
-
+    /*!
+     * The ShaderLoader Logger.
+     */
     inline static const Logger logger = Logger("ShaderLoader");
 
 };

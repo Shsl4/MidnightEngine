@@ -9,11 +9,16 @@
 #include <UI/CharacterInfoWindow.h>
 #include <Rendering/Mesh.h>
 
+#include <bx/timer.h>
+#include <bx/commandline.h>
+#include <bgfx/bgfx_utils.h>
+#include <bgfx/bgfx.h>
+#include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>
 
 Logger Logger::assertLogger = Logger("Assert");
 
-Engine::Engine(SDL_Window *mainWindow) : mainWindow(mainWindow) {
+Engine::Engine(PlatformData data) : platformData(data) {
     
     // If an engine instance has already been created, abort the program. (Should never happen)
     if(Engine::instance) { abort(); }
@@ -28,9 +33,8 @@ Engine::Engine(SDL_Window *mainWindow) : mainWindow(mainWindow) {
     this->activeScene = std::make_unique<Scene>();
     this->startTime = bx::getHPCounter();
 
-    // Store the window size.
-    SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
-
+    
+    
 }
 
 Engine::~Engine() {
@@ -53,6 +57,8 @@ int Engine::init(int argc, const char **argv) {
         return -1;
 
     }
+    
+    bgfx::reset(platformData.renderWidth, platformData.renderHeight, BGFX_RESET_HIDPI);
 
     // Sets the world "void" to be a grey color.
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff, 1.0f, 0);
@@ -74,7 +80,7 @@ int Engine::init(int argc, const char **argv) {
 
     // Initializes our UI system.
     imguiCreate();
-
+    
     // As everything went fine, print an info message.
     logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
 
@@ -113,10 +119,10 @@ void Engine::render() {
     bgfx::touch(0);
     
     // Sets the current viewport dimensions.
-    bgfx::setViewRect(0, 0, 0, static_cast<UInt16>(windowWidth), static_cast<UInt16>(windowHeight));
+    bgfx::setViewRect(0, 0, 0, static_cast<UInt16>(platformData.renderWidth), static_cast<UInt16>(platformData.renderHeight));
     
     // Begin UI drawing.
-    imguiBeginFrame(0, 0, 0, 0, static_cast<UInt16>(windowWidth), static_cast<UInt16>(windowHeight));
+    imguiBeginFrame(0, 0, 0, 0, static_cast<UInt16>(platformData.renderWidth), static_cast<UInt16>(platformData.renderHeight));
     
     // Render the windows.
     perfWindow->render(nullptr);

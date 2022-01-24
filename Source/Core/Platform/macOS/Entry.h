@@ -1,6 +1,6 @@
+#import <Platform/PlatformData.h>
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import <SDL2/SDL.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -8,11 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv;
 
-- (int)initEngine:(SDL_Window *)window;
+- (int)initEngine:(PlatformData)data;
 
 - (void)update;
-
-+ (NSEvent *)getNextEvent;
 
 @end
 
