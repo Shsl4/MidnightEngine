@@ -19,10 +19,12 @@ void InputManager::update() const {
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {
+        
         const SDL_Keysym keySym = event.key.keysym;
         auto kb = KeyBind(0);
 
         switch (event.type) {
+                
             case SDL_MOUSEMOTION:
 
                 for (auto i: this->axisEvents) {
@@ -68,8 +70,10 @@ void InputManager::update() const {
                 kb = KeyBind(keySym.sym, keySym.mod);
                 invokeIfMatch(kb, keyUpEvents);
                 break;
+                
             default:
                 break;
+                
         }
 
     }

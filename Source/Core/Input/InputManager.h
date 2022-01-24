@@ -102,7 +102,11 @@ struct KeyBind {
 using KeyBindMap = std::map<KeyBind, std::function<void()>>;
 using AxisBindMap = std::map<EAxisType, std::function<void(Int32)>>;
 
+/*!
+ * The InputManager allows binding functions to input events such as key presses or mouse movement.
+ */
 class InputManager : public Object {
+    
 public:
 
     InputManager();

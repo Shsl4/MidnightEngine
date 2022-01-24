@@ -17,50 +17,72 @@ void CameraComponent::construct(Transform const &relativeTransform) {
 }
 
 void CameraComponent::start() {
+    
+    Super::start();
+    
 }
 
 void CameraComponent::update(float deltaTime) {
+    
+    Super::update(deltaTime);
+    
 }
 
 void CameraComponent::setFieldOfView(const float fov) {
+    
     fieldOfView = fov;
     updateProjectionMatrix();
+    
 }
 
 void CameraComponent::setAspectRatio(const float ratio) {
+    
     aspectRatio = ratio;
     updateProjectionMatrix();
+    
 }
 
 void CameraComponent::setRenderDistance(const float distance) {
+    
     renderDistance = distance;
     updateProjectionMatrix();
+    
 }
 
 void CameraComponent::addCameraYawInput(const float yaw) {
+    
     // Clamp the value around -180.0 and 180.0 degrees.
     transform.rotation.x = Math::clampAround(transform.rotation.x - yaw, -180.0f, 180.0f);
     updateViewMatrix();
+    
 }
 
 void CameraComponent::addCameraPitchInput(const float pitch) {
+    
     // Clamp the value between -89.0 and 89.0 degrees to prevent the camera from doing complete vertical rotations.
     transform.rotation.y = Math::clamp(this->transform.rotation.y - pitch, -89.0f, 89.0f);
     updateViewMatrix();
+    
 }
 
 void CameraComponent::addMovementInput(const Vector3 direction, const float scale, const float deltaTime) {
+    
+    // Add movement input in the looking direction.
     const Vector3 newVector = direction * scale * speed * deltaTime;
     transform.position += newVector;
     updateViewMatrix();
+    
 }
 
 void CameraComponent::updateMatrices() {
+    
     updateViewMatrix();
     updateProjectionMatrix();
+    
 }
 
 void CameraComponent::updateViewMatrix() {
+    
     // Quick maths 😎
     const float pitchRad = Math::toRadians(transform.rotation.y);
     const float yawRad = Math::toRadians(transform.rotation.x);
@@ -76,9 +98,12 @@ void CameraComponent::updateViewMatrix() {
     rightVector = Vector3::normalize(Vector3::cross(Vector3::up, forwardVector));
 
     viewMatrix = Matrix4::lookAt(getWorldPosition(), getWorldPosition() + forwardVector, upVector);
+    
 }
 
 void CameraComponent::updateProjectionMatrix() {
+    
     // Math magic
     projectionMatrix = Matrix4::perspective(fieldOfView, aspectRatio, 0.01f, renderDistance);
+    
 }

@@ -13,6 +13,9 @@ public:
 
     virtual ~IRenderable() = default;
 
+    /*!
+     * A function called to render the renderable.
+     */
     virtual void render() = 0;
 
 };

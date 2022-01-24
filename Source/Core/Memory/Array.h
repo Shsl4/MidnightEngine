@@ -341,24 +341,28 @@ struct AutoReleaseArray : public Array<T> {
 
 public:
 
+    /*!
+     * The default array constructor. Holds 10 object by default.
+     */
     explicit AutoReleaseArray(size_t capacity = 10) : Array<T>(capacity) {
 
         static_assert(std::is_pointer_v<T>, "T must be a pointer.");
 
     }
 
+    /*!
+     * The AutoReleaseArray destructor. It releases all allocated resources.
+     */
     virtual ~AutoReleaseArray() {
 
+        Allocator allocator = Allocator();
         T *data = this->begin();
 
+        // Release every pointer in our data buffer.
         for (size_t i = 0; i < this->getSize(); i++) {
             allocator.deallocate(data[i]);
         }
 
     }
-
-private:
-
-    Allocator allocator;
-
+    
 };

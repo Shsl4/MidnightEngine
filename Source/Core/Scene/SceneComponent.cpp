@@ -5,6 +5,7 @@ void SceneComponent::start() {
 
     Logger::check(registered, "Object of class \"{}\" has been badly constructed! File: {}, Line: {}", this->getClassName());
 
+    // Call start on every child component
     for (SceneComponent *childComponent: childComponents) {
 
         childComponent->start();
@@ -15,6 +16,7 @@ void SceneComponent::start() {
 
 void SceneComponent::update(float deltaTime) {
 
+    // Call update on every child component
     for (SceneComponent *childComponent: childComponents) {
 
         childComponent->update(deltaTime);
@@ -24,17 +26,23 @@ void SceneComponent::update(float deltaTime) {
 }
 
 void SceneComponent::construct(Transform const &relativeTransform) {
+    
     this->transform = relativeTransform;
+    
 }
 
 bool SceneComponent::attachTo(SceneObject *object) {
 
-    if (!object || !object->isValid()) {return false;}
+    // If the pointer or the object is invalid, return.
+    if (!object || !object->isValid()) { return false; }
 
+    // Get the attachment result.
     bool result = attachTo(object->getRootComponent());
 
+    // If the attachment succeeded
     if (result) {
 
+        // Set the parent object and call the attached callback.
         this->parentObject = object;
         object->onComponentAttached(this);
 
@@ -47,13 +55,19 @@ bool SceneComponent::attachTo(SceneObject *object) {
 
 bool SceneComponent::attachTo(SceneComponent *other) {
 
-    if (parentComponent) {detachFromComponent();}
+    // If the pointer or the component is invalid, return.
+    if (!other || !other->isValid()) { return false; }
+    
+    // You can't attach a component to itself.
+    if (other == this) { return false; }
+    
+    // If this component is already attached to another component, detach it.
+    if (parentComponent) { detachFromComponent(); }
 
-    if (!other || !other->isValid()) {return false;}
-
-    if (other == this) {return true;}
-
+    // Add this to the child components of other.
     other->childComponents.append(this);
+    
+    // Set the new parent component.
     this->parentComponent = other;
 
     return true;
@@ -62,8 +76,12 @@ bool SceneComponent::attachTo(SceneComponent *other) {
 
 void SceneComponent::detachFromComponent() {
 
-    if (!parentObject || !parentComponent) {return;}
+    // If there is no parent object or component
+    if (!parentObject || !parentComponent) {
+        return;
+    }
 
+    // Detach and set the variables to nullptr.
     parentComponent->childComponents.remove(this);
     parentObject->onComponentDetached(this);
     parentComponent = nullptr;

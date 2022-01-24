@@ -160,6 +160,9 @@ private:
      */
     UniquePtr<Logger> logger;
 
+    /*!
+     * The allocator used to allocate new objects.
+     */
     Allocator allocator = Allocator();
 
 };

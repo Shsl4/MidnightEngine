@@ -5,6 +5,9 @@
 #include <Rendering/LinearColor.h>
 #include <Memory/Array.h>
 
+/*!
+ * A vertex contains data about a point in space. Vertices are used to represent meshes.
+ */
 struct Vertex {
 
 public:
@@ -26,9 +29,24 @@ public:
 
     }
 
+    /*!
+     * The position of the vertex in space.
+     */
     Vector3 position;
+    
+    /*!
+     * The vertex nornal.
+     */
     Vector3 normal;
+    
+    /*!
+     * The vertex texture coordinates.
+     */
     Vector2 textureCoordinates;
+    
+    /*!
+     * The vertex color.
+     */
     LinearColor color;
 
 };

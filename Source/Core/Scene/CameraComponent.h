@@ -12,8 +12,19 @@ private:
 
 public:
 
+    /*!
+     * The default CameraComponent constructor. Initializes the camera with a
+     * 90 degrees field of view, 16/9 aspect ratio and 150 unit render distance.
+     */
     CameraComponent();
 
+    /*!
+     * A CameraComponent constructor with multiple parameters.
+     *
+     *  @param[in] fieldOfView The camera field of view.
+     *  @param[in] aspectRatio The camera aspect ratio.
+     *  @param[in] renderDistance The camera render distance.
+     */
     CameraComponent(float fieldOfView, float aspectRatio, float renderDistance);
 
     void start() override;

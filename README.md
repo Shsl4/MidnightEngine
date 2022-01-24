@@ -40,12 +40,12 @@ You will find the documentation in the Docs directory. Otherwise, the docs are a
 
 ## Third-Party Libraries
 
-  - [tinystl](https://github.com/mendsley/tinystl) - Tiny (as in minimal) implementation of some core STL functionality 
-  - [SDL2](https://github.com/libsdl-org/SDL) - Simple Directmedia Layer 
-  - [fmt](https://github.com/fmtlib/fmt) - A modern formatting library 
-  - [bgfx](https://github.com/bkaradzic/bgfx) - Cross-platform, graphics API agnostic, "Bring Your Own Engine/Framework" style rendering library. 
-  - [imgui](https://github.com/ocornut/imgui) - Bloat-free Graphical User interface for C++ with minimal dependencies 
-  - [iconfontheaders](https://github.com/juliettef/IconFontCppHeaders) - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, Material Design, Kenney game icons and Fontaudio 
-  - [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css) - Custom CSS theme for doxygen html-documentation with lots of customization parameters. 
+-   [tinystl](https://github.com/mendsley/tinystl) - Tiny (as in minimal) implementation of some core STL functionality 
+-   [SDL2](https://github.com/libsdl-org/SDL) - Simple Directmedia Layer 
+-   [fmt](https://github.com/fmtlib/fmt) - A modern formatting library 
+-   [bgfx](https://github.com/bkaradzic/bgfx) - Cross-platform, graphics API agnostic, "Bring Your Own Engine/Framework" style rendering library. 
+-   [imgui](https://github.com/ocornut/imgui) - Bloat-free Graphical User interface for C++ with minimal dependencies 
+-   [iconfontheaders](https://github.com/juliettef/IconFontCppHeaders) - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, Material Design, Kenney game icons and Fontaudio 
+-   [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css) - Custom CSS theme for doxygen html-documentation with lots of customization parameters. 
 
 For now, binaries provided for third-party libraries are built for Windows x64 and macOS arm64 only.

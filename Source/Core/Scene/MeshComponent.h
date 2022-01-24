@@ -89,6 +89,9 @@ struct MaterialHandles {
     bgfx::UniformHandle texRef;
 };
 
+/*!
+ * A renderable component that represents a mesh.
+ */
 class MeshComponent : public SceneComponent, public IRenderable {
 
 public:
