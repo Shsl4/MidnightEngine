@@ -31,6 +31,7 @@ var NAVTREE =
     [ "Documentation", "index.html#autotoc_md4", null ],
     [ "Third-Party Libraries", "index.html#autotoc_md5", null ],
     [ "Deprecated List", "deprecated.html", null ],
+    [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -61,7 +62,7 @@ var NAVTREEINDEX =
 [
 "_allocator_8h.html",
 "class_logger.html#a5748c5640328a1928bfa0a378e4461bb",
-"struct_directional_light.html#abaf1ac3b7602dfae1deef7fc8239f50f"
+"struct_directional_light_handles.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

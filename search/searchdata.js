@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "acfimnoprstv",
   8: "es",
   9: "bfis",
-  10: "dm"
+  10: "dmt"
 };
 
 var indexSectionNames =

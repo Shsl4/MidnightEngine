@@ -101,8 +101,8 @@ $(document).ready(function(){initNavTree('class_shader_loader.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa33cf19e180265566520e3aec3a02a96"><td class="memItemLeft" align="right" valign="top">static bgfx::ProgramHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#aa33cf19e180265566520e3aec3a02a96">loadProgram</a> (const char *programeName)</td></tr>
-<tr class="separator:aa33cf19e180265566520e3aec3a02a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac42e4fc0d46a54a5c24c6024052bde8c"><td class="memItemLeft" align="right" valign="top">static bgfx::ProgramHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#ac42e4fc0d46a54a5c24c6024052bde8c">loadProgram</a> (const char *programName)</td></tr>
+<tr class="separator:ac42e4fc0d46a54a5c24c6024052bde8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1de4b7c94841860961227368f6386dff"><td class="memItemLeft" align="right" valign="top">static bgfx::ShaderHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#a1de4b7c94841860961227368f6386dff">loadShader</a> (const char *_name)</td></tr>
 <tr class="separator:a1de4b7c94841860961227368f6386dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -115,14 +115,16 @@ Static Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a53ca6ac6d05e794c0e34b664e3a44909"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#a53ca6ac6d05e794c0e34b664e3a44909">logger</a> = <a class="el" href="class_logger.html">Logger</a>(&quot;ShaderLoader&quot;)</td></tr>
-<tr class="separator:a53ca6ac6d05e794c0e34b664e3a44909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a081dd0c3774189ae6d88790c3bcb897f"><td class="memItemLeft" align="right" valign="top">static bx::AllocatorI *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#a081dd0c3774189ae6d88790c3bcb897f">defaultAllocator</a> = <a class="el" href="class_shader_loader.html#a6a6390b0adedc5cdc8f5cb4cb73ffba1">getDefaultAllocator</a>()</td></tr>
 <tr class="separator:a081dd0c3774189ae6d88790c3bcb897f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae957849a9a0e5790e22bcdafa225e182"><td class="memItemLeft" align="right" valign="top">static bx::FileReaderI *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#ae957849a9a0e5790e22bcdafa225e182">fileReader</a> = BX_NEW(<a class="el" href="class_shader_loader.html#a081dd0c3774189ae6d88790c3bcb897f">defaultAllocator</a>, bx::FileReader)</td></tr>
 <tr class="separator:ae957849a9a0e5790e22bcdafa225e182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53ca6ac6d05e794c0e34b664e3a44909"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_loader.html#a53ca6ac6d05e794c0e34b664e3a44909">logger</a> = <a class="el" href="class_logger.html">Logger</a>(&quot;ShaderLoader&quot;)</td></tr>
+<tr class="separator:a53ca6ac6d05e794c0e34b664e3a44909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >A utility class used to load BGFX shaders. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6a6390b0adedc5cdc8f5cb4cb73ffba1" name="a6a6390b0adedc5cdc8f5cb4cb73ffba1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a6390b0adedc5cdc8f5cb4cb73ffba1">&#9670;&nbsp;</a></span>getDefaultAllocator()</h2>
 
@@ -145,6 +147,7 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>This function was copy/pasted from the bgfx source and needs to be written correctly for the engine. </dd></dl>
 
 </div>
 </div>
@@ -181,11 +184,12 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>This function was copy/pasted from the bgfx source and needs to be written correctly for the engine. </dd></dl>
 
 </div>
 </div>
-<a id="aa33cf19e180265566520e3aec3a02a96" name="aa33cf19e180265566520e3aec3a02a96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa33cf19e180265566520e3aec3a02a96">&#9670;&nbsp;</a></span>loadProgram()</h2>
+<a id="ac42e4fc0d46a54a5c24c6024052bde8c" name="ac42e4fc0d46a54a5c24c6024052bde8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac42e4fc0d46a54a5c24c6024052bde8c">&#9670;&nbsp;</a></span>loadProgram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +201,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">bgfx::ProgramHandle ShaderLoader::loadProgram </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>programeName</em></td><td>)</td>
+          <td class="paramname"><em>programName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -207,6 +211,13 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Loads a ShaderProgram.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">programName</td><td>The name of the program to load. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -233,6 +244,15 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Loads a Shader file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_name</td><td>The name of the shader file to load. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>This function was copy/pasted from the bgfx source and needs to be written correctly for the engine. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Rewrite the function. </dd></dl>
 
 </div>
 </div>
@@ -256,6 +276,7 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>This member was copy/pasted from the bgfx source and will be removed. </dd></dl>
 
 </div>
 </div>
@@ -278,6 +299,7 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd>This member was copy/pasted from the bgfx source and will be removed. </dd></dl>
 
 </div>
 </div>
