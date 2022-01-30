@@ -11,29 +11,20 @@ class Object {
 public:
 
     virtual ~Object() = default;
-
+    
     /*!
      * Returns the name of the class.
      *
      *  \return The name of the class.
      */
-    const char *getClassName() const {
-
-        return typeid(*this).name();
-
-    }
-
+    class String getClassName() const;
+    
     /*!
      * Returns a debug description of the object.
      *
      *  \return The object description
-     *
      */
-    virtual const char *getDescription() const {
-
-        return getClassName();
-
-    }
+    virtual class String getDescription() const;
 
     /*!
      * Casts this object to the type T.

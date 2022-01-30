@@ -1,9 +1,10 @@
 #include <Scene/SceneComponent.h>
 #include <Scene/SceneObject.h>
+#include <Memory/String.h>
 
 void SceneComponent::start() {
 
-    Logger::check(registered, "Object of class \"{}\" has been badly constructed! File: {}, Line: {}", this->getClassName());
+    Logger::check(registered, "Object of class \"{}\" has been badly constructed! File: {}, Line: {}", this->getClassName().toCString());
 
     // Call start on every child component
     for (SceneComponent *childComponent: childComponents) {

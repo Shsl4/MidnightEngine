@@ -1,4 +1,5 @@
-#include "String.h"
+#include <Memory/String.h>
+#include <cmath>
 
 String::String(Array<char> const &array) {
     *this = array;

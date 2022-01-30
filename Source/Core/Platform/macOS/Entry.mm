@@ -101,7 +101,7 @@ int main(int argc, const char **argv) {
     Entry* entry = [[Entry alloc] init];
     [entry entry:argc argv:argv];
     [entry release];
-        
+            
     return 0;
 
 }

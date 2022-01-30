@@ -44,14 +44,6 @@ Engine::~Engine() {
 }
 
 int Engine::init(int argc, const char **argv) {
-
-    Array<Vector3> arr;
-    String str;
-    
-    String str1 = arr.getClassName();
-    String str2 = str.getClassName();
-
-    logger->info("Array<Vector3>: {}, String: {}", str1.toCString(), str2.toCString());
     
     logger->info("Initializing MidnightEngine...");
 

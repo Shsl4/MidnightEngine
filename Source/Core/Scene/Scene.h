@@ -49,7 +49,7 @@ public:
 
             allocator.destroy(object);
             
-            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
+            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName().toCString());
             
             return nullptr;
 
