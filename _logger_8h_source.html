@@ -153,11 +153,11 @@ $(document).ready(function(){initNavTree('_logger_8h_source.html',''); initResiz
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="class_logger.html#a0240175735bd550f55f221eb3b0b7f69">  124</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_logger.html#a0240175735bd550f55f221eb3b0b7f69">log</a>(<span class="keyword">const</span> fmt::text_style color, std::string <span class="keyword">const</span> &amp;type, std::string <span class="keyword">const</span> &amp;format, Args &amp;&amp;...args)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">// Format the string.</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keyword">const</span> fmt::basic_format_args&lt;fmt::format_context&gt; formatArgs = fmt::make_format_args(args...);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keyword">const</span> std::string formatted = vformat(format, formatArgs) + <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keyword">const</span> <span class="keyword">auto</span> formatArgs = fmt::make_format_args(args...);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keyword">const</span> std::string formatted = vformat(format, formatArgs);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        </div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// Print the formatted string.</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        print(color, <span class="stringliteral">&quot;[{}] ({}) | {}&quot;</span>, type, this-&gt;<a class="code hl_function" href="class_logger.html#ae9e127dc903f492c4c53c832ee267063">getId</a>(), formatted);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        print(color, <span class="stringliteral">&quot;[{}] ({}) | {}\n&quot;</span>, type, this-&gt;<a class="code hl_function" href="class_logger.html#ae9e127dc903f492c4c53c832ee267063">getId</a>(), formatted);</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>

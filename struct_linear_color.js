@@ -9,6 +9,7 @@ var struct_linear_color =
     [ "getBlue", "struct_linear_color.html#a347e078fe20382920d46e31f148b2302", null ],
     [ "getGreen", "struct_linear_color.html#a7456a58c31978a5f6a0cc80a4a6dd341", null ],
     [ "getRed", "struct_linear_color.html#ae520da81c4f79f8694f5bd2b50717d1a", null ],
+    [ "operator==", "struct_linear_color.html#ac64568829d8eceb93059b2f0a4cf17a3", null ],
     [ "setAlpha", "struct_linear_color.html#a3d666997dd1a1861d2840655ceefb80c", null ],
     [ "setBlue", "struct_linear_color.html#a7bc031df2190545e7e20d7235dbd5ed9", null ],
     [ "setGreen", "struct_linear_color.html#adb5e17d039aff817978e3acd23072d36", null ],

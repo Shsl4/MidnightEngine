@@ -6,7 +6,8 @@ var searchData=
   ['scale_3',['scale',['../struct_transform.html#a2b4006024b283c6af2813e78e7092364',1,'Transform']]],
   ['scene_4',['scene',['../class_camera_manager.html#abc9d55324e49bc3fcc28accd82858b15',1,'CameraManager']]],
   ['shift_5',['shift',['../struct_key_bind.html#abdf8e441c400961df8dc4ec6a3034c32',1,'KeyBind']]],
-  ['specular_6',['specular',['../struct_directional_light.html#a05aaa27ae66b3fbef41ff805db08e2b3',1,'DirectionalLight::specular()'],['../struct_material.html#aef42a10062d462a2d1ed034193d7c138',1,'Material::specular()'],['../struct_directional_light_handles.html#afd82b0f918671a9c4637c910cf34f425',1,'DirectionalLightHandles::specular()'],['../struct_material_handles.html#a30661d6825459257e26c782c93777dc3',1,'MaterialHandles::specular()']]],
-  ['speed_7',['speed',['../class_camera_component.html#af2e5796950082f32d2d5c52ebdcc7ac8',1,'CameraComponent']]],
-  ['starttime_8',['startTime',['../class_engine.html#a349e2ac3e17cde5189a57fe9eefafdbc',1,'Engine']]]
+  ['size_6',['size',['../class_array.html#ab1dd0b3a06b008bf93de58d1194a554a',1,'Array']]],
+  ['specular_7',['specular',['../struct_directional_light.html#a05aaa27ae66b3fbef41ff805db08e2b3',1,'DirectionalLight::specular()'],['../struct_material.html#aef42a10062d462a2d1ed034193d7c138',1,'Material::specular()'],['../struct_directional_light_handles.html#afd82b0f918671a9c4637c910cf34f425',1,'DirectionalLightHandles::specular()'],['../struct_material_handles.html#a30661d6825459257e26c782c93777dc3',1,'MaterialHandles::specular()']]],
+  ['speed_8',['speed',['../class_camera_component.html#af2e5796950082f32d2d5c52ebdcc7ac8',1,'CameraComponent']]],
+  ['starttime_9',['startTime',['../class_engine.html#a349e2ac3e17cde5189a57fe9eefafdbc',1,'Engine']]]
 ];

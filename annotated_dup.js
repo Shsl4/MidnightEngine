@@ -1,7 +1,7 @@
 var annotated_dup =
 [
     [ "Allocator", "class_allocator.html", "class_allocator" ],
-    [ "Array", "struct_array.html", "struct_array" ],
+    [ "Array", "class_array.html", "class_array" ],
     [ "Attenuation", "struct_attenuation.html", "struct_attenuation" ],
     [ "AutoReleaseArray", "struct_auto_release_array.html", "struct_auto_release_array" ],
     [ "CameraComponent", "class_camera_component.html", "class_camera_component" ],
@@ -29,10 +29,12 @@ var annotated_dup =
     [ "MeshLoader", "class_mesh_loader.html", "class_mesh_loader" ],
     [ "MeshObject", "class_mesh_object.html", "class_mesh_object" ],
     [ "Object", "class_object.html", "class_object" ],
+    [ "Optional", "class_optional.html", "class_optional" ],
     [ "PerformanceWindow", "class_performance_window.html", "class_performance_window" ],
     [ "PlatformData", "struct_platform_data.html", "struct_platform_data" ],
     [ "PointLight", "struct_point_light.html", "struct_point_light" ],
     [ "PointLightHandles", "struct_point_light_handles.html", "struct_point_light_handles" ],
+    [ "Random", "class_random.html", "class_random" ],
     [ "Scene", "class_scene.html", "class_scene" ],
     [ "SceneComponent", "class_scene_component.html", "class_scene_component" ],
     [ "SceneObject", "class_scene_object.html", "class_scene_object" ],

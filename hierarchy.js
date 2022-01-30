@@ -1,12 +1,5 @@
 var hierarchy =
 [
-    [ "Allocator", "class_allocator.html", null ],
-    [ "Array< T >", "struct_array.html", [
-      [ "AutoReleaseArray< T >", "struct_auto_release_array.html", null ]
-    ] ],
-    [ "Array< char >", "struct_array.html", [
-      [ "String", "class_string.html", null ]
-    ] ],
     [ "Attenuation", "struct_attenuation.html", null ],
     [ "CharacterInfoWindow", "class_character_info_window.html", null ],
     [ "DirectionalLight", "struct_directional_light.html", null ],
@@ -33,9 +26,17 @@ var hierarchy =
       [ "Entry", "interface_entry.html", null ]
     ] ],
     [ "Object", "class_object.html", [
+      [ "Array< char >", "class_array.html", [
+        [ "String", "class_string.html", null ]
+      ] ],
+      [ "Allocator< T >", "class_allocator.html", null ],
+      [ "Array< T >", "class_array.html", [
+        [ "AutoReleaseArray< T >", "struct_auto_release_array.html", null ]
+      ] ],
       [ "CameraManager", "class_camera_manager.html", null ],
       [ "Engine", "class_engine.html", null ],
       [ "InputManager", "class_input_manager.html", null ],
+      [ "Optional< T >", "class_optional.html", null ],
       [ "Scene", "class_scene.html", null ],
       [ "SceneComponent", "class_scene_component.html", [
         [ "CameraComponent", "class_camera_component.html", null ],
@@ -50,6 +51,7 @@ var hierarchy =
     [ "PlatformData", "struct_platform_data.html", null ],
     [ "PointLight", "struct_point_light.html", null ],
     [ "PointLightHandles", "struct_point_light_handles.html", null ],
+    [ "Random", "class_random.html", null ],
     [ "PerformanceWindow::SampleData", "struct_performance_window_1_1_sample_data.html", null ],
     [ "ShaderLoader", "class_shader_loader.html", null ],
     [ "Transform", "struct_transform.html", null ],

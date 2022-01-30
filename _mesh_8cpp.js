@@ -1,6 +1,5 @@
 var _mesh_8cpp =
 [
-    [ "String", "class_string.html", "class_string" ],
     [ "OBJDataType", "_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364", [
       [ "Comment", "_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364a0be8406951cdfda82f00f79328cf4efc", null ],
       [ "Object", "_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364a497031794414a552435f90151ac3b54b", null ],
@@ -10,5 +9,5 @@ var _mesh_8cpp =
       [ "Face", "_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364a8af5861002f3c157f9ba842bba10aa3f", null ],
       [ "Invalid", "_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364a4bbb8f967da6d1a610596d7257179c2b", null ]
     ] ],
-    [ "getDataType", "_mesh_8cpp.html#a5e95c625d42c183a026b6ebb4cb2a777", null ]
+    [ "getDataType", "_mesh_8cpp.html#a88de12abdd4ee2f7dcbbf2807fd7e6df", null ]
 ];

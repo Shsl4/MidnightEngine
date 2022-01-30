@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['deallocate_0',['deallocate',['../class_allocator.html#ac075b0d884eeb1868902461d715d6573',1,'Allocator']]],
-  ['debug_1',['debug',['../class_logger.html#a483f37b5ddab6b47b0018a9e8d5997cf',1,'Logger']]],
+  ['debug_0',['debug',['../class_logger.html#a483f37b5ddab6b47b0018a9e8d5997cf',1,'Logger']]],
+  ['destroy_1',['destroy',['../class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423',1,'Allocator']]],
   ['destroycomponent_2',['destroyComponent',['../class_scene.html#a71274cca9ec859fe5286fa1df39fe4c3',1,'Scene']]],
   ['detachfromcomponent_3',['detachFromComponent',['../class_scene_component.html#aa2b9ddf55ac126f3d8fd7a72ffdb1906',1,'SceneComponent']]],
   ['directionallight_4',['DirectionalLight',['../struct_directional_light.html#a660aea1887e764750ace04056dd4b658',1,'DirectionalLight::DirectionalLight(Vector3 direction, Vector3 ambient, Vector3 diffuse, Vector3 specular)'],['../struct_directional_light.html#a04e6c3c20564d5f4ab60f927743de208',1,'DirectionalLight::DirectionalLight()=default']]],

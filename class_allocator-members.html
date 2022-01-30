@@ -88,18 +88,32 @@ $(document).ready(function(){initNavTree('class_allocator.html',''); initResizab
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Allocator Member List</div></div>
+  <div class="headertitle"><div class="title">Allocator&lt; T &gt; Member List</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="class_allocator.html">Allocator</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a80297083c3ff65ae9574f42d1ff829e6">allocate</a>(size_t count) const</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a104d14df6105ac717732998b0c0f3cdc">Allocator</a>()=default</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ad4833759c5e16682e310ecc2473abdb6">copy</a>(T *&amp;other)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#ac075b0d884eeb1868902461d715d6573">deallocate</a>(T *&amp;pointer)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#aacc7ba0e3503a944d9a34a5593fdcc0b">instantiate</a>(Args &amp;&amp;... args)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a9dbb58b006599f7f058d2874c3328561">resize</a>(T *ptr, const size_t count)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#aee375591ee4a884abf42c3754245d964">alloc</a>(size_t size)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a8ecae046599ee46e82993d16b7db139c">Allocator</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a8d6584c7c10d39acef1c51c178b542db">autoDestroy</a>(U *&amp;pointer)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">cast</a>()</td><td class="entry"><a class="el" href="class_object.html">Object</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a693f5d246eea6c06ef3a41af64142574">construct</a>(Args &amp;&amp;... args)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a332248ed42ddd1e7d15ff4f663dac4bb">copy</a>(const T *from, const T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a7a86753e6c07600317a3070216a3a1b2">copyBack</a>(const T *from, const T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#af2cdb06d69a90803379bb4a5aa8ba5bf">copyForward</a>(const T *from, const T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423">destroy</a>(T *&amp;pointer)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_object.html#a0df069d12b561128f9d53d91a0af8d14">getClassName</a>() const</td><td class="entry"><a class="el" href="class_object.html">Object</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_object.html#a76865d3d0ee9e90277a6472f9121e7b9">getDescription</a>() const</td><td class="entry"><a class="el" href="class_object.html">Object</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">instanceOf</a>()</td><td class="entry"><a class="el" href="class_object.html">Object</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#abb8619454e3b17cc58e2f1046053b47a">move</a>(T *from, T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a03d22d3d9de014b4cf895737e6af69f2">moveBack</a>(T *from, T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a2e1934d22567685941250e9525e0e6fe">moveForward</a>(T *from, T *to, T *dest)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a56f580bec2c931dd5ad2a866350db86e">realloc</a>(T *&amp;pointer, size_t oldSize, size_t size)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a07618997fb9c6334707c806bd96a9df9">release</a>(T *&amp;pointer)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_allocator.html#a02469ae3659c2848a5e9ecf367696546">swapMove</a>(T *a, T *b)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#acdd4f537b6291d71cf138628397c00d6">~Allocator</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a>()=default</td><td class="entry"><a class="el" href="class_object.html">Object</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

@@ -114,15 +114,18 @@ Static Public Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a27eeec5261ce7a8e0396904bc95d9b5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_auto_release_array.html">AutoReleaseArray</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh_loader.html#a27eeec5261ce7a8e0396904bc95d9b5e">loadedMeshes</a></td></tr>
 <tr class="separator:a27eeec5261ce7a8e0396904bc95d9b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00a2a7903c206b35dcf0bdd0f8e5e16a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_allocator.html">Allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh_loader.html#a00a2a7903c206b35dcf0bdd0f8e5e16a">allocator</a> = <a class="el" href="class_allocator.html">Allocator</a>()</td></tr>
-<tr class="separator:a00a2a7903c206b35dcf0bdd0f8e5e16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576d188f0db0a4e8628cc8074ffa3f72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_allocator.html">Allocator</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh_loader.html#a576d188f0db0a4e8628cc8074ffa3f72">allocator</a> = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_mesh.html">Mesh</a>&gt;()</td></tr>
+<tr class="separator:a576d188f0db0a4e8628cc8074ffa3f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a07f0d2426d1d5288581cd7d740838e87"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mesh_loader.html">MeshLoader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh_loader.html#a07f0d2426d1d5288581cd7d740838e87">instance</a> = nullptr</td></tr>
 <tr class="separator:a07f0d2426d1d5288581cd7d740838e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >A utility class allowing to load OBJ models.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Make the class nonstatic, make it load all models in the resource folder on startup and make them available through public functions. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3dfe18053d07cfe24f6e55cd610658b8" name="a3dfe18053d07cfe24f6e55cd610658b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3dfe18053d07cfe24f6e55cd610658b8">&#9670;&nbsp;</a></span>MeshLoader()</h2>
 
@@ -176,8 +179,8 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a00a2a7903c206b35dcf0bdd0f8e5e16a" name="a00a2a7903c206b35dcf0bdd0f8e5e16a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00a2a7903c206b35dcf0bdd0f8e5e16a">&#9670;&nbsp;</a></span>allocator</h2>
+<a id="a576d188f0db0a4e8628cc8074ffa3f72" name="a576d188f0db0a4e8628cc8074ffa3f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a576d188f0db0a4e8628cc8074ffa3f72">&#9670;&nbsp;</a></span>allocator</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,7 +189,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a> MeshLoader::allocator = <a class="el" href="class_allocator.html">Allocator</a>()</td>
+          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_mesh.html">Mesh</a>&gt; MeshLoader::allocator = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_mesh.html">Mesh</a>&gt;()</td>
         </tr>
       </table>
   </td>

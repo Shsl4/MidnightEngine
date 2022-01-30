@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('struct_mesh.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8ded8a9c8744d4b9245326704f3aea1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a8ded8a9c8744d4b9245326704f3aea1f">Mesh</a> (<a class="el" href="struct_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;vertices, size_t numIndices, <a class="el" href="_mesh_8h.html#a24f376ccef7a39450a2fcdbf5ba97ced">MeshType</a> type, std::string const &amp;name)</td></tr>
+<tr class="memitem:a8ded8a9c8744d4b9245326704f3aea1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a8ded8a9c8744d4b9245326704f3aea1f">Mesh</a> (<a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;vertices, size_t numIndices, <a class="el" href="_mesh_8h.html#a24f376ccef7a39450a2fcdbf5ba97ced">MeshType</a> type, std::string const &amp;name)</td></tr>
 <tr class="separator:a8ded8a9c8744d4b9245326704f3aea1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5efe4da1a4c0971cfb037bd70304c303"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a5efe4da1a4c0971cfb037bd70304c303">~Mesh</a> ()</td></tr>
 <tr class="separator:a5efe4da1a4c0971cfb037bd70304c303"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,10 +135,14 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a2c968ab52293568c0b40a8453c4b6935"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_allocator.html">Allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a2c968ab52293568c0b40a8453c4b6935">allocator</a> = <a class="el" href="class_allocator.html">Allocator</a>()</td></tr>
-<tr class="separator:a2c968ab52293568c0b40a8453c4b6935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101747db7afc91381ab781ac11399d03"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_allocator.html">Allocator</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a101747db7afc91381ab781ac11399d03">vertexAllocator</a> = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_vertex.html">Vertex</a>&gt;()</td></tr>
+<tr class="separator:a101747db7afc91381ab781ac11399d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bff6d6a9f3363fdbd8ae56eb49358c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_allocator.html">Allocator</a>&lt; <a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a56bff6d6a9f3363fdbd8ae56eb49358c">indexAllocator</a> = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a>&gt;()</td></tr>
+<tr class="separator:a56bff6d6a9f3363fdbd8ae56eb49358c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >A structure representing a mesh. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8ded8a9c8744d4b9245326704f3aea1f" name="a8ded8a9c8744d4b9245326704f3aea1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ded8a9c8744d4b9245326704f3aea1f">&#9670;&nbsp;</a></span>Mesh()</h2>
 
@@ -148,7 +152,7 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">Mesh::Mesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;&#160;</td>
           <td class="paramname"><em>vertices</em>, </td>
         </tr>
         <tr>
@@ -231,28 +235,6 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a2c968ab52293568c0b40a8453c4b6935" name="a2c968ab52293568c0b40a8453c4b6935"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c968ab52293568c0b40a8453c4b6935">&#9670;&nbsp;</a></span>allocator</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a> Mesh::allocator = <a class="el" href="class_allocator.html">Allocator</a>()</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a59ee3d1ef283f81c4deab43948092c08" name="a59ee3d1ef283f81c4deab43948092c08"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59ee3d1ef283f81c4deab43948092c08">&#9670;&nbsp;</a></span>data</h2>
 
@@ -263,6 +245,28 @@ Static Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="struct_vertex.html">Vertex</a>* Mesh::data = nullptr</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56bff6d6a9f3363fdbd8ae56eb49358c" name="a56bff6d6a9f3363fdbd8ae56eb49358c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56bff6d6a9f3363fdbd8ae56eb49358c">&#9670;&nbsp;</a></span>indexAllocator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a>&gt; Mesh::indexAllocator = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -347,6 +351,28 @@ Static Public Attributes</h2></td></tr>
           <td class="memname">bgfx::ProgramHandle Mesh::programHandle</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a101747db7afc91381ab781ac11399d03" name="a101747db7afc91381ab781ac11399d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101747db7afc91381ab781ac11399d03">&#9670;&nbsp;</a></span>vertexAllocator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_vertex.html">Vertex</a>&gt; Mesh::vertexAllocator = <a class="el" href="class_allocator.html">Allocator</a>&lt;<a class="el" href="struct_vertex.html">Vertex</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

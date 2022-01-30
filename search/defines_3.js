@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sdl_5fmain_5fhandled_0',['SDL_MAIN_HANDLED',['../_windows_2_entry_8h.html#a51f528deaaeb973f417b46a2ec36f850',1,'Entry.h']]]
+  ['inputboilerplate_0',['inputBoilerplate',['../_flying_character_8h.html#a65546ecc33e34bbb2b4a27317e8d094e',1,'FlyingCharacter.h']]]
 ];

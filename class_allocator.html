@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: Allocator Class Reference</title>
+<title>MidnightEngine: Allocator&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,232 +90,266 @@ $(document).ready(function(){initNavTree('class_allocator.html',''); initResizab
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_allocator-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Allocator Class Reference</div></div>
+  <div class="headertitle"><div class="title">Allocator&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="_allocator_8h_source.html">Allocator.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Allocator&lt; T &gt;:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_allocator.png" usemap="#Allocator_3C_20T_20_3E_map" alt=""/>
+  <map id="Allocator_3C_20T_20_3E_map" name="Allocator_3C_20T_20_3E_map">
+<area href="class_object.html" alt="Object" shape="rect" coords="0,0,94,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a104d14df6105ac717732998b0c0f3cdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a104d14df6105ac717732998b0c0f3cdc">Allocator</a> ()=default</td></tr>
-<tr class="separator:a104d14df6105ac717732998b0c0f3cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dbb58b006599f7f058d2874c3328561"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a9dbb58b006599f7f058d2874c3328561"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#a9dbb58b006599f7f058d2874c3328561">resize</a> (T *ptr, const size_t count)</td></tr>
-<tr class="separator:a9dbb58b006599f7f058d2874c3328561"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4833759c5e16682e310ecc2473abdb6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ad4833759c5e16682e310ecc2473abdb6"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#ad4833759c5e16682e310ecc2473abdb6">copy</a> (T *&amp;other)</td></tr>
-<tr class="separator:ad4833759c5e16682e310ecc2473abdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc7ba0e3503a944d9a34a5593fdcc0b"><td class="memTemplParams" colspan="2">template&lt;class T , class... Args&gt; </td></tr>
-<tr class="memitem:aacc7ba0e3503a944d9a34a5593fdcc0b"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#aacc7ba0e3503a944d9a34a5593fdcc0b">instantiate</a> (Args &amp;&amp;... args)</td></tr>
-<tr class="separator:aacc7ba0e3503a944d9a34a5593fdcc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80297083c3ff65ae9574f42d1ff829e6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a80297083c3ff65ae9574f42d1ff829e6"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#a80297083c3ff65ae9574f42d1ff829e6">allocate</a> (size_t count) const</td></tr>
-<tr class="separator:a80297083c3ff65ae9574f42d1ff829e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac075b0d884eeb1868902461d715d6573"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ac075b0d884eeb1868902461d715d6573"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#ac075b0d884eeb1868902461d715d6573">deallocate</a> (T *&amp;pointer)</td></tr>
-<tr class="separator:ac075b0d884eeb1868902461d715d6573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ecae046599ee46e82993d16b7db139c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a8ecae046599ee46e82993d16b7db139c">Allocator</a> ()</td></tr>
+<tr class="separator:a8ecae046599ee46e82993d16b7db139c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a693f5d246eea6c06ef3a41af64142574"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:a693f5d246eea6c06ef3a41af64142574"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#a693f5d246eea6c06ef3a41af64142574">construct</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a693f5d246eea6c06ef3a41af64142574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee375591ee4a884abf42c3754245d964"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#aee375591ee4a884abf42c3754245d964">alloc</a> (size_t size)</td></tr>
+<tr class="separator:aee375591ee4a884abf42c3754245d964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5501a1c4ecd03c0b8b4cca57ef4c0423"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423">destroy</a> (T *&amp;pointer)</td></tr>
+<tr class="separator:a5501a1c4ecd03c0b8b4cca57ef4c0423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6584c7c10d39acef1c51c178b542db"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a8d6584c7c10d39acef1c51c178b542db"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_allocator.html#a8d6584c7c10d39acef1c51c178b542db">autoDestroy</a> (U *&amp;pointer)</td></tr>
+<tr class="separator:a8d6584c7c10d39acef1c51c178b542db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07618997fb9c6334707c806bd96a9df9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a07618997fb9c6334707c806bd96a9df9">release</a> (T *&amp;pointer)</td></tr>
+<tr class="separator:a07618997fb9c6334707c806bd96a9df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f580bec2c931dd5ad2a866350db86e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a56f580bec2c931dd5ad2a866350db86e">realloc</a> (T *&amp;pointer, size_t oldSize, size_t size)</td></tr>
+<tr class="separator:a56f580bec2c931dd5ad2a866350db86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd4f537b6291d71cf138628397c00d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#acdd4f537b6291d71cf138628397c00d6">~Allocator</a> ()</td></tr>
+<tr class="separator:acdd4f537b6291d71cf138628397c00d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb8619454e3b17cc58e2f1046053b47a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#abb8619454e3b17cc58e2f1046053b47a">move</a> (T *from, T *to, T *dest)</td></tr>
+<tr class="separator:abb8619454e3b17cc58e2f1046053b47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a332248ed42ddd1e7d15ff4f663dac4bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a332248ed42ddd1e7d15ff4f663dac4bb">copy</a> (const T *from, const T *to, T *dest)</td></tr>
+<tr class="separator:a332248ed42ddd1e7d15ff4f663dac4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02469ae3659c2848a5e9ecf367696546"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a02469ae3659c2848a5e9ecf367696546">swapMove</a> (T *a, T *b)</td></tr>
+<tr class="separator:a02469ae3659c2848a5e9ecf367696546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
+<tr class="memitem:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
+<tr class="separator:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df069d12b561128f9d53d91a0af8d14 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a0df069d12b561128f9d53d91a0af8d14">getClassName</a> () const</td></tr>
+<tr class="separator:a0df069d12b561128f9d53d91a0af8d14 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76865d3d0ee9e90277a6472f9121e7b9 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a76865d3d0ee9e90277a6472f9121e7b9">getDescription</a> () const</td></tr>
+<tr class="separator:a76865d3d0ee9e90277a6472f9121e7b9 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9f4f5ddd42afacca43366f537de8570 inherit pub_methods_class_object"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aa9f4f5ddd42afacca43366f537de8570 inherit pub_methods_class_object"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">cast</a> ()</td></tr>
+<tr class="separator:aa9f4f5ddd42afacca43366f537de8570 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c06b04da6af8bf064e04a974048aed inherit pub_methods_class_object"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad6c06b04da6af8bf064e04a974048aed inherit pub_methods_class_object"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">instanceOf</a> ()</td></tr>
+<tr class="separator:ad6c06b04da6af8bf064e04a974048aed inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2e1934d22567685941250e9525e0e6fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a2e1934d22567685941250e9525e0e6fe">moveForward</a> (T *from, T *to, T *dest)</td></tr>
+<tr class="separator:a2e1934d22567685941250e9525e0e6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d22d3d9de014b4cf895737e6af69f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a03d22d3d9de014b4cf895737e6af69f2">moveBack</a> (T *from, T *to, T *dest)</td></tr>
+<tr class="separator:a03d22d3d9de014b4cf895737e6af69f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2cdb06d69a90803379bb4a5aa8ba5bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#af2cdb06d69a90803379bb4a5aa8ba5bf">copyForward</a> (const T *from, const T *to, T *dest)</td></tr>
+<tr class="separator:af2cdb06d69a90803379bb4a5aa8ba5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a86753e6c07600317a3070216a3a1b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allocator.html#a7a86753e6c07600317a3070216a3a1b2">copyBack</a> (const T *from, const T *to, T *dest)</td></tr>
+<tr class="separator:a7a86753e6c07600317a3070216a3a1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p ><a class="el" href="class_object.html">Object</a> used to dynamically allocate memory. Allocators can allocate memory buffers, deallocate and resize them as well as instantiate new objects. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class Allocator&lt; T &gt;</div><p >An object allowing to manage memory for objects of type T. The object is only one byte as it does not have any member variables.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of object to manage </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a104d14df6105ac717732998b0c0f3cdc" name="a104d14df6105ac717732998b0c0f3cdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a104d14df6105ac717732998b0c0f3cdc">&#9670;&nbsp;</a></span>Allocator()</h2>
+<a id="a8ecae046599ee46e82993d16b7db139c" name="a8ecae046599ee46e82993d16b7db139c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ecae046599ee46e82993d16b7db139c">&#9670;&nbsp;</a></span>Allocator()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Allocator::Allocator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::<a class="el" href="class_allocator.html">Allocator</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p >The default constructor. </p>
+
+</div>
+</div>
+<a id="acdd4f537b6291d71cf138628397c00d6" name="acdd4f537b6291d71cf138628397c00d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd4f537b6291d71cf138628397c00d6">&#9670;&nbsp;</a></span>~Allocator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::~<a class="el" href="class_allocator.html">Allocator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >The <a class="el" href="class_allocator.html">Allocator</a> destructor. It only serves debugging purposes. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a80297083c3ff65ae9574f42d1ff829e6" name="a80297083c3ff65ae9574f42d1ff829e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80297083c3ff65ae9574f42d1ff829e6">&#9670;&nbsp;</a></span>allocate()</h2>
+<a id="aee375591ee4a884abf42c3754245d964" name="aee375591ee4a884abf42c3754245d964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee375591ee4a884abf42c3754245d964">&#9670;&nbsp;</a></span>alloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T * Allocator::allocate </td>
+          <td class="memname">T * <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::alloc </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>count</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Allocates a new memory buffer WITHOUT constructing objects.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of object to hold </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>The number of objects to hold </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The allocated memory buffer. </dd></dl>
-
-</div>
-</div>
-<a id="ad4833759c5e16682e310ecc2473abdb6" name="ad4833759c5e16682e310ecc2473abdb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4833759c5e16682e310ecc2473abdb6">&#9670;&nbsp;</a></span>copy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T * Allocator::copy </td>
-          <td>(</td>
-          <td class="paramtype">T *&amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Duplicates the input object.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type to copy </td></tr>
-  </table>
-  </dd>
-</dl>
+<p >Allocates a buffer containing <code>size</code> number of objects of type T. If T is a class, objects are constructed using the empty constructor.</p>
+<dl class="section warning"><dt>Warning</dt><dd>If T is a class, it must have a public empty constructor.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The object to duplicate </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size of the buffer. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The newly created object </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly allocated buffer. </dd></dl>
 
 </div>
 </div>
-<a id="ac075b0d884eeb1868902461d715d6573" name="ac075b0d884eeb1868902461d715d6573"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac075b0d884eeb1868902461d715d6573">&#9670;&nbsp;</a></span>deallocate()</h2>
+<a id="a8d6584c7c10d39acef1c51c178b542db" name="a8d6584c7c10d39acef1c51c178b542db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6584c7c10d39acef1c51c178b542db">&#9670;&nbsp;</a></span>autoDestroy()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+<div class="memtemplate">
+template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void Allocator::deallocate </td>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::autoDestroy </td>
           <td>(</td>
-          <td class="paramtype">T *&amp;&#160;</td>
+          <td class="paramtype">U *&amp;&#160;</td>
           <td class="paramname"><em>pointer</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Deallocates the input buffer and sets the reference to nullptr.</p>
+<p >Destroys a single object allocated with construct.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of object to deallocate </td></tr>
+    <tr><td class="paramname">U</td><td>The type of object to destroy. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pointer</td><td>The memory to deallocate </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pointer</td><td>The object to release </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aacc7ba0e3503a944d9a34a5593fdcc0b" name="aacc7ba0e3503a944d9a34a5593fdcc0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacc7ba0e3503a944d9a34a5593fdcc0b">&#9670;&nbsp;</a></span>instantiate()</h2>
+<a id="a693f5d246eea6c06ef3a41af64142574" name="a693f5d246eea6c06ef3a41af64142574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a693f5d246eea6c06ef3a41af64142574">&#9670;&nbsp;</a></span>construct()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+template&lt;typename T &gt; </div>
+<div class="memtemplate">
+template&lt;typename ... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">T * Allocator::instantiate </td>
+          <td class="memname">T * <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::construct </td>
           <td>(</td>
           <td class="paramtype">Args &amp;&amp;...&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Instantiates a nww object of class T using the arguments as constructor parameters.</p>
+<p >Constructs an object of type T.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of object to instantiate </td></tr>
-    <tr><td class="paramname">Args</td><td>A variadic arguments template </td></tr>
+    <tr><td class="paramname">Args</td><td>A variadic template. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the constructor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the constructor. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The newly created object. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly constructed object. </dd></dl>
 
 </div>
 </div>
-<a id="a9dbb58b006599f7f058d2874c3328561" name="a9dbb58b006599f7f058d2874c3328561"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9dbb58b006599f7f058d2874c3328561">&#9670;&nbsp;</a></span>resize()</h2>
+<a id="a332248ed42ddd1e7d15ff4f663dac4bb" name="a332248ed42ddd1e7d15ff4f663dac4bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a332248ed42ddd1e7d15ff4f663dac4bb">&#9670;&nbsp;</a></span>copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::copy </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Copies memory forwards or backwards automatically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where copy the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7a86753e6c07600317a3070216a3a1b2" name="a7a86753e6c07600317a3070216a3a1b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a86753e6c07600317a3070216a3a1b2">&#9670;&nbsp;</a></span>copyBack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,16 +360,22 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T * Allocator::resize </td>
+          <td class="memname"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::copyBack </td>
           <td>(</td>
-          <td class="paramtype">T *&#160;</td>
-          <td class="paramname"><em>ptr</em>, </td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -345,30 +385,359 @@ template&lt;typename T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Resizes a memory buffer. If the input size is zero, the pointer is freed.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of objects to hold in the buffer </td></tr>
-  </table>
-  </dd>
-</dl>
+<p >Copies memory backwards.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>The buffer to resize. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>The number of objects to hold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where copy the data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The new buffer </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="af2cdb06d69a90803379bb4a5aa8ba5bf" name="af2cdb06d69a90803379bb4a5aa8ba5bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2cdb06d69a90803379bb4a5aa8ba5bf">&#9670;&nbsp;</a></span>copyForward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::copyForward </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Copies memory forwards.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where copy the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5501a1c4ecd03c0b8b4cca57ef4c0423" name="a5501a1c4ecd03c0b8b4cca57ef4c0423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5501a1c4ecd03c0b8b4cca57ef4c0423">&#9670;&nbsp;</a></span>destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::destroy </td>
+          <td>(</td>
+          <td class="paramtype">T *&amp;&#160;</td>
+          <td class="paramname"><em>pointer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Destroys a single object allocated with construct.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pointer</td><td>The object to release </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abb8619454e3b17cc58e2f1046053b47a" name="abb8619454e3b17cc58e2f1046053b47a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb8619454e3b17cc58e2f1046053b47a">&#9670;&nbsp;</a></span>move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::move </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Moves memory forwards or backwards automatically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where move the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a03d22d3d9de014b4cf895737e6af69f2" name="a03d22d3d9de014b4cf895737e6af69f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d22d3d9de014b4cf895737e6af69f2">&#9670;&nbsp;</a></span>moveBack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::moveBack </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Moves memory backwards.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where move the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e1934d22567685941250e9525e0e6fe" name="a2e1934d22567685941250e9525e0e6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e1934d22567685941250e9525e0e6fe">&#9670;&nbsp;</a></span>moveForward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::moveForward </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Moves memory forward.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>Where to start reading data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>Where to stop reading data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dest</td><td>Where move the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56f580bec2c931dd5ad2a866350db86e" name="a56f580bec2c931dd5ad2a866350db86e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f580bec2c931dd5ad2a866350db86e">&#9670;&nbsp;</a></span>realloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::realloc </td>
+          <td>(</td>
+          <td class="paramtype">T *&amp;&#160;</td>
+          <td class="paramname"><em>pointer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>oldSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Extends or shrinks a memory buffer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pointer</td><td>The buffer to reallocate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">oldSize</td><td>The old size of the buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The new size of the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a07618997fb9c6334707c806bd96a9df9" name="a07618997fb9c6334707c806bd96a9df9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07618997fb9c6334707c806bd96a9df9">&#9670;&nbsp;</a></span>release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::release </td>
+          <td>(</td>
+          <td class="paramtype">T *&amp;&#160;</td>
+          <td class="paramname"><em>pointer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Releases a buffer allocated with allocate.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pointer</td><td>The buffer to release. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a02469ae3659c2848a5e9ecf367696546" name="a02469ae3659c2848a5e9ecf367696546"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02469ae3659c2848a5e9ecf367696546">&#9670;&nbsp;</a></span>swapMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_allocator.html">Allocator</a>&lt; T &gt;::swapMove </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Swaps the contents of the two pointers by moving (no copying). </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Core/Memory/<a class="el" href="_allocator_8h_source.html">Allocator.h</a></li>
+<li>Source/Core/Memory/<a class="el" href="_allocator_8inl.html">Allocator.inl</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

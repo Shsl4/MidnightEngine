@@ -20,6 +20,8 @@ var struct_vector3 =
     [ "operator-=", "struct_vector3.html#a59b462f4ea9a03ec633259307c028cc3", null ],
     [ "operator/", "struct_vector3.html#a57b6bfdad5b4b3b7e320c2b6f4adecb4", null ],
     [ "operator/=", "struct_vector3.html#a0e945ecb29e839574b1e23f1cd1f58cf", null ],
+    [ "operator<", "struct_vector3.html#aae06c1ef67cd3fcf066517361531a6a0", null ],
+    [ "operator==", "struct_vector3.html#a1ff089e6ca150f51301475f9d7e60e84", null ],
     [ "backward", "struct_vector3.html#a3d7d86590998039065d1dfa935b7d8a7", null ],
     [ "down", "struct_vector3.html#ab3cfe72501f9796cc13fa8a3808c448d", null ],
     [ "forward", "struct_vector3.html#a8fa074d750fcc8218b3ebd330e6ad2c3", null ],

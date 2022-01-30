@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['unregistercamera_0',['unregisterCamera',['../class_camera_manager.html#a805dd220e61eeaeb0b4745e6f3cea7c1',1,'CameraManager']]],
-  ['update_1',['update',['../class_engine.html#ad2ff110d5a86c1cd60b541d65915ac48',1,'Engine::update()'],['../class_input_manager.html#a276a39deb98685ec57f98d9bb4cf6017',1,'InputManager::update()'],['../interface_entry.html#a4c8f3d25223906fa30dfb1ead5c1c1eb',1,'Entry::update()'],['../interface_entry.html#a233ad9941c837e4e0171c1b31f3cdcfd',1,'Entry::update() const'],['../class_camera_component.html#ac2712b497f7422a2459305b9e163e5f5',1,'CameraComponent::update()'],['../class_flying_character.html#a4fdbe25f18f6a875537039e6fb269c08',1,'FlyingCharacter::update()'],['../class_mesh_component.html#a44977ec0336d6ef668413bf75fbe5a1f',1,'MeshComponent::update()'],['../class_scene_component.html#ab0b129c31a06c02337036c2b2be2b570',1,'SceneComponent::update()'],['../class_scene_object.html#aba8272571e82e5b7082e130f8825c681',1,'SceneObject::update()']]],
-  ['updatematrices_2',['updateMatrices',['../class_camera_component.html#a37b574c0c31ce11dc1de0e1ed5219760',1,'CameraComponent']]],
-  ['updateprojectionmatrix_3',['updateProjectionMatrix',['../class_camera_component.html#a55a8858d23476850ae9625ec8b8b0737',1,'CameraComponent']]],
-  ['updatescene_4',['updateScene',['../class_scene.html#afaf3b4820b1938a5f5d53b2f6c3ab74e',1,'Scene']]],
-  ['updateviewmatrix_5',['updateViewMatrix',['../class_camera_component.html#ac9363aa6b2f0a22471f5648598be9f4d',1,'CameraComponent']]]
+  ['tocstring_0',['toCString',['../class_string.html#a15961653bb9da7e4df21f20713258bf5',1,'String']]],
+  ['todouble_1',['toDouble',['../class_string.html#a0beb6fbade221d0963554123126b4a84',1,'String']]],
+  ['tointeger_2',['toInteger',['../class_string.html#a45ef4d4301ecaa68673207c62e229341',1,'String']]],
+  ['toradians_3',['toRadians',['../class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033',1,'Math']]],
+  ['transform_4',['Transform',['../struct_transform.html#a144ce8dcafd13ca66acb5a1636cfc297',1,'Transform::Transform()=default'],['../struct_transform.html#a549261088ba739c65d714229b00442d4',1,'Transform::Transform(Vector3 const &amp;position)'],['../struct_transform.html#a06a5b3234a58a8e5ddf2049bd882899d',1,'Transform::Transform(Vector3 const &amp;position, Vector3 const &amp;rotation)'],['../struct_transform.html#a83af83749cd5d2cde8a3994ded2e7530',1,'Transform::Transform(Vector3 const &amp;position, Vector3 const &amp;rotation, Vector3 const &amp;scale)']]],
+  ['translate_5',['translate',['../struct_matrix4.html#a59779abfe1804d88f23c8c8ab0894bd6',1,'Matrix4']]],
+  ['translation_6',['translation',['../struct_matrix4.html#a9a5e410b5ff166fa95a7a3505adbc2fb',1,'Matrix4']]]
 ];

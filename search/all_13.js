@@ -1,17 +1,17 @@
 var searchData=
 [
-  ['vector2_0',['Vector2',['../struct_vector2.html',1,'Vector2'],['../struct_vector2.html#a061ab58a0e216c759d64e3746d712b12',1,'Vector2::Vector2(float x, float y)'],['../struct_vector2.html#ace1a1dfc9bc6b5b5c17dd2314b92ded2',1,'Vector2::Vector2(float v)'],['../struct_vector2.html#af1de25cf0004820d5e6db855c91bc4ad',1,'Vector2::Vector2()=default']]],
-  ['vector2_2ecpp_1',['Vector2.cpp',['../_vector2_8cpp.html',1,'']]],
-  ['vector2_2eh_2',['Vector2.h',['../_vector2_8h.html',1,'']]],
-  ['vector3_3',['Vector3',['../struct_vector3.html',1,'Vector3'],['../struct_vector3.html#aa79d6463cc83f9262b7d8db4af443641',1,'Vector3::Vector3(const float v)'],['../struct_vector3.html#aeb741d68180650fc160bbf84fa66e1b8',1,'Vector3::Vector3(const float x, const float y, const float z)'],['../struct_vector3.html#a0790c02a89da621f39f6c9a55b309151',1,'Vector3::Vector3()=default']]],
-  ['vector3_2ecpp_4',['Vector3.cpp',['../_vector3_8cpp.html',1,'']]],
-  ['vector3_2eh_5',['Vector3.h',['../_vector3_8h.html',1,'']]],
-  ['vector4_6',['Vector4',['../struct_vector4.html#a120324a64f31eb0c008747c4ca6261bb',1,'Vector4::Vector4(const float x, const float y, const float z, const float w)'],['../struct_vector4.html#ac96b299b6a1aae6b9eb5aa1fb4fd4143',1,'Vector4::Vector4(const float v)'],['../struct_vector4.html',1,'Vector4'],['../struct_vector4.html#a511b4d9c8326c235b76d794eea018921',1,'Vector4::Vector4()']]],
-  ['vector4_2ecpp_7',['Vector4.cpp',['../_vector4_8cpp.html',1,'']]],
-  ['vector4_2eh_8',['Vector4.h',['../_vector4_8h.html',1,'']]],
-  ['vertex_9',['Vertex',['../struct_vertex.html',1,'Vertex'],['../struct_vertex.html#adc7efd68f5185e4f8152078920db4453',1,'Vertex::Vertex(float x, float y, float z, float r, float g, float b, float a)'],['../struct_vertex.html#a0bcc16878394c5f68c4b0eb6f7a18d8a',1,'Vertex::Vertex(Vector3 const &amp;pos, Vector3 const &amp;norm, Vector2 const &amp;texCoords, LinearColor const &amp;col)'],['../struct_vertex.html#accca099e25d81843d047dde8e8739a37',1,'Vertex::Vertex(float x, float y, float z, LinearColor color)'],['../struct_vertex.html#a2c558c054a0a2c970588c063073803a0',1,'Vertex::Vertex(float x, float y, float z)'],['../_mesh_8cpp.html#ad284a88cee8e17b46e75f01a6f0dd364ab22b929ba52471a02d18bb3a4e4472e6',1,'Vertex():&#160;Mesh.cpp']]],
-  ['vertex_2eh_10',['Vertex.h',['../_vertex_8h.html',1,'']]],
-  ['vertexbuffer_11',['vertexBuffer',['../struct_mesh.html#ab54c2cfe9999fc14df74b56a016d2a2b',1,'Mesh']]],
-  ['vertexcount_12',['vertexCount',['../struct_mesh.html#ab2c547a474958f58b13b865cf46d89f9',1,'Mesh']]],
-  ['viewmatrix_13',['viewMatrix',['../class_camera_component.html#a0fb745e162ef4a3bb1918c6f63e4e8e6',1,'CameraComponent']]]
+  ['uint_0',['UInt',['../_engine_types_8h.html#a41d1981d66e7a999bfaa842ba00885bd',1,'EngineTypes.h']]],
+  ['uint16_1',['UInt16',['../_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d',1,'EngineTypes.h']]],
+  ['uint32_2',['UInt32',['../_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702',1,'EngineTypes.h']]],
+  ['uint64_3',['UInt64',['../_engine_types_8h.html#a81586a76c764e2556f67139907fa5440',1,'EngineTypes.h']]],
+  ['uint8_4',['UInt8',['../_engine_types_8h.html#ac82f32fb6f16dbdc32cb4076004e63c4',1,'EngineTypes.h']]],
+  ['uniqueptr_5',['UniquePtr',['../_engine_types_8h.html#a74b90b47b1100dfbcfdf6892a7b2e479',1,'EngineTypes.h']]],
+  ['unregistercamera_6',['unregisterCamera',['../class_camera_manager.html#a805dd220e61eeaeb0b4745e6f3cea7c1',1,'CameraManager']]],
+  ['up_7',['up',['../struct_vector3.html#a7e14f283aac43f6750210d015f7e6b86',1,'Vector3']]],
+  ['update_8',['update',['../class_mesh_component.html#a44977ec0336d6ef668413bf75fbe5a1f',1,'MeshComponent::update()'],['../class_scene_component.html#ab0b129c31a06c02337036c2b2be2b570',1,'SceneComponent::update()'],['../class_scene_object.html#aba8272571e82e5b7082e130f8825c681',1,'SceneObject::update()'],['../class_flying_character.html#a4fdbe25f18f6a875537039e6fb269c08',1,'FlyingCharacter::update()'],['../class_camera_component.html#ac2712b497f7422a2459305b9e163e5f5',1,'CameraComponent::update()'],['../interface_entry.html#a233ad9941c837e4e0171c1b31f3cdcfd',1,'Entry::update() const'],['../interface_entry.html#a4c8f3d25223906fa30dfb1ead5c1c1eb',1,'Entry::update()'],['../class_input_manager.html#a276a39deb98685ec57f98d9bb4cf6017',1,'InputManager::update()'],['../class_engine.html#ad2ff110d5a86c1cd60b541d65915ac48',1,'Engine::update()']]],
+  ['updatematrices_9',['updateMatrices',['../class_camera_component.html#a37b574c0c31ce11dc1de0e1ed5219760',1,'CameraComponent']]],
+  ['updateprojectionmatrix_10',['updateProjectionMatrix',['../class_camera_component.html#a55a8858d23476850ae9625ec8b8b0737',1,'CameraComponent']]],
+  ['updatescene_11',['updateScene',['../class_scene.html#afaf3b4820b1938a5f5d53b2f6c3ab74e',1,'Scene']]],
+  ['updateviewmatrix_12',['updateViewMatrix',['../class_camera_component.html#ac9363aa6b2f0a22471f5648598be9f4d',1,'CameraComponent']]],
+  ['upvector_13',['upVector',['../class_camera_component.html#a87cd237a0bbb9e250bb4ec6b23220e5f',1,'CameraComponent']]]
 ];
