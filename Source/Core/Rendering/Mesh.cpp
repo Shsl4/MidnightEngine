@@ -1,17 +1,16 @@
 #include <Rendering/Mesh.h>
+#include <Memory/String.h>
 #include <sstream>
 #include <fstream>
 
 Mesh::Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, std::string const &name) :
         vertexCount(vertices.getSize()), indexCount(numIndices), meshType(type), meshName(name) {
 
-    data = allocator.allocate<Vertex>(vertexCount);
-    indices = allocator.allocate<uint16_t>(indexCount);
+    data = vertexAllocator.alloc(vertexCount);
+    indices = indexAllocator.alloc(indexCount);
 
     for (uint16_t i = 0; i < indexCount; ++i) {
-
         indices[i] = (uint16_t) indexCount - 1 - i;
-
     }
 
     memcpy(data, vertices.begin(), vertexCount * sizeof(Vertex));
@@ -27,45 +26,10 @@ Mesh::~Mesh() {
     bgfx::destroy(vertexBuffer);
     bgfx::destroy(indexBuffer);
     bgfx::destroy(programHandle);
-    allocator.deallocate(data);
-    allocator.deallocate(indices);
+    vertexAllocator.release(data);
+    indexAllocator.release(indices);
 
 }
-
-struct String {
-
-public:
-
-    static Array<std::string> split(std::string str, const char separator) {
-
-        Array<std::string> arr;
-
-        size_t from = 0;
-        size_t to = 0;
-
-        const size_t size = str.size();
-
-        for (size_t i = 0; i < size; ++i) {
-
-            if (str[i] == separator) {
-                to = i;
-                arr += std::string(&str[from], &str[to]);
-                from = to + 1;
-            }
-
-
-        }
-
-        if (from == to + 1) {
-            to = size;
-            arr += std::string(&str[from], &str[to]);
-        }
-
-        return arr;
-
-    }
-
-};
 
 enum class OBJDataType {
 
@@ -79,7 +43,7 @@ enum class OBJDataType {
 
 };
 
-OBJDataType getDataType(std::string_view string) {
+OBJDataType getDataType(String const& string) {
 
     if (string == "#") {
         return OBJDataType::Comment;
@@ -106,15 +70,14 @@ OBJDataType getDataType(std::string_view string) {
 
 Mesh *MeshLoader::loadOBJ(std::string const &file) {
 
-    Array<Vector3> vertexPositions;
-    Array<Vector3> vertexNormals;
-    Array<Vector2> vertexTexCoords;
+    // Preallocate the arrays with large sizes to avoid many reallocations later.
+    auto vertexPositions = Array<Vector3>(10000);
+    auto vertexNormals = Array<Vector3>(10000);
+    auto vertexTexCoords = Array<Vector2>(5000);
 
-    Array<UInt16> vPosIndices;
-    Array<UInt16> vTexCoordIndices;
-    Array<UInt16> vNormalsIndices;
-
-    Array<Vertex> vertices;
+    auto vPosIndices = Array<UInt16>(5000);
+    auto vTexCoordIndices = Array<UInt16>(5000);
+    auto vNormalsIndices = Array<UInt16>(5000);
 
     auto fstream = std::fstream("Resources/Models/" + file);
 
@@ -127,30 +90,35 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
 
         std::getline(fstream, currentLine);
 
-        if (currentLine.empty()) {continue;}
+        if (currentLine.empty()) { continue; }
 
-        Array<std::string> elements = String::split(currentLine, ' ');
+        String line = currentLine;
+        Array<String> elements = line.split(' ');
         OBJDataType dataType = getDataType(elements[0]);
-
+    
+        double x = elements.getSize() > 1 ? elements[1].toDouble() : 0.0;
+        double y = elements.getSize() > 2 ? elements[2].toDouble() : 0.0;
+        double z = elements.getSize() > 3 ? elements[3].toDouble() : 0.0;
+        
         switch (dataType) {
 
             case OBJDataType::Vertex: {
 
-                vertexPositions += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
+                vertexPositions += Vector3(x, y, z);
                 break;
 
             }
 
             case OBJDataType::Normal: {
 
-                vertexNormals += Vector3(std::stof(elements[1]), std::stof(elements[2]), std::stof(elements[3]));
+                vertexNormals += Vector3(x, y, z);
                 break;
 
             }
 
             case OBJDataType::TexCoordinate: {
 
-                vertexTexCoords += Vector2(std::stof(elements[1]), std::stof(elements[2]));
+                vertexTexCoords += Vector2(x, y);
                 break;
 
             }
@@ -161,11 +129,15 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
 
                 for (size_t i = 0; i < size - 1; ++i) {
 
-                    auto data = String::split(elements[i + 1], '/');
-                    vPosIndices += std::stoi(data[0]) - 1;
-                    vTexCoordIndices += data[1].empty() ? 0 : std::stoi(data[1]) - 1;
-                    vNormalsIndices += std::stoi(data[2]) - 1;
+                    auto data = elements[i + 1].split('/');
+                    
+                    UInt16 v0 = data[0].toInteger();
+                    UInt16 v1 = data[1].toInteger();
+                    UInt16 v2 = data[2].toInteger();
 
+                    vPosIndices += v0 - 1;
+                    vTexCoordIndices += data[1].isEmpty() ? 0 : v1 - 1;
+                    vNormalsIndices += v2 - 1;
                 }
 
                 break;
@@ -179,8 +151,7 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
 
     }
 
-    vertices.resize(vPosIndices.getSize());
-
+    auto vertices = Array<Vertex>(vPosIndices.getSize());
     size_t capacity = vertices.getCapacity();
 
     for (size_t i = 0; i < capacity; ++i) {
@@ -194,7 +165,7 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
 
     }
 
-    Mesh *mesh = instance->allocator.instantiate<Mesh>(vertices, vPosIndices.getSize(), MeshType::OBJ, objectName);
+    Mesh *mesh = instance->allocator.construct(vertices, vPosIndices.getSize(), MeshType::OBJ, objectName);
 
     instance->loadedMeshes += mesh;
 

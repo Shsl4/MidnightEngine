@@ -1,5 +1,17 @@
 #include <Math/Vector3.h>
 
+bool Vector3::operator==(Vector3 const &other) const{
+    
+    return (x == other.x) && (y == other.y) && (z == other.z);
+    
+}
+
+bool Vector3::operator< (Vector3 const &other) const{
+    
+    return norm() < other.norm();
+    
+}
+
 Vector3 Vector3::operator-(Vector3 const &other) const {
     return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
 }

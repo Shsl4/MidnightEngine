@@ -1,84 +1,188 @@
 #pragma once
 
-#include <stdlib.h>
+#include <Core/EngineTypes.h>
+#include <Core/Object.h>
 
 /*!
- * Object used to dynamically allocate memory. Allocators can allocate memory buffers,
- * deallocate and resize them as well as instantiate new objects.
+ *  An object allowing to manage memory for objects of type T.
+ *  The object is only one byte as it does not have any member variables.
+ *
+ *  \tparam T Type of object to manage
  */
-class Allocator {
+template<typename T>
+class Allocator : public Object {
 
 public:
 
-    Allocator() = default;
+    /*!
+     * The default constructor.
+     */
+    Allocator();
 
     /*!
-     * Resizes a memory buffer. If the input size is zero, the pointer is freed.
+     *  Constructs an object of type T.
      *
-     *  @tparam T The type of objects to hold in the buffer
-     *  @param[in] ptr The buffer to resize.
-     *  @param[in] count The number of objects to hold
-     *  @return The new buffer
+     *  \tparam Args A variadic template.
+     *  \param[in] args The arguments to pass to the constructor.
+     *  \return The newly constructed object.
      */
-    template<typename T>
-    T *resize(T *ptr, const size_t count) {
-
-        return static_cast<T *>(realloc(ptr, sizeof(T) * count));
-
-    }
+    template<typename ... Args>
+    T *construct(Args &&... args);
 
     /*!
-     * Duplicates the input object.
+     *  Allocates a buffer containing \p size number of objects of type T.
+     *  If T is a class, objects are constructed using the empty constructor.
      *
-     *  @tparam T The type to copy
-     *  @param[in] other The object to duplicate
-     *  @return The newly created object
+     *  \warning If T is a class, it must have a public empty constructor.
+     *
+     *  \param[in] size The size of the buffer.
+     *  \return The newly allocated buffer.
      */
-    template<typename T>
-    T *copy(T *&other) {
-        return new T(other);
-    }
+    T *alloc(size_t size);
 
     /*!
-     * Instantiates a nww object of class T using the arguments as constructor parameters.
+     *  Destroys a single object allocated with construct.
      *
-     *  @tparam T The type of object to instantiate
-     *  @tparam Args A variadic arguments template
-     *  @param[in] args The arguments to pass to the constructor
-     *  @return The newly created object.
+     *  \param[in,out] pointer The object to release
      */
-    template<class T, class... Args>
-    T *instantiate(Args &&... args) {
-        return new T(std::forward<Args>(args)...);
-    }
+    void destroy(T *&pointer);
 
     /*!
-     * Allocates a new memory buffer WITHOUT constructing objects.
+     *  Destroys a single object allocated with construct.
      *
-     *  @tparam T The type of object to hold
-     *  @param[in] count The number of objects to hold
-     *  @return The allocated memory buffer.
+     *  \tparam U The type of object to destroy.
+     *  \param[in,out] pointer The object to release
      */
-    template<typename T>
-    T *allocate(size_t count) const {
-
-        return static_cast<T *>(operator new(sizeof(T) * count));
-
-    }
+    template<typename U>
+    void autoDestroy(U *&pointer);
+    
+    /*!
+     *  Releases a buffer allocated with allocate.
+     *
+     *  \param[in,out] pointer The buffer to release.
+     */
+    void release(T *&pointer);
 
     /*!
-     *  Deallocates the input buffer and sets the reference to nullptr.
+     *  Extends or shrinks a memory buffer.
      *
-     *  @tparam T The type of object to deallocate
-     *  @param[in] pointer The memory to deallocate
+     *  \param[in,out] pointer The buffer to reallocate.
+     *  \param[in] oldSize The old size of the buffer.
+     *  \param[in] size The new size of the buffer.
      */
-    template<typename T>
-    void deallocate(T *&pointer) {
+    void realloc(T *&pointer, size_t oldSize, size_t size);
 
-        if (!pointer) return;
-        delete pointer;
-        pointer = nullptr;
+    /*!
+     * The Allocator destructor. It only serves debugging purposes.
+     */
+    ~Allocator();
 
-    }
+    /*!
+     *  Moves memory forwards or backwards automatically.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where move the data.
+     */
+    void move(T *from, T *to, T *dest);
+
+    /*!
+     *  Copies memory forwards or backwards automatically.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where copy the data.
+     */
+    void copy(const T *from, const T *to, T *dest);
+
+    /*!
+     * Swaps the contents of the two pointers by moving (no copying).
+     */
+    void swapMove(T *a, T *b);
+
+private:
+
+    /*!
+     *  Moves memory forward.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where move the data.
+     */
+    FORCEINLINE void moveForward(T *from, T *to, T *dest);
+
+    /*!
+     *  Moves memory backwards.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where move the data.
+     */
+    FORCEINLINE void moveBack(T *from, T *to, T *dest);
+
+    /*!
+     *  Copies memory forwards.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where copy the data.
+     */
+    FORCEINLINE void copyForward(const T *from, const T *to, T *dest);
+
+    /*!
+     *  Copies memory backwards.
+     *
+     *  \param[in] from Where to start reading data
+     *  \param[in] to Where to stop reading data
+     *  \param[out] dest Where copy the data.
+     */
+    FORCEINLINE void copyBack(const T *from, const T *to, T *dest);
 
 };
+
+#ifdef DEBUG
+
+#include <Logging/Logger.h>
+
+namespace DebugAlloc {
+
+    struct AllocInfo {
+
+        int64_t ratio() const{
+            return allocCount - releaseCount;
+        }
+
+        uint32_t constructCount = 0;
+        uint32_t allocCount = 0;
+        uint32_t releaseCount = 0;
+        uint32_t reallocCount = 0;
+
+    };
+
+    const static inline Logger allocLogger = Logger("DebugAlloc");
+    static inline AllocInfo info = AllocInfo();
+
+    static void stat(){
+
+        if (info.ratio() && (info.constructCount == 0)) {
+
+            allocLogger.warning("Unbalanced allocator ratio! {} objects may have been leaked.");
+        
+        }
+
+        allocLogger.debug("Total allocs: {}", info.allocCount);
+        allocLogger.debug("Total releases: {}", info.releaseCount);
+        allocLogger.debug("Total reallocs: {}", info.reallocCount);
+        allocLogger.debug("Total instances left: {}", info.constructCount);
+
+    }
+
+}
+
+#endif
+
+#define __ALLOC_INCL
+
+#include <Memory/Allocator.inl>
+
+#undef __ALLOC_INCL

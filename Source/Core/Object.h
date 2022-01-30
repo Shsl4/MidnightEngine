@@ -15,7 +15,7 @@ public:
     /*!
      * Returns the name of the class.
      *
-     *  @return The name of the class.
+     *  \return The name of the class.
      */
     const char *getClassName() const {
 
@@ -26,7 +26,7 @@ public:
     /*!
      * Returns a debug description of the object.
      *
-     *  @return The object description
+     *  \return The object description
      *
      */
     virtual const char *getDescription() const {
@@ -48,7 +48,7 @@ public:
     /*!
      * Checks whether this object inherits T.
      *
-     *  @return Whether this object inherits T
+     *  \return Whether this object inherits T
      */
     template<class T>
     bool instanceOf() {

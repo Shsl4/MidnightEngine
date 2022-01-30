@@ -23,21 +23,23 @@ public:
     /*!
      *  Instantiates a new SceneObject in the scene
      *
-     *  @tparam T The SceneObject class to instantiate
-     *  @tparam Args A variadic arguments template type
-     *  @param[in] transform The world Transform of the SceneObject
-     *  @param[in] args The arguments to pass to the SceneObject's constructor
-     *  @return The newly created SceneObject
+     *  \tparam T The SceneObject class to instantiate
+     *  \tparam Args A variadic template type
+     *  \param[in] transform The world Transform of the SceneObject
+     *  \param[in] args The arguments to pass to the SceneObject's constructor
+     *  \return The newly created SceneObject
      *
      */
     template<class T, typename ... Args>
     T *createObject(Transform const &transform, Args &&... args) {
+        
+        Allocator<T> allocator;
 
         // Check if the class we are trying to instantiate is a SceneObject.
         static_assert(std::is_base_of_v<SceneObject, T>, "T should inherit from SceneComponent");
 
         // Instantiate the SceneObject
-        T *object = allocator.instantiate<T>(args...);
+        T *object = allocator.construct(args...);
         
         // Create the components
         object->createComponents(this, transform);
@@ -45,7 +47,7 @@ public:
         // If the SceneObject did not setup a root component, destroy it.
         if (!object->rootComponent) {
 
-            allocator.deallocate(object);
+            allocator.destroy(object);
             
             logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
             
@@ -65,11 +67,11 @@ public:
     /*!
      *  Instantiates a new SceneComponent in the scene
      *
-     *  @tparam T The SceneComponent class to instantiate
-     *  @tparam Args A variadic arguments template type
-     *  @param[in] relativeTransform The relative Transform of the SceneComponent
-     *  @param[in] args The arguments to pass to the SceneComponent's constructor
-     *  @return The newly created SceneComponent
+     *  \tparam T The SceneComponent class to instantiate
+     *  \tparam Args A variadic template type
+     *  \param[in] relativeTransform The relative Transform of the SceneComponent
+     *  \param[in] args The arguments to pass to the SceneComponent's constructor
+     *  \return The newly created SceneComponent
      *
      */
     template<class T, typename ... Args>
@@ -77,9 +79,11 @@ public:
 
         // Check if the class we are trying to instantiate is a SceneComponent.
         static_assert(std::is_base_of_v<SceneComponent, T>, "T should inherit from SceneComponent");
+        
+        Allocator<T> allocator;
 
         // Instantiate the SceneComponent
-        T *component = allocator.instantiate<T>(args...);
+        T *component = allocator.construct(args...);
         component->construct(relativeTransform);
         
         // Mark it as registered (bad, will probably be changed later)
@@ -101,15 +105,15 @@ public:
     /*!
      * Destroys a SceneComponent from the Scene.
      *
-     *  @param[in] component The component to destroy
-     *  @return Whether the component was destroyed
+     *  \param[in] component The component to destroy
+     *  \return Whether the component was destroyed
      */
     bool destroyComponent(SceneComponent *component);
 
     /*!
      * Gets this Scene's CameraManager.
      *
-     *  @return The Scene CameraManager.
+     *  \return The Scene CameraManager.
      */
     FORCEINLINE CameraManager *getCameraManager() const {
         return this->cameraManager.get();
@@ -127,14 +131,14 @@ private:
     /*!
      *  Updates every object on the scene.
      *
-     *  @param[in] deltaTime The engine delta time
+     *  \param[in] deltaTime The engine delta time
      */
     void updateScene(float deltaTime) const;
 
     /*!
      * Allows a newly created SceneObject to bind input events.
      *
-     *  @param[in] object The target SceneObject
+     *  \param[in] object The target SceneObject
      */
     void setupInput(SceneObject *object);
 
@@ -159,10 +163,5 @@ private:
      * The scene's Logger.
      */
     UniquePtr<Logger> logger;
-
-    /*!
-     * The allocator used to allocate new objects.
-     */
-    Allocator allocator = Allocator();
 
 };

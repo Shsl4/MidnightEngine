@@ -4,7 +4,7 @@ cmake_policy(SET CMP0091 NEW)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_Swift_LANGUAGE_VERSION, 5.0)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
@@ -18,10 +18,11 @@ foreach(MODULE ${MODULES})
 
 endforeach()
 
-add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
+filterEngineSources("${ENGINE_INLINE}")
 filterEngineSources("${ENGINE_RESOURCES}")
 filterThirdPartySources("${THIRD_PARTY_SOURCES}")
 filterThirdPartySources("${THIRD_PARTY_HEADERS}")

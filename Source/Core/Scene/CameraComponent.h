@@ -21,9 +21,9 @@ public:
     /*!
      * A CameraComponent constructor with multiple parameters.
      *
-     *  @param[in] fieldOfView The camera field of view.
-     *  @param[in] aspectRatio The camera aspect ratio.
-     *  @param[in] renderDistance The camera render distance.
+     *  \param[in] fieldOfView The camera field of view.
+     *  \param[in] aspectRatio The camera aspect ratio.
+     *  \param[in] renderDistance The camera render distance.
      */
     CameraComponent(float fieldOfView, float aspectRatio, float renderDistance);
 
@@ -36,52 +36,52 @@ public:
     /*!
      * Sets the field of view (in degrees) of the camera.
      *
-     *  @param[in] fov The new field of view
+     *  \param[in] fov The new field of view
      */
     void setFieldOfView(float fov);
 
     /*!
      * Sets aspect ratio of the camera.
      *
-     *  @param[in] ratio The new aspect ratio
+     *  \param[in] ratio The new aspect ratio
      */
     void setAspectRatio(float ratio);
 
     /*!
      * Sets the render distance of the camera in units
      *
-     *  @param[in] distance The maximal render distance
+     *  \param[in] distance The maximal render distance
      */
     void setRenderDistance(float distance);
 
     /*!
      * Adds yaw (horizontal) input to the camera.
      *
-     *  @param[in] yaw The rotation to add to the camera (in degrees)
+     *  \param[in] yaw The rotation to add to the camera (in degrees)
      */
     void addCameraYawInput(float yaw);
 
     /*!
      * Adds pitch (vertical) input to the camera.
      *
-     *  @param[in] pitch The rotation to add to the camera (in degrees)
+     *  \param[in] pitch The rotation to add to the camera (in degrees)
      */
     void addCameraPitchInput(float pitch);
 
     /*!
-     *  @deprecated
+     *  \deprecated
      *  Translates the camera in space. This shouldn't be implemented here and will be removed later.
      *
-     *  @param[in] direction The direction to translate to
-     *  @param[in] scale The translation power
-     *  @param[in] deltaTime The time between the previous tick
+     *  \param[in] direction The direction to translate to
+     *  \param[in] scale The translation power
+     *  \param[in] deltaTime The time between the previous tick
      */
     void addMovementInput(Vector3 direction, float scale, float deltaTime);
 
     /*!
      * Returns the field of view of the camera
      *
-     * @return The field of view of the CameraComponent
+     * \return The field of view of the CameraComponent
      */
     FORCEINLINE float getFieldOfView() const {
         return this->fieldOfView;
@@ -90,7 +90,7 @@ public:
     /*!
      * Returns the aspect ratio of the camera
      *
-     * @return The aspect ratio of the CameraComponent
+     * \return The aspect ratio of the CameraComponent
      */
     FORCEINLINE float getAspectRatio() const {
         return this->aspectRatio;
@@ -99,7 +99,7 @@ public:
     /*!
      * Returns the render distance of the camera
      *
-     * @return The render distance of the CmaeraComponent
+     * \return The render distance of the CmaeraComponent
      */
     FORCEINLINE float getRenderDistance() const {
         return this->renderDistance;
@@ -108,7 +108,7 @@ public:
     /*!
      * Returns a copy of the camera's view matrix.
      *
-     * @return The camera view matrix
+     * \return The camera view matrix
      */
     FORCEINLINE Matrix4 getViewMatrix() const {
         return this->viewMatrix;
@@ -117,7 +117,7 @@ public:
     /*!
      * Returns a copy of the camera's projection matrix.
      *
-     * @return The camera projection matrix
+     * \return The camera projection matrix
      */
     FORCEINLINE Matrix4 getProjectionMatrix() const {
         return this->projectionMatrix;
@@ -126,7 +126,7 @@ public:
     /*!
      * Returns a copy of the camera's right vector.
      *
-     * @return The camera right vector
+     * \return The camera right vector
      */
     FORCEINLINE Vector3 getRightVector() const {
         return this->rightVector;
@@ -135,7 +135,7 @@ public:
     /*!
      * Returns a copy of the camera's up vector.
      *
-     * @return The camera up vector
+     * \return The camera up vector
      */
     FORCEINLINE Vector3 getUpVector() const {
         return this->upVector;
@@ -144,7 +144,7 @@ public:
     /*!
      * Returns a copy of the camera's forward vector.
      *
-     * @return The camera forward vector
+     * \return The camera forward vector
      */
     FORCEINLINE Vector3 getForwardVector() const {
         return this->forwardVector;

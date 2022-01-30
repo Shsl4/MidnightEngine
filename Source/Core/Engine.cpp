@@ -8,6 +8,7 @@
 #include <UI/PerformanceWindow.h>
 #include <UI/CharacterInfoWindow.h>
 #include <Rendering/Mesh.h>
+#include <Memory/String.h>
 
 #include <bx/timer.h>
 #include <bx/commandline.h>
@@ -33,12 +34,10 @@ Engine::Engine(PlatformData data) : platformData(data) {
     this->activeScene = std::make_unique<Scene>();
     this->startTime = bx::getHPCounter();
 
-    
-    
 }
 
 Engine::~Engine() {
-
+    
     // Release resources.
     cleanup();
 
@@ -46,6 +45,14 @@ Engine::~Engine() {
 
 int Engine::init(int argc, const char **argv) {
 
+    Array<Vector3> arr;
+    String str;
+    
+    String str1 = arr.getClassName();
+    String str2 = str.getClassName();
+
+    logger->info("Array<Vector3>: {}, String: {}", str1.toCString(), str2.toCString());
+    
     logger->info("Initializing MidnightEngine...");
 
     // Initialize BGFX.
@@ -83,7 +90,7 @@ int Engine::init(int argc, const char **argv) {
     
     // As everything went fine, print an info message.
     logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
-
+    
     running = true;
 
     // Starts our render loop.

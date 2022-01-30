@@ -75,6 +75,10 @@ public:
         this->a = Math::clamp(alpha, 0.0f, 1.0f);
     }
 
+    bool operator==(LinearColor const& other) const{
+        return (r == other.r) && (g == other.g) && (b == other.b) && (a == other.a);
+    }
+    
 private:
 
     LinearColor() = default;

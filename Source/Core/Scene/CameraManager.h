@@ -15,7 +15,7 @@ public:
     /*!
      *  The CameraManager constructor.
      *
-     *  @param[in] owner The scene this CameraManager belongs to.
+     *  \param[in] owner The scene this CameraManager belongs to.
      */
     CameraManager(class Scene *owner);
     
@@ -27,7 +27,7 @@ public:
     /*!
      * Returns the camera currently used for rendering.
      *
-     *  @return The active camera
+     *  \return The active camera
      */
     FORCEINLINE CameraComponent *getActiveCamera() const {
         return activeCamera;
@@ -36,7 +36,7 @@ public:
     /*!
      * Returns the scene this CameraManager belongs to.
      *
-     *  @return The owning scene.
+     *  \return The owning scene.
      */
     FORCEINLINE const class Scene *getScene() {
         return this->scene;
@@ -45,22 +45,22 @@ public:
     /*!
      * Function called by the scene when a new CameraComponent is created. Do not call manually.
      *
-     * @param[in] camera The camera to register
+     * \param[in] camera The camera to register
      */
     void registerCamera(CameraComponent *camera);
 
     /*!
      * Function called by the scene when a CameraComponent is destroyed. Do not call manually.
      *
-     *  @param[in] camera The camera to unregister
+     *  \param[in] camera The camera to unregister
      */
     void unregisterCamera(CameraComponent *camera);
 
     /*!
      * Uses the input camera for rendering.
      *
-     *  @param[in] camera The camera to use.
-     *  @return Whether the camera is being used.
+     *  \param[in] camera The camera to use.
+     *  \return Whether the camera is being used.
      */
     bool setActiveCamera(CameraComponent *camera);
 

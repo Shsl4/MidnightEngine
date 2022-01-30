@@ -1,3 +1,4 @@
+#import <Memory/Allocator.h>
 #import <Core/Engine.h>
 #import <Platform/macOS/Entry.h>
 
@@ -45,7 +46,7 @@
 
     bgfx::renderFrame();
 
-    /// @todo Implement a correct multi-threaded paradigm
+    /// \todo Implement a correct multi-threaded paradigm
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
         [self initEngine:data];
@@ -97,10 +98,10 @@
 
 int main(int argc, const char **argv) {
     
-    //@autoreleasepool{
-        [[[Entry alloc] init] entry:argc argv:argv];
-    //}
-
+    Entry* entry = [[Entry alloc] init];
+    [entry entry:argc argv:argv];
+    [entry release];
+        
     return 0;
 
 }

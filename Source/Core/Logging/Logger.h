@@ -13,7 +13,7 @@ public:
     /*!
      * The default logger constructor. Initializes the id.
      *
-     * @param[in] id The Logger identifier.
+     * \param[in] id The Logger identifier.
      */
     explicit Logger(const std::string id) : id(id) {
     }
@@ -21,8 +21,8 @@ public:
     /*!
      *  Logs a debug message.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void debug(std::string format, Args &&... args) const {
@@ -32,8 +32,8 @@ public:
     /*!
      *  Logs an info message.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void info(std::string format, Args &&... args) const {
@@ -43,8 +43,8 @@ public:
     /*!
      *  Logs a success message.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void success(std::string format, Args &&... args) const {
@@ -54,8 +54,8 @@ public:
     /*!
      *  Logs a warning message.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void warning(std::string format, Args &&... args) const {
@@ -65,8 +65,8 @@ public:
     /*!
      *  Logs an error message.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void error(std::string format, Args &&... args) const {
@@ -76,8 +76,8 @@ public:
     /*!
      *  Logs a fatal error message and stops the program.
      *
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void fatal(std::string format, Args &&... args) const {
@@ -88,9 +88,9 @@ public:
     /*!
      *  An assertion function. If the input condition is not met, the message is printed and a fatal error is thrown.
      *
-     *  @param[in] condition The condition to check
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] condition The condition to check
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     static void check(bool condition, std::string format, Args &&... args) {
@@ -104,7 +104,7 @@ public:
     /*!
      *  Returns the logger's identifier.
      *
-     *  @return The Logger id.
+     *  \return The Logger id.
      */
     std::string getId() const {
         return this->id;
@@ -115,20 +115,20 @@ private:
     /*!
      * Logs a message to the console.
      *
-     *  @param[in] color The text color
-     *  @param[in] type The log category to display
-     *  @param[in] format The format string
-     *  @param[in] args The variable arguments for the format string
+     *  \param[in] color The text color
+     *  \param[in] type The log category to display
+     *  \param[in] format The format string
+     *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
     void log(const fmt::text_style color, std::string const &type, std::string const &format, Args &&...args) const {
 
         // Format the string.
-        const fmt::basic_format_args<fmt::format_context> formatArgs = fmt::make_format_args(args...);
-        const std::string formatted = vformat(format, formatArgs) + '\n';
+        const auto formatArgs = fmt::make_format_args(args...);
+        const std::string formatted = vformat(format, formatArgs);
         
         // Print the formatted string.
-        print(color, "[{}] ({}) | {}", type, this->getId(), formatted);
+        print(color, "[{}] ({}) | {}\n", type, this->getId(), formatted);
 
     }
 

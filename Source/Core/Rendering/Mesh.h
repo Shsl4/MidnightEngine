@@ -14,6 +14,9 @@ enum class MeshType {
 
 };
 
+/*!
+ * A structure representing a mesh. 
+ */
 struct Mesh {
 
     Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, std::string const &name);
@@ -48,10 +51,17 @@ struct Mesh {
     MeshType meshType;
     std::string meshName;
 
-    inline static Allocator allocator = Allocator();
+    inline static Allocator<Vertex> vertexAllocator = Allocator<Vertex>();
+    inline static Allocator<UInt16> indexAllocator = Allocator<UInt16>();
 
 };
 
+/*!
+ *  A utility class allowing to load OBJ models.
+ *
+ *  \todo Make the class nonstatic, make it load all models in the resource folder
+ *  on startup and make them available through public functions.
+ */
 class MeshLoader {
 
 public:
@@ -68,6 +78,6 @@ private:
     static inline MeshLoader *instance = nullptr;
 
     AutoReleaseArray<Mesh *> loadedMeshes;
-    Allocator allocator = Allocator();
+    Allocator<Mesh> allocator = Allocator<Mesh>();
 
 };

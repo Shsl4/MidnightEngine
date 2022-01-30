@@ -42,7 +42,7 @@ void CameraManager::unregisterCamera(CameraComponent *camera) {
     if(!camera) { return; }
     
     // Remove the camera from the registered camera array.
-    this->cameras.remove(camera);
+    this->cameras.removeFirstOf(camera);
 
     // If no more cameras are present in the scene.
     if (cameras.getSize() == 0) {

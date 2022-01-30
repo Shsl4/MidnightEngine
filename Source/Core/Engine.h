@@ -16,7 +16,7 @@ public:
     /*!
      * The engine constructor. Initializes engine resources.
      *
-     * @param[in] data The platform data.
+     * \param[in] data The platform data.
      */
     explicit Engine(PlatformData data);
 
@@ -28,9 +28,9 @@ public:
     /*!
      *  The engine's initialization function. It is called after the constructor.
      *
-     *  @param[in] argc The console argument count.
-     *  @param[in] argv The console arguments.
-     *  @return The engine exit code.
+     *  \param[in] argc The console argument count.
+     *  \param[in] argv The console arguments.
+     *  \return The engine exit code.
      */
     int init(int argc, const char **argv);
 
@@ -52,21 +52,21 @@ public:
     /*!
      * Returns a nicely formatted string containing the current renderer name.
      *
-     *  @return The renderer name.
+     *  \return The renderer name.
      */
     std::string getNiceRendererName() const;
 
     /*!
      * Returns a nicely formatted string containing the current GPU name.
      *
-     *  @return The GPU name.
+     *  \return The GPU name.
      */
     std::string getNiceGPUName() const;
 
     /*!
      * Returns the unique engine instance.
      *
-     *  @return The engine instance.
+     *  \return The engine instance.
      */
     FORCEINLINE static Engine *getInstance() {
         return instance;
@@ -75,7 +75,7 @@ public:
     /*!
      * Returns the platform data.
      *
-     *  @return The platform data.
+     *  \return The platform data.
      */
     FORCEINLINE const PlatformData getPlatformData() const {
         return platformData;
@@ -85,7 +85,7 @@ public:
     /*!
      * Checks whether the engine is running.
      *
-     *  @return Whether the engine is running.
+     *  \return Whether the engine is running.
      */
     FORCEINLINE bool isRunning() const {
         return this->running;
@@ -94,7 +94,7 @@ public:
     /*!
      * Returns the engine main thread delta time.
      *
-     * @return The engine delta time.
+     * \return The engine delta time.
      */
     FORCEINLINE double getDeltaTime() const {
         return this->deltaTime;
@@ -103,7 +103,7 @@ public:
     /*!
      * Returns the time (in seconds) elapsed since the engine was started.
      *
-     *  @return The engine time in seconds.
+     *  \return The engine time in seconds.
      */
     FORCEINLINE double getTime() const {
         return time;
@@ -112,7 +112,7 @@ public:
     /*!
      * Returns the currently loaded engine scene.
      *
-     * @return The active scene.
+     * \return The active scene.
      */
     FORCEINLINE const class Scene *getActiveScene() const {
         return activeScene.get();
@@ -121,7 +121,7 @@ public:
     /*!
      * Returns the engine InputManager instance.
      *
-     * @return The engine InputManager.
+     * \return The engine InputManager.
      */
     FORCEINLINE class InputManager *getInputManager() const {
         return inputManager.get();
@@ -192,14 +192,14 @@ private:
     /*!
      * The displayed PerformanceWindow.
      *
-     * @deprecated Used for debugging purposes, will be removed later.
+     * \deprecated Used for debugging purposes, will be removed later.
      */
     UniquePtr<class PerformanceWindow> perfWindow;
     
     /*!
      * The displayed CharacterWindow.
      *
-     * @deprecated Used for debugging purposes, will be removed later.
+     * \deprecated Used for debugging purposes, will be removed later.
      */
     UniquePtr<class CharacterInfoWindow> characterWindow;
     

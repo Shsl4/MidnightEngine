@@ -18,6 +18,10 @@ struct Vector3 {
 
     }
 
+    bool operator==(Vector3 const &other) const;
+    
+    bool operator< (Vector3 const &other) const;
+
     Vector3 operator-(Vector3 const &other) const;
 
     Vector3 operator+(Vector3 const &other) const;
@@ -42,11 +46,7 @@ struct Vector3 {
 
     FORCEINLINE void normalize() {
 
-        const float norm = this->norm();
-
-        if (norm == 0.0f) {return;}
-
-        *this /= norm;
+        *this *= Math::fastInvSqrt((x * x) + (y * y) + (z * z));
 
     }
 

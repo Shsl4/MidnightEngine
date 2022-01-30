@@ -33,30 +33,30 @@ public:
      * Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate).
      * It is called from the parent SceneObject.
      *
-     *  @param[in] deltaTime The engine tick delta time
+     *  \param[in] deltaTime The engine tick delta time
      */
     virtual void update(float deltaTime);
 
     /*!
      * Construct is called right after the scene created this component.
      *
-     * @param[in] relativeTransform The relative transform of the component.
+     * \param[in] relativeTransform The relative transform of the component.
      */
     virtual void construct(Transform const &relativeTransform);
 
     /*!
      * Attaches this component to a SceneObject. This component will be automatically detached from its parent if it has any.
      *
-     *  @param[in] object The SceneObject to attach to.
-     *  @return Whether the operation succeeded.
+     *  \param[in] object The SceneObject to attach to.
+     *  \return Whether the operation succeeded.
      */
     bool attachTo(class SceneObject *object);
 
     /*!
      * Attaches this component to another SceneComponent. This component will be automatically detached from its parent if it has any.
      *
-     *  @param[in] other The SceneComponent to attach to.
-     *  @return Whether the operation succeeded.
+     *  \param[in] other The SceneComponent to attach to.
+     *  \return Whether the operation succeeded.
      */
     bool attachTo(SceneComponent *other);
 
@@ -68,7 +68,7 @@ public:
     /*!
      * Checks whether this component has been correctly registered / created
      *
-     *  @return Whether the component is valid
+     *  \return Whether the component is valid
      */
     FORCEINLINE bool isValid() const {
         return registered;
@@ -77,7 +77,7 @@ public:
     /*!
      * Gets the component's position relative to the parent component.
      *
-     *  @return The component's relative position
+     *  \return The component's relative position
      */
     FORCEINLINE Vector3 getRelativePosition() const {
         return Vector3::zero;
@@ -86,7 +86,7 @@ public:
     /*!
      * Gets the component's rotation relative to the parent component.
      *
-     *  @return The component's relative rotation
+     *  \return The component's relative rotation
      */
     FORCEINLINE Vector3 getRelativeRotation() const {
         return Vector3::zero;
@@ -95,7 +95,7 @@ public:
     /*!
      * Gets the current component's scale relative to the parent component.
      *
-     *  @return The component's relative scale
+     *  \return The component's relative scale
      */
     FORCEINLINE Vector3 getRelativeScale() const {
         return Vector3::zero;
@@ -104,7 +104,7 @@ public:
     /*!
      * Gets the component's transform relative to the parent component.
      *
-     *  @return The component's relative rotation
+     *  \return The component's relative rotation
      */
     FORCEINLINE Transform getRelativeTransform() const {
         return Transform();
@@ -113,7 +113,7 @@ public:
     /*!
      * Gets the component's position in world space.
      *
-     *  @return The component's world position
+     *  \return The component's world position
      */
     FORCEINLINE Vector3 getWorldPosition() {
         return this->transform.position;
@@ -122,7 +122,7 @@ public:
     /*!
      * Gets the component's rotation in world space.
      *
-     *  @return The component's world rotation
+     *  \return The component's world rotation
      */
     FORCEINLINE Vector3 getWorldRotation() {
         return this->transform.rotation;
@@ -131,7 +131,7 @@ public:
     /*!
      * Gets the component's scale in world space.
      *
-     *  @return The component's world scale
+     *  \return The component's world scale
      */
     FORCEINLINE Vector3 getWorldScale() {
         return this->transform.scale;
@@ -140,7 +140,7 @@ public:
     /*!
      * Gets the component's transform in world space.
      *
-     *  @return The component's world transform
+     *  \return The component's world transform
      */
     FORCEINLINE Transform getWorldTransform() const {
         return this->transform;
@@ -149,7 +149,7 @@ public:
     /*!
      * Returns the SceneObject this SceneComponent is attached to. (if any)
      *
-     * @return The parent object
+     * \return The parent object
      */
     FORCEINLINE class SceneObject *getParentObject() {
         return this->parentObject;
@@ -158,7 +158,7 @@ public:
     /*!
      * Returns the component this SceneComponent is attached to. (if any)
      *
-     * @return The parent component
+     * \return The parent component
      */
     FORCEINLINE SceneComponent *getParentComponent() {
         return this->parentComponent;
@@ -167,7 +167,7 @@ public:
     /*!
      * Returns the components attached to this SceneComponent.
      *
-     * @return The parent component
+     * \return The parent component
      */
     FORCEINLINE Array<SceneComponent *> getChildComponents() const {
         return this->childComponents;
@@ -176,7 +176,7 @@ public:
     /*!
      * Checks whether this component is not attached to any other.
      *
-     *  @return Whether is component is a root component.
+     *  \return Whether is component is a root component.
      */
     FORCEINLINE bool isRootComponent() const {
         return !parentComponent;

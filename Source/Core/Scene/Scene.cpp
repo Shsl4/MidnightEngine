@@ -58,6 +58,6 @@ bool Scene::destroyComponent(SceneComponent *component){
 
     }
 
-    return registeredComponents.remove(component);
+    return registeredComponents.removeFirstOf(component);
     
 }

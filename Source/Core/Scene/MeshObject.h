@@ -13,7 +13,7 @@ public:
     /*!
      * The MeshObject constructor.
      *
-     *  @param[in] meshName The file name of the mesh to load. (In the Resources/Models folder)
+     *  \param[in] meshName The file name of the mesh to load. (In the Resources/Models folder)
      */
     MeshObject(std::string const &meshName);
 

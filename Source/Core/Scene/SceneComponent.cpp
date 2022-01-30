@@ -82,7 +82,7 @@ void SceneComponent::detachFromComponent() {
     }
 
     // Detach and set the variables to nullptr.
-    parentComponent->childComponents.remove(this);
+    parentComponent->childComponents.removeFirstOf(this);
     parentObject->onComponentDetached(this);
     parentComponent = nullptr;
     parentObject = nullptr;

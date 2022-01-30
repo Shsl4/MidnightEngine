@@ -1,394 +1,380 @@
 #pragma once
 
-#include <Core/EngineTypes.h>
+#include <Core/Object.h>
 #include <Memory/Allocator.h>
-#include <type_traits>
+#include <Utilities/Optional.h>
 
 /*!
- * A mutable array object that supports adding, inserting and removing objects.
+ *  A safe mutable array object that supports adding, inserting, removing, sorting and other utility functions.
  *
- * @tparam T The type of object to store
+ *  \tparam T The type of element to store
+ *  \warning T MUST implement an equality and lower-than operator.
  */
 template<typename T>
-struct Array {
+class Array : public Object {
+
+public:
 
     /*!
-     * The default array constructor. Holds 10 object by default.
+     *  The default array constructor.
      */
-    explicit Array(size_t capacity = 10) : capacity(capacity) {
-
-        // Allocate our data.
-        this->data = allocator.allocate<T>(capacity);
-
-        // Fill our buffer with zeroes.
-        memset(data, 0, capacity * sizeof(T));
-
-    }
+    Array() = default;
 
     /*!
-     * The Array copy constructor.
+     *  Constructs an array with a specific preallocated capacity.
      *
-     * @param[in] other The array to copy
+     *  \param[in] capacity The number of elements to allocate
      */
-    Array(const Array<T> &other) {
+    explicit Array(size_t capacity);
 
-        // Copy the variables.
-        this->count = other.count;
-        this->capacity = other.capacity;
-        
-        // Allocate our data.
-        this->data = allocator.allocate<T>(capacity);
-        
-        // Copy the data from the other array into this array.
-        memcpy(this->data, other.data, this->count * sizeof(T));
+    /*!
+     *  The Array copy constructor.
+     *
+     *  \param[in] other The array to copy
+     */
+    Array(Array<T> const &other);
+    
+    /*!
+     *  The Array copy constructor with a size limit.
+     *
+     *  \param[in] other The array to copy
+     *  \param[in] limit The max number of elements to copy.
+     */
+    Array(Array<T> const &other, size_t limit);
 
-    }
+    /*!
+     *  The Array move constructor.
+     *
+     *  \param[in] other The array to move
+     */
+    Array(Array<T> &&other);
 
     /*!
      * The Array destructor. It releases the allocated resources.
      */
-    virtual ~Array() {
-
-        count = 0;
-        capacity = 0;
-        allocator.deallocate(data);
-
-    }
+    ~Array();
 
     /*!
-     * Adds an element to the end of the array.
+     *  Adds an element to the end of the array.
      *
-     *  @tparam S The type of object to append
-     *  @param[in] other The element to add
+     *  \param[in] elem The element to add
     */
-    template<typename S>
-    void append(S const &other) {
-
-        // Extend the array if necessary.
-        extend();
-        
-        // Store the new element.
-        this->data[count] = S(other);
-
-        // Increase the number of held objects.
-        ++count;
-
-    }
+    virtual void append(T const &elem);
 
     /*!
-     * Removes the input object from the array if it contains it.
+     *  Adds the content of the input array to the end of this array.
      *
-     *  @tparam S The type of object to remove
-     *  @param[in] other The object to remove
-     *  @return Whether the object was removed
+     *  \param[in] arr The element to add
+    */
+    virtual void append(Array<T> const &arr);
+
+    /*!
+     *  Removes the element at the index.
      *
-     *  @warning If T is a pointer type, removing an element from the array does not release it.
+     *  \param[in] index The index of the element to remove
+     *  \return An optional value containing the element if it was removed.
+     *
+     *  \warning If T is a pointer type, removing an element from the array does not release it.
+    */
+    virtual Optional<T> removeAt(size_t index);
+
+    /*!
+     *  Removes the first instance of the input element in the array.
+     *
+     *  \param[in] elem The element to check
+     *  \return Whether the element was removed.
      */
-    template<typename S>
-    bool remove(S const &other) {
+    virtual bool removeFirstOf(T const &elem);
 
-        // For each element in the array
-        for (size_t i = 0; i < count; ++i) {
+    /*!
+     *  Removes the last instance of the input element in the array.
+     *
+     *  \param[in] elem The element to check
+     *  \return Whether the element was removed.
+     */
+    virtual bool removeLastOf(T const &elem);
 
-            // If other was found if the array
-            if (other == data[i]) {
+    /*!
+     *  Removes all instances of the element in the array.
+     *
+     *  \param[in] elem The element to remove
+     */
+    virtual void removeAllOf(T const &elem);
 
-                // Move back all the elements after
-                std::memmove(&data[i], &data[i + 1], (count - i) * sizeof(T));
+    /*!
+     *  Returns the first index of the input element
+     *
+     *  \param[in] elem The element to check
+     *  \return An optional value containing the index if it was found.
+     */
+    virtual Optional<size_t> firstIndexOf(T const &elem);
 
-                // Reduce the count.
-                --count;
-                
-                // Fill the last moved element with zeroes.
-                memset(&data[count], 0, sizeof(T));
-                return true;
+    /*!
+     *  Returns the last index of the input element
+     *
+     *  \param[in] elem The element to check
+     *  \return An optional value containing the index if it was found.
+     */
+    virtual Optional<size_t> lastIndexOf(T const &elem);
 
-            }
-
-        }
-
-        // The element wasn't found in the array
-        return false;
-
-    }
+    /*!
+     *  Returns an array containing the elements in range.
+     *
+     *  \param[in] from The index to start copying.
+     *  \param[in] to The index to stop copying.
+     *  \return An array containing every element within the range.
+     */
+    virtual Array<T> arrayWithRange(size_t from, size_t to);
     
     /*!
-     *  Removes the object located at the index and sets it to other if it is valid.
+     *  Returns an array containing the elements matching the input condition.
      *
-     *  @tparam S The type of object to remove
-     *  @param[in] index The index of the object to remove
-     *  @param[out] other The object to set
-     *  @return Whether the object was removed
-     *
-     *  @warning If T is a pointer type, removing an element from the array does not release it.
+     *  \param[in] condition The condition to check
+     *  \return An array containing all elements matching the condition.
      */
-    template<typename S>
-    bool remove(size_t index, S &other) {
-
-        // For each element in the array
-        if(index < count) {
-
-            other = std::move(data[index]);
-            
-            // Move back all the elements after
-            std::memmove(&data[index], &data[index + 1], (count - index) * sizeof(T));
-
-            // Reduce the count.
-            --count;
-            
-            // Fill the last moved element with zeroes.
-            memset(&data[count], 0, sizeof(T));
-            return true;
-
-        }
-
-        // The element wasn't found in the array
-        return false;
-
-    }
-    
-    template<typename S>
-    void insert(S const& other, size_t index){
-        
-        if(index >= count) {
-            append(other);
-            return;
-        }
-         
-        // Extend the array if necessary.
-        extend();
-        
-        // Move forward all the elements after the index
-        std::memmove(&data[index + 1], &data[index], (count - index) * sizeof(T));
-        
-        // Store the new element.
-        this->data[index] = S(other);
-
-        ++count;
-        
-    }
+    virtual Array<T> arrayMatching(std::function<bool(T const &)> condition);
 
     /*!
-     * Checks whether the array contains a specific object.
-     *
-     *  @tparam S The type of object to check
-     *  @param[in] other The object to check
-     *  @return Whether the array contains other
+     * Removes all the duplicate elements from the array keeping only the first existing instances.
      */
-    template<typename S>
-    bool contains(S const &other) const {
-
-        // For each element in the array
-        for (size_t i = 0; i < count; ++i) {
-
-            // If other was found
-            if (other == data[i]) {
-
-                return true;
-
-            }
-
-        }
-
-        // The element wasn't found in the array.
-        return false;
-
-    }
-    
-    /*!
-     * Checks whether the array contains a specific object and returns the index.
-     *
-     *  @tparam S The type of object to check
-     *  @param[in] other The object to check
-     *  @param[out] index The index of the element in the array.
-     *  @return Whether the array contains other
-     */
-    template<typename S>
-    bool contains(S const &other, size_t &index) const {
-
-        // For each element in the array
-        for (size_t i = 0; i < count; ++i) {
-
-            // If other was found
-            if (other == data[i]) {
-
-                // Set the index and return true.
-                index = i;
-                return true;
-
-            }
-
-        }
-
-        // The element wasn't found in the array.
-        return false;
-
-    }
+    virtual void removeDuplicates();
 
     /*!
-     * Clears the array.
-     *
-     *  @warning If the array contains pointers, clearing the array does not release them.
+     *  Sorts the array, lowest to highest, using the quicksort algorithm.
      */
-    virtual void clear() {
+    virtual void sortAscending();
 
-        // Fill the array with zeroes.
-        memset(data, 0, capacity * sizeof(T));
-        
-        // Empty the count.
-        this->count = 0;
+    /*!
+     *  Sorts the array, highest to lowest, using the quicksort algorithm.
+     */
+    virtual void sortDescending();
 
-    }
+    /*!
+     *  Checks whether the array contains the input element.
+     *
+     *  \param[in] elem The element to check.
+     *  \return Whether the array contains the element.
+     */
+    virtual bool contains(T const &elem);
+
+    /*!
+     *  Inserts an element at the input index.
+     *
+     *  \param[in] elem The element to insert
+     *  \param[in] index The position of the element to insert.
+     */
+    virtual void insert(T const &elem, size_t index);
+
+    /*!
+     *  Inserts the contents of an array at the input index.
+     *
+     *  \param[in] arr The array to insert
+     *  \param[in] index The position of the element to insert.
+     */
+    virtual void insert(Array<T> const &arr, size_t index);
+
+    /*!
+     * Resizes the array buffer to support a specific element count.
+     *
+     *  \param[in] newCap The number of elements the array can hold.
+     *  \warning Resizing the array can leak memory if T is a pointer type.
+     *
+     */
+    virtual void resize(size_t newCap);
 
     /*!
      * Shrinks the array buffer to the minimal size.
      */
-    virtual void shrink() {
-
-        // If the array can't be shrunk, return.
-        if (count == capacity) { return; }
-        
-        // Shrink the array to the number of elements contained.
-        this->data = allocator.resize(data, count);
-        this->capacity = count;
-
-    }
+    virtual void shrink();
 
     /*!
-     * Resizes the array buffer to support a specific object count.
+     *  Clears and releases the array.
      *
-     *  @param[in] size The number of objects the array can hold.
-     *  @warning Resizing the array can leak memory if T is a pointer type.
+     *  \warning If the array contains pointers, clearing the array does not release them.
+     */
+    virtual void clear();
+    
+    /*!
+     * Reverses the array.
+     */
+    virtual void reverse();
+
+    /*!
+     *  Returns the element at the input index if it exists
      *
+     *  \param[in] index The index of the element to get.
+     *  \return The element at the input index.
+     *  \throws An std::runtime_error if the index is out of bounds.
      */
-    virtual void resize(size_t size) {
-
-        // Resize the data buffer.
-        this->data = allocator.resize(data, size);
-        this->capacity = size;
-        if (count > size) { count = size; }
-
-    }
-
-    /*!
-     * Points to the beginning of the array buffer. This functions allows range based for-loops to be used, or to access the raw memory.
-     */
-    virtual T *begin() const {
-
-        return this->data;
-
-    }
-
-    /*!
-     * Points to the end of the array buffer. This functions allows range based for-loops to be used.
-     */
-    virtual T *end() const {
-
-        return this->data + count;
-
-    }
+    virtual T& getAt(size_t index) const;
 
     /*!
      * Gets the element at the specified index.
      *
-     *  @param[in] index The index of the object.
+     *  \param[in] index The index of the element.
      */
-    virtual T operator[](size_t index) const {
-
-        return *(data + index);
-
-    }
+    virtual T& operator[](size_t index) const;
 
     /*!
-     * Shorter expression for append.
+     *  The Array copy assignment operator.
      *
-     *  @tparam S The type of object to append
-     *  @param[in] other The element to append
+     *  \param[in] other The array to copy.
+     *  \return This array.
      */
-    template<typename S>
-    void operator+=(S const &other) {
+    virtual Array<T> &operator=(Array<T> const &other);
 
-        append(other);
+    /*!
+     *  The Array move assignment operator.
+     *
+     *  \param[in] other The array to move.
+     *  \return This array.
+     */
+    virtual Array<T> &operator=(Array<T> &&other);
+    
+    /*!
+     *  The Array equality operator.
+     *
+     *  \param[in] other The array to compare with.
+     *  \return Whether the arrays are equal.
+     */
+    virtual bool operator==(Array<T> const& other) const;
 
-    }
+    /*!
+     *  The Array not equal operator.
+     *
+     *  \param[in] other The array to compare with.
+     *  \return Whether the arrays are not equal.
+     */
+    virtual bool operator!=(Array<T> const& other) const;
+    
+    /*!
+     *  Shorthand expression for append.
+     *
+     *  \param[in] elem The element to append
+     */
+    virtual void operator+=(T const &elem);
+
+    /*!
+     *  Shorthand expression for append.
+     *
+     *  \param[in] arr The array to append
+     */
+    virtual void operator+=(Array<T> const &arr);
+
+    /*!
+     * Points to the beginning of the array buffer. This functions allows range based for-loops to be used.
+     */
+    T *begin() const;
+
+    /*!
+     * Points to the end of the array buffer. This functions allows range based for-loops to be used.
+     */
+    T *end() const;
 
     /*!
      * Returns whether the array is empty.
      *
-     * @return Whether the array is empty.
+     * \return Whether the array is empty.
      */
-    FORCEINLINE bool isEmpty() const {
-        return count == 0;
+    FORCEINLINE virtual bool isEmpty() const {
+        return size == 0;
     }
 
     /*!
      * Returns the number of elements contained in the array.
      *
-     * @return The number of elements in the array.
+     * \return The number of elements in the array.
      */
-    FORCEINLINE size_t getSize() const {
-        return count;
+    FORCEINLINE virtual size_t getSize() const {
+        return this->size;
     }
 
     /*!
      * Returns the number of elements the array can hold without resizing the data buffer.
      *
-     * @return The array capacity.
+     * \return The array capacity.
      */
-    FORCEINLINE size_t getCapacity() const {
-        return capacity;
+    FORCEINLINE virtual size_t getCapacity() const {
+        return this->capacity;
     }
-
+    
 protected:
 
     /*!
-     * Function called when adding an element. It extends the data buffer the array is full.
+     *  Function called when adding an element. It extends the data buffer the array is full.
+     *
+     *  \param[in] ext The extension size.
      */
-    void extend(){
-        
-        // If the array is full
-        if (count == capacity) {
-            
-            // If the capacity is 0, set it to 10, otherwise, double the array capacity.
-            size_t newCapacity = capacity == 0 ? 10 : capacity * 2;
-            
-            // Resize our data buffer.
-            this->data = allocator.resize(data, newCapacity);
-            capacity = newCapacity;
-            
-        }
-        
-    }
-    
-private:
-    
+    virtual void extend(size_t ext = 1);
+
     /*!
      *  The data contained in the array.
      */
     T *data = nullptr;
-    
+
     /*!
      * The number of elements in the array.
      */
-    size_t count = 0;
-    
+    size_t size = 0;
+
     /*!
      * The size of the data buffer.
      */
     size_t capacity = 0;
-    
+
     /*!
      * The allocator used to allocate and resize buffers.
      */
-    Allocator allocator = Allocator();
+    Allocator<T> allocator;
+
+private:
+
+    /*!
+     *  Ascending Quicksort algorithm function.
+     *
+     *  \param[in] from Where to start ordering.
+     *  \param[in] to Where to stop ordering.
+     */
+    void internalSortAsc(int64_t from, int64_t to);
+
+    /*!
+     *  Descending Quicksort algorithm function.
+     *
+     *  \param[in] from Where to start ordering.
+     *  \param[in] to Where to stop ordering.
+     */
+    void internalSortDesc(int64_t from, int64_t to);
+
+    /*!
+     *  Partition function for ascending QuickSort algorithm.
+     *
+     *  \param[in] from Where to start ordering.
+     *  \param[in] to Where to stop ordering.
+     *  \return The partition result.
+     */
+    int64_t partitionAsc(int64_t from, int64_t to);
+
+    /*!
+     *  Partition function for descending QuickSort algorithm.
+     *
+     *  \param[in] from Where to start ordering.
+     *  \param[in] to Where to stop ordering.
+     *  \return The partition result.
+     */
+    int64_t partitionDesc(int64_t from, int64_t to);
+    
+    /*!
+     * Allows String to access protected members to directly manipulate data.
+     */
+    friend class String;
 
 };
 
 /*!
  * Mutable Array type that auto-releases the contained objects upon destruction. T must be necessarily be a pointer.
  *
- *  @tparam T The type of object to store
- *  @warning Do not use this type as a return type as the object will be destroyed on function exit.
+ *  \tparam T The type of object to store
+ *  \warning Do not use this type as a return type as the object will be destroyed on function exit.
  */
 template<typename T>
 struct AutoReleaseArray : public Array<T> {
@@ -398,25 +384,37 @@ public:
     /*!
      * The default array constructor. Holds 10 object by default.
      */
-    explicit AutoReleaseArray(size_t capacity = 10) : Array<T>(capacity) {
+    AutoReleaseArray() {
 
         static_assert(std::is_pointer_v<T>, "T must be a pointer.");
 
+    }
+    
+    /*!
+     *  Constructs an array with a specific preallocated capacity.
+     *
+     *  \param[in] capacity The number of elements to allocate
+     */
+    explicit AutoReleaseArray(size_t capacity) : Array<T>(capacity){
+        
     }
 
     /*!
      * The AutoReleaseArray destructor. It releases all allocated resources.
      */
     virtual ~AutoReleaseArray() {
-
-        Allocator allocator = Allocator();
-        T *data = this->begin();
-
+        
         // Release every pointer in our data buffer.
-        for (size_t i = 0; i < this->getSize(); i++) {
-            allocator.deallocate(data[i]);
+        for(auto& e : *this){
+            this->allocator.autoDestroy(e);
         }
-
+        
     }
     
 };
+
+#define __ARRAY_INCL
+
+#include <Memory/Array.inl>
+
+#undef __ARRAY_INCL
