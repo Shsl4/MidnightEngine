@@ -101,8 +101,9 @@ var NAVTREEINDEX0 =
 "_mesh_object_8cpp.html":[8,0,0,0,6,8],
 "_mesh_object_8h.html":[8,0,0,0,6,9],
 "_mesh_object_8h_source.html":[8,0,0,0,6,9],
-"_object_8h.html":[8,0,0,0,11],
-"_object_8h_source.html":[8,0,0,0,11],
+"_object_8cpp.html":[8,0,0,0,11],
+"_object_8h.html":[8,0,0,0,12],
+"_object_8h_source.html":[8,0,0,0,12],
 "_optional_8h.html":[8,0,0,0,7,1],
 "_optional_8h.html#a0e4d62b0eb94dc803905aa68e44bb18a":[8,0,0,0,7,1,1],
 "_optional_8h_source.html":[8,0,0,0,7,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_camera_component.html#aed015d08a4263241b46e843ed2a96cdc":[7,0,4,0],
 "class_camera_component.html#af2e5796950082f32d2d5c52ebdcc7ac8":[7,0,4,29],
 "class_camera_component.html#af7ee7999c5c8aa52a04202e0c04d33a6":[7,0,4,10],
-"class_camera_component.html#afc0c38e9f7da08bb132efb4ed91e0e66":[7,0,4,15],
-"class_camera_manager.html":[7,0,5]
+"class_camera_component.html#afc0c38e9f7da08bb132efb4ed91e0e66":[7,0,4,15]
 };

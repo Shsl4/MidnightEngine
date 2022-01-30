@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('_scene_8h_source.html',''); initResiza
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            allocator.<a class="code hl_function" href="class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423">destroy</a>(<span class="keywordtype">object</span>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <a class="code hl_variable" href="class_scene.html#adb8c9d51bb8368327ced02e300633e8e">logger</a>-&gt;debug(<span class="stringliteral">&quot;Destroying object of class {} as it did not setup a root component at construct time.&quot;</span>, object-&gt;getClassName());</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <a class="code hl_variable" href="class_scene.html#adb8c9d51bb8368327ced02e300633e8e">logger</a>-&gt;debug(<span class="stringliteral">&quot;Destroying object of class {} as it did not setup a root component at construct time.&quot;</span>, object-&gt;getClassName().toCString());</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>

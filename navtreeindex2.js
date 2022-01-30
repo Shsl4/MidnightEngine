@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"class_string.html#ac5579cb519ca18fa841e5821c97d89e9":[7,0,39,12],
 "class_string.html#ac60ff1bade026402e041340fa8db8e0b":[7,0,39,17],
 "class_string.html#acc17a45e217db067c510ad62a17600f0":[7,0,39,16],
 "class_string.html#ad615c19d80a88ec5150025980695b6e2":[7,0,39,1],
@@ -22,8 +23,8 @@ var NAVTREEINDEX2 =
 "dir_d401f9e12d831b2f9cbad4656adb2d07.html":[8,0,0,0,4,1],
 "dir_d9d7c172f3b566ef2195c6f0ea570254.html":[8,0,0,0,6],
 "files.html":[8,0],
-"functions.html":[7,3,0],
 "functions.html":[7,3,0,0],
+"functions.html":[7,3,0],
 "functions_b.html":[7,3,0,1],
 "functions_c.html":[7,3,0,2],
 "functions_d.html":[7,3,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "struct_performance_window_1_1_sample_data.html#a7af5b343a78764955b971766216aff9c":[7,0,30,0,7],
 "struct_performance_window_1_1_sample_data.html#aa60fe16a63c17826933271764261a51e":[7,0,30,0,4],
 "struct_performance_window_1_1_sample_data.html#ac1e5b388fd43ac8dba2f5979ed578f63":[7,0,30,0,8],
-"struct_platform_data.html":[7,0,31],
-"struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620":[7,0,31,3]
+"struct_platform_data.html":[7,0,31]
 };

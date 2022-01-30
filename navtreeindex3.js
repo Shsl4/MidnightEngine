@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620":[7,0,31,3],
 "struct_platform_data.html#a24d5209cde454042f518066461a400f5":[7,0,31,6],
 "struct_platform_data.html#a3997affa130e695655516baab880a850":[7,0,31,2],
 "struct_platform_data.html#a57b19e546efcba0c52eb0640630e54a7":[7,0,31,8],
