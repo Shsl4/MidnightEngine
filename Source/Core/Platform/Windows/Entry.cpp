@@ -2,6 +2,7 @@
 
 #include <Platform/Windows/Entry.h>
 #include <bgfx/bgfx.h>
+#include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>
 
 #include <thread>
@@ -14,10 +15,11 @@
 #endif
 
 int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) {
-    
-    SDL_Window* window = SDL_CreateWindow("Main Window", 0, 0, 0, 0, 0);
+
+    SDL_Window* window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);
+    //SDL_Window* window = SDL_CreateWindow("Main Window", 0, 0, 0, 0, 0);
     SDL_SetRelativeMouseMode(SDL_TRUE);
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    //SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     
     SDL_SysWMinfo wmi;
     SDL_VERSION(&wmi.version)
@@ -28,7 +30,7 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) 
     }
 
     bgfx::PlatformData platformData;
-    data.nwh = wmi.info.win.window;
+    platformData.nwh = wmi.info.win.window;
     bgfx::setPlatformData(platformData);
     
     PlatformData data = PlatformData(argc, argv, window, 1.0f);

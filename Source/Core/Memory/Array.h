@@ -3,6 +3,7 @@
 #include <Core/Object.h>
 #include <Memory/Allocator.h>
 #include <Utilities/Optional.h>
+#include <functional>
 
 /*!
  *  A safe mutable array object that supports adding, inserting, removing, sorting and other utility functions.
