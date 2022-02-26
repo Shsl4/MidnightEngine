@@ -19,7 +19,7 @@ enum class MeshType {
  */
 struct Mesh {
 
-    Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, std::string const &name);
+    Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, String const &name);
 
     virtual ~Mesh();
 
@@ -46,10 +46,10 @@ struct Mesh {
     size_t indexCount = 0;
 
     Vertex *data = nullptr;
-    uint16_t *indices = nullptr;
+    UInt16 *indices = nullptr;
 
     MeshType meshType;
-    std::string meshName;
+    String meshName;
 
     inline static Allocator<Vertex> vertexAllocator = Allocator<Vertex>();
     inline static Allocator<UInt16> indexAllocator = Allocator<UInt16>();
@@ -71,7 +71,7 @@ public:
         MeshLoader::instance = this;
     }
 
-    static Mesh *loadOBJ(std::string const &file);
+    static Mesh *loadOBJ(String const &file);
 
 private:
 

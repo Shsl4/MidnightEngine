@@ -1,22 +1,23 @@
 #include <Rendering/Mesh.h>
 #include <Memory/String.h>
+#include <Memory/Memory.h>
 #include <sstream>
 #include <fstream>
 
-Mesh::Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, std::string const &name) :
+Mesh::Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, String const &name) :
         vertexCount(vertices.getSize()), indexCount(numIndices), meshType(type), meshName(name) {
 
     data = vertexAllocator.alloc(vertexCount);
     indices = indexAllocator.alloc(indexCount);
 
-    for (uint16_t i = 0; i < indexCount; ++i) {
-        indices[i] = (uint16_t) indexCount - 1 - i;
+    for (UInt16 i = 0; i < indexCount; ++i) {
+        indices[i] = static_cast<UInt16>(indexCount - 1 - i);
     }
 
-    memcpy(data, vertices.begin(), vertexCount * sizeof(Vertex));
+    Memory::move(vertices.begin(), vertices.end(), data);
 
-    vertexBuffer = createVertexBuffer(bgfx::makeRef(data, (uint32_t) vertexCount * sizeof(Vertex)), Mesh::getVertexLayout());
-    indexBuffer = bgfx::createIndexBuffer(bgfx::makeRef(indices, (uint32_t) indexCount * sizeof(uint16_t)));
+    vertexBuffer = createVertexBuffer(bgfx::makeRef(data, (Int32)vertexCount * sizeof(Vertex)), Mesh::getVertexLayout());
+    indexBuffer = bgfx::createIndexBuffer(bgfx::makeRef(indices, (Int32)indexCount * sizeof(UInt16)));
     programHandle = ShaderLoader::loadProgram("Advanced");
 
 }
@@ -68,7 +69,7 @@ OBJDataType getDataType(String const& string) {
 
 }
 
-Mesh *MeshLoader::loadOBJ(std::string const &file) {
+Mesh *MeshLoader::loadOBJ(String const &file) {
 
     // Preallocate the arrays with large sizes to avoid many reallocations later.
     auto vertexPositions = Array<Vector3>(10000);
@@ -79,7 +80,10 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
     auto vTexCoordIndices = Array<UInt16>(5000);
     auto vNormalsIndices = Array<UInt16>(5000);
 
-    auto fstream = std::fstream("Resources/Models/" + file);
+    String path = "Resources/Models/";
+    path.append(file);
+    
+    auto fstream = std::fstream(path.toCString());
 
     std::string currentLine = "";
     std::string objectName = "";
@@ -138,6 +142,7 @@ Mesh *MeshLoader::loadOBJ(std::string const &file) {
                     vPosIndices += v0 - 1;
                     vTexCoordIndices += data[1].isEmpty() ? 0 : v1 - 1;
                     vNormalsIndices += v2 - 1;
+                    
                 }
 
                 break;

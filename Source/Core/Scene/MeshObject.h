@@ -15,7 +15,7 @@ public:
      *
      *  \param[in] meshName The file name of the mesh to load. (In the Resources/Models folder)
      */
-    MeshObject(std::string const &meshName);
+    MeshObject(String const &meshName);
 
     void createComponents(class Scene *scene, Transform transform) override;
 
@@ -29,6 +29,6 @@ private:
     /*!
      * The mesh name to load.
      */
-    const std::string meshName;
+    const String meshName;
 
 };

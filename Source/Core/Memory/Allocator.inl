@@ -5,23 +5,8 @@
 #endif
 
 template<typename T>
-Allocator<T>::Allocator() {
-
-#ifdef DEBUG
-    // Increase the number of created allocators.
-    ++DebugAlloc::info.constructCount;
-#endif
-
-}
-
-template<typename T>
 template<typename ... Args>
 T *Allocator<T>::construct(Args &&... args) {
-
-#ifdef DEBUG
-    // Increase the number of total allocations.
-    ++DebugAlloc::info.allocCount;
-#endif
 
     // Construct the new object.
     T *ptr = new T(std::forward<Args>(args)...);
@@ -47,11 +32,6 @@ T *Allocator<T>::alloc(size_t size) {
         std::memset(ptr, 0, size);
     }
 
-#ifdef DEBUG
-    // Increase the number of total allocations.
-    ++DebugAlloc::info.allocCount;
-#endif
-
     // Return the newly allocated buffer.
     return ptr;
 }
@@ -63,11 +43,6 @@ void Allocator<T>::destroy(T *&pointer) {
     if (!pointer) {
         return;
     }
-
-#ifdef DEBUG
-    // Increase the number of total deallocations.
-    ++DebugAlloc::info.releaseCount;
-#endif
 
     // Release the pointer.
     delete pointer;
@@ -86,11 +61,6 @@ void Allocator<T>::autoDestroy(U *&pointer) {
         return;
     }
 
-#ifdef DEBUG
-    // Increase the number of total deallocations.
-    ++DebugAlloc::info.releaseCount;
-#endif
-
     // Release the pointer.
     delete pointer;
 
@@ -103,11 +73,6 @@ void Allocator<T>::release(T *&pointer) {
     if (!pointer) {
         return;
     }
-
-#ifdef DEBUG
-    // Increase the number of total deallocations.
-    ++DebugAlloc::info.releaseCount;
-#endif
 
     // Release the pointer.
     delete[] pointer;
@@ -144,7 +109,7 @@ void Allocator<T>::realloc(T *&pointer, size_t oldSize, size_t size) {
     size_t sz = size > oldSize ? oldSize : size;
 
     // Move back the objects.
-    moveBack(pointer, pointer + sz, p);
+    Memory::moveBack(pointer, pointer + sz, p);
 
     // Release the old buffer.
     release(pointer);
@@ -152,104 +117,19 @@ void Allocator<T>::realloc(T *&pointer, size_t oldSize, size_t size) {
     // Set the input variable to the new buffer.
     pointer = p;
 
-#ifdef DEBUG
-    // Increase the total number of reallocations.
-    ++DebugAlloc::info.reallocCount;
-#endif
-
-}
-
-template<typename T>
-Allocator<T>::~Allocator() {
-
-#ifdef DEBUG
-    // Decrease the global amount of allocator instances.
-    --DebugAlloc::info.constructCount;
-#endif
-    
 }
 
 template<typename T>
 void Allocator<T>::move(T *from, T *to, T *dest) {
-
-    if (dest > from) {
-        moveForward(from, to, dest);
-        return;
-    }
-
-    moveBack(from, to, dest);
-
+    Memory::move(from, to, dest);
 }
 
 template<typename T>
 void Allocator<T>::copy(const T *from, const T *to, T *dest) {
-
-    if (dest > from) {
-        copyForward(from, to, dest);
-        return;
-    }
-
-    copyBack(from, to, dest);
-
+    Memory::copy(from, to, dest);
 }
 
 template<typename T>
 void Allocator<T>::swapMove(T *a, T *b) {
-
-    T temp = std::move(*a);
-    *a = std::move(*b);
-    *b = std::move(temp);
-
-}
-
-template<typename T>
-void Allocator<T>::moveForward(T *from, T *to, T *dest) {
-
-    dest += to - from - 1;
-
-    while (from != to) {
-        *dest = std::move(*(to - 1));
-        --dest;
-        --to;
-    }
-
-}
-
-template<typename T>
-void Allocator<T>::moveBack(T *from, T *to, T *dest) {
-
-    while (from != to) {
-
-        *dest = std::move(*from);
-        ++dest;
-        ++from;
-
-    }
-
-}
-
-template<typename T>
-void Allocator<T>::copyForward(const T *from, const T *to, T *dest) {
-
-    dest += to - from - 1;
-
-    while (from != to) {
-        *dest = *(to - 1);
-        --dest;
-        --to;
-    }
-
-}
-
-template<typename T>
-FORCEINLINE void Allocator<T>::copyBack(const T *from, const T *to, T *dest) {
-
-    while (from != to) {
-
-        *dest = *from;
-        ++dest;
-        ++from;
-
-    }
-
+    Memory::swapMove(a, b);
 }

@@ -19,7 +19,7 @@
 
 Logger Logger::assertLogger = Logger("Assert");
 
-Engine::Engine(PlatformData data) : platformData(data) {
+Engine::Engine(PlatformData const &data) : platformData(data) {
     
     // If an engine instance has already been created, abort the program. (Should never happen)
     if(Engine::instance) { abort(); }
@@ -67,7 +67,7 @@ int Engine::init(int argc, const char **argv) {
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(5.0f, 0.0f, 0.0f)), "Lantern_Sphere.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(-5.0f, 0.0f, 0.0f)), "Lamp1.obj");
-    
+        
     // Create our controllable character.
     auto character = activeScene->createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));
 
@@ -95,7 +95,7 @@ int Engine::init(int argc, const char **argv) {
 }
 
 void Engine::update() {
-
+    
     const Int64 now = bx::getHPCounter();
     const Int64 freq = bx::getHPFrequency();
     
@@ -147,7 +147,7 @@ void Engine::render() {
 
     // Render the frame.
     bgfx::frame();
-
+    
 }
 
 void Engine::stop() {
@@ -174,7 +174,7 @@ void Engine::cleanup() {
 
 }
 
-std::string Engine::getNiceRendererName() const {
+String Engine::getNiceRendererName() const {
 
     // Return a nice string with the renderer name.
     switch (bgfx::getRendererType()) {
@@ -201,7 +201,7 @@ std::string Engine::getNiceRendererName() const {
 
 }
 
-std::string Engine::getNiceGPUName() const {
+String Engine::getNiceGPUName() const {
 
     const bgfx::Caps *caps = bgfx::getCaps();
 

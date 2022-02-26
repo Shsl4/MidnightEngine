@@ -294,7 +294,7 @@ std::ostream &operator<<(std::ostream &os, String const &str) {
 
     // Convert the current string to a C string or a literal
     // containing nullptr if this string is invalid.
-    return os << (str.data ? str.toCString() : "nullptr");
+    return os << (str.data ? str.toCString() : "<Empty>");
 }
 
 void String::resize(size_t newCap) {

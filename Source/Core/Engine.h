@@ -11,6 +11,7 @@
  *  The main engine class.
  */
 class Engine : public Object {
+    
 public:
 
     /*!
@@ -18,7 +19,7 @@ public:
      *
      * \param[in] data The platform data.
      */
-    explicit Engine(PlatformData data);
+    explicit Engine(PlatformData const &data);
 
     /*!
      * The engine destructor. It deallocates all resources used by the class.
@@ -54,14 +55,14 @@ public:
      *
      *  \return The renderer name.
      */
-    std::string getNiceRendererName() const;
+    String getNiceRendererName() const;
 
     /*!
      * Returns a nicely formatted string containing the current GPU name.
      *
      *  \return The GPU name.
      */
-    std::string getNiceGPUName() const;
+    String getNiceGPUName() const;
 
     /*!
      * Returns the unique engine instance.

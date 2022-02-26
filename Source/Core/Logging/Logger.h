@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Memory/String.h>
+
 #include <fmt/format.h>
 #include <fmt/color.h>
 
@@ -15,7 +17,8 @@ public:
      *
      * \param[in] id The Logger identifier.
      */
-    explicit Logger(const std::string id) : id(id) {
+    explicit Logger(const String &id) : id(id) {
+        
     }
 
     /*!
@@ -25,7 +28,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void debug(std::string format, Args &&... args) const {
+    void debug(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::gray), "DEBUG", format, args...);
     }
 
@@ -36,7 +39,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void info(std::string format, Args &&... args) const {
+    void info(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::dark_gray), "INFO", format, args...);
     }
 
@@ -47,7 +50,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void success(std::string format, Args &&... args) const {
+    void success(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::light_green), "SUCCESS", format, args...);
     }
 
@@ -58,7 +61,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void warning(std::string format, Args &&... args) const {
+    void warning(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::light_yellow), "WARNING", format, args...);
     }
 
@@ -69,7 +72,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void error(std::string format, Args &&... args) const {
+    void error(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::red), "ERROR", format, args...);
     }
 
@@ -80,7 +83,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void fatal(std::string format, Args &&... args) const {
+    void fatal(String const &format, Args &&... args) const {
         this->log(fg(fmt::color::dark_red), "FATAL", format, args...);
         abort();
     }
@@ -93,7 +96,7 @@ public:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    static void check(bool condition, std::string format, Args &&... args) {
+    static void check(bool condition, String const &format, Args &&... args) {
 
         if (!condition) {
             assertLogger.fatal(format, args...);
@@ -106,7 +109,7 @@ public:
      *
      *  \return The Logger id.
      */
-    std::string getId() const {
+    String getId() const {
         return this->id;
     }
 
@@ -121,11 +124,11 @@ private:
      *  \param[in] args The variable arguments for the format string
      */
     template<typename ... Args>
-    void log(const fmt::text_style color, std::string const &type, std::string const &format, Args &&...args) const {
+    void log(const fmt::text_style color, String const &type, String const &format, Args &&...args) const {
 
         // Format the string.
         const auto formatArgs = fmt::make_format_args(args...);
-        const std::string formatted = vformat(format, formatArgs);
+        const std::string formatted = vformat(format.toCString(), formatArgs);
         
         // Print the formatted string.
         print(color, "[{}] ({}) | {}\n", type, this->getId(), formatted);
@@ -135,7 +138,7 @@ private:
     /*!
      * The logger id
      */
-    const std::string id;
+    const String id;
     
     /*!
      * A static private logger used for assertion checks.

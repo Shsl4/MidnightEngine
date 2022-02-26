@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Memory/Array.h>
+#include <fmt/format.h>
 
 /*!
  *  An efficient String class implemented on top of Array with lots of built-in functions.
- *  \todo Implement auto formatting for libfmt https://fmt.dev/latest/api.html#udt
  */
 class String : public Array<char> {
 
@@ -175,4 +175,16 @@ public:
         return c - '0';
     }
 
+};
+
+template <>
+struct fmt::formatter<String> : formatter<std::string>{
+    
+  template <typename FormatContext>
+  auto format(const String& p, FormatContext& ctx) -> decltype(ctx.out()) {
+
+      return formatter<std::string>::format(p.toCString(), ctx);
+      
+  }
+    
 };

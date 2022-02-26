@@ -96,7 +96,7 @@ class MeshComponent : public SceneComponent, public IRenderable {
 
 public:
 
-    explicit MeshComponent(std::string const &path);
+    explicit MeshComponent(String const &path);
 
     void update(float deltaTime) override;
 

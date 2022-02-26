@@ -8,10 +8,12 @@
 #import <bgfx/platform.h>
 #import <bgfx/imgui/imgui.h>
 
+#import <Logging/Logger.h>
+
 @implementation Entry {
 
     BOOL hasTerminated;
-    std::unique_ptr<Engine> engine;
+    UniquePtr<Engine> engine;
 
 }
 
@@ -91,7 +93,7 @@
     if (!engine) { return; }
     
     engine->update();
-
+    
 }
 
 @end
@@ -101,7 +103,7 @@ int main(int argc, const char **argv) {
     Entry* entry = [[Entry alloc] init];
     [entry entry:argc argv:argv];
     [entry release];
-            
+    
     return 0;
 
 }

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <Core/EngineTypes.h>
-#include <bit>
-#include <limits>
 
 /*!
  * A utility class containing templated math operations

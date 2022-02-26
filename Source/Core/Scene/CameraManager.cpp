@@ -54,6 +54,13 @@ void CameraManager::unregisterCamera(CameraComponent *camera) {
     }
 
     // Set the current camera as the first one in the camera array.
-    activeCamera = this->cameras[0];
+    if (this->cameras.getSize() > 0) {
+        activeCamera = this->cameras[0];
+    }
+    else{
+        // Or nullptr if the array is empty.
+        activeCamera = nullptr;
+    }
+    
 
 }

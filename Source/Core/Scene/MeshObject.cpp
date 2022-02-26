@@ -1,6 +1,6 @@
 #include <Scene/MeshObject.h>
 
-MeshObject::MeshObject(std::string const &meshName) : meshName(meshName) {
+MeshObject::MeshObject(String const &meshName) : meshName(meshName) {
 
 
 }

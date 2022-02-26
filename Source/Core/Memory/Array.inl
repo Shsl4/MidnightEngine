@@ -310,12 +310,12 @@ void Array<T>::removeDuplicates() {
 
 template<typename T>
 void Array<T>::sortAscending() {
-    internalSortAsc(0, static_cast<int64_t>(getSize() - 1));
+    internalSortAsc(0, static_cast<Int64>(getSize() - 1));
 }
 
 template<typename T>
 void Array<T>::sortDescending() {
-    internalSortDesc(0, static_cast<int64_t>(getSize() - 1));
+    internalSortDesc(0, static_cast<Int64>(getSize() - 1));
 }
 
 template<typename T>
@@ -564,11 +564,11 @@ void Array<T>::extend(const size_t ext) {
 }
 
 template<typename T>
-void Array<T>::internalSortAsc(int64_t from, int64_t to) {
+void Array<T>::internalSortAsc(Int64 from, Int64 to) {
 
     if (from < to) {
 
-        int64_t idx = partitionAsc(from, to);
+        Int64 idx = partitionAsc(from, to);
 
         internalSortAsc(from, idx - 1);
         internalSortAsc(idx + 1, to);
@@ -578,11 +578,11 @@ void Array<T>::internalSortAsc(int64_t from, int64_t to) {
 }
 
 template<typename T>
-void Array<T>::internalSortDesc(int64_t from, int64_t to) {
+void Array<T>::internalSortDesc(Int64 from, Int64 to) {
 
     if (from < to) {
 
-        int64_t idx = partitionDesc(from, to);
+        Int64 idx = partitionDesc(from, to);
 
         internalSortDesc(from, idx - 1);
         internalSortDesc(idx + 1, to);
@@ -592,11 +592,11 @@ void Array<T>::internalSortDesc(int64_t from, int64_t to) {
 }
 
 template<typename T>
-int64_t Array<T>::partitionAsc(const int64_t from, const int64_t to) {
+Int64 Array<T>::partitionAsc(const Int64 from, const Int64 to) {
 
-    int64_t idx = from - 1;
+    Int64 idx = from - 1;
 
-    for (int64_t i = from; i <= to - 1; ++i) {
+    for (Int64 i = from; i <= to - 1; ++i) {
 
         if (data[i] < data[to]) {
 
@@ -614,11 +614,11 @@ int64_t Array<T>::partitionAsc(const int64_t from, const int64_t to) {
 }
 
 template<typename T>
-int64_t Array<T>::partitionDesc(const int64_t from, const int64_t to) {
+Int64 Array<T>::partitionDesc(const Int64 from, const Int64 to) {
 
-    int64_t idx = from - 1;
+    Int64 idx = from - 1;
 
-    for (int64_t i = from; i <= to - 1; ++i) {
+    for (Int64 i = from; i <= to - 1; ++i) {
 
         if (data[to] < data[i]) {
 

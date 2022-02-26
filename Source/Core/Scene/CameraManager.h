@@ -55,7 +55,7 @@ public:
      *  \param[in] camera The camera to unregister
      */
     void unregisterCamera(CameraComponent *camera);
-
+    
     /*!
      * Uses the input camera for rendering.
      *
@@ -80,7 +80,7 @@ protected:
     /*!
      * The Scene this CameraManager belongs to.
      */
-    const class Scene *scene;
+    class Scene *scene;
 
 };
 

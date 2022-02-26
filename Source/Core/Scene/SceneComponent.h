@@ -1,11 +1,14 @@
 #pragma once
 
-#include <Object.h>
-#include <fmt/format.h>
-#include <EngineTypes.h>
-#include <Math/Transform.h>
-#include <Memory/Array.h>
 #include <type_traits>
+
+#include <fmt/format.h>
+
+#include <Core/Object.h>
+#include <Core/EngineTypes.h>
+#include <Memory/Array.h>
+#include <Memory/String.h>
+#include <Math/Transform.h>
 
 /*!
  * SceneComponents are the lowest class representing something in a scene.
@@ -220,6 +223,6 @@ private:
     /*!
      * The name of the component.
      */
-    std::string name = "";
+    String name = "";
 
 };

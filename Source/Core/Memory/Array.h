@@ -1,9 +1,11 @@
 #pragma once
 
+#include <functional>
+
 #include <Core/Object.h>
+#include <Memory/Memory.h>
 #include <Memory/Allocator.h>
 #include <Utilities/Optional.h>
-#include <functional>
 
 /*!
  *  A safe mutable array object that supports adding, inserting, removing, sorting and other utility functions.
@@ -336,7 +338,7 @@ private:
      *  \param[in] from Where to start ordering.
      *  \param[in] to Where to stop ordering.
      */
-    void internalSortAsc(int64_t from, int64_t to);
+    void internalSortAsc(Int64 from, Int64 to);
 
     /*!
      *  Descending Quicksort algorithm function.
@@ -344,7 +346,7 @@ private:
      *  \param[in] from Where to start ordering.
      *  \param[in] to Where to stop ordering.
      */
-    void internalSortDesc(int64_t from, int64_t to);
+    void internalSortDesc(Int64 from, Int64 to);
 
     /*!
      *  Partition function for ascending QuickSort algorithm.
@@ -353,7 +355,7 @@ private:
      *  \param[in] to Where to stop ordering.
      *  \return The partition result.
      */
-    int64_t partitionAsc(int64_t from, int64_t to);
+    Int64 partitionAsc(Int64 from, Int64 to);
 
     /*!
      *  Partition function for descending QuickSort algorithm.
@@ -362,7 +364,7 @@ private:
      *  \param[in] to Where to stop ordering.
      *  \return The partition result.
      */
-    int64_t partitionDesc(int64_t from, int64_t to);
+    Int64 partitionDesc(Int64 from, Int64 to);
     
     /*!
      * Allows String to access protected members to directly manipulate data.
@@ -383,7 +385,7 @@ struct AutoReleaseArray : public Array<T> {
 public:
 
     /*!
-     * The default array constructor. Holds 10 object by default.
+     * The default array constructor.
      */
     AutoReleaseArray() {
 

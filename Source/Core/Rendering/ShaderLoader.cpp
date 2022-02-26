@@ -1,13 +1,13 @@
 #include <Rendering/ShaderLoader.h>
 #include <fstream>
 
-Array<UInt8> ShaderLoader::loadFile(std::string const& path){
+Array<UInt8> ShaderLoader::loadFile(String const& path){
     
     // Create an array with a default size of 512.
-    Array<uint8_t> array = Array<uint8_t>(512);
+    auto array = Array<UInt8>(512);
     
     // Create our file stream in binary mode.
-    std::ifstream fStream(path, std::ios::binary);
+    std::ifstream fStream(path.toCString(), std::ios::binary);
 
     // If the file does not exist or is inaccessible, return.
     if (!fStream.is_open()) { return array; }
@@ -22,12 +22,11 @@ Array<UInt8> ShaderLoader::loadFile(std::string const& path){
     
 }
 
-std::string ShaderLoader::getShaderResourcePath() {
+String ShaderLoader::getShaderResourcePath() {
     
     // Switch on the renderer type.
     switch (bgfx::getRendererType()) {
             
-        case bgfx::RendererType::Noop:
         case bgfx::RendererType::Direct3D9:
             return "Resources/Shaders/DX9/";
             
@@ -63,10 +62,10 @@ std::string ShaderLoader::getShaderResourcePath() {
     
 }
 
-bgfx::ShaderHandle ShaderLoader::loadShader(std::string const& name) {
+bgfx::ShaderHandle ShaderLoader::loadShader(String const& name) {
     
     // Format the file path.
-    std::string filePath = fmt::format("{}{}.bin", getShaderResourcePath(), name);
+    String filePath = fmt::format("{}{}.bin", getShaderResourcePath(), name);
     
     // Load the file content
     const Array<UInt8> fileData = loadFile(filePath);
@@ -76,21 +75,21 @@ bgfx::ShaderHandle ShaderLoader::loadShader(std::string const& name) {
 
     // Create our shader and name it.
     bgfx::ShaderHandle handle = bgfx::createShader(mem);
-    bgfx::setName(handle, name.c_str());
+    bgfx::setName(handle, name.toCString());
 
     return handle;
 
 }
 
-bgfx::ProgramHandle ShaderLoader::loadProgram(std::string const& name) {
+bgfx::ProgramHandle ShaderLoader::loadProgram(String const& name) {
 
     // Format our fragment and vertex shader file names.
-    std::string vertexShaderName = fmt::format("vs_{}", name);
-    std::string fragmentShaderName = fmt::format("fs_{}", name);
+    String vertexShaderName = fmt::format("vs_{}", name);
+    String fragmentShaderName = fmt::format("fs_{}", name);
 
     // Load the fragment and vertex shaders.
-    bgfx::ShaderHandle vertexShader = loadShader(vertexShaderName.c_str());
-    bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName.c_str());
+    bgfx::ShaderHandle vertexShader = loadShader(vertexShaderName.toCString());
+    bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName.toCString());
 
     // Create the shader program from the loaded shaders.
     return bgfx::createProgram(vertexShader, fragmentShader, true);

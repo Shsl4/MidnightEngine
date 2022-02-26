@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/EngineTypes.h>
+#include <Memory/Memory.h>
 #include <Core/Object.h>
 
 /*!
@@ -17,7 +17,7 @@ public:
     /*!
      * The default constructor.
      */
-    Allocator();
+    Allocator() = default;
 
     /*!
      *  Constructs an object of type T.
@@ -73,9 +73,9 @@ public:
     void realloc(T *&pointer, size_t oldSize, size_t size);
 
     /*!
-     * The Allocator destructor. It only serves debugging purposes.
+     * The Allocator destructor.
      */
-    ~Allocator();
+    ~Allocator() = default;
 
     /*!
      *  Moves memory forwards or backwards automatically.
@@ -100,86 +100,7 @@ public:
      */
     void swapMove(T *a, T *b);
 
-private:
-
-    /*!
-     *  Moves memory forward.
-     *
-     *  \param[in] from Where to start reading data
-     *  \param[in] to Where to stop reading data
-     *  \param[out] dest Where move the data.
-     */
-    FORCEINLINE void moveForward(T *from, T *to, T *dest);
-
-    /*!
-     *  Moves memory backwards.
-     *
-     *  \param[in] from Where to start reading data
-     *  \param[in] to Where to stop reading data
-     *  \param[out] dest Where move the data.
-     */
-    FORCEINLINE void moveBack(T *from, T *to, T *dest);
-
-    /*!
-     *  Copies memory forwards.
-     *
-     *  \param[in] from Where to start reading data
-     *  \param[in] to Where to stop reading data
-     *  \param[out] dest Where copy the data.
-     */
-    FORCEINLINE void copyForward(const T *from, const T *to, T *dest);
-
-    /*!
-     *  Copies memory backwards.
-     *
-     *  \param[in] from Where to start reading data
-     *  \param[in] to Where to stop reading data
-     *  \param[out] dest Where copy the data.
-     */
-    FORCEINLINE void copyBack(const T *from, const T *to, T *dest);
-
 };
-
-#ifdef DEBUG
-
-#include <Logging/Logger.h>
-
-namespace DebugAlloc {
-
-    struct AllocInfo {
-
-        int64_t ratio() const{
-            return allocCount - releaseCount;
-        }
-
-        uint32_t constructCount = 0;
-        uint32_t allocCount = 0;
-        uint32_t releaseCount = 0;
-        uint32_t reallocCount = 0;
-
-    };
-
-    const static inline Logger allocLogger = Logger("DebugAlloc");
-    static inline AllocInfo info = AllocInfo();
-
-    static void stat(){
-
-        if (info.ratio() && (info.constructCount == 0)) {
-
-            allocLogger.warning("Unbalanced allocator ratio! {} objects may have been leaked.");
-        
-        }
-
-        allocLogger.debug("Total allocs: {}", info.allocCount);
-        allocLogger.debug("Total releases: {}", info.releaseCount);
-        allocLogger.debug("Total reallocs: {}", info.reallocCount);
-        allocLogger.debug("Total instances left: {}", info.constructCount);
-
-    }
-
-}
-
-#endif
 
 #define __ALLOC_INCL
 
