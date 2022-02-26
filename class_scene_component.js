@@ -23,7 +23,7 @@ var class_scene_component =
     [ "update", "class_scene_component.html#ab0b129c31a06c02337036c2b2be2b570", null ],
     [ "Scene", "class_scene_component.html#a032858ae1fe02d2d1170981c2af2d67c", null ],
     [ "childComponents", "class_scene_component.html#afcd6453b79f8d11f35d4139bdd065064", null ],
-    [ "name", "class_scene_component.html#a678b05080c1af3c00b3fa1c748608476", null ],
+    [ "name", "class_scene_component.html#ad28408f917323920d3f3322797532a21", null ],
     [ "parentComponent", "class_scene_component.html#a27aff1bbcaa669abcb79fe53434daa82", null ],
     [ "parentObject", "class_scene_component.html#a90bdfa07cce27915ae8d21262fe0174a", null ],
     [ "registered", "class_scene_component.html#a00a6f3143a6e4fd5c9fa65bd8f7268a6", null ],

@@ -7,7 +7,7 @@ var searchData=
   ['addcamerayawinput_4',['addCameraYawInput',['../class_camera_component.html#aa79d004e67f790929c782ab8e96c70bc',1,'CameraComponent']]],
   ['addmovementinput_5',['addMovementInput',['../class_camera_component.html#a7b24b240acd13f236facef68a7193fc5',1,'CameraComponent']]],
   ['alloc_6',['alloc',['../class_allocator.html#aee375591ee4a884abf42c3754245d964',1,'Allocator']]],
-  ['allocator_7',['Allocator',['../class_allocator.html',1,'Allocator&lt; T &gt;'],['../class_allocator.html#a8ecae046599ee46e82993d16b7db139c',1,'Allocator::Allocator()']]],
+  ['allocator_7',['Allocator',['../class_allocator.html',1,'Allocator&lt; T &gt;'],['../class_allocator.html#a7858e763f63c035e1c0fd64b89e064ea',1,'Allocator::Allocator()']]],
   ['allocator_8',['allocator',['../class_optional.html#ae1502baefc1e47b6e440aa862073b495',1,'Optional::allocator()'],['../class_mesh_loader.html#a576d188f0db0a4e8628cc8074ffa3f72',1,'MeshLoader::allocator()'],['../class_array.html#ab72451423fd0e6f2d43965f3b65df907',1,'Array::allocator()']]],
   ['allocator_2eh_9',['Allocator.h',['../_allocator_8h.html',1,'']]],
   ['allocator_2einl_10',['Allocator.inl',['../_allocator_8inl.html',1,'']]],
@@ -28,10 +28,11 @@ var searchData=
   ['aspectratio_25',['aspectRatio',['../class_camera_component.html#ae18747d9ab913939d47d76edf467bd8b',1,'CameraComponent']]],
   ['assertlogger_26',['assertLogger',['../class_logger.html#a7d5348a05ddc151f08809ba228910957',1,'Logger']]],
   ['attachto_27',['attachTo',['../class_scene_component.html#a182ba08be7f123613825d94c7219c65e',1,'SceneComponent::attachTo(class SceneObject *object)'],['../class_scene_component.html#a77515df3ebe3efe2a7d3bcc24f9b2574',1,'SceneComponent::attachTo(SceneComponent *other)']]],
-  ['attenuation_28',['Attenuation',['../struct_attenuation.html',1,'Attenuation'],['../struct_attenuation.html#a99d0ccfd1a3b9646c4f3664724f69e33',1,'Attenuation::Attenuation()']]],
+  ['attenuation_28',['Attenuation',['../struct_attenuation.html',1,'']]],
   ['attenuation_29',['attenuation',['../struct_point_light.html#a2ecc47ea7cba766e99e5bcfbda6918da',1,'PointLight']]],
-  ['autodestroy_30',['autoDestroy',['../class_allocator.html#a8d6584c7c10d39acef1c51c178b542db',1,'Allocator']]],
-  ['autoreleasearray_31',['AutoReleaseArray',['../struct_auto_release_array.html#a93a521a1c6f0a01878d0000bb1ba31d6',1,'AutoReleaseArray::AutoReleaseArray()'],['../struct_auto_release_array.html#a25c3a11e53b7484222af7ded69372c14',1,'AutoReleaseArray::AutoReleaseArray(size_t capacity)'],['../struct_auto_release_array.html',1,'AutoReleaseArray&lt; T &gt;']]],
-  ['axisbindmap_32',['AxisBindMap',['../_input_manager_8h.html#ad06d9be122532f0871b5df98160221e8',1,'InputManager.h']]],
-  ['axisevents_33',['axisEvents',['../class_input_manager.html#ab4ed7f3d8d44b6b24d91098c2dda4811',1,'InputManager']]]
+  ['attenuation_30',['Attenuation',['../struct_attenuation.html#a99d0ccfd1a3b9646c4f3664724f69e33',1,'Attenuation']]],
+  ['autodestroy_31',['autoDestroy',['../class_allocator.html#a8d6584c7c10d39acef1c51c178b542db',1,'Allocator']]],
+  ['autoreleasearray_32',['AutoReleaseArray',['../struct_auto_release_array.html#a93a521a1c6f0a01878d0000bb1ba31d6',1,'AutoReleaseArray::AutoReleaseArray()'],['../struct_auto_release_array.html#a25c3a11e53b7484222af7ded69372c14',1,'AutoReleaseArray::AutoReleaseArray(size_t capacity)'],['../struct_auto_release_array.html',1,'AutoReleaseArray&lt; T &gt;']]],
+  ['axisbindmap_33',['AxisBindMap',['../_input_manager_8h.html#ad06d9be122532f0871b5df98160221e8',1,'InputManager.h']]],
+  ['axisevents_34',['axisEvents',['../class_input_manager.html#ab4ed7f3d8d44b6b24d91098c2dda4811',1,'InputManager']]]
 ];

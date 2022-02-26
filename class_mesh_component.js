@@ -1,7 +1,7 @@
 var class_mesh_component =
 [
     [ "Super", "class_mesh_component.html#a01848ca0aecab8e1511288092b461764", null ],
-    [ "MeshComponent", "class_mesh_component.html#a1a8b606d502bd9ca9f6adb882ff0c5ae", null ],
+    [ "MeshComponent", "class_mesh_component.html#a820269845473b6061fe90fd35bbf841d", null ],
     [ "~MeshComponent", "class_mesh_component.html#a14f087d42e725d37d2414c7f32ca941a", null ],
     [ "construct", "class_mesh_component.html#a49817b4b86c50258a123e679171ff9cf", null ],
     [ "render", "class_mesh_component.html#a5e81b47b99a57ea9aaf4a65626558faa", null ],

@@ -1,15 +1,15 @@
 var class_logger =
 [
-    [ "Logger", "class_logger.html#a3e6204b5f25b549a39d78a1488571329", null ],
-    [ "check", "class_logger.html#a5748c5640328a1928bfa0a378e4461bb", null ],
-    [ "debug", "class_logger.html#a483f37b5ddab6b47b0018a9e8d5997cf", null ],
-    [ "error", "class_logger.html#a7abbfd5259c1e57185d585ccaecc5b2b", null ],
-    [ "fatal", "class_logger.html#a1576f3bffe31fe48453534406515d874", null ],
-    [ "getId", "class_logger.html#ae9e127dc903f492c4c53c832ee267063", null ],
-    [ "info", "class_logger.html#a279e558cf622dd83d50a97fe9638e14b", null ],
-    [ "log", "class_logger.html#a0240175735bd550f55f221eb3b0b7f69", null ],
-    [ "success", "class_logger.html#a377b879cddcf3f8e85a83a2ec422e84f", null ],
-    [ "warning", "class_logger.html#adafcf3860ba6e55cec9644cdb5fdabc1", null ],
+    [ "Logger", "class_logger.html#ad3f64b539425faafa6a5dadbfc954851", null ],
+    [ "check", "class_logger.html#a4f0378cc26cfa65b917841e5c51fd803", null ],
+    [ "debug", "class_logger.html#a949f75bc8738e3dc562d5bf0b0bbcf17", null ],
+    [ "error", "class_logger.html#a6143eae9ac796c0fc0c490a7e237da6a", null ],
+    [ "fatal", "class_logger.html#ae5af71e4817478fd820e4d868fe7e09d", null ],
+    [ "getId", "class_logger.html#a48fb62a9231615962111171c3c938166", null ],
+    [ "info", "class_logger.html#a5ea4dfff7c2b84405d82fa4e0d02f012", null ],
+    [ "log", "class_logger.html#ac28c58864635f23d63ad7edb7d0ec2a5", null ],
+    [ "success", "class_logger.html#a40e43b6baa5d5810b016013d66803b8c", null ],
+    [ "warning", "class_logger.html#aebfb148be9b1d35821619e9a329312f6", null ],
     [ "assertLogger", "class_logger.html#a7d5348a05ddc151f08809ba228910957", null ],
-    [ "id", "class_logger.html#adb445bd137b959164ff054dd2ef51c91", null ]
+    [ "id", "class_logger.html#a0885ec58c8d08bd6f42616e2214fec1c", null ]
 ];

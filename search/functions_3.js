@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['debug_0',['debug',['../class_logger.html#a483f37b5ddab6b47b0018a9e8d5997cf',1,'Logger']]],
+  ['debug_0',['debug',['../class_logger.html#a949f75bc8738e3dc562d5bf0b0bbcf17',1,'Logger']]],
   ['destroy_1',['destroy',['../class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423',1,'Allocator']]],
   ['destroycomponent_2',['destroyComponent',['../class_scene.html#a71274cca9ec859fe5286fa1df39fe4c3',1,'Scene']]],
   ['detachfromcomponent_3',['detachFromComponent',['../class_scene_component.html#aa2b9ddf55ac126f3d8fd7a72ffdb1906',1,'SceneComponent']]],

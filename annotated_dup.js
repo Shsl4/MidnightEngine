@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "fmt", null, [
+      [ "formatter< String >", "structfmt_1_1formatter_3_01_string_01_4.html", "structfmt_1_1formatter_3_01_string_01_4" ]
+    ] ],
     [ "Allocator", "class_allocator.html", "class_allocator" ],
     [ "Array", "class_array.html", "class_array" ],
     [ "Attenuation", "struct_attenuation.html", "struct_attenuation" ],
@@ -11,7 +14,6 @@ var annotated_dup =
     [ "DirectionalLightHandles", "struct_directional_light_handles.html", "struct_directional_light_handles" ],
     [ "Engine", "class_engine.html", "class_engine" ],
     [ "Entry", "interface_entry.html", "interface_entry" ],
-    [ "FileHelper", "class_file_helper.html", "class_file_helper" ],
     [ "FlyingCharacter", "class_flying_character.html", "class_flying_character" ],
     [ "InputManager", "class_input_manager.html", "class_input_manager" ],
     [ "IRenderable", "class_i_renderable.html", "class_i_renderable" ],
@@ -24,6 +26,7 @@ var annotated_dup =
     [ "Math", "class_math.html", "class_math" ],
     [ "Matrix3", "struct_matrix3.html", "struct_matrix3" ],
     [ "Matrix4", "struct_matrix4.html", "struct_matrix4" ],
+    [ "Memory", "class_memory.html", "class_memory" ],
     [ "Mesh", "struct_mesh.html", "struct_mesh" ],
     [ "MeshComponent", "class_mesh_component.html", "class_mesh_component" ],
     [ "MeshLoader", "class_mesh_loader.html", "class_mesh_loader" ],

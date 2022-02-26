@@ -1,7 +1,7 @@
 var searchData=
 [
   ['data_0',['data',['../struct_matrix3.html#adf457b57026837a75e4c6edc9f7f8c0e',1,'Matrix3::data()'],['../struct_matrix4.html#a4c3958a96da5057c9f1c94c362530017',1,'Matrix4::data()'],['../class_array.html#a1ed7a8632e383152e0f03c5eecf7e917',1,'Array::data()'],['../struct_mesh.html#a59ee3d1ef283f81c4deab43948092c08',1,'Mesh::data()']]],
-  ['debug_1',['debug',['../class_logger.html#a483f37b5ddab6b47b0018a9e8d5997cf',1,'Logger']]],
+  ['debug_1',['debug',['../class_logger.html#a949f75bc8738e3dc562d5bf0b0bbcf17',1,'Logger']]],
   ['deltatime_2',['deltaTime',['../class_engine.html#a767c164560c26f7f096506a9c2b95b03',1,'Engine']]],
   ['deprecated_20list_3',['Deprecated List',['../deprecated.html',1,'']]],
   ['destroy_4',['destroy',['../class_allocator.html#a5501a1c4ecd03c0b8b4cca57ef4c0423',1,'Allocator']]],

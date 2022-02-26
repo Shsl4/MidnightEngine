@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['partitionasc_0',['partitionAsc',['../class_array.html#a0fcbd89f98175f1b6e306aa833df29c1',1,'Array']]],
-  ['partitiondesc_1',['partitionDesc',['../class_array.html#abb2c34d18cd51b1d1bca594bb880510d',1,'Array']]],
+  ['partitionasc_0',['partitionAsc',['../class_array.html#a994f6371bc720efc89329382296e3c7a',1,'Array']]],
+  ['partitiondesc_1',['partitionDesc',['../class_array.html#ab96ed560c0e2ac8ff90e38885bf1b99e',1,'Array']]],
   ['perspective_2',['perspective',['../struct_matrix4.html#a1defafb53716b98f8e6dbe13d586086d',1,'Matrix4']]],
   ['platformdata_3',['PlatformData',['../struct_platform_data.html#add834098359a9232398ba8aac8ae349a',1,'PlatformData']]],
   ['pointlight_4',['PointLight',['../struct_point_light.html#a7d54452a15c145508d7eee19a710d40e',1,'PointLight']]],

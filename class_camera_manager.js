@@ -9,5 +9,5 @@ var class_camera_manager =
     [ "unregisterCamera", "class_camera_manager.html#a805dd220e61eeaeb0b4745e6f3cea7c1", null ],
     [ "activeCamera", "class_camera_manager.html#a9fc3b4acabc0432f1b6767caf802e21d", null ],
     [ "cameras", "class_camera_manager.html#aae7d0d207d9640867956ee9c4a70289f", null ],
-    [ "scene", "class_camera_manager.html#abc9d55324e49bc3fcc28accd82858b15", null ]
+    [ "scene", "class_camera_manager.html#afe727dd5c73aa6861e4385e2d01d8779", null ]
 ];

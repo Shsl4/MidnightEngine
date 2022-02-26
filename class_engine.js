@@ -1,14 +1,14 @@
 var class_engine =
 [
-    [ "Engine", "class_engine.html#ad63a7f4b626a64ea1adfbe36de569620", null ],
+    [ "Engine", "class_engine.html#a20cc75030cb7884d282db11b28277b70", null ],
     [ "~Engine", "class_engine.html#a11f791f3b49728bec8288ba122e4a9ff", null ],
     [ "cleanup", "class_engine.html#a18dcb065818c6ec7e76168452eb45001", null ],
     [ "getActiveScene", "class_engine.html#a722db7898212dce5c0f5f57c920c9ac1", null ],
     [ "getDeltaTime", "class_engine.html#a196ca7111929517de60ca8814788dd25", null ],
     [ "getInputManager", "class_engine.html#a1caad1c9cdd05c68bbdeb9cbbb5fef89", null ],
     [ "getInstance", "class_engine.html#a8af63dff5b862e2ce1e7be221db09a2a", null ],
-    [ "getNiceGPUName", "class_engine.html#a7b07226b00fec412273f11f86d89decc", null ],
-    [ "getNiceRendererName", "class_engine.html#ae77f95ffd5f49fdd27923e68c5a79d4f", null ],
+    [ "getNiceGPUName", "class_engine.html#a03d3eec01e3ac197a305df98a45509f5", null ],
+    [ "getNiceRendererName", "class_engine.html#a7357d401b3427c6f28e4e229ff8e1177", null ],
     [ "getPlatformData", "class_engine.html#aba1056af35da45f130eb61baeae96c90", null ],
     [ "getTime", "class_engine.html#a336e5795112f3c21242255b8dfeba7e9", null ],
     [ "init", "class_engine.html#a7622a22bb887c6fe9dd2bbf709e7a9c3", null ],
