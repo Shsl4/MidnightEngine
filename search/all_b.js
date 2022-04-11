@@ -11,7 +11,7 @@ var searchData=
   ['linearcolors_8',['LinearColors',['../struct_linear_colors.html',1,'LinearColors'],['../struct_linear_colors.html#a2da01d93909110a35e93299d9018e714',1,'LinearColors::LinearColors()']]],
   ['loadedmeshes_9',['loadedMeshes',['../class_mesh_loader.html#a27eeec5261ce7a8e0396904bc95d9b5e',1,'MeshLoader']]],
   ['loadfile_10',['loadFile',['../class_shader_loader.html#a9287e70790a84e07e1ed6f97e40d397e',1,'ShaderLoader']]],
-  ['loadobj_11',['loadOBJ',['../class_mesh_loader.html#af2999f0f80557ccb0689647fc7231453',1,'MeshLoader']]],
+  ['loadmesh_11',['loadMesh',['../class_mesh_loader.html#a1b366f17e2575466ae8a3799bfedce19',1,'MeshLoader']]],
   ['loadprogram_12',['loadProgram',['../class_shader_loader.html#af4f2d329ba3da2ef18c2fedf13007f1e',1,'ShaderLoader']]],
   ['loadshader_13',['loadShader',['../class_shader_loader.html#a9309446f23b39feb51c6e64c37b6b1db',1,'ShaderLoader']]],
   ['log_14',['log',['../class_logger.html#ac28c58864635f23d63ad7edb7d0ec2a5',1,'Logger']]],
