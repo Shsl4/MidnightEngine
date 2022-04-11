@@ -7,6 +7,9 @@
 #include <bgfx/bgfx.h>
 #include <vector>
 
+#include <assimp/scene.h>
+#include <assimp/mesh.h>
+
 enum class MeshType {
 
     OBJ,
@@ -19,8 +22,7 @@ enum class MeshType {
  */
 struct Mesh {
 
-    Mesh(Array<Vertex> const &vertices, size_t numIndices, MeshType type, String const &name);
-
+    Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, MeshType type, String const &name);
     virtual ~Mesh();
 
     static bgfx::VertexLayout getVertexLayout() {
