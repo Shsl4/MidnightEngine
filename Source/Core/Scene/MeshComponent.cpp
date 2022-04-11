@@ -68,7 +68,7 @@ MeshComponent::MeshComponent(String const &path)
         : mat(LinearColors::white, LinearColors::white, LinearColors::white, false, 1.0f),
           light(LinearColor::fromRGB(155.0f, 39.0f, 227.0f), Vector3(0.0f, 2.0f, 0.0f), 5.0f, Attenuation(0.0f, 0.0f, 0.5f)) {
 
-    this->mesh = MeshLoader::loadOBJ(path);
+    this->mesh = MeshLoader::loadMesh(path);
               
     this->ambientLightHandle = bgfx::createUniform("ambientLight", bgfx::UniformType::Vec4);
     this->pointLightHandles = createPointLightUniforms();

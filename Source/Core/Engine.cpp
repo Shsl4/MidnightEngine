@@ -64,9 +64,9 @@ int Engine::init(int argc, const char **argv) {
     
     // Add elements in our scene. This is temporary and will be moved elsewhere later.
     activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, 5.0f)), "Monkey.obj");
-    activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(5.0f, 0.0f, 0.0f)), "Lantern_Sphere.obj");
     activeScene->createObject<MeshObject>(Transform(Vector3(-5.0f, 0.0f, 0.0f)), "Lamp1.obj");
+    activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
         
     // Create our controllable character.
     auto character = activeScene->createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));

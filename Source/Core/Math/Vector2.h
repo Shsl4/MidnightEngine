@@ -2,6 +2,7 @@
 
 #include <Core/EngineTypes.h>
 #include <cmath>
+#include <assimp/vector3.h>
 
 /*!
  *  A 2 dimensional vector structure.
@@ -16,6 +17,10 @@ struct Vector2 {
 
     Vector2(float x, float y) : x(x), y(y) {
 
+    }
+    
+    Vector2(aiVector3D const& other) : x(other.x), y(other.y) {
+        
     }
 
     FORCEINLINE float norm() const{

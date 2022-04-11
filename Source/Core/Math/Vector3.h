@@ -2,6 +2,7 @@
 
 #include <Math/MathUtils.h>
 #include <math.h>
+#include <assimp/vector3.h>
 
 /*!
  *  A 3 dimensional vector structure containing operators and primitives.
@@ -12,6 +13,10 @@ struct Vector3 {
 
     Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) {
 
+    }
+    
+    Vector3(aiVector3D const& other) : x(other.x), y(other.y), z(other.z) {
+        
     }
 
     explicit Vector3(const float v) : Vector3(v, v, v) {
