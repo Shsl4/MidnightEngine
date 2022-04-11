@@ -63,6 +63,6 @@ target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 foreach(LIBRARY ${THIRD_PARTY_DEBUG_DYLIBS})
 
     get_filename_component(FILENAME "${LIBRARY}" NAME)
-    add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME})
+    add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} $<TARGET_FILE_DIR:MidnightEngine>/${FILENAME})
 
 endforeach()

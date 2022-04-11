@@ -73,7 +73,7 @@ public:
         MeshLoader::instance = this;
     }
 
-    static Mesh *loadOBJ(String const &file);
+    static Mesh *loadMesh(String const &file);
 
 private:
 

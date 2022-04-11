@@ -478,6 +478,7 @@ Array<T> &Array<T>::operator=(Array<T> &&other) {
 template<typename T>
 T& Array<T>::getAt(size_t index) const {
     if(index >= capacity){
+        abort();
         throw std::runtime_error("Array out of bounds.");
     }
     return data[index];
