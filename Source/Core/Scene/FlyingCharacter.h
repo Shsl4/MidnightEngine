@@ -7,7 +7,8 @@ class FlyingCharacter : public SceneObject {
     using Super = SceneObject;
 
 public:
-
+    void mouseX(Int32 x);
+    void mouseY(Int32 y);
     void createComponents(class Scene *scene, Transform transform) override;
 
 protected:
@@ -15,8 +16,6 @@ protected:
     void setupInput(class InputManager *manager) override;
 
     void update(float deltaTime) override;
-
-    void mouseMotion(Int32 x, Int32 y);
 
 #define inputBoilerplate(name) void name##Pressed() {  _##name##Pressed = true; } \
                                void name##Released() {  _##name##Pressed = false; } \
@@ -36,6 +35,6 @@ protected:
 
 private:
 
-    class CameraComponent *camera;
+    CameraComponent *camera = nullptr;
 
 };

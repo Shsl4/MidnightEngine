@@ -20,7 +20,7 @@ int main(int argc, const char** argv) {
 
     #endif
 
-    auto entry = std::make_unique<Entry>();
+    const auto entry = std::make_unique<Entry>();
     entry->entry(argc, argv);
 
 #endif

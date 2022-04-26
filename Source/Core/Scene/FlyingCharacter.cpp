@@ -1,11 +1,17 @@
 #include <Scene/FlyingCharacter.h>
 #include <Input/InputManager.h>
 
-void FlyingCharacter::mouseMotion(Int32 x, Int32 y) {
+void FlyingCharacter::mouseX(const Int32 x) {
+
+    // Add camera input on mouse movement.
+    camera->addCameraYawInput(static_cast<float>(x) / 10.0f);
+
+}
+
+void FlyingCharacter::mouseY(const Int32 y) {
 
     // Add camera input on mouse movement.
     camera->addCameraPitchInput(static_cast<float>(y) / 10.0f);
-    camera->addCameraYawInput(static_cast<float>(x) / 10.0f);
 
 }
 
@@ -20,21 +26,22 @@ void FlyingCharacter::createComponents(Scene *scene, Transform transform) {
 void FlyingCharacter::setupInput(InputManager *manager) {
 
     // Bind all the required controls.
-    manager->bindEvent(this, KeyBind(SDLK_w), EInputEvent::Pressed, &FlyingCharacter::wPressed);
+    manager->bindEvent(this, KeyBind(SDLK_z), EInputEvent::Pressed, &FlyingCharacter::wPressed);
     manager->bindEvent(this, KeyBind(SDLK_s), EInputEvent::Pressed, &FlyingCharacter::sPressed);
-    manager->bindEvent(this, KeyBind(SDLK_a), EInputEvent::Pressed, &FlyingCharacter::aPressed);
+    manager->bindEvent(this, KeyBind(SDLK_q), EInputEvent::Pressed, &FlyingCharacter::aPressed);
     manager->bindEvent(this, KeyBind(SDLK_d), EInputEvent::Pressed, &FlyingCharacter::dPressed);
     manager->bindEvent(this, KeyBind(SDLK_LSHIFT), EInputEvent::Pressed, &FlyingCharacter::shiftPressed);
     manager->bindEvent(this, KeyBind(SDLK_SPACE), EInputEvent::Pressed, &FlyingCharacter::spacePressed);
 
-    manager->bindEvent(this, KeyBind(SDLK_w), EInputEvent::Released, &FlyingCharacter::wReleased);
+    manager->bindEvent(this, KeyBind(SDLK_z), EInputEvent::Released, &FlyingCharacter::wReleased);
     manager->bindEvent(this, KeyBind(SDLK_s), EInputEvent::Released, &FlyingCharacter::sReleased);
-    manager->bindEvent(this, KeyBind(SDLK_a), EInputEvent::Released, &FlyingCharacter::aReleased);
+    manager->bindEvent(this, KeyBind(SDLK_q), EInputEvent::Released, &FlyingCharacter::aReleased);
     manager->bindEvent(this, KeyBind(SDLK_d), EInputEvent::Released, &FlyingCharacter::dReleased);
     manager->bindEvent(this, KeyBind(SDLK_LSHIFT), EInputEvent::Released, &FlyingCharacter::shiftReleased);
     manager->bindEvent(this, KeyBind(SDLK_SPACE), EInputEvent::Released, &FlyingCharacter::spaceReleased);
 
-    manager->bindMouseMovement(this, &FlyingCharacter::mouseMotion);
+    manager->bindAxis(this, EAxisType::MouseX, &FlyingCharacter::mouseX);
+    manager->bindAxis(this, EAxisType::MouseY, &FlyingCharacter::mouseY);
 
 }
 

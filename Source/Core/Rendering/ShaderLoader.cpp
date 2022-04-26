@@ -51,21 +51,23 @@ String ShaderLoader::getShaderResourcePath() {
             return "Resources/Shaders/ESSL/";
             
         case bgfx::RendererType::Vulkan:
-             return "Resources/Shaders/SPIRV/";
-            
         case bgfx::RendererType::WebGPU:
             return "Resources/Shaders/SPIRV/";
-            
-        default:
+        
+        case bgfx::RendererType::Noop:
+        case bgfx::RendererType::Count:
             return "";
+        
     }
+
+    return "";
     
 }
 
 bgfx::ShaderHandle ShaderLoader::loadShader(String const& name) {
     
     // Format the file path.
-    String filePath = fmt::format("{}{}.bin", getShaderResourcePath(), name);
+    const String filePath = fmt::format("{}{}.bin", getShaderResourcePath(), name);
     
     // Load the file content
     const Array<UInt8> fileData = loadFile(filePath);
@@ -74,8 +76,8 @@ bgfx::ShaderHandle ShaderLoader::loadShader(String const& name) {
     const bgfx::Memory* mem = bgfx::copy(fileData.begin(), fileData.getSize());
 
     // Create our shader and name it.
-    bgfx::ShaderHandle handle = bgfx::createShader(mem);
-    bgfx::setName(handle, name.toCString());
+    const bgfx::ShaderHandle handle = bgfx::createShader(mem);
+    setName(handle, name.toCString());
 
     return handle;
 
@@ -84,12 +86,12 @@ bgfx::ShaderHandle ShaderLoader::loadShader(String const& name) {
 bgfx::ProgramHandle ShaderLoader::loadProgram(String const& name) {
 
     // Format our fragment and vertex shader file names.
-    String vertexShaderName = fmt::format("vs_{}", name);
-    String fragmentShaderName = fmt::format("fs_{}", name);
+    const String vertexShaderName = fmt::format("vs_{}", name);
+    const String fragmentShaderName = fmt::format("fs_{}", name);
 
     // Load the fragment and vertex shaders.
-    bgfx::ShaderHandle vertexShader = loadShader(vertexShaderName.toCString());
-    bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName.toCString());
+    const bgfx::ShaderHandle vertexShader = loadShader(vertexShaderName.toCString());
+    const bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName.toCString());
 
     // Create the shader program from the loaded shaders.
     return bgfx::createProgram(vertexShader, fragmentShader, true);

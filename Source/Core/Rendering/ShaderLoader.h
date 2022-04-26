@@ -8,9 +8,6 @@
 #include <Memory/String.h>
 
 #include <bgfx/bgfx.h>
-#include <bx/bx.h>
-#include <bx/readerwriter.h>
-#include <bx/file.h>
 
 /*!
  * A utility class used to load and compile shader files.

@@ -17,7 +17,7 @@ public:
      *
      *  \param[in] owner The scene this CameraManager belongs to.
      */
-    CameraManager(class Scene *owner);
+    explicit CameraManager(class Scene *owner);
     
     /*!
      * Remove the default constructor.

@@ -1,5 +1,5 @@
 #include <Scene/MeshComponent.h>
-#include <Rendering/Mesh.h>
+#include <Rendering/Model.h>
 #include <Math/Matrix4.h>
 
 MaterialHandles createMaterialUniforms() {
@@ -68,7 +68,7 @@ MeshComponent::MeshComponent(String const &path)
         : mat(LinearColors::white, LinearColors::white, LinearColors::white, false, 1.0f),
           light(LinearColor::fromRGB(155.0f, 39.0f, 227.0f), Vector3(0.0f, 2.0f, 0.0f), 5.0f, Attenuation(0.0f, 0.0f, 0.5f)) {
 
-    this->mesh = MeshLoader::loadMesh(path);
+    this->model = Allocator<Model>().construct(path);
               
     this->ambientLightHandle = bgfx::createUniform("ambientLight", bgfx::UniformType::Vec4);
     this->pointLightHandles = createPointLightUniforms();
@@ -112,16 +112,23 @@ MeshComponent::~MeshComponent() {
     bgfx::destroy(pointLightHandles.icle);
     bgfx::destroy(pointLightHandles.position);
 
+    Allocator<Model>().destroy(model);
+
 }
 
 
 void MeshComponent::render() {
 
-    setIndexBuffer(mesh->indexBuffer);
-    setVertexBuffer(0, mesh->vertexBuffer);
+    for (auto const& e : model->modelMeshes)
+    {
+        bgfx::setIndexBuffer(e->indexBuffer);
+        bgfx::setVertexBuffer(0, e->vertexBuffer);
     
-    setUniforms();
+        setUniforms();
+
+        bgfx::submit(0, e->programHandle);
+    }
     
-    submit(0, mesh->programHandle);
+
 
 }

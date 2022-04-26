@@ -6,21 +6,19 @@ Scene::Scene() {
     // Initialize the private variables
     this->logger = std::make_unique<Logger>("Scene");
     this->cameraManager = std::make_unique<CameraManager>(this);
-    
-    logger->info("Constructed scene.");
 
 }
 
 void Scene::renderComponents() const {
     
     // For each registered SceneComponent
-    for (auto component: registeredComponents) {
+    for (auto const &component: registeredComponents) {
 
         // If it is renderable
-        if (component->instanceOf<IRenderable>()) {
+        if (component->inherits<IRenderable>()) {
 
             // Cast to renderable and call render.
-            IRenderable *renderable = component->cast<IRenderable>();
+            auto* renderable = component->cast<IRenderable>();
             renderable->render();
 
         }
@@ -32,7 +30,7 @@ void Scene::renderComponents() const {
 void Scene::updateScene(float deltaTime) const {
     
     // Updates all the registered SceneObjects.
-    for (auto object: registeredObjects) {
+    for (auto const& object: registeredObjects) {
         object->update(deltaTime);
     }
 
@@ -52,9 +50,9 @@ bool Scene::destroyComponent(SceneComponent *component){
     component->detachFromComponent();
 
     // If the component is a CameraComponent, unregister it from the CameraManager.
-    if (component->template instanceOf<CameraComponent>()) {
+    if (component->inherits<CameraComponent>()) {
 
-        cameraManager->unregisterCamera(component->template cast<CameraComponent>());
+        cameraManager->unregisterCamera(component->cast<CameraComponent>());
 
     }
 

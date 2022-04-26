@@ -1,14 +1,10 @@
-#include <Rendering/Mesh.h>
-#include <Memory/String.h>
-#include <Memory/Memory.h>
-#include <sstream>
-#include <fstream>
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+﻿#include <Rendering/Mesh.h>
+#include <Rendering/ShaderLoader.h>
 
-Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, MeshType type, String const &name) :
-vertexCount(vertices.getSize()), indexCount(indexArray.getSize()), meshType(type), meshName(name) {
+#include <assimp/mesh.h>
+
+Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, String name) :
+    vertexCount(vertices.getSize()), indexCount(indexArray.getSize()), meshName(std::move(name)) {
     
     data = vertexAllocator.alloc(vertexCount);
     indices = indexAllocator.alloc(indexCount);
@@ -32,16 +28,8 @@ Mesh::~Mesh() {
     
 }
 
-Mesh *MeshLoader::loadMesh(String const &file) {
-    
-    // Preallocate the arrays with large sizes to avoid many reallocations later.
-    String path = "Resources/Models/";
-    path.append(file);
-    
-    Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast);
-    aiMesh* libMesh = scene->mMeshes[0];
-    
+Mesh* Mesh::from(const aiMesh* libMesh)
+{
     String objectName = libMesh->mName.C_Str();
     
     auto vertices = Array<Vertex>(libMesh->mNumVertices);
@@ -75,9 +63,7 @@ Mesh *MeshLoader::loadMesh(String const &file) {
     
     indices.reverse();
     
-    Mesh *mesh = instance->allocator.construct(vertices, indices, MeshType::OBJ, objectName);
-    
-    instance->loadedMeshes += mesh;
+    Mesh *mesh = Allocator<Mesh>().construct(vertices, indices, objectName);
     
     return mesh;
     

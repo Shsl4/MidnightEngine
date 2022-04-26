@@ -55,14 +55,14 @@ public:
      *
      *  \return The renderer name.
      */
-    String getNiceRendererName() const;
+    static String getNiceRendererName();
 
     /*!
      * Returns a nicely formatted string containing the current GPU name.
      *
      *  \return The GPU name.
      */
-    String getNiceGPUName() const;
+    static String getNiceGpuName();
 
     /*!
      * Returns the unique engine instance.
@@ -203,10 +203,5 @@ private:
      * \deprecated Used for debugging purposes, will be removed later.
      */
     UniquePtr<class CharacterInfoWindow> characterWindow;
-    
-    /*!
-     * The engine MeshLoader.
-     */
-    UniquePtr<class MeshLoader> meshLoader;
 
 };

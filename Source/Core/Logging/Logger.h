@@ -139,12 +139,19 @@ private:
         // Print the formatted string.
         print(color, "[{}] ({}) | {}\n", type, this->getId(), formatted);
 
-        // Get the file and put it into a string stream (cannot convert _Put_time directly to string).
-        auto now = std::chrono::system_clock::now();
-        std::time_t t = std::chrono::system_clock::to_time_t(now);
-        std::tm* tm = std::localtime(&t);
+        // Get the time and put it into a string stream (cannot convert _Put_time directly to string).
+        const auto now = std::chrono::system_clock::now();
+        const std::time_t t = std::chrono::system_clock::to_time_t(now);
         std::stringstream dateStream;
-        dateStream << std::put_time(tm, "%c");
+        std::tm tm;
+
+#ifdef _WIN64
+        localtime_s(&tm, &t);
+#else
+         tm = *std::localtime(&t);
+#endif
+        
+        dateStream << std::put_time(&tm, "%c");
 
         // Write to the log file.
         file << fmt::format("[{}] [{}] ({}) | {}\n", dateStream.str(), type, this->getId(), formatted);

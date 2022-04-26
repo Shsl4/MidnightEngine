@@ -6,12 +6,11 @@
 #include <Input/InputManager.h>
 #include <UI/PerformanceWindow.h>
 #include <UI/CharacterInfoWindow.h>
-#include <Rendering/Mesh.h>
+#include <Rendering/Model.h>
 #include <Memory/String.h>
 
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
-#include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>
 
 Logger Logger::assertLogger = Logger("Assert");
@@ -27,7 +26,6 @@ Engine::Engine(PlatformData const &data) : platformData(data) {
     this->logger = std::make_unique<Logger>("MidnightEngine");
     this->inputManager = std::make_unique<InputManager>();
     this->perfWindow = std::make_unique<PerformanceWindow>();
-    this->meshLoader = std::make_unique<MeshLoader>();
     this->activeScene = std::make_unique<Scene>();
     this->startTime = bx::getHPCounter();
 
@@ -78,7 +76,7 @@ int Engine::init(int argc, const char **argv) {
     imguiCreate();
     
     // As everything went fine, print an info message.
-    logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGPUName());
+    logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
     
     running = true;
 
@@ -134,7 +132,7 @@ void Engine::render() {
     bgfx::setState(state);
 
     // Get the active camera.
-    CameraComponent *camera = activeScene->getCameraManager()->getActiveCamera();
+    const CameraComponent *camera = activeScene->getCameraManager()->getActiveCamera();
 
     // Give the view and projection matrices to the vertex shader.
     bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
@@ -156,7 +154,7 @@ void Engine::stop() {
 
 void Engine::cleanup() {
 
-    logger->info("Destroying MidnightEngine...");
+    logger->info("Exiting MidnightEngine...");
     
     // Remove reference to the instance
     Engine::instance = nullptr;
@@ -167,11 +165,10 @@ void Engine::cleanup() {
     this->activeScene = nullptr;
     this->perfWindow = nullptr;
     this->characterWindow = nullptr;
-    this->meshLoader = nullptr;
 
 }
 
-String Engine::getNiceRendererName() const {
+String Engine::getNiceRendererName() {
 
     // Return a nice string with the renderer name.
     switch (bgfx::getRendererType()) {
@@ -198,12 +195,10 @@ String Engine::getNiceRendererName() const {
 
 }
 
-String Engine::getNiceGPUName() const {
-
-    const bgfx::Caps *caps = bgfx::getCaps();
-
+String Engine::getNiceGpuName() {
+    
     // Return a nice string with the GPU vendor.
-    switch (caps->vendorId) {
+    switch (const bgfx::Caps *caps = bgfx::getCaps(); caps->vendorId) {
         case BGFX_PCI_ID_AMD:
             return "AMD GPU";
         case BGFX_PCI_ID_INTEL:

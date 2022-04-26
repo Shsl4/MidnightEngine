@@ -42,10 +42,16 @@ public:
      *  \return Whether this object inherits T
      */
     template<class T>
-    bool instanceOf() {
+    bool inherits() {
 
         return cast<T>() != nullptr;
 
+    }
+
+    template<class T>
+    static bool isObject(T* object)
+    {
+        return dynamic_cast<Object*>(object);
     }
 
 };

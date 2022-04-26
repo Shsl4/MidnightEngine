@@ -83,8 +83,8 @@ Int64 String::toInteger() const{
     for(size_t i = negative; i < max; ++i){
         
         if(!isInteger(data[i])) { return 0; }
-        
-        UInt8 digit = charToInteger(data[i]);
+
+        const UInt8 digit = charToInteger(data[i]);
         
         value += digit * pow(10, size - i - 2);
         
@@ -101,15 +101,15 @@ Int64 String::toInteger() const{
 double String::toDouble() const {
     
     if(getSize() == 0) { return 0; }
-    
-    size_t max = getSize();
+
+    const size_t max = getSize();
     double value = 0;
-    bool negative = data[0] == '-';
+    const bool negative = data[0] == '-';
 
     Int64 dotIndex = -1;
     size_t counter = 0;
     
-    for(auto& e : *this){
+    for(const auto& e : *this){
         
         if (e == '.' || e == ',') {
             dotIndex = counter;
@@ -125,14 +125,14 @@ double String::toDouble() const {
         if(dotIndex == i) { continue; }
         
         if(!isInteger(data[i])) { return 0; }
-        
-        UInt8 digit = charToInteger(data[i]);
+
+        const UInt8 digit = charToInteger(data[i]);
         
         if(i < dotIndex){
             value += digit * pow(10, dotIndex - i - 1);
         }
         else{
-            Int64 v = dotIndex - i;
+            const Int64 v = dotIndex - i;
             value += digit * pow(10, v);
         }
         
@@ -147,8 +147,8 @@ double String::toDouble() const {
 }
 
 Array<String> String::split(const char separator) const {
-
-    Array<String> arr = Array<String>(10);
+    
+    auto arr = Array<String>(10);
     
     size_t from = 0;
     size_t to = 0;

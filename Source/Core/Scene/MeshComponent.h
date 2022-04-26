@@ -102,7 +102,7 @@ public:
 
     void construct(Transform const &relativeTransform) override;
 
-    virtual ~MeshComponent();
+    ~MeshComponent() override;
 
 
 private:
@@ -113,7 +113,7 @@ private:
 
     void render() override;
 
-    struct Mesh *mesh;
+    struct Model *model;
 
     bgfx::UniformHandle ambientLightHandle;
     PointLightHandles pointLightHandles;

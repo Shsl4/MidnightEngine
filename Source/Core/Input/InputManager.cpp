@@ -6,7 +6,7 @@ InputManager::InputManager() {
 
 void InputManager::invokeIfMatch(const KeyBind &kb, const KeyBindMap &map) {
 
-    for (auto[key, func]: map) {
+    for (auto const &[key, func]: map) {
         if (key == kb || (key.isModifierKey && key.key == kb.key)) {
             func();
         }
@@ -27,21 +27,15 @@ void InputManager::update() const {
                 
             case SDL_MOUSEMOTION:
 
-                for (auto i: this->axisEvents) {
+                for (const auto& [axisType, func]: this->axisEvents) {
 
-                    if (i.first == EAxisType::MouseX) {
-                        i.second(event.motion.xrel);
+                    if (axisType == EAxisType::MouseX) {
+                        func(event.motion.xrel);
                     }
 
-                    if (i.first == EAxisType::MouseY) {
-                        i.second(event.motion.yrel);
+                    if (axisType == EAxisType::MouseY) {
+                        func(event.motion.yrel);
                     }
-
-                }
-
-                for (auto func: mouseMotionEvents) {
-
-                    func(event.motion.xrel, event.motion.yrel);
 
                 }
 
@@ -51,24 +45,28 @@ void InputManager::update() const {
 
                 kb = KeyBind(event.button.button);
                 invokeIfMatch(kb, keyDownEvents);
+                logger->debug("Received mouse button press {}.", event.button.button);
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
                 kb = KeyBind(event.button.button);
                 invokeIfMatch(kb, keyUpEvents);
+                logger->debug("Received mouse button release {}.", event.button.button);
                 break;
 
             case SDL_KEYDOWN:
 
                 kb = KeyBind(keySym.sym, keySym.mod);
                 invokeIfMatch(kb, keyDownEvents);
+                logger->debug("Received \"{}\" key press.", SDL_GetKeyName(keySym.sym));
                 break;
 
             case SDL_KEYUP:
 
                 kb = KeyBind(keySym.sym, keySym.mod);
                 invokeIfMatch(kb, keyUpEvents);
+                logger->debug("Received \"{}\" key release.", SDL_GetKeyName(keySym.sym));
                 break;
                 
             default:

@@ -16,7 +16,7 @@ class Scene : public Object {
 public:
 
     /*!
-     * The scene constuctor. Initializes the private variables.
+     * The scene constructor. Initializes the private variables.
      */
     Scene();
     
@@ -90,7 +90,7 @@ public:
         component->registered = true;
 
         // If the created component is a CameraComponent, it is passed to the camera manager.
-        if (component->template instanceOf<CameraComponent>()) {
+        if (component->template inherits<CameraComponent>()) {
 
             cameraManager->registerCamera(component->template cast<CameraComponent>());
 
@@ -119,28 +119,28 @@ public:
         return this->cameraManager.get();
     }
 
-private:
+protected:
 
     friend class Engine;
 
     /*!
      * Renders all renderable components in the scene. This function is called on the render thread.
      */
-    void renderComponents() const;
+    virtual void renderComponents() const;
 
     /*!
      *  Updates every object on the scene.
      *
      *  \param[in] deltaTime The engine delta time
      */
-    void updateScene(float deltaTime) const;
+    virtual void updateScene(float deltaTime) const;
 
     /*!
      * Allows a newly created SceneObject to bind input events.
      *
      *  \param[in] object The target SceneObject
      */
-    void setupInput(SceneObject *object);
+    virtual void setupInput(SceneObject *object);
 
     /*!
      * An automatically managed array storing references to all SceneObjects in the scene.
