@@ -113,19 +113,26 @@ $(document).ready(function(){initNavTree('_object_8h_source.html',''); initResiz
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">   45</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">instanceOf</a>() {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_object.html#af9a069a0987f79dd335dcc5f6a740d7a">   45</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_object.html#af9a069a0987f79dd335dcc5f6a740d7a">inherits</a>() {</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> cast&lt;T&gt;() != <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_object.html#ae228d33402c38cca8a29630b1876c0de">   52</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_object.html#ae228d33402c38cca8a29630b1876c0de">isObject</a>(T* <span class="keywordtype">object</span>)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="class_object.html">Object</a>*<span class="keyword">&gt;</span>(object);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
 <div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:9</div></div>
 <div class="ttc" id="aclass_object_html_a226f2ae2af766b77d83c09a4d766b725"><div class="ttname"><a href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">Object::~Object</a></div><div class="ttdeci">virtual ~Object()=default</div></div>
 <div class="ttc" id="aclass_object_html_a679191ee8946710fa66940b26d90907c"><div class="ttname"><a href="class_object.html#a679191ee8946710fa66940b26d90907c">Object::getDescription</a></div><div class="ttdeci">virtual class String getDescription() const</div><div class="ttdef"><b>Definition:</b> Object.cpp:38</div></div>
 <div class="ttc" id="aclass_object_html_a90d2ab6069272b891c6e49a0bc86ecf2"><div class="ttname"><a href="class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2">Object::getClassName</a></div><div class="ttdeci">class String getClassName() const</div><div class="ttdef"><b>Definition:</b> Object.cpp:26</div></div>
 <div class="ttc" id="aclass_object_html_aa9f4f5ddd42afacca43366f537de8570"><div class="ttname"><a href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">Object::cast</a></div><div class="ttdeci">T * cast()</div><div class="ttdef"><b>Definition:</b> Object.h:33</div></div>
-<div class="ttc" id="aclass_object_html_ad6c06b04da6af8bf064e04a974048aed"><div class="ttname"><a href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">Object::instanceOf</a></div><div class="ttdeci">bool instanceOf()</div><div class="ttdef"><b>Definition:</b> Object.h:45</div></div>
+<div class="ttc" id="aclass_object_html_ae228d33402c38cca8a29630b1876c0de"><div class="ttname"><a href="class_object.html#ae228d33402c38cca8a29630b1876c0de">Object::isObject</a></div><div class="ttdeci">static bool isObject(T *object)</div><div class="ttdef"><b>Definition:</b> Object.h:52</div></div>
+<div class="ttc" id="aclass_object_html_af9a069a0987f79dd335dcc5f6a740d7a"><div class="ttname"><a href="class_object.html#af9a069a0987f79dd335dcc5f6a740d7a">Object::inherits</a></div><div class="ttdeci">bool inherits()</div><div class="ttdef"><b>Definition:</b> Object.h:45</div></div>
 <div class="ttc" id="aclass_string_html"><div class="ttname"><a href="class_string.html">String</a></div><div class="ttdef"><b>Definition:</b> String.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

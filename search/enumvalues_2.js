@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fbx_0',['FBX',['../_mesh_8h.html#a24f376ccef7a39450a2fcdbf5ba97cedafa1fcced9575dab70872090d1e94d297',1,'Mesh.h']]]
+  ['mousex_0',['MouseX',['../_input_enums_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601abf27c48f8a38ed19eeeba089dd8d3ba1',1,'InputEnums.h']]],
+  ['mousey_1',['MouseY',['../_input_enums_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601a73843207a289db41b16a5bb8254ca425',1,'InputEnums.h']]]
 ];

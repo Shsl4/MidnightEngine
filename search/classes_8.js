@@ -8,6 +8,6 @@ var searchData=
   ['memory_5',['Memory',['../class_memory.html',1,'']]],
   ['mesh_6',['Mesh',['../struct_mesh.html',1,'']]],
   ['meshcomponent_7',['MeshComponent',['../class_mesh_component.html',1,'']]],
-  ['meshloader_8',['MeshLoader',['../class_mesh_loader.html',1,'']]],
-  ['meshobject_9',['MeshObject',['../class_mesh_object.html',1,'']]]
+  ['meshobject_8',['MeshObject',['../class_mesh_object.html',1,'']]],
+  ['model_9',['Model',['../struct_model.html',1,'']]]
 ];

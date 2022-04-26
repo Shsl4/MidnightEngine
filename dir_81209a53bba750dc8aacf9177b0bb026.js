@@ -9,7 +9,13 @@ var dir_81209a53bba750dc8aacf9177b0bb026 =
       [ "LinearColors", "struct_linear_colors.html", "struct_linear_colors" ]
     ] ],
     [ "Mesh.cpp", "_mesh_8cpp.html", null ],
-    [ "Mesh.h", "_mesh_8h.html", "_mesh_8h" ],
+    [ "Mesh.h", "_mesh_8h.html", [
+      [ "Mesh", "struct_mesh.html", "struct_mesh" ]
+    ] ],
+    [ "Model.cpp", "_model_8cpp.html", null ],
+    [ "Model.h", "_model_8h.html", [
+      [ "Model", "struct_model.html", "struct_model" ]
+    ] ],
     [ "ShaderLoader.cpp", "_shader_loader_8cpp.html", null ],
     [ "ShaderLoader.h", "_shader_loader_8h.html", [
       [ "ShaderLoader", "class_shader_loader.html", "class_shader_loader" ]

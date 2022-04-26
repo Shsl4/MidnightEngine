@@ -89,198 +89,23 @@ $(document).ready(function(){initNavTree('_input_manager_8h.html',''); initResiz
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">InputManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="_object_8h_source.html">Core/Object.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_engine_types_8h_source.html">Core/EngineTypes.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_logger_8h_source.html">Core/Logging/Logger.h</a>&gt;</code><br />
-<code>#include &lt;SDL2/SDL.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="_logger_8h_source.html">Core/Logging/Logger.h</a>&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;<a class="el" href="_keybind_8h_source.html">Input/Keybind.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_input_enums_8h_source.html">Input/InputEnums.h</a>&gt;</code><br />
 </div>
 <p><a href="_input_manager_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_key_bind.html">KeyBind</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html">InputManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a9d3ee9631229b568bfd823302970860a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#a9d3ee9631229b568bfd823302970860a">bitCheck</a>(a,  p)&#160;&#160;&#160;(a &amp; (1 &lt;&lt; (p)))</td></tr>
-<tr class="separator:a9d3ee9631229b568bfd823302970860a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:adc52202e2e51b5749b696b4c2c871257"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#adc52202e2e51b5749b696b4c2c871257">KeyBindMap</a> = std::map&lt; <a class="el" href="struct_key_bind.html">KeyBind</a>, std::function&lt; void()&gt; &gt;</td></tr>
-<tr class="separator:adc52202e2e51b5749b696b4c2c871257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad06d9be122532f0871b5df98160221e8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#ad06d9be122532f0871b5df98160221e8">AxisBindMap</a> = std::map&lt; <a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601">EAxisType</a>, std::function&lt; void(<a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>)&gt; &gt;</td></tr>
-<tr class="separator:ad06d9be122532f0871b5df98160221e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ac0d9c68b292c6dcf7dfbbc118098b728"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728">EInputEvent</a> { <a class="el" href="_input_manager_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728ad78a68f6a85421ae121c2cb5b73a1040">Pressed</a>
-, <a class="el" href="_input_manager_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728aea1e34304a5d8ffa7c9b0ed8ede4ef1a">Released</a>
- }</td></tr>
-<tr class="separator:ac0d9c68b292c6dcf7dfbbc118098b728"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b1f2789ec40dcfbe4fed59a6824b601"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601">EAxisType</a> { <a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601abf27c48f8a38ed19eeeba089dd8d3ba1">MouseX</a>
-, <a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601a73843207a289db41b16a5bb8254ca425">MouseY</a>
- }</td></tr>
-<tr class="separator:a9b1f2789ec40dcfbe4fed59a6824b601"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93ac353544a95d04d2749185608c929f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929f">EKeyModifier</a> { <a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929fa825a3d98017bab11815ad2817201324c">Shift</a> = 1
-, <a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929faa1595abbb4c3a326636dd178757cd6c1">Control</a> = 1 &lt;&lt; 6
-, <a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929faa2e92861b757ab878312dd57993d60cf">Alt</a> = 1 &lt;&lt; 8
-, <a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929faee97be03cb04119af45014d815621ce1">Command</a> = 1 &lt;&lt; 10
- }</td></tr>
-<tr class="separator:a93ac353544a95d04d2749185608c929f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a9d3ee9631229b568bfd823302970860a" name="a9d3ee9631229b568bfd823302970860a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d3ee9631229b568bfd823302970860a">&#9670;&nbsp;</a></span>bitCheck</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define bitCheck</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">p&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(a &amp; (1 &lt;&lt; (p)))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="ad06d9be122532f0871b5df98160221e8" name="ad06d9be122532f0871b5df98160221e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad06d9be122532f0871b5df98160221e8">&#9670;&nbsp;</a></span>AxisBindMap</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="_input_manager_8h.html#ad06d9be122532f0871b5df98160221e8">AxisBindMap</a> =  std::map&lt;<a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601">EAxisType</a>, std::function&lt;void(<a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>)&gt; &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adc52202e2e51b5749b696b4c2c871257" name="adc52202e2e51b5749b696b4c2c871257"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc52202e2e51b5749b696b4c2c871257">&#9670;&nbsp;</a></span>KeyBindMap</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="_input_manager_8h.html#adc52202e2e51b5749b696b4c2c871257">KeyBindMap</a> =  std::map&lt;<a class="el" href="struct_key_bind.html">KeyBind</a>, std::function&lt;void()&gt; &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a9b1f2789ec40dcfbe4fed59a6824b601" name="a9b1f2789ec40dcfbe4fed59a6824b601"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b1f2789ec40dcfbe4fed59a6824b601">&#9670;&nbsp;</a></span>EAxisType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601">EAxisType</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9b1f2789ec40dcfbe4fed59a6824b601abf27c48f8a38ed19eeeba089dd8d3ba1" name="a9b1f2789ec40dcfbe4fed59a6824b601abf27c48f8a38ed19eeeba089dd8d3ba1"></a>MouseX&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a9b1f2789ec40dcfbe4fed59a6824b601a73843207a289db41b16a5bb8254ca425" name="a9b1f2789ec40dcfbe4fed59a6824b601a73843207a289db41b16a5bb8254ca425"></a>MouseY&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="ac0d9c68b292c6dcf7dfbbc118098b728" name="ac0d9c68b292c6dcf7dfbbc118098b728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0d9c68b292c6dcf7dfbbc118098b728">&#9670;&nbsp;</a></span>EInputEvent</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="_input_manager_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728">EInputEvent</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac0d9c68b292c6dcf7dfbbc118098b728ad78a68f6a85421ae121c2cb5b73a1040" name="ac0d9c68b292c6dcf7dfbbc118098b728ad78a68f6a85421ae121c2cb5b73a1040"></a>Pressed&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ac0d9c68b292c6dcf7dfbbc118098b728aea1e34304a5d8ffa7c9b0ed8ede4ef1a" name="ac0d9c68b292c6dcf7dfbbc118098b728aea1e34304a5d8ffa7c9b0ed8ede4ef1a"></a>Released&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="a93ac353544a95d04d2749185608c929f" name="a93ac353544a95d04d2749185608c929f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93ac353544a95d04d2749185608c929f">&#9670;&nbsp;</a></span>EKeyModifier</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="_input_manager_8h.html#a93ac353544a95d04d2749185608c929f">EKeyModifier</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a93ac353544a95d04d2749185608c929fa825a3d98017bab11815ad2817201324c" name="a93ac353544a95d04d2749185608c929fa825a3d98017bab11815ad2817201324c"></a>Shift&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a93ac353544a95d04d2749185608c929faa1595abbb4c3a326636dd178757cd6c1" name="a93ac353544a95d04d2749185608c929faa1595abbb4c3a326636dd178757cd6c1"></a>Control&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a93ac353544a95d04d2749185608c929faa2e92861b757ab878312dd57993d60cf" name="a93ac353544a95d04d2749185608c929faa2e92861b757ab878312dd57993d60cf"></a>Alt&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a93ac353544a95d04d2749185608c929faee97be03cb04119af45014d815621ce1" name="a93ac353544a95d04d2749185608c929faee97be03cb04119af45014d815621ce1"></a>Command&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

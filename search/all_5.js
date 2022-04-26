@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['eaxistype_0',['EAxisType',['../_input_manager_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601',1,'InputManager.h']]],
-  ['einputevent_1',['EInputEvent',['../_input_manager_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728',1,'InputManager.h']]],
-  ['ekeymodifier_2',['EKeyModifier',['../_input_manager_8h.html#a93ac353544a95d04d2749185608c929f',1,'InputManager.h']]],
+  ['eaxistype_0',['EAxisType',['../_input_enums_8h.html#a9b1f2789ec40dcfbe4fed59a6824b601',1,'InputEnums.h']]],
+  ['einputevent_1',['EInputEvent',['../_input_enums_8h.html#ac0d9c68b292c6dcf7dfbbc118098b728',1,'InputEnums.h']]],
+  ['ekeymodifier_2',['EKeyModifier',['../_input_enums_8h.html#a93ac353544a95d04d2749185608c929f',1,'InputEnums.h']]],
   ['empty_3',['empty',['../struct_matrix3.html#af56c77d1aabba454211402ecce552360',1,'Matrix3::empty()'],['../struct_matrix4.html#a413abde7695f69c22f905b048ce0e8a8',1,'Matrix4::empty()'],['../class_optional.html#a31be6aa92a4a501603b57104d6d377dd',1,'Optional::empty()']]],
   ['end_4',['end',['../class_array.html#a2e1950b48824efdf4c3e9909ac1c304d',1,'Array']]],
   ['engine_5',['Engine',['../class_scene.html#a3e1914489e4bed4f9f23cdeab34a43dc',1,'Scene']]],

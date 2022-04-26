@@ -7,6 +7,7 @@ var hierarchy =
     [ "formatter", null, [
       [ "fmt::formatter< String >", "structfmt_1_1formatter_3_01_string_01_4.html", null ]
     ] ],
+    [ "IEName", "class_i_e_name.html", null ],
     [ "IRenderable", "class_i_renderable.html", [
       [ "MeshComponent", "class_mesh_component.html", null ]
     ] ],
@@ -21,7 +22,7 @@ var hierarchy =
     [ "Matrix4", "struct_matrix4.html", null ],
     [ "Memory", "class_memory.html", null ],
     [ "Mesh", "struct_mesh.html", null ],
-    [ "MeshLoader", "class_mesh_loader.html", null ],
+    [ "Model", "struct_model.html", null ],
     [ "<NSApplicationDelegate>", null, [
       [ "Entry", "class_entry.html", null ]
     ] ],

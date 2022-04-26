@@ -4,5 +4,6 @@ var class_object =
     [ "cast", "class_object.html#aa9f4f5ddd42afacca43366f537de8570", null ],
     [ "getClassName", "class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2", null ],
     [ "getDescription", "class_object.html#a679191ee8946710fa66940b26d90907c", null ],
-    [ "instanceOf", "class_object.html#ad6c06b04da6af8bf064e04a974048aed", null ]
+    [ "inherits", "class_object.html#af9a069a0987f79dd335dcc5f6a740d7a", null ],
+    [ "isObject", "class_object.html#ae228d33402c38cca8a29630b1876c0de", null ]
 ];

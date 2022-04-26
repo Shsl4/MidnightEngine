@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('class_object.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_object-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Object Class Reference</div></div>
 </div><!--header-->
@@ -126,9 +127,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">cast</a> ()</td></tr>
 <tr class="separator:aa9f4f5ddd42afacca43366f537de8570"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6c06b04da6af8bf064e04a974048aed"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad6c06b04da6af8bf064e04a974048aed"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#ad6c06b04da6af8bf064e04a974048aed">instanceOf</a> ()</td></tr>
-<tr class="separator:ad6c06b04da6af8bf064e04a974048aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a069a0987f79dd335dcc5f6a740d7a"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af9a069a0987f79dd335dcc5f6a740d7a"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#af9a069a0987f79dd335dcc5f6a740d7a">inherits</a> ()</td></tr>
+<tr class="separator:af9a069a0987f79dd335dcc5f6a740d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae228d33402c38cca8a29630b1876c0de"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae228d33402c38cca8a29630b1876c0de"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#ae228d33402c38cca8a29630b1876c0de">isObject</a> (T *object)</td></tr>
+<tr class="separator:ae228d33402c38cca8a29630b1876c0de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >The default class for all the objects created and used by the engine. All classes but helpers should inherit this class. </p>
@@ -233,8 +240,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="ad6c06b04da6af8bf064e04a974048aed" name="ad6c06b04da6af8bf064e04a974048aed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6c06b04da6af8bf064e04a974048aed">&#9670;&nbsp;</a></span>instanceOf()</h2>
+<a id="af9a069a0987f79dd335dcc5f6a740d7a" name="af9a069a0987f79dd335dcc5f6a740d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a069a0987f79dd335dcc5f6a740d7a">&#9670;&nbsp;</a></span>inherits()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,7 +252,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Object::instanceOf </td>
+          <td class="memname">bool Object::inherits </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -259,6 +266,34 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p >Checks whether this object inherits T.</p>
 <dl class="section return"><dt>Returns</dt><dd>Whether this object inherits T </dd></dl>
+
+</div>
+</div>
+<a id="ae228d33402c38cca8a29630b1876c0de" name="ae228d33402c38cca8a29630b1876c0de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae228d33402c38cca8a29630b1876c0de">&#9670;&nbsp;</a></span>isObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Object::isObject </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

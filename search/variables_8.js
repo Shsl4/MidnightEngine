@@ -7,7 +7,7 @@ var searchData=
   ['indexcount_4',['indexCount',['../struct_mesh.html#a7b14493415e37dd75c93952e1bcb4204',1,'Mesh']]],
   ['indices_5',['indices',['../struct_mesh.html#adc64112d938b6664cf8c5646690d51b8',1,'Mesh']]],
   ['inputmanager_6',['inputManager',['../class_engine.html#a82a60a3857c1fe2e6193cfcc5dbc7794',1,'Engine']]],
-  ['instance_7',['instance',['../class_engine.html#a0bf3ee6e29130918aac1c3cb2ef021e9',1,'Engine::instance()'],['../class_mesh_loader.html#a07f0d2426d1d5288581cd7d740838e87',1,'MeshLoader::instance()']]],
+  ['instance_7',['instance',['../class_engine.html#a0bf3ee6e29130918aac1c3cb2ef021e9',1,'Engine']]],
   ['intensity_8',['intensity',['../struct_point_light.html#aefa51d6ad5e2b6747d605bc5038692a2',1,'PointLight']]],
   ['ismodifierkey_9',['isModifierKey',['../struct_key_bind.html#a77fd2570a37e6d21e4bcb027a7b9cc6c',1,'KeyBind']]],
   ['ismousebutton_10',['isMouseButton',['../struct_key_bind.html#abc025629a6eb1a7800dd7842b50de00c',1,'KeyBind']]]

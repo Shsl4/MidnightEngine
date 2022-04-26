@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keybindmap_0',['KeyBindMap',['../_input_manager_8h.html#adc52202e2e51b5749b696b4c2c871257',1,'InputManager.h']]]
+  ['keybindmap_0',['KeyBindMap',['../class_input_manager.html#a795885536122186fc3dc4d5d054c1d2f',1,'InputManager']]]
 ];

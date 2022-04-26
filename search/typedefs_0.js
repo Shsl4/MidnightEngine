@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['axisbindmap_0',['AxisBindMap',['../_input_manager_8h.html#ad06d9be122532f0871b5df98160221e8',1,'InputManager.h']]]
+  ['axisbindmap_0',['AxisBindMap',['../class_input_manager.html#a299f705b5b3436fa8c9c39f46c5ada7d',1,'InputManager']]]
 ];
