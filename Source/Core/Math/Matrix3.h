@@ -17,7 +17,7 @@ struct Matrix3 {
 
     Vector3 operator*(Vector3 other) const;
 
-    void operator=(Matrix3 const &other);
+    Matrix3 &operator=(Matrix3 const &other);
 
     void operator+=(Matrix3 const &other);
 
@@ -27,7 +27,7 @@ struct Matrix3 {
 
     void operator*=(float scale);
 
-    void operator=(const float newData[3][3]);
+    Matrix3 &operator=(const float newData[3][3]);
 
     bool operator==(Matrix3 const &other) const;
 

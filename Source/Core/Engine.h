@@ -78,7 +78,7 @@ public:
      *
      *  \return The platform data.
      */
-    FORCEINLINE const PlatformData getPlatformData() const {
+    FORCEINLINE PlatformData getPlatformData() const {
         return platformData;
     };
 

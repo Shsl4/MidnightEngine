@@ -70,26 +70,27 @@ Vector3 Matrix4::operator*(const Vector3 other) const {
     const float y = this->data[0][1] * other.x + this->data[1][1] * other.y + this->data[2][1] * other.z;
     const float z = this->data[0][2] * other.x + this->data[1][2] * other.y + this->data[2][2] * other.z;
 
-    return Vector3(x, y, z);
+    return { x, y, z };
 
 }
 
 void Matrix4::operator*=(const float scale) {
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            this->data[i][j] *= scale;
+    for (auto & a : this->data) {
+        for (auto &b : a) {
+            b *= scale;
         }
     }
 
 }
 
-void Matrix4::operator=(const float newData[4][4]) {
+Matrix4 &Matrix4::operator=(const float newData[4][4]) {
     for (size_t i = 0; i < 4; i++) {
         for (size_t j = 0; j < 4; j++) {
-            this->data[i][j] += newData[i][j];
+            this->data[i][j] = newData[i][j];
         }
     }
+    return *this;
 }
 
 void Matrix4::operator*=(Matrix4 const &other) {
@@ -134,7 +135,7 @@ bool Matrix4::operator==(Matrix4 const &other) const {
 }
 
 Vector4 Matrix4::operator[](const size_t i) const {
-    return Vector4(data[i][0], data[i][1], data[i][2], data[i][3]);
+    return { data[i][0], data[i][1], data[i][2], data[i][3] };
 }
 
 void Matrix4::rotateX(const float radians) {

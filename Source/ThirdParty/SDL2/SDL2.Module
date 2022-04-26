@@ -18,8 +18,6 @@ elseif (APPLE)
 set(SDL_DEBUG_LIB ${CMAKE_CURRENT_LIST_DIR}/SDL2-${SDL_VERSION}/lib/macOS/Universal/SDL2.framework)
 set(SDL_RELEASE_LIB ${CMAKE_CURRENT_LIST_DIR}/SDL2-${SDL_VERSION}/lib/macOS/Universal/SDL2.framework)
 
-elseif (LINUX)
-message(FATAL_ERROR "Need to compile libraries for Linux.")
 endif()
 
 set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${SDL_DEBUG_LIB})

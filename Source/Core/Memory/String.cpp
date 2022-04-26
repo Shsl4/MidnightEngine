@@ -48,7 +48,7 @@ String::String(const char *mem, size_t limit) {
     // Copy the string.
     allocator.copy(mem, mem + limit, this->data);
 
-    this->data[getSize()] = '\0';
+    this->data[limit] = '\0';
 
 }
 
@@ -68,7 +68,7 @@ String String::substring(size_t from, size_t to) const {
     }
 
     // Return the substring.
-    return String(data + from, to - from);
+    return {data + from, to - from };
 
 }
 

@@ -24,11 +24,22 @@ set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/libbgfxRelease.a ${RELEASE_PATH}/libbxRele
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/bx/compat/osx)
 
 elseif (LINUX)
-message(FATAL_ERROR "Need to compile libraries for Linux.")
+
+set(DEBUG_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Linux/x64/Debug)
+set(RELEASE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Linux/x64/Release)
+
+set(BGFX_DEBUG_LIBS ${DEBUG_PATH}/libbgfxDebug.a ${DEBUG_PATH}/libbimg_decodeDebug.a ${DEBUG_PATH}/libbimg_encodeDebug.a ${DEBUG_PATH}/libbimgDebug.a ${DEBUG_PATH}/libbxDebug.a)
+set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/libbgfxRelease.a ${RELEASE_PATH}/libbimg_decodeRelease.a ${RELEASE_PATH}/libbimg_encodeRelease.a ${RELEASE_PATH}/libbimgRelease.a ${RELEASE_PATH}/libbxRelease.a)
+
+set(BGFX_DEBUG_DYLIBS ${CMAKE_CURRENT_LIST_DIR}/bin/Linux/x64/Debug/libbgfx-shared-libDebug.so)
+set(BGFX_RELEASE_DYLIBS ${CMAKE_CURRENT_LIST_DIR}/bin/Linux/x64/Release/libbgfx-shared-libRelease.so)
+
 endif()
 
 set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${BGFX_DEBUG_LIBS})
 set(THIRD_PARTY_RELEASE_LIBS ${THIRD_PARTY_RELEASE_LIBS} ${BGFX_RELEASE_LIBS})
+set(THIRD_PARTY_DEBUG_DYLIBS ${THIRD_PARTY_DEBUG_DYLIBS} ${BGFX_DEBUG_DYLIBS})
+set(THIRD_PARTY_RELEASE_DYLIBS ${THIRD_PARTY_RELEASE_DYLIBS} ${BGFX_RELEASE_DYLIBS})
 
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/)
 

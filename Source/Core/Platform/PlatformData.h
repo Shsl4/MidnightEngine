@@ -5,7 +5,7 @@
 
 struct PlatformData {
 
-    PlatformData(const int argc, const char **argv, SDL_Window *window, float scaleFactor);
+    PlatformData(int argc, const char **argv, SDL_Window *window, float scaleFactor);
 
     const int argc;
     const char** argv;

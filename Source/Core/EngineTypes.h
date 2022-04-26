@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <memory>
-#include <stdint.h>
+#include <cstdint>
 
 template<typename T>
 using UniquePtr = std::unique_ptr<T>;
@@ -23,8 +23,8 @@ using UInt32 = uint32_t;
 using UInt64 = uint64_t;
 
 #ifndef _WIN64
-#define FORCEINLINE __attribute__((always_inline))
+#define FORCEINLINE __attribute__((always_inline)) inline
 #else
 #define FORCEINLINE __forceinline
-#endif // !WIN64
+#endif // !_WIN64
 

@@ -8,7 +8,7 @@
 
 ## Requirements
 
-This project requires cmake version 3.8 or above. The project only targets x64 and arm64.
+This project requires [CMake](https://cmake.org/download/) version 3.8 or above. The project only targets x64 and arm64.
 
 ## Building
 
@@ -17,16 +17,27 @@ Clone the project and move to the directory:
 git clone https://github.com/Shsl4/MidnightEngine
 cd MidnightEngine
 ```
+### Windows
 On Windows, generate the Visual Studio 2022 project:
 ```bat
 .\generateVS2022.bat
 ```
+### macOS
 On macOS, generate the Xcode project:
 ```sh
 chmod +x generateXCode.sh
 ./generateXcode.sh
 ```
-The Visual Studio and Xcode projects will be generated in the Build directory.
+### Linux
+On Linux, either open the cloned directory as a project using a CMake compatible IDE such as [CLion](https://www.jetbrains.com/clion/), or generate a makefile project using:
+```sh
+chmod +x generateMakefile.sh
+./generateMakefile.sh
+```
+
+> ⚠️ The project does not contain the Linux SDL2 binaries. You have to install them using your package manager.
+
+The Visual Studio, Xcode and Makefile projects will be generated in the Build directory.
 Alternatively, you can generate the project yourself using cmake.
 
 ## Documentation
@@ -47,5 +58,6 @@ You will find the documentation in the Docs directory. Otherwise, the docs are a
 -   [imgui](https://github.com/ocornut/imgui) - Bloat-free Graphical User interface for C++ with minimal dependencies 
 -   [iconfontheaders](https://github.com/juliettef/IconFontCppHeaders) - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, Material Design, Kenney game icons and Fontaudio 
 -   [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css) - Custom CSS theme for doxygen html-documentation with lots of customization parameters. 
+-   [assimp](https://github.com/assimp/assimp) - The official Open-Asset-Importer-Library Repository. Loads 40+ 3D-file-formats into one unified and clean data structure. 
 
-For now, binaries provided for third-party libraries are built for Windows x64 and macOS arm64 only.
+For now, binaries provided for third-party libraries are built for Windows x64, Linux x64 and macOS arm64 only.

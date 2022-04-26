@@ -19,7 +19,7 @@ struct Vector2 {
 
     }
     
-    Vector2(aiVector3D const& other) : x(other.x), y(other.y) {
+    explicit Vector2(aiVector3D const& other) : x(other.x), y(other.y) {
         
     }
 

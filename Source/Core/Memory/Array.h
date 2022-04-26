@@ -55,7 +55,7 @@ public:
     /*!
      * The Array destructor. It releases the allocated resources.
      */
-    ~Array();
+    ~Array() override;
 
     /*!
      *  Adds an element to the end of the array.

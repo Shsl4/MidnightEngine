@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cstring>
 #include <Math/Transform.h>
 #include <Math/Vector4.h>
 
@@ -27,7 +28,7 @@ struct Matrix4 {
 
     void operator*=(float scale);
 
-    void operator=(const float newData[4][4]);
+    Matrix4 &operator=(const float newData[4][4]);
 
     bool operator==(Matrix4 const &other) const;
 

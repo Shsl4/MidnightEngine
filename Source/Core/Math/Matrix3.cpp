@@ -1,4 +1,5 @@
 #include <Math/Matrix3.h>
+#include <cstring>
 
 Matrix3 Matrix3::operator+(Matrix3 const &other) const {
     Matrix3 m;
@@ -12,9 +13,10 @@ Matrix3 Matrix3::operator+(Matrix3 const &other) const {
     return m;
 }
 
-void Matrix3::operator=(Matrix3 const &other) {
+Matrix3 &Matrix3::operator=(Matrix3 const &other) {
 
     memcpy(this->data, other.data, 9 * sizeof(float));
+    return *this;
 
 }
 
@@ -92,28 +94,32 @@ void Matrix3::operator*=(Matrix3 const &other) {
 }
 
 void Matrix3::operator*=(const float scale) {
-    for (size_t i = 0; i < 3; i++) {
-        for (size_t j = 0; j < 3; j++) {
-            this->data[i][j] *= scale;
+
+    for (auto & a : this->data) {
+        for (auto &b : a) {
+            b *= scale;
         }
     }
+
 }
 
-void Matrix3::operator=(const float newData[3][3]) {
+Matrix3 &Matrix3::operator=(const float newData[3][3]) {
+
     for (size_t i = 0; i < 3; i++) {
         for (size_t j = 0; j < 3; j++) {
             this->data[i][j] = newData[i][j];
         }
     }
+
+    return *this;
 }
 
 bool Matrix3::operator==(Matrix3 const &other) const {
+
     for (size_t i = 0; i < 3; i++) {
         for (size_t j = 0; j < 3; j++) {
             if (this->data[i][j] != other.data[i][j]) {
-
                 return false;
-
             }
         }
     }
@@ -128,6 +134,7 @@ Matrix3 Matrix3::empty() {
 }
 
 Matrix3 Matrix3::identity() {
+
     Matrix3 m;
 
     for (size_t i = 0; i < 3; i++) {
@@ -142,9 +149,9 @@ Matrix3 Matrix3::identity() {
 Matrix3 Matrix3::fill(float value) {
     Matrix3 m;
 
-    for (size_t i = 0; i < 3; i++) {
-        for (size_t j = 0; j < 3; j++) {
-            m.data[i][j] = value;
+    for (auto & a : m.data) {
+        for (auto &b : a) {
+            b *= value;
         }
     }
 

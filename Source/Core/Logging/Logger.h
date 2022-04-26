@@ -5,6 +5,11 @@
 #include <fmt/format.h>
 #include <fmt/color.h>
 
+#include <utility>
+#include <fstream>
+#include <chrono>
+#include <iomanip>
+
 /*!
  * A Logging class allowing you to log messages to the console using different severities.
  */
@@ -17,8 +22,8 @@ public:
      *
      * \param[in] id The Logger identifier.
      */
-    explicit Logger(const String &id) : id(id) {
-        
+    explicit Logger(String id) : id(std::move(id)) {
+
     }
 
     /*!
@@ -129,9 +134,22 @@ private:
         // Format the string.
         const auto formatArgs = fmt::make_format_args(args...);
         const std::string formatted = vformat(format.toCString(), formatArgs);
-        
+
         // Print the formatted string.
         print(color, "[{}] ({}) | {}\n", type, this->getId(), formatted);
+
+        // Get the file and put it into a string stream (cannot convert _Put_time directly to string).
+        auto now = std::chrono::system_clock::now();
+        std::time_t t = std::chrono::system_clock::to_time_t(now);
+        std::tm* tm = std::localtime(&t);
+        std::stringstream dateStream;
+        dateStream << std::put_time(tm, "%c");
+
+        // Write to the log file.
+        file << fmt::format("[{}] [{}] ({}) | {}\n", dateStream.str(), type, this->getId(), formatted);
+
+        // Flush the data to the file.
+        file.flush();
 
     }
 
@@ -144,5 +162,10 @@ private:
      * A static private logger used for assertion checks.
      */
     static Logger assertLogger;
+
+    /*!
+    * The log file where messages are dumped.
+    */
+    inline static std::ofstream file = std::ofstream("latest.log");
 
 };

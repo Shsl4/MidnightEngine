@@ -15,13 +15,13 @@ bool Vector2::operator<(Vector2 const &other) const{
 
 Vector2 Vector2::operator+(Vector2 const &other) {
 
-    return Vector2(this->x + other.x, this->y + other.y);
+    return {this->x + other.x, this->y + other.y };
 
 }
 
 Vector2 Vector2::operator-(Vector2 const &other) {
 
-    return Vector2(this->x - other.x, this->y - other.y);
+    return {this->x - other.x, this->y - other.y} ;
 
 }
 

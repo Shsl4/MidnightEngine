@@ -58,7 +58,7 @@ Mesh *MeshLoader::loadMesh(String const &file) {
         }
         
         if (libMesh->HasTextureCoords(0)) {
-            texCoords = libMesh->mTextureCoords[0][i];
+            texCoords = Vector2(libMesh->mTextureCoords[0][i]);
         }
         
         vertices += Vertex(position, normal, texCoords, LinearColors::white);

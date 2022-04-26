@@ -13,16 +13,16 @@ bool Vector3::operator< (Vector3 const &other) const{
 }
 
 Vector3 Vector3::operator-(Vector3 const &other) const {
-    return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
+    return { this->x - other.x, this->y - other.y, this->z - other.z };
 }
 
 
 Vector3 Vector3::operator+(Vector3 const &other) const {
-    return Vector3(this->x + other.x, this->y + other.y, this->z + other.z);
+    return { this->x + other.x, this->y + other.y, this->z + other.z };
 }
 
 Vector3 Vector3::operator*(const float scale) const {
-    return Vector3(x * scale, y * scale, z * scale);
+    return { x * scale, y * scale, z * scale };
 }
 
 

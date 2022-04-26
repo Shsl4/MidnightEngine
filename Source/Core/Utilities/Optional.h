@@ -8,7 +8,7 @@
  *  safe comparisons can be made with direct values or other optionals.
  */
 template<typename T>
-class Optional : public Object {
+class Optional final : public Object {
 
 public:
 
@@ -250,7 +250,7 @@ public:
     /*!
      * The optional destructor.
      */
-    ~Optional();
+    ~Optional() final;
 
 private:
 

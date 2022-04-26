@@ -17,5 +17,7 @@
 *.DS_STORE
 /Build
 /.vs
+/.idea
 /Docs
+/cmake-build-debug
 /out

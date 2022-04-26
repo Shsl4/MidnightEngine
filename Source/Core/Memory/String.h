@@ -69,7 +69,7 @@ public:
      *  \param separator The split separator.
      *  \return An array containing the substrings.
      */
-    Array<String> split(const char separator) const;
+    Array<String> split(char separator) const;
     
     /*!
      *  The Array copy assignment operator.

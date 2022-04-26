@@ -2,6 +2,7 @@
 
 #include <Memory/Memory.h>
 #include <Core/Object.h>
+#include <cstring>
 
 /*!
  *  An object allowing to manage memory for objects of type T.
@@ -10,7 +11,7 @@
  *  \tparam T Type of object to manage
  */
 template<typename T>
-class Allocator : public Object {
+class Allocator final : public Object {
 
 public:
 
@@ -75,7 +76,7 @@ public:
     /*!
      * The Allocator destructor.
      */
-    ~Allocator() = default;
+    ~Allocator() final = default;
 
     /*!
      *  Moves memory forwards or backwards automatically.

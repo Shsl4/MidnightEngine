@@ -3,7 +3,6 @@
 #include <Scene/CameraComponent.h>
 #include <Scene/MeshObject.h>
 #include <Scene/FlyingCharacter.h>
-#include <Rendering/ShaderLoader.h>
 #include <Input/InputManager.h>
 #include <UI/PerformanceWindow.h>
 #include <UI/CharacterInfoWindow.h>
@@ -11,8 +10,6 @@
 #include <Memory/String.h>
 
 #include <bx/timer.h>
-#include <bx/commandline.h>
-#include <bgfx/bgfx_utils.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>

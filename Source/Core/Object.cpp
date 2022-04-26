@@ -9,11 +9,11 @@ String demangle(const char* name) {
 
     int status = -1;
 
-    char* __dmgl = abi::__cxa_demangle(name, NULL, NULL, &status);
+    char* demangled = abi::__cxa_demangle(name, nullptr, nullptr, &status);
 
     if(status == 0){
-        String className = __dmgl;
-        std::free(__dmgl);
+        String className = demangled;
+        std::free(demangled);
         return className;
     }
     
@@ -25,13 +25,13 @@ String demangle(const char* name) {
 
 String Object::getClassName() const {
 
-    const char* __name = typeid(*this).name();
+    const char* className = typeid(*this).name();
     
 #ifdef __GNUG__
-    return demangle(__name);
+    return demangle(className);
+#else
+    return className;
 #endif
-    
-    return __name;
 
 }
 
