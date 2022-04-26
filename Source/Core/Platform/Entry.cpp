@@ -6,6 +6,8 @@
 
 #include <thread>
 
+#ifndef __APPLE__
+
 #if defined(_WIN64) && defined(_DEBUG)
 
 #define _CRTDBG_MAP_ALLOC
@@ -91,3 +93,5 @@ void Entry::update() const {
     engine->update();
 
 }
+
+#endif
