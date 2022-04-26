@@ -4,7 +4,6 @@ var hierarchy =
     [ "CharacterInfoWindow", "class_character_info_window.html", null ],
     [ "DirectionalLight", "struct_directional_light.html", null ],
     [ "DirectionalLightHandles", "struct_directional_light_handles.html", null ],
-    [ "Entry", "class_entry.html", null ],
     [ "formatter", null, [
       [ "fmt::formatter< String >", "structfmt_1_1formatter_3_01_string_01_4.html", null ]
     ] ],
@@ -23,6 +22,12 @@ var hierarchy =
     [ "Memory", "class_memory.html", null ],
     [ "Mesh", "struct_mesh.html", null ],
     [ "MeshLoader", "class_mesh_loader.html", null ],
+    [ "<NSApplicationDelegate>", null, [
+      [ "Entry", "class_entry.html", null ]
+    ] ],
+    [ "NSObject", null, [
+      [ "Entry", "class_entry.html", null ]
+    ] ],
     [ "Object", "class_object.html", [
       [ "Array< char >", "class_array.html", [
         [ "String", "class_string.html", null ]

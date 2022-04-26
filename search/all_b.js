@@ -15,8 +15,9 @@ var searchData=
   ['loadprogram_12',['loadProgram',['../class_shader_loader.html#af4f2d329ba3da2ef18c2fedf13007f1e',1,'ShaderLoader']]],
   ['loadshader_13',['loadShader',['../class_shader_loader.html#a9309446f23b39feb51c6e64c37b6b1db',1,'ShaderLoader']]],
   ['log_14',['log',['../class_logger.html#ac28c58864635f23d63ad7edb7d0ec2a5',1,'Logger']]],
-  ['logger_15',['Logger',['../class_logger.html',1,'Logger'],['../class_logger.html#ad7496a071e707ce693d058894a3c9322',1,'Logger::Logger()']]],
+  ['logger_15',['Logger',['../class_logger.html',1,'']]],
   ['logger_16',['logger',['../class_engine.html#ad0188a8ca629b2a79a9c4717e92def81',1,'Engine::logger()'],['../class_input_manager.html#ab12b236e9a06669dcd283edad52c95fa',1,'InputManager::logger()'],['../class_shader_loader.html#a53ca6ac6d05e794c0e34b664e3a44909',1,'ShaderLoader::logger()'],['../class_scene.html#adb8c9d51bb8368327ced02e300633e8e',1,'Scene::logger()'],['../class_performance_window.html#a2e3cae0a665a166b3d1bd2e7ae2d5985',1,'PerformanceWindow::logger()']]],
-  ['logger_2eh_17',['Logger.h',['../_logger_8h.html',1,'']]],
-  ['lookat_18',['lookAt',['../struct_matrix4.html#a9b6051a69f77bd109f3dcc817c8bab4d',1,'Matrix4']]]
+  ['logger_17',['Logger',['../class_logger.html#ad7496a071e707ce693d058894a3c9322',1,'Logger']]],
+  ['logger_2eh_18',['Logger.h',['../_logger_8h.html',1,'']]],
+  ['lookat_19',['lookAt',['../struct_matrix4.html#a9b6051a69f77bd109f3dcc817c8bab4d',1,'Matrix4']]]
 ];
