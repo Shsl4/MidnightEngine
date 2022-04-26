@@ -96,20 +96,31 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 A cross-platform 3D rendering engine written in C++</h1>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Requirements</h1>
-<p >This project requires cmake version 3.8 or above. The project only targets x64 and arm64.</p>
+<p >This project requires <a href="https://cmake.org/download/">CMake</a> version 3.8 or above. The project only targets x64 and arm64.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Building</h1>
 <p >Clone the project and move to the directory: </p><div class="fragment"><div class="line">git clone https://github.com/Shsl4/MidnightEngine</div>
 <div class="line">cd MidnightEngine</div>
-</div><!-- fragment --><p> On Windows, generate the Visual Studio 2022 project: </p><div class="fragment"><div class="line">.\generateVS2022.bat</div>
-</div><!-- fragment --><p> On macOS, generate the Xcode project: </p><div class="fragment"><div class="line">chmod +x generateXCode.sh</div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md4"></a>
+Windows</h2>
+<p >On Windows, generate the Visual Studio 2022 project: </p><div class="fragment"><div class="line">.\generateVS2022.bat</div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md5"></a>
+macOS</h2>
+<p >On macOS, generate the Xcode project: </p><div class="fragment"><div class="line">chmod +x generateXCode.sh</div>
 <div class="line">./generateXcode.sh</div>
-</div><!-- fragment --><p> The Visual Studio and Xcode projects will be generated in the Build directory. Alternatively, you can generate the project yourself using cmake.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md6"></a>
+Linux</h2>
+<p >On Linux, either open the cloned directory as a project using a CMake compatible IDE such as <a href="https://www.jetbrains.com/clion/">CLion</a>, or generate a makefile project using: </p><div class="fragment"><div class="line">chmod +x generateMakefile.sh</div>
+<div class="line">./generateMakefile.sh</div>
+</div><!-- fragment --><blockquote class="doxtable">
+<p >⚠️ The project does not contain the Linux SDL2 binaries. You have to install them using your package manager. </p>
+</blockquote>
+<p>The Visual Studio, Xcode and Makefile projects will be generated in the Build directory. Alternatively, you can generate the project yourself using cmake.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Documentation</h1>
 <p >You can generate documentation for this project using doxygen. Simply move to the root directory and type: </p><div class="fragment"><div class="line">doxygen</div>
 </div><!-- fragment --><p> You will find the documentation in the Docs directory. Otherwise, the docs are available online <a href="https://shsl4.github.io/MidnightEngine/">here</a></p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Third-Party Libraries</h1>
 <ul>
 <li><a href="https://github.com/mendsley/tinystl">tinystl</a> - Tiny (as in minimal) implementation of some core STL functionality</li>
@@ -119,8 +130,9 @@ Third-Party Libraries</h1>
 <li><a href="https://github.com/ocornut/imgui">imgui</a> - Bloat-free Graphical User interface for C++ with minimal dependencies</li>
 <li><a href="https://github.com/juliettef/IconFontCppHeaders">iconfontheaders</a> - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, <a class="el" href="struct_material.html">Material</a> Design, Kenney game icons and Fontaudio</li>
 <li><a href="https://github.com/jothepro/doxygen-awesome-css">doxygen-awesome-css</a> - Custom CSS theme for doxygen html-documentation with lots of customization parameters.</li>
+<li><a href="https://github.com/assimp/assimp">assimp</a> - The official Open-Asset-Importer-Library Repository. Loads 40+ 3D-file-formats into one unified and clean data structure.</li>
 </ul>
-<p >For now, binaries provided for third-party libraries are built for Windows x64 and macOS arm64 only. </p>
+<p >For now, binaries provided for third-party libraries are built for Windows x64, Linux x64 and macOS arm64 only. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

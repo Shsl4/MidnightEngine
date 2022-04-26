@@ -6,7 +6,7 @@ var class_optional =
     [ "Optional", "class_optional.html#a8a149dbfdbf327c72b835fa55cf6d35d", null ],
     [ "Optional", "class_optional.html#a2e813d2614535e5a006dadd3499500a8", null ],
     [ "Optional", "class_optional.html#a14f981e4dd785c7989bfc3b16979cbd6", null ],
-    [ "~Optional", "class_optional.html#a45557bde636d60b1a7c3a089b4e579bb", null ],
+    [ "~Optional", "class_optional.html#a6591310e7a8bb29288ebdc76e758f12f", null ],
     [ "empty", "class_optional.html#a31be6aa92a4a501603b57104d6d377dd", null ],
     [ "getValue", "class_optional.html#a7c9f991f91689bc62086d1635f27081c", null ],
     [ "getValueElse", "class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda", null ],

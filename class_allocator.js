@@ -1,7 +1,7 @@
 var class_allocator =
 [
     [ "Allocator", "class_allocator.html#a7858e763f63c035e1c0fd64b89e064ea", null ],
-    [ "~Allocator", "class_allocator.html#a767214d630e3241cc4cc6ea9554c19da", null ],
+    [ "~Allocator", "class_allocator.html#a61807b9ddc4e7445c051704d40f4021e", null ],
     [ "alloc", "class_allocator.html#aee375591ee4a884abf42c3754245d964", null ],
     [ "autoDestroy", "class_allocator.html#a8d6584c7c10d39acef1c51c178b542db", null ],
     [ "construct", "class_allocator.html#a693f5d246eea6c06ef3a41af64142574", null ],

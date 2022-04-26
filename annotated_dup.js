@@ -13,7 +13,7 @@ var annotated_dup =
     [ "DirectionalLight", "struct_directional_light.html", "struct_directional_light" ],
     [ "DirectionalLightHandles", "struct_directional_light_handles.html", "struct_directional_light_handles" ],
     [ "Engine", "class_engine.html", "class_engine" ],
-    [ "Entry", "interface_entry.html", "interface_entry" ],
+    [ "Entry", "class_entry.html", "class_entry" ],
     [ "FlyingCharacter", "class_flying_character.html", "class_flying_character" ],
     [ "InputManager", "class_input_manager.html", "class_input_manager" ],
     [ "IRenderable", "class_i_renderable.html", "class_i_renderable" ],

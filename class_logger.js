@@ -1,6 +1,6 @@
 var class_logger =
 [
-    [ "Logger", "class_logger.html#ad3f64b539425faafa6a5dadbfc954851", null ],
+    [ "Logger", "class_logger.html#ad7496a071e707ce693d058894a3c9322", null ],
     [ "check", "class_logger.html#a4f0378cc26cfa65b917841e5c51fd803", null ],
     [ "debug", "class_logger.html#a949f75bc8738e3dc562d5bf0b0bbcf17", null ],
     [ "error", "class_logger.html#a6143eae9ac796c0fc0c490a7e237da6a", null ],
@@ -11,5 +11,6 @@ var class_logger =
     [ "success", "class_logger.html#a40e43b6baa5d5810b016013d66803b8c", null ],
     [ "warning", "class_logger.html#aebfb148be9b1d35821619e9a329312f6", null ],
     [ "assertLogger", "class_logger.html#a7d5348a05ddc151f08809ba228910957", null ],
+    [ "file", "class_logger.html#ae83bffdc4a0e3579b3ca24a6df07e6fd", null ],
     [ "id", "class_logger.html#a0885ec58c8d08bd6f42616e2214fec1c", null ]
 ];

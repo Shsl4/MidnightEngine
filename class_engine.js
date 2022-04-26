@@ -9,7 +9,7 @@ var class_engine =
     [ "getInstance", "class_engine.html#a8af63dff5b862e2ce1e7be221db09a2a", null ],
     [ "getNiceGPUName", "class_engine.html#a03d3eec01e3ac197a305df98a45509f5", null ],
     [ "getNiceRendererName", "class_engine.html#a7357d401b3427c6f28e4e229ff8e1177", null ],
-    [ "getPlatformData", "class_engine.html#aba1056af35da45f130eb61baeae96c90", null ],
+    [ "getPlatformData", "class_engine.html#a4bd8e9a17543905f9e82f3e84a650a53", null ],
     [ "getTime", "class_engine.html#a336e5795112f3c21242255b8dfeba7e9", null ],
     [ "init", "class_engine.html#a7622a22bb887c6fe9dd2bbf709e7a9c3", null ],
     [ "isRunning", "class_engine.html#ab2c9f8f5a98bc20f7a2bb69c1319b18b", null ],

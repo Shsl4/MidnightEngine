@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('_engine_types_8h_source.html',''); ini
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="_engine_types_8h.html#a74b90b47b1100dfbcfdf6892a7b2e479">    8</a></span><span class="keyword">using</span> <a class="code hl_typedef" href="_engine_types_8h.html#a74b90b47b1100dfbcfdf6892a7b2e479">UniquePtr</a> = std::unique_ptr&lt;T&gt;;</div>
@@ -116,10 +116,10 @@ $(document).ready(function(){initNavTree('_engine_types_8h_source.html',''); ini
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">   23</a></span><span class="keyword">using</span> <a class="code hl_typedef" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a> = uint64_t;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifndef _WIN64</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">   26</a></span><span class="preprocessor">#define FORCEINLINE __attribute__((always_inline))</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">   26</a></span><span class="preprocessor">#define FORCEINLINE __attribute__((always_inline)) inline</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define FORCEINLINE __forceinline</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// !WIN64</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// !_WIN64</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="ttc" id="a_engine_types_8h_html_a16bda7e33183fb876dbb944cbb556702"><div class="ttname"><a href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a></div><div class="ttdeci">uint32_t UInt32</div><div class="ttdef"><b>Definition:</b> EngineTypes.h:22</div></div>
 <div class="ttc" id="a_engine_types_8h_html_a283dbf0815fc2e0ba4085a72cf999d30"><div class="ttname"><a href="_engine_types_8h.html#a283dbf0815fc2e0ba4085a72cf999d30">Int</a></div><div class="ttdeci">int32_t Int</div><div class="ttdef"><b>Definition:</b> EngineTypes.h:13</div></div>

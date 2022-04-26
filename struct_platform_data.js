@@ -1,6 +1,6 @@
 var struct_platform_data =
 [
-    [ "PlatformData", "struct_platform_data.html#add834098359a9232398ba8aac8ae349a", null ],
+    [ "PlatformData", "struct_platform_data.html#a8b15c4ba1d99e0cf534b38a043de0fc9", null ],
     [ "argc", "struct_platform_data.html#a6a933edb5b3979b20c3fac2c1833f648", null ],
     [ "argv", "struct_platform_data.html#a3997affa130e695655516baab880a850", null ],
     [ "dpiScale", "struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620", null ],

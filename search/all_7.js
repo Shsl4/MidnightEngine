@@ -24,7 +24,7 @@ var searchData=
   ['getnicerenderername_21',['getNiceRendererName',['../class_engine.html#a7357d401b3427c6f28e4e229ff8e1177',1,'Engine']]],
   ['getparentcomponent_22',['getParentComponent',['../class_scene_component.html#affaad8c60a93af23506a79681bfb30f2',1,'SceneComponent']]],
   ['getparentobject_23',['getParentObject',['../class_scene_component.html#a2790169d154656ef61f8209c774ac9aa',1,'SceneComponent']]],
-  ['getplatformdata_24',['getPlatformData',['../class_engine.html#aba1056af35da45f130eb61baeae96c90',1,'Engine']]],
+  ['getplatformdata_24',['getPlatformData',['../class_engine.html#a4bd8e9a17543905f9e82f3e84a650a53',1,'Engine']]],
   ['getprojectionmatrix_25',['getProjectionMatrix',['../class_camera_component.html#af7ee7999c5c8aa52a04202e0c04d33a6',1,'CameraComponent']]],
   ['getred_26',['getRed',['../struct_linear_color.html#ae520da81c4f79f8694f5bd2b50717d1a',1,'LinearColor']]],
   ['getrelativeposition_27',['getRelativePosition',['../class_scene_component.html#a22dd87a479c1baa5f6578d3e2e8d4d36',1,'SceneComponent']]],

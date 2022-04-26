@@ -5,7 +5,7 @@ var class_array =
     [ "Array", "class_array.html#a5c34e33a1efae4ac6c7d4b2e0b937629", null ],
     [ "Array", "class_array.html#ab386d83ee58844c03abb363585f19b48", null ],
     [ "Array", "class_array.html#afe3f1274711711acde736f54c0e77654", null ],
-    [ "~Array", "class_array.html#aab89a85b1ddb86864096acdcc0db439e", null ],
+    [ "~Array", "class_array.html#a27051e72cf0821102e49e02884172348", null ],
     [ "append", "class_array.html#a6ef3e571fa0862940091b96533a066ab", null ],
     [ "append", "class_array.html#a1c89c134cf1eed1c0d5dadf56a709abe", null ],
     [ "arrayMatching", "class_array.html#a2f854aee8b58868c5eb62866b4325aba", null ],

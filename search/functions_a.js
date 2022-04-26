@@ -8,6 +8,6 @@ var searchData=
   ['loadprogram_5',['loadProgram',['../class_shader_loader.html#af4f2d329ba3da2ef18c2fedf13007f1e',1,'ShaderLoader']]],
   ['loadshader_6',['loadShader',['../class_shader_loader.html#a9309446f23b39feb51c6e64c37b6b1db',1,'ShaderLoader']]],
   ['log_7',['log',['../class_logger.html#ac28c58864635f23d63ad7edb7d0ec2a5',1,'Logger']]],
-  ['logger_8',['Logger',['../class_logger.html#ad3f64b539425faafa6a5dadbfc954851',1,'Logger']]],
+  ['logger_8',['Logger',['../class_logger.html#ad7496a071e707ce693d058894a3c9322',1,'Logger']]],
   ['lookat_9',['lookAt',['../struct_matrix4.html#a9b6051a69f77bd109f3dcc817c8bab4d',1,'Matrix4']]]
 ];

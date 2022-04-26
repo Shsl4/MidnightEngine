@@ -27,9 +27,13 @@ var NAVTREE =
   [ "MidnightEngine", "index.html", [
     [ "A cross-platform 3D rendering engine written in C++", "index.html#autotoc_md1", null ],
     [ "Requirements", "index.html#autotoc_md2", null ],
-    [ "Building", "index.html#autotoc_md3", null ],
-    [ "Documentation", "index.html#autotoc_md4", null ],
-    [ "Third-Party Libraries", "index.html#autotoc_md5", null ],
+    [ "Building", "index.html#autotoc_md3", [
+      [ "Windows", "index.html#autotoc_md4", null ],
+      [ "macOS", "index.html#autotoc_md5", null ],
+      [ "Linux", "index.html#autotoc_md6", null ]
+    ] ],
+    [ "Documentation", "index.html#autotoc_md7", null ],
+    [ "Third-Party Libraries", "index.html#autotoc_md8", null ],
     [ "Deprecated List", "deprecated.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
@@ -61,9 +65,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_allocator_8h.html",
-"class_character_info_window.html",
-"class_string.html#ac5579cb519ca18fa841e5821c97d89e9",
-"struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620"
+"class_camera_manager.html#aec123c2494958a78608195d713a18c66",
+"class_string.html#a414745ac01aaba166cc17067b95504ca",
+"struct_platform_data.html#a24d5209cde454042f518066461a400f5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

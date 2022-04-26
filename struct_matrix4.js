@@ -17,7 +17,7 @@ var struct_matrix4 =
     [ "operator+=", "struct_matrix4.html#abf3488bfc1ada7ca9093881277f2201c", null ],
     [ "operator-", "struct_matrix4.html#a338c1f6b78f918cc7012f0b05f175cae", null ],
     [ "operator-=", "struct_matrix4.html#aaf2ad7cf3e8bf7417abd6364a509af23", null ],
-    [ "operator=", "struct_matrix4.html#aaaddfc13b8efded8db500a9b1865a5a2", null ],
+    [ "operator=", "struct_matrix4.html#aeec9c8b6e4f3ec163a5e591fee4322f6", null ],
     [ "operator==", "struct_matrix4.html#a8ba367621232c2c9d80022c859ee6d84", null ],
     [ "operator[]", "struct_matrix4.html#a1708b5798ea57a4f17fe1765c58c3b9c", null ],
     [ "orthographic", "struct_matrix4.html#a5541c5dd2c9c4e6bd5c9e670828f1805", null ],

@@ -13,8 +13,8 @@ var struct_matrix3 =
     [ "operator+=", "struct_matrix3.html#a731b0e48f48b6f89098ba575903b6401", null ],
     [ "operator-", "struct_matrix3.html#aee64b216c00f64a6821eb058d270ce57", null ],
     [ "operator-=", "struct_matrix3.html#aa9c5b82edaf736d8e87412c208d6e2fb", null ],
-    [ "operator=", "struct_matrix3.html#a9d6087df5aa6cdf95cbd994edb9e8fbb", null ],
-    [ "operator=", "struct_matrix3.html#ada2b658d417ee83e593b0736716682ca", null ],
+    [ "operator=", "struct_matrix3.html#ac99b5f031b43d76f24cb33aef8f36985", null ],
+    [ "operator=", "struct_matrix3.html#a9c914a3f10ce4c6eaab88cd24ac1e96a", null ],
     [ "operator==", "struct_matrix3.html#a86d8d5dc7b6192b4f0ebcdea9fa11cb7", null ],
     [ "print", "struct_matrix3.html#aab7e90f12d56dcf2fa63963ec0101de3", null ],
     [ "data", "struct_matrix3.html#adf457b57026837a75e4c6edc9f7f8c0e", null ]

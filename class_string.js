@@ -17,7 +17,7 @@ var class_string =
     [ "operator==", "class_string.html#a7621f55e3f51a782683a5b0038331cbf", null ],
     [ "operator==", "class_string.html#a2525ca0e0fd8e1a63d947f39ebc5e4d0", null ],
     [ "resize", "class_string.html#acc17a45e217db067c510ad62a17600f0", null ],
-    [ "split", "class_string.html#ac60ff1bade026402e041340fa8db8e0b", null ],
+    [ "split", "class_string.html#a8624128c770c4ba9f1230734b802c5b8", null ],
     [ "substring", "class_string.html#abea123c7867a373eed0085573e476408", null ],
     [ "toCString", "class_string.html#a15961653bb9da7e4df21f20713258bf5", null ],
     [ "toDouble", "class_string.html#a0beb6fbade221d0963554123126b4a84", null ],
