@@ -13,7 +13,5 @@ var searchData=
   ['meshcomponent_2ecpp_10',['MeshComponent.cpp',['../_mesh_component_8cpp.html',1,'']]],
   ['meshcomponent_2eh_11',['MeshComponent.h',['../_mesh_component_8h.html',1,'']]],
   ['meshobject_2ecpp_12',['MeshObject.cpp',['../_mesh_object_8cpp.html',1,'']]],
-  ['meshobject_2eh_13',['MeshObject.h',['../_mesh_object_8h.html',1,'']]],
-  ['model_2ecpp_14',['Model.cpp',['../_model_8cpp.html',1,'']]],
-  ['model_2eh_15',['Model.h',['../_model_8h.html',1,'']]]
+  ['meshobject_2eh_13',['MeshObject.h',['../_mesh_object_8h.html',1,'']]]
 ];

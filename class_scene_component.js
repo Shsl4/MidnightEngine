@@ -13,6 +13,7 @@ var class_scene_component =
     [ "getRelativeRotation", "class_scene_component.html#a1f3d2bdebce3a330d1fdb7e82588b747", null ],
     [ "getRelativeScale", "class_scene_component.html#a706492a0c7e3505be719c027558423d9", null ],
     [ "getRelativeTransform", "class_scene_component.html#a352731e868a260031441624e6123be4f", null ],
+    [ "getScene", "class_scene_component.html#a9fa9cee406e6b298c171c9ec6c8e6275", null ],
     [ "getWorldPosition", "class_scene_component.html#aa29cdbe5fa0b156994b2248ceacb7458", null ],
     [ "getWorldRotation", "class_scene_component.html#a5a8f72dc0d0541be063e86236cd3bc30", null ],
     [ "getWorldScale", "class_scene_component.html#a09c45dad733ce8e67255b9781b0a381c", null ],
@@ -27,5 +28,6 @@ var class_scene_component =
     [ "parentComponent", "class_scene_component.html#a27aff1bbcaa669abcb79fe53434daa82", null ],
     [ "parentObject", "class_scene_component.html#a90bdfa07cce27915ae8d21262fe0174a", null ],
     [ "registered", "class_scene_component.html#a00a6f3143a6e4fd5c9fa65bd8f7268a6", null ],
+    [ "scene", "class_scene_component.html#af3597afb3ebdd12462c4253b78b5c867", null ],
     [ "transform", "class_scene_component.html#a7c733d4332a1fe2501d48cd4412f7f47", null ]
 ];

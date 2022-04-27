@@ -4,6 +4,5 @@ var searchData=
   ['scene_1',['Scene',['../class_scene.html',1,'']]],
   ['scenecomponent_2',['SceneComponent',['../class_scene_component.html',1,'']]],
   ['sceneobject_3',['SceneObject',['../class_scene_object.html',1,'']]],
-  ['shaderloader_4',['ShaderLoader',['../class_shader_loader.html',1,'']]],
-  ['string_5',['String',['../class_string.html',1,'']]]
+  ['string_4',['String',['../class_string.html',1,'']]]
 ];

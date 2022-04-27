@@ -153,6 +153,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afb7be7eb04b2c55e5ca5bf86703e0ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a002784406c75e96c461f9da9b4e798a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a002784406c75e96c461f9da9b4e798a2">isRootComponent</a> () const</td></tr>
 <tr class="separator:a002784406c75e96c461f9da9b4e798a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa9cee406e6b298c171c9ec6c8e6275"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> class <a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a9fa9cee406e6b298c171c9ec6c8e6275">getScene</a> () const</td></tr>
+<tr class="separator:a9fa9cee406e6b298c171c9ec6c8e6275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
 <tr class="separator:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,6 +196,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a00a6f3143a6e4fd5c9fa65bd8f7268a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28408f917323920d3f3322797532a21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ad28408f917323920d3f3322797532a21">name</a> = &quot;&quot;</td></tr>
 <tr class="separator:ad28408f917323920d3f3322797532a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3597afb3ebdd12462c4253b78b5c867"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#af3597afb3ebdd12462c4253b78b5c867">scene</a></td></tr>
+<tr class="separator:af3597afb3ebdd12462c4253b78b5c867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -552,6 +556,31 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Gets the component's transform relative to the parent component.</p>
 <dl class="section return"><dt>Returns</dt><dd>The component's relative rotation </dd></dl>
+
+</div>
+</div>
+<a id="a9fa9cee406e6b298c171c9ec6c8e6275" name="a9fa9cee406e6b298c171c9ec6c8e6275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fa9cee406e6b298c171c9ec6c8e6275">&#9670;&nbsp;</a></span>getScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_types_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> class <a class="el" href="class_scene.html">Scene</a> * SceneComponent::getScene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -916,6 +945,28 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p >Whether this component was registered by the scene. </p>
+
+</div>
+</div>
+<a id="af3597afb3ebdd12462c4253b78b5c867" name="af3597afb3ebdd12462c4253b78b5c867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3597afb3ebdd12462c4253b78b5c867">&#9670;&nbsp;</a></span>scene</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_scene.html">Scene</a>* SceneComponent::scene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

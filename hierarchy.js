@@ -22,7 +22,6 @@ var hierarchy =
     [ "Matrix4", "struct_matrix4.html", null ],
     [ "Memory", "class_memory.html", null ],
     [ "Mesh", "struct_mesh.html", null ],
-    [ "Model", "struct_model.html", null ],
     [ "<NSApplicationDelegate>", null, [
       [ "Entry", "class_entry.html", null ]
     ] ],
@@ -56,8 +55,8 @@ var hierarchy =
     [ "PointLight", "struct_point_light.html", null ],
     [ "PointLightHandles", "struct_point_light_handles.html", null ],
     [ "Random", "class_random.html", null ],
+    [ "ResourceLoader", "class_resource_loader.html", null ],
     [ "PerformanceWindow::SampleData", "struct_performance_window_1_1_sample_data.html", null ],
-    [ "ShaderLoader", "class_shader_loader.html", null ],
     [ "Transform", "struct_transform.html", null ],
     [ "Vector2", "struct_vector2.html", null ],
     [ "Vector3", "struct_vector3.html", null ],

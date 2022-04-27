@@ -12,13 +12,9 @@ var dir_81209a53bba750dc8aacf9177b0bb026 =
     [ "Mesh.h", "_mesh_8h.html", [
       [ "Mesh", "struct_mesh.html", "struct_mesh" ]
     ] ],
-    [ "Model.cpp", "_model_8cpp.html", null ],
-    [ "Model.h", "_model_8h.html", [
-      [ "Model", "struct_model.html", "struct_model" ]
-    ] ],
-    [ "ShaderLoader.cpp", "_shader_loader_8cpp.html", null ],
-    [ "ShaderLoader.h", "_shader_loader_8h.html", [
-      [ "ShaderLoader", "class_shader_loader.html", "class_shader_loader" ]
+    [ "ResourceLoader.cpp", "_resource_loader_8cpp.html", null ],
+    [ "ResourceLoader.h", "_resource_loader_8h.html", [
+      [ "ResourceLoader", "class_resource_loader.html", "class_resource_loader" ]
     ] ],
     [ "Vertex.h", "_vertex_8h.html", [
       [ "Vertex", "struct_vertex.html", "struct_vertex" ]

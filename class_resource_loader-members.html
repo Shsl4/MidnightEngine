@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('class_shader_loader.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_resource_loader.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -88,17 +88,23 @@ $(document).ready(function(){initNavTree('class_shader_loader.html',''); initRes
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ShaderLoader Member List</div></div>
+  <div class="headertitle"><div class="title">ResourceLoader Member List</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="class_shader_loader.html">ShaderLoader</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="class_resource_loader.html">ResourceLoader</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_shader_loader.html#af3ca1bcc1a9777e6f6ef2b9bd817852e">getShaderResourcePath</a>()</td><td class="entry"><a class="el" href="class_shader_loader.html">ShaderLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_shader_loader.html#a9287e70790a84e07e1ed6f97e40d397e">loadFile</a>(String const &amp;path)</td><td class="entry"><a class="el" href="class_shader_loader.html">ShaderLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_shader_loader.html#af4f2d329ba3da2ef18c2fedf13007f1e">loadProgram</a>(String const &amp;name)</td><td class="entry"><a class="el" href="class_shader_loader.html">ShaderLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_shader_loader.html#a9309446f23b39feb51c6e64c37b6b1db">loadShader</a>(String const &amp;name)</td><td class="entry"><a class="el" href="class_shader_loader.html">ShaderLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_shader_loader.html#a53ca6ac6d05e794c0e34b664e3a44909">logger</a></td><td class="entry"><a class="el" href="class_shader_loader.html">ShaderLoader</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#a957dfe218f82cb1fb8300de78ad0a8a1">getMesh</a>(String const &amp;name) const</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_resource_loader.html#a1337b6ba10b8ca3cee154059bc4d85ff">getShaderResourcePath</a>()</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#a6acda8483d1a2389e9224b605b231c7d">importer</a></td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_resource_loader.html#aec1de383b15ac523640949bb19d61457">init</a>()</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#ae2264e04bf674feff57ac8f9e4b5b171">loadedMeshes</a></td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">loadFile</a>(String const &amp;path)</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#af0e6b4769112f5b425e9732c059268c0">loadMesh</a>(String const &amp;file)</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_resource_loader.html#a03cb87516ee05136352716171456ed45">loadProgram</a>(String const &amp;name)</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#a8ecb35b16a0709ceef4444164ce8c3f4">loadShader</a>(String const &amp;name)</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_resource_loader.html#a6fac9259937f02b3027f53933309caf8">logger</a></td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resource_loader.html#ac526a508a770400d55bf986629960007">ResourceLoader</a>()=default</td><td class="entry"><a class="el" href="class_resource_loader.html">ResourceLoader</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

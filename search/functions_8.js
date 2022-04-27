@@ -3,7 +3,7 @@ var searchData=
   ['identity_0',['identity',['../struct_matrix4.html#ae18fb8816a056e54953c6a4da7e8161d',1,'Matrix4::identity()'],['../struct_matrix3.html#a3dcc2cfa41fbf7ae5bc2463f2d04dbaf',1,'Matrix3::identity()']]],
   ['info_1',['info',['../class_logger.html#a5ea4dfff7c2b84405d82fa4e0d02f012',1,'Logger']]],
   ['inherits_2',['inherits',['../class_object.html#af9a069a0987f79dd335dcc5f6a740d7a',1,'Object']]],
-  ['init_3',['init',['../class_engine.html#a7622a22bb887c6fe9dd2bbf709e7a9c3',1,'Engine']]],
+  ['init_3',['init',['../class_engine.html#a7622a22bb887c6fe9dd2bbf709e7a9c3',1,'Engine::init()'],['../class_resource_loader.html#aec1de383b15ac523640949bb19d61457',1,'ResourceLoader::init()']]],
   ['initengine_4',['initEngine',['../class_entry.html#aabb623c8e6ed73d509b89944535f9f73',1,'Entry']]],
   ['initengine_3a_5',['initEngine:',['../class_entry.html#a9d818905b75e172e93770054838a49ce',1,'Entry']]],
   ['inputmanager_6',['InputManager',['../class_input_manager.html#a8be46886da639b26d67181c29dab6d6c',1,'InputManager']]],
