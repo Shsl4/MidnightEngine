@@ -118,7 +118,7 @@ public:
      *  \param[in] elem The element to check
      *  \return An optional value containing the index if it was found.
      */
-    virtual Optional<size_t> lastIndexOf(T const &elem);
+    virtual Optional<size_t> lastIndexOf(T const &elem) const;
 
     /*!
      *  Returns an array containing the elements in range.

@@ -1,6 +1,8 @@
 #include <Scene/MeshObject.h>
 
-MeshObject::MeshObject(String const &meshName) : meshName(meshName) {
+#include <utility>
+
+MeshObject::MeshObject(String meshName) : meshName(std::move(meshName)) {
 
 
 }

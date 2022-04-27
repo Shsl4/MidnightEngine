@@ -15,7 +15,7 @@ public:
      *
      *  \param[in] meshName The file name of the mesh to load. (In the Resources/Models folder)
      */
-    MeshObject(String const &meshName);
+    MeshObject(String meshName);
 
     void createComponents(class Scene *scene, Transform transform) override;
 
@@ -24,7 +24,7 @@ private:
     /*!
      * The mesh component.
      */
-    MeshComponent *mesh;
+    MeshComponent *mesh = nullptr;
     
     /*!
      * The mesh name to load.

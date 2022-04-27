@@ -96,7 +96,7 @@ class MeshComponent : public SceneComponent, public IRenderable {
 
 public:
 
-    explicit MeshComponent(String const &path);
+    explicit MeshComponent(String const &name);
 
     void update(float deltaTime) override;
 
@@ -113,7 +113,7 @@ private:
 
     void render() override;
 
-    struct Model *model;
+    struct Mesh *mesh;
 
     bgfx::UniformHandle ambientLightHandle;
     PointLightHandles pointLightHandles;

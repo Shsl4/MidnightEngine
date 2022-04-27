@@ -7,6 +7,8 @@
 #include <Memory/Array.h>
 #include <Platform/PlatformData.h>
 
+#include "Rendering/ResourceLoader.h"
+
 /*!
  *  The main engine class.
  */
@@ -117,7 +119,7 @@ public:
      */
     FORCEINLINE const class Scene *getActiveScene() const {
         return activeScene.get();
-    };
+    }
 
     /*!
      * Returns the engine InputManager instance.
@@ -126,7 +128,16 @@ public:
      */
     FORCEINLINE class InputManager *getInputManager() const {
         return inputManager.get();
-    };
+    }
+
+    /*!
+     * Returns the engine InputManager instance.
+     *
+     * \return The engine InputManager.
+     */
+    FORCEINLINE const ResourceLoader *getResourceLoader() const {
+        return resourceLoader.get();
+    }
 
 private:
 
@@ -178,13 +189,19 @@ private:
     /*!
      * The engine InputManager.
      */
-    UniquePtr<class InputManager> inputManager;
+    UniquePtr<InputManager> inputManager;
     
     /*!
      * The engine Logger.
      */
     UniquePtr<class Logger> logger;
-    
+
+    /*!
+    * The engine resource loader.
+    */
+    UniquePtr<ResourceLoader> resourceLoader;
+
+   private:
     /*!
      * The currently loaded Scene.
      */

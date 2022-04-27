@@ -5,7 +5,7 @@ PlatformData::PlatformData(const int argc, const char **argv, SDL_Window *window
     
     SDL_GetWindowSize(window, &windowWidth, &windowHeight);
     
-    this->renderWidth = windowWidth * dpiScale;
-    this->renderHeight = windowHeight * dpiScale;
+    this->renderWidth = static_cast<Int32>(static_cast<float>(windowWidth) * dpiScale);
+    this->renderHeight = static_cast<Int32>(static_cast<float>(windowHeight) * dpiScale);
 
 }
