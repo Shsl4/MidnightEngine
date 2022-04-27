@@ -14,6 +14,7 @@ void CameraComponent::construct(Transform const &relativeTransform) {
     Super::construct(relativeTransform);
     upVector = Vector3::up;
     updateMatrices();
+
 }
 
 void CameraComponent::start() {
@@ -29,8 +30,17 @@ void CameraComponent::update(float deltaTime) {
 }
 
 void CameraComponent::setFieldOfView(const float fov) {
-    
-    fieldOfView = fov;
+
+    if (fov >= 170.0f){
+        fieldOfView = 170.0f;
+    }
+    else if (fov <= 10.0f){
+        fieldOfView = 10.0f;
+    }
+    else{
+        fieldOfView = fov;
+    }
+
     updateProjectionMatrix();
     
 }

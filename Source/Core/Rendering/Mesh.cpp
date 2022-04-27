@@ -3,10 +3,10 @@
 
 Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, String name, String path) :
     vertexCount(vertices.getSize()), indexCount(indexArray.getSize()), meshName(std::move(name)), filePath(std::move(path)) {
-    
+
     data = vertexAllocator.alloc(vertexCount);
     indices = indexAllocator.alloc(indexCount);
-    
+
     Memory::move(vertices.begin(), vertices.end(), data);
     Memory::move(indexArray.begin(), indexArray.end(), indices);
 
@@ -17,11 +17,11 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
 }
 
 Mesh::~Mesh() {
-    
+
     destroy(vertexBuffer);
     destroy(indexBuffer);
     destroy(programHandle);
     vertexAllocator.release(data);
     indexAllocator.release(indices);
-    
+
 }

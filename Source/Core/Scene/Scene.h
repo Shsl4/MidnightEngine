@@ -84,6 +84,7 @@ public:
 
         // Instantiate the SceneComponent
         T *component = allocator.construct(args...);
+        component->scene = this;
         component->construct(relativeTransform);
         
         // Mark it as registered (bad, will probably be changed later)

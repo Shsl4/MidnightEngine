@@ -3,21 +3,24 @@
 #include <filesystem>
 #include <assimp/scene.h>
 
-#include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
-ResourceLoader::ResourceLoader()
-{
+void ResourceLoader::init() {
+
+    // For each file in our model resource directory
     for (const auto & entry : std::filesystem::directory_iterator("Resources/Models"))
     {
+        // Get the file name and its extension
         std::filesystem::path file = entry.path().filename();
         String extension = file.extension().string();
 
-        if (extension == ".obj")
+        // If the file is a 3D model file
+        if (extension == ".obj" || extension == ".fbx")
         {
+            // Load it
             loadMesh(file.string());
         }
-        
+
     }
 
 }
@@ -98,7 +101,8 @@ bgfx::ShaderHandle ResourceLoader::loadShader(String const& name) {
 
     // Create our shader and name it.
     const bgfx::ShaderHandle handle = bgfx::createShader(mem);
-    //setName(handle, name.toCString());
+
+    setName(handle, name.toCString());
 
     return handle;
 
@@ -119,18 +123,22 @@ bgfx::ProgramHandle ResourceLoader::loadProgram(String const& name) {
 
 }
 
-Mesh* ResourceLoader::getMesh(String const& name) const
+const Mesh* ResourceLoader::getMesh(String const& name) const
 {
 
+    // For every loaded mesh
     for (auto const& mesh : loadedMeshes)
     {
+        // If the mesh name matches
         if (mesh->meshName == name)
         {
+            // Return the mesh
             return mesh;
         }
         
     }
 
+    // Print an error message
     logger.error("Tried to get mesh named {} which does not exist.", name);
 
     return nullptr;
@@ -140,14 +148,18 @@ Mesh* ResourceLoader::getMesh(String const& name) const
 bool ResourceLoader::loadMesh(String const& file)
 {
 
+    // Get the file name by removing the file extension
     String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
+
+    // Create our resource path
     String path = "Resources/Models/";
     path.append(file);
-    
-    Assimp::Importer importer;
+
+    // Load the 3D model.
     const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast |
         aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes);
 
+    // If the model could not be loaded, print an error message.
     if (scene == nullptr)
     {
         logger.error("Failed to load model. The path {} is invalid.", path);
@@ -156,9 +168,11 @@ bool ResourceLoader::loadMesh(String const& file)
 
     auto totalVertices = Array<Vertex>(10000);
     auto totalIndices = Array<UInt16>(10000);
-    
+
+    // A scene may contain multiple meshes, so load them and combine everything into single vertex and index arrays.
     for (size_t i = 0; i < scene->mNumMeshes; ++i)
     {
+
         const auto libMesh = scene->mMeshes[i];
         auto vertices = Array<Vertex>(libMesh->mNumVertices);
         auto indices = Array<UInt16>(10000);
@@ -197,12 +211,13 @@ bool ResourceLoader::loadMesh(String const& file)
         totalIndices += indices;
 
     }
-    
+
+    // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
     loadedMeshes += Allocator<Mesh>().construct(totalVertices, totalIndices, fileName, path);
 
+    // Log a success message.
     logger.success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
 
     return true;
     
 }
-

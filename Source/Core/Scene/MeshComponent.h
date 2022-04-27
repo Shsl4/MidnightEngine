@@ -113,7 +113,7 @@ private:
 
     void render() override;
 
-    struct Mesh *mesh;
+    const struct Mesh *mesh;
 
     bgfx::UniformHandle ambientLightHandle;
     PointLightHandles pointLightHandles;

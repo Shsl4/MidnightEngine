@@ -40,6 +40,12 @@ void FlyingCharacter::setupInput(InputManager *manager) {
     manager->bindEvent(this, KeyBind(SDLK_LSHIFT), EInputEvent::Released, &FlyingCharacter::shiftReleased);
     manager->bindEvent(this, KeyBind(SDLK_SPACE), EInputEvent::Released, &FlyingCharacter::spaceReleased);
 
+    manager->bindEvent(this, KeyBind(SDLK_UP), EInputEvent::Pressed, &FlyingCharacter::upPressed);
+    manager->bindEvent(this, KeyBind(SDLK_UP), EInputEvent::Released, &FlyingCharacter::upReleased);
+
+    manager->bindEvent(this, KeyBind(SDLK_DOWN), EInputEvent::Pressed, &FlyingCharacter::downPressed);
+    manager->bindEvent(this, KeyBind(SDLK_DOWN), EInputEvent::Released, &FlyingCharacter::downReleased);
+
     manager->bindAxis(this, EAxisType::MouseX, &FlyingCharacter::mouseX);
     manager->bindAxis(this, EAxisType::MouseY, &FlyingCharacter::mouseY);
 
@@ -53,8 +59,8 @@ void FlyingCharacter::update(float deltaTime) {
     camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
     camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
     camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);
+    camera->setFieldOfView(camera->getFieldOfView() + static_cast<float>(_downPressed - _upPressed) * 50.0f * deltaTime);
 
 }
-
 
 
