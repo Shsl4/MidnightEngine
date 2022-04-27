@@ -21,7 +21,6 @@ void InputManager::update() const {
     while (SDL_PollEvent(&event)) {
         
         const SDL_Keysym keySym = event.key.keysym;
-        auto kb = KeyBind(0);
 
         switch (event.type) {
                 
@@ -43,29 +42,25 @@ void InputManager::update() const {
 
             case SDL_MOUSEBUTTONDOWN:
 
-                kb = KeyBind(event.button.button);
-                invokeIfMatch(kb, keyDownEvents);
+                invokeIfMatch(KeyBind(event.button.button), keyDownEvents);
                 logger->debug("Received mouse button press {}.", event.button.button);
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
-                kb = KeyBind(event.button.button);
-                invokeIfMatch(kb, keyUpEvents);
+                invokeIfMatch(KeyBind(event.button.button), keyUpEvents);
                 logger->debug("Received mouse button release {}.", event.button.button);
                 break;
 
             case SDL_KEYDOWN:
 
-                kb = KeyBind(keySym.sym, keySym.mod);
-                invokeIfMatch(kb, keyDownEvents);
+                invokeIfMatch(KeyBind(keySym.sym, keySym.mod), keyDownEvents);
                 logger->debug("Received \"{}\" key press.", SDL_GetKeyName(keySym.sym));
                 break;
 
             case SDL_KEYUP:
 
-                kb = KeyBind(keySym.sym, keySym.mod);
-                invokeIfMatch(kb, keyUpEvents);
+                invokeIfMatch(KeyBind(keySym.sym, keySym.mod), keyUpEvents);
                 logger->debug("Received \"{}\" key release.", SDL_GetKeyName(keySym.sym));
                 break;
                 

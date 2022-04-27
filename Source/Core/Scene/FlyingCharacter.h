@@ -33,6 +33,11 @@ protected:
 
     inputBoilerplate(shift)
 
+    inputBoilerplate(up)
+
+    inputBoilerplate(down)
+
+
 private:
 
     CameraComponent *camera = nullptr;

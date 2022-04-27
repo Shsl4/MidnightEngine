@@ -7,15 +7,15 @@ struct PlatformData {
 
     PlatformData(int argc, const char **argv, SDL_Window *window, float scaleFactor);
 
-    const int argc;
-    const char** argv;
-    SDL_Window* mainWindow;
+    const int argc = 0;
+    const char** argv = nullptr;
+    SDL_Window* mainWindow = nullptr;
 
-    Int32 windowWidth;
-    Int32 windowHeight;
-    Int32 renderWidth;
-    Int32 renderHeight;
+    Int32 windowWidth = 0;
+    Int32 windowHeight = 0;
+    Int32 renderWidth = 0;
+    Int32 renderHeight = 0;
     
-    float dpiScale;
+    float dpiScale = 1.0f;
 
 };

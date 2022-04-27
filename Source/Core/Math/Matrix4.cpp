@@ -309,13 +309,13 @@ void Matrix4::scale(Vector3 const &factor) {
 
 Matrix4 Matrix4::modelMatrix(Transform const &transform) {
 
-    Matrix4 m = Matrix4::identity();
+    Matrix4 m = identity();
 
+    m.scale(transform.scale);
     m.rotateX(Math::toRadians(transform.rotation.x));
     m.rotateY(Math::toRadians(transform.rotation.y));
     m.rotateZ(Math::toRadians(transform.rotation.z));
     m.translate(transform.position);
-    m.scale(transform.scale);
 
     return m;
 }

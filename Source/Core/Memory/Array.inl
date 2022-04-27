@@ -197,11 +197,11 @@ Optional<size_t> Array<T>::firstIndexOf(T const &elem) {
 }
 
 template<typename T>
-Optional<size_t> Array<T>::lastIndexOf(T const &elem) {
+Optional<size_t> Array<T>::lastIndexOf(T const &elem) const {
 
-    for (size_t i = size - 1; i >= 0; --i) {
+    for (Int64 i = size - 1; i >= 0; --i) {
         if (data[i] == elem) {
-            return Optional<size_t>(i);
+            return { i };
         }
     }
 

@@ -185,6 +185,10 @@ public:
         return !parentComponent;
     }
 
+    FORCEINLINE class Scene *getScene() const {
+        return this->scene;
+    }
+
 
 protected:
 
@@ -224,5 +228,7 @@ private:
      * The name of the component.
      */
     String name = "";
+
+    Scene* scene;
 
 };

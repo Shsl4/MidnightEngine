@@ -6,7 +6,7 @@
 #include <Input/InputManager.h>
 #include <UI/PerformanceWindow.h>
 #include <UI/CharacterInfoWindow.h>
-#include <Rendering/Model.h>
+#include <Rendering/Mesh.h>
 #include <Memory/String.h>
 
 #include <bx/timer.h>
@@ -27,6 +27,7 @@ Engine::Engine(PlatformData const &data) : platformData(data) {
     this->inputManager = std::make_unique<InputManager>();
     this->perfWindow = std::make_unique<PerformanceWindow>();
     this->activeScene = std::make_unique<Scene>();
+    this->resourceLoader = std::make_unique<ResourceLoader>();
     this->startTime = bx::getHPCounter();
 
 }
@@ -56,12 +57,14 @@ int Engine::init(int argc, const char **argv) {
 
     // Sets the world "void" to be a grey color.
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff, 1.0f, 0);
+
+    resourceLoader->init();
     
     // Add elements in our scene. This is temporary and will be moved elsewhere later.
-    activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, 5.0f)), "Monkey.obj");
-    activeScene->createObject<MeshObject>(Transform(Vector3(5.0f, 0.0f, 0.0f)), "Lantern_Sphere.obj");
-    activeScene->createObject<MeshObject>(Transform(Vector3(-5.0f, 0.0f, 0.0f)), "Lamp1.obj");
-    activeScene->createObject<MeshObject>(Transform(Vector3(0.0f, 0.0f, -5.0f)), "Cube.obj");
+    activeScene->createObject<MeshObject>(Transform({ 0.0f, 0.0f, 5.0f }, { 0.0f, 0.0f, 90.0f }, Vector3(5.0f)), "Donut");
+    activeScene->createObject<MeshObject>(Transform({5.0f, 0.0f, 0.0f }), "Lamp1");
+    activeScene->createObject<MeshObject>(Transform({-5.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 90.0f }, Vector3(0.5f)), "Lamp1");
+    activeScene->createObject<MeshObject>(Transform({0.0f, 0.0f, -5.0f }), "Cube");
         
     // Create our controllable character.
     auto character = activeScene->createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));

@@ -49,7 +49,7 @@ public:
 
             allocator.destroy(object);
             
-            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName().toCString());
+            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
             
             return nullptr;
 
@@ -84,6 +84,7 @@ public:
 
         // Instantiate the SceneComponent
         T *component = allocator.construct(args...);
+        component->scene = this;
         component->construct(relativeTransform);
         
         // Mark it as registered (bad, will probably be changed later)

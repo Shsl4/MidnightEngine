@@ -6,15 +6,16 @@
 #include <Memory/String.h>
 #include <Rendering/Vertex.h>
 
+#include "Logging/Logger.h"
+
 /*!
  * A structure representing a mesh.
  */
 struct Mesh
 {
-    static Mesh* from(const struct aiMesh* libMesh);
     virtual ~Mesh();
 
-    Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, String name);
+    Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, String name, String path);
 
     static bgfx::VertexLayout getVertexLayout()
     {
@@ -41,7 +42,9 @@ struct Mesh
     UInt16* indices = nullptr;
 
     String meshName;
+    String filePath;
 
     inline static Allocator<Vertex> vertexAllocator = Allocator<Vertex>();
     inline static Allocator<UInt16> indexAllocator = Allocator<UInt16>();
+
 };

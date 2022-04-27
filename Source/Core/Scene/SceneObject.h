@@ -6,6 +6,7 @@
 #include <Logging/Logger.h>
 #include <Math/Transform.h>
 #include <Scene/Scene.h>
+#include <Scene/SceneComponent.h>
 #include <Object.h>
 
 /*!
@@ -71,8 +72,12 @@ public:
      *
      * \return This object's root component
      */
-    FORCEINLINE class SceneComponent *getRootComponent() const {
+    FORCEINLINE SceneComponent *getRootComponent() const {
         return this->rootComponent;
+    }
+
+    FORCEINLINE class Scene *getScene() const {
+        return this->rootComponent->getScene();
     }
 
 protected:
@@ -98,6 +103,6 @@ private:
     /*!
      * This object's root component
      */
-    class SceneComponent *rootComponent;
+    SceneComponent *rootComponent;
 
 };
