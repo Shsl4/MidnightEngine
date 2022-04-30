@@ -15,7 +15,7 @@
  * SceneComponents can be attached together. Each component can have multiple children, but a unique parent.
  * The root component should then be attached to a parent SceneObject.
  */
-class SceneComponent : public Object {
+class ENGINE_API SceneComponent : public Object {
 
     /*!
      *  Defining Super class

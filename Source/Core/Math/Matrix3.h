@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Core/EngineMacros.h>
 #include <Math/Vector3.h>
 
 /*!
  * A 3x3 Matrix structure implementing operators and primivites.
  */
-struct Matrix3 {
+struct ENGINE_API Matrix3 {
 
     Matrix3 operator+(Matrix3 const &other) const;
 
@@ -39,7 +40,6 @@ struct Matrix3 {
 
     float data[3][3] = {};
 
-    void print() const;
-
     Matrix3() = default;
+
 };

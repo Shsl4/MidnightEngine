@@ -3,6 +3,7 @@
 #include <functional>
 
 #include <Core/Object.h>
+#include <Core/EngineTypes.h>
 #include <Memory/Memory.h>
 #include <Memory/Allocator.h>
 #include <Utilities/Optional.h>
@@ -380,7 +381,7 @@ private:
  *  \warning Do not use this type as a return type as the object will be destroyed on function exit.
  */
 template<typename T>
-struct AutoReleaseArray : public Array<T> {
+struct ENGINE_API AutoReleaseArray : public Array<T> {
 
 public:
 

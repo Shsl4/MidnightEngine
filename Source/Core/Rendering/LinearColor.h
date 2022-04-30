@@ -3,7 +3,7 @@
 #include <Core/EngineTypes.h>
 #include "../Math/MathUtils.h"
 
-struct LinearColor {
+struct ENGINE_API LinearColor {
 
 public:
 
@@ -90,7 +90,7 @@ private:
 
 };
 
-struct LinearColors {
+struct ENGINE_API LinearColors {
 
 public:
 

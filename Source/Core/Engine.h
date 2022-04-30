@@ -1,18 +1,17 @@
 #pragma once
 
 #include <Object.h>
-#include <EngineTypes.h>
-#include <Math/Matrix4.h>
-#include <Math/MathUtils.h>
-#include <Memory/Array.h>
-#include <Platform/PlatformData.h>
 
-#include "Rendering/ResourceLoader.h"
+#include <Memory/Array.h>
+#include <Memory/UniquePtr.h>
+
+#include <Platform/PlatformData.h>
+#include <Rendering/ResourceLoader.h>
 
 /*!
  *  The main engine class.
  */
-class Engine : public Object {
+class ENGINE_API Engine : public Object {
     
 public:
 
@@ -26,7 +25,7 @@ public:
     /*!
      * The engine destructor. It deallocates all resources used by the class.
      */
-    ~Engine() override;
+    ~Engine() = default;
 
     /*!
      *  The engine's initialization function. It is called after the constructor.
@@ -53,6 +52,11 @@ public:
     void stop();
 
     /*!
+    * Function called on engine destruction. It deallocates all resources used by the class.
+    */
+    void cleanup();
+
+    /*!
      * Returns a nicely formatted string containing the current renderer name.
      *
      *  \return The renderer name.
@@ -73,7 +77,7 @@ public:
      */
     FORCEINLINE static Engine *getInstance() {
         return instance;
-    };
+    }
 
     /*!
      * Returns the platform data.
@@ -140,11 +144,6 @@ public:
     }
 
 private:
-
-    /*!
-     * Function called on engine destruction. It deallocates all resources used by the class.
-     */
-    void cleanup();
 
     /*!
      *  The static engine instance.

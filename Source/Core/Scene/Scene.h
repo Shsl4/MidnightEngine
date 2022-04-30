@@ -6,12 +6,13 @@
 #include <Scene/CameraComponent.h>
 #include <Scene/CameraManager.h>
 #include <Memory/Array.h>
+#include <Memory/UniquePtr.h>
 #include <Logging/Logger.h>
 
 /*!
  * A scene is an object that represents the world. It holds SceneComponents and SceneObjects, and manages their lifetimes.
  */
-class Scene : public Object {
+class ENGINE_API Scene : public Object {
 
 public:
 

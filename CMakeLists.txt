@@ -19,7 +19,8 @@ foreach(MODULE ${MODULES})
 
 endforeach()
 
-add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+add_library(MidnightEngine SHARED ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+target_compile_definitions(MidnightEngine PRIVATE "ENGINE_EXPORT=1")
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
@@ -38,8 +39,6 @@ target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 
 if(WIN32)
 
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/../Resources)
-
 elseif(APPLE)
 
 find_library(FOUNDATION Foundation)
@@ -49,7 +48,6 @@ find_library(METAL Metal)
 find_library(QUARTZCORE QuartzCore)
 
 target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
 elseif(LINUX)
 
@@ -65,17 +63,10 @@ set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS})
 
 target_link_libraries(MidnightEngine ${SDL2_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
 
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
-
 else()
 
 message(FATAL_ERROR "Unsupported OS.")
 
 endif()
 
-foreach(LIBRARY ${THIRD_PARTY_DEBUG_DYLIBS})
-
-    get_filename_component(FILENAME "${LIBRARY}" NAME)
-    add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME})
-
-endforeach()
+add_subdirectory("${CMAKE_SOURCE_DIR}/Source/Runtime")

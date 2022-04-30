@@ -2,7 +2,7 @@
 
 #include <Scene/SceneObject.h>
 
-class FlyingCharacter : public SceneObject {
+class ENGINE_API FlyingCharacter : public SceneObject {
 
     using Super = SceneObject;
 

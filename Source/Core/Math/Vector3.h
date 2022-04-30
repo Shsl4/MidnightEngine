@@ -7,7 +7,7 @@
 /*!
  *  A 3 dimensional vector structure containing operators and primitives.
  */
-struct Vector3 {
+struct ENGINE_API Vector3 {
 
     Vector3() = default;
 

@@ -1,13 +1,14 @@
 #pragma once
 
 #include <Core/EngineTypes.h>
+#include <Core/EngineMacros.h>
 #include <cmath>
 #include <assimp/vector3.h>
 
 /*!
  *  A 2 dimensional vector structure.
  */
-struct Vector2 {
+struct ENGINE_API Vector2 {
 
     Vector2() = default;
 

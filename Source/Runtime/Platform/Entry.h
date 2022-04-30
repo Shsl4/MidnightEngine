@@ -1,13 +1,12 @@
 #pragma once
 
-#define SDL_MAIN_HANDLED
-
 #include <Platform/PlatformData.h>
+#include <Memory/UniquePtr.h>
 #include <Core/Engine.h>
 
 #ifdef __APPLE__
 
-int macOS_main(int argc, const char** argv);
+ENGINE_API int macOS_main(int argc, const char** argv);
 
 #else
 

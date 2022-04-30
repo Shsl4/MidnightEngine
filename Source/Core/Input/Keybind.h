@@ -1,9 +1,10 @@
 ﻿#pragma once
 
 #include <SDL2/SDL.h>
+#include <Core/EngineMacros.h>
 #include <Core/EngineTypes.h>
 
-struct KeyBind {
+struct ENGINE_API KeyBind {
     
     explicit KeyBind(UInt8 button);
 

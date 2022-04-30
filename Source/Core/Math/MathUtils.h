@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Core/EngineMacros.h>
 #include <Core/EngineTypes.h>
 
 /*!
  * A utility class containing templated math operations
  */
-class Math {
+class ENGINE_API Math {
 
 public:
 

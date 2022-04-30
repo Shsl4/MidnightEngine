@@ -1,5 +1,11 @@
 #include <Math/Matrix4.h>
+
+#include <cstring>
 #include <cmath>
+
+Matrix4::Matrix4() {
+    memset(data, 0, 16 * sizeof(float));
+}
 
 Matrix4 Matrix4::operator+(Matrix4 const &other) const {
 

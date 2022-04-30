@@ -71,11 +71,20 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv) 
 
 int Entry::initEngine(PlatformData data) {
 
-    engine = std::make_unique<Engine>(data);
-    engine->init(0, nullptr);
+    engine = UniquePtr<Engine>::make(data);
+    int value = engine->init(0, nullptr);
+    
+    if (value != 0) { return value; }
 
-    engine = nullptr;
-    imguiDestroy();
+    while (engine->isRunning())
+    {
+        engine->render();
+    }
+
+    engine->cleanup();
+
+    //imguiDestroy();
+
     bgfx::shutdown();
 
     hasTerminated = true;
@@ -87,8 +96,6 @@ int Entry::initEngine(PlatformData data) {
 void Entry::update() const {
 
     bgfx::renderFrame();
-
-    if (!engine) { return; }
 
     engine->update();
 

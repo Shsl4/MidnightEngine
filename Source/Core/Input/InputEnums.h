@@ -1,20 +1,22 @@
 ﻿#pragma once
 
-enum class EInputEvent {
+#include <Core/EngineMacros.h>
+
+enum class ENGINE_API EInputEvent {
 
     Pressed,
     Released
 
 };
 
-enum class EAxisType {
+enum class ENGINE_API EAxisType {
 
     MouseX,
     MouseY
 
 };
 
-enum class EKeyModifier {
+enum class ENGINE_API EKeyModifier {
 
     Shift = 1,
     Control = 1 << 6,
@@ -23,7 +25,7 @@ enum class EKeyModifier {
 
 };
 
-class IEName final {
+class ENGINE_API IEName final {
 
 public:
     

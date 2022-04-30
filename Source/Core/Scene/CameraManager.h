@@ -8,7 +8,7 @@
  * The CameraManager is an object keeping references to every camera in a scene.
  * It allows easy camera access and manipulation.
  */
-class CameraManager : public Object {
+class ENGINE_API CameraManager : public Object {
 
 public:
 

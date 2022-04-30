@@ -1,12 +1,9 @@
 #include "Scene.h"
 #include <Engine.h>
+#include <Memory/UniquePtr.h>
 
-Scene::Scene() {
+Scene::Scene() : logger(UniquePtr<Logger>::make("Scene")), cameraManager(UniquePtr<CameraManager>::make(this)) {
     
-    // Initialize the private variables
-    this->logger = std::make_unique<Logger>("Scene");
-    this->cameraManager = std::make_unique<CameraManager>(this);
-
 }
 
 void Scene::renderComponents() const {
@@ -15,10 +12,10 @@ void Scene::renderComponents() const {
     for (auto const &component: registeredComponents) {
 
         // If it is renderable
-        if (component->inherits<IRenderable>()) {
+        if (component->inherits<Renderable>()) {
 
             // Cast to renderable and call render.
-            auto* renderable = component->cast<IRenderable>();
+            auto* renderable = component->cast<Renderable>();
             renderable->render();
 
         }

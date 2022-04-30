@@ -6,7 +6,7 @@
 /*!
  *  A simple SceneObject having a MeshComponent at its root
  */
-class MeshObject : public SceneObject {
+class ENGINE_API MeshObject : public SceneObject {
 
 public:
 

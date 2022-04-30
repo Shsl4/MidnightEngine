@@ -8,7 +8,7 @@
 /*!
  * A vertex contains data about a point in space. Vertices are used to represent meshes.
  */
-struct Vertex {
+struct ENGINE_API Vertex {
 
 public:
 

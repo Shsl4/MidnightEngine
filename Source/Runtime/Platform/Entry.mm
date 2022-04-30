@@ -1,4 +1,5 @@
 #import <Memory/Allocator.h>
+#import <Memory/UniquePtr.h>
 #import <Core/Engine.h>
 #import <Platform/Entry.h>
 
@@ -90,11 +91,20 @@ NS_ASSUME_NONNULL_END
 
 - (int)initEngine:(PlatformData)data {
 
-    engine = std::make_unique<Engine>(data);
-    engine->init(0, nil);
+    engine = UniquePtr<Engine>::make(data);
+    int value = engine->init(0, nil);
+    
+    if (value != 0) { return value; }
 
-    engine = nullptr;
+    while (engine->isRunning())
+    {
+        engine->render();
+    }
+
+    engine->cleanup();
+
     imguiDestroy();
+
     bgfx::shutdown();
 
     hasTerminated = YES;

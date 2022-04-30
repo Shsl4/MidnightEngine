@@ -1,17 +1,18 @@
 #pragma once
 
-#include <Core/Logging/Logger.h>
+#include <Logging/Logger.h>
 
 #include <map>
 #include <functional>
 
 #include <Input/Keybind.h>
 #include <Input/InputEnums.h>
+#include <Memory/UniquePtr.h>
 
 /*!
  * The InputManager allows binding functions to input events such as key presses or mouse movement.
  */
-class InputManager : public Object {
+class ENGINE_API InputManager : public Object {
 
     using KeyBindMap = std::map<KeyBind, std::function<void()>>;
     using AxisBindMap = std::map<EAxisType, std::function<void(Int32)>>;

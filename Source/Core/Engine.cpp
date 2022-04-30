@@ -1,13 +1,21 @@
 #include <Engine.h>
 
+#include <Math/Matrix4.h>
+#include <Math/MathUtils.h>
+
 #include <Scene/CameraComponent.h>
 #include <Scene/MeshObject.h>
 #include <Scene/FlyingCharacter.h>
+
 #include <Input/InputManager.h>
+
 #include <UI/PerformanceWindow.h>
 #include <UI/CharacterInfoWindow.h>
+
 #include <Rendering/Mesh.h>
+
 #include <Memory/String.h>
+#include <Memory/UniquePtr.h>
 
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
@@ -23,19 +31,12 @@ Engine::Engine(PlatformData const &data) : platformData(data) {
     Engine::instance = this;
 
     // Initialize our variables.
-    this->logger = std::make_unique<Logger>("MidnightEngine");
-    this->inputManager = std::make_unique<InputManager>();
-    this->perfWindow = std::make_unique<PerformanceWindow>();
-    this->activeScene = std::make_unique<Scene>();
-    this->resourceLoader = std::make_unique<ResourceLoader>();
+    this->logger = UniquePtr<Logger>::make("MidnightEngine");
+    this->inputManager = UniquePtr<InputManager>::make();
+    this->perfWindow = UniquePtr<PerformanceWindow>::make();
+    this->activeScene = UniquePtr<Scene>::make();
+    this->resourceLoader = UniquePtr<ResourceLoader>::make();
     this->startTime = bx::getHPCounter();
-
-}
-
-Engine::~Engine() {
-    
-    // Release resources.
-    cleanup();
 
 }
 
@@ -70,7 +71,7 @@ int Engine::init(int argc, const char **argv) {
     auto character = activeScene->createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));
 
     // Create our character info window.
-    characterWindow = std::make_unique<CharacterInfoWindow>(character);
+    characterWindow = UniquePtr<CharacterInfoWindow>::make(character);
     
     // Add an input event. If the escape key is pressed, the engine will exit. This will be removed later.
     inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &Engine::stop);
@@ -83,16 +84,13 @@ int Engine::init(int argc, const char **argv) {
     
     running = true;
 
-    // Starts our render loop.
-    while (isRunning()) {
-        render();
-    }
-
     return 0;
 
 }
 
 void Engine::update() {
+
+    if (!isRunning()) { return; }
     
     const Int64 now = bx::getHPCounter();
     const Int64 freq = bx::getHPFrequency();
@@ -105,8 +103,13 @@ void Engine::update() {
     // Update our input system.
     inputManager->update();
     
-    // Update the current scene.
-    activeScene->updateScene(deltaTime);
+    // Only update the scene if it is loaded
+    if (activeScene.hasValue()) {
+        
+        // Update the current scene.
+        activeScene->updateScene(deltaTime);
+
+    }
 
 }
 
@@ -134,14 +137,18 @@ void Engine::render() {
 
     bgfx::setState(state);
 
-    // Get the active camera.
-    const CameraComponent *camera = activeScene->getCameraManager()->getActiveCamera();
+    if (activeScene.hasValue()) {
 
-    // Give the view and projection matrices to the vertex shader.
-    bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
+        // Get the active camera.
+        const CameraComponent* camera = activeScene->getCameraManager()->getActiveCamera();
 
-    // Render the components in our scene.
-    activeScene->renderComponents();
+        // Give the view and projection matrices to the vertex shader.
+        bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
+
+        // Render the components in our scene.
+        activeScene->renderComponents();
+
+    }
 
     // Render the frame.
     bgfx::frame();
@@ -157,7 +164,9 @@ void Engine::stop() {
 
 void Engine::cleanup() {
 
-    logger->info("Exiting MidnightEngine...");
+    if (isRunning()) { return; }
+
+    logger->info("Cleaning up...");
     
     // Remove reference to the instance
     Engine::instance = nullptr;
@@ -166,6 +175,7 @@ void Engine::cleanup() {
     this->logger = nullptr;
     this->inputManager = nullptr;
     this->activeScene = nullptr;
+    this->resourceLoader = nullptr;
     this->perfWindow = nullptr;
     this->characterWindow = nullptr;
 

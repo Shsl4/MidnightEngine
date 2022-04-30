@@ -5,7 +5,7 @@
 /*!
  *  A structure containing information for transformation in space. Transforms contains position, rotation and scale information.
  */
-struct Transform {
+struct ENGINE_API Transform {
 
     Transform() = default;
 

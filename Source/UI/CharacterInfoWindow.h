@@ -8,7 +8,7 @@
 #include <iconfontheaders/icons_font_awesome.h>
 #include <Core/Logging/Logger.h>
 
-class CharacterInfoWindow {
+class ENGINE_API CharacterInfoWindow {
 
     class FlyingCharacter *character;
 

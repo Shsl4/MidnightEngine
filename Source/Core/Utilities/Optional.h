@@ -1,6 +1,9 @@
 #pragma once
 
+#include <stdexcept>
+
 #include <Memory/Allocator.h>
+#include <Core/EngineTypes.h>
 #include <Core/Object.h>
 
 /*!

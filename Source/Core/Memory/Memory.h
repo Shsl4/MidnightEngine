@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Core/EngineTypes.h>
+#include <Core/EngineMacros.h>
+#include <memory>
 
 class Memory {
     

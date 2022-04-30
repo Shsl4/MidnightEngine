@@ -6,7 +6,7 @@
 /*!
  *  An efficient String class implemented on top of Array with lots of built-in functions.
  */
-class String : public Array<char> {
+class ENGINE_API String : public Array<char> {
 
 public:
 

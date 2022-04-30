@@ -1,11 +1,12 @@
 #pragma once
 
 #include <Scene/SceneComponent.h>
-#include <Rendering/IRenderable.h>
+#include <Rendering/Renderable.h>
 #include <Rendering/LinearColor.h>
+#include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
-struct Attenuation {
+struct ENGINE_API Attenuation {
 
     Attenuation(float constant, float linear, float exponent)
             : constant(constant), linear(linear), exponent(exponent) {
@@ -18,7 +19,7 @@ struct Attenuation {
 
 };
 
-struct PointLight {
+struct ENGINE_API PointLight {
 
     PointLight(LinearColor color, Vector3 position, float intensity, Attenuation attenuation)
             : color(color), position(position), intensity(intensity), attenuation(attenuation) {
@@ -32,7 +33,7 @@ struct PointLight {
 
 };
 
-struct DirectionalLight {
+struct ENGINE_API DirectionalLight {
 
     DirectionalLight(Vector3 direction, Vector3 ambient, Vector3 diffuse, Vector3 specular)
             : direction(direction), ambient(ambient), diffuse(diffuse), specular(specular) {
@@ -49,7 +50,7 @@ struct DirectionalLight {
 
 };
 
-struct Material {
+struct ENGINE_API Material {
 
     Material(LinearColor ambient, LinearColor diffuse, LinearColor specular, bool hasTexture, float reflectance)
             : ambient(ambient), diffuse(diffuse), specular(specular), hasTexture(hasTexture), reflectance(reflectance) {
@@ -64,7 +65,7 @@ struct Material {
     float reflectance = 0.0f;
 };
 
-struct PointLightHandles {
+struct ENGINE_API PointLightHandles {
 
     bgfx::UniformHandle color;
     bgfx::UniformHandle position;
@@ -72,7 +73,7 @@ struct PointLightHandles {
     bgfx::UniformHandle icle;
 };
 
-struct DirectionalLightHandles {
+struct ENGINE_API DirectionalLightHandles {
 
     bgfx::UniformHandle direction;
     bgfx::UniformHandle ambient;
@@ -80,7 +81,7 @@ struct DirectionalLightHandles {
     bgfx::UniformHandle specular;
 };
 
-struct MaterialHandles {
+struct ENGINE_API MaterialHandles {
 
     bgfx::UniformHandle ambient;
     bgfx::UniformHandle diffuse;
@@ -92,7 +93,7 @@ struct MaterialHandles {
 /*!
  * A renderable component that represents a mesh.
  */
-class MeshComponent : public SceneComponent, public IRenderable {
+class ENGINE_API MeshComponent : public SceneComponent, public Renderable {
 
 public:
 

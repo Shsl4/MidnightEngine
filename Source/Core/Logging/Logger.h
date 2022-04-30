@@ -14,7 +14,7 @@
 /*!
  * A Logging class allowing you to log messages to the console using different severities.
  */
-class Logger {
+class ENGINE_API Logger {
 
 public:
 
@@ -23,7 +23,7 @@ public:
      *
      * \param[in] id The Logger identifier.
      */
-    explicit Logger(String id) : id(std::move(id)) {
+    Logger(String id) : id(std::move(id)) {
 
     }
 

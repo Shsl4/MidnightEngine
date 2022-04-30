@@ -1,7 +1,7 @@
 #include <Input/InputManager.h>
 
-InputManager::InputManager() {
-    this->logger = std::make_unique<Logger>("InputManager");
+InputManager::InputManager() : logger(UniquePtr<Logger>::make("InputManager")) {
+
 }
 
 void InputManager::invokeIfMatch(const KeyBind &kb, const KeyBindMap &map) {

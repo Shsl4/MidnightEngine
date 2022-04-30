@@ -6,7 +6,7 @@
 /*!
  *  A 4 dimensional vector structure containing operators and primitives.
  */
-struct Vector4 {
+struct ENGINE_API Vector4 {
 
     Vector4 operator*(float scale) const;
 

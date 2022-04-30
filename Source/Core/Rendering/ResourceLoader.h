@@ -3,7 +3,7 @@
 #include <Rendering/Mesh.h>
 #include <assimp/Importer.hpp>
 
-class ResourceLoader
+class ENGINE_API ResourceLoader
 {
 
 public:

@@ -1,17 +1,17 @@
 #pragma once
 
-#include <bgfx/bgfx.h>
+#include <Core/EngineTypes.h>
 
 /*!
  * An interface declaring an object as renderable
  */
-class IRenderable {
+class ENGINE_API Renderable {
 
 public:
 
-    IRenderable() = default;
+    Renderable() = default;
 
-    virtual ~IRenderable() = default;
+    virtual ~Renderable() = default;
 
     /*!
      * A function called to render the renderable.

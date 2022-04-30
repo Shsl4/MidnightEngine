@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Scene/SceneComponent.h>
-#include <Rendering/IRenderable.h>
+#include <Rendering/Renderable.h>
 #include <Math/Matrix4.h>
 
-class CameraComponent : public SceneComponent {
+class ENGINE_API CameraComponent : public SceneComponent {
 
 private:
 

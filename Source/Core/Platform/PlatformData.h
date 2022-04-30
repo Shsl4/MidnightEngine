@@ -1,9 +1,10 @@
 #pragma once
 
+#include <Core/EngineMacros.h>
 #include <Core/EngineTypes.h>
 #include <SDL2/SDL.h>
 
-struct PlatformData {
+struct ENGINE_API PlatformData {
 
     PlatformData(int argc, const char **argv, SDL_Window *window, float scaleFactor);
 

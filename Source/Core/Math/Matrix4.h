@@ -1,14 +1,15 @@
 #pragma once
 
-#include <iostream>
-#include <cstring>
+#include <Core/EngineMacros.h>
 #include <Math/Transform.h>
 #include <Math/Vector4.h>
 
 /*!
  * A 4x4 Matrix structure implementing operators and primivites.
  */
-struct Matrix4 {
+struct ENGINE_API Matrix4 {
+
+    Matrix4();
 
     Matrix4 operator+(Matrix4 const &other) const;
 
@@ -69,9 +70,5 @@ struct Matrix4 {
     static Matrix4 copyingData(const float *newData);
 
     float data[4][4] = {};
-
-    Matrix4() {
-        memset(data, 0, 16 * sizeof(float));
-    };
 
 };

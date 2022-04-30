@@ -12,7 +12,7 @@
 /*!
  * A SceneObject represents an entity that holds SceneComponents.
  */
-class SceneObject : public Object {
+class ENGINE_API SceneObject : public Object {
 
 public:
 

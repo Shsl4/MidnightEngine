@@ -9,7 +9,7 @@
 #include <Core/Logging/Logger.h>
 #include <Core/EngineTypes.h>
 
-class PerformanceWindow {
+class ENGINE_API PerformanceWindow {
 
 public:
 

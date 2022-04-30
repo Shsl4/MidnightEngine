@@ -11,7 +11,7 @@
 /*!
  * A structure representing a mesh.
  */
-struct Mesh
+struct ENGINE_API Mesh
 {
     virtual ~Mesh();
 
