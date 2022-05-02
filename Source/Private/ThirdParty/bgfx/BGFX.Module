@@ -1,0 +1,43 @@
+file(GLOB_RECURSE BGFX_HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/*.h* ${CMAKE_CURRENT_LIST_DIR}/include/*.inl)
+file(GLOB_RECURSE BGFX_SOURCES ${CMAKE_CURRENT_LIST_DIR}/include/*.c*)
+
+set(THIRD_PARTY_HEADERS ${THIRD_PARTY_HEADERS} ${BGFX_HEADERS})
+set(THIRD_PARTY_SOURCES ${THIRD_PARTY_SOURCES} ${BGFX_SOURCES})
+
+if(WIN32)
+
+set(DEBUG_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Windows/x64/Debug)
+set(RELEASE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Windows/x64/Release)
+
+set(BGFX_DEBUG_LIBS ${DEBUG_PATH}/bgfxDebug.lib ${DEBUG_PATH}/bxDebug.lib ${DEBUG_PATH}/bimgDebug.lib ${DEBUG_PATH}/bimg_decodeDebug.lib)
+set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/bgfxRelease.lib ${RELEASE_PATH}/bxRelease.lib ${RELEASE_PATH}/bimgRelease.lib ${RELEASE_PATH}/bimg_decodeRelease.lib)
+
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/bx/compat/msvc)
+
+elseif (APPLE) 
+
+set(DEBUG_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/macOS/arm64/Debug)
+set(RELEASE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/macOS/arm64/Release)
+
+set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/libbgfxRelease.a ${RELEASE_PATH}/libbxRelease.a ${RELEASE_PATH}/libbimgRelease.a ${RELEASE_PATH}/libbimg_decodeRelease.a)
+
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/bx/compat/osx)
+
+elseif (LINUX)
+
+set(DEBUG_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Linux/x64/Debug)
+set(RELEASE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Linux/x64/Release)
+
+set(BGFX_DEBUG_LIBS ${DEBUG_PATH}/libbgfxDebug.a ${DEBUG_PATH}/libbimg_decodeDebug.a ${DEBUG_PATH}/libbimg_encodeDebug.a ${DEBUG_PATH}/libbimgDebug.a ${DEBUG_PATH}/libbxDebug.a)
+set(BGFX_RELEASE_LIBS ${RELEASE_PATH}/libbgfxRelease.a ${RELEASE_PATH}/libbimg_decodeRelease.a ${RELEASE_PATH}/libbimg_encodeRelease.a ${RELEASE_PATH}/libbimgRelease.a ${RELEASE_PATH}/libbxRelease.a)
+
+endif()
+
+set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${BGFX_DEBUG_LIBS})
+set(THIRD_PARTY_RELEASE_LIBS ${THIRD_PARTY_RELEASE_LIBS} ${BGFX_RELEASE_LIBS})
+
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/include/)
+
+add_compile_definitions(BX_CONFIG_DEBUG=true)
+
+message(STATUS "Included BGFX module.")

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 set(LINUX UNIX AND NOT APPLE)
+set(CMAKE_DEBUG_POSTFIX d)
 
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
@@ -19,7 +20,8 @@ foreach(MODULE ${MODULES})
 
 endforeach()
 
-add_executable(MidnightEngine ${MAIN_FILE} ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+add_library(MidnightEngine SHARED ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+target_compile_definitions(MidnightEngine PRIVATE "ENGINE_EXPORT=1")
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
@@ -29,16 +31,20 @@ filterThirdPartySources("${THIRD_PARTY_SOURCES}")
 filterThirdPartySources("${THIRD_PARTY_HEADERS}")
 
 target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source")
-target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Core")
-target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/UI")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Public")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Private")
+
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Public/Core")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Public/UI")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Private/Core")
+target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Private/UI")
+
 target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
 target_link_libraries(MidnightEngine debug ${THIRD_PARTY_DEBUG_LIBS})
 target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 
 if(WIN32)
-
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/../Resources)
 
 elseif(APPLE)
 
@@ -49,7 +55,6 @@ find_library(METAL Metal)
 find_library(QUARTZCORE QuartzCore)
 
 target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
 elseif(LINUX)
 
@@ -65,17 +70,8 @@ set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS})
 
 target_link_libraries(MidnightEngine ${SDL2_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
 
-add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
-
-else()
-
-message(FATAL_ERROR "Unsupported OS.")
-
 endif()
 
-foreach(LIBRARY ${THIRD_PARTY_DEBUG_DYLIBS})
+add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
-    get_filename_component(FILENAME "${LIBRARY}" NAME)
-    add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${LIBRARY} ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME})
-
-endforeach()
+add_subdirectory("${CMAKE_SOURCE_DIR}/Runtime")
