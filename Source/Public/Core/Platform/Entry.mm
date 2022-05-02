@@ -1,0 +1,136 @@
+#import <Memory/Allocator.h>
+#import <Memory/UniquePtr.h>
+#import <Core/Engine.h>
+#import <Platform/Entry.h>
+
+#import <SDL2/SDL_syswm.h>
+
+#import <bgfx/bgfx.h>
+#import <bgfx/platform.h>
+#import <bgfx/imgui/imgui.h>
+
+#import <Logging/Logger.h>
+
+#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Entry : NSObject <NSApplicationDelegate>
+
+- (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv;
+
+- (int)initEngine:(PlatformData)data;
+
+- (void)update;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+@implementation Entry {
+
+    BOOL hasTerminated;
+    UniquePtr<Engine> engine;
+
+}
+
+- (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv {
+
+    [NSApplication sharedApplication];
+    [NSApp setDelegate:self];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp finishLaunching];
+
+    SDL_Window *window = SDL_CreateWindow("Main Window", 0, 0, 0, 0, 1);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    
+    SDL_SysWMinfo wmi;
+    SDL_VERSION(&wmi.version);
+
+    if (!SDL_GetWindowWMInfo(window, &wmi)) {
+        return;
+    }
+    
+    bgfx::PlatformData platformData;
+    platformData.nwh = wmi.info.cocoa.window;
+    bgfx::setPlatformData(platformData);
+    
+    CGFloat scaleFactor = wmi.info.cocoa.window.screen.backingScaleFactor;
+    
+    PlatformData data = PlatformData(argc, argv, window, scaleFactor);
+    
+    hasTerminated = NO;
+
+    bgfx::renderFrame();
+
+    /// \todo Implement a correct multi-threaded paradigm
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+
+        [self initEngine:data];
+
+    });
+
+    while (!engine || !engine->isRunning()) {
+        bgfx::renderFrame();
+    }
+
+    while (!hasTerminated) {
+
+        [self update];
+
+    }
+
+    SDL_DestroyWindow(window);
+
+    return 0;
+
+}
+
+- (int)initEngine:(PlatformData)data {
+
+    engine = UniquePtr<Engine>::make(data);
+    int value = engine->init(0, nil);
+    
+    if (value != 0) { return value; }
+
+    while (engine->isRunning())
+    {
+        engine->render();
+    }
+
+    engine->cleanup();
+
+    imguiDestroy();
+
+    bgfx::shutdown();
+
+    hasTerminated = YES;
+
+    return 0;
+
+}
+
+- (void)update {
+
+    bgfx::renderFrame();
+
+    if (!engine) { return; }
+    
+    engine->update();
+    
+}
+
+@end
+
+int macOS_main(int argc, const char **argv) {
+
+    Entry* entry = [[Entry alloc] init];
+    [entry entry:argc argv:argv];
+    [entry release];
+    
+    return 0;
+
+}
