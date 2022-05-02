@@ -2,7 +2,6 @@ var struct_vector3 =
 [
     [ "Vector3", "struct_vector3.html#a0790c02a89da621f39f6c9a55b309151", null ],
     [ "Vector3", "struct_vector3.html#aeb741d68180650fc160bbf84fa66e1b8", null ],
-    [ "Vector3", "struct_vector3.html#ac307e2c8288e6a26350fc99f62dcb7e4", null ],
     [ "Vector3", "struct_vector3.html#aa79d6463cc83f9262b7d8db4af443641", null ],
     [ "angle", "struct_vector3.html#af2985002d0a064cef8e191e426d03a5b", null ],
     [ "cross", "struct_vector3.html#a8f324c7483c9681312ac966f452d7061", null ],

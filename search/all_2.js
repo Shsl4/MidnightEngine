@@ -8,5 +8,7 @@ var searchData=
   ['bindevent_5',['bindEvent',['../class_input_manager.html#a45704532db16bc0166daebe5fa89656a',1,'InputManager']]],
   ['bitcheck_6',['bitCheck',['../_keybind_8cpp.html#a9d3ee9631229b568bfd823302970860a',1,'Keybind.cpp']]],
   ['black_7',['black',['../struct_linear_colors.html#a4055f66303a15d771283499c492de80f',1,'LinearColors']]],
-  ['blue_8',['blue',['../struct_linear_colors.html#a1e3964b7d1a9527b28f6f33870d08236',1,'LinearColors']]]
+  ['black_8',['Black',['../class_colors.html#a597c70185d353d836755fb7b2d38a781',1,'Colors']]],
+  ['blue_9',['Blue',['../class_colors.html#a7a37e8eeabb1a8923aeaead271b40152',1,'Colors']]],
+  ['blue_10',['blue',['../struct_linear_colors.html#a1e3964b7d1a9527b28f6f33870d08236',1,'LinearColors::blue()'],['../union_color.html#ae8bf4fe2aa02d32330c9a9a9138c74d8',1,'Color::blue()']]]
 ];

@@ -1,8 +1,9 @@
 var struct_key_bind =
 [
     [ "KeyBind", "struct_key_bind.html#a7f530aa8771a69fdf00afabebee93a09", null ],
-    [ "KeyBind", "struct_key_bind.html#a4bb7f211008b6c206210babdc24dc96f", null ],
-    [ "KeyBind", "struct_key_bind.html#a89145e8da4fc1ddfe20337cceabcbacf", null ],
+    [ "KeyBind", "struct_key_bind.html#a4f2c53ddc83a76dfe0d47e56a63fc1c7", null ],
+    [ "KeyBind", "struct_key_bind.html#a679ddb7b3138ee5f7ba3f1c6cb97d07c", null ],
+    [ "getName", "struct_key_bind.html#aea5e391381b9d8d0296fa31ad0d8331b", null ],
     [ "operator<", "struct_key_bind.html#a5d232b6967ded711a7296456e5da567e", null ],
     [ "operator==", "struct_key_bind.html#a36a5316fd76578447380cef088701afd", null ],
     [ "alt", "struct_key_bind.html#a54be5a4a52af2308a3e4c718eb658a01", null ],

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: Source/Core/Scene/FlyingCharacter.cpp File Reference</title>
+<title>MidnightEngine: Runtime/Scene/FlyingCharacter.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,18 +88,93 @@ $(document).ready(function(){initNavTree('_flying_character_8cpp.html',''); init
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">FlyingCharacter.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="_flying_character_8h_source.html">Scene/FlyingCharacter.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_input_manager_8h_source.html">Input/InputManager.h</a>&gt;</code><br />
-</div></div><!-- contents -->
+<code>#include &lt;<a class="el" href="_scene_8h_source.html">Scene/Scene.h</a>&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a968e22a068d685dddd360376c577deaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_flying_character_8cpp.html#a968e22a068d685dddd360376c577deaa">shift</a>&#160;&#160;&#160;(1&lt;&lt;30)</td></tr>
+<tr class="separator:a968e22a068d685dddd360376c577deaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fac42f6e53b45d8bbbcc97076d1e17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_flying_character_8cpp.html#ab2fac42f6e53b45d8bbbcc97076d1e17">convert</a>(X)&#160;&#160;&#160;(X | <a class="el" href="_flying_character_8cpp.html#a968e22a068d685dddd360376c577deaa">shift</a>)</td></tr>
+<tr class="separator:ab2fac42f6e53b45d8bbbcc97076d1e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aa9711de6e5a14068d0bec22941539ffe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffe">SpecialKeys</a> { <a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffeadab95d3553ca856e73300cc235d04760">LeftShift</a> = convert(225)
+, <a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffea0382a67585728ea620079642f363466a">Space</a> = ' '
+, <a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffea57a7edcbc04d6175683383cad5c3e0a2">Up</a> = convert(82)
+, <a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffeabcf8c79e9a5f5f9d606fb35645a0fb27">Down</a> = convert(81)
+ }</td></tr>
+<tr class="separator:aa9711de6e5a14068d0bec22941539ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ab2fac42f6e53b45d8bbbcc97076d1e17" name="ab2fac42f6e53b45d8bbbcc97076d1e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2fac42f6e53b45d8bbbcc97076d1e17">&#9670;&nbsp;</a></span>convert</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define convert</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td>&#160;&#160;&#160;(X | <a class="el" href="_flying_character_8cpp.html#a968e22a068d685dddd360376c577deaa">shift</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a968e22a068d685dddd360376c577deaa" name="a968e22a068d685dddd360376c577deaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968e22a068d685dddd360376c577deaa">&#9670;&nbsp;</a></span>shift</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define shift&#160;&#160;&#160;(1&lt;&lt;30)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aa9711de6e5a14068d0bec22941539ffe" name="aa9711de6e5a14068d0bec22941539ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9711de6e5a14068d0bec22941539ffe">&#9670;&nbsp;</a></span>SpecialKeys</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffe">SpecialKeys</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa9711de6e5a14068d0bec22941539ffeadab95d3553ca856e73300cc235d04760" name="aa9711de6e5a14068d0bec22941539ffeadab95d3553ca856e73300cc235d04760"></a>LeftShift&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa9711de6e5a14068d0bec22941539ffea0382a67585728ea620079642f363466a" name="aa9711de6e5a14068d0bec22941539ffea0382a67585728ea620079642f363466a"></a>Space&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa9711de6e5a14068d0bec22941539ffea57a7edcbc04d6175683383cad5c3e0a2" name="aa9711de6e5a14068d0bec22941539ffea57a7edcbc04d6175683383cad5c3e0a2"></a>Up&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa9711de6e5a14068d0bec22941539ffeabcf8c79e9a5f5f9d606fb35645a0fb27" name="aa9711de6e5a14068d0bec22941539ffeabcf8c79e9a5f5f9d606fb35645a0fb27"></a>Down&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_1ad6433457b0067ef8f54a4fa85f5c9a.html">Core</a></li><li class="navelem"><a class="el" href="dir_d9d7c172f3b566ef2195c6f0ea570254.html">Scene</a></li><li class="navelem"><a class="el" href="_flying_character_8cpp.html">FlyingCharacter.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_4f6666a8f2ab10bc970eb7559668f031.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_e6a986b2c74ade58304c952fe2e3606b.html">Scene</a></li><li class="navelem"><a class="el" href="_flying_character_8cpp.html">FlyingCharacter.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

@@ -34,8 +34,8 @@ var NAVTREE =
     ] ],
     [ "Documentation", "index.html#autotoc_md7", null ],
     [ "Third-Party Libraries", "index.html#autotoc_md8", null ],
-    [ "Deprecated List", "deprecated.html", null ],
     [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -45,6 +45,7 @@ var NAVTREE =
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -56,6 +57,7 @@ var NAVTREE =
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -64,10 +66,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_allocator_8h.html",
-"class_camera_manager.html#aec123c2494958a78608195d713a18c66",
-"class_scene_object.html#aba8272571e82e5b7082e130f8825c681",
-"struct_mesh.html#adc64112d938b6664cf8c5646690d51b8"
+"_a_r_pointer_8h.html",
+"class_camera_component.html#a77c2b3a69477b30d3d4c35dee48567e2",
+"class_resource_loader.html#a6fac9259937f02b3027f53933309caf8",
+"struct_linear_color.html#ab3de1f18a846167f868be7dadb319974"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

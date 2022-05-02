@@ -1,7 +1,7 @@
 var searchData=
 [
   ['fastinvsqrt_0',['fastInvSqrt',['../class_math.html#a8ba62716d846648b1c9d7dab934d6387',1,'Math']]],
-  ['fatal_1',['fatal',['../class_logger.html#ae5af71e4817478fd820e4d868fe7e09d',1,'Logger']]],
+  ['fatal_1',['fatal',['../class_logger.html#a924cf13a51b3722136576cc8ec490431',1,'Logger']]],
   ['fill_2',['fill',['../struct_matrix3.html#ad53a7949116f468605c334ab3f9009e6',1,'Matrix3::fill()'],['../struct_matrix4.html#a90203b6b3470b564ace8226a33aa9094',1,'Matrix4::fill()']]],
   ['firstindexof_3',['firstIndexOf',['../class_array.html#abd5ab5ffe89d3f519791d8a911a177ff',1,'Array']]],
   ['format_4',['format',['../structfmt_1_1formatter_3_01_string_01_4.html#a90e63319f1ece100a634ed8fac5a8970',1,'fmt::formatter&lt; String &gt;']]],

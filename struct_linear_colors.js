@@ -1,6 +1,6 @@
 var struct_linear_colors =
 [
-    [ "LinearColors", "struct_linear_colors.html#a2da01d93909110a35e93299d9018e714", null ],
+    [ "LinearColors", "struct_linear_colors.html#a6d8c489e7c54329bb470076c5f6b2c7f", null ],
     [ "black", "struct_linear_colors.html#a4055f66303a15d771283499c492de80f", null ],
     [ "blue", "struct_linear_colors.html#a1e3964b7d1a9527b28f6f33870d08236", null ],
     [ "green", "struct_linear_colors.html#a569fa77fa8f84128ca9a291a1a0b2280", null ],

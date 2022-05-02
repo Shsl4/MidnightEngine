@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['x_0',['x',['../struct_vector2.html#a046bb8d17a876acc49415128dc0502f2',1,'Vector2::x()'],['../struct_vector3.html#a7e2d3237b29a2f29d7b3d8b2934e35f2',1,'Vector3::x()'],['../struct_vector4.html#a1cc671b8b90e1b8145e74f128d828fbe',1,'Vector4::x()']]]
+  ['w_0',['w',['../struct_vector4.html#a988ad29d481ee14c5c6c35dbdf58c559',1,'Vector4']]],
+  ['white_1',['white',['../struct_linear_colors.html#ac6be2c0f5e6c5208e790323fa411ad38',1,'LinearColors']]],
+  ['windowheight_2',['windowHeight',['../struct_platform_data.html#aa79ec96cd0179882dea985954ca6b7ed',1,'PlatformData']]],
+  ['windowwidth_3',['windowWidth',['../struct_platform_data.html#a57b19e546efcba0c52eb0640630e54a7',1,'PlatformData']]]
 ];

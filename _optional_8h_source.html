@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: Source/Core/Utilities/Optional.h Source File</title>
+<title>MidnightEngine: Source/Public/Core/Utilities/Optional.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,102 +93,106 @@ $(document).ready(function(){initNavTree('_optional_8h_source.html',''); initRes
 <div class="contents">
 <a href="_optional_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_allocator_8h.html">Memory/Allocator.h</a>&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="_object_8h.html">Core/Object.h</a>&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_optional.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_optional.html">Optional</a> final : <span class="keyword">public</span> <a class="code hl_class" href="class_object.html">Object</a> {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">   18</a></span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T &amp;&amp;v);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <span class="keyword">const</span> &amp;opt);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T <span class="keyword">const</span> &amp;v);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T *v);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ... Args&gt;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(Args ...args);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <a class="code hl_function" href="class_optional.html#a31be6aa92a4a501603b57104d6d377dd">empty</a>();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a177ed5e1df86c5bb066488c283407541">hasValue</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    T&amp; <a class="code hl_function" href="class_optional.html#a7c9f991f91689bc62086d1635f27081c">getValue</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    T&amp; <a class="code hl_function" href="class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda">getValueElse</a>(T &amp;def) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    T <a class="code hl_function" href="class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda">getValueElse</a>(T def) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    T* <a class="code hl_function" href="class_optional.html#a6e669ed62c8b8fd73414d846d8a4b06b">operator-&gt;</a>();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    T&amp; <a class="code hl_function" href="class_optional.html#ac4efbefeb71b70fe54a9dfc1f9deb4fe">operator()</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a2d423ef9082ece2cc84599d2191b39a1">operator!</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <span class="keyword">const</span> &amp;other);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;&amp;other);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(T &amp;&amp;other);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(T <span class="keyword">const</span> &amp;other);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a30d52a44225effd9926764afa164e9e0">operator==</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a8ac8d9fdc6ea9755eff8ef5db801a9b3">operator&lt;</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a111d0eb42006d6fe7e4ba00a81b4e3c9">operator&gt;</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#ac33ae0e21e9c459f2d454478902a1302">operator&lt;=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a7aa6553cfac8bb6c1ee502ddd6464dd1">operator&gt;=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a30d52a44225effd9926764afa164e9e0">operator==</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a8ac8d9fdc6ea9755eff8ef5db801a9b3">operator&lt;</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a111d0eb42006d6fe7e4ba00a81b4e3c9">operator&gt;</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#ac33ae0e21e9c459f2d454478902a1302">operator&lt;=</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a7aa6553cfac8bb6c1ee502ddd6464dd1">operator&gt;=</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <a class="code hl_function" href="class_optional.html#a6591310e7a8bb29288ebdc76e758f12f">~Optional</a>() final;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>private:</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">  258</a></span>    T *<a class="code hl_variable" href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">value</a> = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="_allocator_8h.html">Memory/Allocator.h</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_engine_types_8h.html">Core/EngineTypes.h</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="_object_8h.html">Core/Object.h</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_optional.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_optional.html">Optional</a> final : <span class="keyword">public</span> <a class="code hl_class" href="class_object.html">Object</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">   21</a></span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T &amp;&amp;v);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <span class="keyword">const</span> &amp;opt);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T <span class="keyword">const</span> &amp;v);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(T *v);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ... Args&gt;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional</a>(Args ...args);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <a class="code hl_function" href="class_optional.html#a31be6aa92a4a501603b57104d6d377dd">empty</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a177ed5e1df86c5bb066488c283407541">hasValue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    T&amp; <a class="code hl_function" href="class_optional.html#a7c9f991f91689bc62086d1635f27081c">getValue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    T&amp; <a class="code hl_function" href="class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda">getValueElse</a>(T &amp;def) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    T <a class="code hl_function" href="class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda">getValueElse</a>(T def) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    T* <a class="code hl_function" href="class_optional.html#a6e669ed62c8b8fd73414d846d8a4b06b">operator-&gt;</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    T&amp; <a class="code hl_function" href="class_optional.html#ac4efbefeb71b70fe54a9dfc1f9deb4fe">operator()</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a2d423ef9082ece2cc84599d2191b39a1">operator!</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> <span class="keyword">const</span> &amp;other);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;&amp;other);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(T &amp;&amp;other);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_class" href="class_optional.html">Optional&lt;T&gt;</a> &amp;<a class="code hl_function" href="class_optional.html#a4ea7a489e68dab2183505d2e88ebe4ae">operator=</a>(T <span class="keyword">const</span> &amp;other);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a30d52a44225effd9926764afa164e9e0">operator==</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a8ac8d9fdc6ea9755eff8ef5db801a9b3">operator&lt;</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a111d0eb42006d6fe7e4ba00a81b4e3c9">operator&gt;</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#ac33ae0e21e9c459f2d454478902a1302">operator&lt;=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a7aa6553cfac8bb6c1ee502ddd6464dd1">operator&gt;=</a>(<a class="code hl_class" href="class_optional.html">Optional&lt;U&gt;</a> <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a30d52a44225effd9926764afa164e9e0">operator==</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a8ac8d9fdc6ea9755eff8ef5db801a9b3">operator&lt;</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a111d0eb42006d6fe7e4ba00a81b4e3c9">operator&gt;</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#ac33ae0e21e9c459f2d454478902a1302">operator&lt;=</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optional.html#a7aa6553cfac8bb6c1ee502ddd6464dd1">operator&gt;=</a>(U <span class="keyword">const</span> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_function" href="class_optional.html#a6591310e7a8bb29288ebdc76e758f12f">~Optional</a>() final;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>private:</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">  261</a></span>    <a class="code hl_class" href="class_allocator.html">Allocator</a>&lt;T&gt; <a class="code hl_variable" href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">allocator</a> = <a class="code hl_class" href="class_allocator.html">Allocator</a>&lt;T&gt;();</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">  261</a></span>    T *<a class="code hl_variable" href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">value</a> = <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>};</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="_optional_8h.html#a0e4d62b0eb94dc803905aa68e44bb18a">  265</a></span><span class="preprocessor">#define __OPT_INCL</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="preprocessor">#include &lt;<a class="code" href="_optional_8inl.html">Utilities/Optional.inl</a>&gt;</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="preprocessor">#undef __OPT_INCL</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">  264</a></span>    <a class="code hl_class" href="class_allocator.html">Allocator</a>&lt;T&gt; <a class="code hl_variable" href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">allocator</a> = <a class="code hl_class" href="class_allocator.html">Allocator</a>&lt;T&gt;();</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>};</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="_optional_8h.html#a0e4d62b0eb94dc803905aa68e44bb18a">  268</a></span><span class="preprocessor">#define __OPT_INCL</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="preprocessor">#include &lt;<a class="code" href="_optional_8inl.html">Utilities/Optional.inl</a>&gt;</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">#undef __OPT_INCL</span></div>
 <div class="ttc" id="a_allocator_8h_html"><div class="ttname"><a href="_allocator_8h.html">Allocator.h</a></div></div>
+<div class="ttc" id="a_engine_types_8h_html"><div class="ttname"><a href="_engine_types_8h.html">EngineTypes.h</a></div></div>
 <div class="ttc" id="a_object_8h_html"><div class="ttname"><a href="_object_8h.html">Object.h</a></div></div>
 <div class="ttc" id="a_optional_8inl_html"><div class="ttname"><a href="_optional_8inl.html">Optional.inl</a></div></div>
 <div class="ttc" id="aclass_allocator_html"><div class="ttname"><a href="class_allocator.html">Allocator</a></div><div class="ttdef"><b>Definition:</b> Allocator.h:14</div></div>
-<div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:9</div></div>
-<div class="ttc" id="aclass_optional_html"><div class="ttname"><a href="class_optional.html">Optional</a></div><div class="ttdef"><b>Definition:</b> Optional.h:11</div></div>
+<div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:11</div></div>
+<div class="ttc" id="aclass_optional_html"><div class="ttname"><a href="class_optional.html">Optional</a></div><div class="ttdef"><b>Definition:</b> Optional.h:14</div></div>
 <div class="ttc" id="aclass_optional_html_a111d0eb42006d6fe7e4ba00a81b4e3c9"><div class="ttname"><a href="class_optional.html#a111d0eb42006d6fe7e4ba00a81b4e3c9">Optional::operator&gt;</a></div><div class="ttdeci">bool operator&gt;(Optional&lt; U &gt; const &amp;other) const</div><div class="ttdef"><b>Definition:</b> Optional.inl:183</div></div>
 <div class="ttc" id="aclass_optional_html_a177ed5e1df86c5bb066488c283407541"><div class="ttname"><a href="class_optional.html#a177ed5e1df86c5bb066488c283407541">Optional::hasValue</a></div><div class="ttdeci">bool hasValue() const</div><div class="ttdef"><b>Definition:</b> Optional.inl:46</div></div>
 <div class="ttc" id="aclass_optional_html_a2b9f8c4a601ac97c5ce283b5b0f5dbda"><div class="ttname"><a href="class_optional.html#a2b9f8c4a601ac97c5ce283b5b0f5dbda">Optional::getValueElse</a></div><div class="ttdeci">T &amp; getValueElse(T &amp;def) const</div><div class="ttdef"><b>Definition:</b> Optional.inl:62</div></div>
@@ -204,15 +208,15 @@ $(document).ready(function(){initNavTree('_optional_8h_source.html',''); initRes
 <div class="ttc" id="aclass_optional_html_a8f87c8d71726260149b759c1d8109b19"><div class="ttname"><a href="class_optional.html#a8f87c8d71726260149b759c1d8109b19">Optional::Optional</a></div><div class="ttdeci">Optional()=default</div></div>
 <div class="ttc" id="aclass_optional_html_ac33ae0e21e9c459f2d454478902a1302"><div class="ttname"><a href="class_optional.html#ac33ae0e21e9c459f2d454478902a1302">Optional::operator&lt;=</a></div><div class="ttdeci">bool operator&lt;=(Optional&lt; U &gt; const &amp;other) const</div><div class="ttdef"><b>Definition:</b> Optional.inl:207</div></div>
 <div class="ttc" id="aclass_optional_html_ac4efbefeb71b70fe54a9dfc1f9deb4fe"><div class="ttname"><a href="class_optional.html#ac4efbefeb71b70fe54a9dfc1f9deb4fe">Optional::operator()</a></div><div class="ttdeci">T &amp; operator()() const</div><div class="ttdef"><b>Definition:</b> Optional.inl:82</div></div>
-<div class="ttc" id="aclass_optional_html_add3abe03b42ed3b21c4019050d78f175"><div class="ttname"><a href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">Optional::value</a></div><div class="ttdeci">T * value</div><div class="ttdoc">The optional value. Is nullptr if empty.</div><div class="ttdef"><b>Definition:</b> Optional.h:258</div></div>
-<div class="ttc" id="aclass_optional_html_ae1502baefc1e47b6e440aa862073b495"><div class="ttname"><a href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">Optional::allocator</a></div><div class="ttdeci">Allocator&lt; T &gt; allocator</div><div class="ttdoc">The allocator used to manage value.</div><div class="ttdef"><b>Definition:</b> Optional.h:261</div></div>
+<div class="ttc" id="aclass_optional_html_add3abe03b42ed3b21c4019050d78f175"><div class="ttname"><a href="class_optional.html#add3abe03b42ed3b21c4019050d78f175">Optional::value</a></div><div class="ttdeci">T * value</div><div class="ttdoc">The optional value. Is nullptr if empty.</div><div class="ttdef"><b>Definition:</b> Optional.h:261</div></div>
+<div class="ttc" id="aclass_optional_html_ae1502baefc1e47b6e440aa862073b495"><div class="ttname"><a href="class_optional.html#ae1502baefc1e47b6e440aa862073b495">Optional::allocator</a></div><div class="ttdeci">Allocator&lt; T &gt; allocator</div><div class="ttdoc">The allocator used to manage value.</div><div class="ttdef"><b>Definition:</b> Optional.h:264</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_1ad6433457b0067ef8f54a4fa85f5c9a.html">Core</a></li><li class="navelem"><a class="el" href="dir_d05d02e2757ad491377cd7c51b9e7f78.html">Utilities</a></li><li class="navelem"><a class="el" href="_optional_8h.html">Optional.h</a></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_aceb01513ac9680e5a5ae8e052454feb.html">Public</a></li><li class="navelem"><a class="el" href="dir_e5e2125bd3e3ba93f8ee67c753e54bdf.html">Core</a></li><li class="navelem"><a class="el" href="dir_7918f910a8fcb2a9635f88aa009da446.html">Utilities</a></li><li class="navelem"><a class="el" href="_optional_8h.html">Optional.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

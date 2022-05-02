@@ -1,17 +1,18 @@
 var hierarchy =
 [
+    [ "ARPointer< T >", "class_a_r_pointer.html", null ],
     [ "Attenuation", "struct_attenuation.html", null ],
-    [ "CharacterInfoWindow", "class_character_info_window.html", null ],
+    [ "InputManager::AxisBindEntry", "struct_input_manager_1_1_axis_bind_entry.html", null ],
+    [ "Color", "union_color.html", null ],
+    [ "Colors", "class_colors.html", null ],
     [ "DirectionalLight", "struct_directional_light.html", null ],
     [ "DirectionalLightHandles", "struct_directional_light_handles.html", null ],
     [ "formatter", null, [
       [ "fmt::formatter< String >", "structfmt_1_1formatter_3_01_string_01_4.html", null ]
     ] ],
     [ "IEName", "class_i_e_name.html", null ],
-    [ "IRenderable", "class_i_renderable.html", [
-      [ "MeshComponent", "class_mesh_component.html", null ]
-    ] ],
     [ "KeyBind", "struct_key_bind.html", null ],
+    [ "InputManager::KeyBindEntry", "struct_input_manager_1_1_key_bind_entry.html", null ],
     [ "LinearColor", "struct_linear_color.html", null ],
     [ "LinearColors", "struct_linear_colors.html", null ],
     [ "Logger", "class_logger.html", null ],
@@ -37,10 +38,15 @@ var hierarchy =
         [ "AutoReleaseArray< T >", "struct_auto_release_array.html", null ]
       ] ],
       [ "CameraManager", "class_camera_manager.html", null ],
-      [ "Engine", "class_engine.html", null ],
+      [ "Engine", "class_engine.html", [
+        [ "MyEngine", "class_my_engine.html", null ]
+      ] ],
       [ "InputManager", "class_input_manager.html", null ],
       [ "Optional< T >", "class_optional.html", null ],
-      [ "Scene", "class_scene.html", null ],
+      [ "Scene", "class_scene.html", [
+        [ "MyScene", "class_my_scene.html", null ],
+        [ "OtherScene", "class_other_scene.html", null ]
+      ] ],
       [ "SceneComponent", "class_scene_component.html", [
         [ "CameraComponent", "class_camera_component.html", null ],
         [ "MeshComponent", "class_mesh_component.html", null ]
@@ -55,8 +61,12 @@ var hierarchy =
     [ "PointLight", "struct_point_light.html", null ],
     [ "PointLightHandles", "struct_point_light_handles.html", null ],
     [ "Random", "class_random.html", null ],
+    [ "Renderable", "class_renderable.html", [
+      [ "MeshComponent", "class_mesh_component.html", null ]
+    ] ],
     [ "ResourceLoader", "class_resource_loader.html", null ],
     [ "PerformanceWindow::SampleData", "struct_performance_window_1_1_sample_data.html", null ],
+    [ "ShaderManager", "class_shader_manager.html", null ],
     [ "Transform", "struct_transform.html", null ],
     [ "Vector2", "struct_vector2.html", null ],
     [ "Vector3", "struct_vector3.html", null ],

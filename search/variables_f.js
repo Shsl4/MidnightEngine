@@ -1,13 +1,21 @@
 var searchData=
 [
-  ['s_5fframetime_0',['s_frameTime',['../class_performance_window.html#a6984cf0ee1b5b13d044f2c23560d6d9b',1,'PerformanceWindow']]],
-  ['s_5fresourcecolor_1',['s_resourceColor',['../class_performance_window.html#ae61538200251816de83d88eb76d1da7e',1,'PerformanceWindow']]],
-  ['s_5fshowstats_2',['s_showStats',['../class_performance_window.html#ab11df225732fe6ca9541e7b4613ef954',1,'PerformanceWindow']]],
-  ['scale_3',['scale',['../struct_transform.html#a2b4006024b283c6af2813e78e7092364',1,'Transform']]],
-  ['scene_4',['scene',['../class_camera_manager.html#afe727dd5c73aa6861e4385e2d01d8779',1,'CameraManager::scene()'],['../class_scene_component.html#af3597afb3ebdd12462c4253b78b5c867',1,'SceneComponent::scene()']]],
-  ['shift_5',['shift',['../struct_key_bind.html#abdf8e441c400961df8dc4ec6a3034c32',1,'KeyBind']]],
-  ['size_6',['size',['../class_array.html#ab1dd0b3a06b008bf93de58d1194a554a',1,'Array']]],
-  ['specular_7',['specular',['../struct_directional_light.html#a05aaa27ae66b3fbef41ff805db08e2b3',1,'DirectionalLight::specular()'],['../struct_material.html#aef42a10062d462a2d1ed034193d7c138',1,'Material::specular()'],['../struct_directional_light_handles.html#afd82b0f918671a9c4637c910cf34f425',1,'DirectionalLightHandles::specular()'],['../struct_material_handles.html#a30661d6825459257e26c782c93777dc3',1,'MaterialHandles::specular()']]],
-  ['speed_8',['speed',['../class_camera_component.html#af2e5796950082f32d2d5c52ebdcc7ac8',1,'CameraComponent']]],
-  ['starttime_9',['startTime',['../class_engine.html#a349e2ac3e17cde5189a57fe9eefafdbc',1,'Engine']]]
+  ['r_0',['r',['../struct_linear_color.html#a6b08fa36baa6ddd879dba45c3776eb4f',1,'LinearColor']]],
+  ['red_1',['red',['../struct_linear_colors.html#ad9dbad2b14376e6a91dd2554263e7afa',1,'LinearColors::red()'],['../union_color.html#a1dd06d7284c200e5fec317b4f7e53628',1,'Color::red()']]],
+  ['red_2',['Red',['../class_colors.html#a405dbd2d910aeee2db4417915f547f93',1,'Colors']]],
+  ['reflectance_3',['reflectance',['../struct_material.html#adabcc0725705ffdd6c91e9ed2ee711d1',1,'Material']]],
+  ['registered_4',['registered',['../class_scene_component.html#a00a6f3143a6e4fd5c9fa65bd8f7268a6',1,'SceneComponent']]],
+  ['registeredcomponents_5',['registeredComponents',['../class_scene.html#af8f37a2015a878a3f3661448a19ecd33',1,'Scene']]],
+  ['registeredobjects_6',['registeredObjects',['../class_scene.html#a395879e4b8e70f4e60964ee4c238988c',1,'Scene']]],
+  ['renderdistance_7',['renderDistance',['../class_camera_component.html#a85aa22e4a1d8b23c3641cec746e5f325',1,'CameraComponent']]],
+  ['renderheight_8',['renderHeight',['../struct_platform_data.html#acfc07be3f86b0e7505292ff89d884355',1,'PlatformData']]],
+  ['renderthreadtasks_9',['renderThreadTasks',['../class_engine.html#a596de8726c60aa9a659b95bf2c758bff',1,'Engine']]],
+  ['renderwidth_10',['renderWidth',['../struct_platform_data.html#a24d5209cde454042f518066461a400f5',1,'PlatformData']]],
+  ['reset_11',['Reset',['../class_colors.html#a954a758c1d176360da6af5c0cb9c4d3e',1,'Colors']]],
+  ['resourceloader_12',['resourceLoader',['../class_engine.html#ab2e447f5f53c44c1042bc08f05ff4961',1,'Engine']]],
+  ['right_13',['right',['../struct_vector3.html#af67f2d0154e91eeb0ec8ddcb1925409f',1,'Vector3']]],
+  ['rightvector_14',['rightVector',['../class_camera_component.html#a824f5339e0ab730ce0b4fb0eb28b3163',1,'CameraComponent']]],
+  ['rootcomponent_15',['rootComponent',['../class_scene_object.html#a3ecb544395702e419dd4b128853be826',1,'SceneObject']]],
+  ['rotation_16',['rotation',['../struct_transform.html#a0cd23a67d612501825aed70b67a10d0d',1,'Transform']]],
+  ['running_17',['running',['../class_engine.html#a1c5f934e8ab38cf076170f8e8fe25a24',1,'Engine']]]
 ];
