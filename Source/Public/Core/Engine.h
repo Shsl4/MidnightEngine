@@ -3,7 +3,7 @@
 #include <Object.h>
 
 #include <Memory/Array.h>
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 
 #include <Input/InputManager.h>
 #include <UI/PerformanceWindow.h>
@@ -121,7 +121,7 @@ public:
      *
      * \return The engine InputManager.
      */
-    FORCEINLINE class InputManager* getInputManager() const
+    FORCEINLINE InputManager* getInputManager() const
     {
         return inputManager.raw();
     }
@@ -147,6 +147,7 @@ protected:
 
         schedule(Threads::Render, [this]()
         {
+                  
             if (activeScene.hasValue())
             {
                 String name = activeScene->getSceneName();
@@ -159,6 +160,7 @@ protected:
             logger->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
             logger->success("Successfully loaded scene {}", activeScene->getSceneName());
+         
         });
     }
 
@@ -233,24 +235,26 @@ private:
     /*!
      * The engine InputManager.
      */
-    ARPointer<InputManager> inputManager;
+    AutoReleasePointer<InputManager> inputManager;
 
     /*!
      * The engine Logger.
      */
-    ARPointer<class Logger> logger;
+    AutoReleasePointer<Logger> logger;
 
     /*!
      * The currently loaded Scene.
      */
-    ARPointer<class Scene> activeScene;
+    AutoReleasePointer<Scene> activeScene;
 
     /*!
     * The engine resource loader.
     */
-    ARPointer<ResourceLoader> resourceLoader;
+    AutoReleasePointer<ResourceLoader> resourceLoader;
 
-    ARPointer<class PerformanceWindow> perfWindow;
+    AutoReleasePointer<PerformanceWindow> perfWindow;
 
     std::vector<std::function<void()>> renderThreadTasks;
+    std::vector<std::function<void()>> mainThreadTasks;
+ 
 };

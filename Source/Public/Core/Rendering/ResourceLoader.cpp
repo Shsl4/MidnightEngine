@@ -15,7 +15,7 @@ void ResourceLoader::init() {
     try {
         iterator = std::filesystem::directory_iterator("Resources/Models");
     }
-    catch (std::exception e) {
+    catch (std::exception const& e) {
         ResourceLoader::logger.fatal("Could not find the Resources folder.");
         return;
     }
@@ -142,7 +142,7 @@ bool ResourceLoader::loadMesh(String const& file)
                 
             }
         
-            vertices += Vertex(position, normal, texCoords, LinearColors::white);
+            vertices += Vertex(position, normal, texCoords, LinearColors::blue);
         
         }
 

@@ -15,7 +15,7 @@ class MyScene : public Scene {
         return "MyScene";
     }
     
-    void load() override {
+    void setup() override {
 
         setWorldColor(0xc7efffff);
 
@@ -38,7 +38,7 @@ class OtherScene : public Scene
         return "OtherScene";
     }
     
-    void load() override {
+    void setup() override {
 
         setWorldColor(0xffe18fff);
 
@@ -94,8 +94,8 @@ int main(int argc, const char** argv) {
 
 #endif
 
-    const auto entry = ARPointer<Entry>::make();
-    const auto engine = ARPointer<MyEngine>::make();
+    const auto entry = AutoReleasePointer<Entry>::make();
+    const auto engine = AutoReleasePointer<MyEngine>::make();
     const auto pointer = engine.raw();
 
     entry->entry(argc, argv, [pointer]() { return pointer; });

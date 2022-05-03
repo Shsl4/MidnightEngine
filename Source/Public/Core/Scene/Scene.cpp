@@ -1,20 +1,31 @@
 #include <Scene/Scene.h>
 #include <Core/Engine.h>
 #include <Input/InputManager.h>
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 #include <bgfx/bgfx.h>
 
-Scene::Scene() : cameraManager(ARPointer<CameraManager>::make(this)), logger(ARPointer<Logger>::make("Scene")) {
+Scene::Scene() : cameraManager(AutoReleasePointer<CameraManager>::make(this)), logger(AutoReleasePointer<Logger>::make("Scene")) {
     
+}
+
+void Scene::load()
+{
+    this->state = State::Loading;
+    setup();
+    this->state = State::Loaded;
 }
 
 void Scene::cleanup()
 {
+    this->state = State::Unloading;
+    
     for (auto const& e : registeredObjects) {
         Engine::getInstance()->getInputManager()->unbindAll(e);
     }
     
     setWorldColor(0);
+
+    this->state = State::Unloaded;
 }
 
 void Scene::setWorldColor(UInt32 color) const

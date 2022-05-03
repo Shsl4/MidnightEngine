@@ -28,6 +28,5 @@ public:
      * Gets the shader resource path for the current renderer.
     */
     static String getShaderResourcePath();
-
-    
+        
 };

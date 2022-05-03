@@ -4,9 +4,9 @@ then
     exit
 fi
 
-if [ ! -d "Build" ]
-then mkdir Build 
+if [ ! -d ".build" ]
+then mkdir .build 
 fi
 
-cd Build
+cd .build
 cmake .. -G Xcode

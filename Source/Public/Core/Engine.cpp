@@ -1,4 +1,5 @@
 #include <Engine.h>
+#include <thread>
 
 #include <Math/Matrix4.h>
 #include <Math/MathUtils.h>
@@ -11,7 +12,7 @@
 
 #include <Scene/Scene.h>
 
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
@@ -29,17 +30,17 @@ Engine::Engine() {
     Engine::instance = this;
 
     // Initialize our variables.
-    this->logger = ARPointer<Logger>::make("MidnightEngine");
-    this->inputManager = ARPointer<InputManager>::make();
-    this->perfWindow = ARPointer<PerformanceWindow>::make();
-    this->resourceLoader = ARPointer<ResourceLoader>::make();
+    this->logger = AutoReleasePointer<Logger>::make("MidnightEngine");
+    this->inputManager = AutoReleasePointer<InputManager>::make();
+    this->perfWindow = AutoReleasePointer<PerformanceWindow>::make();
+    this->resourceLoader = AutoReleasePointer<ResourceLoader>::make();
 
 }
 
 int Engine::init(int argc, const char **argv, PlatformData const& data) {
     
     logger->info("Initializing MidnightEngine...");
-
+    
     // Initialize BGFX.
     if (!bgfx::init()) {
 
@@ -49,7 +50,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
         return -1;
 
     }
-
+    
     this->platformData = data;
     this->startTime = bx::getHPCounter();
 
@@ -93,7 +94,7 @@ void Engine::update() {
     inputManager->update();
     
     // Only update the scene if it is loaded
-    if (activeScene.hasValue()) {
+    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
         
         // Update the current scene.
         activeScene->updateScene(deltaTime);
@@ -133,7 +134,7 @@ void Engine::render() {
 
     bgfx::setState(state);
 
-    if (activeScene.hasValue()) {
+    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
 
         // Get the active camera.
         const CameraComponent* camera = activeScene->getCameraManager()->getActiveCamera();
@@ -156,12 +157,16 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
 
     switch (thread)
     {
-    case Threads::Main: break;
+    case Threads::Main:
+        mainThreadTasks.push_back(function);
+        break;
     case Threads::Render:
         renderThreadTasks.push_back(function);
         break;
-    case Threads::New: break;
-    default: ;
+    case Threads::New:
+        auto th = std::jthread(function);
+        th.detach();
+        break;
     }
            
 }
@@ -196,19 +201,29 @@ void Engine::cleanup() {
 
     logger->info("Cleaning up...");
     
-    // Remove reference to the instance
-    Engine::instance = nullptr;
+    if(activeScene.hasValue())
+    {
+        String name = activeScene->getSceneName();
+        logger->info("Unloading scene {}...", name);
+        activeScene->cleanup();
+        activeScene.release();
+        logger->info("Unloaded scene {}.", name);
+    }
     
     // Release the allocated engine resources.
-    this->logger = nullptr;
-    this->inputManager = nullptr;
-    this->activeScene = nullptr;
-    this->resourceLoader = nullptr;
+    logger.release();
+    inputManager.release();
+    activeScene.release();
+    resourceLoader.release();
+    perfWindow.release();
 
     imguiDestroy();
 
     bgfx::shutdown();
 
+    // Remove reference to the instance
+    Engine::instance = nullptr;
+    
 }
 
 const char* Engine::getNiceRendererName() {

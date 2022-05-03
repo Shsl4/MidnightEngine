@@ -19,7 +19,7 @@ void FlyingCharacter::mouseX(const Int32 x) {
 
     // Add camera input on mouse movement.
     camera->addCameraYawInput(static_cast<float>(x) / 10.0f);
-
+    
 }
 
 void FlyingCharacter::mouseY(const Int32 y) {
@@ -46,7 +46,7 @@ void FlyingCharacter::setupInput(InputManager *manager) {
     manager->bindEvent(this, KeyBind('d'), EInputEvent::Pressed, &FlyingCharacter::dPressed);
     manager->bindEvent(this, KeyBind(SpecialKeys::LeftShift), EInputEvent::Pressed, &FlyingCharacter::shiftPressed);
     manager->bindEvent(this, KeyBind(SpecialKeys::Space), EInputEvent::Pressed, &FlyingCharacter::spacePressed);
-
+    
     manager->bindEvent(this, KeyBind('z'), EInputEvent::Released, &FlyingCharacter::wReleased);
     manager->bindEvent(this, KeyBind('s'), EInputEvent::Released, &FlyingCharacter::sReleased);
     manager->bindEvent(this, KeyBind('q'), EInputEvent::Released, &FlyingCharacter::aReleased);

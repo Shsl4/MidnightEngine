@@ -7,7 +7,7 @@
 
 #include <Input/Keybind.h>
 #include <Input/InputEnums.h>
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 
 /*!
  * The InputManager allows binding functions to input events such as key presses or mouse movement.
@@ -16,14 +16,13 @@ class ENGINE_API InputManager : public Object {
 
     struct KeyBindEntry {
 
-        KeyBindEntry(void* object, KeyBind keyBind, std::function<void()> function, size_t id) : object(object), keyBind(keyBind), function(function), id(id) {
+        KeyBindEntry(void* object, KeyBind keyBind, std::function<void()> function, size_t id) : object(object), keyBind(keyBind), function(
+            std::move(function)), id(id) {
 
         }
 
-        bool operator==(KeyBindEntry const& other) {
-
+        bool operator==(KeyBindEntry const& other) const {
             return (object == other.object) && (keyBind == other.keyBind) && (id == other.id);
-
         }
 
         void* object = nullptr;
@@ -35,14 +34,13 @@ class ENGINE_API InputManager : public Object {
     
     struct AxisBindEntry {
 
-        AxisBindEntry(void* object, EAxisType type, std::function<void(Int32)> function, size_t id) : object(object), type(type), function(function), id(id) {
+        AxisBindEntry(void* object, EAxisType type, std::function<void(Int32)> function, size_t id) : object(object), type(type), function(
+            std::move(function)), id(id) {
 
         }
 
-        bool operator==(AxisBindEntry const& other) {
-
+        bool operator==(AxisBindEntry const& other) const {
             return (object == other.object) && (type == other.type) && (id == other.id);
-
         }
 
         void* object = nullptr;
@@ -63,8 +61,7 @@ public:
 
     template<class T>
     void bindEvent(T *target, KeyBind key, EInputEvent type, void(T::*f)()) {
-
-        std::function<void()> function = std::bind(f, target);
+        const std::function<void()> function = std::bind(f, target);
         
         switch (type) {
             case EInputEvent::Pressed:
@@ -73,21 +70,6 @@ public:
             case EInputEvent::Released:
                 keyUpEvents.push_back(KeyBindEntry(target, key, function, nextId));
                 break;
-        }
-
-        if (Object::isObject(target))
-        {
-            const Object* obj = target;
-            logger->debug("Registered event binding of type \"{}\" and key \"{}\" from {}",
-                IEName::toString(type),
-                key.getName(),
-                obj->getDescription());
-        }
-        else
-        {
-            logger->debug("Registered event binding of type \"{}\" and key \"{}\" from non Object class.",
-                IEName::toString(type),
-                key.getName());
         }
         
         ++nextId;
@@ -132,23 +114,12 @@ public:
         }
 
     }
-
+    
     template<class T>
     void bindAxis(T *target, EAxisType type, void(T::* f)(Int32)) {
 
         const auto function = std::bind(f, target, std::placeholders::_1);
         axisEvents.push_back(AxisBindEntry(target, type, function, nextId));
-
-        if (Object::isObject(target))
-        {
-            const Object* obj = target;
-            logger->debug("Registered axis binding of type \"{}\" from {}", IEName::toString(type), obj->getDescription());
-        }
-        else
-        {
-            logger->debug("Registered axis binding of type \"{}\" from non Object class.", IEName::toString(type));
-        }
-
         ++nextId;
 
     }
@@ -157,7 +128,7 @@ private:
 
     static void invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>&);
 
-    ARPointer<Logger> logger;
+    AutoReleasePointer<Logger> logger;
 
     std::vector<KeyBindEntry> keyDownEvents;
     std::vector<KeyBindEntry> keyUpEvents;

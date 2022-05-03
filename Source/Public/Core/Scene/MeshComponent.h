@@ -6,12 +6,13 @@
 #include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
-struct PointLight {
+struct DirectionalLight {
 
     bgfx::UniformHandle lightPos;
     bgfx::UniformHandle lightColor;
     bgfx::UniformHandle viewPos;
     bgfx::UniformHandle objectColor;
+    bgfx::UniformHandle model;
 };
 
 /*!
@@ -38,7 +39,7 @@ private:
 
     const struct Mesh *mesh;
 
-    PointLight light;
+    DirectionalLight light;
 
 };
 

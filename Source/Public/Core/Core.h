@@ -25,7 +25,7 @@
 #include <Memory/Allocator.h>
 #include <Memory/Array.h>
 #include <Memory/String.h>
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 
 #include <Math/MathUtils.h>
 #include <Math/Transform.h>
