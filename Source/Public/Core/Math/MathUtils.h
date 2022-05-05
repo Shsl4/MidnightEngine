@@ -2,6 +2,7 @@
 
 #include <Core/EngineMacros.h>
 #include <Core/EngineTypes.h>
+#include <cmath>
 
 /*!
  * A utility class containing templated math operations

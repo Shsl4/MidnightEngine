@@ -80,12 +80,6 @@ class MyEngine : public Engine {
 
 int main(int argc, const char** argv) {
 
-#ifdef __APPLE__
-
-    return macOS_main(argc, argv);
-
-#else
-
 #if defined(_WIN64) && defined(DEBUG_LEAKS)
 
     // Enables memory leak check on Windows
@@ -99,8 +93,6 @@ int main(int argc, const char** argv) {
     const auto pointer = engine.raw();
 
     entry->entry(argc, argv, [pointer]() { return pointer; });
-
-#endif
 
     return 0;
 

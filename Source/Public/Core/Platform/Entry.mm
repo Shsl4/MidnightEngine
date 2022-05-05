@@ -1,8 +1,9 @@
 #import <Memory/Allocator.h>
-#import <Memory/UniquePtr.h>
+#import <Memory/AutoReleasePointer.h>
 #import <Core/Engine.h>
 #import <Platform/Entry.h>
 
+#import <SDL2/SDL.h>
 #import <SDL2/SDL_syswm.h>
 
 #import <bgfx/bgfx.h>
@@ -14,31 +15,9 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface Entry : NSObject <NSApplicationDelegate>
-
-- (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv;
-
-- (int)initEngine:(PlatformData)data;
-
-- (void)update;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-@implementation Entry {
-
-    BOOL hasTerminated;
-    UniquePtr<Engine> engine;
-
-}
-
-- (int)entry:(int)argc argv:(const char *_Nonnull *_Nonnull)argv {
+int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, std::function<Engine*()> const& provider) {
 
     [NSApplication sharedApplication];
-    [NSApp setDelegate:self];
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps:YES];
     [NSApp finishLaunching];
@@ -65,11 +44,13 @@ NS_ASSUME_NONNULL_END
     hasTerminated = NO;
 
     bgfx::renderFrame();
+    
+    engine = provider();
 
     /// \todo Implement a correct multi-threaded paradigm
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
-        [self initEngine:data];
+         initEngine(data);
 
     });
 
@@ -79,7 +60,7 @@ NS_ASSUME_NONNULL_END
 
     while (!hasTerminated) {
 
-        [self update];
+        mainThread();
 
     }
 
@@ -87,12 +68,12 @@ NS_ASSUME_NONNULL_END
 
     return 0;
 
+
 }
 
-- (int)initEngine:(PlatformData)data {
+int Entry::initEngine(PlatformData data) {
 
-    engine = UniquePtr<Engine>::make(data);
-    int value = engine->init(0, nil);
+    int value = engine->init(0, nil, data);
     
     if (value != 0) { return value; }
 
@@ -103,34 +84,15 @@ NS_ASSUME_NONNULL_END
 
     engine->cleanup();
 
-    imguiDestroy();
-
-    bgfx::shutdown();
-
     hasTerminated = YES;
 
     return 0;
 
 }
 
-- (void)update {
-
-    bgfx::renderFrame();
-
-    if (!engine) { return; }
+void Entry::mainThread() const {
     
     engine->update();
-    
-}
-
-@end
-
-int macOS_main(int argc, const char **argv) {
-
-    Entry* entry = [[Entry alloc] init];
-    [entry entry:argc argv:argv];
-    [entry release];
-    
-    return 0;
+    bgfx::renderFrame();
 
 }

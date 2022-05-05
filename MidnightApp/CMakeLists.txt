@@ -5,7 +5,6 @@ file(GLOB_RECURSE APP_HEADERS ${CMAKE_CURRENT_LIST_DIR}/*.h*)
 file(GLOB_RECURSE APP_INLINE ${CMAKE_CURRENT_LIST_DIR}/*.inl)
 
 add_executable(MidnightApp ${APP_SOURCES} ${APP_HEADERS} ${APP_INLINE})
-target_link_libraries(MidnightApp PUBLIC MidnightEngine)
 
 filterAppSources("${APP_SOURCES}")
 filterAppSources("${APP_HEADERS}")
@@ -22,6 +21,7 @@ set_property(TARGET MidnightApp PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_
 if(WIN32)
 
 add_custom_command(TARGET MidnightApp POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightApp>/Resources)
+target_link_libraries(MidnightApp PUBLIC MidnightEngine)
 
 elseif(APPLE)
 
@@ -31,7 +31,7 @@ find_library(IOKIT IoKit)
 find_library(METAL Metal)
 find_library(QUARTZCORE QuartzCore)
 
-target_link_libraries(MidnightApp ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
+target_link_libraries(MidnightApp MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
 add_custom_command(TARGET MidnightApp POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightApp>/Resources)
 
 elseif(LINUX)
@@ -46,7 +46,7 @@ find_package(OpenGL REQUIRED)
 
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS})
 
-target_link_libraries(MidnightApp ${SDL2_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(MidnightApp MidnightEngine ${SDL2_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
 
 add_custom_command(TARGET MidnightApp POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightApp>/Resources)
 

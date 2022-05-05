@@ -2,7 +2,8 @@
 #include <Rendering/Mesh.h>
 #include <Math/Matrix4.h>
 
-#include "Engine.h"
+#include <Core/Engine.h>
+#include <Scene/Scene.h>
 
 DirectionalLight createMaterialUniforms() {
 
@@ -57,14 +58,14 @@ void MeshComponent::render() {
         auto a = Vector4(1.2f, 1.0f, 2.0f, 1);
         auto b = LinearColors::red;
         auto c = Vector4(1.0f);
-        auto d = getScene()->getCameraManager()->getActiveCamera()->getWorldPosition();
+        Vector4 d = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
         bgfx::setUniform(light.lightPos, &a);
         bgfx::setUniform(light.lightColor, &b);
         bgfx::setUniform(light.objectColor, &c);
         bgfx::setUniform(light.viewPos, &d);
-        auto model = Matrix4::modelMatrix(transform).data;
+        model = Matrix4::modelMatrix(transform);
         bgfx::setUniform(light.model, &model);
-        bgfx::setTransform(model);
+        bgfx::setTransform(model.data);
         mesh->submit();
 
     }

@@ -3,6 +3,7 @@
 #include <Scene/SceneComponent.h>
 #include <Rendering/Renderable.h>
 #include <Rendering/LinearColor.h>
+#include <Math/Matrix4.h>
 #include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
@@ -41,5 +42,7 @@ private:
 
     DirectionalLight light;
 
+    Matrix4 model;
+    
 };
 

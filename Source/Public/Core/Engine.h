@@ -145,23 +145,17 @@ protected:
     {
         static_assert(std::is_convertible_v<SceneClass*, Scene*>, "SceneClass must publicly inherit Scene");
 
+        unloadScene();
+        
         schedule(Threads::Render, [this]()
         {
-                  
-            if (activeScene.hasValue())
-            {
-                String name = activeScene->getSceneName();
-                logger->info("Unloading scene {}...", name);
-                activeScene->cleanup();
-                activeScene.release();
-                logger->info("Unloaded scene {}.", name);
-            }
             activeScene.rebuild<SceneClass>();
             logger->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
             logger->success("Successfully loaded scene {}", activeScene->getSceneName());
-         
         });
+        
+        
     }
 
     void unloadScene();
@@ -171,6 +165,7 @@ protected:
     virtual void onUpdate() = 0;
 
 private:
+    
     friend class Entry;
 
     /*!

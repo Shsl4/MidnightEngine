@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 
 #include <Memory/Array.h>
 #include <Memory/String.h>
+#include <Memory/AutoReleasePointer.h>
 #include <Rendering/Vertex.h>
 
 /*!
@@ -9,6 +10,7 @@
  */
 struct ENGINE_API Mesh
 {
+    
     virtual ~Mesh();
 
     Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, String name, String path);
@@ -17,9 +19,9 @@ struct ENGINE_API Mesh
 
     void submit() const;
     
-    UInt16 programHandle;
-    UInt16 vertexBuffer;
-    UInt16 indexBuffer;
+    AutoReleasePointer<class ProgramHandle> programHandle;
+    AutoReleasePointer<class VertexHandle> vertexBuffer;
+    AutoReleasePointer<class IndexHandle> indexBuffer;
 
     size_t vertexCount = 0;
     size_t indexCount = 0;

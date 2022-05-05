@@ -1,4 +1,4 @@
-﻿#include <Input/Keybind.h>
+#include <Input/Keybind.h>
 #include <SDL2/SDL.h>
 
 #define bitCheck(a, p) ((a) & (1 << (p)))

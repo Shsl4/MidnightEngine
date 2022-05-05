@@ -19,6 +19,7 @@
 #include <bgfx/imgui/imgui.h>
 
 #include <SDL2/SDL_keycode.h>
+#include <thread>
 
 Logger Logger::assertLogger = Logger("Assert");
 
@@ -122,7 +123,7 @@ void Engine::render() {
     // End UI drawing.
     imguiEndFrame();
 
-    // Submit an empty draw call in case nothing is drew to the screen.
+    // Submit an empty draw call in case nothing is drawn to the screen.
     bgfx::touch(0);
     
     // Sets the current viewport dimensions.
@@ -164,7 +165,11 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
         renderThreadTasks.push_back(function);
         break;
     case Threads::New:
+#if __APPLE__
+        auto th = std::thread(function);
+#else
         auto th = std::jthread(function);
+#endif
         th.detach();
         break;
     }

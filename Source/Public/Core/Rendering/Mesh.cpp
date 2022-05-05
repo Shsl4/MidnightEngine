@@ -1,6 +1,26 @@
-﻿#include <Rendering/Mesh.h>
+#include <Rendering/Mesh.h>
 #include <bgfx/bgfx.h>
-#include <Rendering/ResourceLoader.h>
+#include <Core/ShaderManager.h>
+
+#define HandleWrapper(name, type)           \
+                                            \
+    struct name {                           \
+                                            \
+        name(type const& handle) {          \
+            this->handle = handle;          \
+        }                                   \
+                                            \
+        ~name(){                            \
+            bgfx::destroy(handle);          \
+        }                                   \
+                                            \
+        type handle;                        \
+                                            \
+    };
+
+HandleWrapper(ProgramHandle, bgfx::ProgramHandle)
+HandleWrapper(VertexHandle, bgfx::VertexBufferHandle)
+HandleWrapper(IndexHandle, bgfx::IndexBufferHandle)
 
 static bgfx::VertexLayout getVertexLayout()
 {
@@ -25,28 +45,29 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
     Memory::move(vertices.begin(), vertices.end(), data);
     Memory::move(indexArray.begin(), indexArray.end(), indices);
 
-    this->vertexBuffer = createVertexBuffer(bgfx::makeRef(data,  static_cast<Int32>(vertexCount) * sizeof(Vertex)), getVertexLayout()).idx;
-    this->indexBuffer = createIndexBuffer(bgfx::makeRef(indices, static_cast<Int32>(indexCount) * sizeof(UInt16))).idx;
-    this->programHandle = ResourceLoader::loadProgram("Advanced");
+    this->vertexBuffer = AutoReleasePointer<VertexHandle>::make(createVertexBuffer(bgfx::makeRef(data,  static_cast<Int32>(vertexCount) * sizeof(Vertex)), getVertexLayout()));
+    this->indexBuffer = AutoReleasePointer<IndexHandle>::make(createIndexBuffer(bgfx::makeRef(indices, static_cast<Int32>(indexCount) * sizeof(UInt16))));
+        
+    this->programHandle = AutoReleasePointer<ProgramHandle>::make(ShaderManager::loadProgram("Advanced"));
     
 }
 
 void Mesh::use() const
 {
-    setIndexBuffer(bgfx::IndexBufferHandle(indexBuffer));
-    setVertexBuffer(0, bgfx::VertexBufferHandle(vertexBuffer));    
+    setIndexBuffer(indexBuffer->handle);
+    setVertexBuffer(0, vertexBuffer->handle);
 }
 
 void Mesh::submit() const
 {
-    bgfx::submit(0, bgfx::ProgramHandle(programHandle));
+    bgfx::submit(0, programHandle->handle);
 }
 
 Mesh::~Mesh() {
 
-    destroy(bgfx::VertexBufferHandle(vertexBuffer));
-    destroy(bgfx::IndexBufferHandle(indexBuffer));
-    destroy(bgfx::ProgramHandle(programHandle));
+    destroy(vertexBuffer->handle);
+    destroy(indexBuffer->handle);
+    destroy(programHandle->handle);
     vertexAllocator.release(data);
     indexAllocator.release(indices);
 
