@@ -7,7 +7,7 @@
  * \tparam T The type of object to manage
  */
 template <typename T>
-class AutoReleasePointer
+class AutoReleasePointer : public Object
 {
     /**
      * \brief The AutoReleasePointer constructor used internally to manage an object

@@ -1,7 +1,5 @@
 #pragma once
 
-#define SDL_MAIN_HANDLED
-
 #include <Core/Object.h>
 #include <Core/EngineMacros.h>
 #include <Core/EngineTypes.h>

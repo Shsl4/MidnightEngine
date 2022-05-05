@@ -1,4 +1,4 @@
-﻿#include <ShaderManager.h>
+#include <Rendering/ShaderManager.h>
 
 #include <Rendering/ResourceLoader.h>
 #include <fmt/format.h>

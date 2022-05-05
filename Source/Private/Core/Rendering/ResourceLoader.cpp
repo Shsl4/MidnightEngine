@@ -1,4 +1,4 @@
-﻿#include <Rendering/ResourceLoader.h>
+#include <Rendering/ResourceLoader.h>
 
 #include <filesystem>
 #include <assimp/scene.h>
@@ -13,7 +13,8 @@ void ResourceLoader::init() {
     std::filesystem::directory_iterator iterator;
 
     try {
-        iterator = std::filesystem::directory_iterator("Resources/Models");
+        ResourceLoader::logger.info("{}", std::filesystem::current_path().string());
+        iterator = std::filesystem::directory_iterator("./Resources/Models");
     }
     catch (std::exception const& e) {
         ResourceLoader::logger.fatal("Could not find the Resources folder.");
@@ -57,10 +58,6 @@ Array<UInt8> ResourceLoader::loadFile(String const& path){
     // Return the array.
     return array;
     
-}
-
-UInt16 ResourceLoader::loadProgram(String const& name) {
-    return ShaderManager::loadProgram(name).idx;
 }
 
 const Mesh* ResourceLoader::getMesh(String const& name) const

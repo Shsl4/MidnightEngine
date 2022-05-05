@@ -1,6 +1,6 @@
 #include <Rendering/Mesh.h>
 #include <bgfx/bgfx.h>
-#include <Core/ShaderManager.h>
+#include <Rendering/ShaderManager.h>
 
 #define HandleWrapper(name, type)           \
                                             \
@@ -65,9 +65,6 @@ void Mesh::submit() const
 
 Mesh::~Mesh() {
 
-    destroy(vertexBuffer->handle);
-    destroy(indexBuffer->handle);
-    destroy(programHandle->handle);
     vertexAllocator.release(data);
     indexAllocator.release(indices);
 
