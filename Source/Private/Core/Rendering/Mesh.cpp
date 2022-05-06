@@ -2,20 +2,20 @@
 #include <bgfx/bgfx.h>
 #include <Rendering/ShaderManager.h>
 
-#define HandleWrapper(name, type)           \
-                                            \
-    struct name {                           \
-                                            \
-        name(type const& handle) {          \
-            this->handle = handle;          \
-        }                                   \
-                                            \
-        ~name(){                            \
-            bgfx::destroy(handle);          \
-        }                                   \
-                                            \
-        type handle;                        \
-                                            \
+#define HandleWrapper(name, type)                       \
+                                                        \
+    struct name {                                       \
+                                                        \
+        name(type const& handle) : handle(handle) {     \
+                                                        \
+        }                                               \
+                                                        \
+        ~name(){                                        \
+            bgfx::destroy(handle);                      \
+        }                                               \
+                                                        \
+        type handle;                                    \
+                                                        \
     };
 
 HandleWrapper(ProgramHandle, bgfx::ProgramHandle)
@@ -45,10 +45,12 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
     Memory::move(vertices.begin(), vertices.end(), data);
     Memory::move(indexArray.begin(), indexArray.end(), indices);
 
-    this->vertexBuffer = AutoReleasePointer<VertexHandle>::make(createVertexBuffer(bgfx::makeRef(data,  static_cast<Int32>(vertexCount) * sizeof(Vertex)), getVertexLayout()));
-    this->indexBuffer = AutoReleasePointer<IndexHandle>::make(createIndexBuffer(bgfx::makeRef(indices, static_cast<Int32>(indexCount) * sizeof(UInt16))));
-        
-    this->programHandle = AutoReleasePointer<ProgramHandle>::make(ShaderManager::loadProgram("Advanced"));
+    const auto vertexMemory = bgfx::makeRef(data,  static_cast<Int32>(vertexCount) * sizeof(Vertex));
+    const auto indexMemory = bgfx::makeRef(indices, static_cast<Int32>(indexCount) * sizeof(UInt16));
+    
+    this->vertexBuffer = Allocator<VertexHandle>().construct(createVertexBuffer(vertexMemory, getVertexLayout()));
+    this->indexBuffer = Allocator<IndexHandle>().construct(createIndexBuffer(indexMemory));
+    this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Advanced"));
     
 }
 
@@ -67,5 +69,8 @@ Mesh::~Mesh() {
 
     vertexAllocator.release(data);
     indexAllocator.release(indices);
+    vertexAllocator.autoDestroy(vertexBuffer);
+    vertexAllocator.autoDestroy(indexBuffer);
+    vertexAllocator.autoDestroy(programHandle);
 
 }

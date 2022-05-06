@@ -3,15 +3,15 @@
 
 #include <Scene/Scene.h>
 
-#define shift (1<<30)
-#define convert(X)  (X | shift)
+#define SHIFT (1<<30)
+#define CONVERT(X) ((X) | SHIFT)
 
 enum SpecialKeys {
 
-    LeftShift = convert(225),
+    LeftShift = CONVERT(225),
     Space = ' ',
-    Up = convert(82),
-    Down = convert(81)
+    Up = CONVERT(82),
+    Down = CONVERT(81)
 
 };
 
@@ -40,16 +40,16 @@ void FlyingCharacter::createComponents(Scene *scene, Transform transform) {
 void FlyingCharacter::setupInput(InputManager *manager) {
 
     // Bind all the required controls.
-    manager->bindEvent(this, KeyBind('z'), EInputEvent::Pressed, &FlyingCharacter::wPressed);
+    manager->bindEvent(this, KeyBind('w'), EInputEvent::Pressed, &FlyingCharacter::wPressed);
     manager->bindEvent(this, KeyBind('s'), EInputEvent::Pressed, &FlyingCharacter::sPressed);
-    manager->bindEvent(this, KeyBind('q'), EInputEvent::Pressed, &FlyingCharacter::aPressed);
+    manager->bindEvent(this, KeyBind('a'), EInputEvent::Pressed, &FlyingCharacter::aPressed);
     manager->bindEvent(this, KeyBind('d'), EInputEvent::Pressed, &FlyingCharacter::dPressed);
     manager->bindEvent(this, KeyBind(SpecialKeys::LeftShift), EInputEvent::Pressed, &FlyingCharacter::shiftPressed);
     manager->bindEvent(this, KeyBind(SpecialKeys::Space), EInputEvent::Pressed, &FlyingCharacter::spacePressed);
     
-    manager->bindEvent(this, KeyBind('z'), EInputEvent::Released, &FlyingCharacter::wReleased);
+    manager->bindEvent(this, KeyBind('w'), EInputEvent::Released, &FlyingCharacter::wReleased);
     manager->bindEvent(this, KeyBind('s'), EInputEvent::Released, &FlyingCharacter::sReleased);
-    manager->bindEvent(this, KeyBind('q'), EInputEvent::Released, &FlyingCharacter::aReleased);
+    manager->bindEvent(this, KeyBind('a'), EInputEvent::Released, &FlyingCharacter::aReleased);
     manager->bindEvent(this, KeyBind('d'), EInputEvent::Released, &FlyingCharacter::dReleased);
     manager->bindEvent(this, KeyBind(SpecialKeys::LeftShift), EInputEvent::Released, &FlyingCharacter::shiftReleased);
     manager->bindEvent(this, KeyBind(SpecialKeys::Space), EInputEvent::Released, &FlyingCharacter::spaceReleased);

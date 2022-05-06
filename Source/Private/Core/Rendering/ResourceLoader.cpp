@@ -16,7 +16,7 @@ void ResourceLoader::init() {
         ResourceLoader::logger.info("{}", std::filesystem::current_path().string());
         iterator = std::filesystem::directory_iterator("./Resources/Models");
     }
-    catch (std::exception const& e) {
+    catch (std::exception) {
         ResourceLoader::logger.fatal("Could not find the Resources folder.");
         return;
     }
@@ -150,7 +150,7 @@ bool ResourceLoader::loadMesh(String const& file)
             const Int32 numIndices = static_cast<Int32>(libMesh->mFaces[j].mNumIndices) - 1;
             
             for(Int32 k = numIndices; k >= 0 ; --k){
-                indices += libMesh->mFaces[j].mIndices[k] + totalVertices.getSize();
+                indices += libMesh->mFaces[j].mIndices[k] + static_cast<UInt16>(totalVertices.getSize());
             }
             
         }

@@ -17,7 +17,7 @@ public:
      *
      *  \param[in] owner The scene this CameraManager belongs to.
      */
-    explicit CameraManager(class Scene *owner);
+    explicit CameraManager(Scene *owner);
     
     /*!
      * Remove the default constructor.
@@ -38,7 +38,8 @@ public:
      *
      *  \return The owning scene.
      */
-    FORCEINLINE const class Scene *getScene() {
+    FORCEINLINE const Scene *getScene() const
+    {
         return this->scene;
     }
 
@@ -80,7 +81,7 @@ protected:
     /*!
      * The Scene this CameraManager belongs to.
      */
-    class Scene *scene;
+    Scene *scene;
 
 };
 

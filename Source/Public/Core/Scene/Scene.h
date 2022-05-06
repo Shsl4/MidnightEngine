@@ -51,7 +51,7 @@ public:
     */
     void load();
     
-    virtual void setup() = 0;
+    virtual void start() = 0;
 
     /*!
     * Called when the scene is destroyed. It destroys every object in the scene.
@@ -178,7 +178,7 @@ protected:
      *
      *  \param[in] deltaTime The engine delta time
      */
-    virtual void updateScene(float deltaTime) const;
+    virtual void update(float deltaTime);
 
     /*!
      * Allows a newly created SceneObject to bind input events.

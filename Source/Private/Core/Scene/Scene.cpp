@@ -4,14 +4,15 @@
 #include <Memory/AutoReleasePointer.h>
 #include <bgfx/bgfx.h>
 
-Scene::Scene() : cameraManager(AutoReleasePointer<CameraManager>::make(this)), logger(AutoReleasePointer<Logger>::make("Scene")) {
+Scene::Scene() : cameraManager(AutoReleasePointer<CameraManager>::make(this)),
+                 logger(AutoReleasePointer<Logger>::make("Scene")) {
     
 }
 
 void Scene::load()
 {
     this->state = State::Loading;
-    setup();
+    start();
     this->state = State::Loaded;
 }
 
@@ -19,16 +20,21 @@ void Scene::cleanup()
 {
     this->state = State::Unloading;
     
+    const auto inputManager = Engine::getInstance()->getInputManager();
+
     for (auto const& e : registeredObjects) {
-        Engine::getInstance()->getInputManager()->unbindAll(e);
+        inputManager->unbindAll(e);
     }
+
+    registeredObjects.clear();
+    registeredComponents.clear();
     
     setWorldColor(0);
 
     this->state = State::Unloaded;
 }
 
-void Scene::setWorldColor(UInt32 color) const
+void Scene::setWorldColor(const UInt32 color) const
 {
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, color, 1.0f, 0);
 }
@@ -51,7 +57,7 @@ void Scene::renderComponents() const {
 
 }
 
-void Scene::updateScene(float deltaTime) const {
+void Scene::update(const float deltaTime) {
     
     // Updates all the registered SceneObjects.
     for (auto const& object: registeredObjects) {

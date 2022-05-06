@@ -5,10 +5,60 @@
 #include <Memory/String.h>
 #include <Math/Transform.h>
 
+#include <Logging/Logger.h>
+#include <Memory/AutoReleasePointer.h>
+
+struct ENGINE_API AttachmentProperties {
+
+public:
+
+    static const AttachmentProperties all;
+    static const AttachmentProperties locationOnly;
+    static const AttachmentProperties rotationOnly;
+    static const AttachmentProperties scaleOnly;
+    static const AttachmentProperties noLocation;
+    static const AttachmentProperties noRotation;
+    static const AttachmentProperties noScale;
+
+    FORCEINLINE bool followsPosition() const {
+        return this->followPosition;
+    }
+
+    FORCEINLINE bool followsRotation() const {
+        return this->followRotation;
+    }
+
+    FORCEINLINE bool followsScale() const {
+        return this->followScale;
+    }
+
+    AttachmentProperties() = default;
+
+private:
+
+    AttachmentProperties(bool position, bool rotation, bool scale) : followPosition(position),
+        followRotation(rotation), followScale(scale) {
+
+    }
+
+    bool operator==(AttachmentProperties const& other) const noexcept {
+
+        return (followPosition == other.followPosition) &&
+            (followRotation == other.followRotation) && 
+            (followScale == other.followScale);
+
+    }
+
+    bool followPosition = true;
+    bool followRotation = true;
+    bool followScale = false;
+
+};
+
 /*!
- * SceneComponents are the lowest class representing something in a scene.
- * SceneComponents can be attached together. Each component can have multiple children, but a unique parent.
- * The root component should then be attached to a parent SceneObject.
+ *  \brief SceneComponents are the lowest class representing something in a scene.
+ *  SceneComponents can be attached together. Each component can have multiple children, but a unique parent.
+ *  The root component should then be attached to a parent SceneObject.
  */
 class ENGINE_API SceneComponent : public Object {
 
@@ -22,49 +72,101 @@ class ENGINE_API SceneComponent : public Object {
 public:
 
     /*!
-     * Start is called when the scene has finished loading and constructing all components.
-     * It is called from the parent SceneObject.
+     *  \brief Start is called when the scene has finished loading and constructing all components.
+     *  It is called from the parent SceneObject.
      */
     virtual void start();
 
     /*!
-     * Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate).
-     * It is called from the parent SceneObject.
+     *  \brief Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate).
+     *  It is called from the parent SceneObject.
      *
      *  \param[in] deltaTime The engine tick delta time
      */
     virtual void update(float deltaTime);
 
     /*!
-     * Construct is called right after the scene created this component.
+     * \brief Construct is called right after the scene created this component.
      *
      * \param[in] relativeTransform The relative transform of the component.
      */
     virtual void construct(Transform const &relativeTransform);
 
     /*!
-     * Attaches this component to a SceneObject. This component will be automatically detached from its parent if it has any.
+     *  \brief Attaches this component to a SceneObject. This component will be automatically detached from its parent if it has any.
      *
      *  \param[in] object The SceneObject to attach to.
      *  \return Whether the operation succeeded.
      */
-    bool attachTo(class SceneObject *object);
+    bool attachTo(class SceneObject *object, AttachmentProperties properties = AttachmentProperties::noScale);
 
     /*!
-     * Attaches this component to another SceneComponent. This component will be automatically detached from its parent if it has any.
+     *  \brief Attaches this component to another SceneComponent. This component will be automatically detached from its parent if it has any.
      *
      *  \param[in] other The SceneComponent to attach to.
      *  \return Whether the operation succeeded.
      */
-    bool attachTo(SceneComponent *other);
+    bool attachTo(SceneComponent *other, AttachmentProperties properties = AttachmentProperties::noScale);
 
     /*!
-     * Detaches this component from its parent if it has any.
+     *  \brief Detaches this component from its parent if it has any.
      */
     void detachFromComponent();
+ 
+    /*!
+     *  \brief Gets the component's position relative to the parent component.
+     *
+     *  \return The component's relative position
+     */
+    NODISCARD Vector3 getRelativePosition() const;
 
     /*!
-     * Checks whether this component has been correctly registered / created
+     *  \brief Gets the component's rotation relative to the parent component.
+     *
+     *  \return The component's relative rotation
+     */
+    NODISCARD Vector3 getRelativeRotation() const;
+
+    /*!
+     *  \brief Gets the current component's scale relative to the parent component.
+     *
+     *  \return The component's relative scale
+     */
+    NODISCARD Vector3 getRelativeScale() const;
+
+    /*!
+     *  \brief Gets the component's transform relative to the parent component.
+     *
+     *  \return The component's relative rotation
+     */
+    NODISCARD Transform getRelativeTransform() const {
+        return { getRelativePosition(), getRelativeRotation(), getRelativeScale() };
+    }
+
+    NODISCARD virtual Vector3 getForwardVector() const;
+
+    NODISCARD virtual Vector3 getRightVector() const;
+
+    NODISCARD virtual Vector3 getUpVector() const;
+ 
+    void addWorldPosition(Vector3 const& position);
+
+    void addWorldRotation(Vector3 const& rotation);
+
+    void addWorldScale(Vector3 const& scale);
+
+    void addWorldTransform(Transform const& transformToAdd);
+
+    void setWorldPosition(Vector3 const& position);
+
+    void setWorldRotation(Vector3 const& rotation);
+
+    void setWorldScale(Vector3 const& scale);
+
+    void setWorldTransform(Transform const& transformToSet);
+ 
+    /*!
+     *  \brief Checks whether this component has been correctly registered / created
      *
      *  \return Whether the component is valid
      */
@@ -73,70 +175,37 @@ public:
     }
 
     /*!
-     * Gets the component's position relative to the parent component.
-     *
-     *  \return The component's relative position
-     */
-    FORCEINLINE Vector3 getRelativePosition() const {
-        return Vector3::zero;
-    }
-
-    /*!
-     * Gets the component's rotation relative to the parent component.
-     *
-     *  \return The component's relative rotation
-     */
-    FORCEINLINE Vector3 getRelativeRotation() const {
-        return Vector3::zero;
-    }
-
-    /*!
-     * Gets the current component's scale relative to the parent component.
-     *
-     *  \return The component's relative scale
-     */
-    FORCEINLINE Vector3 getRelativeScale() const {
-        return Vector3::zero;
-    }
-
-    /*!
-     * Gets the component's transform relative to the parent component.
-     *
-     *  \return The component's relative rotation
-     */
-    FORCEINLINE Transform getRelativeTransform() const {
-        return Transform();
-    }
-
-    /*!
-     * Gets the component's position in world space.
+     *  \brief Gets the component's position in world space.
      *
      *  \return The component's world position
      */
-    FORCEINLINE Vector3 getWorldPosition() {
+    FORCEINLINE Vector3 getWorldPosition() const
+    {
         return this->transform.position;
     }
 
     /*!
-     * Gets the component's rotation in world space.
+     *  \brief Gets the component's rotation in world space.
      *
      *  \return The component's world rotation
      */
-    FORCEINLINE Vector3 getWorldRotation() {
+    FORCEINLINE Vector3 getWorldRotation() const
+    {
         return this->transform.rotation;
     }
 
     /*!
-     * Gets the component's scale in world space.
+     *  \brief Gets the component's scale in world space.
      *
      *  \return The component's world scale
      */
-    FORCEINLINE Vector3 getWorldScale() {
+    FORCEINLINE Vector3 getWorldScale() const
+    {
         return this->transform.scale;
     }
 
     /*!
-     * Gets the component's transform in world space.
+     *  \brief Gets the component's transform in world space.
      *
      *  \return The component's world transform
      */
@@ -145,34 +214,36 @@ public:
     }
 
     /*!
-     * Returns the SceneObject this SceneComponent is attached to. (if any)
+     *  \brief Returns the SceneObject this SceneComponent is attached to. (if any)
      *
-     * \return The parent object
+     *  \return The parent object
      */
-    FORCEINLINE class SceneObject *getParentObject() {
+    FORCEINLINE SceneObject *getParentObject() const
+    {
         return this->parentObject;
     }
 
     /*!
-     * Returns the component this SceneComponent is attached to. (if any)
+     *  \brief Returns the component this SceneComponent is attached to. (if any)
      *
-     * \return The parent component
+     *  \return The parent component
      */
-    FORCEINLINE SceneComponent *getParentComponent() {
+    FORCEINLINE SceneComponent *getParentComponent() const
+    {
         return this->parentComponent;
     }
 
     /*!
-     * Returns the components attached to this SceneComponent.
+     *  \brief Returns the components attached to this SceneComponent.
      *
-     * \return The parent component
+     *  \return The parent component
      */
     FORCEINLINE Array<SceneComponent *> getChildComponents() const {
         return this->childComponents;
     }
 
     /*!
-     * Checks whether this component is not attached to any other.
+     *  \brief Checks whether this component is not attached to any other.
      *
      *  \return Whether is component is a root component.
      */
@@ -180,25 +251,24 @@ public:
         return !parentComponent;
     }
 
-    FORCEINLINE class Scene *getScene() const {
+    FORCEINLINE Scene *getScene() const {
         return this->scene;
     }
-
 
 protected:
 
     /*!
      * The SceneComponent constructor.
      */
-    SceneComponent() = default;
+    SceneComponent();
 
+private:
+ 
     /*!
      * The component world Transform.
      */
     Transform transform;
-
-private:
-
+ 
     /*!
      * The SceneComponents directly attached to this component.
      */
@@ -212,7 +282,7 @@ private:
     /*!
      * The SceneObject this SceneComponent is attached to.
      */
-    class SceneObject *parentObject = nullptr;
+    SceneObject *parentObject = nullptr;
 
     /*!
      *  Whether this component was registered by the scene.
@@ -223,6 +293,8 @@ private:
      * The name of the component.
      */
     String name = "";
+
+    AttachmentProperties attachmentProperties;
 
     Scene* scene = nullptr;
 

@@ -1,7 +1,7 @@
 #include <Input/Keybind.h>
 #include <SDL2/SDL.h>
 
-#define bitCheck(a, p) ((a) & (1 << (p)))
+#define BIT_CHECK(a, p) ((a) & (1 << (p)))
 
 KeyBind::KeyBind(const UInt8 button) {
 
@@ -30,10 +30,10 @@ KeyBind::KeyBind(const Int32 key) {
 KeyBind::KeyBind(const Int32 key, UInt16 mods) {
 
     this->key = key;
-    this->shift = bitCheck(mods, 0);
-    this->control = bitCheck(mods, 6);
-    this->alt = bitCheck(mods, 8);
-    this->command = bitCheck(mods, 10);
+    this->shift = BIT_CHECK(mods, 0);
+    this->control = BIT_CHECK(mods, 6);
+    this->alt = BIT_CHECK(mods, 8);
+    this->command = BIT_CHECK(mods, 10);
     this->isMouseButton = false;
     this->isModifierKey = shift || control || command || alt;
 

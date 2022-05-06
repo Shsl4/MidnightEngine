@@ -192,6 +192,20 @@ void Matrix4::rotateZ(const float radians) {
 
 }
 
+
+Matrix4 Matrix4::fromRotation(Vector3 rotation)
+{
+
+    Matrix4 m = identity();
+
+    m.rotateX(Math::toRadians(rotation.x));
+    m.rotateY(Math::toRadians(rotation.y));
+    m.rotateZ(Math::toRadians(rotation.z));
+
+    return m;
+    
+}
+
 void Matrix4::rotate(float radians, Vector3 axis) {
 
     const Matrix4 rotation = Matrix4::rotation(radians, axis);
@@ -352,9 +366,11 @@ Matrix4 Matrix4::fill(const float value) {
 
     Matrix4 m;
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            m.data[i][j] = value;
+    for (auto& i : m.data)
+    {
+        for (float& j : i)
+        {
+            j = value;
         }
     }
 

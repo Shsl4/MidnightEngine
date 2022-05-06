@@ -405,15 +405,23 @@ public:
      
     }
 
+    void clear() override {
+
+        // Release every pointer in our data buffer.
+        for (auto& e : *this) {
+            this->allocator.autoDestroy(e);
+        }
+
+        Array<T>::clear();
+
+    }
+
     /*!
      * The AutoReleaseArray destructor. It releases all allocated resources.
      */
     ~AutoReleaseArray() override {
         
-        // Release every pointer in our data buffer.
-        for(auto& e : *this){
-            this->allocator.autoDestroy(e);
-        }
+        clear();
         
     }
     

@@ -21,7 +21,7 @@ void InputManager::update() const {
 
     while (SDL_PollEvent(&event)) {
         
-        const SDL_Keysym keySym = event.key.keysym;
+        const auto [scancode, sym, mod, unused] = event.key.keysym;
 
         switch (event.type) {
                 
@@ -53,12 +53,12 @@ void InputManager::update() const {
 
             case SDL_KEYDOWN:
 
-                invokeIfMatch(KeyBind(keySym.sym, keySym.mod), keyDownEvents);
+                invokeIfMatch(KeyBind(sym, mod), keyDownEvents);
                 break;
 
             case SDL_KEYUP:
 
-                invokeIfMatch(KeyBind(keySym.sym, keySym.mod), keyUpEvents);
+                invokeIfMatch(KeyBind(sym, mod), keyUpEvents);
                 break;
                 
             default:

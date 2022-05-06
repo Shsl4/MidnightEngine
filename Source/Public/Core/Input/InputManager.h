@@ -16,8 +16,8 @@ class ENGINE_API InputManager : public Object {
 
     struct KeyBindEntry {
 
-        KeyBindEntry(void* object, KeyBind keyBind, std::function<void()> function, size_t id) : object(object), keyBind(keyBind), function(
-            std::move(function)), id(id) {
+        KeyBindEntry(void* object, KeyBind keyBind, std::function<void()> function, size_t id) : object(object), keyBind(keyBind),
+        function(std::move(function)), id(id) {
 
         }
 
@@ -34,8 +34,8 @@ class ENGINE_API InputManager : public Object {
     
     struct AxisBindEntry {
 
-        AxisBindEntry(void* object, EAxisType type, std::function<void(Int32)> function, size_t id) : object(object), type(type), function(
-            std::move(function)), id(id) {
+        AxisBindEntry(void* object, EAxisType type, std::function<void(Int32)> function, size_t id) : object(object),
+            type(type), function(std::move(function)), id(id) {
 
         }
 
@@ -56,9 +56,7 @@ public:
     InputManager();
 
     void update() const;
-
-    size_t nextId = 0;
-
+    
     template<class T>
     void bindEvent(T *target, KeyBind key, EInputEvent type, void(T::*f)()) {
         const std::function<void()> function = std::bind(f, target);
@@ -76,8 +74,7 @@ public:
 
     }
 
-    template<class T>
-    void unbindAll(T* target) {
+    void unbindAll(void* target) {
 
         for (int i = 0; i < keyDownEvents.size();) {
             
@@ -129,6 +126,8 @@ private:
     static void invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>&);
 
     AutoReleasePointer<Logger> logger;
+
+    size_t nextId = 0;
 
     std::vector<KeyBindEntry> keyDownEvents;
     std::vector<KeyBindEntry> keyUpEvents;

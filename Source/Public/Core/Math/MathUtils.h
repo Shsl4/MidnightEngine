@@ -29,7 +29,7 @@ public:
     FORCEINLINE static float fastInvSqrt(float number){
         
         const float x2 = number * 0.5f;
-        const float threehalfs = 1.5f;
+        constexpr float threehalfs = 1.5f;
         
         union {
             
@@ -57,6 +57,11 @@ public:
     template<typename NumberType>
     FORCEINLINE static NumberType toRadians(NumberType degrees) {
         return degrees * static_cast<NumberType>(0.01745329252f);
+    }
+
+    template<typename NumberType>
+    FORCEINLINE static NumberType lerp(NumberType const& from, NumberType const& to, float deltaTime) {
+        return from + (to - from) * deltaTime;
     }
 
 };

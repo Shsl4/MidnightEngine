@@ -20,20 +20,17 @@ DirectionalLight createMaterialUniforms() {
 void MeshComponent::update(float deltaTime) {
 
     Super::update(deltaTime);
-
-    transform.rotation.y += 20.0f * deltaTime;
-
+    
 }
 
 MeshComponent::MeshComponent(String const& name) {
-
+        
     this->mesh = Engine::getInstance()->getResourceLoader()->getMesh(name);
     this->light = createMaterialUniforms();
 
 }
 
 void MeshComponent::construct(Transform const &relativeTransform) {
-
     Super::construct(relativeTransform);
 }
 
@@ -56,14 +53,14 @@ void MeshComponent::render() {
         // Render it.
         mesh->use();
         auto a = Vector4(1.2f, 1.0f, 2.0f, 1);
-        auto b = LinearColors::red;
+        auto b = LinearColors::white;
         auto c = Vector4(1.0f);
         Vector4 d = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
         bgfx::setUniform(light.lightPos, &a);
         bgfx::setUniform(light.lightColor, &b);
         bgfx::setUniform(light.objectColor, &c);
         bgfx::setUniform(light.viewPos, &d);
-        model = Matrix4::modelMatrix(transform);
+        model = Matrix4::modelMatrix(getWorldTransform());
         bgfx::setUniform(light.model, &model);
         bgfx::setTransform(model.data);
         mesh->submit();

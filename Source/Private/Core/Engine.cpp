@@ -98,7 +98,7 @@ void Engine::update() {
     if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
         
         // Update the current scene.
-        activeScene->updateScene(deltaTime);
+        activeScene->update(deltaTime);
 
     }
 
@@ -165,7 +165,7 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
         renderThreadTasks.push_back(function);
         break;
     case Threads::New:
-#if __APPLE__
+#ifdef __APPLE__
         auto th = std::thread(function);
 #else
         auto th = std::jthread(function);

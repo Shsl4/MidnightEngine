@@ -62,7 +62,8 @@ void CameraComponent::setRenderDistance(const float distance) {
 void CameraComponent::addCameraYawInput(const float yaw) {
     
     // Clamp the value around -180.0 and 180.0 degrees.
-    transform.rotation.x = Math::clampAround(transform.rotation.x - yaw, -180.0f, 180.0f);
+    const auto rotation = getWorldRotation();
+    setWorldRotation({ Math::clampAround(rotation.x - yaw, -180.0f, 180.0f), rotation.y, rotation.z });
     updateViewMatrix();
     
 }
@@ -70,7 +71,9 @@ void CameraComponent::addCameraYawInput(const float yaw) {
 void CameraComponent::addCameraPitchInput(const float pitch) {
     
     // Clamp the value between -89.0 and 89.0 degrees to prevent the camera from doing complete vertical rotations.
-    transform.rotation.y = Math::clamp(this->transform.rotation.y - pitch, -89.0f, 89.0f);
+    //transform.rotation.y = Math::clamp(this->transform.rotation.y - pitch, -89.0f, 89.0f);
+    const auto rotation = getWorldRotation();
+    setWorldRotation({ rotation.x, Math::clamp(rotation.y - pitch, -89.0f, 89.0f), rotation.z });
     updateViewMatrix();
     
 }
@@ -78,10 +81,42 @@ void CameraComponent::addCameraPitchInput(const float pitch) {
 void CameraComponent::addMovementInput(const Vector3 direction, const float scale, const float deltaTime) {
     
     // Add movement input in the looking direction.
-    const Vector3 newVector = direction * scale * speed * deltaTime;
-    transform.position += newVector;
+    addWorldPosition(direction * scale * speed * deltaTime);
     updateViewMatrix();
     
+}
+
+
+/*!
+* Returns a copy of the camera's forward vector.
+*
+* \return The camera forward vector
+*/
+
+
+/*!
+* Returns a copy of the camera's up vector.
+*
+* \return The camera up vector
+*/
+
+
+/*!
+* Returns a copy of the camera's right vector.
+*
+* \return The camera right vector
+*/
+
+Vector3 CameraComponent::getRightVector() const {
+    return this->rightVector;
+}
+
+Vector3 CameraComponent::getUpVector() const {
+    return this->upVector;
+}
+
+Vector3 CameraComponent::getForwardVector() const {
+    return this->forwardVector;
 }
 
 void CameraComponent::updateMatrices() {
@@ -94,8 +129,9 @@ void CameraComponent::updateMatrices() {
 void CameraComponent::updateViewMatrix() {
     
     // Quick maths 😎
-    const float pitchRad = Math::toRadians(transform.rotation.y);
-    const float yawRad = Math::toRadians(transform.rotation.x);
+    const auto rotation = getWorldRotation();
+    const float pitchRad = Math::toRadians(rotation.y);
+    const float yawRad = Math::toRadians(rotation.x);
 
     const float cy = cos(yawRad);
     const float cp = cos(pitchRad);

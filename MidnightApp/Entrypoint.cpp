@@ -15,7 +15,7 @@ class MyScene : public Scene {
         return "MyScene";
     }
     
-    void setup() override {
+    void start() override {
 
         setWorldColor(0xc7efffff);
 
@@ -30,27 +30,46 @@ class MyScene : public Scene {
 
 };
 
-class OtherScene : public Scene
+class SpaceScene : public Scene
 {
+
+public:
 
     NODISCARD FORCEINLINE String getSceneName() const override
     {
-        return "OtherScene";
+        return "SpaceScene";
+    }
+
+protected:
+    
+    void start() override {
+
+        setWorldColor(0x101010ff);
+
+        this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Sphere");
+        this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Sphere");
+        this->planet3 = createObject<MeshObject>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)), "Sphere");
+        
+        this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
+
+        planet2->attachTo(planet1);
+        planet3->attachTo(planet2);
+
     }
     
-    void setup() override {
+    void update(const float deltaTime) override {
 
-        setWorldColor(0xffe18fff);
-
-        for (int i = -5; i <= 5; i++)
-        {
-            createObject<MeshObject>(Transform({ 0.0f, 0.0f, 10.0f * i }, { 0.0f, 0.0f, 0.0f }), "Monkey");
-
-        }
-
-        createObject<FlyingCharacter>(Transform(Vector3(5.0, 0.0, 0.0f), Vector3(180.0f, 0.0f, 0.0f)));
-
+        Scene::update(deltaTime);
+     
+        planet1->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
+        planet2->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
+        
     }
+
+    FlyingCharacter* character = nullptr;
+    MeshObject* planet1 = nullptr;
+    MeshObject* planet2 = nullptr;
+    MeshObject* planet3 = nullptr;
     
 };
 
@@ -61,7 +80,7 @@ class MyEngine : public Engine {
     }
 
     void load2() {
-        loadScene<OtherScene>();
+        loadScene<SpaceScene>();
     }
 
     void onStart() override {
@@ -78,7 +97,7 @@ class MyEngine : public Engine {
 
 };
 
-int main(int argc, const char** argv) {
+int main(const int argc, const char** argv) {
 
 #if defined(_WIN64) && defined(DEBUG_LEAKS)
 
@@ -92,7 +111,10 @@ int main(int argc, const char** argv) {
     const auto engine = AutoReleasePointer<MyEngine>::make();
     const auto pointer = engine.raw();
 
-    entry->entry(argc, argv, [pointer]() { return pointer; });
+    entry->entry(argc, argv, [pointer]()
+    {
+        return pointer;
+    });
 
     return 0;
 

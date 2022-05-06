@@ -19,9 +19,9 @@ struct ENGINE_API Mesh
 
     void submit() const;
     
-    AutoReleasePointer<class ProgramHandle> programHandle;
-    AutoReleasePointer<class VertexHandle> vertexBuffer;
-    AutoReleasePointer<class IndexHandle> indexBuffer;
+    struct ProgramHandle* programHandle;
+    struct VertexHandle* vertexBuffer;
+    struct IndexHandle* indexBuffer;
 
     size_t vertexCount = 0;
     size_t indexCount = 0;
