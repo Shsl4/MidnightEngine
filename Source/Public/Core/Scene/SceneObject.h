@@ -83,7 +83,7 @@ public:
     *
     *  \return The component's relative position
     */
-    FORCEINLINE NODISCARD Vector3 getRelativePosition() const {
+    FORCEINLINE Vector3 getRelativePosition() const {
         return this->rootComponent->getRelativePosition();
     };
 
@@ -92,7 +92,7 @@ public:
      *
      *  \return The component's relative rotation
      */
-    FORCEINLINE NODISCARD Vector3 getRelativeRotation() const {
+    FORCEINLINE Vector3 getRelativeRotation() const {
         return this->rootComponent->getRelativeRotation();
     };
 
@@ -101,7 +101,7 @@ public:
      *
      *  \return The component's relative scale
      */
-    FORCEINLINE NODISCARD Vector3 getRelativeScale() const {
+    FORCEINLINE Vector3 getRelativeScale() const {
         return this->rootComponent->getRelativeScale();
     };
 
@@ -110,19 +110,19 @@ public:
      *
      *  \return The component's relative rotation
      */
-    FORCEINLINE NODISCARD Transform getRelativeTransform() const {
+    FORCEINLINE Transform getRelativeTransform() const {
         return this->rootComponent->getRelativeTransform();
     }
 
-    FORCEINLINE NODISCARD Vector3 getForwardVector() const {
+    FORCEINLINE Vector3 getForwardVector() const {
         return this->rootComponent->getForwardVector();
     }
 
-    FORCEINLINE NODISCARD Vector3 getRightVector() const {
+    FORCEINLINE Vector3 getRightVector() const {
         return this->rootComponent->getRightVector();
     }
 
-    FORCEINLINE NODISCARD Vector3 getUpVector() const {
+    FORCEINLINE Vector3 getUpVector() const {
         return this->rootComponent->getUpVector();
     }
 

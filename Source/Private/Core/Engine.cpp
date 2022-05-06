@@ -20,6 +20,7 @@
 
 #include <SDL2/SDL_keycode.h>
 #include <thread>
+#include <iostream>
 
 Logger Logger::assertLogger = Logger("Assert");
 
@@ -72,6 +73,8 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
     
     running = true;
+    
+    this->console = AutoReleasePointer<Console>::make(this);
 
     onStart();
 
@@ -184,10 +187,12 @@ void Engine::unloadScene() {
         
         schedule(Threads::Render, [this]()
         {
+            
             String name = activeScene->getSceneName();
             activeScene->cleanup();
             activeScene.release();
             logger->info("Unloaded scene {}.", name);
+            
         });
     }
 

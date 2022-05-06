@@ -12,6 +12,7 @@
 #include <Rendering/ResourceLoader.h>
 
 #include <Scene/Scene.h>
+#include <Core/Console.h>
 
 /*!
  *  The main engine class.
@@ -167,6 +168,7 @@ protected:
 private:
     
     friend class Entry;
+    friend class Console;
 
     /*!
      *  The engine's initialization function. It is called after the constructor.
@@ -246,6 +248,8 @@ private:
     * The engine resource loader.
     */
     AutoReleasePointer<ResourceLoader> resourceLoader;
+    
+    AutoReleasePointer<Console> console;
 
     AutoReleasePointer<PerformanceWindow> perfWindow;
 

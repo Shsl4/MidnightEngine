@@ -251,7 +251,7 @@ public:
         return !parentComponent;
     }
 
-    FORCEINLINE Scene *getScene() const {
+    FORCEINLINE class Scene *getScene() const {
         return this->scene;
     }
 
