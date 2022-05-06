@@ -6,7 +6,7 @@
 #include <Scene/CameraComponent.h>
 #include <Scene/CameraManager.h>
 #include <Memory/Array.h>
-#include <Memory/ARPointer.h>
+#include <Memory/AutoReleasePointer.h>
 #include <Logging/Logger.h>
 
 union Color {
@@ -33,6 +33,14 @@ class ENGINE_API Scene : public Object {
 
 public:
 
+    enum class State
+    {
+        Unloaded,
+        Loading,
+        Loaded,
+        Unloading
+    };
+
     /*!
      * The scene constructor. Initializes the private variables.
      */
@@ -41,13 +49,17 @@ public:
     /*!
     * Loads the scene. It sets up and constructs every object in the scene.
     */
-    virtual void load() = 0;
+    void load();
+    
+    virtual void start() = 0;
 
     /*!
     * Called when the scene is destroyed. It destroys every object in the scene.
     */
     virtual void cleanup();
 
+    NODISCARD FORCEINLINE State getState() const { return this->state; }
+    
     NODISCARD FORCEINLINE virtual String getSceneName() const = 0;
 
     void setWorldColor(UInt32 color) const;
@@ -166,7 +178,7 @@ protected:
      *
      *  \param[in] deltaTime The engine delta time
      */
-    virtual void updateScene(float deltaTime) const;
+    virtual void update(float deltaTime);
 
     /*!
      * Allows a newly created SceneObject to bind input events.
@@ -190,11 +202,13 @@ protected:
     /*!
      * The scene's CameraManager.
      */
-    ARPointer<CameraManager> cameraManager{};
+    AutoReleasePointer<CameraManager> cameraManager;
 
     /*!
      * The scene's Logger.
      */
-    ARPointer<Logger> logger{};
+    AutoReleasePointer<Logger> logger;
+
+    State state = State::Unloaded;
 
 };

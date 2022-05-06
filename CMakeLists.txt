@@ -10,6 +10,7 @@ set(CMAKE_DEBUG_POSTFIX d)
 
 file(GLOB_RECURSE ENGINE_RESOURCES ${CMAKE_SOURCE_DIR}/Resources/*)
 file(GLOB_RECURSE MODULES ${CMAKE_SOURCE_DIR}/Source/*.Module)
+
 project(MidnightEngine VERSION 0.0.1 LANGUAGES C CXX)
 
 include(${CMAKE_SOURCE_DIR}/Functions.cmake)
@@ -21,7 +22,10 @@ foreach(MODULE ${MODULES})
 endforeach()
 
 add_library(MidnightEngine SHARED ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${ENGINE_INLINE} ${THIRD_PARTY_SOURCES} ${THIRD_PARTY_HEADERS})
+
 target_compile_definitions(MidnightEngine PRIVATE "ENGINE_EXPORT=1")
+
+set_target_properties(MidnightEngine PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Build/)
 
 filterEngineSources("${ENGINE_SOURCES}")
 filterEngineSources("${ENGINE_HEADERS}")
@@ -74,4 +78,6 @@ endif()
 
 add_custom_command(TARGET MidnightEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightEngine>/Resources)
 
-add_subdirectory("${CMAKE_SOURCE_DIR}/Runtime")
+add_subdirectory("${CMAKE_SOURCE_DIR}/MidnightApp")
+
+set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT MidnightApp)

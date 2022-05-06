@@ -381,7 +381,7 @@ private:
  *  \warning Do not use this type as a return type as the object will be destroyed on function exit.
  */
 template<typename T>
-struct AutoReleaseArray : public Array<T> {
+struct AutoReleaseArray final : public Array<T> {
 
 public:
 
@@ -395,12 +395,25 @@ public:
     }
     
     /*!
-     *  Constructs an array with a specific preallocated capacity.
+     *  Constructs an array with a specific pre-allocated capacity.
      *
      *  \param[in] capacity The number of elements to allocate
      */
-    explicit AutoReleaseArray(size_t capacity) : Array<T>(capacity){
-        
+    explicit AutoReleaseArray(size_t capacity) : Array<T>(capacity) {
+
+        static_assert(std::is_pointer_v<T>, "T must be a pointer.");
+     
+    }
+
+    void clear() override {
+
+        // Release every pointer in our data buffer.
+        for (auto& e : *this) {
+            this->allocator.autoDestroy(e);
+        }
+
+        Array<T>::clear();
+
     }
 
     /*!
@@ -408,10 +421,7 @@ public:
      */
     ~AutoReleaseArray() override {
         
-        // Release every pointer in our data buffer.
-        for(auto& e : *this){
-            this->allocator.autoDestroy(e);
-        }
+        clear();
         
     }
     

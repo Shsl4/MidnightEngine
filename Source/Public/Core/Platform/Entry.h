@@ -3,12 +3,6 @@
 #include <Platform/PlatformData.h>
 #include <Core/Engine.h>
 
-#ifdef __APPLE__
-
-ENGINE_API int macOS_main(int argc, const char** argv);
-
-#else
-
 class ENGINE_API Entry {
 
 public:
@@ -25,5 +19,3 @@ private:
     Engine* engine;
 
 };
-
-#endif

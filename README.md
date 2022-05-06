@@ -37,7 +37,7 @@ chmod +x generateMakefile.sh
 
 > ⚠️ The project does not contain the Linux SDL2 binaries. You have to install them using your package manager.
 
-The Visual Studio, Xcode and Makefile projects will be generated in the Build directory.
+The Visual Studio, Xcode and Makefile projects will be generated in the hidden .build directory.
 Alternatively, you can generate the project yourself using cmake.
 
 ## Documentation

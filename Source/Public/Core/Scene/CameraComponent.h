@@ -128,27 +128,21 @@ public:
      *
      * \return The camera right vector
      */
-    FORCEINLINE Vector3 getRightVector() const {
-        return this->rightVector;
-    }
+    NODISCARD Vector3 getRightVector() const override;
 
     /*!
      * Returns a copy of the camera's up vector.
      *
      * \return The camera up vector
      */
-    FORCEINLINE Vector3 getUpVector() const {
-        return this->upVector;
-    }
+    NODISCARD Vector3 getUpVector() const override;
 
     /*!
      * Returns a copy of the camera's forward vector.
      *
      * \return The camera forward vector
      */
-    FORCEINLINE Vector3 getForwardVector() const {
-        return this->forwardVector;
-    }
+    NODISCARD Vector3 getForwardVector() const override;
 
 private:
 

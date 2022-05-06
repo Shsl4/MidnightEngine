@@ -18,6 +18,8 @@
 /Build
 /.vs
 /.idea
+/.build
 /Docs
 /cmake-build-debug
 /out
+/Run

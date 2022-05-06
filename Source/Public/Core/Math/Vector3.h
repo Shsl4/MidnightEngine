@@ -20,11 +20,15 @@ struct ENGINE_API Vector3 {
 
     bool operator==(Vector3 const &other) const;
     
-    bool operator< (Vector3 const &other) const;
+    bool operator<(Vector3 const &other) const;
 
     Vector3 operator-(Vector3 const &other) const;
 
     Vector3 operator+(Vector3 const &other) const;
+    
+    Vector3 operator/(Vector3 const& other) const;
+
+    Vector3 operator*(Vector3 const& other) const;
 
     Vector3 operator*(float scale) const;
 
@@ -106,11 +110,17 @@ struct ENGINE_API Vector3 {
 
     FORCEINLINE static float angle(Vector3 const &a, Vector3 const &b) {
 
-        const float dp = Vector3::dot(a, b);
+        const float dp = dot(a, b);
         const float aNorm = a.norm();
         const float bNorm = b.norm();
 
         return acos(dp / (aNorm * bNorm));
+
+    }
+
+    FORCEINLINE static float distance(Vector3 const &a, Vector3 const &b) {
+
+        return (b - a).norm();
 
     }
 
@@ -119,6 +129,7 @@ struct ENGINE_API Vector3 {
     float z = 0.0f;
 
     static const Vector3 zero;
+    static const Vector3 one;
     static const Vector3 up;
     static const Vector3 down;
     static const Vector3 forward;

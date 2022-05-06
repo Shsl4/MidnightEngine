@@ -51,6 +51,8 @@ struct ENGINE_API Matrix4 {
 
     static Matrix4 rotation(float radians, Vector3 axis);
 
+    static Matrix4 fromRotation(Vector3 rotation);
+    
     static Matrix4 orthographic(float left, float right, float bottom, float top, float near, float far);
 
     static Matrix4 perspective(float fov, float aspectRatio, float near, float far);

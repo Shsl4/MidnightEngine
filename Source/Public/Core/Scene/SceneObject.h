@@ -45,6 +45,14 @@ public:
     virtual void onComponentDetached(class SceneComponent *component);
 
     /*!
+    *  \brief Attaches this component to a SceneObject. This component will be automatically detached from its parent if it has any.
+    *
+    *  \param[in] object The SceneObject to attach to.
+    *  \return Whether the operation succeeded.
+    */
+    bool attachTo(SceneObject* object, AttachmentProperties properties = AttachmentProperties::noScale);
+
+    /*!
      * Function called by the scene when the object is created. SceneObjects must override this method to
      * create their SceneComponents.
      *
@@ -52,6 +60,101 @@ public:
      * \param[in] transform The SceneObject world transform.
      */
     virtual void createComponents(class Scene *scene, Transform transform) = 0;
+
+    void addWorldPosition(Vector3 const& position);
+
+    void addWorldRotation(Vector3 const& rotation);
+
+    void addWorldScale(Vector3 const& scale);
+
+    void addWorldTransform(Transform const& transformToAdd);
+
+    void setWorldPosition(Vector3 const& position);
+
+    void setWorldRotation(Vector3 const& rotation);
+
+    void setWorldScale(Vector3 const& scale);
+
+    void setWorldTransform(Transform const& transformToSet);
+
+
+    /*!
+    *  \brief Gets the component's position relative to the parent component.
+    *
+    *  \return The component's relative position
+    */
+    FORCEINLINE NODISCARD Vector3 getRelativePosition() const {
+        return this->rootComponent->getRelativePosition();
+    };
+
+    /*!
+     *  \brief Gets the component's rotation relative to the parent component.
+     *
+     *  \return The component's relative rotation
+     */
+    FORCEINLINE NODISCARD Vector3 getRelativeRotation() const {
+        return this->rootComponent->getRelativeRotation();
+    };
+
+    /*!
+     *  \brief Gets the current component's scale relative to the parent component.
+     *
+     *  \return The component's relative scale
+     */
+    FORCEINLINE NODISCARD Vector3 getRelativeScale() const {
+        return this->rootComponent->getRelativeScale();
+    };
+
+    /*!
+     *  \brief Gets the component's transform relative to the parent component.
+     *
+     *  \return The component's relative rotation
+     */
+    FORCEINLINE NODISCARD Transform getRelativeTransform() const {
+        return this->rootComponent->getRelativeTransform();
+    }
+
+    FORCEINLINE NODISCARD Vector3 getForwardVector() const {
+        return this->rootComponent->getForwardVector();
+    }
+
+    FORCEINLINE NODISCARD Vector3 getRightVector() const {
+        return this->rootComponent->getRightVector();
+    }
+
+    FORCEINLINE NODISCARD Vector3 getUpVector() const {
+        return this->rootComponent->getUpVector();
+    }
+
+    /*!
+    *  \brief Gets the component's position in world space.
+    *
+    *  \return The component's world position
+    */
+    FORCEINLINE Vector3 getWorldPosition() const
+    {
+        return this->rootComponent->getWorldPosition();
+    }
+
+    /*!
+     *  \brief Gets the component's rotation in world space.
+     *
+     *  \return The component's world rotation
+     */
+    FORCEINLINE Vector3 getWorldRotation() const
+    {
+        return this->rootComponent->getWorldRotation();
+    }
+
+    /*!
+     *  \brief Gets the component's scale in world space.
+     *
+     *  \return The component's world scale
+     */
+    FORCEINLINE Vector3 getWorldScale() const
+    {
+        return this->rootComponent->getWorldScale();
+    }
 
     /*!
      * Returns whether this object is valid.

@@ -31,3 +31,9 @@ set fragmentFile=fs_%~n1.bin
 .\shaderc.exe -i "./include" -f %fragmentFilePath% -p 410 -o ".\Build\Resources\Shaders\GLSL\%fragmentFile%" --platform windows --type fragment
 .\shaderc.exe -i "./include" -f %fragmentFilePath% -p spirv -o ".\Build\Resources\Shaders\SPIRV\%fragmentFile%" --platform windows --type fragment
 .\shaderc.exe -i "./include" -f %fragmentFilePath% -p metal -o ".\Build\Resources\Shaders\Metal\%fragmentFile%" --platform osx --type fragment
+
+if errorlevel 0 (
+	xcopy /E /I /Y .\Build\Resources ..\..\Resources
+)
+
+

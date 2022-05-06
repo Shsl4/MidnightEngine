@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Core/EngineMacros.h>
+#include <Math/Vector3.h>
 #include <cmath>
 
 /*!
@@ -43,6 +44,9 @@ struct ENGINE_API Vector4 {
     Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {
     }
 
+    explicit Vector4(Vector3 const& v) : x(v.x), y(v.y), z(v.z), w(1.0f) {
+    }
+    
     explicit Vector4(const float v) : x(v), y(v), z(v), w(v) {
     }
 
