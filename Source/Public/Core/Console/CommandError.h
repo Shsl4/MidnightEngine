@@ -3,11 +3,11 @@
 #include <Core/EngineMacros.h>
 #include <Logging/Logger.h>
 
-class CommandError : public std::exception {
+class CommandError : public std::runtime_error {
 
 public:
     
-    using Super = std::exception;
+    using Super = std::runtime_error;
 
     explicit CommandError(const std::string& message) : Super(message.c_str()) {}
 
@@ -18,7 +18,7 @@ public:
     {
         if (condition)
         {
-            throw CommandError(fmt::format(format, std::forward<Args>(args)...));
+            throw CommandError(fmt::vformat(format, fmt::make_format_args(std::forward<Args>(args)...)));
         }
     }
     
