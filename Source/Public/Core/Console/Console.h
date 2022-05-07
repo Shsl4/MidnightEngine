@@ -2,32 +2,37 @@
 
 #include <Core/Object.h>
 #include <Core/EngineMacros.h>
-#include <Core/EngineTypes.h>
 
 #include <Logging/Logger.h>
 #include <Memory/AutoReleasePointer.h>
+#include <Console/CommandTree.h>
 
 #include <thread>
 
-class Console final : public Object{
+class ENGINE_API Console final : public Object {
     
 public:
     
-    Console(class Engine* engine);
+    explicit Console(class Engine* engine);
     
-    ~Console();
+    ~Console() override;
     
     FORCEINLINE static Console* getInstance(){
         return instance;
     }
+
+    void registerCommand(CommandNode* node) const;
     
 private:
     
     void consoleLoop();
+
+    void execute(String const& command, Array<String> const& args);
     
     inline static Console* instance = nullptr;
     
     AutoReleasePointer<Logger> logger;
+    AutoReleasePointer<CommandTree> commandTree;
     
     std::thread consoleThread;
     

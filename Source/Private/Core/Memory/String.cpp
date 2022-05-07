@@ -168,7 +168,7 @@ Array<String> String::split(const char separator) const {
 
     }
 
-    if (from == to + 1) {
+    if (from == to) {
         to = sz;
         arr += substring(from, to);
     }

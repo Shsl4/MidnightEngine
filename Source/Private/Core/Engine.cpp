@@ -221,7 +221,6 @@ void Engine::cleanup() {
     }
     
     // Release the allocated engine resources.
-    logger.release();
     inputManager.release();
     activeScene.release();
     resourceLoader.release();
@@ -233,6 +232,10 @@ void Engine::cleanup() {
 
     // Remove reference to the instance
     Engine::instance = nullptr;
+
+    logger->info("Exited MidnightEngine.");
+
+    logger.release();
     
 }
 

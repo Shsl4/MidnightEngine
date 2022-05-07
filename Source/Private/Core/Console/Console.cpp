@@ -1,4 +1,4 @@
-#include <Core/Console.h>
+#include <Console/Console.h>
 #include <Core/Engine.h>
 
 #include <iostream>
@@ -10,10 +10,11 @@ Console::Console(Engine* engine) : engine(engine){
     Console::instance = this;
     
     this->logger = AutoReleasePointer<Logger>::make("Console");
+    this->commandTree = AutoReleasePointer<CommandTree>::make();
     this->consoleThread = std::thread(&Console::consoleLoop, this);
     
     this->consoleThread.detach();
-    
+
 }
 
 Console::~Console(){
@@ -23,34 +24,31 @@ Console::~Console(){
     
 }
 
+void Console::registerCommand(CommandNode* node) const
+{
+    commandTree->registerNode(node);
+}
+
 void Console::consoleLoop(){
     
     while (engine->isRunning()) {
-        
+
+        std::cout << "> ";
         std::string input;
         std::getline(std::cin, input);
         
         String line = input;
         Array<String> args = line.split(' ');
-        
-        logger->debug("{}", args.getSize());
-        
-        for(auto& e : args){
-            std::cout << e;
-        }
-        
-        String& name = args.getAt(0);
-        
-        logger->debug("{}", line);
-        
-        if (name == "scene.unload") {
-            engine->unloadScene();
-        }
-        else{
-            logger->error("Unknown command.");
-        }
-        
+        String name = args.getAt(0);
+        args.removeAt(0);
+
+        execute(name, args);
         
     }
     
+}
+
+void Console::execute(String const& command, Array<String> const& args)
+{
+    commandTree->execute(command, args);
 }

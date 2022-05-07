@@ -19,14 +19,14 @@ public:
      *
      *  \return The name of the class.
      */
-    class String getClassName() const;
+    NODISCARD class String getClassName() const;
     
     /*!
      * Returns a debug description of the object.
      *
      *  \return The object description
      */
-    virtual class String getDescription() const;
+    NODISCARD virtual class String getDescription() const;
 
     /*!
      * Casts this object to the type T.

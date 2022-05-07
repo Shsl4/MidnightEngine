@@ -85,6 +85,22 @@ class MyEngine : public Engine {
 
     void onStart() override {
         
+        CommandNode* stopNode = CommandNode::make("exit");
+        CommandNode* unloadNode = CommandNode::make("scene.unload");
+
+        stopNode->setExecutable([this](const auto* node) {
+            stop();
+            return CommandResult::Success;
+            });
+
+        unloadNode->setExecutable([this](const auto* node) {
+            unloadScene();
+            return CommandResult::Success;
+            });
+
+        getConsole()->registerCommand(stopNode);
+        getConsole()->registerCommand(unloadNode);
+
         getInputManager()->bindEvent(this->cast<Engine>(), KeyBind('u'), EInputEvent::Pressed, &MyEngine::unloadScene);
         getInputManager()->bindEvent(this, KeyBind('l'), EInputEvent::Pressed, &MyEngine::load);
         getInputManager()->bindEvent(this, KeyBind('o'), EInputEvent::Pressed, &MyEngine::load2);

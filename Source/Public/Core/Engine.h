@@ -12,7 +12,7 @@
 #include <Rendering/ResourceLoader.h>
 
 #include <Scene/Scene.h>
-#include <Core/Console.h>
+#include <Console/Console.h>
 
 /*!
  *  The main engine class.
@@ -20,6 +20,7 @@
 class ENGINE_API Engine : public Object
 {
 public:
+ 
     enum class Threads
     {
         Main,
@@ -135,6 +136,11 @@ public:
     FORCEINLINE const ResourceLoader* getResourceLoader() const
     {
         return resourceLoader.raw();
+    }
+
+    FORCEINLINE const Console* getConsole() const
+    {
+        return console.raw();
     }
 
 protected:
