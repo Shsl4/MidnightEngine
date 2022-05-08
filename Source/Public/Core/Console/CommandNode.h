@@ -6,11 +6,11 @@
 #include <Logging/Logger.h>
 #include <Console/ConsoleTypes.h>
 
-class ENGINE_API CommandNode : public Object
-{
+class ENGINE_API CommandNode : public Object {
+    
 public:
 
-    using CommandFunction = std::function<CommandResult(const CommandNode*)>;
+    using CommandFunction = std::function<void(const class CommandContext*)>;
 
     CommandNode() = delete;
 
@@ -22,15 +22,19 @@ public:
     
     CommandNode* addArgument(const String& name, ArgumentType type);
     
-    CommandNode* setExecutable(CommandFunction const& function);
+    CommandNode* addExecutable(CommandFunction const& function);
 
     void lock();
 
-    NODISCARD bool isExecutable() const;
+    void setNodeDescription(String const& description);
 
     NODISCARD CommandFunction getExecutable() const;
     
-    bool containsNode(CommandNode* node) const;
+    bool containsNode(const CommandNode* node) const;
+
+    void putPath(const CommandNode* node, Array<String>& storage, String string) const;
+    
+    NODISCARD Array<String> getPaths() const;
 
     FORCEINLINE bool isLeaf() const {
         return this->nodes.getSize() == 0;
@@ -39,9 +43,13 @@ public:
     FORCEINLINE bool isLocked() const {
         return this->locked;
     }
-
+    
     FORCEINLINE String getNodeName() const {
         return this->nodeName;
+    }
+    
+    FORCEINLINE String getNodeDescription() const {
+        return this->nodeDescription.isEmpty() ? "No description provided." : this->nodeDescription;
     }
     
     FORCEINLINE NodeType getNodeType() const {
@@ -53,9 +61,11 @@ protected:
     friend class CommandTree;
     
     NODISCARD CommandNode* findChildNode(String const& name) const;
+    NODISCARD CommandNode* findLiteralNode(String const& name) const;
     NODISCARD CommandNode* findFirstOf(NodeType type) const;
     
     String nodeName;
+    String nodeDescription;
     AutoReleaseArray<CommandNode*> nodes;
     NodeType nodeType = NodeType::Executable;
 

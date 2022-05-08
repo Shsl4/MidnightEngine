@@ -1,25 +1,75 @@
 #include <Console/CommandTree.h>
 #include <Core/Engine.h>
-#include <Console/CommandError.h>
+
+#include <Console/ArgumentCommandNode.h>
+#include <Console/ExecutableCommandNode.h>
 
 CommandTree::CommandTree()
 {
     this->rootNode = AutoReleasePointer<CommandNode>::make("root");
-    this->logger = AutoReleasePointer<Logger>::make("Console");
 }
 
 void CommandTree::execute(String const& command, Array<String> const& args)
 {
-
-    CommandNode* node = rootNode->findChildNode(command);
+    
+    CommandNode* node = rootNode->findLiteralNode(command);
+    const size_t argc = args.getSize();
+    const auto context = AutoReleasePointer<CommandContext>::make();
 
     if (!node)
     {
-        logger->error("{}: Unknown command.", command);
+        Console::getLogger()->error("{}: Unknown command.", command);
         return;
-    }
+    }    
+   
+    for (size_t i = 0; i < argc; ++i)
+    {
+        String& arg = args[i];
+        CommandNode* nextNode = node->findLiteralNode(arg);
 
-    auto result = node->getExecutable()(node);
+        if(nextNode)
+        {
+            node = nextNode;
+            continue;
+        }
+
+        nextNode = node->findFirstOf(NodeType::Argument);
+
+        if(nextNode)
+        {
+            
+            const auto* argNode = nextNode->cast<ArgumentCommandNode>();
+                
+            context->tryParse(arg, argNode->getNodeName(), argNode->getArgumentType());
+
+            node = nextNode;
+
+            continue;
+               
+        }
+        
+        CommandError::throwError("Too many arguments provided. Expected {}, got {}.", i, argc);
+
+    }
+    
+    node = node->findFirstOf(NodeType::Executable);
+
+    const Array<String> paths = rootNode->findLiteralNode(command)->getPaths();
+
+    String finalString = "Available paths: \n";
+
+    for (size_t i = 0; i < paths.getSize(); ++i)
+    {
+        finalString += String(fmt::format("- {}", paths[i]));
+        if(i != paths.getSize() - 1)
+        {
+            finalString += String("\n");
+        }
+    }
+    
+    CommandError::throwIf(!node, "This command requires more arguments.\n{}", finalString);
+    
+    node->cast<ExecutableCommandNode>()->getCommandFunction()(context.raw());
     
 }
 
@@ -36,7 +86,8 @@ void CommandTree::registerNode(CommandNode* node)
 
         for (auto const& leaf : leaves)
         {
-            CommandError::throwIf(!leaf->isExecutable(), "One of the leaves is not executable. Make sure to bind a function for every command.");
+            CommandError::throwIf(leaf->nodeType != NodeType::Executable, "One of the leaves is not executable."
+                                 " Make sure to bind a function for every command.");
         }
     
         node->lock();
@@ -45,7 +96,8 @@ void CommandTree::registerNode(CommandNode* node)
     }
     catch(CommandError const& error)
     {
-        logger->error(fmt::format("Error while registering command {}: {}", node->getNodeName(), error.what()).c_str());
+        Console::getLogger()->error(fmt::format("Error while registering command {}: {}",
+            node->getNodeName(), error.what()).c_str());
     }
     
 }

@@ -22,3 +22,4 @@
 #define ENGINE_INTERNAL
 
 #define NODISCARD [[nodiscard]]
+#define NORETURN [[noreturn]]

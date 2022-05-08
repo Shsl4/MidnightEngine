@@ -7,17 +7,18 @@
 
 #include "ShaderManager.h"
 #include "assimp/Importer.hpp"
+#include "Console/Console.h"
 
 void ResourceLoader::init() {
 
     std::filesystem::directory_iterator iterator;
 
     try {
-        ResourceLoader::logger.info("{}", std::filesystem::current_path().string());
+        Console::getLogger()->info("{}", std::filesystem::current_path().string());
         iterator = std::filesystem::directory_iterator("./Resources/Models");
     }
     catch (std::exception) {
-        ResourceLoader::logger.fatal("Could not find the Resources folder.");
+        Console::getLogger()->fatal("Could not find the Resources folder.");
         return;
     }
 
@@ -76,7 +77,7 @@ const Mesh* ResourceLoader::getMesh(String const& name) const
     }
 
     // Print an error message
-    logger.error("Tried to get mesh named {} which does not exist.", name);
+    Console::getLogger()->error("Tried to get mesh named {} which does not exist.", name);
 
     return nullptr;
     
@@ -102,7 +103,7 @@ bool ResourceLoader::loadMesh(String const& file)
     // If the model could not be loaded, print an error message.
     if (scene == nullptr)
     {
-        logger.error("Failed to load model. The path {} is invalid.", path);
+        Console::getLogger()->error("Failed to load model. The path {} is invalid.", path);
         return false;
     }
 
@@ -164,7 +165,7 @@ bool ResourceLoader::loadMesh(String const& file)
     loadedMeshes += Allocator<Mesh>().construct(totalVertices, totalIndices, fileName, path);
 
     // Log a success message.
-    logger.success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
+    Console::getLogger()->success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
 
     return true;
     

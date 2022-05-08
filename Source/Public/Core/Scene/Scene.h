@@ -5,6 +5,7 @@
 #include <Scene/SceneComponent.h>
 #include <Scene/CameraComponent.h>
 #include <Scene/CameraManager.h>
+#include <Console/Console.h>
 #include <Memory/Array.h>
 #include <Memory/AutoReleasePointer.h>
 #include <Logging/Logger.h>
@@ -58,11 +59,17 @@ public:
     */
     virtual void cleanup();
 
+    void listObjects() const;
+    
+    void listComponents() const;
+
     NODISCARD FORCEINLINE State getState() const { return this->state; }
     
     NODISCARD FORCEINLINE virtual String getSceneName() const = 0;
 
     void setWorldColor(UInt32 color) const;
+
+    NODISCARD SceneObject* getObjectByIndex(size_t index) const;
     
     /*!
      *  Instantiates a new SceneObject in the scene
@@ -80,7 +87,7 @@ public:
         Allocator<T> allocator;
 
         // Check if the class we are trying to instantiate is a SceneObject.
-        static_assert(std::is_base_of_v<SceneObject, T>, "T should inherit from SceneComponent");
+        static_assert(std::is_base_of_v<SceneObject, T>, "T should inherit from SceneObject");
 
         // Instantiate the SceneObject
         T *object = allocator.construct(args...);
@@ -93,12 +100,12 @@ public:
 
             allocator.destroy(object);
             
-            logger->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
+            Console::getLogger()->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
             
             return nullptr;
 
         }
-
+        
         // Setup the input on the created SceneObject
         setupInput(object);
 
@@ -148,12 +155,20 @@ public:
     }
 
     /*!
+    * Destroys a SceneObject from the Scene.
+    *
+    *  \param[in] object The object to destroy
+    *  \return Whether the object was destroyed
+    */
+    virtual bool destroyObject(SceneObject *object);
+
+    /*!
      * Destroys a SceneComponent from the Scene.
      *
      *  \param[in] component The component to destroy
      *  \return Whether the component was destroyed
      */
-    bool destroyComponent(SceneComponent *component);
+    virtual bool destroyComponent(SceneComponent *component);
 
     /*!
      * Gets this Scene's CameraManager.
@@ -203,12 +218,7 @@ protected:
      * The scene's CameraManager.
      */
     AutoReleasePointer<CameraManager> cameraManager;
-
-    /*!
-     * The scene's Logger.
-     */
-    AutoReleasePointer<Logger> logger;
-
+    
     State state = State::Unloaded;
 
 };

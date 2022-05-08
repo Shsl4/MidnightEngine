@@ -53,12 +53,12 @@ class ENGINE_API InputManager : public Object {
     
 public:
 
-    InputManager();
+    InputManager() = default;
 
     void update() const;
     
     template<class T>
-    void bindEvent(T *target, KeyBind key, EInputEvent type, void(T::*f)()) {
+    void bindEvent(T *target, const KeyBind key, const EInputEvent type, void(T::*f)()) {
         const std::function<void()> function = std::bind(f, target);
         
         switch (type) {
@@ -76,7 +76,7 @@ public:
 
     void unbindAll(void* target) {
 
-        for (int i = 0; i < keyDownEvents.size();) {
+        for (size_t i = 0; i < keyDownEvents.size();) {
             
             if (keyDownEvents[i].object == target) {
                 keyDownEvents.erase(keyDownEvents.begin() + i);
@@ -87,7 +87,7 @@ public:
             }
         }
 
-        for (int i = 0; i < keyUpEvents.size();) {
+        for (size_t i = 0; i < keyUpEvents.size();) {
 
             if (keyUpEvents[i].object == target) {
                 keyUpEvents.erase(keyUpEvents.begin() + i);
@@ -98,7 +98,7 @@ public:
             }
         }
 
-        for (int i = 0; i < axisEvents.size();) {
+        for (size_t i = 0; i < axisEvents.size();) {
 
             if (axisEvents[i].object == target) {
                 axisEvents.erase(axisEvents.begin() + i);
@@ -124,9 +124,7 @@ public:
 private:
 
     static void invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>&);
-
-    AutoReleasePointer<Logger> logger;
-
+    
     size_t nextId = 0;
 
     std::vector<KeyBindEntry> keyDownEvents;

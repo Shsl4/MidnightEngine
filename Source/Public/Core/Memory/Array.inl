@@ -61,7 +61,7 @@ Array<T>::~Array() {
 }
 
 template<typename T>
-void Array<T>::append(T const &elem) {
+T& Array<T>::append(T const &elem) {
 
     // Extend the array if necessary.
     extend();
@@ -71,6 +71,8 @@ void Array<T>::append(T const &elem) {
 
     // Increase the number of held objects.
     ++size;
+
+    return data[size];
 
 }
 
@@ -182,13 +184,13 @@ void Array<T>::removeAllOf(T const &elem) {
 }
 
 template<typename T>
-Optional<size_t> Array<T>::firstIndexOf(T const &elem) {
+Optional<size_t> Array<T>::firstIndexOf(T const &elem) const {
 
     size_t counter = 0;
 
     for (auto &e: *this) {
         if (e == elem) {
-            return Optional<size_t>(counter);
+            return Optional(counter);
         }
         ++counter;
     }
@@ -320,7 +322,7 @@ void Array<T>::sortDescending() {
 }
 
 template<typename T>
-bool Array<T>::contains(T const &elem) {
+bool Array<T>::contains(T const &elem) const{
 
     for (auto &e: *this) {
         if (e == elem) {
@@ -484,7 +486,6 @@ Array<T> &Array<T>::operator=(Array<T> &&other) noexcept
 template<typename T>
 T& Array<T>::getAt(size_t index) const {
     if(index >= capacity){
-        abort();
         throw std::runtime_error("Array out of bounds.");
     }
     return data[index];
@@ -639,5 +640,41 @@ Int64 Array<T>::partitionDesc(const Int64 from, const Int64 to) {
     allocator.swapMove(data + idx + 1, data + to);
 
     return idx + 1;
+
+}
+
+template<typename T>
+bool AutoReleaseArray<T>::removeFirstOf(T const &elem) {
+
+    Optional<size_t> opt = Array<T>::firstIndexOf(elem);
+
+    if (opt.hasValue()) {
+
+        size_t index = opt.getValue();
+        
+        // If the index is out of bounds, return.
+        if (index >= Array<T>::getSize()) {
+            return false;
+        }
+
+        // Move the data in the optional.
+        Array<T>::allocator.autoDestroy(Array<T>::data[index]);
+
+        // Move back all the elements after the index.
+        Array<T>::allocator.move(Array<T>::data + index + 1, Array<T>::data + Array<T>::size, Array<T>::data + index);
+
+        // Reduce the size of the array.
+        --Array<T>::size;
+
+        // If T is a primitive type, set the memory after the moved elements to zero.
+        if (std::is_fundamental_v<T>) {
+            std::memset(Array<T>::data + Array<T>::size, 0, Array<T>::capacity - Array<T>::size);
+        }
+
+        return true;
+
+    }
+
+    return false;
 
 }

@@ -1,6 +1,8 @@
 #include <Scene/SceneObject.h>
 #include <Input/InputManager.h>
 
+#include "Scene/Scene.h"
+
 void SceneObject::start() {
     
     // Call start on the root component
@@ -17,7 +19,6 @@ void SceneObject::update(float deltaTime) {
 
 void SceneObject::setRootComponent(SceneComponent *component) {
 
-    this->rootComponent = component;
     component->attachTo(this);
 
 }
@@ -27,10 +28,10 @@ void SceneObject::onComponentAttached(SceneComponent *component) {
 }
 
 void SceneObject::onComponentDetached(SceneComponent *component) {
-
+    
 }
 
-bool SceneObject::attachTo(SceneObject* object, AttachmentProperties properties)
+bool SceneObject::attachTo(SceneObject* object, AttachmentProperties properties) const
 {
     return this->rootComponent->attachTo(object, properties);
 }
@@ -39,42 +40,42 @@ void SceneObject::setupInput(InputManager *manager) {
 
 }
 
-void SceneObject::addWorldPosition(Vector3 const& position)
+void SceneObject::addWorldPosition(Vector3 const& position) const
 {
     this->rootComponent->addWorldPosition(position);
 }
 
-void SceneObject::addWorldRotation(Vector3 const& rotation)
+void SceneObject::addWorldRotation(Vector3 const& rotation) const
 {
     this->rootComponent->addWorldRotation(rotation);
 }
 
-void SceneObject::addWorldScale(Vector3 const& scale)
+void SceneObject::addWorldScale(Vector3 const& scale) const
 {
     this->rootComponent->addWorldScale(scale);
 }
 
-void SceneObject::addWorldTransform(Transform const& transformToAdd)
+void SceneObject::addWorldTransform(Transform const& transformToAdd) const
 {
     this->rootComponent->addWorldTransform(transformToAdd);
 }
 
-void SceneObject::setWorldPosition(Vector3 const& position)
+void SceneObject::setWorldPosition(Vector3 const& position) const
 {
     this->rootComponent->setWorldPosition(position);
 }
 
-void SceneObject::setWorldRotation(Vector3 const& rotation)
+void SceneObject::setWorldRotation(Vector3 const& rotation) const
 {
     this->rootComponent->setWorldRotation(rotation);
 }
 
-void SceneObject::setWorldScale(Vector3 const& scale)
+void SceneObject::setWorldScale(Vector3 const& scale) const
 {
     this->rootComponent->setWorldScale(scale);
 }
 
-void SceneObject::setWorldTransform(Transform const& transformToSet)
+void SceneObject::setWorldTransform(Transform const& transformToSet) const
 {
     this->rootComponent->setWorldTransform(transformToSet);
 }

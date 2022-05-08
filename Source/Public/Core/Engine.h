@@ -113,7 +113,7 @@ public:
      *
      * \return The active scene.
      */
-    FORCEINLINE const class Scene* getActiveScene() const
+    FORCEINLINE class Scene* getActiveScene() const
     {
         return activeScene.raw();
     }
@@ -157,12 +157,11 @@ protected:
         schedule(Threads::Render, [this]()
         {
             activeScene.rebuild<SceneClass>();
-            logger->info("Loading scene of type {}...", activeScene->getClassName());
+            Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
-            logger->success("Successfully loaded scene {}", activeScene->getSceneName());
+            Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
         });
-        
-        
+     
     }
 
     void unloadScene();
@@ -239,12 +238,7 @@ private:
      * The engine InputManager.
      */
     AutoReleasePointer<InputManager> inputManager;
-
-    /*!
-     * The engine Logger.
-     */
-    AutoReleasePointer<Logger> logger;
-
+ 
     /*!
      * The currently loaded Scene.
      */

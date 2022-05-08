@@ -1,5 +1,6 @@
 #include <Memory/String.h>
 #include <fmt/format.h>
+#include <Exception/ParseError.h>
 #include <ostream>
 #include <cmath>
 
@@ -74,18 +75,18 @@ String String::substring(size_t from, size_t to) const {
 
 }
 
-Int64 String::toInteger() const{
-    
-    if(getSize() == 0) { return 0; }
+Int64 String::toInteger() const {
+
+    ParseError::throwIf(getSize() == 0, "Cannot parse an empty string");
 
     const size_t max = getSize();
     Int64 value = 0;
     const bool negative = data[0] == '-';
     
     for(size_t i = negative; i < max; ++i){
-        
-        if(!isInteger(data[i])) { return 0; }
 
+        ParseError::throwIf(!isInteger(data[i]), "Failed to parse. \"{}\" does not represent an integer", *this);
+        
         const UInt8 digit = charToInteger(data[i]);
         
         value += static_cast<Int64>(digit * pow(10, size - i - 2));
@@ -102,14 +103,14 @@ Int64 String::toInteger() const{
 
 double String::toDouble() const {
     
-    if(getSize() == 0) { return 0; }
+    ParseError::throwIf(getSize() == 0, "Cannot parse an empty string");
 
-    const size_t max = getSize();
+    const Int64 max = static_cast<Int64>(getSize());
     double value = 0;
     const bool negative = data[0] == '-';
 
     Int64 dotIndex = -1;
-    size_t counter = 0;
+    Int64 counter = 0;
     
     for(const auto& e : *this){
         
@@ -122,11 +123,16 @@ double String::toDouble() const {
         
     }
 
-    for(size_t i = negative; i < max; ++i){
+    if(dotIndex == -1)
+    {
+        return static_cast<double>(toInteger());
+    }
+
+    for(Int64 i = negative; i < max; ++i){
         
         if(dotIndex == i) { continue; }
         
-        if(!isInteger(data[i])) { return 0; }
+        ParseError::throwIf(!isInteger(data[i]), "Failed to parse. \"{}\" does not represent a floating point number", *this);
 
         const UInt8 digit = charToInteger(data[i]);
         
@@ -148,9 +154,30 @@ double String::toDouble() const {
     
 }
 
+bool String::toBool() const
+{
+    
+    ParseError::throwIf(getSize() == 0, "Cannot parse an empty string");
+    
+    if(*this == "true" || *this == "1")
+    {
+        return true;
+    }
+
+    if(*this == "false" || *this == "0")
+    {
+        return false;
+    }
+
+    ParseError::throwError("Failed to parse. \"{}\" does not represent a boolean", *this);
+    
+}
+
 Array<String> String::split(const char separator) const {
     
     auto arr = Array<String>(10);
+
+    if(getSize() == 0) { return arr; }
     
     size_t from = 0;
     size_t to = 0;
@@ -164,11 +191,14 @@ Array<String> String::split(const char separator) const {
             arr += substring(from, to);
             from = to + 1;
         }
-
-
+        
     }
 
-    if (from == to) {
+    if(from == 0 && to == 0) {
+        arr += *this;
+    }
+    
+    if (from == to + 1) {
         to = sz;
         arr += substring(from, to);
     }

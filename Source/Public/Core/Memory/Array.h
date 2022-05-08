@@ -63,7 +63,7 @@ public:
      *
      *  \param[in] elem The element to add
     */
-    virtual void append(T const &elem);
+    virtual T& append(T const &elem);
 
     /*!
      *  Adds the content of the input array to the end of this array.
@@ -111,7 +111,7 @@ public:
      *  \param[in] elem The element to check
      *  \return An optional value containing the index if it was found.
      */
-    virtual Optional<size_t> firstIndexOf(T const &elem);
+    virtual Optional<size_t> firstIndexOf(T const &elem) const;
 
     /*!
      *  Returns the last index of the input element
@@ -159,7 +159,7 @@ public:
      *  \param[in] elem The element to check.
      *  \return Whether the array contains the element.
      */
-    virtual bool contains(T const &elem);
+    virtual bool contains(T const &elem) const;
 
     /*!
      *  Inserts an element at the input index.
@@ -329,7 +329,7 @@ protected:
     /*!
      * The allocator used to allocate and resize buffers.
      */
-    Allocator<T> allocator;
+    Allocator<T> allocator{};
 
 private:
 
@@ -416,6 +416,8 @@ public:
 
     }
 
+    bool removeFirstOf(T const &elem) override;
+ 
     /*!
      * The AutoReleaseArray destructor. It releases all allocated resources.
      */

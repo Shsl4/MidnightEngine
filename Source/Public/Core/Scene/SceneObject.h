@@ -50,7 +50,7 @@ public:
     *  \param[in] object The SceneObject to attach to.
     *  \return Whether the operation succeeded.
     */
-    bool attachTo(SceneObject* object, AttachmentProperties properties = AttachmentProperties::noScale);
+    bool attachTo(SceneObject* object, AttachmentProperties properties = AttachmentProperties::noScale) const;
 
     /*!
      * Function called by the scene when the object is created. SceneObjects must override this method to
@@ -61,21 +61,21 @@ public:
      */
     virtual void createComponents(class Scene *scene, Transform transform) = 0;
 
-    void addWorldPosition(Vector3 const& position);
+    void addWorldPosition(Vector3 const& position) const;
 
-    void addWorldRotation(Vector3 const& rotation);
+    void addWorldRotation(Vector3 const& rotation) const;
 
-    void addWorldScale(Vector3 const& scale);
+    void addWorldScale(Vector3 const& scale) const;
 
-    void addWorldTransform(Transform const& transformToAdd);
+    void addWorldTransform(Transform const& transformToAdd) const;
 
-    void setWorldPosition(Vector3 const& position);
+    void setWorldPosition(Vector3 const& position) const;
 
-    void setWorldRotation(Vector3 const& rotation);
+    void setWorldRotation(Vector3 const& rotation) const;
 
-    void setWorldScale(Vector3 const& scale);
+    void setWorldScale(Vector3 const& scale) const;
 
-    void setWorldTransform(Transform const& transformToSet);
+    void setWorldTransform(Transform const& transformToSet) const;
 
 
     /*!
@@ -85,7 +85,7 @@ public:
     */
     FORCEINLINE Vector3 getRelativePosition() const {
         return this->rootComponent->getRelativePosition();
-    };
+    }
 
     /*!
      *  \brief Gets the component's rotation relative to the parent component.
@@ -94,7 +94,7 @@ public:
      */
     FORCEINLINE Vector3 getRelativeRotation() const {
         return this->rootComponent->getRelativeRotation();
-    };
+    }
 
     /*!
      *  \brief Gets the current component's scale relative to the parent component.
@@ -103,7 +103,7 @@ public:
      */
     FORCEINLINE Vector3 getRelativeScale() const {
         return this->rootComponent->getRelativeScale();
-    };
+    }
 
     /*!
      *  \brief Gets the component's transform relative to the parent component.
@@ -197,6 +197,7 @@ protected:
 private:
 
     friend class Scene;
+    friend class SceneComponent;
 
     /*!
      * This object's root component

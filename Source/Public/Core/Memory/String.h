@@ -61,7 +61,9 @@ public:
      *  \return The floating point number represented by the string.
      */
     NODISCARD double toDouble() const;
-    
+
+    NODISCARD bool toBool() const;
+ 
     /*!
      *  Returns an array containing all the substrings separated by the separator.
      *

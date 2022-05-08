@@ -14,20 +14,30 @@ class ENGINE_API Console final : public Object {
 public:
     
     explicit Console(class Engine* engine);
-    
+        
     ~Console() override;
+
+    void registerCommand(CommandNode* node) const;
+
+    void execute(String const& command) const;
     
     FORCEINLINE static Console* getInstance(){
         return instance;
     }
-
-    void registerCommand(CommandNode* node) const;
+    
+    FORCEINLINE static const Logger* getLogger() {
+        return instance->logger.raw();
+    }
     
 private:
+
+    friend class Engine;
+    
+    void init();
     
     void consoleLoop();
-
-    void execute(String const& command, Array<String> const& args);
+    
+    void consoleHelp(const CommandContext* context);
     
     inline static Console* instance = nullptr;
     

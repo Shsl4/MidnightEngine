@@ -6,8 +6,6 @@
 
 #include "Engine.h"
 
-Logger logger = Logger("SceneComponent");
-
 const AttachmentProperties AttachmentProperties::all = { true, true, true };
 const AttachmentProperties AttachmentProperties::locationOnly = { true, false, false };
 const AttachmentProperties AttachmentProperties::rotationOnly = { false, true, false };
@@ -16,13 +14,7 @@ const AttachmentProperties AttachmentProperties::noLocation = { false, true, tru
 const AttachmentProperties AttachmentProperties::noRotation = { true, false, true };
 const AttachmentProperties AttachmentProperties::noScale = { true, true, false };
 
-SceneComponent::SceneComponent()
-{
-}
-
 void SceneComponent::start() {
-
-    Logger::check(registered, "Object of class \"{}\" has been badly constructed! File: {}, Line: {}", this->getClassName());
 
     // Call start on every child component
     for (SceneComponent *childComponent: childComponents) {
@@ -55,22 +47,30 @@ bool SceneComponent::attachTo(SceneObject *object, AttachmentProperties properti
     // If the pointer or the object is invalid, return.
     if (!object || !object->isValid()) { return false; }
 
-    // Get the attachment result.
-    const bool result = attachTo(object->getRootComponent(), properties);
+    if(object->getRootComponent())
+    {
+        // Get the attachment result.
+        const bool result = attachTo(object->getRootComponent(), properties);
 
-    // If the attachment succeeded
-    if (result) {
+        // If the attachment succeeded
+        if (result) {
 
-        // Set the parent object and call the attached callback.
-        this->parentObject = object;
-        object->onComponentAttached(this);
+            // Set the parent object and call the attached callback.
+            object->onComponentAttached(this);
 
+        }
+
+        return result;
     }
+    
+    object->rootComponent = this;
+    this->parentObject = object;
 
-    return result;
+    return true;
     
 }
 
+/// \todo Refactor attachment system
 bool SceneComponent::attachTo(SceneComponent *other, AttachmentProperties properties) {
 
     // If the pointer or the component is invalid, return.
@@ -81,7 +81,7 @@ bool SceneComponent::attachTo(SceneComponent *other, AttachmentProperties proper
     
     // If this component is already attached to another component, detach it.
     if (parentComponent) { detachFromComponent(); }
-
+    
     // Add this to the child components of other.
     other->childComponents.append(this);
     
@@ -246,8 +246,8 @@ void SceneComponent::setWorldRotation(Vector3 const& rotation) {
 }
 
 void SceneComponent::setWorldScale(Vector3 const& scale) {
-
-    Vector3 ratio = scale / transform.scale;
+    
+    const Vector3 ratio = scale / transform.scale;
 
     this->transform.scale = scale;
 
@@ -265,4 +265,9 @@ void SceneComponent::setWorldTransform(Transform const& transformToSet) {
     setWorldPosition(transformToSet.position);
     setWorldRotation(transformToSet.rotation);
     setWorldScale(transformToSet.scale);
+}
+
+bool SceneComponent::isRootComponent() const
+{
+    return parentObject->getRootComponent() == this;
 }

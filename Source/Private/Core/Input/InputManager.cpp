@@ -1,10 +1,6 @@
 #include <Input/InputManager.h>
 #include <SDL2/SDL.h>
 
-InputManager::InputManager() : logger(AutoReleasePointer<Logger>::make("InputManager")) {
-
-}
-
 void InputManager::invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>& arr) {
 
     for (auto const &e: arr) {
