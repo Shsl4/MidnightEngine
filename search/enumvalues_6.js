@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['up_0',['Up',['../_flying_character_8cpp.html#aa9711de6e5a14068d0bec22941539ffea57a7edcbc04d6175683383cad5c3e0a2',1,'FlyingCharacter.cpp']]]
+  ['unloaded_0',['Unloaded',['../class_scene.html#ad10422293408a90b501d1b369ce49029aa5ae20aa7fda5bd38bf0dce98e65bd2d',1,'Scene']]],
+  ['unloading_1',['Unloading',['../class_scene.html#ad10422293408a90b501d1b369ce49029a62168dff2fc801c4ff6ee24619bc314c',1,'Scene']]]
 ];

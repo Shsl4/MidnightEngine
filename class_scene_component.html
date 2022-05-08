@@ -91,7 +91,6 @@ $(document).ready(function(){initNavTree('class_scene_component.html',''); initR
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -99,6 +98,9 @@ $(document).ready(function(){initNavTree('class_scene_component.html',''); initR
   <div class="headertitle"><div class="title">SceneComponent Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>SceneComponents are the lowest class representing something in a scene. SceneComponents can be attached together. Each component can have multiple children, but a unique parent. The root component should then be attached to a parent <a class="el" href="class_scene_object.html">SceneObject</a>.  
+ <a href="class_scene_component.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_scene_component_8h_source.html">SceneComponent.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -116,51 +118,92 @@ Inheritance diagram for SceneComponent:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b7ba70ecafaa79352999caea9511b02"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2b7ba70ecafaa79352999caea9511b02">start</a> ()</td></tr>
+<tr class="memdesc:a2b7ba70ecafaa79352999caea9511b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>.  <a href="class_scene_component.html#a2b7ba70ecafaa79352999caea9511b02">More...</a><br /></td></tr>
 <tr class="separator:a2b7ba70ecafaa79352999caea9511b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b129c31a06c02337036c2b2be2b570"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ab0b129c31a06c02337036c2b2be2b570">update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:ab0b129c31a06c02337036c2b2be2b570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>.  <a href="class_scene_component.html#ab0b129c31a06c02337036c2b2be2b570">More...</a><br /></td></tr>
 <tr class="separator:ab0b129c31a06c02337036c2b2be2b570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a0d7056a1d1b9c0031bef93e788001"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a77a0d7056a1d1b9c0031bef93e788001">construct</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;relativeTransform)</td></tr>
+<tr class="memdesc:a77a0d7056a1d1b9c0031bef93e788001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct is called right after the scene created this component.  <a href="class_scene_component.html#a77a0d7056a1d1b9c0031bef93e788001">More...</a><br /></td></tr>
 <tr class="separator:a77a0d7056a1d1b9c0031bef93e788001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182ba08be7f123613825d94c7219c65e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a182ba08be7f123613825d94c7219c65e">attachTo</a> (class <a class="el" href="class_scene_object.html">SceneObject</a> *object)</td></tr>
-<tr class="separator:a182ba08be7f123613825d94c7219c65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77515df3ebe3efe2a7d3bcc24f9b2574"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a77515df3ebe3efe2a7d3bcc24f9b2574">attachTo</a> (<a class="el" href="class_scene_component.html">SceneComponent</a> *other)</td></tr>
-<tr class="separator:a77515df3ebe3efe2a7d3bcc24f9b2574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa984281593cd252e1e6582685c206cd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa984281593cd252e1e6582685c206cd6">attachTo</a> (class <a class="el" href="class_scene_object.html">SceneObject</a> *object, <a class="el" href="struct_attachment_properties.html">AttachmentProperties</a> properties=<a class="el" href="struct_attachment_properties.html#af75d65fe9825bdb411be38bd1ecc38a7">AttachmentProperties::noScale</a>)</td></tr>
+<tr class="memdesc:aa984281593cd252e1e6582685c206cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches this component to a <a class="el" href="class_scene_object.html">SceneObject</a>. This component will be automatically detached from its parent if it has any.  <a href="class_scene_component.html#aa984281593cd252e1e6582685c206cd6">More...</a><br /></td></tr>
+<tr class="separator:aa984281593cd252e1e6582685c206cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2ead1b769e5f2b447c402e264faa80"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a8d2ead1b769e5f2b447c402e264faa80">attachTo</a> (<a class="el" href="class_scene_component.html">SceneComponent</a> *other, <a class="el" href="struct_attachment_properties.html">AttachmentProperties</a> properties=<a class="el" href="struct_attachment_properties.html#af75d65fe9825bdb411be38bd1ecc38a7">AttachmentProperties::noScale</a>)</td></tr>
+<tr class="memdesc:a8d2ead1b769e5f2b447c402e264faa80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches this component to another <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a>. This component will be automatically detached from its parent if it has any.  <a href="class_scene_component.html#a8d2ead1b769e5f2b447c402e264faa80">More...</a><br /></td></tr>
+<tr class="separator:a8d2ead1b769e5f2b447c402e264faa80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2b9ddf55ac126f3d8fd7a72ffdb1906"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa2b9ddf55ac126f3d8fd7a72ffdb1906">detachFromComponent</a> ()</td></tr>
+<tr class="memdesc:aa2b9ddf55ac126f3d8fd7a72ffdb1906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detaches this component from its parent if it has any.  <a href="class_scene_component.html#aa2b9ddf55ac126f3d8fd7a72ffdb1906">More...</a><br /></td></tr>
 <tr class="separator:aa2b9ddf55ac126f3d8fd7a72ffdb1906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a087cb95390e162505d2c34daf3300c4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a087cb95390e162505d2c34daf3300c4d">getRelativePosition</a> () const</td></tr>
+<tr class="memdesc:a087cb95390e162505d2c34daf3300c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's position relative to the parent component.  <a href="class_scene_component.html#a087cb95390e162505d2c34daf3300c4d">More...</a><br /></td></tr>
+<tr class="separator:a087cb95390e162505d2c34daf3300c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a810ba5952a7474dd00fc5be5bf6e36b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a810ba5952a7474dd00fc5be5bf6e36b4">getRelativeRotation</a> () const</td></tr>
+<tr class="memdesc:a810ba5952a7474dd00fc5be5bf6e36b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's rotation relative to the parent component.  <a href="class_scene_component.html#a810ba5952a7474dd00fc5be5bf6e36b4">More...</a><br /></td></tr>
+<tr class="separator:a810ba5952a7474dd00fc5be5bf6e36b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e1bd480a3f997aace13e64e398f0ba2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2e1bd480a3f997aace13e64e398f0ba2">getRelativeScale</a> () const</td></tr>
+<tr class="memdesc:a2e1bd480a3f997aace13e64e398f0ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current component's scale relative to the parent component.  <a href="class_scene_component.html#a2e1bd480a3f997aace13e64e398f0ba2">More...</a><br /></td></tr>
+<tr class="separator:a2e1bd480a3f997aace13e64e398f0ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a527a4e9a2cb1ed433a524b6ad9095f11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a527a4e9a2cb1ed433a524b6ad9095f11">getRelativeTransform</a> () const</td></tr>
+<tr class="memdesc:a527a4e9a2cb1ed433a524b6ad9095f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's transform relative to the parent component.  <a href="class_scene_component.html#a527a4e9a2cb1ed433a524b6ad9095f11">More...</a><br /></td></tr>
+<tr class="separator:a527a4e9a2cb1ed433a524b6ad9095f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d4637e6ee41c3d74a311bf25ba4d7c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a23d4637e6ee41c3d74a311bf25ba4d7c">getForwardVector</a> () const</td></tr>
+<tr class="separator:a23d4637e6ee41c3d74a311bf25ba4d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9edfdf48bfd8b518c754c0c36e5f409"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#af9edfdf48bfd8b518c754c0c36e5f409">getRightVector</a> () const</td></tr>
+<tr class="separator:af9edfdf48bfd8b518c754c0c36e5f409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2757bf05c0e1fd3172a6bae1a585a43c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2757bf05c0e1fd3172a6bae1a585a43c">getUpVector</a> () const</td></tr>
+<tr class="separator:a2757bf05c0e1fd3172a6bae1a585a43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c48ae0e5997079e5f3db06716874347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2c48ae0e5997079e5f3db06716874347">addWorldPosition</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position)</td></tr>
+<tr class="separator:a2c48ae0e5997079e5f3db06716874347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc40d9d02e4cacddd3f39d45849cb85f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#adc40d9d02e4cacddd3f39d45849cb85f">addWorldRotation</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
+<tr class="separator:adc40d9d02e4cacddd3f39d45849cb85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef87f8a17905f24ffaaaafb28d27563a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aef87f8a17905f24ffaaaafb28d27563a">addWorldScale</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;scale)</td></tr>
+<tr class="separator:aef87f8a17905f24ffaaaafb28d27563a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19fb9b538ccc40a2cccee12b94c68fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa19fb9b538ccc40a2cccee12b94c68fe">addWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToAdd)</td></tr>
+<tr class="separator:aa19fb9b538ccc40a2cccee12b94c68fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2278681e514f292e80880cfde1c30e63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2278681e514f292e80880cfde1c30e63">setWorldPosition</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position)</td></tr>
+<tr class="separator:a2278681e514f292e80880cfde1c30e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd15f850f121a7da3437f7ebdfdca87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#addd15f850f121a7da3437f7ebdfdca87">setWorldRotation</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
+<tr class="separator:addd15f850f121a7da3437f7ebdfdca87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad538f61a7844892170ab1c944db9072b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ad538f61a7844892170ab1c944db9072b">setWorldScale</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;scale)</td></tr>
+<tr class="separator:ad538f61a7844892170ab1c944db9072b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a5a0306cf04cfb83e1759dc5a47504b68">setWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToSet)</td></tr>
+<tr class="separator:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a077e5109ecf61f49619f14fed39deb05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a077e5109ecf61f49619f14fed39deb05">isValid</a> () const</td></tr>
+<tr class="memdesc:a077e5109ecf61f49619f14fed39deb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this component has been correctly registered / created.  <a href="class_scene_component.html#a077e5109ecf61f49619f14fed39deb05">More...</a><br /></td></tr>
 <tr class="separator:a077e5109ecf61f49619f14fed39deb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22dd87a479c1baa5f6578d3e2e8d4d36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a22dd87a479c1baa5f6578d3e2e8d4d36">getRelativePosition</a> () const</td></tr>
-<tr class="separator:a22dd87a479c1baa5f6578d3e2e8d4d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f3d2bdebce3a330d1fdb7e82588b747"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a1f3d2bdebce3a330d1fdb7e82588b747">getRelativeRotation</a> () const</td></tr>
-<tr class="separator:a1f3d2bdebce3a330d1fdb7e82588b747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a706492a0c7e3505be719c027558423d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a706492a0c7e3505be719c027558423d9">getRelativeScale</a> () const</td></tr>
-<tr class="separator:a706492a0c7e3505be719c027558423d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a352731e868a260031441624e6123be4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a352731e868a260031441624e6123be4f">getRelativeTransform</a> () const</td></tr>
-<tr class="separator:a352731e868a260031441624e6123be4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa29cdbe5fa0b156994b2248ceacb7458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa29cdbe5fa0b156994b2248ceacb7458">getWorldPosition</a> ()</td></tr>
-<tr class="separator:aa29cdbe5fa0b156994b2248ceacb7458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8f72dc0d0541be063e86236cd3bc30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a5a8f72dc0d0541be063e86236cd3bc30">getWorldRotation</a> ()</td></tr>
-<tr class="separator:a5a8f72dc0d0541be063e86236cd3bc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c45dad733ce8e67255b9781b0a381c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a09c45dad733ce8e67255b9781b0a381c">getWorldScale</a> ()</td></tr>
-<tr class="separator:a09c45dad733ce8e67255b9781b0a381c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588dfe0a372f8c42e8f429295c78a0d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a588dfe0a372f8c42e8f429295c78a0d3">getWorldPosition</a> () const</td></tr>
+<tr class="memdesc:a588dfe0a372f8c42e8f429295c78a0d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's position in world space.  <a href="class_scene_component.html#a588dfe0a372f8c42e8f429295c78a0d3">More...</a><br /></td></tr>
+<tr class="separator:a588dfe0a372f8c42e8f429295c78a0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf62fa307d026c9f7a5611e1d40f44e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#abf62fa307d026c9f7a5611e1d40f44e0">getWorldRotation</a> () const</td></tr>
+<tr class="memdesc:abf62fa307d026c9f7a5611e1d40f44e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's rotation in world space.  <a href="class_scene_component.html#abf62fa307d026c9f7a5611e1d40f44e0">More...</a><br /></td></tr>
+<tr class="separator:abf62fa307d026c9f7a5611e1d40f44e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ab069cf8a5e2d5754518a0e4c20e3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ae0ab069cf8a5e2d5754518a0e4c20e3d">getWorldScale</a> () const</td></tr>
+<tr class="memdesc:ae0ab069cf8a5e2d5754518a0e4c20e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's scale in world space.  <a href="class_scene_component.html#ae0ab069cf8a5e2d5754518a0e4c20e3d">More...</a><br /></td></tr>
+<tr class="separator:ae0ab069cf8a5e2d5754518a0e4c20e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60576e0c415096df05e3c138580a6ec8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a60576e0c415096df05e3c138580a6ec8">getWorldTransform</a> () const</td></tr>
+<tr class="memdesc:a60576e0c415096df05e3c138580a6ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the component's transform in world space.  <a href="class_scene_component.html#a60576e0c415096df05e3c138580a6ec8">More...</a><br /></td></tr>
 <tr class="separator:a60576e0c415096df05e3c138580a6ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2790169d154656ef61f8209c774ac9aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> class <a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2790169d154656ef61f8209c774ac9aa">getParentObject</a> ()</td></tr>
-<tr class="separator:a2790169d154656ef61f8209c774ac9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affaad8c60a93af23506a79681bfb30f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_scene_component.html">SceneComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#affaad8c60a93af23506a79681bfb30f2">getParentComponent</a> ()</td></tr>
-<tr class="separator:affaad8c60a93af23506a79681bfb30f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d82316b8c4e6f7e5ae240ae478d6bd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a0d82316b8c4e6f7e5ae240ae478d6bd9">getParentObject</a> () const</td></tr>
+<tr class="memdesc:a0d82316b8c4e6f7e5ae240ae478d6bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="class_scene_object.html">SceneObject</a> this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> is attached to. (if any)  <a href="class_scene_component.html#a0d82316b8c4e6f7e5ae240ae478d6bd9">More...</a><br /></td></tr>
+<tr class="separator:a0d82316b8c4e6f7e5ae240ae478d6bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d858cc3ddcf9586d75aad3e7431b5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_scene_component.html">SceneComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a93d858cc3ddcf9586d75aad3e7431b5b">getParentComponent</a> () const</td></tr>
+<tr class="memdesc:a93d858cc3ddcf9586d75aad3e7431b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the component this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> is attached to. (if any)  <a href="class_scene_component.html#a93d858cc3ddcf9586d75aad3e7431b5b">More...</a><br /></td></tr>
+<tr class="separator:a93d858cc3ddcf9586d75aad3e7431b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb7be7eb04b2c55e5ca5bf86703e0ad3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_scene_component.html">SceneComponent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#afb7be7eb04b2c55e5ca5bf86703e0ad3">getChildComponents</a> () const</td></tr>
+<tr class="memdesc:afb7be7eb04b2c55e5ca5bf86703e0ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the components attached to this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a>.  <a href="class_scene_component.html#afb7be7eb04b2c55e5ca5bf86703e0ad3">More...</a><br /></td></tr>
 <tr class="separator:afb7be7eb04b2c55e5ca5bf86703e0ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a002784406c75e96c461f9da9b4e798a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a002784406c75e96c461f9da9b4e798a2">isRootComponent</a> () const</td></tr>
-<tr class="separator:a002784406c75e96c461f9da9b4e798a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa079d2b205cd7c6bcffd5425fdacb13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#afa079d2b205cd7c6bcffd5425fdacb13">isRootComponent</a> () const</td></tr>
+<tr class="memdesc:afa079d2b205cd7c6bcffd5425fdacb13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this component is not attached to any other.  <a href="class_scene_component.html#afa079d2b205cd7c6bcffd5425fdacb13">More...</a><br /></td></tr>
+<tr class="separator:afa079d2b205cd7c6bcffd5425fdacb13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fa9cee406e6b298c171c9ec6c8e6275"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> class <a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a9fa9cee406e6b298c171c9ec6c8e6275">getScene</a> () const</td></tr>
 <tr class="separator:a9fa9cee406e6b298c171c9ec6c8e6275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
 <tr class="separator:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d2ab6069272b891c6e49a0bc86ecf2 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2">getClassName</a> () const</td></tr>
+<tr class="memitem:a90d2ab6069272b891c6e49a0bc86ecf2 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2">getClassName</a> () const</td></tr>
 <tr class="separator:a90d2ab6069272b891c6e49a0bc86ecf2 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a679191ee8946710fa66940b26d90907c inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a679191ee8946710fa66940b26d90907c">getDescription</a> () const</td></tr>
+<tr class="memitem:a679191ee8946710fa66940b26d90907c inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a679191ee8946710fa66940b26d90907c">getDescription</a> () const</td></tr>
 <tr class="separator:a679191ee8946710fa66940b26d90907c inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570 inherit pub_methods_class_object"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570 inherit pub_methods_class_object"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">cast</a> ()</td></tr>
@@ -174,11 +217,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a780172297ae9da84b00a76741f5139db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a780172297ae9da84b00a76741f5139db">SceneComponent</a> ()=default</td></tr>
 <tr class="separator:a780172297ae9da84b00a76741f5139db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a7c733d4332a1fe2501d48cd4412f7f47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a7c733d4332a1fe2501d48cd4412f7f47">transform</a></td></tr>
-<tr class="separator:a7c733d4332a1fe2501d48cd4412f7f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
 <tr class="memitem:a3174049ef7ecb7972ec845ffc03e2f52"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a3174049ef7ecb7972ec845ffc03e2f52">Super</a> = <a class="el" href="class_object.html">Object</a></td></tr>
@@ -186,16 +224,20 @@ Private Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a7c733d4332a1fe2501d48cd4412f7f47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a7c733d4332a1fe2501d48cd4412f7f47">transform</a></td></tr>
+<tr class="separator:a7c733d4332a1fe2501d48cd4412f7f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcd6453b79f8d11f35d4139bdd065064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_scene_component.html">SceneComponent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#afcd6453b79f8d11f35d4139bdd065064">childComponents</a></td></tr>
 <tr class="separator:afcd6453b79f8d11f35d4139bdd065064"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27aff1bbcaa669abcb79fe53434daa82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene_component.html">SceneComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a27aff1bbcaa669abcb79fe53434daa82">parentComponent</a> = nullptr</td></tr>
 <tr class="separator:a27aff1bbcaa669abcb79fe53434daa82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90bdfa07cce27915ae8d21262fe0174a"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a90bdfa07cce27915ae8d21262fe0174a">parentObject</a> = nullptr</td></tr>
-<tr class="separator:a90bdfa07cce27915ae8d21262fe0174a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b398976d119d3676174cff84c55931"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ae7b398976d119d3676174cff84c55931">parentObject</a> = nullptr</td></tr>
+<tr class="separator:ae7b398976d119d3676174cff84c55931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00a6f3143a6e4fd5c9fa65bd8f7268a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a00a6f3143a6e4fd5c9fa65bd8f7268a6">registered</a> = false</td></tr>
 <tr class="separator:a00a6f3143a6e4fd5c9fa65bd8f7268a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28408f917323920d3f3322797532a21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ad28408f917323920d3f3322797532a21">name</a> = &quot;&quot;</td></tr>
 <tr class="separator:ad28408f917323920d3f3322797532a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b2a0e40d784c5ccddc6194d57eaded3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_attachment_properties.html">AttachmentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a8b2a0e40d784c5ccddc6194d57eaded3">attachmentProperties</a></td></tr>
+<tr class="separator:a8b2a0e40d784c5ccddc6194d57eaded3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3597afb3ebdd12462c4253b78b5c867"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#af3597afb3ebdd12462c4253b78b5c867">scene</a> = nullptr</td></tr>
 <tr class="separator:af3597afb3ebdd12462c4253b78b5c867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -260,13 +302,85 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The <a class="el" href="class_scene_component.html">SceneComponent</a> constructor. </p>
+<p >The <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> constructor. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a182ba08be7f123613825d94c7219c65e" name="a182ba08be7f123613825d94c7219c65e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a182ba08be7f123613825d94c7219c65e">&#9670;&nbsp;</a></span>attachTo() <span class="overload">[1/2]</span></h2>
+<a id="a2c48ae0e5997079e5f3db06716874347" name="a2c48ae0e5997079e5f3db06716874347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c48ae0e5997079e5f3db06716874347">&#9670;&nbsp;</a></span>addWorldPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::addWorldPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc40d9d02e4cacddd3f39d45849cb85f" name="adc40d9d02e4cacddd3f39d45849cb85f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc40d9d02e4cacddd3f39d45849cb85f">&#9670;&nbsp;</a></span>addWorldRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::addWorldRotation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef87f8a17905f24ffaaaafb28d27563a" name="aef87f8a17905f24ffaaaafb28d27563a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef87f8a17905f24ffaaaafb28d27563a">&#9670;&nbsp;</a></span>addWorldScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::addWorldScale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>scale</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa19fb9b538ccc40a2cccee12b94c68fe" name="aa19fb9b538ccc40a2cccee12b94c68fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa19fb9b538ccc40a2cccee12b94c68fe">&#9670;&nbsp;</a></span>addWorldTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::addWorldTransform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_transform.html">Transform</a> const &amp;&#160;</td>
+          <td class="paramname"><em>transformToAdd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa984281593cd252e1e6582685c206cd6" name="aa984281593cd252e1e6582685c206cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa984281593cd252e1e6582685c206cd6">&#9670;&nbsp;</a></span>attachTo() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -275,12 +389,23 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool SceneComponent::attachTo </td>
           <td>(</td>
           <td class="paramtype">class <a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td>
-          <td class="paramname"><em>object</em></td><td>)</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_attachment_properties.html">AttachmentProperties</a>&#160;</td>
+          <td class="paramname"><em>properties</em> = <code><a class="el" href="struct_attachment_properties.html#af75d65fe9825bdb411be38bd1ecc38a7">AttachmentProperties::noScale</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Attaches this component to a <a class="el" href="class_scene_object.html">SceneObject</a>. This component will be automatically detached from its parent if it has any.</p>
+
+<p>Attaches this component to a <a class="el" href="class_scene_object.html">SceneObject</a>. This component will be automatically detached from its parent if it has any. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The <a class="el" href="class_scene_object.html">SceneObject</a> to attach to. </td></tr>
@@ -291,8 +416,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a77515df3ebe3efe2a7d3bcc24f9b2574" name="a77515df3ebe3efe2a7d3bcc24f9b2574"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77515df3ebe3efe2a7d3bcc24f9b2574">&#9670;&nbsp;</a></span>attachTo() <span class="overload">[2/2]</span></h2>
+<a id="a8d2ead1b769e5f2b447c402e264faa80" name="a8d2ead1b769e5f2b447c402e264faa80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2ead1b769e5f2b447c402e264faa80">&#9670;&nbsp;</a></span>attachTo() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,19 +426,31 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool SceneComponent::attachTo </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_scene_component.html">SceneComponent</a> *&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
+          <td class="paramname"><em>other</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_attachment_properties.html">AttachmentProperties</a>&#160;</td>
+          <td class="paramname"><em>properties</em> = <code><a class="el" href="struct_attachment_properties.html#af75d65fe9825bdb411be38bd1ecc38a7">AttachmentProperties::noScale</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Attaches this component to another <a class="el" href="class_scene_component.html">SceneComponent</a>. This component will be automatically detached from its parent if it has any.</p>
+
+<p>Attaches this component to another <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a>. This component will be automatically detached from its parent if it has any. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The <a class="el" href="class_scene_component.html">SceneComponent</a> to attach to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> to attach to. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether the operation succeeded. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the operation succeeded.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Refactor attachment system </dd></dl>
 
 </div>
 </div>
@@ -340,7 +477,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Construct is called right after the scene created this component.</p>
+
+<p>Construct is called right after the scene created this component. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">relativeTransform</td><td>The relative transform of the component. </td></tr>
@@ -366,7 +504,8 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Detaches this component from its parent if it has any. </p>
+
+<p>Detaches this component from its parent if it has any. </p>
 
 </div>
 </div>
@@ -392,13 +531,41 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the components attached to this <a class="el" href="class_scene_component.html">SceneComponent</a>.</p>
+
+<p>Returns the components attached to this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The parent component </dd></dl>
 
 </div>
 </div>
-<a id="affaad8c60a93af23506a79681bfb30f2" name="affaad8c60a93af23506a79681bfb30f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affaad8c60a93af23506a79681bfb30f2">&#9670;&nbsp;</a></span>getParentComponent()</h2>
+<a id="a23d4637e6ee41c3d74a311bf25ba4d7c" name="a23d4637e6ee41c3d74a311bf25ba4d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d4637e6ee41c3d74a311bf25ba4d7c">&#9670;&nbsp;</a></span>getForwardVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getForwardVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_camera_component.html#ac5c6559411566a39ede9165ed0a1aefa">CameraComponent</a>.</p>
+
+</div>
+</div>
+<a id="a93d858cc3ddcf9586d75aad3e7431b5b" name="a93d858cc3ddcf9586d75aad3e7431b5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d858cc3ddcf9586d75aad3e7431b5b">&#9670;&nbsp;</a></span>getParentComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -410,7 +577,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_scene_component.html">SceneComponent</a> * SceneComponent::getParentComponent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -419,13 +586,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the component this <a class="el" href="class_scene_component.html">SceneComponent</a> is attached to. (if any)</p>
+
+<p>Returns the component this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> is attached to. (if any) </p>
 <dl class="section return"><dt>Returns</dt><dd>The parent component </dd></dl>
 
 </div>
 </div>
-<a id="a2790169d154656ef61f8209c774ac9aa" name="a2790169d154656ef61f8209c774ac9aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2790169d154656ef61f8209c774ac9aa">&#9670;&nbsp;</a></span>getParentObject()</h2>
+<a id="a0d82316b8c4e6f7e5ae240ae478d6bd9" name="a0d82316b8c4e6f7e5ae240ae478d6bd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d82316b8c4e6f7e5ae240ae478d6bd9">&#9670;&nbsp;</a></span>getParentObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,10 +602,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> class <a class="el" href="class_scene_object.html">SceneObject</a> * SceneComponent::getParentObject </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_scene_object.html">SceneObject</a> * SceneComponent::getParentObject </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -446,94 +614,74 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the <a class="el" href="class_scene_object.html">SceneObject</a> this <a class="el" href="class_scene_component.html">SceneComponent</a> is attached to. (if any)</p>
+
+<p>Returns the <a class="el" href="class_scene_object.html">SceneObject</a> this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> is attached to. (if any) </p>
 <dl class="section return"><dt>Returns</dt><dd>The parent object </dd></dl>
 
 </div>
 </div>
-<a id="a22dd87a479c1baa5f6578d3e2e8d4d36" name="a22dd87a479c1baa5f6578d3e2e8d4d36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22dd87a479c1baa5f6578d3e2e8d4d36">&#9670;&nbsp;</a></span>getRelativePosition()</h2>
+<a id="a087cb95390e162505d2c34daf3300c4d" name="a087cb95390e162505d2c34daf3300c4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a087cb95390e162505d2c34daf3300c4d">&#9670;&nbsp;</a></span>getRelativePosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativePosition </td>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativePosition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Gets the component's position relative to the parent component.</p>
+
+<p>Gets the component's position relative to the parent component. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's relative position </dd></dl>
 
 </div>
 </div>
-<a id="a1f3d2bdebce3a330d1fdb7e82588b747" name="a1f3d2bdebce3a330d1fdb7e82588b747"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f3d2bdebce3a330d1fdb7e82588b747">&#9670;&nbsp;</a></span>getRelativeRotation()</h2>
+<a id="a810ba5952a7474dd00fc5be5bf6e36b4" name="a810ba5952a7474dd00fc5be5bf6e36b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a810ba5952a7474dd00fc5be5bf6e36b4">&#9670;&nbsp;</a></span>getRelativeRotation()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativeRotation </td>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativeRotation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Gets the component's rotation relative to the parent component.</p>
+
+<p>Gets the component's rotation relative to the parent component. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's relative rotation </dd></dl>
 
 </div>
 </div>
-<a id="a706492a0c7e3505be719c027558423d9" name="a706492a0c7e3505be719c027558423d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a706492a0c7e3505be719c027558423d9">&#9670;&nbsp;</a></span>getRelativeScale()</h2>
+<a id="a2e1bd480a3f997aace13e64e398f0ba2" name="a2e1bd480a3f997aace13e64e398f0ba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e1bd480a3f997aace13e64e398f0ba2">&#9670;&nbsp;</a></span>getRelativeScale()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativeScale </td>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRelativeScale </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Gets the current component's scale relative to the parent component.</p>
+
+<p>Gets the current component's scale relative to the parent component. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's relative scale </dd></dl>
 
 </div>
 </div>
-<a id="a352731e868a260031441624e6123be4f" name="a352731e868a260031441624e6123be4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a352731e868a260031441624e6123be4f">&#9670;&nbsp;</a></span>getRelativeTransform()</h2>
+<a id="a527a4e9a2cb1ed433a524b6ad9095f11" name="a527a4e9a2cb1ed433a524b6ad9095f11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a527a4e9a2cb1ed433a524b6ad9095f11">&#9670;&nbsp;</a></span>getRelativeTransform()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -542,7 +690,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_transform.html">Transform</a> SceneComponent::getRelativeTransform </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="struct_transform.html">Transform</a> SceneComponent::getRelativeTransform </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -554,8 +702,36 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets the component's transform relative to the parent component.</p>
+
+<p>Gets the component's transform relative to the parent component. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's relative rotation </dd></dl>
+
+</div>
+</div>
+<a id="af9edfdf48bfd8b518c754c0c36e5f409" name="af9edfdf48bfd8b518c754c0c36e5f409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9edfdf48bfd8b518c754c0c36e5f409">&#9670;&nbsp;</a></span>getRightVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getRightVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_camera_component.html#af0f3847b09cf169192d3aed4437fab35">CameraComponent</a>.</p>
 
 </div>
 </div>
@@ -584,8 +760,35 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa29cdbe5fa0b156994b2248ceacb7458" name="aa29cdbe5fa0b156994b2248ceacb7458"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa29cdbe5fa0b156994b2248ceacb7458">&#9670;&nbsp;</a></span>getWorldPosition()</h2>
+<a id="a2757bf05c0e1fd3172a6bae1a585a43c" name="a2757bf05c0e1fd3172a6bae1a585a43c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2757bf05c0e1fd3172a6bae1a585a43c">&#9670;&nbsp;</a></span>getUpVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getUpVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_camera_component.html#a4b1bed18bf402ad7f0d987c422e21db4">CameraComponent</a>.</p>
+
+</div>
+</div>
+<a id="a588dfe0a372f8c42e8f429295c78a0d3" name="a588dfe0a372f8c42e8f429295c78a0d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588dfe0a372f8c42e8f429295c78a0d3">&#9670;&nbsp;</a></span>getWorldPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -597,7 +800,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getWorldPosition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -606,13 +809,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets the component's position in world space.</p>
+
+<p>Gets the component's position in world space. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's world position </dd></dl>
 
 </div>
 </div>
-<a id="a5a8f72dc0d0541be063e86236cd3bc30" name="a5a8f72dc0d0541be063e86236cd3bc30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a8f72dc0d0541be063e86236cd3bc30">&#9670;&nbsp;</a></span>getWorldRotation()</h2>
+<a id="abf62fa307d026c9f7a5611e1d40f44e0" name="abf62fa307d026c9f7a5611e1d40f44e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf62fa307d026c9f7a5611e1d40f44e0">&#9670;&nbsp;</a></span>getWorldRotation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -624,7 +828,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getWorldRotation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -633,13 +837,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets the component's rotation in world space.</p>
+
+<p>Gets the component's rotation in world space. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's world rotation </dd></dl>
 
 </div>
 </div>
-<a id="a09c45dad733ce8e67255b9781b0a381c" name="a09c45dad733ce8e67255b9781b0a381c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09c45dad733ce8e67255b9781b0a381c">&#9670;&nbsp;</a></span>getWorldScale()</h2>
+<a id="ae0ab069cf8a5e2d5754518a0e4c20e3d" name="ae0ab069cf8a5e2d5754518a0e4c20e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ab069cf8a5e2d5754518a0e4c20e3d">&#9670;&nbsp;</a></span>getWorldScale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -651,7 +856,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SceneComponent::getWorldScale </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -660,7 +865,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets the component's scale in world space.</p>
+
+<p>Gets the component's scale in world space. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's world scale </dd></dl>
 
 </div>
@@ -687,34 +893,28 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets the component's transform in world space.</p>
+
+<p>Gets the component's transform in world space. </p>
 <dl class="section return"><dt>Returns</dt><dd>The component's world transform </dd></dl>
 
 </div>
 </div>
-<a id="a002784406c75e96c461f9da9b4e798a2" name="a002784406c75e96c461f9da9b4e798a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a002784406c75e96c461f9da9b4e798a2">&#9670;&nbsp;</a></span>isRootComponent()</h2>
+<a id="afa079d2b205cd7c6bcffd5425fdacb13" name="afa079d2b205cd7c6bcffd5425fdacb13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa079d2b205cd7c6bcffd5425fdacb13">&#9670;&nbsp;</a></span>isRootComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool SceneComponent::isRootComponent </td>
+          <td class="memname">bool SceneComponent::isRootComponent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Checks whether this component is not attached to any other.</p>
+
+<p>Checks whether this component is not attached to any other. </p>
 <dl class="section return"><dt>Returns</dt><dd>Whether is component is a root component. </dd></dl>
 
 </div>
@@ -741,8 +941,81 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Checks whether this component has been correctly registered / created</p>
+
+<p>Checks whether this component has been correctly registered / created. </p>
 <dl class="section return"><dt>Returns</dt><dd>Whether the component is valid </dd></dl>
+
+</div>
+</div>
+<a id="a2278681e514f292e80880cfde1c30e63" name="a2278681e514f292e80880cfde1c30e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2278681e514f292e80880cfde1c30e63">&#9670;&nbsp;</a></span>setWorldPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::setWorldPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addd15f850f121a7da3437f7ebdfdca87" name="addd15f850f121a7da3437f7ebdfdca87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addd15f850f121a7da3437f7ebdfdca87">&#9670;&nbsp;</a></span>setWorldRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::setWorldRotation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad538f61a7844892170ab1c944db9072b" name="ad538f61a7844892170ab1c944db9072b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad538f61a7844892170ab1c944db9072b">&#9670;&nbsp;</a></span>setWorldScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::setWorldScale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>scale</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a0306cf04cfb83e1759dc5a47504b68" name="a5a0306cf04cfb83e1759dc5a47504b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a0306cf04cfb83e1759dc5a47504b68">&#9670;&nbsp;</a></span>setWorldTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::setWorldTransform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_transform.html">Transform</a> const &amp;&#160;</td>
+          <td class="paramname"><em>transformToSet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -768,7 +1041,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>. </p>
+
+<p>Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>. </p>
 
 <p>Reimplemented in <a class="el" href="class_camera_component.html#a490c3158a238e496b011a64b0c9b0c2f">CameraComponent</a>.</p>
 
@@ -797,7 +1071,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>.</p>
+
+<p>Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called from the parent <a class="el" href="class_scene_object.html">SceneObject</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">deltaTime</td><td>The engine tick delta time </td></tr>
@@ -833,6 +1108,28 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8b2a0e40d784c5ccddc6194d57eaded3" name="a8b2a0e40d784c5ccddc6194d57eaded3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b2a0e40d784c5ccddc6194d57eaded3">&#9670;&nbsp;</a></span>attachmentProperties</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_attachment_properties.html">AttachmentProperties</a> SceneComponent::attachmentProperties</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afcd6453b79f8d11f35d4139bdd065064" name="afcd6453b79f8d11f35d4139bdd065064"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afcd6453b79f8d11f35d4139bdd065064">&#9670;&nbsp;</a></span>childComponents</h2>
 
@@ -898,12 +1195,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The <a class="el" href="class_scene_component.html">SceneComponent</a> this component is attached to. </p>
+<p >The <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> this component is attached to. </p>
 
 </div>
 </div>
-<a id="a90bdfa07cce27915ae8d21262fe0174a" name="a90bdfa07cce27915ae8d21262fe0174a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90bdfa07cce27915ae8d21262fe0174a">&#9670;&nbsp;</a></span>parentObject</h2>
+<a id="ae7b398976d119d3676174cff84c55931" name="ae7b398976d119d3676174cff84c55931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b398976d119d3676174cff84c55931">&#9670;&nbsp;</a></span>parentObject</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -912,7 +1209,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">class <a class="el" href="class_scene_object.html">SceneObject</a>* SceneComponent::parentObject = nullptr</td>
+          <td class="memname"><a class="el" href="class_scene_object.html">SceneObject</a>* SceneComponent::parentObject = nullptr</td>
         </tr>
       </table>
   </td>
@@ -921,7 +1218,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The <a class="el" href="class_scene_object.html">SceneObject</a> this <a class="el" href="class_scene_component.html">SceneComponent</a> is attached to. </p>
+<p >The <a class="el" href="class_scene_object.html">SceneObject</a> this <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> is attached to. </p>
 
 </div>
 </div>
@@ -985,7 +1282,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -995,7 +1292,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Public/Core/Scene/<a class="el" href="_scene_component_8h_source.html">SceneComponent.h</a></li>
-<li>Source/Public/Core/Scene/<a class="el" href="_scene_component_8cpp.html">SceneComponent.cpp</a></li>
+<li>Source/Private/Core/Scene/<a class="el" href="_scene_component_8cpp.html">SceneComponent.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

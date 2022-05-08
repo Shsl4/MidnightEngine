@@ -1,6 +1,7 @@
 var struct_vector4 =
 [
     [ "Vector4", "struct_vector4.html#a511b4d9c8326c235b76d794eea018921", null ],
+    [ "Vector4", "struct_vector4.html#a5dae10a13be9c21a8e47bd88a69f72ab", null ],
     [ "Vector4", "struct_vector4.html#ac96b299b6a1aae6b9eb5aa1fb4fd4143", null ],
     [ "Vector4", "struct_vector4.html#a120324a64f31eb0c008747c4ca6261bb", null ],
     [ "dot", "struct_vector4.html#a02030da345c384b2bc57873635d66794", null ],

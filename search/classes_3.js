@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['engine_0',['Engine',['../class_engine.html',1,'']]],
-  ['entry_1',['Entry',['../class_entry.html',1,'']]]
+  ['directionallight_0',['DirectionalLight',['../struct_directional_light.html',1,'']]],
+  ['doubleentry_1',['DoubleEntry',['../struct_command_context_1_1_double_entry.html',1,'CommandContext']]]
 ];

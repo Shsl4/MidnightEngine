@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: Source/Public/Core/Platform/Entry.mm File Reference</title>
+<title>MidnightEngine: Source/Private/Core/Platform/Entry.mm File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,17 +88,14 @@ $(document).ready(function(){initNavTree('_entry_8mm.html',''); initResizable();
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Entry.mm File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#import &lt;<a class="el" href="_allocator_8h_source.html">Memory/Allocator.h</a>&gt;</code><br />
-<code>#import &lt;Memory/UniquePtr.h&gt;</code><br />
+<code>#import &lt;<a class="el" href="_auto_release_pointer_8h_source.html">Memory/AutoReleasePointer.h</a>&gt;</code><br />
 <code>#import &lt;<a class="el" href="_engine_8h_source.html">Core/Engine.h</a>&gt;</code><br />
 <code>#import &lt;<a class="el" href="_entry_8h_source.html">Platform/Entry.h</a>&gt;</code><br />
+<code>#import &lt;SDL2/SDL.h&gt;</code><br />
 <code>#import &lt;SDL2/SDL_syswm.h&gt;</code><br />
 <code>#import &lt;bgfx/bgfx.h&gt;</code><br />
 <code>#import &lt;bgfx/platform.h&gt;</code><br />
@@ -106,76 +103,13 @@ $(document).ready(function(){initNavTree('_entry_8mm.html',''); initResizable();
 <code>#import &lt;<a class="el" href="_logger_8h_source.html">Logging/Logger.h</a>&gt;</code><br />
 <code>#import &lt;Foundation/Foundation.h&gt;</code><br />
 <code>#import &lt;Cocoa/Cocoa.h&gt;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entry.html">Entry</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ac8839130d2de80e531c44f73d0645fd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_entry_8mm.html#ac8839130d2de80e531c44f73d0645fd0">macOS_main</a> (int argc, const char **argv)</td></tr>
-<tr class="separator:ac8839130d2de80e531c44f73d0645fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a679ac76ff6cc874849cfa26101f802e4"><td class="memItemLeft" align="right" valign="top">UniquePtr&lt; <a class="el" href="class_engine.html">Engine</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_entry_8mm.html#a679ac76ff6cc874849cfa26101f802e4">engine</a></td></tr>
-<tr class="separator:a679ac76ff6cc874849cfa26101f802e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ac8839130d2de80e531c44f73d0645fd0" name="ac8839130d2de80e531c44f73d0645fd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8839130d2de80e531c44f73d0645fd0">&#9670;&nbsp;</a></span>macOS_main()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int macOS_main </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>argv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a679ac76ff6cc874849cfa26101f802e4" name="a679ac76ff6cc874849cfa26101f802e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a679ac76ff6cc874849cfa26101f802e4">&#9670;&nbsp;</a></span>engine</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">UniquePtr&lt;<a class="el" href="class_engine.html">Engine</a>&gt; engine</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">{</div>
-<div class="line"> </div>
-<div class="line">    BOOL hasTerminated</div>
-</div><!-- fragment -->
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_aceb01513ac9680e5a5ae8e052454feb.html">Public</a></li><li class="navelem"><a class="el" href="dir_e5e2125bd3e3ba93f8ee67c753e54bdf.html">Core</a></li><li class="navelem"><a class="el" href="dir_33367a910c1f56af08c406cdb3a8786b.html">Platform</a></li><li class="navelem"><a class="el" href="_entry_8mm.html">Entry.mm</a></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_d09955ba3782d4d47a2bdfca9f1350bc.html">Private</a></li><li class="navelem"><a class="el" href="dir_e2ffc89e7385160846f9a54db935a08d.html">Core</a></li><li class="navelem"><a class="el" href="dir_959df2f49aeabf23e4366636f4413c7d.html">Platform</a></li><li class="navelem"><a class="el" href="_entry_8mm.html">Entry.mm</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

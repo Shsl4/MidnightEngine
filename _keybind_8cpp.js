@@ -1,4 +1,4 @@
 var _keybind_8cpp =
 [
-    [ "bitCheck", "_keybind_8cpp.html#a9d3ee9631229b568bfd823302970860a", null ]
+    [ "BIT_CHECK", "_keybind_8cpp.html#a1ecf1a232fe6d6c7718ea5812262c606", null ]
 ];

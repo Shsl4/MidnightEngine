@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: Source/Public/Core/Rendering/Mesh.cpp File Reference</title>
+<title>MidnightEngine: Source/Private/Core/Rendering/Mesh.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,41 +89,123 @@ $(document).ready(function(){initNavTree('_mesh_8cpp.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Mesh.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="_mesh_8h_source.html">Rendering/Mesh.h</a>&gt;</code><br />
 <code>#include &lt;bgfx/bgfx.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="_resource_loader_8h_source.html">Rendering/ResourceLoader.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_shader_manager_8h_source.html">Rendering/ShaderManager.h</a>&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac812d89e0bd462a5f88de6c715dce14c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_8cpp.html#ac812d89e0bd462a5f88de6c715dce14c">HandleWrapper</a>(name,  type)</td></tr>
+<tr class="separator:ac812d89e0bd462a5f88de6c715dce14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4ad0160b31f28c2124753b6dc67baf84"><td class="memItemLeft" align="right" valign="top">static bgfx::VertexLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_8cpp.html#a4ad0160b31f28c2124753b6dc67baf84">getVertexLayout</a> ()</td></tr>
-<tr class="separator:a4ad0160b31f28c2124753b6dc67baf84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6047d2385a8c7eabe269b0a59b61600"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_8cpp.html#af6047d2385a8c7eabe269b0a59b61600">HandleWrapper</a> (ProgramHandle, bgfx::ProgramHandle) HandleWrapper(VertexHandle</td></tr>
+<tr class="separator:af6047d2385a8c7eabe269b0a59b61600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57f8c591f2598a0fe1c1e8834a1e3bbd"><td class="memItemLeft" align="right" valign="top">bgfx::VertexBufferHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_8cpp.html#a57f8c591f2598a0fe1c1e8834a1e3bbd">HandleWrapper</a> (IndexHandle, bgfx::IndexBufferHandle) static bgfx</td></tr>
+<tr class="separator:a57f8c591f2598a0fe1c1e8834a1e3bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a4ad0160b31f28c2124753b6dc67baf84" name="a4ad0160b31f28c2124753b6dc67baf84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ad0160b31f28c2124753b6dc67baf84">&#9670;&nbsp;</a></span>getVertexLayout()</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac812d89e0bd462a5f88de6c715dce14c" name="ac812d89e0bd462a5f88de6c715dce14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac812d89e0bd462a5f88de6c715dce14c">&#9670;&nbsp;</a></span>HandleWrapper</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bgfx::VertexLayout getVertexLayout </td>
+          <td class="memname">#define HandleWrapper</td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                                                        \</div>
+<div class="line">    struct name {                                       \</div>
+<div class="line">                                                        \</div>
+<div class="line">        name(type <span class="keyword">const</span>&amp; handle) : handle(handle) {     \</div>
+<div class="line">                                                        \</div>
+<div class="line">        }                                               \</div>
+<div class="line">                                                        \</div>
+<div class="line">        ~name(){                                        \</div>
+<div class="line">            bgfx::destroy(handle);                      \</div>
+<div class="line">        }                                               \</div>
+<div class="line">                                                        \</div>
+<div class="line">        type handle;                                    \</div>
+<div class="line">                                                        \</div>
+<div class="line">    };</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a57f8c591f2598a0fe1c1e8834a1e3bbd" name="a57f8c591f2598a0fe1c1e8834a1e3bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57f8c591f2598a0fe1c1e8834a1e3bbd">&#9670;&nbsp;</a></span>HandleWrapper() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bgfx::VertexBufferHandle HandleWrapper </td>
+          <td>(</td>
+          <td class="paramtype">IndexHandle&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bgfx::IndexBufferHandle&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6047d2385a8c7eabe269b0a59b61600" name="af6047d2385a8c7eabe269b0a59b61600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6047d2385a8c7eabe269b0a59b61600">&#9670;&nbsp;</a></span>HandleWrapper() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HandleWrapper </td>
+          <td>(</td>
+          <td class="paramtype">ProgramHandle&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bgfx::ProgramHandle&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -134,7 +216,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_aceb01513ac9680e5a5ae8e052454feb.html">Public</a></li><li class="navelem"><a class="el" href="dir_e5e2125bd3e3ba93f8ee67c753e54bdf.html">Core</a></li><li class="navelem"><a class="el" href="dir_89366a1aede51e435c026bc51e8691d9.html">Rendering</a></li><li class="navelem"><a class="el" href="_mesh_8cpp.html">Mesh.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_d09955ba3782d4d47a2bdfca9f1350bc.html">Private</a></li><li class="navelem"><a class="el" href="dir_e2ffc89e7385160846f9a54db935a08d.html">Core</a></li><li class="navelem"><a class="el" href="dir_804e0971cc76f8c800203272e8570862.html">Rendering</a></li><li class="navelem"><a class="el" href="_mesh_8cpp.html">Mesh.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

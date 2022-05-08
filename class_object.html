@@ -103,16 +103,21 @@ Inheritance diagram for Object:</div>
  <div class="center">
   <img src="class_object.png" usemap="#Object_map" alt=""/>
   <map id="Object_map" name="Object_map">
-<area href="class_array.html" alt="Array&lt; char &gt;" shape="rect" coords="121,56,232,80"/>
-<area href="class_allocator.html" alt="Allocator&lt; T &gt;" shape="rect" coords="121,112,232,136"/>
-<area href="class_array.html" alt="Array&lt; T &gt;" shape="rect" coords="121,168,232,192"/>
-<area href="class_camera_manager.html" alt="CameraManager" shape="rect" coords="121,224,232,248"/>
-<area href="class_engine.html" alt="Engine" shape="rect" coords="121,280,232,304"/>
-<area href="class_input_manager.html" alt="InputManager" shape="rect" coords="121,336,232,360"/>
-<area href="class_optional.html" alt="Optional&lt; T &gt;" shape="rect" coords="121,392,232,416"/>
-<area href="class_scene.html" alt="Scene" shape="rect" coords="121,448,232,472"/>
-<area href="class_scene_component.html" alt="SceneComponent" shape="rect" coords="121,504,232,528"/>
-<area href="class_scene_object.html" alt="SceneObject" shape="rect" coords="121,560,232,584"/>
+<area href="class_array.html" alt="Array&lt; char &gt;" shape="rect" coords="164,56,318,80"/>
+<area href="class_allocator.html" alt="Allocator&lt; T &gt;" shape="rect" coords="164,112,318,136"/>
+<area href="class_array.html" alt="Array&lt; T &gt;" shape="rect" coords="164,168,318,192"/>
+<area href="class_auto_release_pointer.html" title="A smart unique pointer type that auto-releases upon destruction." alt="AutoReleasePointer&lt; T &gt;" shape="rect" coords="164,224,318,248"/>
+<area href="class_camera_manager.html" alt="CameraManager" shape="rect" coords="164,280,318,304"/>
+<area href="class_command_context.html" alt="CommandContext" shape="rect" coords="164,336,318,360"/>
+<area href="class_command_node.html" alt="CommandNode" shape="rect" coords="164,392,318,416"/>
+<area href="class_command_tree.html" alt="CommandTree" shape="rect" coords="164,448,318,472"/>
+<area href="class_console.html" alt="Console" shape="rect" coords="164,504,318,528"/>
+<area href="class_engine.html" alt="Engine" shape="rect" coords="164,560,318,584"/>
+<area href="class_input_manager.html" alt="InputManager" shape="rect" coords="164,616,318,640"/>
+<area href="class_optional.html" alt="Optional&lt; T &gt;" shape="rect" coords="164,672,318,696"/>
+<area href="class_scene.html" alt="Scene" shape="rect" coords="164,728,318,752"/>
+<area href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach..." alt="SceneComponent" shape="rect" coords="164,784,318,808"/>
+<area href="class_scene_object.html" alt="SceneObject" shape="rect" coords="164,840,318,864"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -120,9 +125,9 @@ Inheritance diagram for Object:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a226f2ae2af766b77d83c09a4d766b725"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
 <tr class="separator:a226f2ae2af766b77d83c09a4d766b725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d2ab6069272b891c6e49a0bc86ecf2"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2">getClassName</a> () const</td></tr>
+<tr class="memitem:a90d2ab6069272b891c6e49a0bc86ecf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a90d2ab6069272b891c6e49a0bc86ecf2">getClassName</a> () const</td></tr>
 <tr class="separator:a90d2ab6069272b891c6e49a0bc86ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a679191ee8946710fa66940b26d90907c"><td class="memItemLeft" align="right" valign="top">virtual class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a679191ee8946710fa66940b26d90907c">getDescription</a> () const</td></tr>
+<tr class="memitem:a679191ee8946710fa66940b26d90907c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a679191ee8946710fa66940b26d90907c">getDescription</a> () const</td></tr>
 <tr class="separator:a679191ee8946710fa66940b26d90907c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa9f4f5ddd42afacca43366f537de8570"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#aa9f4f5ddd42afacca43366f537de8570">cast</a> ()</td></tr>
@@ -299,7 +304,7 @@ template&lt;class T &gt; </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Public/Core/<a class="el" href="_object_8h_source.html">Object.h</a></li>
-<li>Source/Public/Core/<a class="el" href="_object_8cpp.html">Object.cpp</a></li>
+<li>Source/Private/Core/<a class="el" href="_object_8cpp.html">Object.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -93,7 +93,6 @@ $(document).ready(function(){initNavTree('class_resource_loader.html',''); initR
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_resource_loader-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ResourceLoader Class Reference</div></div>
 </div><!--header-->
@@ -108,29 +107,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec1de383b15ac523640949bb19d61457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#aec1de383b15ac523640949bb19d61457">init</a> ()</td></tr>
 <tr class="separator:aec1de383b15ac523640949bb19d61457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a957dfe218f82cb1fb8300de78ad0a8a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> const <a class="el" href="struct_mesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#a957dfe218f82cb1fb8300de78ad0a8a1">getMesh</a> (<a class="el" href="class_string.html">String</a> const &amp;name) const</td></tr>
+<tr class="memdesc:a957dfe218f82cb1fb8300de78ad0a8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a loaded mesh by name.  <a href="class_resource_loader.html#a957dfe218f82cb1fb8300de78ad0a8a1">More...</a><br /></td></tr>
 <tr class="separator:a957dfe218f82cb1fb8300de78ad0a8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4b10c617883254913910a93180c8eade"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#a4b10c617883254913910a93180c8eade">loadProgram</a> (<a class="el" href="class_string.html">String</a> const &amp;name)</td></tr>
-<tr class="separator:a4b10c617883254913910a93180c8eade"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="_engine_types_8h.html#ac82f32fb6f16dbdc32cb4076004e63c4">UInt8</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">loadFile</a> (<a class="el" href="class_string.html">String</a> const &amp;path)</td></tr>
+<tr class="memdesc:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html">Array</a>.  <a href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">More...</a><br /></td></tr>
 <tr class="separator:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:af0e6b4769112f5b425e9732c059268c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#af0e6b4769112f5b425e9732c059268c0">loadMesh</a> (<a class="el" href="class_string.html">String</a> const &amp;file)</td></tr>
+<tr class="memdesc:af0e6b4769112f5b425e9732c059268c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to load a mesh from the input file.  <a href="class_resource_loader.html#af0e6b4769112f5b425e9732c059268c0">More...</a><br /></td></tr>
 <tr class="separator:af0e6b4769112f5b425e9732c059268c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae2264e04bf674feff57ac8f9e4b5b171"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_auto_release_array.html">AutoReleaseArray</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#ae2264e04bf674feff57ac8f9e4b5b171">loadedMeshes</a> = <a class="el" href="struct_auto_release_array.html">AutoReleaseArray</a>&lt;<a class="el" href="struct_mesh.html">Mesh</a>*&gt;(100)</td></tr>
+<tr class="memdesc:ae2264e04bf674feff57ac8f9e4b5b171"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array containing every loaded mesh.  <a href="class_resource_loader.html#ae2264e04bf674feff57ac8f9e4b5b171">More...</a><br /></td></tr>
 <tr class="separator:ae2264e04bf674feff57ac8f9e4b5b171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
-Static Private Attributes</h2></td></tr>
-<tr class="memitem:a6fac9259937f02b3027f53933309caf8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#a6fac9259937f02b3027f53933309caf8">logger</a> = <a class="el" href="class_logger.html">Logger</a>(&quot;ResourceLoader&quot;)</td></tr>
-<tr class="separator:a6fac9259937f02b3027f53933309caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac526a508a770400d55bf986629960007" name="ac526a508a770400d55bf986629960007"></a>
@@ -174,7 +170,8 @@ Static Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Gets a loaded mesh by name.</p>
+
+<p>Gets a loaded mesh by name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>The name of the mesh to get. </td></tr>
@@ -225,7 +222,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html">Array</a>.</p>
+
+<p>Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html">Array</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>The path of the file to load. </td></tr>
@@ -259,7 +257,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Tries to load a mesh from the input file.</p>
+
+<p>Tries to load a mesh from the input file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td>The path of the file to load. </td></tr>
@@ -267,39 +266,6 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the mesh was loaded. </dd></dl>
-
-</div>
-</div>
-<a id="a4b10c617883254913910a93180c8eade" name="a4b10c617883254913910a93180c8eade"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b10c617883254913910a93180c8eade">&#9670;&nbsp;</a></span>loadProgram()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> ResourceLoader::loadProgram </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_string.html">String</a> const &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Loads a ShaderProgram.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>The name of the program to load. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -323,35 +289,14 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >An array containing every loaded mesh. </p>
 
-</div>
-</div>
-<a id="a6fac9259937f02b3027f53933309caf8" name="a6fac9259937f02b3027f53933309caf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fac9259937f02b3027f53933309caf8">&#9670;&nbsp;</a></span>logger</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_logger.html">Logger</a> ResourceLoader::logger = <a class="el" href="class_logger.html">Logger</a>(&quot;ResourceLoader&quot;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>An array containing every loaded mesh. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Public/Core/Rendering/<a class="el" href="_resource_loader_8h_source.html">ResourceLoader.h</a></li>
-<li>Source/Public/Core/Rendering/<a class="el" href="_resource_loader_8cpp.html">ResourceLoader.cpp</a></li>
+<li>Source/Private/Core/Rendering/<a class="el" href="_resource_loader_8cpp.html">ResourceLoader.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

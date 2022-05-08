@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['render_0',['Render',['../class_engine.html#a9d834ee462d92ba4250e1964c5acd0f8a5e520da5341f2fec6d3bbfe7ef357922',1,'Engine']]]
+  ['prompting_0',['Prompting',['../class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5a206119b9e0d3268faf9126ee3cbde315',1,'Logger']]]
 ];

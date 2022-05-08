@@ -5,6 +5,7 @@ var struct_matrix4 =
     [ "copyingData", "struct_matrix4.html#a6f4b50454df15bed812c352f181d35eb", null ],
     [ "empty", "struct_matrix4.html#a413abde7695f69c22f905b048ce0e8a8", null ],
     [ "fill", "struct_matrix4.html#a90203b6b3470b564ace8226a33aa9094", null ],
+    [ "fromRotation", "struct_matrix4.html#ad9d73488093c9e3be19155a98dd80f99", null ],
     [ "identity", "struct_matrix4.html#ae18fb8816a056e54953c6a4da7e8161d", null ],
     [ "lookAt", "struct_matrix4.html#a9b6051a69f77bd109f3dcc817c8bab4d", null ],
     [ "modelMatrix", "struct_matrix4.html#acddca3b2232547e7b8aee545d28f654c", null ],

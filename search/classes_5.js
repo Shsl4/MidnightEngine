@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['iename_0',['IEName',['../class_i_e_name.html',1,'']]],
-  ['inputmanager_1',['InputManager',['../class_input_manager.html',1,'']]]
+  ['formatter_3c_20string_20_3e_0',['formatter&lt; String &gt;',['../structfmt_1_1formatter_3_01_string_01_4.html',1,'fmt']]]
 ];

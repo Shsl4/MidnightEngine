@@ -19,6 +19,7 @@ var class_string =
     [ "resize", "class_string.html#acc17a45e217db067c510ad62a17600f0", null ],
     [ "split", "class_string.html#a8624128c770c4ba9f1230734b802c5b8", null ],
     [ "substring", "class_string.html#abea123c7867a373eed0085573e476408", null ],
+    [ "toBool", "class_string.html#af9b0f51f6b96b26546a855baacc9b23e", null ],
     [ "toCString", "class_string.html#a15961653bb9da7e4df21f20713258bf5", null ],
     [ "toDouble", "class_string.html#a0beb6fbade221d0963554123126b4a84", null ],
     [ "toInteger", "class_string.html#a45ef4d4301ecaa68673207c62e229341", null ],

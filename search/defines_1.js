@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bitcheck_0',['bitCheck',['../_keybind_8cpp.html#a9d3ee9631229b568bfd823302970860a',1,'Keybind.cpp']]]
+  ['bit_5fcheck_0',['BIT_CHECK',['../_keybind_8cpp.html#a1ecf1a232fe6d6c7718ea5812262c606',1,'Keybind.cpp']]]
 ];

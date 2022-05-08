@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('class_logger.html',''); initResizable(
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
@@ -105,6 +106,8 @@ $(document).ready(function(){initNavTree('class_logger.html',''); initResizable(
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a67120f7949c5ad5c11dc8c48b879e786"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a67120f7949c5ad5c11dc8c48b879e786">Logger</a> (const char *<a class="el" href="class_logger.html#aaabcccefafde34459dc12aab8a970a19">id</a>)</td></tr>
 <tr class="separator:a67120f7949c5ad5c11dc8c48b879e786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50116dc543d85b42811e3cbf69f973ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a50116dc543d85b42811e3cbf69f973ae">prompt</a> ()</td></tr>
+<tr class="separator:a50116dc543d85b42811e3cbf69f973ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ae3224b9069d4456e907c3f794fd20c"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
 <tr class="memitem:a0ae3224b9069d4456e907c3f794fd20c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_logger.html#a0ae3224b9069d4456e907c3f794fd20c">debug</a> (const char *format, Args &amp;&amp;... args) const</td></tr>
 <tr class="separator:a0ae3224b9069d4456e907c3f794fd20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,6 +135,14 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aaae4e44fe0f43ea126f7e9ff715edd69"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_logger.html#aaae4e44fe0f43ea126f7e9ff715edd69">check</a> (bool condition, const char *format, Args &amp;&amp;... args)</td></tr>
 <tr class="separator:aaae4e44fe0f43ea126f7e9ff715edd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:ad69061ca3e08f0ba9ddf9fe4204736d5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5">State</a> { <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c">Idle</a>
+, <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5a8db7df66ab1d7ab5f1dc947acdb5fae4">Logging</a>
+, <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5a206119b9e0d3268faf9126ee3cbde315">Prompting</a>
+ }</td></tr>
+<tr class="separator:ad69061ca3e08f0ba9ddf9fe4204736d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ac8e57961ba3496b7a0dff61c69493223"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
@@ -142,6 +153,10 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aaabcccefafde34459dc12aab8a970a19"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#aaabcccefafde34459dc12aab8a970a19">id</a></td></tr>
 <tr class="separator:aaabcccefafde34459dc12aab8a970a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3ad20c84a0d0f158e0fb165387e8e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a6a3ad20c84a0d0f158e0fb165387e8e2">state</a> = <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c">State::Idle</a></td></tr>
+<tr class="separator:a6a3ad20c84a0d0f158e0fb165387e8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767f66078ce50ca7aa4396cd3e5f89ac"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a767f66078ce50ca7aa4396cd3e5f89ac">lastInput</a></td></tr>
+<tr class="separator:a767f66078ce50ca7aa4396cd3e5f89ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -152,7 +167,35 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A Logging class allowing you to log messages to the console using different severities. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ad69061ca3e08f0ba9ddf9fe4204736d5" name="ad69061ca3e08f0ba9ddf9fe4204736d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad69061ca3e08f0ba9ddf9fe4204736d5">&#9670;&nbsp;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5">Logger::State</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c" name="ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c"></a>Idle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad69061ca3e08f0ba9ddf9fe4204736d5a8db7df66ab1d7ab5f1dc947acdb5fae4" name="ad69061ca3e08f0ba9ddf9fe4204736d5a8db7df66ab1d7ab5f1dc947acdb5fae4"></a>Logging&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad69061ca3e08f0ba9ddf9fe4204736d5a206119b9e0d3268faf9126ee3cbde315" name="ad69061ca3e08f0ba9ddf9fe4204736d5a206119b9e0d3268faf9126ee3cbde315"></a>Prompting&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a67120f7949c5ad5c11dc8c48b879e786" name="a67120f7949c5ad5c11dc8c48b879e786"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67120f7949c5ad5c11dc8c48b879e786">&#9670;&nbsp;</a></span>Logger()</h2>
 
@@ -511,6 +554,31 @@ template&lt;typename ... Args&gt; </div>
 
 </div>
 </div>
+<a id="a50116dc543d85b42811e3cbf69f973ae" name="a50116dc543d85b42811e3cbf69f973ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50116dc543d85b42811e3cbf69f973ae">&#9670;&nbsp;</a></span>prompt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_string.html">String</a> Logger::prompt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad38c52b6cd9d038d5e64778d6acb8476" name="ad38c52b6cd9d038d5e64778d6acb8476"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad38c52b6cd9d038d5e64778d6acb8476">&#9670;&nbsp;</a></span>success()</h2>
 
@@ -673,9 +741,53 @@ template&lt;typename ... Args&gt; </div>
 
 </div>
 </div>
+<a id="a767f66078ce50ca7aa4396cd3e5f89ac" name="a767f66078ce50ca7aa4396cd3e5f89ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767f66078ce50ca7aa4396cd3e5f89ac">&#9670;&nbsp;</a></span>lastInput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Logger::lastInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a3ad20c84a0d0f158e0fb165387e8e2" name="a6a3ad20c84a0d0f158e0fb165387e8e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3ad20c84a0d0f158e0fb165387e8e2">&#9670;&nbsp;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5">State</a> Logger::state = <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c">State::Idle</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Public/Core/Logging/<a class="el" href="_logger_8h_source.html">Logger.h</a></li>
-<li>Source/Public/Core/<a class="el" href="_engine_8cpp.html">Engine.cpp</a></li>
+<li>Source/Private/Core/<a class="el" href="_engine_8cpp.html">Engine.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

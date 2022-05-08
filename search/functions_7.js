@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hasvalue_0',['hasValue',['../class_a_r_pointer.html#abfa7c1d5118de2732786d52f1d5d6c02',1,'ARPointer::hasValue()'],['../class_optional.html#a177ed5e1df86c5bb066488c283407541',1,'Optional::hasValue()']]]
+  ['handlewrapper_0',['HandleWrapper',['../_mesh_8cpp.html#af6047d2385a8c7eabe269b0a59b61600',1,'HandleWrapper(ProgramHandle, bgfx::ProgramHandle) HandleWrapper(VertexHandle:&#160;Mesh.cpp'],['../_mesh_8cpp.html#a57f8c591f2598a0fe1c1e8834a1e3bbd',1,'HandleWrapper(IndexHandle, bgfx::IndexBufferHandle) static bgfx:&#160;Mesh.cpp']]],
+  ['hasvalue_1',['hasValue',['../class_auto_release_pointer.html#a0456e4766bd50d6e3834a8048f4626ef',1,'AutoReleasePointer::hasValue()'],['../class_optional.html#a177ed5e1df86c5bb066488c283407541',1,'Optional::hasValue()']]]
 ];

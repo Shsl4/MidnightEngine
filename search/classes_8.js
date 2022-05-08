@@ -1,14 +1,6 @@
 var searchData=
 [
-  ['material_0',['Material',['../struct_material.html',1,'']]],
-  ['materialhandles_1',['MaterialHandles',['../struct_material_handles.html',1,'']]],
-  ['math_2',['Math',['../class_math.html',1,'']]],
-  ['matrix3_3',['Matrix3',['../struct_matrix3.html',1,'']]],
-  ['matrix4_4',['Matrix4',['../struct_matrix4.html',1,'']]],
-  ['memory_5',['Memory',['../class_memory.html',1,'']]],
-  ['mesh_6',['Mesh',['../struct_mesh.html',1,'']]],
-  ['meshcomponent_7',['MeshComponent',['../class_mesh_component.html',1,'']]],
-  ['meshobject_8',['MeshObject',['../class_mesh_object.html',1,'']]],
-  ['myengine_9',['MyEngine',['../class_my_engine.html',1,'']]],
-  ['myscene_10',['MyScene',['../class_my_scene.html',1,'']]]
+  ['linearcolor_0',['LinearColor',['../struct_linear_color.html',1,'']]],
+  ['linearcolors_1',['LinearColors',['../struct_linear_colors.html',1,'']]],
+  ['logger_2',['Logger',['../class_logger.html',1,'']]]
 ];

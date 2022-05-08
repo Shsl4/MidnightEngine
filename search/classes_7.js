@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['linearcolor_0',['LinearColor',['../struct_linear_color.html',1,'']]],
-  ['linearcolors_1',['LinearColors',['../struct_linear_colors.html',1,'']]],
-  ['logger_2',['Logger',['../class_logger.html',1,'']]]
+  ['keybind_0',['KeyBind',['../struct_key_bind.html',1,'']]],
+  ['keybindentry_1',['KeyBindEntry',['../struct_input_manager_1_1_key_bind_entry.html',1,'InputManager']]]
 ];
