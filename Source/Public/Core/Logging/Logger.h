@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Memory/String.h>
+#include <iostream>
 
 #include <fmt/format.h>
 #include <fmt/color.h>
@@ -9,6 +10,8 @@
 #include <sstream>
 #include <chrono>
 #include <iomanip>
+
+#include "fmt/ostream.h"
 
 class Colors
 {
@@ -40,7 +43,8 @@ struct fmt::formatter<String> : formatter<std::string>{
     template <typename FormatContext>
     auto format(const String& p, FormatContext& ctx) -> decltype(ctx.out()) {
 
-        return formatter<std::string>::format(p.toCString(), ctx);
+        const char* c = p.toCString() ? p.toCString() : "";
+        return formatter<std::string>::format(c, ctx);
       
     }
     
@@ -60,6 +64,18 @@ public:
      */
     Logger(const char* id) : id(id) {
 
+    }
+
+    String prompt()
+    {
+        std::getline(std::cin, lastInput);
+
+        if(lastInput.empty())
+        {
+            fmt::print("\033[A> ");
+        }
+        
+        return lastInput;
     }
 
     /*!
@@ -157,6 +173,13 @@ public:
 
 private:
 
+    enum class State
+    {
+        Idle,
+        Logging,
+        Prompting
+    };
+
     /*!
      * Logs a message to the console.
      *
@@ -167,13 +190,17 @@ private:
      */
     template<typename ... Args>
     void log(const fmt::text_style color, const char* type, const char*format, Args &&...args) const {
-
+        
         // Format the string.
         const auto formatArgs = fmt::make_format_args(args...);
         const std::string formatted = vformat(format, formatArgs);
+        
+        fmt::print("\r");
 
         // Print the formatted string.
         print(color, "[{}] ({}) | {}\n", type, this->getId(), formatted);
+
+        fmt::print("> ");
 
         // Get the time and put it into a string stream (cannot convert _Put_time directly to string).
         const auto now = std::chrono::system_clock::now();
@@ -211,5 +238,8 @@ private:
     * The log file where messages are dumped.
     */
     inline static std::ofstream file = std::ofstream("latest.log");
+
+    State state = State::Idle;
+    std::string lastInput;
 
 };

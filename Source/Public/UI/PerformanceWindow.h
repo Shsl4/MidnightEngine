@@ -44,6 +44,5 @@ private:
     bool s_showStats = false;
     SampleData s_frameTime;
     const ImVec4 s_resourceColor = {0.5f, 0.5f, 0.5f, 1.0f};
-    Logger logger = Logger("PerformanceWindow");
 
 };

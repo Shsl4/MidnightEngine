@@ -12,6 +12,7 @@
 #include <Rendering/ResourceLoader.h>
 
 #include <Scene/Scene.h>
+#include <Console/Console.h>
 
 /*!
  *  The main engine class.
@@ -19,6 +20,7 @@
 class ENGINE_API Engine : public Object
 {
 public:
+ 
     enum class Threads
     {
         Main,
@@ -111,7 +113,7 @@ public:
      *
      * \return The active scene.
      */
-    FORCEINLINE const class Scene* getActiveScene() const
+    FORCEINLINE class Scene* getActiveScene() const
     {
         return activeScene.raw();
     }
@@ -136,6 +138,11 @@ public:
         return resourceLoader.raw();
     }
 
+    FORCEINLINE const Console* getConsole() const
+    {
+        return console.raw();
+    }
+
 protected:
 
     void schedule(Threads thread, std::function<void()> const& function);
@@ -150,12 +157,11 @@ protected:
         schedule(Threads::Render, [this]()
         {
             activeScene.rebuild<SceneClass>();
-            logger->info("Loading scene of type {}...", activeScene->getClassName());
+            Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
-            logger->success("Successfully loaded scene {}", activeScene->getSceneName());
+            Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
         });
-        
-        
+     
     }
 
     void unloadScene();
@@ -167,6 +173,7 @@ protected:
 private:
     
     friend class Entry;
+    friend class Console;
 
     /*!
      *  The engine's initialization function. It is called after the constructor.
@@ -231,12 +238,7 @@ private:
      * The engine InputManager.
      */
     AutoReleasePointer<InputManager> inputManager;
-
-    /*!
-     * The engine Logger.
-     */
-    AutoReleasePointer<Logger> logger;
-
+ 
     /*!
      * The currently loaded Scene.
      */
@@ -246,6 +248,8 @@ private:
     * The engine resource loader.
     */
     AutoReleasePointer<ResourceLoader> resourceLoader;
+    
+    AutoReleasePointer<Console> console;
 
     AutoReleasePointer<PerformanceWindow> perfWindow;
 

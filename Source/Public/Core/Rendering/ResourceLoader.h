@@ -42,7 +42,5 @@ private:
      *  \brief An array containing every loaded mesh.
      */
     AutoReleaseArray<Mesh*> loadedMeshes = AutoReleaseArray<Mesh*>(100);
-
-    static inline Logger logger = Logger("ResourceLoader");
-
+ 
 };

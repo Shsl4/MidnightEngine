@@ -39,7 +39,7 @@ public:
     /**
      * \brief The AutoReleasePointer destructor. Releases the managed resource.
      */
-    ~AutoReleasePointer();
+    ~AutoReleasePointer() override;
 
     /**
      * \brief The AutoReleasePointer copy constructor (deleted)

@@ -8,6 +8,8 @@
 #include <Logging/Logger.h>
 #include <Memory/AutoReleasePointer.h>
 
+#include "SDL2/SDL_egl.h"
+
 struct ENGINE_API AttachmentProperties {
 
 public:
@@ -247,11 +249,9 @@ public:
      *
      *  \return Whether is component is a root component.
      */
-    FORCEINLINE bool isRootComponent() const {
-        return !parentComponent;
-    }
+    NODISCARD bool isRootComponent() const;
 
-    FORCEINLINE Scene *getScene() const {
+    FORCEINLINE class Scene *getScene() const {
         return this->scene;
     }
 
@@ -260,7 +260,7 @@ protected:
     /*!
      * The SceneComponent constructor.
      */
-    SceneComponent();
+    SceneComponent() = default;
 
 private:
  
@@ -297,5 +297,5 @@ private:
     AttachmentProperties attachmentProperties;
 
     Scene* scene = nullptr;
-
+    
 };

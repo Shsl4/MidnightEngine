@@ -47,7 +47,6 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, 
     
     engine = provider();
 
-    /// \todo Implement a correct multi-threaded paradigm
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
          initEngine(data);

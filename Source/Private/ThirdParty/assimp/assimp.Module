@@ -18,7 +18,8 @@ set(ASSIMP_RELEASE_LIBS ${CMAKE_CURRENT_LIST_DIR}/bin/macOS/arm64/Release/libass
 
 elseif (LINUX)
 
-message(FATAL_ERROR "Need to compile assimp static libraries for Linux.")
+set(ASSIMP_DEBUG_LIBS ${CMAKE_CURRENT_LIST_DIR}/bin/Linux/x64/Release/libassimp.so)
+set(ASSIMP_RELEASE_LIBS ${CMAKE_CURRENT_LIST_DIR}/bin/Linux/x64/Release/libassimp.so)
 
 endif()
 

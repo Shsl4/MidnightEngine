@@ -20,6 +20,7 @@
 
 #include <SDL2/SDL_keycode.h>
 #include <thread>
+#include <iostream>
 
 Logger Logger::assertLogger = Logger("Assert");
 
@@ -31,22 +32,22 @@ Engine::Engine() {
     Engine::instance = this;
 
     // Initialize our variables.
-    this->logger = AutoReleasePointer<Logger>::make("MidnightEngine");
     this->inputManager = AutoReleasePointer<InputManager>::make();
     this->perfWindow = AutoReleasePointer<PerformanceWindow>::make();
     this->resourceLoader = AutoReleasePointer<ResourceLoader>::make();
+    this->console = AutoReleasePointer<Console>::make(this);
 
 }
 
 int Engine::init(int argc, const char **argv, PlatformData const& data) {
     
-    logger->info("Initializing MidnightEngine...");
+    Console::getLogger()->info("Initializing MidnightEngine...");
     
     // Initialize BGFX.
     if (!bgfx::init()) {
 
         // If it fails, print an error message and return.
-        logger->fatal("Failed to initialize BGFX!");
+        Console::getLogger()->fatal("Failed to initialize BGFX!");
         bgfx::shutdown();
         return -1;
 
@@ -69,9 +70,11 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     inputManager->bindEvent(this, KeyBind(SDLK_ESCAPE), EInputEvent::Pressed, &Engine::stop);
     
     // As everything went fine, print an info message.
-    logger->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
+    Console::getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
     
     running = true;
+
+    console->init();
 
     onStart();
 
@@ -180,14 +183,16 @@ void Engine::unloadScene() {
 
     if (activeScene.hasValue())
     {
-        logger->info("Unloading scene {}...", activeScene->getSceneName());
+        Console::getLogger()->info("Unloading scene {}...", activeScene->getSceneName());
         
         schedule(Threads::Render, [this]()
         {
+            
             String name = activeScene->getSceneName();
             activeScene->cleanup();
             activeScene.release();
-            logger->info("Unloaded scene {}.", name);
+            Console::getLogger()->info("Unloaded scene {}.", name);
+            
         });
     }
 
@@ -204,19 +209,18 @@ void Engine::cleanup() {
 
     if (isRunning()) { return; }
 
-    logger->info("Cleaning up...");
+    Console::getLogger()->info("Cleaning up...");
     
     if(activeScene.hasValue())
     {
         String name = activeScene->getSceneName();
-        logger->info("Unloading scene {}...", name);
+        Console::getLogger()->info("Unloading scene {}...", name);
         activeScene->cleanup();
         activeScene.release();
-        logger->info("Unloaded scene {}.", name);
+        Console::getLogger()->info("Unloaded scene {}.", name);
     }
     
     // Release the allocated engine resources.
-    logger.release();
     inputManager.release();
     activeScene.release();
     resourceLoader.release();
@@ -228,6 +232,8 @@ void Engine::cleanup() {
 
     // Remove reference to the instance
     Engine::instance = nullptr;
+
+    Console::getLogger()->info("Exited MidnightEngine.");
     
 }
 
