@@ -50,7 +50,15 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
     
     this->vertexBuffer = Allocator<VertexHandle>().construct(createVertexBuffer(vertexMemory, getVertexLayout()));
     this->indexBuffer = Allocator<IndexHandle>().construct(createIndexBuffer(indexMemory));
-    this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Material"));
+
+    if(meshName == "Cube")
+    {
+        this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Texture"));
+    }
+    else
+    {
+        this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Material"));
+    }
     
 }
 

@@ -1,6 +1,7 @@
 #include <Rendering/ShaderManager.h>
 
 #include <Rendering/ResourceLoader.h>
+#include <Logging/Logger.h>
 #include <fmt/format.h>
 
 bgfx::ShaderHandle ShaderManager::loadShader(String const& name) {

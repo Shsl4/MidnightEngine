@@ -5,19 +5,20 @@
 
 #include <assimp/postprocess.h>
 
-#include "ShaderManager.h"
-#include "assimp/Importer.hpp"
-#include "Console/Console.h"
+#include <Rendering/ShaderManager.h>
+#include <assimp/Importer.hpp>
+#include <Console/Console.h>
+
+#include <stb_image.h>
 
 void ResourceLoader::init() {
 
     std::filesystem::directory_iterator iterator;
 
     try {
-        Console::getLogger()->info("{}", std::filesystem::current_path().string());
         iterator = std::filesystem::directory_iterator("./Resources/Models");
     }
-    catch (std::exception) {
+    catch (std::exception const&) {
         Console::getLogger()->fatal("Could not find the Resources folder.");
         return;
     }
@@ -35,6 +36,25 @@ void ResourceLoader::init() {
             // Load it
             loadMesh(file.string().c_str());
         }
+        
+    }
+
+    try {
+        iterator = std::filesystem::directory_iterator("./Resources/Textures");
+    }
+    catch (std::exception const&) {
+        Console::getLogger()->fatal("Could not find the Resources folder.");
+        return;
+    }
+
+    // For each file in our model resource directory
+    for (const auto & entry : iterator)
+    {
+        // Get the file name and its extension
+        std::filesystem::path file = entry.path().filename();
+
+        // Load it
+        loadTexture(file.string());
         
     }
     
@@ -83,7 +103,61 @@ const Mesh* ResourceLoader::getMesh(String const& name) const
     
 }
 
-bool ResourceLoader::loadMesh(String const& file)
+const Texture* ResourceLoader::getTexture(String const& name) const {
+
+    
+    // For every loaded mesh
+    for (auto const& texture : loadedTextures)
+    {
+        // If the mesh name matches
+        if (texture->textureName == name)
+        {
+            // Return the mesh
+            return texture;
+        }
+        
+    }
+
+    // Print an error message
+    Console::getLogger()->error("Tried to get texture named {} which does not exist.", name);
+
+    return nullptr;
+    
+}
+
+void ResourceLoader::loadTexture(String const& file)
+{
+
+    // Get the file name by removing the file extension
+    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
+
+    // Create our resource path
+    String path = "./Resources/Textures/";
+    path.append(file);
+
+    Int32 width = 0;
+    Int32 height = 0;
+    Int32 channelCount = 0;
+    
+    auto* data = stbi_load(path.toCString(), &width, &height, &channelCount, 4);
+
+    if (data == nullptr)
+    {
+        Console::getLogger()->error("Failed to load texture. Reason: {}. File: {}", stbi_failure_reason(), file);
+        return;
+    }
+
+    // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
+    loadedTextures += Allocator<Texture>().construct(fileName, width, height, data);
+
+    stbi_image_free(data);
+
+    // Log a success message.
+    Console::getLogger()->success("Successfully loaded texture {}.", fileName);
+    
+}
+
+void ResourceLoader::loadMesh(String const& file)
 {
 
     // Get the file name by removing the file extension
@@ -98,15 +172,16 @@ bool ResourceLoader::loadMesh(String const& file)
     
     // Load the 3D model.
     const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast |
-        aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes);
+                                                               aiProcess_Triangulate |
+                                                               aiProcess_FlipUVs);
 
     // If the model could not be loaded, print an error message.
     if (scene == nullptr)
     {
         Console::getLogger()->error("Failed to load model. The path {} is invalid.", path);
-        return false;
+        return;
     }
-
+    
     auto totalVertices = Array<Vertex>(10000);
     auto totalIndices = Array<UInt16>(10000);
 
@@ -166,7 +241,5 @@ bool ResourceLoader::loadMesh(String const& file)
 
     // Log a success message.
     Console::getLogger()->success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
-
-    return true;
     
 }

@@ -21,7 +21,7 @@ public:
             throw CommandError(fmt::vformat(format, fmt::make_format_args(std::forward<Args>(args)...)));
         }
     }
-
+    
     template<typename ... Args>
     NORETURN FORCEINLINE static void throwError(const char* format, Args &&... args)
     {

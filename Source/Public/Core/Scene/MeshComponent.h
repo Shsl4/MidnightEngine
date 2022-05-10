@@ -13,6 +13,7 @@ struct Material
     Material() {
 
         this->ambient = bgfx::createUniform("matAmbient", bgfx::UniformType::Vec4);
+        this->textureDiffuse = bgfx::createUniform("texDiffuse", bgfx::UniformType::Sampler);
         this->diffuse = bgfx::createUniform("matDiffuse", bgfx::UniformType::Vec4);
         this->specular = bgfx::createUniform("matSpecular", bgfx::UniformType::Vec4);
         this->shininess = bgfx::createUniform("matShininess", bgfx::UniformType::Vec4);
@@ -22,12 +23,14 @@ struct Material
     ~Material()
     {
         destroy(this->ambient);
+        destroy(this->textureDiffuse);
         destroy(this->diffuse);
         destroy(this->specular);
         destroy(this->shininess);
     }
     
     bgfx::UniformHandle ambient;
+    bgfx::UniformHandle textureDiffuse;
     bgfx::UniformHandle diffuse;
     bgfx::UniformHandle specular;
     bgfx::UniformHandle shininess;
@@ -82,7 +85,8 @@ private:
 
     void render() override;
 
-    const struct Mesh *mesh;
+    const struct Mesh *mesh = nullptr;
+    const struct Texture *texture = nullptr;
 
     DefaultLight light;
     Material material;

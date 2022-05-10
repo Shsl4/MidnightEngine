@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Rendering/Mesh.h>
-#include <Logging/Logger.h>
+#include <Rendering/Texture.h>
 
-class ENGINE_API ResourceLoader
+class ENGINE_API ResourceLoader : public Object
 {
 
 public:
@@ -19,6 +19,14 @@ public:
      *  \return The mesh or nullptr if it wasn't found.
      */
     NODISCARD const Mesh* getMesh(String const& name) const;
+ 
+    /*!
+     *  \brief Gets a loaded texture by name.
+     *
+     *  \param[in] name The name of the texture to get.
+     *  \return The texture or nullptr if it wasn't found.
+     */
+    NODISCARD const Texture* getTexture(String const& name) const;
 
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.
@@ -34,13 +42,19 @@ private:
      *  \brief Tries to load a mesh from the input file.
      *
      *  \param[in] file The path of the file to load.
-     *  \return Whether the mesh was loaded.
      */
-    bool loadMesh(String const& file);
+    void loadMesh(String const& file);
+
+    void loadTexture(String const& file);
     
     /*!
      *  \brief An array containing every loaded mesh.
      */
     AutoReleaseArray<Mesh*> loadedMeshes = AutoReleaseArray<Mesh*>(100);
+
+     /*!
+     *  \brief An array containing every loaded texture.
+     */
+    AutoReleaseArray<Texture*> loadedTextures = AutoReleaseArray<Texture*>(100);
  
 };

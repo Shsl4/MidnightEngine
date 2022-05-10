@@ -14,6 +14,12 @@ void MeshComponent::update(float deltaTime) {
 MeshComponent::MeshComponent(String const& name) {
         
     this->mesh = Engine::getInstance()->getResourceLoader()->getMesh(name);
+
+    if(name == "Cube")
+    {
+        this->texture = Engine::getInstance()->getResourceLoader()->getTexture("Missing");
+    }
+    
     this->viewPos = createUniform("viewPos", bgfx::UniformType::Vec4);
 
 }
@@ -43,8 +49,8 @@ void MeshComponent::render() {
         
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
 
-        const auto ambient = Vector4(1.0f, 0.5f, 0.31f, 1.0f);
-        const auto diffuse = Vector4(1.0f, 0.5f, 0.31f, 1.0f);
+        const auto ambient = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        const auto diffuse = Vector4(1.0f, 1.0f,1.0f, 1.0f);
         const auto specular = Vector4(0.5f, 0.5f, 0.5f, 1.0f);
         const auto shininess = Vector4(128.0f);
         
@@ -56,7 +62,16 @@ void MeshComponent::render() {
         setUniform(viewPos, &view);
         
         setUniform(material.ambient, &ambient);
-        setUniform(material.diffuse, &diffuse);
+
+        if(texture)
+        {
+            texture->use(0, material.textureDiffuse);
+        }
+        else
+        {
+            setUniform(material.diffuse, &diffuse);
+        }
+
         setUniform(material.specular, &specular);
         setUniform(material.shininess, &shininess);
 
