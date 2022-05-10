@@ -7,17 +7,61 @@
 #include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
-struct DirectionalLight {
+struct Material
+{
 
+    Material() {
+
+        this->ambient = bgfx::createUniform("matAmbient", bgfx::UniformType::Vec4);
+        this->diffuse = bgfx::createUniform("matDiffuse", bgfx::UniformType::Vec4);
+        this->specular = bgfx::createUniform("matSpecular", bgfx::UniformType::Vec4);
+        this->shininess = bgfx::createUniform("matShininess", bgfx::UniformType::Vec4);
+        
+    }
+
+    ~Material()
+    {
+        destroy(this->ambient);
+        destroy(this->diffuse);
+        destroy(this->specular);
+        destroy(this->shininess);
+    }
+    
+    bgfx::UniformHandle ambient;
+    bgfx::UniformHandle diffuse;
+    bgfx::UniformHandle specular;
+    bgfx::UniformHandle shininess;
+    
+};
+
+struct DefaultLight {
+
+    DefaultLight() {
+        
+        this->lightPos = bgfx::createUniform("lightPos", bgfx::UniformType::Vec4);
+        this->ambientColor = bgfx::createUniform("lightAmbientColor", bgfx::UniformType::Vec4);
+        this->diffuseColor = bgfx::createUniform("lightDiffuseColor", bgfx::UniformType::Vec4);
+        this->specularColor = bgfx::createUniform("lightSpecularColor", bgfx::UniformType::Vec4);
+
+    }
+    
+    ~DefaultLight()
+    {
+        destroy(this->lightPos);
+        destroy(this->ambientColor);
+        destroy(this->diffuseColor);
+        destroy(this->specularColor);
+    }    
+    
     bgfx::UniformHandle lightPos;
-    bgfx::UniformHandle lightColor;
-    bgfx::UniformHandle viewPos;
-    bgfx::UniformHandle objectColor;
-    bgfx::UniformHandle model;
+    bgfx::UniformHandle ambientColor;
+    bgfx::UniformHandle diffuseColor;
+    bgfx::UniformHandle specularColor;
+    
 };
 
 /*!
- * A renderable component that represents a mesh.
+ *  \brief A renderable component that represents a mesh.
  */
 class ENGINE_API MeshComponent : public SceneComponent, public Renderable {
 
@@ -40,7 +84,10 @@ private:
 
     const struct Mesh *mesh;
 
-    DirectionalLight light;
+    DefaultLight light;
+    Material material;
+
+    bgfx::UniformHandle viewPos;    
 
     Matrix4 model;
     

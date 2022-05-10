@@ -70,7 +70,7 @@ void Scene::setWorldColor(const UInt32 color) const
 
 SceneObject* Scene::getObjectByIndex(size_t index) const {
     
-    if(index < 0 || index > registeredObjects.getSize()) { return nullptr; }
+    if(index < 0 || index >= registeredObjects.getSize()) { return nullptr; }
 
     return registeredObjects[index];
     

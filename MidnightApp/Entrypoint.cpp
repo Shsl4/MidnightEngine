@@ -48,9 +48,9 @@ protected:
 
         setWorldColor(0x101010ff);
 
-        this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Sphere");
-        this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Sphere");
-        this->planet3 = createObject<MeshObject>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)), "Sphere");
+        this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Monkey");
+        this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Monkey");
+        this->planet3 = createObject<MeshObject>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)), "Monkey");
         
         this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
 
@@ -104,6 +104,25 @@ protected:
     
 };
 
+class RenderScene : public Scene
+{
+public:
+    
+    void start() override
+    {
+
+        setWorldColor(0x00000000);
+        createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }), "Cube");
+        createObject<FlyingCharacter>({ { 2.5f, 2.5f, 2.5f }, { -135.0f, -40.0f, 0.0f } });
+
+    }
+    
+    NODISCARD FORCEINLINE String getSceneName() const override
+    {
+        return "RenderScene";
+    }
+};
+
 class MyEngine : public Engine {
 
     void load() {
@@ -120,6 +139,7 @@ class MyEngine : public Engine {
         CommandNode* loadNode = CommandNode::make("scene.load");
         CommandNode* addMeshNode = CommandNode::make("scene.mesh.add");
         CommandNode* listObjNode = CommandNode::make("scene.object.list");
+        CommandNode* posNode = CommandNode::make("scene.object.pos");
         CommandNode* deleteObjNode = CommandNode::make("scene.object.delete");
         CommandNode* listCompNode = CommandNode::make("scene.component.list");
 
@@ -144,13 +164,17 @@ class MyEngine : public Engine {
                     {
                         loadScene<MyScene>();
                     }
+                    else if(sceneName == "RenderScene")
+                    {
+                        loadScene<RenderScene>();
+                    }
                     else
                     {
                         CommandError::throwError("The scene \"{}\" does not exist.", sceneName);
                     }                    
                     
                 });
-
+        
         auto* node = addMeshNode->addArgument("meshName", ArgumentType::String);
         
         node->addExecutable([this](const auto* context) {
@@ -201,6 +225,23 @@ class MyEngine : public Engine {
                          getActiveScene()->destroyObject(getActiveScene()->getObjectByIndex(index));
                          
                      });
+
+        posNode->addArgument("index", ArgumentType::Int64)->addExecutable([this](const auto* context)
+        {
+
+            CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+
+            const Int64 index = context->getInt64("index");
+
+            const SceneObject* object = getActiveScene()->getObjectByIndex(index);
+
+            CommandError::throwIf(!object, "The provided object index is invalid");
+
+            const auto pos = object->getWorldPosition();
+            Console::getLogger()->info("Position for {} ({}): {{ {}, {}, {} }}", object->getClassName(),
+                fmt::ptr(object), pos.x, pos.y, pos.z);
+            
+        });
         
         getConsole()->registerCommand(loadNode);
         getConsole()->registerCommand(unloadNode);
@@ -208,8 +249,9 @@ class MyEngine : public Engine {
         getConsole()->registerCommand(listObjNode);
         getConsole()->registerCommand(deleteObjNode);
         getConsole()->registerCommand(listCompNode);
-
-        getConsole()->execute("scene.load SpaceScene");
+        getConsole()->registerCommand(posNode);
+        
+        getConsole()->execute("scene.load RenderScene");
 
     }
 
@@ -233,8 +275,7 @@ int main(const int argc, const char** argv) {
     const auto engine = AutoReleasePointer<MyEngine>::make();
     const auto pointer = engine.raw();
 
-    entry->entry(argc, argv, [pointer]()
-    {
+    entry->entry(argc, argv, [pointer]() {
         return pointer;
     });
 

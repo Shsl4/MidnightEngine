@@ -26,7 +26,9 @@ Console::Console(Engine* engine) : engine(engine){
         engine->stop();
     });
         
-    helpNode->addExecutable([this]<typename T0>(T0&& PH1) { return consoleHelp(std::forward<T0>(PH1)); });
+    helpNode->addExecutable([this](const auto* context) {
+        consoleHelp(context);
+    });
 
     echoNode->addArgument("text", ArgumentType::String)
             ->addExecutable([this](const auto* context) {
@@ -80,7 +82,7 @@ void Console::execute(String const& command) const {
     Array<String> args = command.split(' ');
     const String name = args.getAt(0);
     args.removeAt(0);
-    
+        
     try
     {
         commandTree->execute(name, args);
@@ -89,6 +91,7 @@ void Console::execute(String const& command) const {
     {
         logger->error(error.what());
     }
+    
 }
 
 void Console::consoleHelp(const CommandContext* context)

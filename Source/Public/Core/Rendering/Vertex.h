@@ -47,16 +47,16 @@ public:
      * The position of the vertex in space.
      */
     Vector3 position = Vector3::zero;
-    
-    /*!
-     * The vertex normal.
-     */
-    Vector3 normal = Vector3::zero;
-    
+ 
     /*!
      * The vertex texture coordinates.
      */
     Vector2 textureCoordinates = Vector2::zero;
+ 
+    /*!
+     * The vertex normal.
+     */
+    Vector3 normal = Vector3::zero;
     
     /*!
      * The vertex color.

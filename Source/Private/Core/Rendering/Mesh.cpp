@@ -2,20 +2,20 @@
 #include <bgfx/bgfx.h>
 #include <Rendering/ShaderManager.h>
 
-#define HandleWrapper(name, type)                       \
-                                                        \
-    struct name {                                       \
-                                                        \
-        name(type const& handle) : handle(handle) {     \
-                                                        \
-        }                                               \
-                                                        \
-        ~name(){                                        \
-            bgfx::destroy(handle);                      \
-        }                                               \
-                                                        \
-        type handle;                                    \
-                                                        \
+#define HandleWrapper(name, type)                                \
+                                                                 \
+    struct name {                                                \
+                                                                 \
+        explicit name(type const& handle) : handle(handle) {     \
+                                                                 \
+        }                                                        \
+                                                                 \
+        ~name(){                                                 \
+            bgfx::destroy(handle);                               \
+        }                                                        \
+                                                                 \
+        type handle;                                             \
+                                                                 \
     };
 
 HandleWrapper(ProgramHandle, bgfx::ProgramHandle)
@@ -50,7 +50,7 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
     
     this->vertexBuffer = Allocator<VertexHandle>().construct(createVertexBuffer(vertexMemory, getVertexLayout()));
     this->indexBuffer = Allocator<IndexHandle>().construct(createIndexBuffer(indexMemory));
-    this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Advanced"));
+    this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Material"));
     
 }
 

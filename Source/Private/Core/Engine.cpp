@@ -119,7 +119,7 @@ void Engine::render() {
 
     // Begin UI drawing.
     imguiBeginFrame(0, 0, 0, 0, static_cast<UInt16>(platformData.renderWidth), static_cast<UInt16>(platformData.renderHeight));
-
+    
     // Render the windows.
     perfWindow->render(nullptr);
 

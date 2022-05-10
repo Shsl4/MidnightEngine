@@ -13,15 +13,16 @@ void CommandTree::execute(String const& command, Array<String> const& args)
 {
     
     CommandNode* node = rootNode->findLiteralNode(command);
-    const size_t argc = args.getSize();
-    const auto context = AutoReleasePointer<CommandContext>::make();
 
     if (!node)
     {
         Console::getLogger()->error("{}: Unknown command.", command);
         return;
     }    
-   
+
+    const size_t argc = args.getSize();
+    const auto context = AutoReleasePointer<CommandContext>::make();
+    
     for (size_t i = 0; i < argc; ++i)
     {
         String& arg = args[i];
@@ -37,15 +38,15 @@ void CommandTree::execute(String const& command, Array<String> const& args)
 
         if(nextNode)
         {
-            
+
             const auto* argNode = nextNode->cast<ArgumentCommandNode>();
-                
+
             context->tryParse(arg, argNode->getNodeName(), argNode->getArgumentType());
 
             node = nextNode;
 
             continue;
-               
+            
         }
         
         CommandError::throwError("Too many arguments provided. Expected {}, got {}.", i, argc);
@@ -77,8 +78,10 @@ void CommandTree::registerNode(CommandNode* node)
 {
     try
     {
+        
         CommandError::throwIf(node->getNodeName().isEmpty(), "Tried to register an unnamed node.");
         CommandError::throwIf(rootNode->containsNode(node), "This node is already present in the command tree.");
+        CommandError::throwIf(rootNode->findChildNode(node->getNodeName()), "A command named {} already exists.", node->getNodeName());
         CommandError::throwIf(node->nodeType != NodeType::Literal, "You may only register command literals.");
 
         Array<CommandNode*> leaves;

@@ -35,9 +35,9 @@ void ResourceLoader::init() {
             // Load it
             loadMesh(file.string().c_str());
         }
-
+        
     }
-
+    
 }
 
 Array<UInt8> ResourceLoader::loadFile(String const& path){
