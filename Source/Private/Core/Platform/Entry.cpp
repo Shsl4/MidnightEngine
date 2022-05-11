@@ -9,6 +9,9 @@
 
 #include <Input/InputManager.h>
 
+#include <source_location>
+
+
 #ifndef __APPLE__
 
 #if defined(_WIN64) && defined(_DEBUG)
@@ -80,11 +83,20 @@ int Entry::initEngine(PlatformData data) {
     
     if (value != 0) { return value; }
 
-    while (engine->isRunning())
-    {
-        engine->render();
+    try {
+            
+        while (engine->isRunning())
+        {
+            engine->render();
+        }
+        
     }
-
+    catch (Exception const& e) {
+        Console::getLogger()->fatal(fmt::format("{} in file: {}, in function: {}, line: {}", e.what(),
+             e.location.file_name(), e.location.function_name(),  e.location.line()).c_str());
+        engine->stop();
+    }
+    
     engine->cleanup();
 
     hasTerminated = true;

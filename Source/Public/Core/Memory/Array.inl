@@ -642,39 +642,3 @@ Int64 Array<T>::partitionDesc(const Int64 from, const Int64 to) {
     return idx + 1;
 
 }
-
-template<typename T>
-bool AutoReleaseArray<T>::removeFirstOf(T const &elem) {
-
-    Optional<size_t> opt = Array<T>::firstIndexOf(elem);
-
-    if (opt.hasValue()) {
-
-        size_t index = opt.getValue();
-        
-        // If the index is out of bounds, return.
-        if (index >= Array<T>::getSize()) {
-            return false;
-        }
-
-        // Move the data in the optional.
-        Array<T>::allocator.autoDestroy(Array<T>::data[index]);
-
-        // Move back all the elements after the index.
-        Array<T>::allocator.move(Array<T>::data + index + 1, Array<T>::data + Array<T>::size, Array<T>::data + index);
-
-        // Reduce the size of the array.
-        --Array<T>::size;
-
-        // If T is a primitive type, set the memory after the moved elements to zero.
-        if (std::is_fundamental_v<T>) {
-            std::memset(Array<T>::data + Array<T>::size, 0, Array<T>::capacity - Array<T>::size);
-        }
-
-        return true;
-
-    }
-
-    return false;
-
-}

@@ -1,76 +1,77 @@
 #pragma once
 
 #include <Memory/Allocator.h>
+#include <Exception/Exception.h>
 
 /**
  * \brief A smart unique pointer type that auto-releases upon destruction.
  * \tparam T The type of object to manage
  */
 template <typename T>
-class AutoReleasePointer : public Object
+class UniquePointer : public Object
 {
     /**
-     * \brief The AutoReleasePointer constructor used internally to manage an object
+     * \brief The UniquePointer constructor used internally to manage an object
      * \param newPointer The pointer to manage.
      */
-    explicit AutoReleasePointer(T* newPointer);
+    explicit UniquePointer(T* newPointer);
 
 public:
     /**
-     * \brief Creates a new AutoReleasePointer of type T
+     * \brief Creates a new UniquePointer of type T
      * \tparam Args A variadic template type
      * \param args The arguments passed to the object constructor.
      * \return The new pointer
      */
     template <typename ... Args>
-    static AutoReleasePointer<T> make(Args&&... args);
+    static UniquePointer<T> make(Args&&... args);
 
     /**
-     * \brief Creates an empty AutoReleasePointer.
+     * \brief Creates an empty UniquePointer.
      * \return The new pointer object
      */
-    static AutoReleasePointer<T> empty();
+    static UniquePointer<T> empty();
 
     /**
-    * \brief The default AutoReleasePointer constructor
+    * \brief The default UniquePointer constructor
     */
-    AutoReleasePointer() = default;
+    UniquePointer() = default;
 
     /**
-     * \brief The AutoReleasePointer destructor. Releases the managed resource.
+     * \brief The UniquePointer destructor. Releases the managed resource.
      */
-    ~AutoReleasePointer() override;
+    ~UniquePointer() override;
 
     /**
-     * \brief The AutoReleasePointer copy constructor (deleted)
-     * \param other The AutoReleasePointer to copy
+     * \brief The UniquePointer copy constructor (deleted)
+     * \param other The UniquePointer to copy
      */
-    AutoReleasePointer(const AutoReleasePointer<T>& other) = delete;
+    UniquePointer(const UniquePointer<T>& other) = delete;
 
     /**
-     * \brief The AutoReleasePointer move constructor
+     * \brief The UniquePointer move constructor
      * \param other The pointer to move
      */
-    AutoReleasePointer(AutoReleasePointer<T>&& other) noexcept;
+    UniquePointer(UniquePointer<T>&& other) noexcept;
 
     /**
-     * \brief The AutoReleasePointer copy assignment operator (deleted)
-     * \param other The AutoReleasePointer to copy
+     * \brief The UniquePointer copy assignment operator (deleted)
+     * \param other The UniquePointer to copy
      */
-    AutoReleasePointer<T>& operator=(AutoReleasePointer<T> const& other) = delete;
+    UniquePointer<T>& operator=(UniquePointer<T> const& other) = delete;
 
     /**
      * \brief The nullptr assignment operator. Releases the managed resource.
      * \return This empty pointer
      */
-    AutoReleasePointer<T>& operator=(nullptr_t);
+    UniquePointer<T>& operator=(nullptr_t);
 
     /**
-     * \brief The AutoReleasePointer move constructor
+     * \brief The UniquePointer move constructor
      * \param other The pointer to move
      * \return This pointer
      */
-    AutoReleasePointer<T>& operator=(AutoReleasePointer<T>&& other) noexcept;
+    UniquePointer<T>& operator=(UniquePointer<T>&& other) noexcept;
 
     /**
      * \brief Releases the managed resource.
@@ -103,7 +104,7 @@ public:
      * \brief Returns the raw pointer managed by this object
      * \return The raw pointer
      */
-    T* operator->() const noexcept;
+    T* operator->() const;
 
     /**
      * \brief Returns the raw pointer managed by this object
@@ -131,6 +132,6 @@ private:
 
 #define __ARP_INCL
 
-#include <Memory/AutoReleasePointer.inl>
+#include <Memory/UniquePointer.inl>
 
 #undef __ARP_INCL

@@ -81,7 +81,7 @@ Array<UInt8> ResourceLoader::loadFile(String const& path){
     
 }
 
-const Mesh* ResourceLoader::getMesh(String const& name) const
+WeakPointer<Mesh> ResourceLoader::getMesh(String const& name) const
 {
 
     // For every loaded mesh
@@ -91,7 +91,7 @@ const Mesh* ResourceLoader::getMesh(String const& name) const
         if (mesh->meshName == name)
         {
             // Return the mesh
-            return mesh;
+            return mesh.weak();
         }
         
     }
@@ -103,7 +103,7 @@ const Mesh* ResourceLoader::getMesh(String const& name) const
     
 }
 
-const Texture* ResourceLoader::getTexture(String const& name) const {
+WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
 
     
     // For every loaded mesh
@@ -113,7 +113,7 @@ const Texture* ResourceLoader::getTexture(String const& name) const {
         if (texture->textureName == name)
         {
             // Return the mesh
-            return texture;
+            return texture.weak();
         }
         
     }
@@ -148,8 +148,8 @@ void ResourceLoader::loadTexture(String const& file)
     }
 
     // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedTextures += Allocator<Texture>().construct(fileName, width, height, data);
-
+    loadedTextures += SharedPointer<Texture>::make(fileName, width, height, data);
+    
     stbi_image_free(data);
 
     // Log a success message.
@@ -237,7 +237,7 @@ void ResourceLoader::loadMesh(String const& file)
     }
 
     // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedMeshes += Allocator<Mesh>().construct(totalVertices, totalIndices, fileName, path);
+    loadedMeshes += SharedPointer<Mesh>::make(totalVertices, totalIndices, fileName, path);
 
     // Log a success message.
     Console::getLogger()->success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);

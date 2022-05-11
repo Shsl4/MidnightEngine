@@ -3,6 +3,8 @@
 #include <Rendering/Mesh.h>
 #include <Rendering/Texture.h>
 
+#include "Memory/SharedPointer.h"
+
 class ENGINE_API ResourceLoader : public Object
 {
 
@@ -18,7 +20,7 @@ public:
      *  \param[in] name The name of the mesh to get.
      *  \return The mesh or nullptr if it wasn't found.
      */
-    NODISCARD const Mesh* getMesh(String const& name) const;
+    NODISCARD WeakPointer<Mesh> getMesh(String const& name) const;
  
     /*!
      *  \brief Gets a loaded texture by name.
@@ -26,7 +28,7 @@ public:
      *  \param[in] name The name of the texture to get.
      *  \return The texture or nullptr if it wasn't found.
      */
-    NODISCARD const Texture* getTexture(String const& name) const;
+    NODISCARD WeakPointer<Texture> getTexture(String const& name) const;
 
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.
@@ -50,11 +52,11 @@ private:
     /*!
      *  \brief An array containing every loaded mesh.
      */
-    AutoReleaseArray<Mesh*> loadedMeshes = AutoReleaseArray<Mesh*>(100);
+    Array<SharedPointer<Mesh>> loadedMeshes = Array<SharedPointer<Mesh>>(100);
 
      /*!
      *  \brief An array containing every loaded texture.
      */
-    AutoReleaseArray<Texture*> loadedTextures = AutoReleaseArray<Texture*>(100);
+    Array<SharedPointer<Texture>> loadedTextures = Array<SharedPointer<Texture>>(100);
  
 };

@@ -1,9 +1,7 @@
 #include <Console/Console.h>
 #include <Core/Engine.h>
 
-#include <iostream>
-
-#include <Exception/CommandError.h>
+#include <Exception/Exception.h>
 
 Console::Console(Engine* engine) : engine(engine){
     
@@ -11,12 +9,12 @@ Console::Console(Engine* engine) : engine(engine){
     
     Console::instance = this;
     
-    this->logger = AutoReleasePointer<Logger>::make("Engine");
-    this->commandTree = AutoReleasePointer<CommandTree>::make();
+    this->logger = UniquePointer<Logger>::make("Engine");
+    this->commandTree = UniquePointer<CommandTree>::make();
 
-    CommandNode* helpNode = CommandNode::make("help");
-    CommandNode* exitNode = CommandNode::make("exit");
-    CommandNode* echoNode = CommandNode::make("echo");
+    const auto helpNode = CommandNode::make("help");
+    const auto exitNode = CommandNode::make("exit");
+    const auto echoNode = CommandNode::make("echo");
 
     helpNode->setNodeDescription("Prints this help menu.");
     exitNode->setNodeDescription("Exits the engine.");
@@ -51,7 +49,7 @@ Console::~Console(){
     
 }
 
-void Console::registerCommand(CommandNode* node) const
+void Console::registerCommand(SharedPointer<CommandNode> const& node) const
 {
     commandTree->registerNode(node);
 }

@@ -33,7 +33,7 @@ void FlyingCharacter::createComponents(Scene *scene, Transform transform) {
 
     // Create a CameraComponent and set it as root.
     this->camera = scene->createComponent<CameraComponent>(transform, 90.0f, 16.0f / 9.0f, 500.0f);
-    setRootComponent(camera);
+    setRootComponent(camera.raw());
 
 }
 

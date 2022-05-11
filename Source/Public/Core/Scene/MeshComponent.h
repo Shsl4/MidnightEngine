@@ -7,6 +7,10 @@
 #include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
+#include <Memory/WeakPointer.h>
+#include <Rendering/Mesh.h>
+#include <Rendering/Texture.h>
+
 struct Material
 {
 
@@ -41,10 +45,10 @@ struct DefaultLight {
 
     DefaultLight() {
         
-        this->lightPos = bgfx::createUniform("lightPos", bgfx::UniformType::Vec4);
-        this->ambientColor = bgfx::createUniform("lightAmbientColor", bgfx::UniformType::Vec4);
-        this->diffuseColor = bgfx::createUniform("lightDiffuseColor", bgfx::UniformType::Vec4);
-        this->specularColor = bgfx::createUniform("lightSpecularColor", bgfx::UniformType::Vec4);
+        this->lightPos = createUniform("lightPos", bgfx::UniformType::Vec4);
+        this->ambientColor = createUniform("lightAmbientColor", bgfx::UniformType::Vec4);
+        this->diffuseColor = createUniform("lightDiffuseColor", bgfx::UniformType::Vec4);
+        this->specularColor = createUniform("lightSpecularColor", bgfx::UniformType::Vec4);
 
     }
     
@@ -85,10 +89,11 @@ private:
 
     void render() override;
 
-    const struct Mesh *mesh = nullptr;
-    const struct Texture *texture = nullptr;
+    WeakPointer<Mesh> mesh = nullptr;
+    WeakPointer<Texture> texture = nullptr;
 
     DefaultLight light;
+    
     Material material;
 
     bgfx::UniformHandle viewPos;    

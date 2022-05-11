@@ -80,6 +80,6 @@ private:
 
     NODISCARD Entry* getEntry(String const& name) const;
 
-    AutoReleaseArray<Entry*> entries;
+    Array<SharedPointer<Entry>> entries;
     
 };

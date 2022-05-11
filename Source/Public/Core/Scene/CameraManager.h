@@ -4,6 +4,8 @@
 #include <Memory/Array.h>
 #include <Scene/CameraComponent.h>
 
+#include <Memory/WeakPointer.h>
+
 /*!
  * The CameraManager is an object keeping references to every camera in a scene.
  * It allows easy camera access and manipulation.
@@ -29,7 +31,7 @@ public:
      *
      *  \return The active camera
      */
-    FORCEINLINE CameraComponent *getActiveCamera() const {
+    FORCEINLINE WeakPointer<CameraComponent> getActiveCamera() const {
         return activeCamera;
     }
 
@@ -38,7 +40,7 @@ public:
      *
      *  \return The owning scene.
      */
-    FORCEINLINE const Scene *getScene() const
+    FORCEINLINE Scene* getScene() const
     {
         return this->scene;
     }
@@ -48,14 +50,14 @@ public:
      *
      * \param[in] camera The camera to register
      */
-    void registerCamera(CameraComponent *camera);
+    void registerCamera(WeakPointer<CameraComponent> camera);
 
     /*!
      * Function called by the scene when a CameraComponent is destroyed. Do not call manually.
      *
      *  \param[in] camera The camera to unregister
      */
-    void unregisterCamera(CameraComponent *camera);
+    void unregisterCamera(CameraComponent* camera);
     
     /*!
      * Uses the input camera for rendering.
@@ -63,7 +65,7 @@ public:
      *  \param[in] camera The camera to use.
      *  \return Whether the camera is being used.
      */
-    bool setActiveCamera(CameraComponent *camera);
+    bool setActiveCamera(WeakPointer<CameraComponent>& camera);
 
 
 protected:
@@ -71,17 +73,17 @@ protected:
     /*!
      * Array containing the cameras in the scene.
      */
-    Array<CameraComponent *> cameras;
+    Array<WeakPointer<CameraComponent>> cameras;
     
     /*!
      * The camera currently used for rendering.
      */
-    CameraComponent *activeCamera = nullptr;
+    WeakPointer<CameraComponent> activeCamera = nullptr;
 
     /*!
      * The Scene this CameraManager belongs to.
      */
-    Scene *scene;
+    Scene* scene;
 
 };
 

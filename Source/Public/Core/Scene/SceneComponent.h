@@ -6,9 +6,7 @@
 #include <Math/Transform.h>
 
 #include <Logging/Logger.h>
-#include <Memory/AutoReleasePointer.h>
-
-#include "SDL2/SDL_egl.h"
+#include <Memory/UniquePointer.h>
 
 struct ENGINE_API AttachmentProperties {
 

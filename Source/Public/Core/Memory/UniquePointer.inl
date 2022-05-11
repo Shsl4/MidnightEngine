@@ -6,19 +6,19 @@
 
 template <typename T>
 template <typename ... Args>
-AutoReleasePointer<T> AutoReleasePointer<T>::make(Args&&... args)
+UniquePointer<T> UniquePointer<T>::make(Args&&... args)
 {
-    return AutoReleasePointer<T>(Allocator<T>().construct(std::forward<Args>(args)...));
+    return UniquePointer<T>(Allocator<T>().construct(std::forward<Args>(args)...));
 }
 
 template <typename T>
-AutoReleasePointer<T> AutoReleasePointer<T>::empty()
+UniquePointer<T> UniquePointer<T>::empty()
 {
-    return AutoReleasePointer<T>();
+    return UniquePointer<T>();
 }
 
 template <typename T>
-AutoReleasePointer<T>::AutoReleasePointer(AutoReleasePointer<T>&& other) noexcept
+UniquePointer<T>::UniquePointer(UniquePointer<T>&& other) noexcept
 {
     release();
     pointer = other.pointer;
@@ -26,20 +26,20 @@ AutoReleasePointer<T>::AutoReleasePointer(AutoReleasePointer<T>&& other) noexcep
 }
 
 template <typename T>
-void AutoReleasePointer<T>::release()
+void UniquePointer<T>::release()
 {
     allocator.destroy(pointer);
 }
 
 template <typename T>
-void AutoReleasePointer<T>::discard()
+void UniquePointer<T>::discard()
 {
     pointer = nullptr;
 }
 
 template <typename T>
 template <typename OtherType>
-void AutoReleasePointer<T>::manage(OtherType* ptr)
+void UniquePointer<T>::manage(OtherType* ptr)
 {
     static_assert(std::is_convertible_v<OtherType*, T*>, "OtherType must publicly inherit T");
 
@@ -49,7 +49,7 @@ void AutoReleasePointer<T>::manage(OtherType* ptr)
 
 template <typename T>
 template <typename OtherType, typename ... Args>
-void AutoReleasePointer<T>::rebuild(Args&&... args)
+void UniquePointer<T>::rebuild(Args&&... args)
 {
     static_assert(std::is_convertible_v<OtherType*, T*>, "OtherType must publicly inherit T");
 
@@ -58,14 +58,14 @@ void AutoReleasePointer<T>::rebuild(Args&&... args)
 }
 
 template <typename T>
-AutoReleasePointer<T>& AutoReleasePointer<T>::operator=(nullptr_t)
+UniquePointer<T>& UniquePointer<T>::operator=(nullptr_t)
 {
     release();
     return *this;
 }
 
 template <typename T>
-AutoReleasePointer<T>& AutoReleasePointer<T>::operator=(AutoReleasePointer<T>&& other) noexcept
+UniquePointer<T>& UniquePointer<T>::operator=(UniquePointer<T>&& other) noexcept
 {
     release();
     pointer = other.pointer;
@@ -74,31 +74,33 @@ AutoReleasePointer<T>& AutoReleasePointer<T>::operator=(AutoReleasePointer<T>&& 
 }
 
 template <typename T>
-AutoReleasePointer<T>::~AutoReleasePointer()
+UniquePointer<T>::~UniquePointer()
 {
     release();
 }
 
 template <typename T>
-T* AutoReleasePointer<T>::operator->() const noexcept
+T* UniquePointer<T>::operator->() const
+{
+    expect(pointer, "Tried to dereference a null pointer.");
+    return pointer;
+}
+
+template <typename T>
+T* UniquePointer<T>::raw() const
+{
+    expect(pointer, "Tried to dereference a null pointer.");
+    return pointer;
+}
+
+template <typename T>
+bool UniquePointer<T>::hasValue() const
 {
     return pointer;
 }
 
 template <typename T>
-T* AutoReleasePointer<T>::raw() const
-{
-    return pointer;
-}
-
-template <typename T>
-bool AutoReleasePointer<T>::hasValue() const
-{
-    return pointer;
-}
-
-template <typename T>
-AutoReleasePointer<T>::AutoReleasePointer(T* newPointer)
+UniquePointer<T>::UniquePointer(T* newPointer)
 {
     pointer = newPointer;
 }

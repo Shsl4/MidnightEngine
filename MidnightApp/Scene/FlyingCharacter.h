@@ -3,6 +3,8 @@
 #include <Scene/SceneObject.h>
 #include <Scene/CameraComponent.h>
 
+#include <Memory/WeakPointer.h>
+
 class FlyingCharacter : public SceneObject {
 
     using Super = SceneObject;
@@ -41,6 +43,6 @@ protected:
 
 private:
 
-    CameraComponent *camera = nullptr;
+    WeakPointer<CameraComponent> camera = nullptr;
 
 };

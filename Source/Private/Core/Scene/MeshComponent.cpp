@@ -36,7 +36,7 @@ MeshComponent::~MeshComponent() {
 void MeshComponent::render() {
 
     // If a mesh is set
-    if (mesh){
+    if (!mesh.expired()){
 
         // Render it.
         mesh->use();
@@ -44,15 +44,15 @@ void MeshComponent::render() {
         const auto lightPos = Vector4(1.2f, 1.0f, 2.0f, 1);
         
         const auto lightAmbient = Vector4(0.2f, 0.2f, 0.2f, 1.0f);
-        const auto lightDiffuse = Vector4(0.5f, 0.5f, 0.5f, 1.0f);
+        const auto lightDiffuse = LinearColors::green;
         const auto lightSpecular = Vector4(1.0f);
         
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
 
-        const auto ambient = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        const auto ambient = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
         const auto diffuse = Vector4(1.0f, 1.0f,1.0f, 1.0f);
         const auto specular = Vector4(0.5f, 0.5f, 0.5f, 1.0f);
-        const auto shininess = Vector4(128.0f);
+        const auto shininess = Vector4(16.0f);
         
         setUniform(light.lightPos, &lightPos);
         setUniform(light.ambientColor, &lightAmbient);
@@ -63,7 +63,7 @@ void MeshComponent::render() {
         
         setUniform(material.ambient, &ambient);
 
-        if(texture)
+        if(!texture.expired())
         {
             texture->use(0, material.textureDiffuse);
         }

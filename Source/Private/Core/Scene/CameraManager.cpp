@@ -1,15 +1,15 @@
 #include <Scene/CameraManager.h>
 #include <Scene/Scene.h>
 
-CameraManager::CameraManager(Scene *owner) : cameras(15), scene(owner) {
+CameraManager::CameraManager(Scene* owner) : cameras(15), scene(owner) {
 
 
 }
 
-bool CameraManager::setActiveCamera(CameraComponent *camera) {
+bool CameraManager::setActiveCamera(WeakPointer<CameraComponent> & camera) {
 
     // If the pointer is valid and the camera is registered.
-    if (camera && cameras.contains(camera)) {
+    if (camera.valid() && cameras.contains(camera)) {
 
         // Set the camera as active.
         activeCamera = camera;
@@ -21,14 +21,12 @@ bool CameraManager::setActiveCamera(CameraComponent *camera) {
 
 }
 
-void CameraManager::registerCamera(CameraComponent *camera) {
-
-    if(!camera) { return; }
+void CameraManager::registerCamera(WeakPointer<CameraComponent> camera) {
     
     // Append the camera to the registered camera array.
     this->cameras.append(camera);
 
-    if (!activeCamera) {
+    if (activeCamera.expired()) {
 
         // Set the current camera.
         activeCamera = camera;
@@ -37,12 +35,20 @@ void CameraManager::registerCamera(CameraComponent *camera) {
 
 }
 
-void CameraManager::unregisterCamera(CameraComponent *camera) {
+void CameraManager::unregisterCamera(CameraComponent* camera) {
 
     if(!camera) { return; }
     
-    // Remove the camera from the registered camera array.
-    this->cameras.removeFirstOf(camera);
+    size_t i = 0;
+    
+    for (auto& e : cameras) {
+        if (camera == e.raw()) {
+            break;
+        }
+        ++i;
+    }
+    
+    cameras.removeAt(i);
 
     // If no more cameras are present in the scene.
     if (cameras.getSize() == 0) {

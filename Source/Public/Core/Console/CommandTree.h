@@ -3,13 +3,12 @@
 #include <Core/Object.h>
 #include <Core/EngineMacros.h>
 
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 
 #include <Console/CommandNode.h>
 #include <Console/CommandContext.h>
 
-#include <Exception/ParseError.h>
-#include <Exception/CommandError.h>
+#include "Memory/SharedPointer.h"
 
 class ENGINE_API CommandTree: public Object
 {
@@ -20,20 +19,20 @@ public:
 
     void execute(String const& command, Array<String> const& args);
     
-    void registerNode(CommandNode* node);
+    void registerNode(SharedPointer<CommandNode> const& node) const;
 
-    FORCEINLINE CommandNode* getRootNode() const {
-        return rootNode.raw();
+    FORCEINLINE WeakPointer<CommandNode> getRootNode() const {
+        return rootNode.weak();
     }
 
-    FORCEINLINE Array<CommandNode*> getNodes() const{
-        return { rootNode->nodes };
+    FORCEINLINE Array<SharedPointer<CommandNode>> getNodes() const{
+        return rootNode->nodes;
     }
     
 private:
     
     static void gatherLeaves(CommandNode* node, Array<CommandNode*>& storage);
     
-    AutoReleasePointer<CommandNode> rootNode;
+    SharedPointer<CommandNode> rootNode;
 
 };

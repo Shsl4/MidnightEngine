@@ -14,11 +14,10 @@
  *  \tparam T The type of element to store
  *  \warning T MUST implement an equality and lower-than operator.
  */
-template<typename T>
+template <typename T>
 class Array : public Object {
 
 public:
-
     /*!
      *  The default array constructor.
      */
@@ -36,22 +35,22 @@ public:
      *
      *  \param[in] other The array to copy
      */
-    Array(Array<T> const &other);
-    
+    Array(Array<T> const& other);
+
     /*!
      *  The Array copy constructor with a size limit.
      *
      *  \param[in] other The array to copy
      *  \param[in] limit The max number of elements to copy.
      */
-    Array(Array<T> const &other, size_t limit);
+    Array(Array<T> const& other, size_t limit);
 
     /*!
      *  The Array move constructor.
      *
      *  \param[in] other The array to move
      */
-    Array(Array<T> &&other) noexcept;
+    Array(Array<T>&& other) noexcept;
 
     /*!
      * The Array destructor. It releases the allocated resources.
@@ -63,14 +62,14 @@ public:
      *
      *  \param[in] elem The element to add
     */
-    virtual T& append(T const &elem);
+    virtual T& append(T const& elem);
 
     /*!
      *  Adds the content of the input array to the end of this array.
      *
      *  \param[in] arr The element to add
     */
-    virtual void append(Array<T> const &arr);
+    virtual void append(Array<T> const& arr);
 
     /*!
      *  Removes the element at the index.
@@ -88,7 +87,7 @@ public:
      *  \param[in] elem The element to check
      *  \return Whether the element was removed.
      */
-    virtual bool removeFirstOf(T const &elem);
+    virtual bool removeFirstOf(T const& elem);
 
     /*!
      *  Removes the last instance of the input element in the array.
@@ -96,14 +95,14 @@ public:
      *  \param[in] elem The element to check
      *  \return Whether the element was removed.
      */
-    virtual bool removeLastOf(T const &elem);
+    virtual bool removeLastOf(T const& elem);
 
     /*!
      *  Removes all instances of the element in the array.
      *
      *  \param[in] elem The element to remove
      */
-    virtual void removeAllOf(T const &elem);
+    virtual void removeAllOf(T const& elem);
 
     /*!
      *  Returns the first index of the input element
@@ -111,7 +110,7 @@ public:
      *  \param[in] elem The element to check
      *  \return An optional value containing the index if it was found.
      */
-    virtual Optional<size_t> firstIndexOf(T const &elem) const;
+    NODISCARD virtual Optional<size_t> firstIndexOf(T const& elem) const;
 
     /*!
      *  Returns the last index of the input element
@@ -119,7 +118,7 @@ public:
      *  \param[in] elem The element to check
      *  \return An optional value containing the index if it was found.
      */
-    virtual Optional<size_t> lastIndexOf(T const &elem) const;
+    NODISCARD virtual Optional<size_t> lastIndexOf(T const& elem) const;
 
     /*!
      *  Returns an array containing the elements in range.
@@ -129,14 +128,14 @@ public:
      *  \return An array containing every element within the range.
      */
     virtual Array<T> arrayWithRange(size_t from, size_t to);
-    
+
     /*!
      *  Returns an array containing the elements matching the input condition.
      *
      *  \param[in] condition The condition to check
      *  \return An array containing all elements matching the condition.
      */
-    virtual Array<T> arrayMatching(std::function<bool(T const &)> condition);
+    virtual Array<T> arrayMatching(std::function<bool(T const&)> condition);
 
     /*!
      * Removes all the duplicate elements from the array keeping only the first existing instances.
@@ -159,7 +158,7 @@ public:
      *  \param[in] elem The element to check.
      *  \return Whether the array contains the element.
      */
-    virtual bool contains(T const &elem) const;
+    NODISCARD virtual bool contains(T const& elem) const;
 
     /*!
      *  Inserts an element at the input index.
@@ -167,7 +166,7 @@ public:
      *  \param[in] elem The element to insert
      *  \param[in] index The position of the element to insert.
      */
-    virtual void insert(T const &elem, size_t index);
+    virtual void insert(T const& elem, size_t index);
 
     /*!
      *  Inserts the contents of an array at the input index.
@@ -175,7 +174,7 @@ public:
      *  \param[in] arr The array to insert
      *  \param[in] index The position of the element to insert.
      */
-    virtual void insert(Array<T> const &arr, size_t index);
+    virtual void insert(Array<T> const& arr, size_t index);
 
     /*!
      * Resizes the array buffer to support a specific element count.
@@ -197,7 +196,7 @@ public:
      *  \warning If the array contains pointers, clearing the array does not release them.
      */
     virtual void clear();
-    
+
     /*!
      * Reverses the array.
      */
@@ -210,7 +209,7 @@ public:
      *  \return The element at the input index.
      *  \throws An std::runtime_error if the index is out of bounds.
      */
-    virtual T& getAt(size_t index) const;
+    NODISCARD virtual T& getAt(size_t index) const;
 
     /*!
      * Gets the element at the specified index.
@@ -225,7 +224,7 @@ public:
      *  \param[in] other The array to copy.
      *  \return This array.
      */
-    virtual Array<T> &operator=(Array<T> const &other);
+    virtual Array<T>& operator=(Array<T> const& other);
 
     /*!
      *  The Array move assignment operator.
@@ -233,8 +232,8 @@ public:
      *  \param[in] other The array to move.
      *  \return This array.
      */
-    virtual Array<T> &operator=(Array<T> &&other) noexcept;
-    
+    virtual Array<T>& operator=(Array<T>&& other) noexcept;
+
     /*!
      *  The Array equality operator.
      *
@@ -250,60 +249,53 @@ public:
      *  \return Whether the arrays are not equal.
      */
     virtual bool operator!=(Array<T> const& other) const;
-    
+
     /*!
      *  Shorthand expression for append.
      *
      *  \param[in] elem The element to append
      */
-    virtual void operator+=(T const &elem);
+    virtual void operator+=(T const& elem);
 
     /*!
      *  Shorthand expression for append.
      *
      *  \param[in] arr The array to append
      */
-    virtual void operator+=(Array<T> const &arr);
+    virtual void operator+=(Array<T> const& arr);
 
     /*!
      * Points to the beginning of the array buffer. This functions allows range based for-loops to be used.
      */
-    T *begin() const;
+    NODISCARD T* begin() const;
 
     /*!
      * Points to the end of the array buffer. This functions allows range based for-loops to be used.
      */
-    T *end() const;
+    NODISCARD T* end() const;
 
     /*!
      * Returns whether the array is empty.
      *
      * \return Whether the array is empty.
      */
-    FORCEINLINE virtual bool isEmpty() const {
-        return size == 0;
-    }
+    FORCEINLINE virtual bool isEmpty() const { return size == 0; }
 
     /*!
      * Returns the number of elements contained in the array.
      *
      * \return The number of elements in the array.
      */
-    FORCEINLINE virtual size_t getSize() const {
-        return this->size;
-    }
+    FORCEINLINE virtual size_t getSize() const { return this->size; }
 
     /*!
      * Returns the number of elements the array can hold without resizing the data buffer.
      *
      * \return The array capacity.
      */
-    FORCEINLINE virtual size_t getCapacity() const {
-        return this->capacity;
-    }
-    
-protected:
+    FORCEINLINE virtual size_t getCapacity() const { return this->capacity; }
 
+protected:
     /*!
      *  Function called when adding an element. It extends the data buffer the array is full.
      *
@@ -314,7 +306,7 @@ protected:
     /*!
      *  The data contained in the array.
      */
-    T *data = nullptr;
+    T* data = nullptr;
 
     /*!
      * The number of elements in the array.
@@ -332,7 +324,6 @@ protected:
     Allocator<T> allocator{};
 
 private:
-
     /*!
      *  Ascending Quicksort algorithm function.
      *
@@ -366,67 +357,12 @@ private:
      *  \return The partition result.
      */
     Int64 partitionDesc(Int64 from, Int64 to);
-    
+
     /*!
      * Allows String to access protected members to directly manipulate data.
      */
     friend class String;
 
-};
-
-/*!
- * Mutable Array type that auto-releases the contained objects upon destruction. T must be necessarily be a pointer.
- *
- *  \tparam T The type of object to store
- *  \warning Do not use this type as a return type as the object will be destroyed on function exit.
- */
-template<typename T>
-struct AutoReleaseArray final : public Array<T> {
-
-public:
-
-    /*!
-     * The default array constructor.
-     */
-    AutoReleaseArray() {
-
-        static_assert(std::is_pointer_v<T>, "T must be a pointer.");
-
-    }
-    
-    /*!
-     *  Constructs an array with a specific pre-allocated capacity.
-     *
-     *  \param[in] capacity The number of elements to allocate
-     */
-    explicit AutoReleaseArray(size_t capacity) : Array<T>(capacity) {
-
-        static_assert(std::is_pointer_v<T>, "T must be a pointer.");
-     
-    }
-
-    void clear() override {
-
-        // Release every pointer in our data buffer.
-        for (auto& e : *this) {
-            this->allocator.autoDestroy(e);
-        }
-
-        Array<T>::clear();
-
-    }
-
-    bool removeFirstOf(T const &elem) override;
- 
-    /*!
-     * The AutoReleaseArray destructor. It releases all allocated resources.
-     */
-    ~AutoReleaseArray() override {
-        
-        clear();
-        
-    }
-    
 };
 
 #define __ARRAY_INCL

@@ -5,7 +5,7 @@
 
 #include "bgfx/bgfx.h"
 
-struct Texture
+struct ENGINE_API Texture
 {
 
     Texture(String name, Int32 w, Int32 h, void* data);

@@ -2,7 +2,7 @@
 
 #include <Memory/Array.h>
 #include <Memory/String.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 #include <Rendering/Vertex.h>
 
 /*!

@@ -11,7 +11,7 @@ public:
 
     explicit ArgumentCommandNode(String name, ArgumentType type);
 
-    static ArgumentCommandNode* make(String const& name, ArgumentType type);
+    static SharedPointer<ArgumentCommandNode> make(String const& name, ArgumentType type);
 
     FORCEINLINE ArgumentType getArgumentType() const {
         return this->argumentType;

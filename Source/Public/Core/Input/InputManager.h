@@ -7,7 +7,7 @@
 
 #include <Input/Keybind.h>
 #include <Input/InputEnums.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 
 /*!
  * The InputManager allows binding functions to input events such as key presses or mouse movement.

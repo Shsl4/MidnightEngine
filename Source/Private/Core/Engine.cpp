@@ -12,7 +12,7 @@
 
 #include <Scene/Scene.h>
 
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
@@ -32,10 +32,10 @@ Engine::Engine() {
     Engine::instance = this;
 
     // Initialize our variables.
-    this->inputManager = AutoReleasePointer<InputManager>::make();
-    this->perfWindow = AutoReleasePointer<PerformanceWindow>::make();
-    this->resourceLoader = AutoReleasePointer<ResourceLoader>::make();
-    this->console = AutoReleasePointer<Console>::make(this);
+    this->inputManager = UniquePointer<InputManager>::make();
+    this->perfWindow = UniquePointer<PerformanceWindow>::make();
+    this->resourceLoader = UniquePointer<ResourceLoader>::make();
+    this->console = UniquePointer<Console>::make(this);
 
 }
 
@@ -98,7 +98,7 @@ void Engine::update() {
     inputManager->update();
     
     // Only update the scene if it is loaded
-    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
+    if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
         
         // Update the current scene.
         activeScene->update(deltaTime);
@@ -138,10 +138,10 @@ void Engine::render() {
 
     bgfx::setState(state);
 
-    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
+    if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
 
         // Get the active camera.
-        const CameraComponent* camera = activeScene->getCameraManager()->getActiveCamera();
+        auto camera = activeScene->getCameraManager()->getActiveCamera();
 
         // Give the view and projection matrices to the vertex shader.
         bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
@@ -181,7 +181,7 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
 
 void Engine::unloadScene() {
 
-    if (activeScene.hasValue())
+    if (activeScene.valid())
     {
         Console::getLogger()->info("Unloading scene {}...", activeScene->getSceneName());
         
@@ -190,7 +190,7 @@ void Engine::unloadScene() {
             
             String name = activeScene->getSceneName();
             activeScene->cleanup();
-            activeScene.release();
+            activeScene = nullptr;
             Console::getLogger()->info("Unloaded scene {}.", name);
             
         });
@@ -211,18 +211,18 @@ void Engine::cleanup() {
 
     Console::getLogger()->info("Cleaning up...");
     
-    if(activeScene.hasValue())
+    if(activeScene.valid())
     {
         String name = activeScene->getSceneName();
         Console::getLogger()->info("Unloading scene {}...", name);
         activeScene->cleanup();
-        activeScene.release();
+        activeScene = nullptr;
         Console::getLogger()->info("Unloaded scene {}.", name);
     }
     
     // Release the allocated engine resources.
     inputManager.release();
-    activeScene.release();
+    activeScene = nullptr;
     resourceLoader.release();
     perfWindow.release();
 

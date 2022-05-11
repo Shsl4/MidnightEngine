@@ -24,7 +24,7 @@ private:
     /*!
      * The mesh component.
      */
-    MeshComponent *mesh = nullptr;
+    WeakPointer<MeshComponent> mesh = nullptr;
     
     /*!
      * The mesh name to load.

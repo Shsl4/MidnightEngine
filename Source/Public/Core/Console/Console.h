@@ -4,7 +4,7 @@
 #include <Core/EngineMacros.h>
 
 #include <Logging/Logger.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 #include <Console/CommandTree.h>
 
 #include <thread>
@@ -17,7 +17,7 @@ public:
         
     ~Console() override;
 
-    void registerCommand(CommandNode* node) const;
+    void registerCommand(SharedPointer<CommandNode> const& node) const;
 
     void execute(String const& command) const;
     
@@ -41,8 +41,8 @@ private:
     
     inline static Console* instance = nullptr;
     
-    AutoReleasePointer<Logger> logger;
-    AutoReleasePointer<CommandTree> commandTree;
+    UniquePointer<Logger> logger;
+    UniquePointer<CommandTree> commandTree;
     
     std::thread consoleThread;
     

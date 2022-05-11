@@ -1,7 +1,5 @@
 ﻿#include <Console/CommandContext.h>
-
-#include <Exception/ParseError.h>
-#include <Exception/CommandError.h>
+#include <Exception/Exception.h>
 
 bool CommandContext::getBool(String const& argName) const {
         
@@ -106,11 +104,11 @@ void CommandContext::tryParse(String const& arg, String const& name, const Argum
 
 CommandContext::Entry* CommandContext::getEntry(String const& name) const
 {
-    for(auto* e : entries)
+    for(auto const& e : entries)
     {
         if (e->argumentName == name)
         {
-            return e;
+            return e.raw();
         }
     }
 
@@ -141,20 +139,20 @@ CommandContext::StringEntry::StringEntry(const ArgumentType t, String name, Stri
 
 void CommandContext::addBool(bool value, String const& name)
 {
-    entries += Allocator<BoolEntry>().construct(ArgumentType::Bool, name, value);
+    entries += SharedPointer<BoolEntry>::make(ArgumentType::Bool, name, value);
 }
 
 void CommandContext::addDouble(double value, String const& name)
 {
-    entries += Allocator<DoubleEntry>().construct(ArgumentType::Double, name, value);
+    entries += SharedPointer<DoubleEntry>::make(ArgumentType::Double, name, value);
 }
 
 void CommandContext::addInt64(Int64 value, String const& name)
 {
-    entries += Allocator<Int64Entry>().construct(ArgumentType::Int64, name, value);
+    entries += SharedPointer<Int64Entry>::make(ArgumentType::Int64, name, value);
 }
 
 void CommandContext::addString(String const& value, String const& name)
 {
-    entries += Allocator<StringEntry>().construct(ArgumentType::String, name, value);
+    entries += SharedPointer<StringEntry>::make(ArgumentType::String, name, value);
 }

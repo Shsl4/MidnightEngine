@@ -143,7 +143,6 @@ public:
     void fatal(const char*format, Args &&... args) const {
         this->log(fg(fmt::color::dark_red), "FATAL", format, args...);
         std::fflush(stdout);
-        abort();
     }
 
     /*!

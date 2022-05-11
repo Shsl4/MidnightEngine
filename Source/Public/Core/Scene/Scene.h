@@ -7,7 +7,7 @@
 #include <Scene/CameraManager.h>
 #include <Console/Console.h>
 #include <Memory/Array.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 #include <Logging/Logger.h>
 
 union Color {
@@ -82,23 +82,19 @@ public:
      *
      */
     template<class T, typename ... Args>
-    T *createObject(Transform const &transform, Args &&... args) {
+    WeakPointer<T> createObject(Transform const &transform, Args &&... args) {
         
-        Allocator<T> allocator;
-
         // Check if the class we are trying to instantiate is a SceneObject.
         static_assert(std::is_base_of_v<SceneObject, T>, "T should inherit from SceneObject");
 
         // Instantiate the SceneObject
-        T *object = allocator.construct(args...);
+        SharedPointer<T> object = SharedPointer<T>::make(std::forward<Args>(args)...);
         
         // Create the components
         object->createComponents(this, transform);
 
         // If the SceneObject did not setup a root component, destroy it.
         if (!object->rootComponent) {
-
-            allocator.destroy(object);
             
             Console::getLogger()->debug("Destroying object of class {} as it did not setup a root component at construct time.", object->getClassName());
             
@@ -107,11 +103,12 @@ public:
         }
         
         // Setup the input on the created SceneObject
-        setupInput(object);
+        setupInput(object.raw());
 
         // Register the SceneObject
-        registeredObjects.append(object);
-        return object;
+        registeredObjects += object;
+        
+        return object.weak();
 
     }
 
@@ -126,16 +123,16 @@ public:
      *
      */
     template<class T, typename ... Args>
-    T *createComponent(Transform const &relativeTransform, Args &&... args) {
+    WeakPointer<T> createComponent(Transform const &relativeTransform, Args &&... args) {
 
         // Check if the class we are trying to instantiate is a SceneComponent.
         static_assert(std::is_base_of_v<SceneComponent, T>, "T should inherit from SceneComponent");
         
-        Allocator<T> allocator;
-
         // Instantiate the SceneComponent
-        T *component = allocator.construct(args...);
+        SharedPointer<T> component = SharedPointer<T>::make(std::forward<Args>(args)...);
+        
         component->scene = this;
+        
         component->construct(relativeTransform);
         
         // Mark it as registered (bad, will probably be changed later)
@@ -144,13 +141,15 @@ public:
         // If the created component is a CameraComponent, it is passed to the camera manager.
         if (component->template inherits<CameraComponent>()) {
 
-            cameraManager->registerCamera(component->template cast<CameraComponent>());
+            auto a = component.weak();
+            cameraManager->registerCamera(*dynamic_cast<WeakPointer<CameraComponent>*>(&a));
 
         }
 
         // Register the SceneComponent
-        registeredComponents.append(component);
-        return component;
+        registeredComponents += component;
+        
+        return component.weak();
 
     }
 
@@ -206,18 +205,18 @@ protected:
      * An automatically managed array storing references to all SceneObjects in the scene.
      * The SceneObjects are automatically released when the scene is destroyed.
      */
-    AutoReleaseArray<SceneObject *> registeredObjects = AutoReleaseArray<SceneObject *>(50);
+    Array<SharedPointer<SceneObject>> registeredObjects = Array<SharedPointer<SceneObject>>(50);
 
     /*!
      * An automatically managed array storing references to all SceneComponents in the scene.
      * The SceneComponents are automatically released when the scene is destroyed.
      */
-    AutoReleaseArray<SceneComponent *> registeredComponents = AutoReleaseArray<SceneComponent *>(50);
+    Array<SharedPointer<SceneComponent>> registeredComponents = Array<SharedPointer<SceneComponent>>(50);
 
     /*!
      * The scene's CameraManager.
      */
-    AutoReleasePointer<CameraManager> cameraManager;
+    UniquePointer<CameraManager> cameraManager;
     
     State state = State::Unloaded;
 
