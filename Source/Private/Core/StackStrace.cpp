@@ -100,32 +100,26 @@ Array<StackFrame> StackTrace::getStackTrace() {
     frame.AddrStack.Mode = AddrModeFlat;
     frame.AddrFrame.Mode = AddrModeFlat;
     
-    if (!SymInitialize(process, nullptr, true)) {
-
-        allocator.release(name);
-        allocator.release(symData);
-        allocator.release(lineData);
-        allocator.release(moduleData);
-        return stack;
+    if (SymInitialize(process, nullptr, true)) {
+                    
+        while (StackWalk64(machineType, process, thread, &frame, &context, nullptr,
+            SymFunctionTableAccess64, SymGetModuleBase64, nullptr)) {
         
-    }
-    
-    while (StackWalk64(machineType, process, thread, &frame, &context, nullptr,
-        SymFunctionTableAccess64, SymGetModuleBase64, nullptr)) {
+            const bool foundSymbol = SymGetSymFromAddr64(process, frame.AddrPC.Offset, &displacement, symbol);
         
-        const bool foundSymbol = SymGetSymFromAddr64(process, frame.AddrPC.Offset, &displacement, symbol);
+            const bool foundModule = SymGetModuleInfo64(process, frame.AddrPC.Offset, mod);
         
-        const bool foundModule = SymGetModuleInfo64(process, frame.AddrPC.Offset, mod);
+            const bool foundLine = SymGetLineFromAddr64(process, frame.AddrPC.Offset, &offset, line);
+
+            UnDecorateSymbolName(symbol->Name, name, sizeof(name), UNDNAME_COMPLETE);
+
+            stack += StackFrame(foundSymbol ? symbol->Name : nullptr,
+                                foundLine ? line->FileName : nullptr,
+                                foundModule ? mod->ImageName : nullptr,
+                                foundLine ? line->LineNumber : 0);
+            
+        }
         
-        const bool foundLine = SymGetLineFromAddr64(process, frame.AddrPC.Offset, &offset, line);
-
-        UnDecorateSymbolName(symbol->Name, name, sizeof(name), UNDNAME_COMPLETE);
-
-        stack += StackFrame(foundSymbol ? symbol->Name : nullptr,
-                            foundLine ? line->FileName : nullptr,
-                            foundModule ? mod->ImageName : nullptr,
-                            foundLine ? line->LineNumber : 0);
-
     }
 
     allocator.release(name);
