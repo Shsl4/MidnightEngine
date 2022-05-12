@@ -138,11 +138,6 @@ public:
         return resourceLoader.raw();
     }
 
-    FORCEINLINE const Console* getConsole() const
-    {
-        return console.raw();
-    }
-
 protected:
 
     void schedule(Threads thread, std::function<void()> const& function);
@@ -248,9 +243,7 @@ private:
     * The engine resource loader.
     */
     UniquePointer<ResourceLoader> resourceLoader;
-    
-    UniquePointer<Console> console;
-
+ 
     UniquePointer<PerformanceWindow> perfWindow;
 
     std::vector<std::function<void()>> renderThreadTasks;

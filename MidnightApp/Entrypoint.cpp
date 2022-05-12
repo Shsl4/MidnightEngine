@@ -3,6 +3,8 @@
 //
 
 #include <Core/Core.h>
+#include <Console/Console.h>
+#include <Memory/WeakPointer.h>
 #include <Platform/Entry.h>
 
 #include <Scene/MeshObject.h>
@@ -218,15 +220,15 @@ class MyEngine : public Engine {
             
         });
         
-        getConsole()->registerCommand(loadNode);
-        getConsole()->registerCommand(unloadNode);
-        getConsole()->registerCommand(addMeshNode);
-        getConsole()->registerCommand(listObjNode);
-        getConsole()->registerCommand(deleteObjNode);
-        getConsole()->registerCommand(listCompNode);
-        getConsole()->registerCommand(posNode);
+        Console::registerCommand(loadNode);
+        Console::registerCommand(unloadNode);
+        Console::registerCommand(addMeshNode);
+        Console::registerCommand(listObjNode);
+        Console::registerCommand(deleteObjNode);
+        Console::registerCommand(listCompNode);
+        Console::registerCommand(posNode);
         
-        getConsole()->execute("scene.load SpaceScene");
+        Console::exec("scene.load SpaceScene");
 
     }
 
@@ -253,8 +255,6 @@ int main(const int argc, const char** argv) {
     entry->entry(argc, argv, [pointer]() {
         return pointer;
     });
-        
-
 
 
     return 0;

@@ -70,7 +70,7 @@ void CommandContext::tryParse(String const& arg, String const& name, const Argum
         }
         catch(ParseError const& e)
         {
-            throw CommandError(e.what());
+            CommandError::throwError(e.what());
         }
         break;
         
@@ -82,7 +82,7 @@ void CommandContext::tryParse(String const& arg, String const& name, const Argum
         }
         catch(ParseError const& e)
         {
-            throw CommandError(e.what());
+            CommandError::throwError(e.what());
         }
         break;
         
@@ -94,7 +94,7 @@ void CommandContext::tryParse(String const& arg, String const& name, const Argum
         }
         catch(ParseError const& e)
         {
-            throw CommandError(e.what());
+            CommandError::throwError(e.what());
         }
         break;
 

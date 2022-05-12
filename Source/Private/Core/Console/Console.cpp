@@ -9,7 +9,7 @@ Console::Console(Engine* engine) : engine(engine){
     
     Console::instance = this;
     
-    this->logger = UniquePointer<Logger>::make("Engine");
+    this->logger = SharedPointer<Logger>::make("Engine");
     this->commandTree = UniquePointer<CommandTree>::make();
 
     const auto helpNode = CommandNode::make("help");
@@ -44,12 +44,11 @@ Console::Console(Engine* engine) : engine(engine){
 
 Console::~Console(){
     
-    logger.release();
+    logger = nullptr;
     Console::instance = nullptr;
-    
 }
 
-void Console::registerCommand(SharedPointer<CommandNode> const& node) const
+void Console::registerNode(SharedPointer<CommandNode> const& node) const
 {
     commandTree->registerNode(node);
 }
@@ -60,9 +59,9 @@ void Console::init()
     this->consoleThread.detach();
 }
 
-void Console::consoleLoop(){
+void Console::consoleLoop() const {
     
-    while (engine->isRunning()) {
+    while (true) {
         
         String line = logger->prompt();
 

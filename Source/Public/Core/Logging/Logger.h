@@ -66,8 +66,8 @@ public:
 
     }
 
-    String prompt()
-    {
+    String prompt() {
+        
         std::getline(std::cin, lastInput);
 
         if(lastInput.empty())

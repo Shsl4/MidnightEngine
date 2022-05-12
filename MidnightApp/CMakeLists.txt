@@ -21,7 +21,7 @@ set_property(TARGET MidnightApp PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_
 if(WIN32)
 
 add_custom_command(TARGET MidnightApp POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources $<TARGET_FILE_DIR:MidnightApp>/Resources)
-target_link_libraries(MidnightApp PUBLIC MidnightEngine)
+target_link_libraries(MidnightApp PUBLIC MidnightEngine dbghelp.lib)
 
 elseif(APPLE)
 

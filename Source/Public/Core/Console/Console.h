@@ -17,31 +17,40 @@ public:
         
     ~Console() override;
 
-    void registerCommand(SharedPointer<CommandNode> const& node) const;
+    FORCEINLINE static void exec(String const& command) {
+        instance->execute(command);
+    }
 
-    void execute(String const& command) const;
+    FORCEINLINE static void registerCommand(SharedPointer<CommandNode> const& node) {
+        instance->registerNode(node);
+    }
     
     FORCEINLINE static Console* getInstance(){
         return instance;
     }
     
-    FORCEINLINE static const Logger* getLogger() {
-        return instance->logger.raw();
+    FORCEINLINE static WeakPointer<Logger> getLogger() {
+        return instance->logger.weak();
     }
     
 private:
 
-    friend class Engine;
+    friend class Entry;
     
     void init();
     
-    void consoleLoop();
+    void consoleLoop() const;
     
     void consoleHelp(const CommandContext* context);
+
+    void registerNode(SharedPointer<CommandNode> const& node) const;
+
+    void execute(String const& command) const;
     
     inline static Console* instance = nullptr;
     
-    UniquePointer<Logger> logger;
+    SharedPointer<Logger> logger;
+    
     UniquePointer<CommandTree> commandTree;
     
     std::thread consoleThread;

@@ -22,6 +22,8 @@
 #include <thread>
 #include <iostream>
 
+#include "StackStrace.h"
+
 Logger Logger::assertLogger = Logger("Assert");
 
 Engine::Engine() {
@@ -35,7 +37,6 @@ Engine::Engine() {
     this->inputManager = UniquePointer<InputManager>::make();
     this->perfWindow = UniquePointer<PerformanceWindow>::make();
     this->resourceLoader = UniquePointer<ResourceLoader>::make();
-    this->console = UniquePointer<Console>::make(this);
 
 }
 
@@ -49,7 +50,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
         // If it fails, print an error message and return.
         Console::getLogger()->fatal("Failed to initialize BGFX!");
         bgfx::shutdown();
-        return -1;
+        return 1;
 
     }
     
@@ -73,9 +74,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     Console::getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
     
     running = true;
-
-    console->init();
-
+    
     onStart();
 
     return 0;
@@ -208,16 +207,12 @@ void Engine::stop() {
 void Engine::cleanup() {
 
     if (isRunning()) { return; }
-
-    Console::getLogger()->info("Cleaning up...");
     
     if(activeScene.valid())
     {
         String name = activeScene->getSceneName();
-        Console::getLogger()->info("Unloading scene {}...", name);
         activeScene->cleanup();
         activeScene = nullptr;
-        Console::getLogger()->info("Unloaded scene {}.", name);
     }
     
     // Release the allocated engine resources.
@@ -232,8 +227,6 @@ void Engine::cleanup() {
 
     // Remove reference to the instance
     Engine::instance = nullptr;
-
-    Console::getLogger()->info("Exited MidnightEngine.");
     
 }
 

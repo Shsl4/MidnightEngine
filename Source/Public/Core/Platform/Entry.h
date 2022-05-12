@@ -16,6 +16,6 @@ public:
 private:
 
     bool hasTerminated = false;
-    Engine* engine;
+    Engine* engine = nullptr;
 
 };

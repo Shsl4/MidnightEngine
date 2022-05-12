@@ -1,6 +1,7 @@
 #include <Platform/Entry.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_syswm.h>
+#include <Core/StackStrace.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>
@@ -79,12 +80,14 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, 
 
 int Entry::initEngine(PlatformData data) {
 
-    int value = engine->init(0, nullptr, data);
+    const auto console = UniquePointer<Console>::make(engine);
     
-    if (value != 0) { return value; }
-
+    console->init();
+    
     try {
-            
+        
+        if (engine->init(0, nullptr, data)) { return 1; }
+        
         while (engine->isRunning())
         {
             engine->render();
@@ -92,14 +95,56 @@ int Entry::initEngine(PlatformData data) {
         
     }
     catch (Exception const& e) {
-        Console::getLogger()->fatal(fmt::format("{} in file: {}, in function: {}, line: {}", e.what(),
-             e.location.file_name(), e.location.function_name(),  e.location.line()).c_str());
-        engine->stop();
-    }
-    
-    engine->cleanup();
 
+        Console::getLogger()->fatal(e.what());
+        Console::getLogger()->fatal("Stack Trace: ");
+
+        const Array<StackFrame> stackFrames = e.getStackTrace();
+        size_t frameIndex = 0;
+        
+        for (size_t i = 2; i < stackFrames.getSize(); ++i) {
+            
+            StackFrame& frame = stackFrames[i];
+
+            if(frame.lineNumber == -1) {
+
+                Console::getLogger()->fatal("[{}] {} <{}> | ({})",
+                    frameIndex,
+                    frame.functionName,
+                    frame.fileName,
+                    frame.libraryName);
+                
+            }
+            else {
+
+                Console::getLogger()->fatal("[{}] {} in file {} at line {} | ({})",
+                    frameIndex,
+                    frame.functionName,
+                    frame.fileName,
+                    frame.lineNumber,
+                    frame.libraryName);
+                
+            }
+                        
+            ++frameIndex;
+            
+        }
+
+        engine->cleanup();
+        
+        hasTerminated = true;
+
+        return 2;
+        
+    }
+
+    Console::getLogger()->info("Cleaning up...");
+
+    engine->cleanup();
+    
     hasTerminated = true;
+    
+    Console::getLogger()->info("Exited MidnightEngine.");
 
     return 0;
 
