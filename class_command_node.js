@@ -18,13 +18,13 @@ var class_command_node =
     [ "isLeaf", "class_command_node.html#a5a433b0d69bf1de5200c0fdd15642061", null ],
     [ "isLocked", "class_command_node.html#abbd614a73b81b341ad10ef451fb74437", null ],
     [ "lock", "class_command_node.html#a33136c5bed879122f23097eed2d269e0", null ],
-    [ "make", "class_command_node.html#a70accb047dac08bc8291fc9b283df7e4", null ],
+    [ "make", "class_command_node.html#a38560748485cd8ceefc60a67ab2b4ad1", null ],
     [ "putPath", "class_command_node.html#a20bc246ea045fb8383b08323afd36460", null ],
     [ "setNodeDescription", "class_command_node.html#aa37ab820fa3ed49db48dc6b5767bf8a1", null ],
     [ "CommandTree", "class_command_node.html#abeef969509a1c5d1753c33ab2c95c6e1", null ],
     [ "locked", "class_command_node.html#ad0e318f527503f6eb16c7a623f891b2f", null ],
     [ "nodeDescription", "class_command_node.html#a5bb1800c058b2584531d3a0d1c9847bb", null ],
     [ "nodeName", "class_command_node.html#a87754649de7a10fbd87501e7deb61b19", null ],
-    [ "nodes", "class_command_node.html#ad48c6f9a5493d12024ab5fa1db4e701f", null ],
+    [ "nodes", "class_command_node.html#af05de3aa0ae8423ebdcb5cbd6b504baa", null ],
     [ "nodeType", "class_command_node.html#ad8b212aa968efc54de5c3604bd977d8f", null ]
 ];

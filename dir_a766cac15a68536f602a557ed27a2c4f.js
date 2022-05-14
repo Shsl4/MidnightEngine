@@ -1,5 +1,8 @@
 var dir_a766cac15a68536f602a557ed27a2c4f =
 [
+    [ "BasicLightComponent.h", "_basic_light_component_8h.html", [
+      [ "BasicLightComponent", "class_basic_light_component.html", "class_basic_light_component" ]
+    ] ],
     [ "CameraComponent.h", "_camera_component_8h.html", [
       [ "CameraComponent", "class_camera_component.html", "class_camera_component" ]
     ] ],
@@ -7,11 +10,10 @@ var dir_a766cac15a68536f602a557ed27a2c4f =
       [ "CameraManager", "class_camera_manager.html", "class_camera_manager" ]
     ] ],
     [ "MeshComponent.h", "_mesh_component_8h.html", [
-      [ "DirectionalLight", "struct_directional_light.html", "struct_directional_light" ],
       [ "MeshComponent", "class_mesh_component.html", "class_mesh_component" ]
     ] ],
     [ "Scene.h", "_scene_8h.html", [
-      [ "Color", "union_color.html", "union_color" ],
+      [ "Color", "struct_color.html", "struct_color" ],
       [ "Scene", "class_scene.html", "class_scene" ]
     ] ],
     [ "SceneComponent.h", "_scene_component_8h.html", [

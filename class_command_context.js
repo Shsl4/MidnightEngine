@@ -15,5 +15,5 @@ var class_command_context =
     [ "getInt64", "class_command_context.html#a8b9622d9f693d02721160fe79c58b2ec", null ],
     [ "getString", "class_command_context.html#a4fd4bab719f8f31e01269bffb894f913", null ],
     [ "tryParse", "class_command_context.html#aa37dbc8b37a1c56fd35f0b9169e79127", null ],
-    [ "entries", "class_command_context.html#a656386a72b6ddc93097ed3b41a3c7e94", null ]
+    [ "entries", "class_command_context.html#aa170cb6d537020f2aa9926505400384d", null ]
 ];

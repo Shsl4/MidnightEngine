@@ -18,5 +18,9 @@ var dir_e5e2125bd3e3ba93f8ee67c753e54bdf =
     [ "EngineTypes.h", "_engine_types_8h.html", "_engine_types_8h" ],
     [ "Object.h", "_object_8h.html", [
       [ "Object", "class_object.html", "class_object" ]
+    ] ],
+    [ "StackTrace.h", "_stack_trace_8h.html", [
+      [ "StackFrame", "struct_stack_frame.html", "struct_stack_frame" ],
+      [ "StackTrace", "class_stack_trace.html", "class_stack_trace" ]
     ] ]
 ];

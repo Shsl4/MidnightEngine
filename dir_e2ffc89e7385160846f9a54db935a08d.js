@@ -8,5 +8,7 @@ var dir_e2ffc89e7385160846f9a54db935a08d =
     [ "Rendering", "dir_804e0971cc76f8c800203272e8570862.html", "dir_804e0971cc76f8c800203272e8570862" ],
     [ "Scene", "dir_7cbdac27c40b2e2463707a549059c9bb.html", "dir_7cbdac27c40b2e2463707a549059c9bb" ],
     [ "Engine.cpp", "_engine_8cpp.html", null ],
-    [ "Object.cpp", "_object_8cpp.html", null ]
+    [ "Object.cpp", "_object_8cpp.html", null ],
+    [ "StackTrace.cpp", "_stack_trace_8cpp.html", null ],
+    [ "stb_image.h", "stb__image_8h.html", "stb__image_8h" ]
 ];

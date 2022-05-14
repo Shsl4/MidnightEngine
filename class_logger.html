@@ -100,14 +100,17 @@ $(document).ready(function(){initNavTree('class_logger.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 
+<p>A Logging class allowing you to log messages to the console using different severities.  
+ <a href="class_logger.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_logger_8h_source.html">Logger.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a67120f7949c5ad5c11dc8c48b879e786"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a67120f7949c5ad5c11dc8c48b879e786">Logger</a> (const char *<a class="el" href="class_logger.html#aaabcccefafde34459dc12aab8a970a19">id</a>)</td></tr>
 <tr class="separator:a67120f7949c5ad5c11dc8c48b879e786"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50116dc543d85b42811e3cbf69f973ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a50116dc543d85b42811e3cbf69f973ae">prompt</a> ()</td></tr>
-<tr class="separator:a50116dc543d85b42811e3cbf69f973ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae09bff070f0d9fcf811531be99e71e37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#ae09bff070f0d9fcf811531be99e71e37">prompt</a> () const</td></tr>
+<tr class="separator:ae09bff070f0d9fcf811531be99e71e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ae3224b9069d4456e907c3f794fd20c"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
 <tr class="memitem:a0ae3224b9069d4456e907c3f794fd20c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_logger.html#a0ae3224b9069d4456e907c3f794fd20c">debug</a> (const char *format, Args &amp;&amp;... args) const</td></tr>
 <tr class="separator:a0ae3224b9069d4456e907c3f794fd20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,8 +158,6 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aaabcccefafde34459dc12aab8a970a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a3ad20c84a0d0f158e0fb165387e8e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a6a3ad20c84a0d0f158e0fb165387e8e2">state</a> = <a class="el" href="class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c">State::Idle</a></td></tr>
 <tr class="separator:a6a3ad20c84a0d0f158e0fb165387e8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a767f66078ce50ca7aa4396cd3e5f89ac"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger.html#a767f66078ce50ca7aa4396cd3e5f89ac">lastInput</a></td></tr>
-<tr class="separator:a767f66078ce50ca7aa4396cd3e5f89ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -222,7 +223,7 @@ Static Private Attributes</h2></td></tr>
 <p >The default logger constructor. Initializes the id.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>The <a class="el" href="class_logger.html">Logger</a> identifier. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>The <a class="el" href="class_logger.html" title="A Logging class allowing you to log messages to the console using different severities.">Logger</a> identifier. </td></tr>
   </table>
   </dd>
 </dl>
@@ -444,7 +445,7 @@ template&lt;typename ... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 <p >Returns the logger's identifier.</p>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_logger.html">Logger</a> id. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_logger.html" title="A Logging class allowing you to log messages to the console using different severities.">Logger</a> id. </dd></dl>
 
 </div>
 </div>
@@ -554,8 +555,8 @@ template&lt;typename ... Args&gt; </div>
 
 </div>
 </div>
-<a id="a50116dc543d85b42811e3cbf69f973ae" name="a50116dc543d85b42811e3cbf69f973ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50116dc543d85b42811e3cbf69f973ae">&#9670;&nbsp;</a></span>prompt()</h2>
+<a id="ae09bff070f0d9fcf811531be99e71e37" name="ae09bff070f0d9fcf811531be99e71e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae09bff070f0d9fcf811531be99e71e37">&#9670;&nbsp;</a></span>prompt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -564,10 +565,10 @@ template&lt;typename ... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_string.html">String</a> Logger::prompt </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_string.html">String</a> Logger::prompt </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -738,28 +739,6 @@ template&lt;typename ... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 <p >The logger id </p>
-
-</div>
-</div>
-<a id="a767f66078ce50ca7aa4396cd3e5f89ac" name="a767f66078ce50ca7aa4396cd3e5f89ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a767f66078ce50ca7aa4396cd3e5f89ac">&#9670;&nbsp;</a></span>lastInput</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Logger::lastInput</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

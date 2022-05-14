@@ -97,6 +97,7 @@ $(document).ready(function(){initNavTree('_mesh_8cpp.html',''); initResizable();
 <div class="textblock"><code>#include &lt;<a class="el" href="_mesh_8h_source.html">Rendering/Mesh.h</a>&gt;</code><br />
 <code>#include &lt;bgfx/bgfx.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_shader_manager_8h_source.html">Rendering/ShaderManager.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_uniforms_8h_source.html">Rendering/Uniforms.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -136,19 +137,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                                                        \</div>
-<div class="line">    struct name {                                       \</div>
-<div class="line">                                                        \</div>
-<div class="line">        name(type <span class="keyword">const</span>&amp; handle) : handle(handle) {     \</div>
-<div class="line">                                                        \</div>
-<div class="line">        }                                               \</div>
-<div class="line">                                                        \</div>
-<div class="line">        ~name(){                                        \</div>
-<div class="line">            bgfx::destroy(handle);                      \</div>
-<div class="line">        }                                               \</div>
-<div class="line">                                                        \</div>
-<div class="line">        type handle;                                    \</div>
-<div class="line">                                                        \</div>
+<b>Value:</b><div class="fragment"><div class="line">                                                                 \</div>
+<div class="line">    struct name {                                                \</div>
+<div class="line">                                                                 \</div>
+<div class="line">        explicit name(type <span class="keyword">const</span>&amp; handle) : handle(handle) {     \</div>
+<div class="line">                                                                 \</div>
+<div class="line">        }                                                        \</div>
+<div class="line">                                                                 \</div>
+<div class="line">        ~name(){                                                 \</div>
+<div class="line">            bgfx::destroy(handle);                               \</div>
+<div class="line">        }                                                        \</div>
+<div class="line">                                                                 \</div>
+<div class="line">        type handle;                                             \</div>
+<div class="line">                                                                 \</div>
 <div class="line">    };</div>
 </div><!-- fragment -->
 </div>

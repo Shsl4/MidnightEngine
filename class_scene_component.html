@@ -109,9 +109,10 @@ Inheritance diagram for SceneComponent:</div>
  <div class="center">
   <img src="class_scene_component.png" usemap="#SceneComponent_map" alt=""/>
   <map id="SceneComponent_map" name="SceneComponent_map">
-<area href="class_object.html" alt="Object" shape="rect" coords="64,0,183,24"/>
-<area href="class_camera_component.html" alt="CameraComponent" shape="rect" coords="0,112,119,136"/>
-<area href="class_mesh_component.html" alt="MeshComponent" shape="rect" coords="129,112,248,136"/>
+<area href="class_object.html" alt="Object" shape="rect" coords="143,0,276,24"/>
+<area href="class_basic_light_component.html" alt="BasicLightComponent" shape="rect" coords="0,112,133,136"/>
+<area href="class_camera_component.html" alt="CameraComponent" shape="rect" coords="143,112,276,136"/>
+<area href="class_mesh_component.html" title="A renderable component that represents a mesh." alt="MeshComponent" shape="rect" coords="286,112,419,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -169,6 +170,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad538f61a7844892170ab1c944db9072b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a5a0306cf04cfb83e1759dc5a47504b68">setWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToSet)</td></tr>
 <tr class="separator:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c4e68f6233c6f0848a5cfb15aaf55e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa8c4e68f6233c6f0848a5cfb15aaf55e">rotateAround</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;axis, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
+<tr class="separator:aa8c4e68f6233c6f0848a5cfb15aaf55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a077e5109ecf61f49619f14fed39deb05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a077e5109ecf61f49619f14fed39deb05">isValid</a> () const</td></tr>
 <tr class="memdesc:a077e5109ecf61f49619f14fed39deb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this component has been correctly registered / created.  <a href="class_scene_component.html#a077e5109ecf61f49619f14fed39deb05">More...</a><br /></td></tr>
 <tr class="separator:a077e5109ecf61f49619f14fed39deb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -947,6 +950,40 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aa8c4e68f6233c6f0848a5cfb15aaf55e" name="aa8c4e68f6233c6f0848a5cfb15aaf55e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c4e68f6233c6f0848a5cfb15aaf55e">&#9670;&nbsp;</a></span>rotateAround()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::rotateAround </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>axis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2278681e514f292e80880cfde1c30e63" name="a2278681e514f292e80880cfde1c30e63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2278681e514f292e80880cfde1c30e63">&#9670;&nbsp;</a></span>setWorldPosition()</h2>
 
@@ -1080,7 +1117,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_camera_component.html#ac2712b497f7422a2459305b9e163e5f5">CameraComponent</a>, and <a class="el" href="class_mesh_component.html#a44977ec0336d6ef668413bf75fbe5a1f">MeshComponent</a>.</p>
+<p>Reimplemented in <a class="el" href="class_basic_light_component.html#a46a0ce5752b46543cdafcbb0cf9bd7ad">BasicLightComponent</a>, <a class="el" href="class_camera_component.html#ac2712b497f7422a2459305b9e163e5f5">CameraComponent</a>, and <a class="el" href="class_mesh_component.html#a44977ec0336d6ef668413bf75fbe5a1f">MeshComponent</a>.</p>
 
 </div>
 </div>

@@ -43,7 +43,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
@@ -56,6 +56,7 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -65,10 +66,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_allocator_8h.html",
-"class_auto_release_pointer.html#a549a6e2c4ade80d51bcdda27d0909583",
-"class_memory.html#aaf00860ff38eecf09eabca4343952d18",
-"functions_c.html",
-"struct_platform_data.html#aa77fdde2b1b9d32b46a607aab6b1e1d6"
+"class_array.html#a6ef3e571fa0862940091b96533a066ab",
+"class_memory.html",
+"class_shared_pointer.html#abb2079849cce0e8e45e53d86b3548ce5",
+"stb__image_8h.html#ad3fc296ba0778df0a8094e20da82deab",
+"struct_vector2.html#af1de25cf0004820d5e6db855c91bc4ad"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

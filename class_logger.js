@@ -13,12 +13,11 @@ var class_logger =
     [ "getId", "class_logger.html#ad996228295262c6aaa17d9e0481b84a2", null ],
     [ "info", "class_logger.html#a7c55f3c85c43f2968f7052676f290a84", null ],
     [ "log", "class_logger.html#ac8e57961ba3496b7a0dff61c69493223", null ],
-    [ "prompt", "class_logger.html#a50116dc543d85b42811e3cbf69f973ae", null ],
+    [ "prompt", "class_logger.html#ae09bff070f0d9fcf811531be99e71e37", null ],
     [ "success", "class_logger.html#ad38c52b6cd9d038d5e64778d6acb8476", null ],
     [ "warning", "class_logger.html#a1bdc913738b8b219cacbb2aa0a586063", null ],
     [ "assertLogger", "class_logger.html#a7d5348a05ddc151f08809ba228910957", null ],
     [ "file", "class_logger.html#ae83bffdc4a0e3579b3ca24a6df07e6fd", null ],
     [ "id", "class_logger.html#aaabcccefafde34459dc12aab8a970a19", null ],
-    [ "lastInput", "class_logger.html#a767f66078ce50ca7aa4396cd3e5f89ac", null ],
     [ "state", "class_logger.html#a6a3ad20c84a0d0f158e0fb165387e8e2", null ]
 ];

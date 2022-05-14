@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nodiscard_0',['NODISCARD',['../_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e',1,'EngineMacros.h']]],
-  ['noreturn_1',['NORETURN',['../_engine_macros_8h.html#aa1728270d73c5d1598de1fd691762eb1',1,'EngineMacros.h']]]
+  ['handlewrapper_0',['HandleWrapper',['../_mesh_8cpp.html#ac812d89e0bd462a5f88de6c715dce14c',1,'HandleWrapper():&#160;Mesh.cpp'],['../_texture_8cpp.html#ac812d89e0bd462a5f88de6c715dce14c',1,'HandleWrapper():&#160;Texture.cpp']]]
 ];

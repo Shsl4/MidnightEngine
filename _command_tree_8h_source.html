@@ -96,58 +96,57 @@ $(document).ready(function(){initNavTree('_command_tree_8h_source.html',''); ini
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_object_8h.html">Core/Object.h</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="_engine_macros_8h.html">Core/EngineMacros.h</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_auto_release_pointer_8h.html">Memory/AutoReleasePointer.h</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_unique_pointer_8h.html">Memory/UniquePointer.h</a>&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="_command_node_8h.html">Console/CommandNode.h</a>&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="_command_context_8h.html">Console/CommandContext.h</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="_parse_error_8h.html">Exception/ParseError.h</a>&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="_command_error_8h.html">Exception/CommandError.h</a>&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_command_tree.html">   14</a></span><span class="keyword">class </span><a class="code hl_define" href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a> <a class="code hl_class" href="class_command_tree.html">CommandTree</a>: <span class="keyword">public</span> <a class="code hl_class" href="class_object.html">Object</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="class_command_tree.html">CommandTree</a>();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> execute(<a class="code hl_class" href="class_string.html">String</a> <span class="keyword">const</span>&amp; command, <a class="code hl_class" href="class_array.html">Array&lt;String&gt;</a> <span class="keyword">const</span>&amp; args);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> registerNode(<a class="code hl_class" href="class_command_node.html">CommandNode</a>* node);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_command_tree.html#a9e278477b096a3f331662f8a46986c40">   25</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_command_node.html">CommandNode</a>* <a class="code hl_function" href="class_command_tree.html#a9e278477b096a3f331662f8a46986c40">getRootNode</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> rootNode.raw();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_command_tree.html#a421674984ceb1e213d7019b724510536">   29</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_array.html">Array&lt;CommandNode*&gt;</a> <a class="code hl_function" href="class_command_tree.html#a421674984ceb1e213d7019b724510536">getNodes</a>()<span class="keyword"> const</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> { rootNode-&gt;nodes };</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> gatherLeaves(<a class="code hl_class" href="class_command_node.html">CommandNode</a>* node, <a class="code hl_class" href="class_array.html">Array&lt;CommandNode*&gt;</a>&amp; storage);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_command_tree.html#a41415612c604c012eb14d55d6ff3639a">   37</a></span>    <a class="code hl_class" href="class_auto_release_pointer.html">AutoReleasePointer&lt;CommandNode&gt;</a> <a class="code hl_variable" href="class_command_tree.html#a41415612c604c012eb14d55d6ff3639a">rootNode</a>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
-<div class="ttc" id="a_auto_release_pointer_8h_html"><div class="ttname"><a href="_auto_release_pointer_8h.html">AutoReleasePointer.h</a></div></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_shared_pointer_8h.html">Memory/SharedPointer.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_command_tree.html">   13</a></span><span class="keyword">class </span><a class="code hl_define" href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a> <a class="code hl_class" href="class_command_tree.html">CommandTree</a>: <span class="keyword">public</span> <a class="code hl_class" href="class_object.html">Object</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="class_command_tree.html">CommandTree</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> execute(<a class="code hl_class" href="class_string.html">String</a> <span class="keyword">const</span>&amp; command, <a class="code hl_class" href="class_array.html">Array&lt;String&gt;</a> <span class="keyword">const</span>&amp; args);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> registerNode(<a class="code hl_class" href="class_shared_pointer.html">SharedPointer&lt;CommandNode&gt;</a> <span class="keyword">const</span>&amp; node) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_command_tree.html#a7ffad4dc54ed473ebabeea9d5ba52279">   24</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_weak_pointer.html">WeakPointer&lt;CommandNode&gt;</a> <a class="code hl_function" href="class_command_tree.html#a7ffad4dc54ed473ebabeea9d5ba52279">getRootNode</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> rootNode.weak();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_command_tree.html#a4853987d5d503fe0f9cdc49acaa96da8">   28</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_array.html">Array&lt;SharedPointer&lt;CommandNode&gt;</a>&gt; <a class="code hl_function" href="class_command_tree.html#a4853987d5d503fe0f9cdc49acaa96da8">getNodes</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> rootNode-&gt;nodes;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> gatherLeaves(<a class="code hl_class" href="class_command_node.html">CommandNode</a>* node, <a class="code hl_class" href="class_array.html">Array&lt;CommandNode*&gt;</a>&amp; storage);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_command_tree.html#a2867fe5401f3c50f170a240a92039818">   36</a></span>    <a class="code hl_class" href="class_shared_pointer.html">SharedPointer&lt;CommandNode&gt;</a> <a class="code hl_variable" href="class_command_tree.html#a2867fe5401f3c50f170a240a92039818">rootNode</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 <div class="ttc" id="a_command_context_8h_html"><div class="ttname"><a href="_command_context_8h.html">CommandContext.h</a></div></div>
-<div class="ttc" id="a_command_error_8h_html"><div class="ttname"><a href="_command_error_8h.html">CommandError.h</a></div></div>
 <div class="ttc" id="a_command_node_8h_html"><div class="ttname"><a href="_command_node_8h.html">CommandNode.h</a></div></div>
 <div class="ttc" id="a_engine_macros_8h_html"><div class="ttname"><a href="_engine_macros_8h.html">EngineMacros.h</a></div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:8</div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a724fb9f82013c782db5c3c12ea36aac8"><div class="ttname"><a href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a></div><div class="ttdeci">#define FORCEINLINE</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:7</div></div>
 <div class="ttc" id="a_object_8h_html"><div class="ttname"><a href="_object_8h.html">Object.h</a></div></div>
-<div class="ttc" id="a_parse_error_8h_html"><div class="ttname"><a href="_parse_error_8h.html">ParseError.h</a></div></div>
+<div class="ttc" id="a_shared_pointer_8h_html"><div class="ttname"><a href="_shared_pointer_8h.html">SharedPointer.h</a></div></div>
+<div class="ttc" id="a_unique_pointer_8h_html"><div class="ttname"><a href="_unique_pointer_8h.html">UniquePointer.h</a></div></div>
 <div class="ttc" id="aclass_array_html"><div class="ttname"><a href="class_array.html">Array</a></div><div class="ttdef"><b>Definition:</b> Array.h:18</div></div>
-<div class="ttc" id="aclass_auto_release_pointer_html"><div class="ttname"><a href="class_auto_release_pointer.html">AutoReleasePointer</a></div><div class="ttdoc">A smart unique pointer type that auto-releases upon destruction.</div><div class="ttdef"><b>Definition:</b> AutoReleasePointer.h:11</div></div>
-<div class="ttc" id="aclass_command_node_html"><div class="ttname"><a href="class_command_node.html">CommandNode</a></div><div class="ttdef"><b>Definition:</b> CommandNode.h:9</div></div>
-<div class="ttc" id="aclass_command_tree_html"><div class="ttname"><a href="class_command_tree.html">CommandTree</a></div><div class="ttdef"><b>Definition:</b> CommandTree.h:15</div></div>
-<div class="ttc" id="aclass_command_tree_html_a41415612c604c012eb14d55d6ff3639a"><div class="ttname"><a href="class_command_tree.html#a41415612c604c012eb14d55d6ff3639a">CommandTree::rootNode</a></div><div class="ttdeci">AutoReleasePointer&lt; CommandNode &gt; rootNode</div><div class="ttdef"><b>Definition:</b> CommandTree.h:37</div></div>
-<div class="ttc" id="aclass_command_tree_html_a421674984ceb1e213d7019b724510536"><div class="ttname"><a href="class_command_tree.html#a421674984ceb1e213d7019b724510536">CommandTree::getNodes</a></div><div class="ttdeci">FORCEINLINE Array&lt; CommandNode * &gt; getNodes() const</div><div class="ttdef"><b>Definition:</b> CommandTree.h:29</div></div>
-<div class="ttc" id="aclass_command_tree_html_a9e278477b096a3f331662f8a46986c40"><div class="ttname"><a href="class_command_tree.html#a9e278477b096a3f331662f8a46986c40">CommandTree::getRootNode</a></div><div class="ttdeci">FORCEINLINE CommandNode * getRootNode() const</div><div class="ttdef"><b>Definition:</b> CommandTree.h:25</div></div>
+<div class="ttc" id="aclass_command_node_html"><div class="ttname"><a href="class_command_node.html">CommandNode</a></div><div class="ttdef"><b>Definition:</b> CommandNode.h:11</div></div>
+<div class="ttc" id="aclass_command_tree_html"><div class="ttname"><a href="class_command_tree.html">CommandTree</a></div><div class="ttdef"><b>Definition:</b> CommandTree.h:14</div></div>
+<div class="ttc" id="aclass_command_tree_html_a2867fe5401f3c50f170a240a92039818"><div class="ttname"><a href="class_command_tree.html#a2867fe5401f3c50f170a240a92039818">CommandTree::rootNode</a></div><div class="ttdeci">SharedPointer&lt; CommandNode &gt; rootNode</div><div class="ttdef"><b>Definition:</b> CommandTree.h:36</div></div>
+<div class="ttc" id="aclass_command_tree_html_a4853987d5d503fe0f9cdc49acaa96da8"><div class="ttname"><a href="class_command_tree.html#a4853987d5d503fe0f9cdc49acaa96da8">CommandTree::getNodes</a></div><div class="ttdeci">FORCEINLINE Array&lt; SharedPointer&lt; CommandNode &gt; &gt; getNodes() const</div><div class="ttdef"><b>Definition:</b> CommandTree.h:28</div></div>
+<div class="ttc" id="aclass_command_tree_html_a7ffad4dc54ed473ebabeea9d5ba52279"><div class="ttname"><a href="class_command_tree.html#a7ffad4dc54ed473ebabeea9d5ba52279">CommandTree::getRootNode</a></div><div class="ttdeci">FORCEINLINE WeakPointer&lt; CommandNode &gt; getRootNode() const</div><div class="ttdef"><b>Definition:</b> CommandTree.h:24</div></div>
 <div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:11</div></div>
+<div class="ttc" id="aclass_shared_pointer_html"><div class="ttname"><a href="class_shared_pointer.html">SharedPointer</a></div><div class="ttdef"><b>Definition:</b> SharedPointer.h:12</div></div>
 <div class="ttc" id="aclass_string_html"><div class="ttname"><a href="class_string.html">String</a></div><div class="ttdef"><b>Definition:</b> String.h:8</div></div>
+<div class="ttc" id="aclass_weak_pointer_html"><div class="ttname"><a href="class_weak_pointer.html">WeakPointer</a></div><div class="ttdef"><b>Definition:</b> WeakPointer.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

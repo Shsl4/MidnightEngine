@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['scene_0',['Scene',['../class_scene_component.html#a032858ae1fe02d2d1170981c2af2d67c',1,'SceneComponent::Scene()'],['../class_scene_object.html#a032858ae1fe02d2d1170981c2af2d67c',1,'SceneObject::Scene()']]],
-  ['scenecomponent_1',['SceneComponent',['../class_scene_object.html#ac94e77af6acdc9cbc063715e086fba5b',1,'SceneObject']]],
-  ['string_2',['String',['../class_array.html#a7fb804f7dc96dd9f705c84095f37f1ca',1,'Array']]]
+  ['resourceloader_0',['ResourceLoader',['../class_shader_programs.html#a685a33b83a13f36aceea3ff940994ac9',1,'ShaderPrograms::ResourceLoader()'],['../class_uniforms.html#a685a33b83a13f36aceea3ff940994ac9',1,'Uniforms::ResourceLoader()']]]
 ];
