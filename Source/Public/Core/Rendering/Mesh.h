@@ -5,21 +5,24 @@
 #include <Memory/UniquePointer.h>
 #include <Rendering/Vertex.h>
 
+#include <Rendering/Material.h>
+#include <bgfx/bgfx.h>
+
+#include "Texture.h"
+#include "Memory/SharedPointer.h"
+
 /*!
  * A structure representing a mesh.
  */
-struct ENGINE_API Mesh
-{
+struct ENGINE_API Mesh {
     
-    virtual ~Mesh();
+    Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, SharedPointer<Texture> meshTexture,
+        String name, String path);
 
-    Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, String name, String path);
-
-    void use() const;
-
-    void submit() const;
+    ~Mesh();
     
-    struct ProgramHandle* programHandle;
+    void render(UInt16 viewId, Material const& material, bgfx::ProgramHandle program) const;
+    
     struct VertexHandle* vertexBuffer;
     struct IndexHandle* indexBuffer;
 
@@ -32,6 +35,8 @@ struct ENGINE_API Mesh
     String meshName;
     String filePath;
 
+    SharedPointer<Texture> texture;
+    
     inline static Allocator<Vertex> vertexAllocator = Allocator<Vertex>();
     inline static Allocator<UInt16> indexAllocator = Allocator<UInt16>();
 

@@ -9,6 +9,38 @@
 
 #include <Scene/MeshObject.h>
 #include <Scene/FlyingCharacter.h>
+#include <Scene/MeshComponent.h>
+
+#include "Rendering/ShaderPrograms.h"
+
+class LightObject : public SceneObject {
+    
+public:
+    
+    void createComponents(Scene* scene, Transform transform) override {
+
+        light = scene->createComponent<BasicLightComponent>(transform);
+        setRootComponent(light.raw());
+        
+        
+    }
+
+    void update(float deltaTime) override {
+
+        SceneObject::update(deltaTime);
+        
+        getRootComponent()->rotateAround(Vector3::zero, { 0.0f, 1.0f, 0.0f }, rotation);
+        
+        rotation += { 50.0f * deltaTime, 0.0f, 0.0f};
+        
+    }
+
+private:
+
+    WeakPointer<BasicLightComponent> light;
+    Vector3 rotation = Vector3::zero;
+    
+};
 
 class MyScene : public Scene {
     
@@ -25,6 +57,7 @@ class MyScene : public Scene {
         createObject<MeshObject>(Transform({ 5.0f, 0.0f, 0.0f }), "Lamp1");
         createObject<MeshObject>(Transform({ -5.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 90.0f }, Vector3(0.5f)), "Lamp1");
         createObject<MeshObject>(Transform({ 0.0f, 0.0f, -5.0f }), "Cube");
+        createObject<LightObject>(Transform({ 0.0f, 5.0f, 0.0f }));
 
         createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));
 
@@ -51,7 +84,8 @@ protected:
         this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Sphere");
         this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Sphere");
         this->planet3 = createObject<MeshObject>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)), "Sphere");
-        
+        createObject<LightObject>(Transform({ 0.0f, 5.0f, 0.0f }, {}, { 0.25f, 0.25f, 0.25f }));
+
         this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
 
         planet2->attachTo(planet1.raw());
@@ -90,7 +124,9 @@ public:
 
         setWorldColor(0x00000000);
         createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }), "Cube");
+        createObject<MeshObject>(Transform({ 5.0f, 0.0f, 0.0f }), "Cube");
         createObject<FlyingCharacter>({ { 2.5f, 2.5f, 2.5f }, { -135.0f, -40.0f, 0.0f } });
+        createObject<LightObject>(Transform({ 0.0f, 50.0f, 0.0f }));
 
     }
     

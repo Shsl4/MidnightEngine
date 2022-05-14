@@ -33,6 +33,22 @@ WeakPointer<T>::WeakPointer(const WeakPointer& other) : pointer(other.pointer), 
 }
 
 template <typename T>
+template <typename Y>
+WeakPointer<T>::WeakPointer(WeakPointer<Y> const& other) {
+    
+    static_assert(std::is_base_of_v<Y, T>);
+    
+    if (other.pointer) {
+        
+        this->pointer = dynamic_cast<T*>(other.pointer);
+        this->counter = other.counter;
+
+        counter->increaseWeak();
+    }
+    
+}
+
+template <typename T>
 WeakPointer<T>::WeakPointer(nullptr_t) {}
 
 template <typename T>

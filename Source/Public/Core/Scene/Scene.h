@@ -10,19 +10,23 @@
 #include <Memory/UniquePointer.h>
 #include <Logging/Logger.h>
 
-union Color {
+struct Color {
 
-    Color(UInt8 red, UInt8 green, UInt8 blue, UInt8 alpha){
-        this->red = red;
-        this->green = green;
-        this->blue = blue;
-        this->alpha = alpha;
+    static void setByte(UInt32& bytes, UInt8 byte, int pos) {
+        bytes &= ~(static_cast<UInt32>(0xff) << (4 * pos));
+        bytes |= (static_cast<UInt32>(byte) << (4 * pos));
     }
 
-    UInt8 red;
-    UInt8 green;
-    UInt8 blue;
-    UInt8 alpha;
+    Color(const UInt8 red, const UInt8 green, const UInt8 blue, const UInt8 alpha){
+        
+        this->value = 0;
+        setByte(this->value, red, 0);
+        setByte(this->value, green, 0);
+        setByte(this->value, blue, 0);
+        setByte(this->value, alpha, 0);
+        
+    }
+    
     UInt32 value;
 
 };
@@ -176,6 +180,23 @@ public:
      */
     FORCEINLINE CameraManager *getCameraManager() const {
         return this->cameraManager.raw();
+    }
+
+    template<typename T>
+    WeakPointer<T> getFirstComponentOfClass() const {
+
+        for (auto& component : registeredComponents) {
+
+            if(component->inherits<T>()) {
+                
+                return component.weak();
+                
+            }
+                        
+        }
+
+        return WeakPointer<T>();
+        
     }
 
 protected:

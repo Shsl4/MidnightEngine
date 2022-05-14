@@ -1,7 +1,7 @@
 #include <Platform/Entry.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_syswm.h>
-#include <Core/StackStrace.h>
+#include <Core/StackTrace.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <bgfx/imgui/imgui.h>

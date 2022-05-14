@@ -1,26 +1,27 @@
 #pragma once
 
-#include <Rendering/Mesh.h>
 #include <Rendering/Texture.h>
 
-#include "Memory/SharedPointer.h"
+#include <Rendering/Model.h>
+#include <Memory/SharedPointer.h>
 
-class ENGINE_API ResourceLoader : public Object
-{
-
+class ENGINE_API ResourceLoader : public Object {
+ 
 public:
 
     ResourceLoader() = default;
 
+    ~ResourceLoader() override;
+
     void init();
 
     /*!
-     *  \brief Gets a loaded mesh by name.
+     *  \brief Gets a loaded model by name.
      *
      *  \param[in] name The name of the mesh to get.
      *  \return The mesh or nullptr if it wasn't found.
      */
-    NODISCARD WeakPointer<Mesh> getMesh(String const& name) const;
+    NODISCARD WeakPointer<Model> getModel(String const& name) const;
  
     /*!
      *  \brief Gets a loaded texture by name.
@@ -37,26 +38,31 @@ public:
      *  \return An array containing the binary data.
      */
     static Array<UInt8> loadFile(String const& path);
-    
+
 private:
 
     /*!
-     *  \brief Tries to load a mesh from the input file.
+     *  \brief Tries to load a texture from the input file.
      *
      *  \param[in] file The path of the file to load.
      */
-    void loadMesh(String const& file);
-
     void loadTexture(String const& file);
-    
+
+     /*!
+     *  \brief Tries to load a model from the input file.
+     *
+     *  \param[in] file The path of the file to load.
+     */
+    void loadModel(String const& file);
+
     /*!
      *  \brief An array containing every loaded mesh.
      */
-    Array<SharedPointer<Mesh>> loadedMeshes = Array<SharedPointer<Mesh>>(100);
+    Array<SharedPointer<Model>> loadedModels = Array<SharedPointer<Model>>(100);
 
      /*!
      *  \brief An array containing every loaded texture.
      */
     Array<SharedPointer<Texture>> loadedTextures = Array<SharedPointer<Texture>>(100);
- 
+    
 };

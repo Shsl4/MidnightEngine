@@ -11,8 +11,23 @@
 
 #include <stb_image.h>
 
+#include <Rendering/Model.h>
+#include <Rendering/Uniforms.h>
+
+#include <Rendering/ShaderPrograms.h>
+
+ResourceLoader::~ResourceLoader() {
+    
+    Uniforms::destroyUniforms();
+    ShaderPrograms::destroyPrograms();
+
+}
+
 void ResourceLoader::init() {
 
+    Uniforms::makeUniforms();
+    ShaderPrograms::makePrograms();
+    
     std::filesystem::directory_iterator iterator;
 
     try {
@@ -34,7 +49,7 @@ void ResourceLoader::init() {
         if (extension == ".obj" || extension == ".fbx")
         {
             // Load it
-            loadMesh(file.string().c_str());
+            loadModel(file.string().c_str());
         }
         
     }
@@ -81,17 +96,17 @@ Array<UInt8> ResourceLoader::loadFile(String const& path){
     
 }
 
-WeakPointer<Mesh> ResourceLoader::getMesh(String const& name) const
+WeakPointer<Model> ResourceLoader::getModel(String const& name) const
 {
 
     // For every loaded mesh
-    for (auto const& mesh : loadedMeshes)
+    for (auto const& model : loadedModels)
     {
         // If the mesh name matches
-        if (mesh->meshName == name)
+        if (model->modelName == name)
         {
             // Return the mesh
-            return mesh.weak();
+            return model.weak();
         }
         
     }
@@ -157,7 +172,7 @@ void ResourceLoader::loadTexture(String const& file)
     
 }
 
-void ResourceLoader::loadMesh(String const& file)
+void ResourceLoader::loadModel(String const& file)
 {
 
     // Get the file name by removing the file extension
@@ -172,8 +187,7 @@ void ResourceLoader::loadMesh(String const& file)
     
     // Load the 3D model.
     const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast |
-                                                               aiProcess_Triangulate |
-                                                               aiProcess_FlipUVs);
+                                                               aiProcess_Triangulate);
 
     // If the model could not be loaded, print an error message.
     if (scene == nullptr)
@@ -181,19 +195,16 @@ void ResourceLoader::loadMesh(String const& file)
         Console::getLogger()->error("Failed to load model. The path {} is invalid.", path);
         return;
     }
-    
-    auto totalVertices = Array<Vertex>(10000);
-    auto totalIndices = Array<UInt16>(10000);
 
-    // A scene may contain multiple meshes, so load them and combine everything into single vertex and index arrays.
-    for (size_t i = 0; i < scene->mNumMeshes; ++i)
-    {
+    Array<SharedPointer<Mesh>> meshes;
+
+    for (size_t i = 0; i < scene->mNumMeshes; ++i) {
 
         const auto libMesh = scene->mMeshes[i];
         auto vertices = Array<Vertex>(libMesh->mNumVertices);
         auto indices = Array<UInt16>(10000);
 
-        for(size_t j = 0; j < libMesh->mNumVertices; ++j){
+        for(size_t j = 0; j < libMesh->mNumVertices; ++j) {
             
             const auto pos = libMesh->mVertices[j];
             
@@ -215,7 +226,7 @@ void ResourceLoader::loadMesh(String const& file)
                 
             }
         
-            vertices += Vertex(position, normal, texCoords, LinearColors::blue);
+            vertices += Vertex(position, normal, texCoords, LinearColors::white);
         
         }
 
@@ -226,20 +237,19 @@ void ResourceLoader::loadMesh(String const& file)
             const Int32 numIndices = static_cast<Int32>(libMesh->mFaces[j].mNumIndices) - 1;
             
             for(Int32 k = numIndices; k >= 0 ; --k){
-                indices += libMesh->mFaces[j].mIndices[k] + static_cast<UInt16>(totalVertices.getSize());
+                indices += libMesh->mFaces[j].mIndices[k];
             }
             
         }
 
-        totalVertices += vertices;
-        totalIndices += indices;
-
+        // Create the mesh and store it in our array.
+        meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
+        
     }
 
-    // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedMeshes += SharedPointer<Mesh>::make(totalVertices, totalIndices, fileName, path);
-
+    loadedModels += SharedPointer<Model>::make(meshes, fileName, Material());
+    
     // Log a success message.
-    Console::getLogger()->success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
+    Console::getLogger()->success("Successfully loaded model {}. Combined {} components.", fileName, scene->mNumMeshes);
     
 }

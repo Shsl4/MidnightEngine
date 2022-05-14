@@ -58,4 +58,6 @@ struct ENGINE_API Vector4 {
     float z;
     float w;
 
+    const static Vector4 zero;
+
 };

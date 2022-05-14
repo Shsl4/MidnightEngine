@@ -22,8 +22,6 @@
 #include <thread>
 #include <iostream>
 
-#include "StackStrace.h"
-
 Logger Logger::assertLogger = Logger("Assert");
 
 Engine::Engine() {

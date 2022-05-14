@@ -164,6 +164,8 @@ public:
     void setWorldScale(Vector3 const& scale);
 
     void setWorldTransform(Transform const& transformToSet);
+
+    void rotateAround(Vector3 const& position, Vector3 const& axis, Vector3 const& rotation);
  
     /*!
      *  \brief Checks whether this component has been correctly registered / created

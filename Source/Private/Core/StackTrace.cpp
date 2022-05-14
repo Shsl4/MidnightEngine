@@ -1,11 +1,10 @@
-#include <Core/StackStrace.h>
+#include <Core/StackTrace.h>
 #include <Core/EngineMacros.h>
 #include <Exception/Exception.h>
 #include <fmt/format.h>
 
 #ifdef _WIN64
 
-#pragma comment(lib, "ws2_32.lib")
 #include <Windows.h>
 #include <DbgHelp.h>
 #include <winnt.h>

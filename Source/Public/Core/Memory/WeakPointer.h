@@ -24,6 +24,9 @@ public:
     explicit WeakPointer(const SharedPointer<T>& other);
 
     WeakPointer(const WeakPointer& other);
+
+    template<typename Y>
+    WeakPointer(WeakPointer<Y> const& other);
     
     WeakPointer(nullptr_t);
 

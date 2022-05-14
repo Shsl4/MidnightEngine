@@ -52,7 +52,7 @@ public:
     bool operator<(SharedPointer<Y> const& other) noexcept;
 
     NODISCARD WeakPointer<T> weak() const;
-
+    
     T* operator->() const;
 
     NODISCARD T* raw() const;

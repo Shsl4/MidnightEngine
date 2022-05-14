@@ -11,12 +11,14 @@ bgfx::ShaderHandle ShaderManager::loadShader(String const& name) {
     
     // Load the file content
     const Array<UInt8> fileData = ResourceLoader::loadFile(filePath);
+
+    expect(!fileData.isEmpty(), "Tried to load an invalid shader file: {}", filePath);
     
     // Convert the data to bgfx::Memory.
     const bgfx::Memory* mem = bgfx::copy(fileData.begin(), static_cast<UInt32>(fileData.getSize()));
 
     // Create our shader and name it.
-    const bgfx::ShaderHandle handle = bgfx::createShader(mem);
+    const bgfx::ShaderHandle handle = createShader(mem);
 
     setName(handle, name.toCString());
 
@@ -35,7 +37,7 @@ bgfx::ProgramHandle ShaderManager::loadProgram(String const& name) {
     const bgfx::ShaderHandle fragmentShader = loadShader(fragmentShaderName);
 
     // Create the shader program from the loaded shaders.
-    return bgfx::createProgram(vertexShader, fragmentShader, true);
+    return createProgram(vertexShader, fragmentShader, true);
 
 }
 

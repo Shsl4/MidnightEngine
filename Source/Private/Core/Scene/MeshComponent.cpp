@@ -13,71 +13,30 @@ void MeshComponent::update(float deltaTime) {
 
 MeshComponent::MeshComponent(String const& name) {
         
-    this->mesh = Engine::getInstance()->getResourceLoader()->getMesh(name);
+    this->model = Engine::getInstance()->getResourceLoader()->getModel(name);
 
     if(name == "Cube")
     {
         this->texture = Engine::getInstance()->getResourceLoader()->getTexture("Missing");
     }
     
-    this->viewPos = createUniform("viewPos", bgfx::UniformType::Vec4);
-
 }
 
 void MeshComponent::construct(Transform const &relativeTransform) {
     Super::construct(relativeTransform);
 }
 
-MeshComponent::~MeshComponent() {
-    destroy(viewPos);
-}
-
-
 void MeshComponent::render() {
 
-    // If a mesh is set
-    if (!mesh.expired()){
+    // If a model is set
+    if (!model.expired()){
 
         // Render it.
-        mesh->use();
-        
-        const auto lightPos = Vector4(1.2f, 1.0f, 2.0f, 1);
-        
-        const auto lightAmbient = Vector4(0.2f, 0.2f, 0.2f, 1.0f);
-        const auto lightDiffuse = LinearColors::green;
-        const auto lightSpecular = Vector4(1.0f);
-        
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
-
-        const auto ambient = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
-        const auto diffuse = Vector4(1.0f, 1.0f,1.0f, 1.0f);
-        const auto specular = Vector4(0.5f, 0.5f, 0.5f, 1.0f);
-        const auto shininess = Vector4(16.0f);
+        const auto light = getScene()->getFirstComponentOfClass<BasicLightComponent>();
         
-        setUniform(light.lightPos, &lightPos);
-        setUniform(light.ambientColor, &lightAmbient);
-        setUniform(light.diffuseColor, &lightDiffuse);
-        setUniform(light.specularColor, &lightSpecular);
-
-        setUniform(viewPos, &view);
-        
-        setUniform(material.ambient, &ambient);
-
-        if(!texture.expired())
-        {
-            texture->use(0, material.textureDiffuse);
-        }
-        else
-        {
-            setUniform(material.diffuse, &diffuse);
-        }
-
-        setUniform(material.specular, &specular);
-        setUniform(material.shininess, &shininess);
-
-        model = Matrix4::modelMatrix(getWorldTransform());
-        bgfx::setTransform(model.data);
-        mesh->submit();
+        // Render it.
+        model->render(0, view, Matrix4::modelMatrix(getWorldTransform()), light);
         
     }
 

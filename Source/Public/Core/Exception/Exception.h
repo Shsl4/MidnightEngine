@@ -4,7 +4,7 @@
 #include <Core/EngineMacros.h>
 #include <Logging/Logger.h>
 
-#include <Core/StackStrace.h>
+#include <Core/StackTrace.h>
 
 class Exception : public std::runtime_error {
 
