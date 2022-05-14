@@ -1,7 +1,8 @@
-#include <bx/timer.h>
 #include <UI/PerformanceWindow.h>
-#include <bgfx/bgfx_utils.h>
-#include <Engine.h>
+
+#include <bx/timer.h>
+#include <bx/math.h>
+#include <bx/string.h>
 
 PerformanceWindow::SampleData::SampleData() {
     reset();

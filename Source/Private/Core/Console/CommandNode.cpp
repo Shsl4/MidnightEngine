@@ -1,5 +1,6 @@
 #include <Console/CommandNode.h>
 #include <Core/Engine.h>
+#include <Exception/Exception.h>
 
 #include <Console/ArgumentCommandNode.h>
 #include <Console/ExecutableCommandNode.h>
@@ -11,7 +12,7 @@ CommandNode* CommandNode::findChildNode(String const& name) const
     {
         if(node->nodeName == name)
         {
-            return node;
+            return node.raw();
         }
     }
 
@@ -25,7 +26,7 @@ CommandNode* CommandNode::findLiteralNode(String const& name) const
     {
         if(node->nodeName == name && nodeType == NodeType::Literal)
         {
-            return node;
+            return node.raw();
         }
     }
 
@@ -40,7 +41,7 @@ CommandNode* CommandNode::findFirstOf(const NodeType type) const
     {
         if(node->nodeType == type)
         {
-            return node;
+            return node.raw();
         }
     }
 
@@ -52,7 +53,7 @@ bool CommandNode::containsNode(const CommandNode* node) const
 {
     for(auto const& childNode : nodes) {
         
-        if(node == childNode)
+        if(node == childNode.raw())
         {
             return true;
         }
@@ -87,7 +88,7 @@ void CommandNode::putPath(const CommandNode* node, Array<String>& storage, Strin
         string += format;
 
         for(const auto& child : node->nodes) {
-            putPath(child, storage, string);
+            putPath(child.raw(), storage, string);
         }
         
     }
@@ -113,9 +114,9 @@ CommandNode::CommandNode(String name): nodeName(std::move(name)), nodeType(NodeT
         
 }
 
-CommandNode* CommandNode::make(const String& name)
+SharedPointer<CommandNode> CommandNode::make(const String& name)
 {
-    return Allocator<CommandNode>().construct(name);
+    return SharedPointer<CommandNode>::make(name);
 }
 
 CommandNode* CommandNode::addLiteral(String const& name)
@@ -129,7 +130,7 @@ CommandNode* CommandNode::addLiteral(String const& name)
 
     const auto node = make(name);
     nodes += node;
-    return node;
+    return node.raw();
     
 }
 
@@ -146,7 +147,7 @@ CommandNode* CommandNode::addArgument(const String& name, const ArgumentType typ
 
     const auto node = ArgumentCommandNode::make(name, type);
     nodes += node;
-    return node;
+    return node.raw();
     
 }
 
@@ -160,7 +161,7 @@ CommandNode* CommandNode::addExecutable(CommandFunction const& function)
     
     nodes += node;
     
-    return node;
+    return node.raw();
         
 }
 

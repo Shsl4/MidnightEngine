@@ -1,21 +1,22 @@
 #include <Rendering/Mesh.h>
 #include <bgfx/bgfx.h>
 #include <Rendering/ShaderManager.h>
+#include <Rendering/Uniforms.h>
 
-#define HandleWrapper(name, type)                       \
-                                                        \
-    struct name {                                       \
-                                                        \
-        name(type const& handle) : handle(handle) {     \
-                                                        \
-        }                                               \
-                                                        \
-        ~name(){                                        \
-            bgfx::destroy(handle);                      \
-        }                                               \
-                                                        \
-        type handle;                                    \
-                                                        \
+#define HandleWrapper(name, type)                                \
+                                                                 \
+    struct name {                                                \
+                                                                 \
+        explicit name(type const& handle) : handle(handle) {     \
+                                                                 \
+        }                                                        \
+                                                                 \
+        ~name(){                                                 \
+            bgfx::destroy(handle);                               \
+        }                                                        \
+                                                                 \
+        type handle;                                             \
+                                                                 \
     };
 
 HandleWrapper(ProgramHandle, bgfx::ProgramHandle)
@@ -36,8 +37,9 @@ static bgfx::VertexLayout getVertexLayout()
     return layout;
 }
 
-Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, String name, String path) :
-    vertexCount(vertices.getSize()), indexCount(indexArray.getSize()), meshName(std::move(name)), filePath(std::move(path)) {
+Mesh::Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, const SharedPointer<Texture> meshTexture,
+    String name, String path) : vertexCount(vertices.getSize()), indexCount(indexArray.getSize()),
+        meshName(std::move(name)), filePath(std::move(path)) {
 
     data = vertexAllocator.alloc(vertexCount);
     indices = indexAllocator.alloc(indexCount);
@@ -50,19 +52,29 @@ Mesh::Mesh(Array<Vertex> const &vertices, Array<UInt16> const& indexArray, Strin
     
     this->vertexBuffer = Allocator<VertexHandle>().construct(createVertexBuffer(vertexMemory, getVertexLayout()));
     this->indexBuffer = Allocator<IndexHandle>().construct(createIndexBuffer(indexMemory));
-    this->programHandle = Allocator<ProgramHandle>().construct(ShaderManager::loadProgram("Advanced"));
+
+    if(meshTexture.valid()) {
+        this->texture = meshTexture;
+    }
     
 }
 
-void Mesh::use() const
-{
+void Mesh::render(UInt16 viewId, Material const& material, bgfx::ProgramHandle program) const {
+
     setIndexBuffer(indexBuffer->handle);
     setVertexBuffer(0, vertexBuffer->handle);
-}
+    
+    setUniform(Uniforms::materialAmbient, &material.ambientColor);
+    setUniform(Uniforms::materialDiffuse, &material.diffuseColor);
+    setUniform(Uniforms::materialSpecular, &material.specular);
+    setUniform(Uniforms::materialShininess, &material.shininess);
 
-void Mesh::submit() const
-{
-    bgfx::submit(0, programHandle->handle);
+    if(texture.valid()) {
+        texture->use(0, Uniforms::textureHandle);
+    }
+        
+    submit(viewId, program);
+    
 }
 
 Mesh::~Mesh() {
@@ -71,6 +83,5 @@ Mesh::~Mesh() {
     indexAllocator.release(indices);
     vertexAllocator.autoDestroy(vertexBuffer);
     vertexAllocator.autoDestroy(indexBuffer);
-    vertexAllocator.autoDestroy(programHandle);
 
 }

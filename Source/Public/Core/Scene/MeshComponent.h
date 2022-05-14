@@ -7,17 +7,14 @@
 #include <bgfx/bgfx.h>
 #include <Math/Vector4.h>
 
-struct DirectionalLight {
+#include <Memory/WeakPointer.h>
+#include <Rendering/Mesh.h>
+#include <Rendering/Texture.h>
 
-    bgfx::UniformHandle lightPos;
-    bgfx::UniformHandle lightColor;
-    bgfx::UniformHandle viewPos;
-    bgfx::UniformHandle objectColor;
-    bgfx::UniformHandle model;
-};
+#include "Rendering/Model.h"
 
 /*!
- * A renderable component that represents a mesh.
+ *  \brief A renderable component that represents a mesh.
  */
 class ENGINE_API MeshComponent : public SceneComponent, public Renderable {
 
@@ -28,9 +25,8 @@ public:
     void update(float deltaTime) override;
 
     void construct(Transform const &relativeTransform) override;
-
-    ~MeshComponent() override;
-
+    
+    NODISCARD WeakPointer<Model> getModel() const { return this->model; }
 
 private:
 
@@ -38,11 +34,9 @@ private:
 
     void render() override;
 
-    const struct Mesh *mesh;
+    WeakPointer<Model> model = nullptr;
 
-    DirectionalLight light;
-
-    Matrix4 model;
+    WeakPointer<Texture> texture = nullptr;
     
 };
 

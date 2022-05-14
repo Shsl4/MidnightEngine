@@ -8,8 +8,6 @@
 
 #include <bgfx/bgfx.h>
 #include <imgui/imgui.h>
-#include <iconfontheaders/icons_kenney.h>
-#include <iconfontheaders/icons_font_awesome.h>
 
 #define IMGUI_MBUT_LEFT   0x01
 #define IMGUI_MBUT_RIGHT  0x02

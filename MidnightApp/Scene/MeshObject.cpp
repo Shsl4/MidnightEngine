@@ -12,7 +12,7 @@ void MeshObject::createComponents(Scene *scene, Transform transform) {
 
     // Create the mesh component
     this->mesh = scene->createComponent<MeshComponent>(transform, meshName);
-    this->setRootComponent(mesh);
+    this->setRootComponent(mesh.raw());
 
 }
 

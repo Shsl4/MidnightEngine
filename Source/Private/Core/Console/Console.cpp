@@ -1,9 +1,7 @@
 #include <Console/Console.h>
 #include <Core/Engine.h>
 
-#include <iostream>
-
-#include <Exception/CommandError.h>
+#include <Exception/Exception.h>
 
 Console::Console(Engine* engine) : engine(engine){
     
@@ -11,12 +9,12 @@ Console::Console(Engine* engine) : engine(engine){
     
     Console::instance = this;
     
-    this->logger = AutoReleasePointer<Logger>::make("Engine");
-    this->commandTree = AutoReleasePointer<CommandTree>::make();
+    this->logger = SharedPointer<Logger>::make("Engine");
+    this->commandTree = UniquePointer<CommandTree>::make();
 
-    CommandNode* helpNode = CommandNode::make("help");
-    CommandNode* exitNode = CommandNode::make("exit");
-    CommandNode* echoNode = CommandNode::make("echo");
+    const auto helpNode = CommandNode::make("help");
+    const auto exitNode = CommandNode::make("exit");
+    const auto echoNode = CommandNode::make("echo");
 
     helpNode->setNodeDescription("Prints this help menu.");
     exitNode->setNodeDescription("Exits the engine.");
@@ -26,7 +24,9 @@ Console::Console(Engine* engine) : engine(engine){
         engine->stop();
     });
         
-    helpNode->addExecutable([this]<typename T0>(T0&& PH1) { return consoleHelp(std::forward<T0>(PH1)); });
+    helpNode->addExecutable([this](const auto* context) {
+        consoleHelp(context);
+    });
 
     echoNode->addArgument("text", ArgumentType::String)
             ->addExecutable([this](const auto* context) {
@@ -44,12 +44,11 @@ Console::Console(Engine* engine) : engine(engine){
 
 Console::~Console(){
     
-    logger.release();
+    logger = nullptr;
     Console::instance = nullptr;
-    
 }
 
-void Console::registerCommand(CommandNode* node) const
+void Console::registerNode(SharedPointer<CommandNode> const& node) const
 {
     commandTree->registerNode(node);
 }
@@ -60,9 +59,9 @@ void Console::init()
     this->consoleThread.detach();
 }
 
-void Console::consoleLoop(){
+void Console::consoleLoop() const {
     
-    while (engine->isRunning()) {
+    while (true) {
         
         String line = logger->prompt();
 
@@ -80,7 +79,7 @@ void Console::execute(String const& command) const {
     Array<String> args = command.split(' ');
     const String name = args.getAt(0);
     args.removeAt(0);
-    
+        
     try
     {
         commandTree->execute(name, args);
@@ -89,6 +88,7 @@ void Console::execute(String const& command) const {
     {
         logger->error(error.what());
     }
+    
 }
 
 void Console::consoleHelp(const CommandContext* context)

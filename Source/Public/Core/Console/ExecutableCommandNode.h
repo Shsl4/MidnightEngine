@@ -11,7 +11,7 @@ public:
 
     ExecutableCommandNode(String name, CommandFunction function);
 
-    static ExecutableCommandNode* make(String const& name, CommandFunction const& function);
+    static SharedPointer<ExecutableCommandNode> make(String const& name, CommandFunction const& function);
 
     FORCEINLINE CommandFunction getCommandFunction() const
     {

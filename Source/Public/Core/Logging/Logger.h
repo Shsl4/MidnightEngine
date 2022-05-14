@@ -13,30 +13,6 @@
 
 #include "fmt/ostream.h"
 
-class Colors
-{
-
-public:
-    
-    static const inline char* Black = "\033[30m";
-    static const inline char* Red = "\033[31m";
-    static const inline char* Green = "\033[32m";
-    static const inline char* Yellow = "\033[33m";
-    static const inline char* Blue = "\033[34m";
-    static const inline char* Magenta = "\033[35m";
-    static const inline char* Cyan = "\033[36m";
-    static const inline char* LightGray = "\033[37m";
-    static const inline char* DarkGray = "\033[90m";
-    static const inline char* LightRed = "\033[91m";
-    static const inline char* LightGreen = "\033[92m";
-    static const inline char* LightYellow = "\033[93m";
-    static const inline char* LightBlue = "\033[94m";
-    static const inline char* LightMagenta = "\033[95m";
-    static const inline char* LightCyan = "\033[96m";
-    static const inline char* Reset = "\033[0m";
-    
-};
-
 template <>
 struct fmt::formatter<String> : formatter<std::string>{
     
@@ -51,7 +27,7 @@ struct fmt::formatter<String> : formatter<std::string>{
 };
 
 /*!
- * A Logging class allowing you to log messages to the console using different severities.
+ *  \brief A Logging class allowing you to log messages to the console using different severities.
  */
 class ENGINE_API Logger {
 
@@ -66,16 +42,17 @@ public:
 
     }
 
-    String prompt()
-    {
-        std::getline(std::cin, lastInput);
+    NODISCARD String prompt() const {
 
-        if(lastInput.empty())
+        std::string input;
+        std::getline(std::cin, input);
+
+        if(input.empty())
         {
             fmt::print("\033[A> ");
         }
         
-        return lastInput;
+        return input;
     }
 
     /*!
@@ -143,7 +120,6 @@ public:
     void fatal(const char*format, Args &&... args) const {
         this->log(fg(fmt::color::dark_red), "FATAL", format, args...);
         std::fflush(stdout);
-        abort();
     }
 
     /*!
@@ -240,6 +216,5 @@ private:
     inline static std::ofstream file = std::ofstream("latest.log");
 
     State state = State::Idle;
-    std::string lastInput;
 
 };

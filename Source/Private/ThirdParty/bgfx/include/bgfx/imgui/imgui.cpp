@@ -11,8 +11,10 @@
 #include <imgui/imgui.h>
 #include <imgui/imgui_internal.h>
 
+#include <iconfontheaders/icons_kenney.h>
+#include <iconfontheaders/icons_font_awesome.h>
+
 #include "imgui.h"
-#include <bgfx/bgfx_utils.h>
 #include <bgfx/imgui/imgui_user.h>
 
 //#define USE_ENTRY 1
@@ -62,6 +64,14 @@ static FontRangeMerge s_fontRangeMerge[] =
 
 static void* memAlloc(size_t _size, void* _userData);
 static void memFree(void* _ptr, void* _userData);
+
+inline bool checkAvailTransientBuffers(uint32_t _numVertices, const bgfx::VertexLayout& _layout, uint32_t _numIndices)
+{
+	return _numVertices == bgfx::getAvailTransientVertexBuffer(_numVertices, _layout)
+		&& (0 == _numIndices || _numIndices == bgfx::getAvailTransientIndexBuffer(_numIndices) )
+		;
+}
+
 
 struct OcornutImguiContext
 {
@@ -437,13 +447,11 @@ static OcornutImguiContext s_ctx;
 
 static void* memAlloc(size_t _size, void* _userData)
 {
-	BX_UNUSED(_userData);
 	return BX_ALLOC(s_ctx.m_allocator, _size);
 }
 
 static void memFree(void* _ptr, void* _userData)
 {
-	BX_UNUSED(_userData);
 	BX_FREE(s_ctx.m_allocator, _ptr);
 }
 

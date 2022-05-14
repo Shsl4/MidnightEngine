@@ -1,10 +1,10 @@
 #include <Scene/Scene.h>
 #include <Core/Engine.h>
 #include <Input/InputManager.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 #include <bgfx/bgfx.h>
 
-Scene::Scene() : cameraManager(AutoReleasePointer<CameraManager>::make(this)) {
+Scene::Scene() : cameraManager(UniquePointer<CameraManager>::make(this)) {
     
 }
 
@@ -22,7 +22,7 @@ void Scene::cleanup()
     const auto inputManager = Engine::getInstance()->getInputManager();
 
     for (auto const& e : registeredObjects) {
-        inputManager->unbindAll(e);
+        inputManager->unbindAll(e.raw());
     }
 
     registeredObjects.clear();
@@ -41,7 +41,7 @@ void Scene::listObjects() const {
     
     for (const auto& object : registeredObjects)
     {
-        Console::getLogger()->info("[{}] {} ({})", counter, object->getClassName(), fmt::ptr(object));
+        Console::getLogger()->info("[{}] {} ({})", counter, object->getClassName(), fmt::ptr(object.raw()));
         ++counter;
     }
     
@@ -56,7 +56,7 @@ void Scene::listComponents() const {
     
     for (const auto& component : registeredComponents)
     {
-        Console::getLogger()->info("[{}] {} ({})", counter, component->getClassName(), fmt::ptr(component));
+        Console::getLogger()->info("[{}] {} ({})", counter, component->getClassName(), fmt::ptr(component.raw()));
         ++counter;
     }
     
@@ -70,9 +70,9 @@ void Scene::setWorldColor(const UInt32 color) const
 
 SceneObject* Scene::getObjectByIndex(size_t index) const {
     
-    if(index < 0 || index > registeredObjects.getSize()) { return nullptr; }
+    if(index < 0 || index >= registeredObjects.getSize()) { return nullptr; }
 
-    return registeredObjects[index];
+    return registeredObjects[index].raw();
     
 }
 
@@ -117,8 +117,18 @@ bool Scene::destroyObject(SceneObject* object)
 
     destroyComponent(object->getRootComponent());
 
-    return registeredObjects.removeFirstOf(object);
+    size_t i = 0;
     
+    for (auto const& e : registeredObjects) {
+        if (object == e.raw()) {
+            break;
+        }
+        ++i;
+    }
+    
+    registeredObjects.removeAt(i);
+
+    return true;    
 }
 
 bool Scene::destroyComponent(SceneComponent *component){
@@ -146,6 +156,17 @@ bool Scene::destroyComponent(SceneComponent *component){
 
     }
 
-    return registeredComponents.removeFirstOf(component);
+    size_t i = 0;
+    
+    for (auto const& e : registeredComponents) {
+        if (component == e.raw()) {
+            break;
+        }
+        ++i;
+    }
+    
+    registeredComponents.removeAt(i);
+
+    return true;
     
 }

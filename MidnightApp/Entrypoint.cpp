@@ -3,12 +3,44 @@
 //
 
 #include <Core/Core.h>
+#include <Console/Console.h>
+#include <Memory/WeakPointer.h>
 #include <Platform/Entry.h>
 
 #include <Scene/MeshObject.h>
 #include <Scene/FlyingCharacter.h>
+#include <Scene/MeshComponent.h>
 
-#include "SDL2/SDL_egl.h"
+#include "Rendering/ShaderPrograms.h"
+
+class LightObject : public SceneObject {
+    
+public:
+    
+    void createComponents(Scene* scene, Transform transform) override {
+
+        light = scene->createComponent<BasicLightComponent>(transform);
+        setRootComponent(light.raw());
+        
+        
+    }
+
+    void update(float deltaTime) override {
+
+        SceneObject::update(deltaTime);
+        
+        getRootComponent()->rotateAround(Vector3::zero, { 0.0f, 1.0f, 0.0f }, rotation);
+        
+        rotation += { 50.0f * deltaTime, 0.0f, 0.0f};
+        
+    }
+
+private:
+
+    WeakPointer<BasicLightComponent> light;
+    Vector3 rotation = Vector3::zero;
+    
+};
 
 class MyScene : public Scene {
     
@@ -25,6 +57,7 @@ class MyScene : public Scene {
         createObject<MeshObject>(Transform({ 5.0f, 0.0f, 0.0f }), "Lamp1");
         createObject<MeshObject>(Transform({ -5.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 90.0f }, Vector3(0.5f)), "Lamp1");
         createObject<MeshObject>(Transform({ 0.0f, 0.0f, -5.0f }), "Cube");
+        createObject<LightObject>(Transform({ 0.0f, 5.0f, 0.0f }));
 
         createObject<FlyingCharacter>(Transform(Vector3(0.0, 0.0, 0.0f), Vector3(-90.0f, 0.0f, 0.0f)));
 
@@ -51,11 +84,12 @@ protected:
         this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Sphere");
         this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Sphere");
         this->planet3 = createObject<MeshObject>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)), "Sphere");
-        
+        createObject<LightObject>(Transform({ 0.0f, 5.0f, 0.0f }, {}, { 0.25f, 0.25f, 0.25f }));
+
         this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
 
-        planet2->attachTo(planet1);
-        planet3->attachTo(planet2);
+        planet2->attachTo(planet1.raw());
+        planet3->attachTo(planet2.raw());
 
     }
     
@@ -63,45 +97,43 @@ protected:
 
         Scene::update(deltaTime);
 
-        if(planet1) {
+        if(planet1.valid()) {
             planet1->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
         }
 
-        if(planet2) {
+        if(planet2.valid()) {
             planet2->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
         }        
         
     }
+        
+    WeakPointer<FlyingCharacter> character = nullptr;
+    
+    WeakPointer<MeshObject> planet1 = nullptr;
+    WeakPointer<MeshObject> planet2 = nullptr;
+    WeakPointer<MeshObject> planet3 = nullptr;
+    
+};
 
-    bool destroyObject(SceneObject *object) override
+class RenderScene : public Scene
+{
+public:
+    
+    void start() override
     {
 
-        if(object == planet1)
-        {
-            planet1 = nullptr;
-        }
+        setWorldColor(0x00000000);
+        createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }), "Cube");
+        createObject<MeshObject>(Transform({ 5.0f, 0.0f, 0.0f }), "Cube");
+        createObject<FlyingCharacter>({ { 2.5f, 2.5f, 2.5f }, { -135.0f, -40.0f, 0.0f } });
+        createObject<LightObject>(Transform({ 0.0f, 50.0f, 0.0f }));
 
-        if(object == planet2)
-        {
-            planet2 = nullptr;
-        }
-
-        if(object == planet3)
-        {
-            planet3 = nullptr;
-        }
-        
-        return Scene::destroyObject(object);
-        
     }
-
     
-    FlyingCharacter* character = nullptr;
-    
-    MeshObject* planet1 = nullptr;
-    MeshObject* planet2 = nullptr;
-    MeshObject* planet3 = nullptr;
-    
+    NODISCARD FORCEINLINE String getSceneName() const override
+    {
+        return "RenderScene";
+    }
 };
 
 class MyEngine : public Engine {
@@ -116,12 +148,13 @@ class MyEngine : public Engine {
 
     void onStart() override {
 
-        CommandNode* unloadNode = CommandNode::make("scene.unload");
-        CommandNode* loadNode = CommandNode::make("scene.load");
-        CommandNode* addMeshNode = CommandNode::make("scene.mesh.add");
-        CommandNode* listObjNode = CommandNode::make("scene.object.list");
-        CommandNode* deleteObjNode = CommandNode::make("scene.object.delete");
-        CommandNode* listCompNode = CommandNode::make("scene.component.list");
+        const auto unloadNode = CommandNode::make("scene.unload");
+        const auto loadNode = CommandNode::make("scene.load");
+        const auto addMeshNode = CommandNode::make("scene.mesh.add");
+        const auto listObjNode = CommandNode::make("scene.object.list");
+        const auto posNode = CommandNode::make("scene.object.pos");
+        const auto deleteObjNode = CommandNode::make("scene.object.delete");
+        const auto listCompNode = CommandNode::make("scene.component.list");
 
         unloadNode->setNodeDescription("Unloads the active scene.");
         loadNode->setNodeDescription("Loads a scene.");
@@ -144,18 +177,22 @@ class MyEngine : public Engine {
                     {
                         loadScene<MyScene>();
                     }
+                    else if(sceneName == "RenderScene")
+                    {
+                        loadScene<RenderScene>();
+                    }
                     else
                     {
                         CommandError::throwError("The scene \"{}\" does not exist.", sceneName);
                     }                    
                     
                 });
-
+        
         auto* node = addMeshNode->addArgument("meshName", ArgumentType::String);
         
         node->addExecutable([this](const auto* context) {
 
-            CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+            CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
             String meshName = context->getString("meshName");
                        
@@ -168,7 +205,7 @@ class MyEngine : public Engine {
             ->addArgument("z", ArgumentType::Double)
             ->addExecutable([this](const auto* context) {
 
-                CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+                CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
                 String meshName = context->getString("meshName");
                 const auto x = static_cast<float>(context->getDouble("x"));
@@ -181,35 +218,53 @@ class MyEngine : public Engine {
 
         listObjNode->addExecutable([this](const auto* context)
         {
-            CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+            CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
             getActiveScene()->listObjects();            
         });
         
         listCompNode->addExecutable([this](const auto* context)
         {
-            CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+            CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
             getActiveScene()->listComponents();            
         });
 
         deleteObjNode->addArgument("index", ArgumentType::Int64)
                      ->addExecutable([this](const auto* context) {
 
-                         CommandError::throwIf(!getActiveScene(), "No scene is loaded.");
+                         CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
                          const Int64 index = context->getInt64("index");
                          
                          getActiveScene()->destroyObject(getActiveScene()->getObjectByIndex(index));
                          
                      });
-        
-        getConsole()->registerCommand(loadNode);
-        getConsole()->registerCommand(unloadNode);
-        getConsole()->registerCommand(addMeshNode);
-        getConsole()->registerCommand(listObjNode);
-        getConsole()->registerCommand(deleteObjNode);
-        getConsole()->registerCommand(listCompNode);
 
-        getConsole()->execute("scene.load SpaceScene");
+        posNode->addArgument("index", ArgumentType::Int64)->addExecutable([this](const auto* context)
+        {
+
+            CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
+
+            const Int64 index = context->getInt64("index");
+
+            const SceneObject* object = getActiveScene()->getObjectByIndex(index);
+
+            CommandError::throwIf(!object, "The provided object index is invalid");
+
+            const auto pos = object->getWorldPosition();
+            Console::getLogger()->info("Position for {} ({}): {{ {}, {}, {} }}", object->getClassName(),
+                fmt::ptr(object), pos.x, pos.y, pos.z);
+            
+        });
+        
+        Console::registerCommand(loadNode);
+        Console::registerCommand(unloadNode);
+        Console::registerCommand(addMeshNode);
+        Console::registerCommand(listObjNode);
+        Console::registerCommand(deleteObjNode);
+        Console::registerCommand(listCompNode);
+        Console::registerCommand(posNode);
+        
+        Console::exec("scene.load SpaceScene");
 
     }
 
@@ -229,14 +284,14 @@ int main(const int argc, const char** argv) {
 
 #endif
 
-    const auto entry = AutoReleasePointer<Entry>::make();
-    const auto engine = AutoReleasePointer<MyEngine>::make();
+    const auto entry = UniquePointer<Entry>::make();
+    const auto engine = UniquePointer<MyEngine>::make();
     const auto pointer = engine.raw();
-
-    entry->entry(argc, argv, [pointer]()
-    {
+    
+    entry->entry(argc, argv, [pointer]() {
         return pointer;
     });
+
 
     return 0;
 

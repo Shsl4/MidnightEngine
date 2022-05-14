@@ -6,7 +6,7 @@ ArgumentCommandNode::ArgumentCommandNode(String name, const ArgumentType type):
     this->nodeType = NodeType::Argument;
 }
 
-ArgumentCommandNode* ArgumentCommandNode::make(String const& name, ArgumentType type)
+SharedPointer<ArgumentCommandNode> ArgumentCommandNode::make(String const& name, ArgumentType type)
 {
-    return Allocator<ArgumentCommandNode>().construct(name, type);
+    return SharedPointer<ArgumentCommandNode>::make(name, type);
 }

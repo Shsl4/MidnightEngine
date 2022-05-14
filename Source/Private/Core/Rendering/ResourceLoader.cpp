@@ -5,19 +5,35 @@
 
 #include <assimp/postprocess.h>
 
-#include "ShaderManager.h"
-#include "assimp/Importer.hpp"
-#include "Console/Console.h"
+#include <Rendering/ShaderManager.h>
+#include <assimp/Importer.hpp>
+#include <Console/Console.h>
+
+#include <stb_image.h>
+
+#include <Rendering/Model.h>
+#include <Rendering/Uniforms.h>
+
+#include <Rendering/ShaderPrograms.h>
+
+ResourceLoader::~ResourceLoader() {
+    
+    Uniforms::destroyUniforms();
+    ShaderPrograms::destroyPrograms();
+
+}
 
 void ResourceLoader::init() {
 
+    Uniforms::makeUniforms();
+    ShaderPrograms::makePrograms();
+    
     std::filesystem::directory_iterator iterator;
 
     try {
-        Console::getLogger()->info("{}", std::filesystem::current_path().string());
         iterator = std::filesystem::directory_iterator("./Resources/Models");
     }
-    catch (std::exception) {
+    catch (std::exception const&) {
         Console::getLogger()->fatal("Could not find the Resources folder.");
         return;
     }
@@ -33,11 +49,30 @@ void ResourceLoader::init() {
         if (extension == ".obj" || extension == ".fbx")
         {
             // Load it
-            loadMesh(file.string().c_str());
+            loadModel(file.string().c_str());
         }
-
+        
     }
 
+    try {
+        iterator = std::filesystem::directory_iterator("./Resources/Textures");
+    }
+    catch (std::exception const&) {
+        Console::getLogger()->fatal("Could not find the Resources folder.");
+        return;
+    }
+
+    // For each file in our model resource directory
+    for (const auto & entry : iterator)
+    {
+        // Get the file name and its extension
+        std::filesystem::path file = entry.path().filename();
+
+        // Load it
+        loadTexture(file.string());
+        
+    }
+    
 }
 
 Array<UInt8> ResourceLoader::loadFile(String const& path){
@@ -61,17 +96,17 @@ Array<UInt8> ResourceLoader::loadFile(String const& path){
     
 }
 
-const Mesh* ResourceLoader::getMesh(String const& name) const
+WeakPointer<Model> ResourceLoader::getModel(String const& name) const
 {
 
     // For every loaded mesh
-    for (auto const& mesh : loadedMeshes)
+    for (auto const& model : loadedModels)
     {
         // If the mesh name matches
-        if (mesh->meshName == name)
+        if (model->modelName == name)
         {
             // Return the mesh
-            return mesh;
+            return model.weak();
         }
         
     }
@@ -83,7 +118,61 @@ const Mesh* ResourceLoader::getMesh(String const& name) const
     
 }
 
-bool ResourceLoader::loadMesh(String const& file)
+WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
+
+    
+    // For every loaded mesh
+    for (auto const& texture : loadedTextures)
+    {
+        // If the mesh name matches
+        if (texture->textureName == name)
+        {
+            // Return the mesh
+            return texture.weak();
+        }
+        
+    }
+
+    // Print an error message
+    Console::getLogger()->error("Tried to get texture named {} which does not exist.", name);
+
+    return nullptr;
+    
+}
+
+void ResourceLoader::loadTexture(String const& file)
+{
+
+    // Get the file name by removing the file extension
+    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
+
+    // Create our resource path
+    String path = "./Resources/Textures/";
+    path.append(file);
+
+    Int32 width = 0;
+    Int32 height = 0;
+    Int32 channelCount = 0;
+    
+    auto* data = stbi_load(path.toCString(), &width, &height, &channelCount, 4);
+
+    if (data == nullptr)
+    {
+        Console::getLogger()->error("Failed to load texture. Reason: {}. File: {}", stbi_failure_reason(), file);
+        return;
+    }
+
+    // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
+    loadedTextures += SharedPointer<Texture>::make(fileName, width, height, data);
+    
+    stbi_image_free(data);
+
+    // Log a success message.
+    Console::getLogger()->success("Successfully loaded texture {}.", fileName);
+    
+}
+
+void ResourceLoader::loadModel(String const& file)
 {
 
     // Get the file name by removing the file extension
@@ -98,27 +187,24 @@ bool ResourceLoader::loadMesh(String const& file)
     
     // Load the 3D model.
     const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast |
-        aiProcess_OptimizeGraph | aiProcess_OptimizeMeshes);
+                                                               aiProcess_Triangulate);
 
     // If the model could not be loaded, print an error message.
     if (scene == nullptr)
     {
         Console::getLogger()->error("Failed to load model. The path {} is invalid.", path);
-        return false;
+        return;
     }
 
-    auto totalVertices = Array<Vertex>(10000);
-    auto totalIndices = Array<UInt16>(10000);
+    Array<SharedPointer<Mesh>> meshes;
 
-    // A scene may contain multiple meshes, so load them and combine everything into single vertex and index arrays.
-    for (size_t i = 0; i < scene->mNumMeshes; ++i)
-    {
+    for (size_t i = 0; i < scene->mNumMeshes; ++i) {
 
         const auto libMesh = scene->mMeshes[i];
         auto vertices = Array<Vertex>(libMesh->mNumVertices);
         auto indices = Array<UInt16>(10000);
 
-        for(size_t j = 0; j < libMesh->mNumVertices; ++j){
+        for(size_t j = 0; j < libMesh->mNumVertices; ++j) {
             
             const auto pos = libMesh->mVertices[j];
             
@@ -140,7 +226,7 @@ bool ResourceLoader::loadMesh(String const& file)
                 
             }
         
-            vertices += Vertex(position, normal, texCoords, LinearColors::blue);
+            vertices += Vertex(position, normal, texCoords, LinearColors::white);
         
         }
 
@@ -151,22 +237,19 @@ bool ResourceLoader::loadMesh(String const& file)
             const Int32 numIndices = static_cast<Int32>(libMesh->mFaces[j].mNumIndices) - 1;
             
             for(Int32 k = numIndices; k >= 0 ; --k){
-                indices += libMesh->mFaces[j].mIndices[k] + static_cast<UInt16>(totalVertices.getSize());
+                indices += libMesh->mFaces[j].mIndices[k];
             }
             
         }
 
-        totalVertices += vertices;
-        totalIndices += indices;
-
+        // Create the mesh and store it in our array.
+        meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
+        
     }
 
-    // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedMeshes += Allocator<Mesh>().construct(totalVertices, totalIndices, fileName, path);
-
+    loadedModels += SharedPointer<Model>::make(meshes, fileName, Material());
+    
     // Log a success message.
-    Console::getLogger()->success("Successfully loaded mesh {}. Combined {} components.", fileName, scene->mNumMeshes);
-
-    return true;
+    Console::getLogger()->success("Successfully loaded model {}. Combined {} components.", fileName, scene->mNumMeshes);
     
 }

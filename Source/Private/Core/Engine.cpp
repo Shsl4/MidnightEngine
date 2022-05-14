@@ -12,7 +12,7 @@
 
 #include <Scene/Scene.h>
 
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
@@ -32,10 +32,9 @@ Engine::Engine() {
     Engine::instance = this;
 
     // Initialize our variables.
-    this->inputManager = AutoReleasePointer<InputManager>::make();
-    this->perfWindow = AutoReleasePointer<PerformanceWindow>::make();
-    this->resourceLoader = AutoReleasePointer<ResourceLoader>::make();
-    this->console = AutoReleasePointer<Console>::make(this);
+    this->inputManager = UniquePointer<InputManager>::make();
+    this->perfWindow = UniquePointer<PerformanceWindow>::make();
+    this->resourceLoader = UniquePointer<ResourceLoader>::make();
 
 }
 
@@ -49,7 +48,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
         // If it fails, print an error message and return.
         Console::getLogger()->fatal("Failed to initialize BGFX!");
         bgfx::shutdown();
-        return -1;
+        return 1;
 
     }
     
@@ -73,9 +72,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     Console::getLogger()->info("Initialized MidnightEngine! Now rendering using {} on {}", getNiceRendererName(), getNiceGpuName());
     
     running = true;
-
-    console->init();
-
+    
     onStart();
 
     return 0;
@@ -98,7 +95,7 @@ void Engine::update() {
     inputManager->update();
     
     // Only update the scene if it is loaded
-    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
+    if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
         
         // Update the current scene.
         activeScene->update(deltaTime);
@@ -119,7 +116,7 @@ void Engine::render() {
 
     // Begin UI drawing.
     imguiBeginFrame(0, 0, 0, 0, static_cast<UInt16>(platformData.renderWidth), static_cast<UInt16>(platformData.renderHeight));
-
+    
     // Render the windows.
     perfWindow->render(nullptr);
 
@@ -138,10 +135,10 @@ void Engine::render() {
 
     bgfx::setState(state);
 
-    if (activeScene.hasValue() && activeScene->getState() == Scene::State::Loaded) {
+    if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
 
         // Get the active camera.
-        const CameraComponent* camera = activeScene->getCameraManager()->getActiveCamera();
+        auto camera = activeScene->getCameraManager()->getActiveCamera();
 
         // Give the view and projection matrices to the vertex shader.
         bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
@@ -181,7 +178,7 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
 
 void Engine::unloadScene() {
 
-    if (activeScene.hasValue())
+    if (activeScene.valid())
     {
         Console::getLogger()->info("Unloading scene {}...", activeScene->getSceneName());
         
@@ -190,7 +187,7 @@ void Engine::unloadScene() {
             
             String name = activeScene->getSceneName();
             activeScene->cleanup();
-            activeScene.release();
+            activeScene = nullptr;
             Console::getLogger()->info("Unloaded scene {}.", name);
             
         });
@@ -208,21 +205,17 @@ void Engine::stop() {
 void Engine::cleanup() {
 
     if (isRunning()) { return; }
-
-    Console::getLogger()->info("Cleaning up...");
     
-    if(activeScene.hasValue())
+    if(activeScene.valid())
     {
         String name = activeScene->getSceneName();
-        Console::getLogger()->info("Unloading scene {}...", name);
         activeScene->cleanup();
-        activeScene.release();
-        Console::getLogger()->info("Unloaded scene {}.", name);
+        activeScene = nullptr;
     }
     
     // Release the allocated engine resources.
     inputManager.release();
-    activeScene.release();
+    activeScene = nullptr;
     resourceLoader.release();
     perfWindow.release();
 
@@ -232,8 +225,6 @@ void Engine::cleanup() {
 
     // Remove reference to the instance
     Engine::instance = nullptr;
-
-    Console::getLogger()->info("Exited MidnightEngine.");
     
 }
 

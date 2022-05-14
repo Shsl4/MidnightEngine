@@ -6,6 +6,8 @@
 #include <Logging/Logger.h>
 #include <Console/ConsoleTypes.h>
 
+#include <Memory/SharedPointer.h>
+
 class ENGINE_API CommandNode : public Object {
     
 public:
@@ -16,7 +18,7 @@ public:
 
     explicit CommandNode(String name);
 
-    static CommandNode* make(const String& name);
+    static SharedPointer<CommandNode> make(const String& name);
 
     CommandNode* addLiteral(const String& name);
     
@@ -66,7 +68,7 @@ protected:
     
     String nodeName;
     String nodeDescription;
-    AutoReleaseArray<CommandNode*> nodes;
+    Array<SharedPointer<CommandNode>> nodes;
     NodeType nodeType = NodeType::Executable;
 
 private:

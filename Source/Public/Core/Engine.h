@@ -3,7 +3,7 @@
 #include <Object.h>
 
 #include <Memory/Array.h>
-#include <Memory/AutoReleasePointer.h>
+#include <Memory/UniquePointer.h>
 
 #include <Input/InputManager.h>
 #include <UI/PerformanceWindow.h>
@@ -113,9 +113,9 @@ public:
      *
      * \return The active scene.
      */
-    FORCEINLINE class Scene* getActiveScene() const
+    FORCEINLINE WeakPointer<Scene> getActiveScene() const
     {
-        return activeScene.raw();
+        return activeScene.weak();
     }
 
     /*!
@@ -138,11 +138,6 @@ public:
         return resourceLoader.raw();
     }
 
-    FORCEINLINE const Console* getConsole() const
-    {
-        return console.raw();
-    }
-
 protected:
 
     void schedule(Threads thread, std::function<void()> const& function);
@@ -156,7 +151,7 @@ protected:
         
         schedule(Threads::Render, [this]()
         {
-            activeScene.rebuild<SceneClass>();
+            activeScene = SharedPointer<SceneClass>::make();
             Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
             Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
@@ -237,21 +232,19 @@ private:
     /*!
      * The engine InputManager.
      */
-    AutoReleasePointer<InputManager> inputManager;
+    UniquePointer<InputManager> inputManager;
  
     /*!
      * The currently loaded Scene.
      */
-    AutoReleasePointer<Scene> activeScene;
+    SharedPointer<Scene> activeScene;
 
     /*!
     * The engine resource loader.
     */
-    AutoReleasePointer<ResourceLoader> resourceLoader;
-    
-    AutoReleasePointer<Console> console;
-
-    AutoReleasePointer<PerformanceWindow> perfWindow;
+    UniquePointer<ResourceLoader> resourceLoader;
+ 
+    UniquePointer<PerformanceWindow> perfWindow;
 
     std::vector<std::function<void()>> renderThreadTasks;
     std::vector<std::function<void()>> mainThreadTasks;

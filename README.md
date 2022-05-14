@@ -51,7 +51,6 @@ You will find the documentation in the Docs directory. Otherwise, the docs are a
 
 ## Third-Party Libraries
 
--   [tinystl](https://github.com/mendsley/tinystl) - Tiny (as in minimal) implementation of some core STL functionality 
 -   [SDL2](https://github.com/libsdl-org/SDL) - Simple Directmedia Layer 
 -   [fmt](https://github.com/fmtlib/fmt) - A modern formatting library 
 -   [bgfx](https://github.com/bkaradzic/bgfx) - Cross-platform, graphics API agnostic, "Bring Your Own Engine/Framework" style rendering library. 

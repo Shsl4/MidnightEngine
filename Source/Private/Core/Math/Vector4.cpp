@@ -1,5 +1,7 @@
 #include <Math/Vector4.h>
 
+const Vector4 Vector4::zero = Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+
 Vector4 Vector4::operator*(const float scale) const {
 
     return { this->x * scale, this->y * scale, this->z * scale, this->w * scale };

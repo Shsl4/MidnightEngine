@@ -267,6 +267,16 @@ void SceneComponent::setWorldTransform(Transform const& transformToSet) {
     setWorldScale(transformToSet.scale);
 }
 
+void SceneComponent::rotateAround(Vector3 const& position, Vector3 const& axis, Vector3 const& rotation) {
+
+    const auto worldPos = getWorldPosition();
+    const auto f = Vector3::normalize(Matrix4::fromRotation(rotation) * axis);
+    const float distance = Vector3::distance(position, worldPos);
+
+    setWorldPosition((f * distance) + position);
+    
+}
+
 bool SceneComponent::isRootComponent() const
 {
     return parentObject->getRootComponent() == this;

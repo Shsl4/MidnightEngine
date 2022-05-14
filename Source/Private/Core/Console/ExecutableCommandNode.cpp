@@ -6,7 +6,7 @@ ExecutableCommandNode::ExecutableCommandNode(String name, CommandFunction functi
     this->nodeType = NodeType::Executable;
 }
 
-ExecutableCommandNode* ExecutableCommandNode::make(String const& name, CommandFunction const& function)
+SharedPointer<ExecutableCommandNode> ExecutableCommandNode::make(String const& name, CommandFunction const& function)
 {
-    return Allocator<ExecutableCommandNode>().construct(name, function);
+    return SharedPointer<ExecutableCommandNode>::make(name, function);
 }

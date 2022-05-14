@@ -1,7 +1,6 @@
 #include <Memory/String.h>
 #include <fmt/format.h>
-#include <Exception/ParseError.h>
-#include <ostream>
+#include <Exception/Exception.h>
 #include <cmath>
 
 String::String(Array<char> const &array) {

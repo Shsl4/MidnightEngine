@@ -50,6 +50,8 @@ target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 
 if(WIN32)
 
+target_link_libraries(MidnightEngine dbghelp.lib)
+
 elseif(APPLE)
 
 find_library(FOUNDATION Foundation)
