@@ -17,7 +17,7 @@ var searchData=
   ['clamparound_14',['clampAround',['../class_math.html#afc8649438a35b2366792ced06e637532',1,'Math']]],
   ['cleanup_15',['cleanup',['../class_engine.html#a18dcb065818c6ec7e76168452eb45001',1,'Engine::cleanup()'],['../class_scene.html#a6c04883087016b9448e5599d2e34422c',1,'Scene::cleanup()']]],
   ['clear_16',['clear',['../class_array.html#ac19d187420e7bd8a80c939201e3c2824',1,'Array']]],
-  ['color_17',['Color',['../struct_color.html#a85d176cbf08ac7bef250159b3ed031a8',1,'Color']]],
+  ['color_17',['Color',['../struct_color.html#a2b331ea9807a7e999d81306938787fa0',1,'Color']]],
   ['color_18',['color',['../struct_vertex.html#a068076190dab207bd7d53330259ec4d9',1,'Vertex']]],
   ['color_19',['Color',['../struct_color.html',1,'']]],
   ['command_20',['command',['../struct_key_bind.html#ab9cd35422bc24ff082414324e180a911',1,'KeyBind']]],

@@ -33,7 +33,7 @@ var NAVTREEINDEX4 =
 "struct_attachment_properties.html#af75d65fe9825bdb411be38bd1ecc38a7":[7,0,4,13],
 "struct_color.html":[7,0,8],
 "struct_color.html#a25047c5b8549a2c38a9a2b18560159fc":[7,0,8,1],
-"struct_color.html#a85d176cbf08ac7bef250159b3ed031a8":[7,0,8,0],
+"struct_color.html#a2b331ea9807a7e999d81306938787fa0":[7,0,8,0],
 "struct_color.html#afc5966afbb27569bd55d1d7ff3211699":[7,0,8,2],
 "struct_command_context_1_1_bool_entry.html":[7,0,9,0],
 "struct_command_context_1_1_bool_entry.html#a2a23143f5d0d5d7c890d279c4570f0b3":[7,0,9,0,1],

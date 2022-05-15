@@ -34,6 +34,6 @@ var searchData=
   ['exhaustedweak_31',['exhaustedWeak',['../class_ref_counter.html#acbb12f691386206fbcf5ccb790a09b1b',1,'RefCounter']]],
   ['expect_32',['expect',['../_exception_8h.html#a950313b5d9cffd5aa92c42b8984cf3ae',1,'Exception.h']]],
   ['expectf_33',['expectf',['../_exception_8h.html#a983228719dd7d995d54b888c65557b5b',1,'Exception.h']]],
-  ['expired_34',['expired',['../class_weak_pointer.html#aba8bdf2293c0ba5714560ae2cc59cb38',1,'WeakPointer']]],
+  ['expired_34',['expired',['../class_weak_pointer.html#adabbc3afab9a8c6bac9525fdb5fd4754',1,'WeakPointer']]],
   ['extend_35',['extend',['../class_array.html#a5370d43fe8238642e61157e7ac450b43',1,'Array']]]
 ];

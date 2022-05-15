@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['valid_0',['valid',['../class_weak_pointer.html#a7ba5cb628b5d59e18382ed6b99a72b14',1,'WeakPointer::valid()'],['../class_shared_pointer.html#a3081da90fdd93409f4d2f0642cadbcf8',1,'SharedPointer::valid()']]],
+  ['valid_0',['valid',['../class_weak_pointer.html#ab14111f396ec441049b2647dbf836c63',1,'WeakPointer::valid()'],['../class_shared_pointer.html#a3081da90fdd93409f4d2f0642cadbcf8',1,'SharedPointer::valid()']]],
   ['value_1',['value',['../struct_color.html#afc5966afbb27569bd55d1d7ff3211699',1,'Color::value()'],['../struct_command_context_1_1_string_entry.html#a336fbe38c1850872dcfa32dab107a4a2',1,'CommandContext::StringEntry::value()'],['../struct_command_context_1_1_int64_entry.html#ac3603751b14f7c8ff9d127d79bc3aa16',1,'CommandContext::Int64Entry::value()'],['../struct_command_context_1_1_double_entry.html#a99c0b25d9310a32039b3b3b6090b533d',1,'CommandContext::DoubleEntry::value()'],['../struct_command_context_1_1_bool_entry.html#a2a23143f5d0d5d7c890d279c4570f0b3',1,'CommandContext::BoolEntry::value()'],['../class_optional.html#add3abe03b42ed3b21c4019050d78f175',1,'Optional::value()']]],
   ['vector2_2',['Vector2',['../struct_vector2.html#af1de25cf0004820d5e6db855c91bc4ad',1,'Vector2::Vector2()=default'],['../struct_vector2.html#ace1a1dfc9bc6b5b5c17dd2314b92ded2',1,'Vector2::Vector2(float v)'],['../struct_vector2.html#a061ab58a0e216c759d64e3746d712b12',1,'Vector2::Vector2(float x, float y)'],['../struct_vector2.html',1,'Vector2']]],
   ['vector2_2ecpp_3',['Vector2.cpp',['../_vector2_8cpp.html',1,'']]],

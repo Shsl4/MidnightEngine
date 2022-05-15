@@ -5,7 +5,7 @@ var searchData=
   ['randomfloatarray_2',['randomFloatArray',['../class_random.html#a4fda00716ab47f0097cdd3e236f7e754',1,'Random']]],
   ['randominteger_3',['randomInteger',['../class_random.html#ad146e80a14e935f569954030b785655b',1,'Random']]],
   ['randomintegerarray_4',['randomIntegerArray',['../class_random.html#ae4a25fe37830c6301043075970f936ef',1,'Random']]],
-  ['raw_5',['raw',['../class_shared_pointer.html#a1811a55d7a32d21ffd28e43d9c42c7ba',1,'SharedPointer::raw()'],['../class_unique_pointer.html#a59f33b9c21230f2f5f10801b8fd0aad7',1,'UniquePointer::raw()'],['../class_weak_pointer.html#a285564d0b0c44fa8f1a0548616b8e269',1,'WeakPointer::raw()']]],
+  ['raw_5',['raw',['../class_shared_pointer.html#a1811a55d7a32d21ffd28e43d9c42c7ba',1,'SharedPointer::raw()'],['../class_unique_pointer.html#a59f33b9c21230f2f5f10801b8fd0aad7',1,'UniquePointer::raw()'],['../class_weak_pointer.html#a541c0910d1cde50b4c7f8b80f3c671f9',1,'WeakPointer::raw()']]],
   ['realloc_6',['realloc',['../class_allocator.html#a56f580bec2c931dd5ad2a866350db86e',1,'Allocator']]],
   ['rebuild_7',['rebuild',['../class_unique_pointer.html#a86b112afc793206505f49881981772da',1,'UniquePointer']]],
   ['refcount_8',['refCount',['../class_ref_counter.html#ab01e3d3a54fe0a9d2f93f9a82305e7c0',1,'RefCounter']]],

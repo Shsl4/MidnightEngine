@@ -9,7 +9,7 @@ var searchData=
   ['clamparound_6',['clampAround',['../class_math.html#afc8649438a35b2366792ced06e637532',1,'Math']]],
   ['cleanup_7',['cleanup',['../class_scene.html#a6c04883087016b9448e5599d2e34422c',1,'Scene::cleanup()'],['../class_engine.html#a18dcb065818c6ec7e76168452eb45001',1,'Engine::cleanup()']]],
   ['clear_8',['clear',['../class_array.html#ac19d187420e7bd8a80c939201e3c2824',1,'Array']]],
-  ['color_9',['Color',['../struct_color.html#a85d176cbf08ac7bef250159b3ed031a8',1,'Color']]],
+  ['color_9',['Color',['../struct_color.html#a2b331ea9807a7e999d81306938787fa0',1,'Color']]],
   ['commandnode_10',['CommandNode',['../class_command_node.html#a1e439019a29f1edc4821067cdd8be7c0',1,'CommandNode::CommandNode()=delete'],['../class_command_node.html#ad772b735f264b65492f4b7e649b957f6',1,'CommandNode::CommandNode(String name)']]],
   ['commandtree_11',['CommandTree',['../class_command_tree.html#a6e59b373fe686d2ae8e847f5fba5a741',1,'CommandTree']]],
   ['console_12',['Console',['../class_console.html#ae3c51a9aa96c7e41b27d83e976a15a97',1,'Console']]],
