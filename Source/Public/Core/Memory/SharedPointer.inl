@@ -30,8 +30,8 @@ SharedPointer<T>::SharedPointer(const WeakPointer<T>& weak) {
     
     if (!weak.expired()) {
         
-        this->counter = weak.pointer;
-        this->pointer = weak.counter;
+        this->counter = weak.counter;
+        this->pointer = weak.pointer;
 
         if (pointer) { counter->increase(); }
         

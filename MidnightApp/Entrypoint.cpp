@@ -79,7 +79,7 @@ protected:
     
     void start() override {
 
-        setWorldColor(0x101010ff);
+        setWorldColor(Color(10, 10, 10).value);
 
         this->planet1 = createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(1.0f)), "Sphere");
         this->planet2 = createObject<MeshObject>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)), "Sphere");
@@ -119,15 +119,13 @@ class RenderScene : public Scene
 {
 public:
     
-    void start() override
-    {
+    void start() override {
 
-        setWorldColor(0x00000000);
+        setWorldColor(Color(10, 10, 10).value);
         createObject<MeshObject>(Transform({ 0.0f, 0.0f, 0.0f }), "Cube");
-        createObject<MeshObject>(Transform({ 5.0f, 0.0f, 0.0f }), "Cube");
         createObject<FlyingCharacter>({ { 2.5f, 2.5f, 2.5f }, { -135.0f, -40.0f, 0.0f } });
-        createObject<LightObject>(Transform({ 0.0f, 50.0f, 0.0f }));
-
+        createObject<LightObject>(Transform({ 0.0f, 10.0f, 0.0f }));
+        
     }
     
     NODISCARD FORCEINLINE String getSceneName() const override

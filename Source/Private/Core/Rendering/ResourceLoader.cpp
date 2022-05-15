@@ -29,6 +29,25 @@ void ResourceLoader::init() {
     ShaderPrograms::makePrograms();
     
     std::filesystem::directory_iterator iterator;
+    
+    try {
+        iterator = std::filesystem::directory_iterator("./Resources/Textures");
+    }
+    catch (std::exception const&) {
+        Console::getLogger()->fatal("Could not find the Resources folder.");
+        return;
+    }
+
+    // For each file in our model resource directory
+    for (const auto & entry : iterator)
+    {
+        // Get the file name and its extension
+        std::filesystem::path file = entry.path().filename();
+
+        // Load it
+        loadTexture(file.string());
+        
+    }
 
     try {
         iterator = std::filesystem::directory_iterator("./Resources/Models");
@@ -51,25 +70,6 @@ void ResourceLoader::init() {
             // Load it
             loadModel(file.string().c_str());
         }
-        
-    }
-
-    try {
-        iterator = std::filesystem::directory_iterator("./Resources/Textures");
-    }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
-    }
-
-    // For each file in our model resource directory
-    for (const auto & entry : iterator)
-    {
-        // Get the file name and its extension
-        std::filesystem::path file = entry.path().filename();
-
-        // Load it
-        loadTexture(file.string());
         
     }
     
@@ -241,9 +241,14 @@ void ResourceLoader::loadModel(String const& file)
             }
             
         }
-
+        
         // Create the mesh and store it in our array.
-        meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
+        if(fileName == "Cube") {
+            meshes += SharedPointer<Mesh>::make(vertices, indices, getTexture("Missing").retain(), fileName, path);
+        }
+        else {
+            meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
+        }
         
     }
 

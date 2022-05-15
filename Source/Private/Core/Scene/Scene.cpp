@@ -4,6 +4,16 @@
 #include <Memory/UniquePointer.h>
 #include <bgfx/bgfx.h>
 
+Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
+        
+    this->value = 0;
+    setByte(this->value, red, 3);
+    setByte(this->value, green, 2);
+    setByte(this->value, blue, 1);
+    setByte(this->value, 255, 0);
+        
+}
+
 Scene::Scene() : cameraManager(UniquePointer<CameraManager>::make(this)) {
     
 }

@@ -143,15 +143,13 @@ SharedPointer<T> WeakPointer<T>::retain() const
 }
 
 template <typename T>
-bool WeakPointer<T>::expired()
-{
+bool WeakPointer<T>::expired() const {
 
     if (!counter) {
         return true;
     }
 
     if (counter->exhausted()) {
-        discard();
         return true;
     }
 
@@ -160,19 +158,19 @@ bool WeakPointer<T>::expired()
 }
 
 template <typename T>
-bool WeakPointer<T>::valid() {
+bool WeakPointer<T>::valid() const {
     return !expired();
 }
 
 template <typename T>
-T* WeakPointer<T>::operator->()
+T* WeakPointer<T>::operator->() const
 {
     expect(valid(), "Tried to dereference a null pointer.");
     return pointer;
 }
 
 template <typename T>
-T* WeakPointer<T>::raw() {
+T* WeakPointer<T>::raw() const {
     expect(valid(), "Tried to dereference a null pointer.");
     return pointer;
 }

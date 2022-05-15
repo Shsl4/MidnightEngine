@@ -51,13 +51,13 @@ public:
 
     NODISCARD SharedPointer<T> retain() const;
 
-    FORCEINLINE bool expired();
+    FORCEINLINE bool expired() const;
     
-    FORCEINLINE bool valid();
+    FORCEINLINE bool valid() const;
 
-    T* operator->();
+    T* operator->() const;
 
-    NODISCARD T* raw();
+    NODISCARD T* raw() const;
 
 private:
 

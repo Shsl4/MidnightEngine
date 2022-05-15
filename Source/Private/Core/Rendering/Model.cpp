@@ -9,7 +9,12 @@
 Model::Model(Array<SharedPointer<Mesh>> meshes, String name, Material const& mat) :
     modelName(std::move(name)), material(mat), meshes(std::move(meshes)) {
 
-    this->handle = ShaderPrograms::materialShader;
+    if(modelName == "Cube") {
+        this->handle = ShaderPrograms::textureShader;
+    }
+    else {
+        this->handle = ShaderPrograms::materialShader;
+    }   
     
 }
 

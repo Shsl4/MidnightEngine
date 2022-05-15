@@ -10,23 +10,15 @@
 #include <Memory/UniquePointer.h>
 #include <Logging/Logger.h>
 
-struct Color {
+struct ENGINE_API Color {
 
     static void setByte(UInt32& bytes, UInt8 byte, int pos) {
-        bytes &= ~(static_cast<UInt32>(0xff) << (4 * pos));
-        bytes |= (static_cast<UInt32>(byte) << (4 * pos));
+        bytes &= ~(static_cast<UInt32>(0xff) << (8 * pos));
+        bytes |= (static_cast<UInt32>(byte) << (8 * pos));
     }
 
-    Color(const UInt8 red, const UInt8 green, const UInt8 blue, const UInt8 alpha){
-        
-        this->value = 0;
-        setByte(this->value, red, 0);
-        setByte(this->value, green, 0);
-        setByte(this->value, blue, 0);
-        setByte(this->value, alpha, 0);
-        
-    }
-    
+    Color(UInt8 red, UInt8 green, UInt8 blue);
+
     UInt32 value;
 
 };
