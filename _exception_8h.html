@@ -111,10 +111,12 @@ Classes</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a9c992e68e17d2443bd960200aa11b38a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#a9c992e68e17d2443bd960200aa11b38a">DEFINE_EXCEPTION</a>(name)</td></tr>
 <tr class="separator:a9c992e68e17d2443bd960200aa11b38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9d812fcd74bac4b88b687e2b5ac0c34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#ae9d812fcd74bac4b88b687e2b5ac0c34">expect</a>(condition,  format, ...)&#160;&#160;&#160;<a class="el" href="class_exception.html#a5c0904a945ec3e32cfd16e2c010c3020">Exception::throwIf</a>(!condition, format, __VA_ARGS__)</td></tr>
-<tr class="separator:ae9d812fcd74bac4b88b687e2b5ac0c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4825e6d1dfb718506d69db7513e59041"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#a4825e6d1dfb718506d69db7513e59041">raise</a>(format, ...)&#160;&#160;&#160;<a class="el" href="class_exception.html#a676b9f5123e3fc7e85db3037f40ea460">Exception::throwError</a>(format, __VA_ARGS__)</td></tr>
-<tr class="separator:a4825e6d1dfb718506d69db7513e59041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983228719dd7d995d54b888c65557b5b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#a983228719dd7d995d54b888c65557b5b">expectf</a>(condition,  format, ...)&#160;&#160;&#160;<a class="el" href="class_exception.html#a5c0904a945ec3e32cfd16e2c010c3020">Exception::throwIf</a>(!condition, format, __VA_ARGS__)</td></tr>
+<tr class="separator:a983228719dd7d995d54b888c65557b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950313b5d9cffd5aa92c42b8984cf3ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#a950313b5d9cffd5aa92c42b8984cf3ae">expect</a>(condition,  format)&#160;&#160;&#160;<a class="el" href="class_exception.html#a5c0904a945ec3e32cfd16e2c010c3020">Exception::throwIf</a>(!condition, format)</td></tr>
+<tr class="separator:a950313b5d9cffd5aa92c42b8984cf3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7339ddf249d98535694e6bbca732133"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_exception_8h.html#ae7339ddf249d98535694e6bbca732133">raisef</a>(format, ...)&#160;&#160;&#160;<a class="el" href="class_exception.html#a676b9f5123e3fc7e85db3037f40ea460">Exception::throwError</a>(format, __VA_ARGS__)</td></tr>
+<tr class="separator:ae7339ddf249d98535694e6bbca732133"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -144,14 +146,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae9d812fcd74bac4b88b687e2b5ac0c34" name="ae9d812fcd74bac4b88b687e2b5ac0c34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9d812fcd74bac4b88b687e2b5ac0c34">&#9670;&nbsp;</a></span>expect</h2>
+<a id="a950313b5d9cffd5aa92c42b8984cf3ae" name="a950313b5d9cffd5aa92c42b8984cf3ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950313b5d9cffd5aa92c42b8984cf3ae">&#9670;&nbsp;</a></span>expect</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">#define expect</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">condition, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">format&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="class_exception.html#a5c0904a945ec3e32cfd16e2c010c3020">Exception::throwIf</a>(!condition, format)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a983228719dd7d995d54b888c65557b5b" name="a983228719dd7d995d54b888c65557b5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a983228719dd7d995d54b888c65557b5b">&#9670;&nbsp;</a></span>expectf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define expectf</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">condition, </td>
@@ -178,14 +208,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4825e6d1dfb718506d69db7513e59041" name="a4825e6d1dfb718506d69db7513e59041"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4825e6d1dfb718506d69db7513e59041">&#9670;&nbsp;</a></span>raise</h2>
+<a id="ae7339ddf249d98535694e6bbca732133" name="ae7339ddf249d98535694e6bbca732133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7339ddf249d98535694e6bbca732133">&#9670;&nbsp;</a></span>raisef</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define raise</td>
+          <td class="memname">#define raisef</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">format, </td>

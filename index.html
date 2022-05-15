@@ -95,8 +95,11 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 A cross-platform 3D rendering engine written in C++</h1>
 <h1><a class="anchor" id="autotoc_md2"></a>
-Requirements</h1>
+Prerequisites</h1>
 <p >This project requires <a href="https://cmake.org/download/">CMake</a> version 3.8 or above. The project only targets x64 and arm64.</p>
+<blockquote class="doxtable">
+<p >⚠️ Third-party binaries are provided for windows, however, they must be installed using your package manager on macOS and Linux. </p>
+</blockquote>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Building</h1>
 <p >Clone the project and move to the directory: </p><div class="fragment"><div class="line">git clone https://github.com/Shsl4/MidnightEngine</div>
@@ -106,16 +109,19 @@ Windows</h2>
 <p >On Windows, generate the Visual Studio 2022 project: </p><div class="fragment"><div class="line">.\generateVS2022.bat</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md5"></a>
 macOS</h2>
-<p >On macOS, generate the Xcode project: </p><div class="fragment"><div class="line">chmod +x generateXCode.sh</div>
+<p >On macOS, install the following libraries: </p><div class="fragment"><div class="line">brew install sdl2</div>
+<div class="line">brew install assimp</div>
+<div class="line">brew install fmt</div>
+</div><!-- fragment --><p> Then, generate the Xcode project: </p><div class="fragment"><div class="line">chmod +x generateXCode.sh</div>
 <div class="line">./generateXcode.sh</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md6"></a>
 Linux</h2>
-<p >On Linux, either open the cloned directory as a project using a CMake compatible IDE such as <a href="https://www.jetbrains.com/clion/">CLion</a>, or generate a makefile project using: </p><div class="fragment"><div class="line">chmod +x generateMakefile.sh</div>
+<p >On Linux, install the following libraries: </p><div class="fragment"><div class="line">sudo apt install libsdl2-dev</div>
+<div class="line">sudo apt install libassimp-dev</div>
+<div class="line">sudo apt install libfmt-dev</div>
+</div><!-- fragment --><p> Then, either open the cloned directory as a project using a CMake compatible IDE such as <a href="https://www.jetbrains.com/clion/">CLion</a>, or generate a makefile project using: </p><div class="fragment"><div class="line">chmod +x generateMakefile.sh</div>
 <div class="line">./generateMakefile.sh</div>
-</div><!-- fragment --><blockquote class="doxtable">
-<p >⚠️ The project does not contain the Linux SDL2 binaries. You have to install them using your package manager. </p>
-</blockquote>
-<p>The Visual Studio, Xcode and Makefile projects will be generated in the hidden .build directory. Alternatively, you can generate the project yourself using cmake.</p>
+</div><!-- fragment --><p> The Visual Studio, Xcode and Makefile projects will be generated in the hidden .build directory. Alternatively, you can generate the project yourself using cmake.</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Documentation</h1>
 <p >You can generate documentation for this project using doxygen. Simply move to the root directory and type: </p><div class="fragment"><div class="line">doxygen</div>
@@ -129,9 +135,8 @@ Third-Party Libraries</h1>
 <li><a href="https://github.com/ocornut/imgui">imgui</a> - Bloat-free Graphical User interface for C++ with minimal dependencies</li>
 <li><a href="https://github.com/juliettef/IconFontCppHeaders">iconfontheaders</a> - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, <a class="el" href="struct_material.html">Material</a> Design, Kenney game icons and Fontaudio</li>
 <li><a href="https://github.com/jothepro/doxygen-awesome-css">doxygen-awesome-css</a> - Custom CSS theme for doxygen html-documentation with lots of customization parameters.</li>
-<li><a href="https://github.com/assimp/assimp">assimp</a> - The official Open-Asset-Importer-Library Repository. Loads 40+ 3D-file-formats into one unified and clean data structure.</li>
+<li><a href="https://github.com/assimp/assimp">assimp</a> - The official Open-Asset-Importer-Library Repository. Loads 40+ 3D-file-formats into one unified and clean data structure. </li>
 </ul>
-<p >For now, binaries provided for third-party libraries are built for Windows x64, Linux x64 and macOS arm64 only. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

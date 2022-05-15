@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "MidnightEngine", "index.html", [
     [ "A cross-platform 3D rendering engine written in C++", "index.html#autotoc_md1", null ],
-    [ "Requirements", "index.html#autotoc_md2", null ],
+    [ "Prerequisites", "index.html#autotoc_md2", null ],
     [ "Building", "index.html#autotoc_md3", [
       [ "Windows", "index.html#autotoc_md4", null ],
       [ "macOS", "index.html#autotoc_md5", null ],
@@ -66,8 +66,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_allocator_8h.html",
-"class_array.html#a6ef3e571fa0862940091b96533a066ab",
-"class_memory.html",
+"class_array.html#a6bb6f40063f8f7332bd98d5d12dff328",
+"class_math.html#afc8649438a35b2366792ced06e637532",
 "class_shared_pointer.html#abb2079849cce0e8e45e53d86b3548ce5",
 "stb__image_8h.html#ad3fc296ba0778df0a8094e20da82deab",
 "struct_vector2.html#af1de25cf0004820d5e6db855c91bc4ad"
