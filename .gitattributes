@@ -1,3 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-Source/Private/ThirdParty/** linguist-vendored
+Source/Private/ThirdParty/* linguist-vendored
+Programs/* linguist-vendored
+Resources/* linguist-vendored
