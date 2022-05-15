@@ -1,5 +1,5 @@
 #import <Memory/Allocator.h>
-#import <Memory/AutoReleasePointer.h>
+#import <Memory/UniquePointer.h>
 #import <Core/Engine.h>
 #import <Platform/Entry.h>
 
@@ -64,7 +64,7 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, 
     }
 
     SDL_DestroyWindow(window);
-
+    
     return 0;
 
 
@@ -72,18 +72,71 @@ int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, 
 
 int Entry::initEngine(PlatformData data) {
 
-    int value = engine->init(0, nil, data);
+    const auto console = UniquePointer<Console>::make(engine);
     
-    if (value != 0) { return value; }
+    console->init();
+    
+    try {
+        
+        if (engine->init(0, nullptr, data)) { return 1; }
+                
+        while (engine->isRunning())
+        {
+            engine->render();
+        }
+        
+    }
+    catch (Exception const& e) {
 
-    while (engine->isRunning())
-    {
-        engine->render();
+        Console::getLogger()->fatal(e.what());
+        Console::getLogger()->fatal("Stack Trace: ");
+
+        const Array<StackFrame> stackFrames = e.getStackTrace();
+        size_t frameIndex = 0;
+        
+        for (size_t i = 2; i < stackFrames.getSize(); ++i) {
+            
+            StackFrame& frame = stackFrames[i];
+
+            if(frame.lineNumber == -1) {
+
+                Console::getLogger()->fatal("[{}] {} <{}> | ({})",
+                    frameIndex,
+                    frame.functionName,
+                    frame.fileName,
+                    frame.libraryName);
+                
+            }
+            else {
+
+                Console::getLogger()->fatal("[{}] {} in file {} at line {} | ({})",
+                    frameIndex,
+                    frame.functionName,
+                    frame.fileName,
+                    frame.lineNumber,
+                    frame.libraryName);
+                
+            }
+                        
+            ++frameIndex;
+            
+        }
+
+        engine->cleanup();
+        
+        hasTerminated = YES;
+
+        return 2;
+        
     }
 
-    engine->cleanup();
+    Console::getLogger()->info("Cleaning up...");
 
+    engine->cleanup();
+    
     hasTerminated = YES;
+    
+    Console::getLogger()->info("Exited MidnightEngine.");
 
     return 0;
 

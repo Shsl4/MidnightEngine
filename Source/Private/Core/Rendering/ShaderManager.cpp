@@ -12,7 +12,7 @@ bgfx::ShaderHandle ShaderManager::loadShader(String const& name) {
     // Load the file content
     const Array<UInt8> fileData = ResourceLoader::loadFile(filePath);
 
-    expect(!fileData.isEmpty(), "Tried to load an invalid shader file: {}", filePath);
+    expectf(!fileData.isEmpty(), "Tried to load an invalid shader file: {}", filePath);
     
     // Convert the data to bgfx::Memory.
     const bgfx::Memory* mem = bgfx::copy(fileData.begin(), static_cast<UInt32>(fileData.getSize()));

@@ -9,6 +9,11 @@
 #include <DbgHelp.h>
 #include <winnt.h>
 
+#else
+
+#include <execinfo.h>
+#include <cxxabi.h>
+
 #endif
 
 StackFrame::StackFrame(const char* function, const char* file, const char* library, size_t line) : lineNumber(file ? line : -1) {
@@ -61,6 +66,8 @@ bool StackFrame::operator<(const StackFrame& other) const {
     return false;
     
 }
+
+#ifdef _WIN64
 
 Array<StackFrame> StackTrace::getStackTrace() {
 
@@ -129,3 +136,48 @@ Array<StackFrame> StackTrace::getStackTrace() {
     return stack;
 
 }
+
+#else
+
+Array<StackFrame> StackTrace::getStackTrace() {
+    
+    constexpr Int32 maxSize = 1024;
+    Array<StackFrame> stack = Array<StackFrame>(maxSize);
+    Allocator<char> allocator;
+    
+    char* allocData = allocator.alloc(maxSize);
+    void* data = reinterpret_cast<void*>(allocData);
+
+    Int32 frameCount = backtrace(&data, maxSize);
+    char** symbols = backtrace_symbols(&data, frameCount);
+    
+    Array<String> symArray;
+    
+    for (size_t i = 0; i < frameCount; ++i) {
+        symArray += symbols[i];
+    }
+    
+    for (const auto& sym : symArray) {
+        
+        Array<String> parts = sym.split(' ');
+        
+        String libName = parts[1];
+        String symName = parts[3];
+        
+        int status = -1;
+
+        char* demangled = abi::__cxa_demangle(symName.toCString(), nullptr, nullptr, &status);
+
+        stack += StackFrame(status == 0 ? demangled : symName.toCString(), nullptr, libName.toCString(), 0);
+        
+        if (status == 0) {
+            free(demangled);
+        }
+        
+    }
+        
+    return stack;
+    
+}
+
+#endif

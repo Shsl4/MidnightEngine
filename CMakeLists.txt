@@ -45,11 +45,10 @@ target_include_directories(MidnightEngine PUBLIC "${CMAKE_SOURCE_DIR}/Source/Pri
 
 target_include_directories(MidnightEngine PUBLIC "${THIRD_PARTY_INCLUDE_PATH}")
 
-target_link_libraries(MidnightEngine debug ${THIRD_PARTY_DEBUG_LIBS})
-target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
-
 if(WIN32)
 
+target_link_libraries(MidnightEngine debug ${THIRD_PARTY_DEBUG_LIBS})
+target_link_libraries(MidnightEngine optimized ${THIRD_PARTY_RELEASE_LIBS})
 target_link_libraries(MidnightEngine dbghelp.lib)
 
 elseif(APPLE)
@@ -60,21 +59,33 @@ find_library(IOKIT IoKit)
 find_library(METAL Metal)
 find_library(QUARTZCORE QuartzCore)
 
-target_link_libraries(MidnightEngine ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE})
+find_package(SDL2 REQUIRED)
+find_package(FMT REQUIRED)
+find_package(ASSIMP REQUIRED)
+
+find_library(FMTLIB fmt REQUIRED)
+
+target_link_libraries(MidnightEngine ${THIRD_PARTY_RELEASE_LIBS} ${FOUNDATION} ${COCOA} ${IOKIT} ${METAL} ${QUARTZCORE} ${SDL2_LIBRARIES} ${FMTLIB} ${ASSIMP_LIBRARIES})
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS} ${FMT_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS})
 
 elseif(LINUX)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 set(OpenGL_GL_PREFERENCE GLVND)
 
-find_package(SDL2 REQUIRED)
 find_package(X11 REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenGL REQUIRED)
 
-set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS})
+find_package(SDL2 REQUIRED)
+find_package(FMT REQUIRED)
+find_package(ASSIMP REQUIRED)
 
-target_link_libraries(MidnightEngine ${SDL2_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
+find_library(FMTLIB fmt REQUIRED)
+
+set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS} ${FMT_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS})
+
+target_link_libraries(MidnightEngine ${SDL2_LIBRARIES} ${FMTLIB} ${ASSIMP_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
 
 endif()
 

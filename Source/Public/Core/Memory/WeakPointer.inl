@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #ifndef __WEAK_PTR_INCL
 #error This file sould only be included from WeakPointer.h
@@ -120,19 +120,19 @@ WeakPointer<T>& WeakPointer<T>::operator=(WeakPointer&& other) noexcept
 
 template <typename T>
 template <typename Y>
-bool WeakPointer<T>::operator==(WeakPointer<Y> const& other) noexcept {
+bool WeakPointer<T>::operator==(WeakPointer<Y> const& other) const noexcept {
     return pointer == other.pointer;
 }
 
 template <typename T>
 template <typename Y>
-bool WeakPointer<T>::operator!=(WeakPointer<Y> const& other) noexcept {
+bool WeakPointer<T>::operator!=(WeakPointer<Y> const& other) const noexcept {
     return pointer != other.pointer;
 }
 
 template <typename T>
 template <typename Y>
-bool WeakPointer<T>::operator<(WeakPointer<Y> const& other) noexcept {
+bool WeakPointer<T>::operator<(WeakPointer<Y> const& other) const noexcept {
     return pointer < other.pointer;
 }
 

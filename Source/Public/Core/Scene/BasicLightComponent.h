@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Scene/SceneComponent.h>
 
@@ -20,15 +20,15 @@ public:
         this->specularColor = color;
     }
 
-    FORCEINLINE NODISCARD LinearColor getAmbientColor() const {
+    FORCEINLINE LinearColor getAmbientColor() const {
         return this->ambientColor;
     }
     
-    FORCEINLINE NODISCARD LinearColor getDiffuseColor() const {
+    FORCEINLINE LinearColor getDiffuseColor() const {
         return this->diffuseColor;
     }
     
-    FORCEINLINE NODISCARD LinearColor getSpecularColor() const {
+    FORCEINLINE LinearColor getSpecularColor() const {
         return this->specularColor;
     }
 

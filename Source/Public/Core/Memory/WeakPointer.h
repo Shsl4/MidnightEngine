@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Core/Object.h>
 #include <Memory/Allocator.h>
@@ -41,13 +41,13 @@ public:
     WeakPointer& operator=(WeakPointer&& other) noexcept;
 
     template <typename Y>
-    bool operator==(WeakPointer<Y> const& other) noexcept;
+    bool operator==(WeakPointer<Y> const& other) const noexcept;
 
     template <typename Y>
-    bool operator!=(WeakPointer<Y> const& other) noexcept;
+    bool operator!=(WeakPointer<Y> const& other) const noexcept;
 
     template <typename Y>
-    bool operator<(WeakPointer<Y> const& other) noexcept;
+    bool operator<(WeakPointer<Y> const& other) const noexcept;
 
     NODISCARD SharedPointer<T> retain() const;
 

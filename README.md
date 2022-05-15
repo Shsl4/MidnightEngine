@@ -6,9 +6,11 @@
  
 ## A cross-platform 3D rendering engine written in C++
 
-## Requirements
+## Prerequisites
 
 This project requires [CMake](https://cmake.org/download/) version 3.8 or above. The project only targets x64 and arm64.
+
+> ⚠️ Third-party binaries are provided for windows, however, they must be installed using your package manager on macOS and Linux.
 
 ## Building
 
@@ -23,20 +25,29 @@ On Windows, generate the Visual Studio 2022 project:
 .\generateVS2022.bat
 ```
 ### macOS
-On macOS, generate the Xcode project:
+On macOS, install the following libraries:
+```sh
+brew install sdl2
+brew install assimp
+brew install fmt
+```
+Then, generate the Xcode project:
 ```sh
 chmod +x generateXCode.sh
 ./generateXcode.sh
 ```
 ### Linux
-On Linux, either open the cloned directory as a project using a CMake compatible IDE such as [CLion](https://www.jetbrains.com/clion/), or generate a makefile project using:
+On Linux, install the following libraries:
+```sh
+sudo apt install libsdl2-dev
+sudo apt install libassimp-dev
+sudo apt install libfmt-dev
+```
+Then, either open the cloned directory as a project using a CMake compatible IDE such as [CLion](https://www.jetbrains.com/clion/), or generate a makefile project using:
 ```sh
 chmod +x generateMakefile.sh
 ./generateMakefile.sh
 ```
-
-> ⚠️ The project does not contain the Linux SDL2 binaries. You have to install them using your package manager.
-
 The Visual Studio, Xcode and Makefile projects will be generated in the hidden .build directory.
 Alternatively, you can generate the project yourself using cmake.
 
@@ -58,5 +69,3 @@ You will find the documentation in the Docs directory. Otherwise, the docs are a
 -   [iconfontheaders](https://github.com/juliettef/IconFontCppHeaders) - C, C++ headers and C# classes for icon fonts: Font Awesome, Fork Awesome, Material Design, Kenney game icons and Fontaudio 
 -   [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css) - Custom CSS theme for doxygen html-documentation with lots of customization parameters. 
 -   [assimp](https://github.com/assimp/assimp) - The official Open-Asset-Importer-Library Repository. Loads 40+ 3D-file-formats into one unified and clean data structure. 
-
-For now, binaries provided for third-party libraries are built for Windows x64, Linux x64 and macOS arm64 only.

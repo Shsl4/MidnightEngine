@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #ifndef __SHARED_PTR_INCL
 #error This file sould only be included from SharedPointer.h
@@ -123,19 +123,13 @@ SharedPointer<T>& SharedPointer<T>::operator=(nullptr_t) {
 
 template <typename T>
 template <typename Y>
-bool SharedPointer<T>::operator==(SharedPointer<Y> const& other) noexcept {
+bool SharedPointer<T>::operator==(SharedPointer<Y> const& other) const noexcept {
     return pointer == other.pointer;
 }
 
 template <typename T>
 template <typename Y>
-bool SharedPointer<T>::operator!=(SharedPointer<Y> const& other) noexcept {
-    return pointer != other.pointer;
-}
-
-template <typename T>
-template <typename Y>
-bool SharedPointer<T>::operator<(SharedPointer<Y> const& other) noexcept {
+bool SharedPointer<T>::operator<(SharedPointer<Y> const& other) const noexcept {
     return pointer < other.pointer;
 }
 

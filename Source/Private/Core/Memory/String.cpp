@@ -175,29 +175,34 @@ bool String::toBool() const
 Array<String> String::split(const char separator) const {
     
     auto arr = Array<String>(10);
-
+        
     if(getSize() == 0) { return arr; }
     
     size_t from = 0;
     size_t to = 0;
 
     const size_t sz = getSize();
-
+    
     for (size_t i = 0; i < sz; ++i) {
-
+        
         if (data[i] == separator) {
-            to = i;
+         
+            if(from == to){
+                ++from;
+                ++to;
+                continue;
+            }
+            
             arr += substring(from, to);
             from = to + 1;
+            
         }
         
-    }
-
-    if(from == 0 && to == 0) {
-        arr += *this;
+        ++to;
+        
     }
     
-    if (from == to + 1) {
+    if (from != to) {
         to = sz;
         arr += substring(from, to);
     }

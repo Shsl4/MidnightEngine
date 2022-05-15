@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <stdexcept>
 #include <Core/EngineMacros.h>
@@ -76,5 +76,8 @@ DEFINE_EXCEPTION(NullPointerException);
 DEFINE_EXCEPTION(CommandError);
 DEFINE_EXCEPTION(ParseError);
 
-#define expect(condition, format, ...) Exception::throwIf(!condition, format, __VA_ARGS__)
-#define raise(format, ...) Exception::throwError(format, __VA_ARGS__)
+#define expectf(condition, format, ...) Exception::throwIf(!condition, format, __VA_ARGS__)
+#define expect(condition, format) Exception::throwIf(!condition, format)
+
+#define raisef(format, ...) Exception::throwError(format, __VA_ARGS__)
+//#define raise(format) Exception::throwError(format)

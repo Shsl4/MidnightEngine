@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Memory/Allocator.h>
 #include <Memory/RefCounter.h>
@@ -43,13 +43,10 @@ public:
     SharedPointer& operator=(nullptr_t);
     
     template <typename Y>
-    bool operator==(SharedPointer<Y> const& other) noexcept;
+    bool operator==(SharedPointer<Y> const& other) const noexcept;
 
     template <typename Y>
-    bool operator!=(SharedPointer<Y> const& other) noexcept;
-
-    template <typename Y>
-    bool operator<(SharedPointer<Y> const& other) noexcept;
+    bool operator<(SharedPointer<Y> const& other) const noexcept;
 
     NODISCARD WeakPointer<T> weak() const;
     
