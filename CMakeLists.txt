@@ -79,13 +79,13 @@ find_package(OpenGL REQUIRED)
 
 find_package(SDL2 REQUIRED)
 find_package(FMT REQUIRED)
-find_package(ASSIMP REQUIRED)
+find_package(assimp REQUIRED)
 
 find_library(FMTLIB fmt REQUIRED)
 
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${SDL2_INCLUDE_DIRS} ${FMT_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS})
 
-target_link_libraries(MidnightEngine ${SDL2_LIBRARIES} ${FMTLIB} ${ASSIMP_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(MidnightEngine ${THIRD_PARTY_RELEASE_LIBS} ${SDL2_LIBRARIES} ${FMTLIB} ${ASSIMP_LIBRARIES} ${X11_LIBRARIES} Threads::Threads ${OPENGL_LIBRARIES} ${CMAKE_DL_LIBS})
 
 endif()
 

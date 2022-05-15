@@ -190,7 +190,7 @@ Optional<size_t> Array<T>::firstIndexOf(T const &elem) const {
 
     for (auto &e: *this) {
         if (e == elem) {
-            return Optional(counter);
+            return { counter };
         }
         ++counter;
     }
