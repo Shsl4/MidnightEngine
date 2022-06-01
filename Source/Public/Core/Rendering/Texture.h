@@ -24,12 +24,3 @@ protected:
     Texture() = default;
 
 };
-
-struct ENGINE_API CubeMap : public Texture {
-
-    CubeMap(String name, void* data, size_t size);
-
-    void use(UInt8 index, bgfx::UniformHandle uniform) const override;
-
-    
-};

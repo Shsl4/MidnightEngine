@@ -5,6 +5,8 @@
 #include <Console/ArgumentCommandNode.h>
 #include <Console/ExecutableCommandNode.h>
 
+#include "Utilities/ArrayUtils.h"
+
 CommandNode* CommandNode::findChildNode(String const& name) const
 {
     
@@ -124,7 +126,7 @@ CommandNode* CommandNode::addLiteral(String const& name)
     
     CommandError::throwIf(isLocked(), "Tried to add an argument to a locked node.");
     CommandError::throwIf(name.isEmpty(), "Tried to register a node without a name.");
-    CommandError::throwIf(name.contains(' '), "Node names may not include whitespaces");
+    CommandError::throwIf(ArrayUtils::contains(name, ' '), "Node names may not include whitespaces");
     CommandError::throwIf(name == "exec", "\"exec\" is not allowed as a node name.");
     CommandError::throwIf(findChildNode(name), "A node named {} already exists for this command.", name);
 
@@ -140,7 +142,7 @@ CommandNode* CommandNode::addArgument(const String& name, const ArgumentType typ
     CommandError::throwIf(isLocked(), "Tried to add an argument to a locked node.");
     CommandError::throwIf(this->nodeType == NodeType::Executable, "Tried to add an argument to an executable node.");
     CommandError::throwIf(name.isEmpty(), "Tried to register an argument without a name.");
-    CommandError::throwIf(name.contains(' '), "Node names may not include whitespaces");
+    CommandError::throwIf(ArrayUtils::contains(name, ' '), "Node names may not include whitespaces");
     CommandError::throwIf(name == "exec", "\"exec\" is not allowed as a node name.");
     CommandError::throwIf(findChildNode(name), "An argument named {} already exists for this command.", name);
     CommandError::throwIf(findFirstOf(NodeType::Argument), "An argument node already exists for this command.");

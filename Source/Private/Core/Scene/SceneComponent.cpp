@@ -5,6 +5,7 @@
 #include <Memory/String.h>
 
 #include "Engine.h"
+#include "Utilities/ArrayUtils.h"
 
 const AttachmentProperties AttachmentProperties::all = { true, true, true };
 const AttachmentProperties AttachmentProperties::locationOnly = { true, false, false };
@@ -96,7 +97,7 @@ void SceneComponent::detachFromComponent() {
     }
 
     // Detach and set the variables to nullptr.
-    parentComponent->childComponents.removeFirstOf(this);
+    ArrayUtils::removeFirstOf(parentComponent->childComponents, this);
     getParentActor()->onComponentDetached(this);
     setParentActor(nullptr);
     parentComponent = nullptr;

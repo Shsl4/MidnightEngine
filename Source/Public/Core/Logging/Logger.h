@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Memory/String.h>
 #include <iostream>
 
 #include <fmt/format.h>
@@ -11,13 +10,15 @@
 #include <chrono>
 #include <iomanip>
 
-#include "fmt/ostream.h"
+#include <fmt/ostream.h>
+#include <Memory/String.h>
 
 template <>
-struct fmt::formatter<String> : formatter<std::string>{
-    
+struct fmt::formatter<String> : formatter<std::string> {
+#include <Memory/String.h>
+
     template <typename FormatContext>
-    auto format(const String& p, FormatContext& ctx) -> decltype(ctx.out()) {
+    auto format(String const& p, FormatContext& ctx) -> decltype(ctx.out()) {
 
         const char* c = p.toCString() ? p.toCString() : "";
         return formatter<std::string>::format(c, ctx);

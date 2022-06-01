@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <Core/Object.h>
 #include <Memory/String.h>
 
 /**

@@ -4,14 +4,13 @@
 
 #include <Memory/Allocator.h>
 #include <Core/EngineTypes.h>
-#include <Core/Object.h>
 
 /*!
  *  A class used to safely encapsulate a value. All comparison operators are implemented, so
  *  safe comparisons can be made with direct values or other optionals.
  */
 template<typename T>
-class Optional final : public Object {
+class Optional final {
 
 public:
 
@@ -253,7 +252,7 @@ public:
     /*!
      * The optional destructor.
      */
-    ~Optional() final;
+    ~Optional();
 
 private:
 

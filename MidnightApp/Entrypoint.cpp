@@ -58,9 +58,11 @@ protected:
         this->planet2 = createObject<ModelActor>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)));
         this->planet3 = createObject<ModelActor>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)));
         
-        this->skybox = createObject<ModelActor>(Transform({}, {}, Vector3(3.0f)));
-
-        skybox->setModel("Skybox");
+        this->skybox = createObject<ModelActor>(Transform({}, { -90.0f, 0.0f, 0.0f }, Vector3(100.0f)));
+        
+        skybox->setModel("Sphere");
+        skybox->getModelComponent()->setShader(0, ShaderPrograms::textureShader);
+        skybox->getModelComponent()->setTexture(0, "Missing");
 
         this->planet1->setModel("Sphere");
         this->planet2->setModel("Sphere");

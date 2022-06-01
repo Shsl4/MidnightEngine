@@ -61,6 +61,59 @@ Array<T>::~Array() {
 }
 
 template<typename T>
+Array<T> &Array<T>::operator=(Array<T> const &other) {
+    
+    if (&other == this) { return *this; }
+    
+    // Deallocate the data in this array
+    allocator.release(data);
+
+    // If the other array is empty, set this array to empty.
+    if (!other.data) {
+
+        this->data = nullptr;
+        this->size = 0;
+        this->capacity = 0;
+
+    } else {
+
+        // Otherwise, allocate a new data buffer.
+        this->data = allocator.alloc(other.capacity);
+
+        // Copy the array contents.
+        allocator.copy(other.data, other.data + other.size, this->data);
+
+        // Store the new information.
+        this->capacity = other.capacity;
+        this->size = other.size;
+
+    }
+
+    return *this;
+
+}
+
+template<typename T>
+Array<T> &Array<T>::operator=(Array<T> &&other) noexcept
+{
+
+    if (&other == this) { return *this; }
+    
+    allocator.release(data);
+
+    this->data = other.data;
+    this->capacity = other.capacity;
+    this->size = other.size;
+
+    other.data = nullptr;
+    other.capacity = 0;
+    other.size = 0;
+
+    return *this;
+
+}
+
+template<typename T>
 T& Array<T>::append(T const &elem) {
 
     // Extend the array if necessary.
@@ -133,86 +186,6 @@ void Array<T>::reverse() {
 }
 
 template<typename T>
-bool Array<T>::removeFirstOf(T const &elem) {
-
-    Optional<size_t> index = firstIndexOf(elem);
-
-    if (index.hasValue()) {
-
-        removeAt(index.getValue());
-        return true;
-
-    }
-
-    return false;
-
-}
-
-template<typename T>
-bool Array<T>::removeLastOf(T const &elem) {
-
-    Optional<size_t> index = lastIndexOf(elem);
-
-    if (index.hasValue()) {
-
-        removeAt(index.getValue());
-        return true;
-
-    }
-
-    return false;
-
-}
-
-template<typename T>
-void Array<T>::removeAllOf(T const &elem) {
-
-    Array<size_t> indices = Array<size_t>(size / 4);
-
-    for (size_t i = 0; i < size; ++i) {
-        if (elem == data[i]) {
-            indices += i;
-        }
-    }
-
-    indices.sortDescending();
-
-    for (auto &e: indices) {
-        removeAt(e);
-    }
-
-}
-
-template<typename T>
-Optional<size_t> Array<T>::firstIndexOf(T const &elem) const {
-
-    size_t counter = 0;
-
-    for (auto &e: *this) {
-        if (e == elem) {
-            return { counter };
-        }
-        ++counter;
-    }
-
-    return Optional<size_t>::empty();
-
-}
-
-template<typename T>
-Optional<size_t> Array<T>::lastIndexOf(T const &elem) const {
-
-    for (Int64 i = size - 1; i >= 0; --i) {
-        if (data[i] == elem) {
-            return { i };
-        }
-    }
-
-    return Optional<size_t>::empty();
-
-}
-
-template<typename T>
 Array<T> Array<T>::arrayWithRange(size_t from, size_t to){
     
     // Create a new array
@@ -240,7 +213,7 @@ Array<T> Array<T>::arrayWithRange(size_t from, size_t to){
 }
 
 template<typename T>
-Array<T> Array<T>::arrayMatching(std::function<bool(T const &)> condition) {
+Array<T> Array<T>::arrayMatching(std::function<bool(T const &)> condition) const{
 
     // Create a new array
     Array<T> array = Array<T>();
@@ -260,77 +233,6 @@ Array<T> Array<T>::arrayMatching(std::function<bool(T const &)> condition) {
 
     // Return the array.
     return array;
-
-}
-
-template<typename T>
-void Array<T>::removeDuplicates() {
-
-    // Get an allocator to create a T** buffer.
-    Allocator<T *> al;
-
-    // Use raw buffer to avoid recursive template instantiation if using Array<T*>
-    // We store pointers to the elements in our buffer to avoid copying objects.
-    T **addresses = al.alloc(size);
-
-    // The array that will store the duplicate indices.
-    Array<size_t> duplicates = Array<size_t>(size / 4);
-
-    // For each element in the array
-    for (size_t i = 0; i < size; ++i) {
-
-        // For each of the seen elements
-        for (size_t j = 0; j < i; ++j) {
-
-            // If a previously seen element is found
-            if (*(addresses[j]) == data[i]) {
-
-                // Add the index to the duplicates.
-                duplicates += i;
-                break;
-
-            }
-
-        }
-
-        // Store the address of the value in the buffer.
-        addresses[i] = data + i;
-
-    }
-
-    // Release the buffer.
-    al.release(addresses);
-
-    // Sort the array in descending order.
-    duplicates.sortDescending();
-
-    // Remove the duplicates.
-    for (auto &e: duplicates) {
-        removeAt(e);
-    }
-
-}
-
-template<typename T>
-void Array<T>::sortAscending() {
-    internalSortAsc(0, static_cast<Int64>(getSize() - 1));
-}
-
-template<typename T>
-void Array<T>::sortDescending() {
-    internalSortDesc(0, static_cast<Int64>(getSize() - 1));
-}
-
-template<typename T>
-bool Array<T>::contains(T const &elem) const{
-
-    for (auto &e: *this) {
-        if (e == elem) {
-            return true;
-        }
-    }
-
-    return false;
 
 }
 
@@ -431,62 +333,10 @@ void Array<T>::clear() {
 }
 
 template<typename T>
-Array<T> &Array<T>::operator=(Array<T> const &other) {
-    
-    if (&other == this) { return *this; }
-    
-    // Deallocate the data in this array
-    allocator.release(data);
-
-    // If the other array is empty, set this array to empty.
-    if (!other.data) {
-
-        this->data = nullptr;
-        this->size = 0;
-        this->capacity = 0;
-
-    } else {
-
-        // Otherwise, allocate a new data buffer.
-        this->data = allocator.alloc(other.capacity);
-
-        // Copy the array contents.
-        allocator.copy(other.data, other.data + other.size, this->data);
-
-        // Store the new information.
-        this->capacity = other.capacity;
-        this->size = other.size;
-
-    }
-
-    return *this;
-
-}
-
-template<typename T>
-Array<T> &Array<T>::operator=(Array<T> &&other) noexcept
-{
-
-    if (&other == this) { return *this; }
-    
-    allocator.release(data);
-
-    this->data = other.data;
-    this->capacity = other.capacity;
-    this->size = other.size;
-
-    other.data = nullptr;
-    other.capacity = 0;
-    other.size = 0;
-
-    return *this;
-
-}
-
-template<typename T>
 T& Array<T>::getAt(size_t index) const {
-    if(index >= capacity){
-        throw std::runtime_error("Array out of bounds.");
+    //OutOfBoundsException::throwIf(index < size, "Index out of bounds");
+    if (index >= size) {
+        throw std::runtime_error("Index out of bounds");
     }
     return data[index];
 }
@@ -504,44 +354,6 @@ void Array<T>::operator+=(T const &elem) {
 template<typename T>
 void Array<T>::operator+=(Array<T> const &arr) {
     append(arr);
-}
-
-template<typename T>
-bool Array<T>::operator==(Array<T> const& other) const{
-    
-    // If the sizes are different, return false.
-    if (getSize() != other.getSize()) {
-        return false;
-    }
-
-    // Compare each element.
-    for (size_t i = 0; i < getSize(); ++i) {
-        if (data[i] != other.data[i]) {
-            return false;
-        }
-    }
-
-    return true;
-    
-}
-
-template<typename T>
-bool Array<T>::operator!=(Array<T> const& other) const{
-    
-    // If the sizes are different, return true.
-    if (getSize() != other.getSize()) {
-        return true;
-    }
-
-    // Compare each element.
-    for (size_t i = 0; i < getSize(); ++i) {
-        if (data[i] != other.data[i]) {
-            return true;
-        }
-    }
-
-    return false;
-    
 }
 
 template<typename T>
@@ -568,77 +380,5 @@ void Array<T>::extend(const size_t ext) {
         this->capacity = newSize;
 
     }
-
-}
-
-template<typename T>
-void Array<T>::internalSortAsc(Int64 from, Int64 to) {
-
-    if (from < to) {
-
-        Int64 idx = partitionAsc(from, to);
-
-        internalSortAsc(from, idx - 1);
-        internalSortAsc(idx + 1, to);
-
-    }
-
-}
-
-template<typename T>
-void Array<T>::internalSortDesc(Int64 from, Int64 to) {
-
-    if (from < to) {
-
-        Int64 idx = partitionDesc(from, to);
-
-        internalSortDesc(from, idx - 1);
-        internalSortDesc(idx + 1, to);
-
-    }
-
-}
-
-template<typename T>
-Int64 Array<T>::partitionAsc(const Int64 from, const Int64 to) {
-
-    Int64 idx = from - 1;
-
-    for (Int64 i = from; i <= to - 1; ++i) {
-
-        if (data[i] < data[to]) {
-
-            ++idx;
-            allocator.swapMove(data + idx, data + i);
-
-        }
-
-    }
-
-    allocator.swapMove(data + idx + 1, data + to);
-
-    return idx + 1;
-
-}
-
-template<typename T>
-Int64 Array<T>::partitionDesc(const Int64 from, const Int64 to) {
-
-    Int64 idx = from - 1;
-
-    for (Int64 i = from; i <= to - 1; ++i) {
-
-        if (data[to] < data[i]) {
-
-            ++idx;
-            allocator.swapMove(data + idx, data + i);
-
-        }
-
-    }
-
-    allocator.swapMove(data + idx + 1, data + to);
-
-    return idx + 1;
 
 }

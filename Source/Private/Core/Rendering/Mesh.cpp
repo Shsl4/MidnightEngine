@@ -37,9 +37,9 @@ static bgfx::VertexLayout getVertexLayout()
     return layout;
 }
 
-Mesh::Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, const SharedPointer<Texture> meshTexture,
-    String name, String path) : vertexCount(vertices.getSize()), indexCount(indexArray.getSize()),
-        meshName(std::move(name)), filePath(std::move(path)) {
+Mesh::Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, String name, String path)
+    : vertexCount(vertices.getSize()), indexCount(indexArray.getSize()), meshName(std::move(name)),
+        filePath(std::move(path)) {
 
     data = vertexAllocator.alloc(vertexCount);
     indices = indexAllocator.alloc(indexCount);
@@ -52,14 +52,10 @@ Mesh::Mesh(Array<Vertex> const& vertices, Array<UInt16> const& indexArray, const
     
     this->vertexBuffer = Allocator<VertexHandle>().construct(createVertexBuffer(vertexMemory, getVertexLayout()));
     this->indexBuffer = Allocator<IndexHandle>().construct(createIndexBuffer(indexMemory));
-
-    if(meshTexture.valid()) {
-        this->texture = meshTexture;
-    }
     
 }
 
-void Mesh::render(UInt16 viewId, Material const& material, bgfx::ProgramHandle program) const {
+void Mesh::render(UInt16 viewId, Material const& material, const Texture* texture, bgfx::ProgramHandle program) const {
 
     setIndexBuffer(indexBuffer->handle);
     setVertexBuffer(0, vertexBuffer->handle);
@@ -69,7 +65,7 @@ void Mesh::render(UInt16 viewId, Material const& material, bgfx::ProgramHandle p
     setUniform(Uniforms::materialSpecular, &material.specular);
     setUniform(Uniforms::materialShininess, &material.shininess);
 
-    if(texture.valid()) {
+    if(texture) {
         texture->use(0, Uniforms::skyboxHandle);
     }
         

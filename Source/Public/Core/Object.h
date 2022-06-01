@@ -3,6 +3,7 @@
 #include <typeinfo>
 
 #include <Core/EngineMacros.h>
+#include <Memory/String.h>
 
 /*!
  * \brief The default class for all the objects created and used by the engine.

@@ -24,7 +24,9 @@ public:
 
     void update(float deltaTime) override;
 
-    void setModel(String const& name);
+    bool setModel(String const& name);
+    bool setTexture(size_t index, String const& name);
+    bool setShader(size_t index, bgfx::ProgramHandle handle);
     
     NODISCARD WeakPointer<Model> getModel() const { return this->model; }
 
@@ -36,7 +38,9 @@ private:
 
     WeakPointer<Model> model = nullptr;
 
-    WeakPointer<Texture> texture = nullptr;
+    Array<WeakPointer<Texture>> textures = Array<WeakPointer<Texture>>(0);
+    Array<Material> materials = Array<Material>(0);
+    Array<bgfx::ProgramHandle> handles = Array<bgfx::ProgramHandle>(0);
     
 };
 

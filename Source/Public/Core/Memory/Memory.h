@@ -75,7 +75,9 @@ public:
      */
     template<typename T>
     FORCEINLINE static void copyBack(const T *from, const T *to, T *dest);
-    
+
+    Memory() = delete;
+ 
 };
 
 #define __MEMORY_INCL

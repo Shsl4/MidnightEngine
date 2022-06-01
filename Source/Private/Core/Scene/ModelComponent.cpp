@@ -11,13 +11,65 @@ void ModelComponent::update(float deltaTime) {
     
 }
 
-void ModelComponent::setModel(String const& name) {
+bool ModelComponent::setModel(String const& name) {
+    
+    const auto loadedModel = Engine::getInstance()->getResourceLoader()->getModel(name);
 
-    this->model = Engine::getInstance()->getResourceLoader()->getModel(name);
+    if(loadedModel.valid()) {
 
-    if(name == "Cube") {
-        this->texture = Engine::getInstance()->getResourceLoader()->getTexture("Missing");
+        textures.clear();
+        handles.clear();
+        materials.clear();
+
+        this->model = loadedModel;
+        
+        this->textures = this->model->getTextures();
+        this->handles = this->model->getPrograms();
+        this->materials = this->model->getMaterials();
+        
+        return true;
+
     }
+
+    return false;
+
+}
+
+bool ModelComponent::setTexture(size_t index, String const& name) {
+
+    if (index >= textures.getSize() ) {
+        return false;
+    }
+        
+    if(model.valid()) {
+
+        const auto texture = Engine::getInstance()->getResourceLoader()->getTexture(name);
+
+        if(texture.valid()) {
+            textures[index] = texture;
+            return true;
+        }        
+        
+    }
+
+    return false;
+    
+}
+
+bool ModelComponent::setShader(size_t index, bgfx::ProgramHandle handle) {
+
+    if (index >= textures.getSize() ) {
+        return false;
+    }
+
+    if(model.valid()) {
+
+        handles[index] = handle;
+        return true;
+        
+    }
+
+    return false;
     
 }
 
@@ -33,7 +85,7 @@ void ModelComponent::render(UInt64 state) {
         bgfx::setState(state);
         
         // Render it.
-        model->render(0, view, Matrix4::modelMatrix(getWorldTransform()), light);
+        model->render(0, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles, light);
         
     }
     

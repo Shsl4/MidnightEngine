@@ -17,6 +17,9 @@ public:
 
     void setModel(String const& name) const;
 
+    FORCEINLINE ModelComponent* getModelComponent() const{
+        return model;
+    }
 
 private:
 

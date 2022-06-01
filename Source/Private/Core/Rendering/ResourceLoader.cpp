@@ -9,12 +9,17 @@
 #include <assimp/Importer.hpp>
 #include <Console/Console.h>
 
+#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
 #include <Rendering/Model.h>
 #include <Rendering/Uniforms.h>
 
 #include <Rendering/ShaderPrograms.h>
+
+#include "bimg/decode.h"
+#include "bx/file.h"
+#include "Utilities/ArrayUtils.h"
 
 ResourceLoader::~ResourceLoader() {
     
@@ -28,61 +33,30 @@ void ResourceLoader::init() {
     Uniforms::makeUniforms();
     ShaderPrograms::makePrograms();
     
-    std::filesystem::directory_iterator iterator;
+    std::filesystem::recursive_directory_iterator iterator;
     
     try {
-        iterator = std::filesystem::directory_iterator("./Resources/Textures");
+        iterator = std::filesystem::recursive_directory_iterator("./Resources/Textures");
     }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
+    catch (std::exception const& e) {
+        raisef("Error loading textures: {}", e.what());
     }
 
     // For each file in our model resource directory
     for (const auto & entry : iterator)
     {
         if (entry.is_directory()) { continue; }
-        
-        // Get the file name and its extension
-        std::filesystem::path file = entry.path().filename();
 
         // Load it
-        loadTexture(file.string());
+        loadTexture(entry.path().string());
         
     }
-
+        
     try {
-        iterator = std::filesystem::directory_iterator("./Resources/Textures/Cubemaps");
+        iterator = std::filesystem::recursive_directory_iterator("./Resources/Models");
     }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
-    }
-
-    // For each file in our cubemap resource directory
-    for (const auto & entry : iterator)
-    {
-        if (entry.is_directory()) { continue; }
-        
-        // Get the file name and its extension
-        std::filesystem::path file = entry.path().filename();
-
-        if(file.extension() != ".dds") {
-            Console::getLogger()->warning("Skipped loading file {}. Only DDS files are supported.", file.string());
-            continue;
-        }
-        
-        // Load it
-        loadCubeMap(file.string());
-        
-    }
-
-    try {
-        iterator = std::filesystem::directory_iterator("./Resources/Models");
-    }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
+    catch (std::exception const& e) {
+        raisef("Error loading models: {}", e.what());
     }
 
     // For each file in our model resource directory
@@ -150,8 +124,8 @@ WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
 
     
     // For every loaded texture
-    for (auto const& texture : loadedTextures)
-    {
+    for (auto const& texture : loadedTextures) {
+        
         // If the texture name matches
         if (texture->textureName == name)
         {
@@ -164,28 +138,7 @@ WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
     // Print an error message
     Console::getLogger()->error("Tried to get texture named {} which does not exist.", name);
 
-    return nullptr;
-    
-}
-
-WeakPointer<CubeMap> ResourceLoader::getCubeMap(String const& name) const { 
-
-    // For every loaded cubemap
-    for (auto const& cubeMap : loadedCubeMaps)
-    {
-        // If the cubemap name matches
-        if (cubeMap->textureName == name)
-        {
-            // Return the cubemap
-            return cubeMap.weak();
-        }
-        
-    }
-
-    // Print an error message
-    Console::getLogger()->error("Tried to get cubemap named {} which does not exist.", name);
-
-    return nullptr;
+    return missingTexture;
     
 }
 
@@ -193,17 +146,15 @@ void ResourceLoader::loadTexture(String const& file)
 {
 
     // Get the file name by removing the file extension
-    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
-
-    // Create our resource path
-    String path = "./Resources/Textures/";
-    path.append(file);
-
+    String fileName = file.substring(0, ArrayUtils::lastIndexOf(file, '.').getValueElse(file.getSize()));
+    ArrayUtils::replaceAll(fileName, '\\', '/');
+    fileName = fileName.substring(ArrayUtils::lastIndexOf(fileName, '/').getValueElse(0) + 1, fileName.getSize());
+        
     Int32 width = 0;
     Int32 height = 0;
     Int32 channelCount = 0;
-    
-    auto* data = stbi_load(path.toCString(), &width, &height, &channelCount, 4);
+
+    auto* data = stbi_load(file.toCString(), &width, &height, &channelCount, 4);
 
     if (data == nullptr)
     {
@@ -212,7 +163,13 @@ void ResourceLoader::loadTexture(String const& file)
     }
 
     // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedTextures += SharedPointer<Texture>::make(fileName, width, height, data);
+    const auto texture = SharedPointer<Texture>::make(fileName, width, height, data);
+
+    if(fileName == "Missing"){
+        missingTexture = texture;
+    }
+    
+    loadedTextures += texture;
     
     stbi_image_free(data);
 
@@ -225,7 +182,7 @@ void ResourceLoader::loadModel(String const& file)
 {
 
     // Get the file name by removing the file extension
-    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
+    String fileName = file.substring(0, ArrayUtils::lastIndexOf(file, '.').getValueElse(file.getSize()));
 
     // Create our resource path
     String path = "Resources/Models/";
@@ -245,6 +202,7 @@ void ResourceLoader::loadModel(String const& file)
     }
 
     Array<SharedPointer<Mesh>> meshes;
+    auto textures = Array<SharedPointer<Texture>>(scene->mNumMeshes);
 
     for (size_t i = 0; i < scene->mNumMeshes; ++i) {
 
@@ -290,47 +248,16 @@ void ResourceLoader::loadModel(String const& file)
             
             
         }
-        
-        // Create the mesh and store it in our array.
-        if(fileName == "Skybox") {
-            meshes += SharedPointer<Mesh>::make(vertices, indices, getCubeMap("Canyon2").retain(), fileName, path);
-        }
-        else {
-            meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
-        }
+
+        textures += nullptr;
+
+        meshes += SharedPointer<Mesh>::make(vertices, indices, fileName, path);
         
     }
 
-    loadedModels += SharedPointer<Model>::make(meshes, fileName, Material());
+    loadedModels += SharedPointer<Model>::make(meshes, textures, fileName);
     
     // Log a success message.
     Console::getLogger()->success("Successfully loaded model {}. Combined {} components.", fileName, scene->mNumMeshes);
     
-}
-
-void ResourceLoader::loadCubeMap(String const& file) { 
-
-    // Get the file name by removing the file extension
-    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
-
-    // Create our resource path
-    String path = "./Resources/Textures/Cubemaps/";
-    path.append(file);
-    
-    auto data = loadFile(path);
-
-    if (data.isEmpty())
-    {
-        Console::getLogger()->error("Failed to load cubemap. Reason: {}. File: {}", stbi_failure_reason(), file);
-        return;
-    }
-
-    data.shrink();
-
-    // Create the cubemap and store it in our array. Meshes are automatically released when the engine stops.
-    loadedCubeMaps += SharedPointer<CubeMap>::make(fileName, data.begin(), data.getSize());
-    
-    // Log a success message.
-    Console::getLogger()->success("Successfully loaded cubemap {}.", fileName);
-        
 }

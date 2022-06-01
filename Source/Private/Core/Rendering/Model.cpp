@@ -7,20 +7,39 @@
 #include <Scene/PointLightComponent.h>
 #include <Scene/DirectionalLightComponent.h>
 
-Model::Model(Array<SharedPointer<Mesh>> meshes, String name, Material const& mat) :
-    modelName(std::move(name)), material(mat), meshes(std::move(meshes)) {
+Model::Model(Array<SharedPointer<Mesh>> meshes, Array<SharedPointer<Texture>> textures, String name) :
+    modelName(std::move(name)), boundTextures(std::move(textures)), meshes(std::move(meshes)) {
 
-    if(modelName == "Skybox") {
-        this->handle = ShaderPrograms::skyboxShader;
+    for (const auto& e : this->meshes) {
+        defaultHandles += ShaderPrograms::directionalLightShader;
+        defaultMaterials += Material();
     }
-    else {
-        this->handle = ShaderPrograms::directionalLightShader;
-    }   
-
     
 }
 
-void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, LightComponent* light) const {
+Array<WeakPointer<Texture>> Model::getTextures() const {
+    
+    auto textures = Array<WeakPointer<Texture>>(this->boundTextures.getSize());
+
+    for (const auto& texture : boundTextures) {
+            
+        textures += texture.weak();
+        
+    }
+
+    return textures;
+
+}
+
+void Model::render(UInt16 viewId,
+                   Vector4 const& view,
+                   Matrix4 const& transform,
+                   Array<WeakPointer<Texture>> const& textures,
+                   Array<Material> const& materials,
+                   Array<bgfx::ProgramHandle> const& programs,
+                   LightComponent* light) const {
+
+    size_t count = 0;
 
     for (auto const& mesh : meshes) {
         
@@ -28,7 +47,6 @@ void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform,
         bgfx::setTransform(&transform);
 
         if (light) {
-
             const auto lightPosition = light->getWorldPosition();
             const auto lightAmbient = LinearColors::black;
             const auto lightDiffuse = light->getDiffuseColor();
@@ -39,31 +57,25 @@ void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform,
             setUniform(Uniforms::lightDiffuse, &lightDiffuse);
             setUniform(Uniforms::lightSpecular, &lightSpecular);
 
-            if(const auto* directionalLight = light->cast<DirectionalLightComponent>()) {
-
+            if (const auto* directionalLight = light->cast<DirectionalLightComponent>()) {
                 const auto lightDirection = directionalLight->getLightDirection();
                 setUniform(Uniforms::lightDirection, &lightDirection);
-                
             }
 
-            if(const auto* directionalLight = light->cast<PointLightComponent>()) {
-
+            if (const auto* directionalLight = light->cast<PointLightComponent>()) {
                 const auto attenuation = directionalLight->getAttenuation();
                 setUniform(Uniforms::lightAttenuation, &attenuation);
-                
             }
-            
         }
         else {
-
             setUniform(Uniforms::lightPosition, &Vector4::zero);
             setUniform(Uniforms::lightAmbient, &Vector4::zero);
             setUniform(Uniforms::lightDiffuse, &Vector4::zero);
             setUniform(Uniforms::lightSpecular, &Vector4::zero);
-            
         }
-        
-        mesh->render(viewId, material, handle);
-    }
+
+        mesh->render(viewId, materials[count], textures[count].valid() ? textures[count].raw() : nullptr, programs[count]);
+        ++count;
+    }   
     
 }

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Memory/Memory.h>
-#include <Core/Object.h>
 #include <cstring>
 
 /*!
@@ -11,7 +9,7 @@
  *  \tparam T Type of object to manage
  */
 template<typename T>
-class Allocator final : public Object {
+class Allocator final {
 
 public:
 
@@ -76,7 +74,7 @@ public:
     /*!
      * The Allocator destructor.
      */
-    ~Allocator() final = default;
+    ~Allocator() = default;
 
     /*!
      *  Moves memory forwards or backwards automatically.

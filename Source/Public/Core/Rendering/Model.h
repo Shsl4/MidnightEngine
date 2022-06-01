@@ -6,29 +6,41 @@
 #include <Scene/LightComponent.h>
 
 struct Model {
+    Model(Array<SharedPointer<Mesh>> meshes, Array<SharedPointer<Texture>> textures, String name);
+
+    FORCEINLINE size_t getMeshCount() const { return this->meshes.getSize(); }
     
-    Model(Array<SharedPointer<Mesh>> meshes, String name, Material const& mat);
+    FORCEINLINE size_t getTextureCount() const { return this->boundTextures.getSize(); }
     
-    FORCEINLINE size_t getMeshCount() const {
-        return this->meshes.getSize();
+    NODISCARD Array<WeakPointer<Texture>> getTextures() const;
+    
+    FORCEINLINE Array<bgfx::ProgramHandle> getPrograms() const {
+
+        return defaultHandles;
+        
     }
 
-    FORCEINLINE void setShaderProgram(bgfx::ProgramHandle program) {
-        this->handle = program;
-    }
+    FORCEINLINE Array<Material> getMaterials() const {
 
-    FORCEINLINE void setMaterial(Material const& mat) {
-        this->material = mat;
+        return defaultMaterials;
+        
     }
+        
+    void render(UInt16 viewId,
+                Vector4 const& view,
+                Matrix4 const& transform,
+                Array<WeakPointer<Texture>> const& textures,
+                Array<Material> const& materials,
+                Array<bgfx::ProgramHandle> const& programs,
+                LightComponent* light) const;
 
-    void render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, LightComponent* light) const;
-    
     String modelName;
 
 private:
 
-    Material material;
-    bgfx::ProgramHandle handle{};
+    Array<bgfx::ProgramHandle> defaultHandles;
+    Array<Material> defaultMaterials;
+    Array<SharedPointer<Texture>> boundTextures;
     Array<SharedPointer<Mesh>> meshes;
     
 };

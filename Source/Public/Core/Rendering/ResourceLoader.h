@@ -29,15 +29,7 @@ public:
      *  \return The texture or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Texture> getTexture(String const& name) const;
-
-    /*!
-     *  \brief Gets a loaded cubemap by name.
-     *
-     *  \param[in] name The name of the cubemap to get.
-     *  \return The cubemap or nullptr if it wasn't found.
-     */
-    NODISCARD WeakPointer<CubeMap> getCubeMap(String const& name) const;
-
+ 
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.
      *
@@ -62,13 +54,6 @@ private:
     void loadModel(String const& file);
 
     /*!
-     *  \brief Tries to load a cubemap from the input file.
-     *
-     *  \param[in] file The path of the file to load.
-     */
-    void loadCubeMap(String const& file);
-
-    /*!
      *  \brief An array containing every loaded mesh.
      */
     Array<SharedPointer<Model>> loadedModels = Array<SharedPointer<Model>>(100);
@@ -78,8 +63,6 @@ private:
     */
     Array<SharedPointer<Texture>> loadedTextures = Array<SharedPointer<Texture>>(100);
 
-    /*!
-     *  \brief An array containing every loaded cubemap.
-     */
-    Array<SharedPointer<CubeMap>> loadedCubeMaps = Array<SharedPointer<CubeMap>>(100);
+    WeakPointer<Texture> missingTexture;
+
 };
