@@ -8,15 +8,28 @@
 struct ENGINE_API Texture
 {
 
-    Texture(String name, Int32 w, Int32 h, void* data);
+    Texture(String name, UInt32 w, UInt32 h, void* data);
 
-    ~Texture();
+    virtual ~Texture();
 
-    void use(UInt8 index, bgfx::UniformHandle handle) const;
+    virtual void use(UInt8 index, bgfx::UniformHandle uniform) const;
     
-    String textureName;
-    Int32 textureWidth;
-    Int32 textureHeight;
-    struct TextureHandle* handle;
+    String textureName = "";
+    UInt32 textureWidth = 0;
+    UInt32 textureHeight = 0;
+    struct TextureHandle* handle = nullptr;
 
+protected:
+
+    Texture() = default;
+
+};
+
+struct ENGINE_API CubeMap : public Texture {
+
+    CubeMap(String name, void* data, size_t size);
+
+    void use(UInt8 index, bgfx::UniformHandle uniform) const override;
+
+    
 };

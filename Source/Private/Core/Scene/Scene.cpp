@@ -31,12 +31,11 @@ void Scene::cleanup()
     
     const auto inputManager = Engine::getInstance()->getInputManager();
 
-    for (auto const& e : registeredObjects) {
+    for (auto const& e : registeredActors) {
         inputManager->unbindAll(e.raw());
     }
 
-    registeredObjects.clear();
-    registeredComponents.clear();
+    registeredActors.clear();
     
     setWorldColor(0);
 
@@ -49,7 +48,7 @@ void Scene::listObjects() const {
 
     size_t counter = 0;
     
-    for (const auto& object : registeredObjects)
+    for (const auto& object : registeredActors)
     {
         Console::getLogger()->info("[{}] {} ({})", counter, object->getClassName(), fmt::ptr(object.raw()));
         ++counter;
@@ -64,9 +63,15 @@ void Scene::listComponents() const {
 
     size_t counter = 0;
     
-    for (const auto& component : registeredComponents)
+    for (const auto& actor : registeredActors)
     {
-        Console::getLogger()->info("[{}] {} ({})", counter, component->getClassName(), fmt::ptr(component.raw()));
+        
+        for (const auto& component : actor->getRootComponent()->getChildComponents()) {
+
+            Console::getLogger()->info("[{}] {} ({})", counter, component->getClassName(), fmt::ptr(component));
+            
+        }
+        
         ++counter;
     }
     
@@ -78,105 +83,75 @@ void Scene::setWorldColor(const UInt32 color) const
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, color, 1.0f, 0);
 }
 
-SceneObject* Scene::getObjectByIndex(size_t index) const {
+Actor* Scene::getObjectByIndex(size_t index) const {
     
-    if(index < 0 || index >= registeredObjects.getSize()) { return nullptr; }
+    if(index < 0 || index >= registeredActors.getSize()) { return nullptr; }
 
-    return registeredObjects[index].raw();
+    return registeredActors[index].raw();
     
 }
 
-void Scene::renderComponents() const {
+void Scene::renderComponents(UInt64 state) const {
     
-    // For each registered SceneComponent
-    for (auto const &component: registeredComponents) {
+    // For each registered Actor
+    for (const auto& actor : registeredActors) {
 
+        // \todo refactor this mess
         // If it is renderable
-        if (component->inherits<Renderable>()) {
+        if (actor->getRootComponent()->inherits<Renderable>()) {
 
             // Cast to renderable and call render.
-            auto* renderable = component->cast<Renderable>();
-            renderable->render();
+            actor->getRootComponent()->cast<Renderable>()->render(state);
 
         }
+        
+        // For each registered SceneComponent
+        for (auto* component : actor->getRootComponent()->getChildComponents()) {
 
+            // If it is renderable
+            if (component->inherits<Renderable>()) {
+
+                // Cast to renderable and call render.
+                component->cast<Renderable>()->render(state);
+
+            }
+            
+        }
+        
     }
-
+    
 }
 
 void Scene::update(const float deltaTime) {
     
-    // Updates all the registered SceneObjects.
-    for (auto const& object: registeredObjects) {
+    // Updates all the registered Actors.
+    for (auto const& object: registeredActors) {
         object->update(deltaTime);
     }
 
 }
 
-void Scene::setupInput(SceneObject *object) {
+void Scene::setupInput(Actor *object) {
 
     // Forward the call to the object.
     object->setupInput(Engine::getInstance()->getInputManager());
 
 }
 
-bool Scene::destroyObject(SceneObject* object)
-{
+bool Scene::destroyActor(Actor* object) {
 
     if (!object) { return false; }
-
-    destroyComponent(object->getRootComponent());
-
+    
     size_t i = 0;
     
-    for (auto const& e : registeredObjects) {
+    for (auto const& e : registeredActors) {
         if (object == e.raw()) {
             break;
         }
         ++i;
     }
     
-    registeredObjects.removeAt(i);
+    registeredActors.removeAt(i);
 
     return true;    
-}
-
-bool Scene::destroyComponent(SceneComponent *component){
-    
-    if (!component) { return false; }
-
-    component->detachFromComponent();
-
-    for (const auto& child : component->getChildComponents())
-    {
-        if(!child->isRootComponent())
-        {
-            destroyComponent(child);
-        }
-        else
-        {
-            child->parentComponent = nullptr;
-        }
-    }
-    
-    // If the component is a CameraComponent, unregister it from the CameraManager.
-    if (component->inherits<CameraComponent>()) {
-
-        cameraManager->unregisterCamera(component->cast<CameraComponent>());
-
-    }
-
-    size_t i = 0;
-    
-    for (auto const& e : registeredComponents) {
-        if (component == e.raw()) {
-            break;
-        }
-        ++i;
-    }
-    
-    registeredComponents.removeAt(i);
-
-    return true;
-    
 }

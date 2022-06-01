@@ -1,18 +1,20 @@
 #pragma once
 
-#include <Scene/SceneObject.h>
+#include <Scene/Actor.h>
 #include <Scene/CameraComponent.h>
 
 #include <Memory/WeakPointer.h>
 
-class FlyingCharacter : public SceneObject {
+class FlyingCharacter : public Actor {
 
-    using Super = SceneObject;
+    using Super = Actor;
 
 public:
+    
+    FlyingCharacter();
+    
     void mouseX(Int32 x);
     void mouseY(Int32 y);
-    void createComponents(Scene *scene, Transform transform) override;
 
 protected:
 
@@ -43,6 +45,6 @@ protected:
 
 private:
 
-    WeakPointer<CameraComponent> camera = nullptr;
+    CameraComponent* camera = nullptr;
 
 };

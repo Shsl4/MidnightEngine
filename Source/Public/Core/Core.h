@@ -9,9 +9,9 @@
 
 #include <Scene/Scene.h>
 #include <Scene/SceneComponent.h>
-#include <Scene/SceneObject.h>
+#include <Scene/Actor.h>
 #include <Scene/CameraManager.h>
-#include <Scene/MeshComponent.h>
+#include <Scene/ModelComponent.h>
 
 #include <Rendering/Renderable.h>
 #include <Rendering/Mesh.h>

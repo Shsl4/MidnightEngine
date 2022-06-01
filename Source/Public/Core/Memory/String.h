@@ -3,7 +3,7 @@
 #include <Memory/Array.h>
 
 /*!
- *  An efficient String class implemented on top of Array with lots of built-in functions.
+ *  \brief A custom string class implemented on top of Array with utility functions.
  */
 class ENGINE_API String : public Array<char> {
 

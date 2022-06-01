@@ -53,6 +53,11 @@ SharedPointer<T>::SharedPointer(const SharedPointer& other) {
 }
 
 template <typename T>
+SharedPointer<T>::SharedPointer(nullptr_t) {
+    
+}
+
+template <typename T>
 template<typename Y>
 SharedPointer<T>::SharedPointer(SharedPointer<Y> const& other) {
 

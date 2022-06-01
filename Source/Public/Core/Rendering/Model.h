@@ -3,8 +3,7 @@
 #include <Rendering/Mesh.h>
 #include <Memory/SharedPointer.h>
 #include <Math/Matrix4.h>
-
-#include "Scene/BasicLightComponent.h"
+#include <Scene/LightComponent.h>
 
 struct Model {
     
@@ -22,7 +21,7 @@ struct Model {
         this->material = mat;
     }
 
-    void render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, WeakPointer<BasicLightComponent> light) const;
+    void render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, LightComponent* light) const;
     
     String modelName;
 

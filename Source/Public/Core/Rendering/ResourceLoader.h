@@ -6,9 +6,8 @@
 #include <Memory/SharedPointer.h>
 
 class ENGINE_API ResourceLoader : public Object {
- 
-public:
 
+public:
     ResourceLoader() = default;
 
     ~ResourceLoader() override;
@@ -22,7 +21,7 @@ public:
      *  \return The mesh or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Model> getModel(String const& name) const;
- 
+
     /*!
      *  \brief Gets a loaded texture by name.
      *
@@ -30,6 +29,14 @@ public:
      *  \return The texture or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Texture> getTexture(String const& name) const;
+
+    /*!
+     *  \brief Gets a loaded cubemap by name.
+     *
+     *  \param[in] name The name of the cubemap to get.
+     *  \return The cubemap or nullptr if it wasn't found.
+     */
+    NODISCARD WeakPointer<CubeMap> getCubeMap(String const& name) const;
 
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.
@@ -40,7 +47,6 @@ public:
     static Array<UInt8> loadFile(String const& path);
 
 private:
-
     /*!
      *  \brief Tries to load a texture from the input file.
      *
@@ -48,21 +54,32 @@ private:
      */
     void loadTexture(String const& file);
 
-     /*!
-     *  \brief Tries to load a model from the input file.
+    /*!
+    *  \brief Tries to load a model from the input file.
+    *
+    *  \param[in] file The path of the file to load.
+    */
+    void loadModel(String const& file);
+
+    /*!
+     *  \brief Tries to load a cubemap from the input file.
      *
      *  \param[in] file The path of the file to load.
      */
-    void loadModel(String const& file);
+    void loadCubeMap(String const& file);
 
     /*!
      *  \brief An array containing every loaded mesh.
      */
     Array<SharedPointer<Model>> loadedModels = Array<SharedPointer<Model>>(100);
 
-     /*!
-     *  \brief An array containing every loaded texture.
-     */
+    /*!
+    *  \brief An array containing every loaded texture.
+    */
     Array<SharedPointer<Texture>> loadedTextures = Array<SharedPointer<Texture>>(100);
-    
+
+    /*!
+     *  \brief An array containing every loaded cubemap.
+     */
+    Array<SharedPointer<CubeMap>> loadedCubeMaps = Array<SharedPointer<CubeMap>>(100);
 };

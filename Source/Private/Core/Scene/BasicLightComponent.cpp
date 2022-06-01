@@ -1,10 +1,10 @@
-﻿#include <Scene/BasicLightComponent.h>
+﻿#include <Scene/PointLightComponent.h>
 
 #include "Engine.h"
 
-void BasicLightComponent::update(float deltaTime) {
+void PointLightComponent::update(float deltaTime) {
 
-    SceneComponent::update(deltaTime);
+    LightComponent::update(deltaTime);
 
     const float time = Engine::getInstance()->getTime();
     

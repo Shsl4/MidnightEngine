@@ -1,18 +1,9 @@
 #include <Scene/CameraComponent.h>
 
-CameraComponent::CameraComponent(const float fieldOfView, const float aspectRatio, const float renderDistance)
-        : fieldOfView(fieldOfView), aspectRatio(aspectRatio), renderDistance(renderDistance) {
+#include "Scene/Scene.h"
 
-}
+CameraComponent::CameraComponent() {
 
-CameraComponent::CameraComponent() : CameraComponent(90.0f, 16.0f / 9.0f, 150.0f) {
-
-}
-
-void CameraComponent::construct(Transform const &relativeTransform) {
-
-    Super::construct(relativeTransform);
-    upVector = Vector3::up;
     updateMatrices();
 
 }
@@ -85,27 +76,6 @@ void CameraComponent::addMovementInput(const Vector3 direction, const float scal
     updateViewMatrix();
     
 }
-
-
-/*!
-* Returns a copy of the camera's forward vector.
-*
-* \return The camera forward vector
-*/
-
-
-/*!
-* Returns a copy of the camera's up vector.
-*
-* \return The camera up vector
-*/
-
-
-/*!
-* Returns a copy of the camera's right vector.
-*
-* \return The camera right vector
-*/
 
 Vector3 CameraComponent::getRightVector() const {
     return this->rightVector;

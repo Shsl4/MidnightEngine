@@ -2,33 +2,35 @@
 
 #include <Rendering/ShaderManager.h>
 
-#include "Rendering/ShaderPrograms.h"
-#include "Rendering/Uniforms.h"
-#include "Scene/BasicLightComponent.h"
+#include <Rendering/ShaderPrograms.h>
+#include <Rendering/Uniforms.h>
+#include <Scene/PointLightComponent.h>
+#include <Scene/DirectionalLightComponent.h>
 
 Model::Model(Array<SharedPointer<Mesh>> meshes, String name, Material const& mat) :
     modelName(std::move(name)), material(mat), meshes(std::move(meshes)) {
 
-    if(modelName == "Cube") {
-        this->handle = ShaderPrograms::textureShader;
+    if(modelName == "Skybox") {
+        this->handle = ShaderPrograms::skyboxShader;
     }
     else {
-        this->handle = ShaderPrograms::materialShader;
+        this->handle = ShaderPrograms::directionalLightShader;
     }   
+
     
 }
 
-void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, WeakPointer<BasicLightComponent> light) const {
+void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform, LightComponent* light) const {
 
     for (auto const& mesh : meshes) {
         
         setUniform(Uniforms::viewPosition, &view);
         bgfx::setTransform(&transform);
 
-        if (light.valid()) {
+        if (light) {
 
             const auto lightPosition = light->getWorldPosition();
-            const auto lightAmbient = light->getAmbientColor();
+            const auto lightAmbient = LinearColors::black;
             const auto lightDiffuse = light->getDiffuseColor();
             const auto lightSpecular = light->getSpecularColor();
 
@@ -36,6 +38,20 @@ void Model::render(UInt16 viewId, Vector4 const& view, Matrix4 const& transform,
             setUniform(Uniforms::lightAmbient, &lightAmbient);
             setUniform(Uniforms::lightDiffuse, &lightDiffuse);
             setUniform(Uniforms::lightSpecular, &lightSpecular);
+
+            if(const auto* directionalLight = light->cast<DirectionalLightComponent>()) {
+
+                const auto lightDirection = directionalLight->getLightDirection();
+                setUniform(Uniforms::lightDirection, &lightDirection);
+                
+            }
+
+            if(const auto* directionalLight = light->cast<PointLightComponent>()) {
+
+                const auto attenuation = directionalLight->getAttenuation();
+                setUniform(Uniforms::lightAttenuation, &attenuation);
+                
+            }
             
         }
         else {

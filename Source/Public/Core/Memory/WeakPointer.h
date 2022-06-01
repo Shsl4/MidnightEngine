@@ -7,6 +7,9 @@
 template<typename T>
 class SharedPointer;
 
+/*!
+ * \brief A weak pointer class that references an object owned by a SharedPointer.
+ */
 template<typename T>
 class WeakPointer final : public Object {
 

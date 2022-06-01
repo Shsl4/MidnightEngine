@@ -13,7 +13,7 @@ public:
     Exception() = delete;
 
     NODISCARD Array<StackFrame> getStackTrace() const { return this->stackTrace; }
-        
+
     template <typename ... Args>
     FORCEINLINE static void throwIf(const bool condition, const char* format, Args&&... args) {
         if (condition) { throw Exception(fmt::vformat(format, fmt::make_format_args(std::forward<Args>(args)...))); }
@@ -27,15 +27,15 @@ public:
 protected:
     
     Exception(const std::string& message) : std::runtime_error(message.c_str()),
-        stackTrace(StackTrace::getStackTrace()) {}
+                                            stackTrace(StackTrace::getStackTrace()) {}
 
     Exception(const char* message) : std::runtime_error(message),
-        stackTrace(StackTrace::getStackTrace()) {}
+                                     stackTrace(StackTrace::getStackTrace()) {}
 
 private:
-
-    Array<StackFrame> stackTrace;
     
+    Array<StackFrame> stackTrace;
+
 };
 
 #define DEFINE_EXCEPTION(name)                                                                                  \
@@ -69,15 +69,16 @@ private:
                                                                                                                 \
         name(const char* message) : Super(message) {}                                                           \
                                                                                                                 \
-    }                                                                                                           \
-                                                                                                                \
+    }
 
 DEFINE_EXCEPTION(NullPointerException);
+
 DEFINE_EXCEPTION(CommandError);
+
 DEFINE_EXCEPTION(ParseError);
 
 #define expectf(condition, format, ...) Exception::throwIf(!condition, format, __VA_ARGS__)
-#define expect(condition, format) Exception::throwIf(!condition, format)
+#define expect(condition, format) Exception::throwIf(!(condition), format)
 
 #define raisef(format, ...) Exception::throwError(format, __VA_ARGS__)
 //#define raise(format) Exception::throwError(format)

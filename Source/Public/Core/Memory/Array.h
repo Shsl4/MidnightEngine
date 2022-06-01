@@ -9,10 +9,10 @@
 #include <Utilities/Optional.h>
 
 /*!
- *  A safe mutable array object that supports adding, inserting, removing, sorting and other utility functions.
+ *  \brief A mutable array object that supports adding, inserting, removing, sorting and other utility functions.
  *
  *  \tparam T The type of element to store
- *  \warning T MUST implement an equality and lower-than operator.
+ *  \warning T must implement an equality and lower-than operator.
  */
 template <typename T>
 class Array : public Object {

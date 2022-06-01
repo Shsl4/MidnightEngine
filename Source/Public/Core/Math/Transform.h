@@ -26,4 +26,8 @@ struct ENGINE_API Transform {
     Vector3 rotation = Vector3();
     Vector3 scale = Vector3(1.0f);
 
+    FORCEINLINE static Transform zero(){
+        return {};
+    }
+
 };

@@ -3,6 +3,9 @@
 #include <Core/EngineMacros.h>
 #include <memory>
 
+/*!
+ * \brief A utility class with memory operation functions.
+ */
 class Memory {
     
 public:

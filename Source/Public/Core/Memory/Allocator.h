@@ -5,7 +5,7 @@
 #include <cstring>
 
 /*!
- *  An object allowing to manage memory for objects of type T.
+ *  \brief An object allowing to manage memory for objects of type T.
  *  The object is only one byte as it does not have any member variables.
  *
  *  \tparam T Type of object to manage

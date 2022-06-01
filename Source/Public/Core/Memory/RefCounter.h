@@ -2,6 +2,9 @@
 
 #include <Core/Object.h>
 
+/*!
+ * \brief The reference counter class used by SharedPointer and WeakPointer.
+ */
 class ENGINE_API RefCounter : public Object {
         
 public:

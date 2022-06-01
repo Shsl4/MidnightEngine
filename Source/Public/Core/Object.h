@@ -5,7 +5,7 @@
 #include <Core/EngineMacros.h>
 
 /*!
- * The default class for all the objects created and used by the engine.
+ * \brief The default class for all the objects created and used by the engine.
  * All classes but helpers should inherit this class.
  */
 class ENGINE_API Object {

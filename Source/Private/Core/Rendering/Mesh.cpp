@@ -70,7 +70,7 @@ void Mesh::render(UInt16 viewId, Material const& material, bgfx::ProgramHandle p
     setUniform(Uniforms::materialShininess, &material.shininess);
 
     if(texture.valid()) {
-        texture->use(0, Uniforms::textureHandle);
+        texture->use(0, Uniforms::skyboxHandle);
     }
         
     submit(viewId, program);
