@@ -33,7 +33,7 @@ set fragmentFile=fs_%~n1.bin
 .\shaderc.exe -i "./include" -f %fragmentFilePath% -p metal -o ".\Build\Resources\Shaders\Metal\%fragmentFile%" --platform osx --type fragment
 
 if errorlevel 0 (
-	xcopy /E /I /Y /Q .\Build\Resources ..\..\Resources
+	xcopy /E /I /Y /Q .\Build\Resources ..\Resources
 )
 
 

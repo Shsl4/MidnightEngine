@@ -4,7 +4,7 @@
 
 #include "Rendering/ShaderManager.h"
 
-class ShaderPrograms {
+class ENGINE_API ShaderPrograms {
 
 public:
 

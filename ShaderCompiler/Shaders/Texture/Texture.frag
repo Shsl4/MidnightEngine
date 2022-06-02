@@ -16,15 +16,16 @@ struct Light{
     vec4 specularColor;
 };
 
-uniform vec4 matAmbient;
 SAMPLER2D(texDiffuse, 0);
+
+uniform vec4 matAmbient;
 uniform vec4 matDiffuse;
 uniform vec4 matSpecular;
 uniform vec4 matShininess;
 
 uniform vec4 viewPos; 
 
-uniform vec4 lightPos; 
+uniform vec4 lightDirection; 
 uniform vec4 lightAmbientColor;
 uniform vec4 lightDiffuseColor;
 uniform vec4 lightSpecularColor;
@@ -37,7 +38,7 @@ void main()
 
     // Diffuse
     vec3 norm = normalize(v_normal);
-    vec3 lightDir = normalize(lightPos.xyz - v_pos);
+    vec3 lightDir = normalize(-lightDirection.xyz);
     float diff = max(dot(norm, lightDir), 0.0);
     vec4 diffuse = matDiffuse * lightDiffuseColor * diff * texture2D(texDiffuse, v_texcoord0);
 

@@ -66,7 +66,7 @@ void Mesh::render(UInt16 viewId, Material const& material, const Texture* textur
     setUniform(Uniforms::materialShininess, &material.shininess);
 
     if(texture) {
-        texture->use(0, Uniforms::skyboxHandle);
+        texture->use(0, Uniforms::textureHandle);
     }
         
     submit(viewId, program);

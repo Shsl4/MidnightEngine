@@ -24,8 +24,7 @@
 
 HandleWrapper(TextureHandle, bgfx::TextureHandle);
 
-Texture::Texture(String name, UInt32 w, UInt32 h, void* data): textureName(std::move(name)), textureWidth(w), textureHeight(h)
-{
+Texture::Texture(String name, UInt32 w, UInt32 h, void* data): textureName(std::move(name)), textureWidth(w), textureHeight(h) {
 
     const auto* mem = bgfx::copy(data, w * h * sizeof(int));
     const auto texture = createTexture2D(w, h, false, 1, bgfx::TextureFormat::RGBA8, 0, mem);

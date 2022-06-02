@@ -14,7 +14,6 @@ public:
     static inline bgfx::UniformHandle materialShininess {};
     static inline bgfx::UniformHandle viewPosition {};
     static inline bgfx::UniformHandle textureHandle {};
-    static inline bgfx::UniformHandle skyboxHandle {};
     static inline bgfx::UniformHandle lightPosition {};
     static inline bgfx::UniformHandle lightDirection {};
     static inline bgfx::UniformHandle lightAmbient {};
@@ -34,7 +33,6 @@ private:
         materialShininess = createUniform("matShininess", bgfx::UniformType::Vec4);
         viewPosition = createUniform("viewPos", bgfx::UniformType::Vec4);
         textureHandle = createUniform("texDiffuse", bgfx::UniformType::Sampler);
-        skyboxHandle = createUniform("skybox", bgfx::UniformType::Sampler);
         lightPosition = createUniform("lightPos", bgfx::UniformType::Vec4);
         lightDirection = createUniform("lightDirection", bgfx::UniformType::Vec4);
         lightAmbient = createUniform("lightAmbientColor", bgfx::UniformType::Vec4);
@@ -52,7 +50,6 @@ private:
         destroy(materialShininess);
         destroy(viewPosition);
         destroy(textureHandle);
-        destroy(skyboxHandle);
         destroy(lightPosition);
         destroy(lightDirection);
         destroy(lightAmbient);

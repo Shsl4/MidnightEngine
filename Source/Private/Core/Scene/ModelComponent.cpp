@@ -85,7 +85,7 @@ void ModelComponent::render(UInt64 state) {
         bgfx::setState(state);
         
         // Render it.
-        model->render(0, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles, light);
+        model->render(viewId, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles, light);
         
     }
     

@@ -16,6 +16,10 @@ public:
     void mouseX(Int32 x);
     void mouseY(Int32 y);
 
+    NODISCARD FORCEINLINE float getMovementSpeed() const { return movementSpeed; }
+    
+    FORCEINLINE void setMovementSpeed(float speed) { this->movementSpeed = speed; }
+    
 protected:
 
     void setupInput(InputManager *manager) override;
@@ -46,5 +50,7 @@ protected:
 private:
 
     CameraComponent* camera = nullptr;
+
+    float movementSpeed = 1.0f;
 
 };

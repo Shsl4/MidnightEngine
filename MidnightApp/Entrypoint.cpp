@@ -16,6 +16,8 @@
 
 #include <Scene/PointLightComponent.h>
 
+#include "SDL2/SDL_keycode.h"
+
 class LightActor : public Actor {
     
 public:
@@ -30,8 +32,12 @@ public:
         
     }
 
+    FORCEINLINE DirectionalLightComponent* getLightComponent() const {
+        return light;
+    }
+    
 private:
-
+    
     DirectionalLightComponent* light;
     ModelComponent* model;
     Vector3 rotation = Vector3::zero;
@@ -58,12 +64,6 @@ protected:
         this->planet2 = createObject<ModelActor>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)));
         this->planet3 = createObject<ModelActor>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)));
         
-        this->skybox = createObject<ModelActor>(Transform({}, { -90.0f, 0.0f, 0.0f }, Vector3(100.0f)));
-        
-        skybox->setModel("Sphere");
-        skybox->getModelComponent()->setShader(0, ShaderPrograms::textureShader);
-        skybox->getModelComponent()->setTexture(0, "Missing");
-
         this->planet1->setModel("Sphere");
         this->planet2->setModel("Sphere");
         this->planet3->setModel("Sphere");
@@ -95,7 +95,6 @@ protected:
     ModelActor* planet1 = nullptr;
     ModelActor* planet2 = nullptr;
     ModelActor* planet3 = nullptr;
-    ModelActor* skybox = nullptr;
     
 };
 
@@ -105,10 +104,85 @@ public:
     
     void start() override {
 
-        setWorldColor(Color(10, 10, 10).value);
-        createObject<ModelActor>()->setModel("Cube");
-        createObject<FlyingCharacter>({ { 2.5f, 2.5f, 2.5f }, { -135.0f, -40.0f, 0.0f } });
-        createObject<LightActor>(Transform({ 0.0f, 10.0f, 0.0f }));
+        setWorldColor(Color(0, 0, 0).value);
+        
+        this->skybox = createObject<ModelActor>(Transform({}, { -90.0f, 0.0f, 0.0f }, Vector3(1000.0f)));
+        this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
+        this->light = createObject<LightActor>(Transform({}, {}, { 0.25f, 0.25f, 0.25f }));
+
+        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
+
+        skybox->setModel("SkyCube");
+        skybox->setTexture(0, "Space");
+        skybox->setShader(0, ShaderPrograms::skyboxShader);
+
+#ifdef MULTI
+        
+        for (Int64 i = -4; i < 5; ++i) {
+
+            this->model = createObject<ModelActor>(Transform({ 10.0f * i, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(10.0f)));
+            model->setModel("marble_bust_01_2k");
+            
+        }
+
+#else
+
+        this->model = createObject<ModelActor>(Transform({ 10.0f, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(10.0f)));
+        model->setModel("marble_bust_01_2k");
+
+#endif
+        
+        InputManager* manager = Engine::getInstance()->getInputManager();
+
+        manager->bindEvent(this, KeyBind(SDLK_KP_0), EInputEvent::Pressed, &RenderScene::setTexture0);
+        manager->bindEvent(this, KeyBind(SDLK_KP_1), EInputEvent::Pressed, &RenderScene::setTexture1);
+        manager->bindEvent(this, KeyBind(SDLK_KP_2), EInputEvent::Pressed, &RenderScene::setTexture2);
+        manager->bindEvent(this, KeyBind(SDLK_KP_3), EInputEvent::Pressed, &RenderScene::setTexture3);
+        
+        this->character->setMovementSpeed(5.0f);
+        
+    }
+
+    void setTexture0() {
+        light->getLightComponent()->setDiffuseColor(LinearColors::white);
+        skybox->setModel("Sphere");
+        skybox->setTexture(0, "brown_photostudio_02_4k");
+        skybox->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture1() {
+        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(174, 160, 154));
+        skybox->setModel("Sphere");
+        skybox->setTexture(0, "moonless_golf_4k");
+        skybox->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture2() {
+        light->getLightComponent()->setDiffuseColor(LinearColors::white);
+        skybox->setModel("Sphere");
+        skybox->setTexture(0, "studio_small_09_4k");
+        skybox->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture3() {
+        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
+        skybox->setModel("SkyCube");
+        skybox->setTexture(0, "Space");
+        skybox->setShader(0, ShaderPrograms::skyboxShader);
+    }
+    
+    void update(const float deltaTime) override {
+
+        Scene::update(deltaTime);
+
+        //const float time = Engine::getInstance()->getTime();
+
+        //this->light->getLightComponent()->setLightDirection({ sin(time), -1.0f, 0.0f});
+
+#ifndef MULTI
+        model->addWorldRotation({ 0.0f, 10.0f * deltaTime, 0.0f });
+#endif
+        //light->getLightComponent()->setDiffuseColor(LinearColor::fromLinearRGB(sin(time), cos(time), sin(2.0f * time)));
         
     }
     
@@ -116,6 +190,12 @@ public:
     {
         return "RenderScene";
     }
+
+    ModelActor* skybox = nullptr;
+    ModelActor* model = nullptr;
+    FlyingCharacter* character = nullptr;
+    LightActor* light = nullptr;
+
 };
 
 class MyEngine : public Engine {
@@ -234,7 +314,7 @@ class MyEngine : public Engine {
         Console::registerCommand(listCompNode);
         Console::registerCommand(posNode);
         
-        Console::exec("scene.load SpaceScene");
+        Console::exec("scene.load RenderScene");
 
     }
 

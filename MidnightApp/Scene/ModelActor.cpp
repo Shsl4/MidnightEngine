@@ -10,7 +10,13 @@ ModelActor::ModelActor() {
 }
 
 void ModelActor::setModel(String const& name) const {
-
     this->model->setModel(name);
+}
 
+void ModelActor::setTexture(size_t index, String const& name) const {
+    model->setTexture(index, name);
+}
+
+void ModelActor::setShader(size_t index, bgfx::ProgramHandle handle) const {
+    model->setShader(index, handle);
 }

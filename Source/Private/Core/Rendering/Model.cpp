@@ -66,6 +66,7 @@ void Model::render(UInt16 viewId,
                 const auto attenuation = directionalLight->getAttenuation();
                 setUniform(Uniforms::lightAttenuation, &attenuation);
             }
+            
         }
         else {
             setUniform(Uniforms::lightPosition, &Vector4::zero);
@@ -76,6 +77,7 @@ void Model::render(UInt16 viewId,
 
         mesh->render(viewId, materials[count], textures[count].valid() ? textures[count].raw() : nullptr, programs[count]);
         ++count;
+        
     }   
     
 }

@@ -69,9 +69,9 @@ void FlyingCharacter::update(float deltaTime) {
     Super::update(deltaTime);
 
     // Add movement input.
-    camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
-    camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
-    camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);
+    camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed) * movementSpeed, deltaTime);
+    camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed) * movementSpeed, deltaTime);
+    camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed) * movementSpeed, deltaTime);
     camera->setFieldOfView(camera->getFieldOfView() + static_cast<float>(_downPressed - _upPressed) * 50.0f * deltaTime);
 
 }

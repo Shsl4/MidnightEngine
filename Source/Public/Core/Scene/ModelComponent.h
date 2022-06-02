@@ -27,6 +27,9 @@ public:
     bool setModel(String const& name);
     bool setTexture(size_t index, String const& name);
     bool setShader(size_t index, bgfx::ProgramHandle handle);
+    void setViewId(UInt16 id) {
+        this->viewId = id;
+    }
     
     NODISCARD WeakPointer<Model> getModel() const { return this->model; }
 
@@ -41,6 +44,8 @@ private:
     Array<WeakPointer<Texture>> textures = Array<WeakPointer<Texture>>(0);
     Array<Material> materials = Array<Material>(0);
     Array<bgfx::ProgramHandle> handles = Array<bgfx::ProgramHandle>(0);
+
+    UInt16 viewId = 0;
     
 };
 

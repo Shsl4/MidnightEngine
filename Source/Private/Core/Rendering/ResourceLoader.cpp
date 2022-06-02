@@ -233,7 +233,7 @@ void ResourceLoader::loadModel(String const& file)
             }
         
             vertices += Vertex(position, normal, texCoords, LinearColors::white);
-        
+            
         }
 
         const Int32 numFaces = static_cast<Int32>(libMesh->mNumFaces) - 1;
