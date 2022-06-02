@@ -9,12 +9,17 @@
 #include <assimp/Importer.hpp>
 #include <Console/Console.h>
 
+#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
 #include <Rendering/Model.h>
 #include <Rendering/Uniforms.h>
 
 #include <Rendering/ShaderPrograms.h>
+
+#include "bimg/decode.h"
+#include "bx/file.h"
+#include "Utilities/ArrayUtils.h"
 
 ResourceLoader::~ResourceLoader() {
     
@@ -28,33 +33,30 @@ void ResourceLoader::init() {
     Uniforms::makeUniforms();
     ShaderPrograms::makePrograms();
     
-    std::filesystem::directory_iterator iterator;
+    std::filesystem::recursive_directory_iterator iterator;
     
     try {
-        iterator = std::filesystem::directory_iterator("./Resources/Textures");
+        iterator = std::filesystem::recursive_directory_iterator("./Resources/Textures");
     }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
+    catch (std::exception const& e) {
+        raisef("Error loading textures: {}", e.what());
     }
 
     // For each file in our model resource directory
     for (const auto & entry : iterator)
     {
-        // Get the file name and its extension
-        std::filesystem::path file = entry.path().filename();
+        if (entry.is_directory()) { continue; }
 
         // Load it
-        loadTexture(file.string());
+        loadTexture(entry.path().string());
         
     }
-
+        
     try {
-        iterator = std::filesystem::directory_iterator("./Resources/Models");
+        iterator = std::filesystem::recursive_directory_iterator("./Resources/Models");
     }
-    catch (std::exception const&) {
-        Console::getLogger()->fatal("Could not find the Resources folder.");
-        return;
+    catch (std::exception const& e) {
+        raisef("Error loading models: {}", e.what());
     }
 
     // For each file in our model resource directory
@@ -99,13 +101,13 @@ Array<UInt8> ResourceLoader::loadFile(String const& path){
 WeakPointer<Model> ResourceLoader::getModel(String const& name) const
 {
 
-    // For every loaded mesh
+    // For every loaded model
     for (auto const& model : loadedModels)
     {
-        // If the mesh name matches
+        // If the model name matches
         if (model->modelName == name)
         {
-            // Return the mesh
+            // Return the model
             return model.weak();
         }
         
@@ -121,13 +123,13 @@ WeakPointer<Model> ResourceLoader::getModel(String const& name) const
 WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
 
     
-    // For every loaded mesh
-    for (auto const& texture : loadedTextures)
-    {
-        // If the mesh name matches
+    // For every loaded texture
+    for (auto const& texture : loadedTextures) {
+        
+        // If the texture name matches
         if (texture->textureName == name)
         {
-            // Return the mesh
+            // Return the texture
             return texture.weak();
         }
         
@@ -136,7 +138,7 @@ WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
     // Print an error message
     Console::getLogger()->error("Tried to get texture named {} which does not exist.", name);
 
-    return nullptr;
+    return missingTexture;
     
 }
 
@@ -144,17 +146,15 @@ void ResourceLoader::loadTexture(String const& file)
 {
 
     // Get the file name by removing the file extension
-    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
-
-    // Create our resource path
-    String path = "./Resources/Textures/";
-    path.append(file);
-
+    String fileName = file.substring(0, ArrayUtils::lastIndexOf(file, '.').getValueElse(file.getSize()));
+    ArrayUtils::replaceAll(fileName, '\\', '/');
+    fileName = fileName.substring(ArrayUtils::lastIndexOf(fileName, '/').getValueElse(0) + 1, fileName.getSize());
+        
     Int32 width = 0;
     Int32 height = 0;
     Int32 channelCount = 0;
-    
-    auto* data = stbi_load(path.toCString(), &width, &height, &channelCount, 4);
+
+    auto* data = stbi_load(file.toCString(), &width, &height, &channelCount, 4);
 
     if (data == nullptr)
     {
@@ -163,7 +163,13 @@ void ResourceLoader::loadTexture(String const& file)
     }
 
     // Create the mesh and store it in our array. Meshes are automatically released when the engine stops.
-    loadedTextures += SharedPointer<Texture>::make(fileName, width, height, data);
+    const auto texture = SharedPointer<Texture>::make(fileName, width, height, data);
+
+    if(fileName == "Missing"){
+        missingTexture = texture;
+    }
+    
+    loadedTextures += texture;
     
     stbi_image_free(data);
 
@@ -176,7 +182,7 @@ void ResourceLoader::loadModel(String const& file)
 {
 
     // Get the file name by removing the file extension
-    String fileName = file.substring(0, file.lastIndexOf('.').getValueElse(file.getSize()));
+    String fileName = file.substring(0, ArrayUtils::lastIndexOf(file, '.').getValueElse(file.getSize()));
 
     // Create our resource path
     String path = "Resources/Models/";
@@ -188,7 +194,6 @@ void ResourceLoader::loadModel(String const& file)
     // Load the 3D model.
     const aiScene* scene = importer.ReadFile(path.toCString(), aiProcessPreset_TargetRealtime_Fast |
                                                                aiProcess_Triangulate);
-
     // If the model could not be loaded, print an error message.
     if (scene == nullptr)
     {
@@ -197,6 +202,7 @@ void ResourceLoader::loadModel(String const& file)
     }
 
     Array<SharedPointer<Mesh>> meshes;
+    auto textures = Array<SharedPointer<Texture>>(scene->mNumMeshes);
 
     for (size_t i = 0; i < scene->mNumMeshes; ++i) {
 
@@ -227,7 +233,7 @@ void ResourceLoader::loadModel(String const& file)
             }
         
             vertices += Vertex(position, normal, texCoords, LinearColors::white);
-        
+            
         }
 
         const Int32 numFaces = static_cast<Int32>(libMesh->mNumFaces) - 1;
@@ -240,19 +246,16 @@ void ResourceLoader::loadModel(String const& file)
                 indices += libMesh->mFaces[j].mIndices[k];
             }
             
+            
         }
-        
-        // Create the mesh and store it in our array.
-        if(fileName == "Cube") {
-            meshes += SharedPointer<Mesh>::make(vertices, indices, getTexture("Missing").retain(), fileName, path);
-        }
-        else {
-            meshes += SharedPointer<Mesh>::make(vertices, indices, SharedPointer<Texture>(), fileName, path);
-        }
+
+        textures += nullptr;
+
+        meshes += SharedPointer<Mesh>::make(vertices, indices, fileName, path);
         
     }
 
-    loadedModels += SharedPointer<Model>::make(meshes, fileName, Material());
+    loadedModels += SharedPointer<Model>::make(meshes, textures, fileName);
     
     // Log a success message.
     Console::getLogger()->success("Successfully loaded model {}. Combined {} components.", fileName, scene->mNumMeshes);

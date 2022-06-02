@@ -16,6 +16,6 @@ public:
     /*!
      * A function called to render the renderable.
      */
-    virtual void render() = 0;
+    virtual void render(UInt64 state) = 0;
 
 };

@@ -131,20 +131,20 @@ void Engine::render() {
     
     // Set our renderer state properties.
     constexpr UInt64 state = 0 | BGFX_STATE_WRITE_R | BGFX_STATE_WRITE_G | BGFX_STATE_WRITE_B | BGFX_STATE_WRITE_A |
-            BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_CULL_CW | BGFX_STATE_MSAA;
+            BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_MSAA;
 
     bgfx::setState(state);
 
     if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
 
         // Get the active camera.
-        auto camera = activeScene->getCameraManager()->getActiveCamera();
+        const auto camera = activeScene->getCameraManager()->getActiveCamera();
 
         // Give the view and projection matrices to the vertex shader.
         bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
 
         // Render the components in our scene.
-        activeScene->renderComponents();
+        activeScene->renderComponents(state);
 
     }
 

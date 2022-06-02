@@ -15,9 +15,11 @@ public:
     static inline bgfx::UniformHandle viewPosition {};
     static inline bgfx::UniformHandle textureHandle {};
     static inline bgfx::UniformHandle lightPosition {};
+    static inline bgfx::UniformHandle lightDirection {};
     static inline bgfx::UniformHandle lightAmbient {};
     static inline bgfx::UniformHandle lightDiffuse {};
     static inline bgfx::UniformHandle lightSpecular {};
+    static inline bgfx::UniformHandle lightAttenuation {};
 
 private:
 
@@ -32,9 +34,11 @@ private:
         viewPosition = createUniform("viewPos", bgfx::UniformType::Vec4);
         textureHandle = createUniform("texDiffuse", bgfx::UniformType::Sampler);
         lightPosition = createUniform("lightPos", bgfx::UniformType::Vec4);
+        lightDirection = createUniform("lightDirection", bgfx::UniformType::Vec4);
         lightAmbient = createUniform("lightAmbientColor", bgfx::UniformType::Vec4);
         lightDiffuse = createUniform("lightDiffuseColor", bgfx::UniformType::Vec4);
         lightSpecular = createUniform("lightSpecularColor", bgfx::UniformType::Vec4);
+        lightAttenuation = createUniform("lightAttenuation", bgfx::UniformType::Vec4);
 
     }
 
@@ -47,9 +51,11 @@ private:
         destroy(viewPosition);
         destroy(textureHandle);
         destroy(lightPosition);
+        destroy(lightDirection);
         destroy(lightAmbient);
         destroy(lightDiffuse);
         destroy(lightSpecular);
+        destroy(lightAttenuation);
         
     }
     

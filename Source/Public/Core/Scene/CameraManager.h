@@ -31,7 +31,8 @@ public:
      *
      *  \return The active camera
      */
-    FORCEINLINE WeakPointer<CameraComponent> getActiveCamera() const {
+    FORCEINLINE CameraComponent* getActiveCamera() const {
+        expect(activeCamera, "No active camera set");
         return activeCamera;
     }
 
@@ -50,7 +51,7 @@ public:
      *
      * \param[in] camera The camera to register
      */
-    void registerCamera(WeakPointer<CameraComponent> camera);
+    void registerCamera(CameraComponent* camera);
 
     /*!
      * Function called by the scene when a CameraComponent is destroyed. Do not call manually.
@@ -65,7 +66,7 @@ public:
      *  \param[in] camera The camera to use.
      *  \return Whether the camera is being used.
      */
-    bool setActiveCamera(WeakPointer<CameraComponent>& camera);
+    bool setActiveCamera(CameraComponent* camera);
 
 
 protected:
@@ -73,12 +74,12 @@ protected:
     /*!
      * Array containing the cameras in the scene.
      */
-    Array<WeakPointer<CameraComponent>> cameras;
+    Array<CameraComponent*> cameras;
     
     /*!
      * The camera currently used for rendering.
      */
-    WeakPointer<CameraComponent> activeCamera = nullptr;
+    CameraComponent* activeCamera = nullptr;
 
     /*!
      * The Scene this CameraManager belongs to.

@@ -15,7 +15,7 @@
 #include <Console/Console.h>
 
 /*!
- *  The main engine class.
+ *  \brief The main engine class.
  */
 class ENGINE_API Engine : public Object
 {

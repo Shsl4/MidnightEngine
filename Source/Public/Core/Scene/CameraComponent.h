@@ -18,21 +18,10 @@ public:
      */
     CameraComponent();
 
-    /*!
-     * A CameraComponent constructor with multiple parameters.
-     *
-     *  \param[in] fieldOfView The camera field of view.
-     *  \param[in] aspectRatio The camera aspect ratio.
-     *  \param[in] renderDistance The camera render distance.
-     */
-    CameraComponent(float fieldOfView, float aspectRatio, float renderDistance);
-
     void start() override;
 
     void update(float deltaTime) override;
-
-    void construct(Transform const &relativeTransform) override;
-
+ 
     /*!
      * Sets the field of view (in degrees) of the camera.
      *
@@ -179,7 +168,7 @@ private:
     /*!
      * The camera up vector.
      */
-    Vector3 upVector;
+    Vector3 upVector = Vector3::up;
 
     /*!
      * The camera forward vector.
@@ -189,17 +178,17 @@ private:
     /*!
      * The active field of view of the camera.
      */
-    float fieldOfView;
+    float fieldOfView = 90.0f;
 
     /*!
      * The active aspect ratio of the camera.
      */
-    float aspectRatio;
+    float aspectRatio = 16.0f / 9.0f;
 
     /*!
      * The active render distance of the camera.
      */
-    float renderDistance;
+    float renderDistance = 3500.0f;
 
     /*!
      * The active camera speed.

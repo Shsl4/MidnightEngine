@@ -1,14 +1,15 @@
 ﻿#pragma once
 
-#include <Core/Object.h>
-
-class ENGINE_API RefCounter : public Object {
+/*!
+ * \brief The reference counter class used by SharedPointer and WeakPointer.
+ */
+class ENGINE_API RefCounter final {
         
 public:
 
     RefCounter() = default;
 
-    ~RefCounter() override = default;
+    ~RefCounter() = default;
         
     RefCounter(const RefCounter& other) = delete;
         

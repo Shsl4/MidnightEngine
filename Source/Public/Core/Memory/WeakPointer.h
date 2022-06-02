@@ -1,14 +1,16 @@
 #pragma once
 
-#include <Core/Object.h>
 #include <Memory/Allocator.h>
 #include <Memory/RefCounter.h>
 
 template<typename T>
 class SharedPointer;
 
+/*!
+ * \brief A weak pointer class that references an object owned by a SharedPointer.
+ */
 template<typename T>
-class WeakPointer final : public Object {
+class WeakPointer final {
 
     template<typename Y>
     friend class WeakPointer;
@@ -19,7 +21,7 @@ public:
 
     WeakPointer() = default;
     
-    ~WeakPointer() override;
+    ~WeakPointer();
 
     explicit WeakPointer(const SharedPointer<T>& other);
 

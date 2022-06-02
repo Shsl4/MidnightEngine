@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 
+#include <Core/Object.h>
 #include <Input/Keybind.h>
 #include <Input/InputEnums.h>
 #include <Memory/UniquePointer.h>

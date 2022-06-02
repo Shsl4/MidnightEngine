@@ -91,8 +91,7 @@ void Console::execute(String const& command) const {
     
 }
 
-void Console::consoleHelp(const CommandContext* context)
-{
+void Console::consoleHelp(const CommandContext* context) const {
 
     logger->info("Printing help: ");
 

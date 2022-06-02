@@ -1,15 +1,17 @@
 #include <Scene/CameraManager.h>
 #include <Scene/Scene.h>
 
+#include "Utilities/ArrayUtils.h"
+
 CameraManager::CameraManager(Scene* owner) : cameras(15), scene(owner) {
 
 
 }
 
-bool CameraManager::setActiveCamera(WeakPointer<CameraComponent> & camera) {
+bool CameraManager::setActiveCamera(CameraComponent* camera) {
 
     // If the pointer is valid and the camera is registered.
-    if (camera.valid() && cameras.contains(camera)) {
+    if (camera && ArrayUtils::contains(cameras, camera)) {
 
         // Set the camera as active.
         activeCamera = camera;
@@ -21,12 +23,12 @@ bool CameraManager::setActiveCamera(WeakPointer<CameraComponent> & camera) {
 
 }
 
-void CameraManager::registerCamera(WeakPointer<CameraComponent> camera) {
+void CameraManager::registerCamera(CameraComponent* camera) {
     
     // Append the camera to the registered camera array.
     this->cameras.append(camera);
 
-    if (activeCamera.expired()) {
+    if (!activeCamera) {
 
         // Set the current camera.
         activeCamera = camera;
@@ -42,7 +44,7 @@ void CameraManager::unregisterCamera(CameraComponent* camera) {
     size_t i = 0;
     
     for (auto& e : cameras) {
-        if (camera == e.raw()) {
+        if (camera == e) {
             break;
         }
         ++i;

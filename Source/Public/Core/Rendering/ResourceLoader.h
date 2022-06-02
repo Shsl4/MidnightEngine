@@ -6,9 +6,8 @@
 #include <Memory/SharedPointer.h>
 
 class ENGINE_API ResourceLoader : public Object {
- 
-public:
 
+public:
     ResourceLoader() = default;
 
     ~ResourceLoader() override;
@@ -22,7 +21,7 @@ public:
      *  \return The mesh or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Model> getModel(String const& name) const;
- 
+
     /*!
      *  \brief Gets a loaded texture by name.
      *
@@ -30,7 +29,7 @@ public:
      *  \return The texture or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Texture> getTexture(String const& name) const;
-
+ 
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.
      *
@@ -40,7 +39,6 @@ public:
     static Array<UInt8> loadFile(String const& path);
 
 private:
-
     /*!
      *  \brief Tries to load a texture from the input file.
      *
@@ -48,11 +46,11 @@ private:
      */
     void loadTexture(String const& file);
 
-     /*!
-     *  \brief Tries to load a model from the input file.
-     *
-     *  \param[in] file The path of the file to load.
-     */
+    /*!
+    *  \brief Tries to load a model from the input file.
+    *
+    *  \param[in] file The path of the file to load.
+    */
     void loadModel(String const& file);
 
     /*!
@@ -60,9 +58,11 @@ private:
      */
     Array<SharedPointer<Model>> loadedModels = Array<SharedPointer<Model>>(100);
 
-     /*!
-     *  \brief An array containing every loaded texture.
-     */
+    /*!
+    *  \brief An array containing every loaded texture.
+    */
     Array<SharedPointer<Texture>> loadedTextures = Array<SharedPointer<Texture>>(100);
-    
+
+    WeakPointer<Texture> missingTexture;
+
 };

@@ -39,9 +39,9 @@ private:
     
     void init();
     
-    void consoleLoop() const;
+    NORETURN void consoleLoop() const;
     
-    void consoleHelp(const CommandContext* context);
+    void consoleHelp(const CommandContext* context) const;
 
     void registerNode(SharedPointer<CommandNode> const& node) const;
 

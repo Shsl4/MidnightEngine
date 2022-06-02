@@ -36,7 +36,7 @@ template <typename T>
 template <typename Y>
 WeakPointer<T>::WeakPointer(WeakPointer<Y> const& other) {
     
-    static_assert(std::is_base_of_v<Y, T>);
+    static_assert(std::is_convertible_v<T*, Y*>);
     
     if (other.pointer) {
         

@@ -3,6 +3,9 @@
 #include <Core/EngineMacros.h>
 #include <memory>
 
+/*!
+ * \brief A utility class with memory operation functions.
+ */
 class Memory {
     
 public:
@@ -72,7 +75,9 @@ public:
      */
     template<typename T>
     FORCEINLINE static void copyBack(const T *from, const T *to, T *dest);
-    
+
+    Memory() = delete;
+ 
 };
 
 #define __MEMORY_INCL

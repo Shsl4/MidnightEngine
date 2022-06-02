@@ -1,17 +1,15 @@
 #pragma once
 
-#include <Memory/Memory.h>
-#include <Core/Object.h>
 #include <cstring>
 
 /*!
- *  An object allowing to manage memory for objects of type T.
+ *  \brief An object allowing to manage memory for objects of type T.
  *  The object is only one byte as it does not have any member variables.
  *
  *  \tparam T Type of object to manage
  */
 template<typename T>
-class Allocator final : public Object {
+class Allocator final {
 
 public:
 
@@ -76,7 +74,7 @@ public:
     /*!
      * The Allocator destructor.
      */
-    ~Allocator() final = default;
+    ~Allocator() = default;
 
     /*!
      *  Moves memory forwards or backwards automatically.

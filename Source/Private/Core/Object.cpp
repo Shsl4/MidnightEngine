@@ -30,7 +30,7 @@ String Object::getClassName() const {
 #ifdef __GNUG__
     return demangle(className);
 #else
-    return className;
+    return String(className).split(' ')[1];
 #endif
 
 }

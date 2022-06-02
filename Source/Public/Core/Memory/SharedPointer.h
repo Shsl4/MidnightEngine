@@ -7,9 +7,13 @@
 template <typename T>
 class WeakPointer;
 
+/**
+ * \brief A smart shared pointer class.
+ * 
+ * \tparam T Type of the object to manage.
+ */
 template <typename T>
-class SharedPointer final : public Object
-{
+class SharedPointer final {
 
     template<typename Y>
     friend class SharedPointer;
@@ -25,11 +29,13 @@ public:
 
     SharedPointer() = default;
 
-    ~SharedPointer() override;
+    ~SharedPointer();
 
     explicit SharedPointer(const WeakPointer<T>& weak);
 
     SharedPointer(const SharedPointer& other);
+    
+    SharedPointer(nullptr_t);
 
     template<typename Y>
     SharedPointer(SharedPointer<Y> const& other);

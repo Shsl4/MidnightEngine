@@ -100,32 +100,8 @@ int Entry::initEngine(PlatformData data) {
         const Array<StackFrame> stackFrames = e.getStackTrace();
         size_t frameIndex = 0;
         
-        for (size_t i = 2; i < stackFrames.getSize(); ++i) {
-            
-            StackFrame& frame = stackFrames[i];
-
-            if(frame.lineNumber == -1) {
-
-                Console::getLogger()->fatal("[{}] {} <{}> | ({})",
-                    frameIndex,
-                    frame.functionName,
-                    frame.fileName,
-                    frame.libraryName);
-                
-            }
-            else {
-
-                Console::getLogger()->fatal("[{}] {} in file {} at line {} | ({})",
-                    frameIndex,
-                    frame.functionName,
-                    frame.fileName,
-                    frame.lineNumber,
-                    frame.libraryName);
-                
-            }
-                        
-            ++frameIndex;
-            
+        for (size_t i = 2; i < stackFrames.getSize(); ++i, ++frameIndex) {
+            Console::getLogger()->fatal("[{}] {}", frameIndex, stackFrames[i].format());
         }
 
         engine->cleanup();

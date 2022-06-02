@@ -1,10 +1,11 @@
 #include <Scene/SceneComponent.h>
-#include <Scene/SceneObject.h>
+#include <Scene/Actor.h>
 #include <Logging/Logger.h>
 #include <Math/MathUtils.h>
 #include <Memory/String.h>
 
 #include "Engine.h"
+#include "Utilities/ArrayUtils.h"
 
 const AttachmentProperties AttachmentProperties::all = { true, true, true };
 const AttachmentProperties AttachmentProperties::locationOnly = { true, false, false };
@@ -36,35 +37,29 @@ void SceneComponent::update(const float deltaTime) {
 
 }
 
-void SceneComponent::construct(Transform const &relativeTransform) {
-    
-    this->transform = relativeTransform;
-    
-}
-
-bool SceneComponent::attachTo(SceneObject *object, AttachmentProperties properties) {
+bool SceneComponent::attachTo(Actor* actor, AttachmentProperties properties) {
 
     // If the pointer or the object is invalid, return.
-    if (!object || !object->isValid()) { return false; }
+    if (!actor /*|| !actor->isValid()*/) { return false; }
 
-    if(object->getRootComponent())
+    if(actor->getRootComponent())
     {
         // Get the attachment result.
-        const bool result = attachTo(object->getRootComponent(), properties);
+        const bool result = attachTo(actor->getRootComponent(), properties);
 
         // If the attachment succeeded
         if (result) {
 
             // Set the parent object and call the attached callback.
-            object->onComponentAttached(this);
+            actor->onComponentAttached(this);
 
         }
 
         return result;
     }
     
-    object->rootComponent = this;
-    this->parentObject = object;
+    actor->rootComponent = this;
+    setParentActor(actor);
 
     return true;
     
@@ -74,7 +69,7 @@ bool SceneComponent::attachTo(SceneObject *object, AttachmentProperties properti
 bool SceneComponent::attachTo(SceneComponent *other, AttachmentProperties properties) {
 
     // If the pointer or the component is invalid, return.
-    if (!other || !other->isValid()) { return false; }
+    if (!other) { return false; }
     
     // You can't attach a component to itself.
     if (other == this) { return false; }
@@ -97,15 +92,15 @@ bool SceneComponent::attachTo(SceneComponent *other, AttachmentProperties proper
 void SceneComponent::detachFromComponent() {
 
     // If there is no parent object or component
-    if (!parentObject || !parentComponent) {
+    if (!getParentActor() || !parentComponent) {
         return;
     }
 
     // Detach and set the variables to nullptr.
-    parentComponent->childComponents.removeFirstOf(this);
-    parentObject->onComponentDetached(this);
+    ArrayUtils::removeFirstOf(parentComponent->childComponents, this);
+    getParentActor()->onComponentDetached(this);
+    setParentActor(nullptr);
     parentComponent = nullptr;
-    parentObject = nullptr;
 
 }
 
@@ -137,6 +132,30 @@ Vector3 SceneComponent::getRelativeScale() const
     }
     
     return transform.scale;
+}
+
+Scene* SceneComponent::getScene() const {
+
+    // If there is no parent actor, return nullptr.
+    expectf(getParentActor(), "{} has no parent actor.", getName());
+
+    // Return the scene of the parent actor.
+    return getParentActor()->getScene();
+
+}
+
+bool SceneComponent::isRootComponent() const {
+    return parentComponent == nullptr;
+}
+
+SceneComponent* SceneComponent::getHierarchyRoot() const {
+
+    if (parentComponent) {
+        return parentComponent->getHierarchyRoot();
+    }
+
+    return const_cast<SceneComponent*>(this);
+
 }
 
 Vector3 SceneComponent::getForwardVector() const
@@ -201,6 +220,7 @@ void SceneComponent::addWorldScale(Vector3 const& scale) {
     }
     
 }
+
 
 void SceneComponent::addWorldTransform(Transform const& transformToAdd) {
     addWorldPosition(transformToAdd.position);
@@ -275,9 +295,4 @@ void SceneComponent::rotateAround(Vector3 const& position, Vector3 const& axis, 
 
     setWorldPosition((f * distance) + position);
     
-}
-
-bool SceneComponent::isRootComponent() const
-{
-    return parentObject->getRootComponent() == this;
 }

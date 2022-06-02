@@ -2,20 +2,19 @@
 
 #include <functional>
 
-#include <Core/Object.h>
 #include <Core/EngineTypes.h>
 #include <Memory/Memory.h>
 #include <Memory/Allocator.h>
 #include <Utilities/Optional.h>
 
 /*!
- *  A safe mutable array object that supports adding, inserting, removing, sorting and other utility functions.
+ *  \brief A mutable array object that supports adding, inserting, removing, sorting and other utility functions.
  *
  *  \tparam T The type of element to store
- *  \warning T MUST implement an equality and lower-than operator.
+ *  \warning T must implement an equality and lower-than operator.
  */
 template <typename T>
-class Array : public Object {
+class Array {
 
 public:
     /*!
@@ -55,7 +54,7 @@ public:
     /*!
      * The Array destructor. It releases the allocated resources.
      */
-    ~Array() override;
+    virtual ~Array();
 
     /*!
      *  Adds an element to the end of the array.
@@ -82,45 +81,6 @@ public:
     virtual Optional<T> removeAt(size_t index);
 
     /*!
-     *  Removes the first instance of the input element in the array.
-     *
-     *  \param[in] elem The element to check
-     *  \return Whether the element was removed.
-     */
-    virtual bool removeFirstOf(T const& elem);
-
-    /*!
-     *  Removes the last instance of the input element in the array.
-     *
-     *  \param[in] elem The element to check
-     *  \return Whether the element was removed.
-     */
-    virtual bool removeLastOf(T const& elem);
-
-    /*!
-     *  Removes all instances of the element in the array.
-     *
-     *  \param[in] elem The element to remove
-     */
-    virtual void removeAllOf(T const& elem);
-
-    /*!
-     *  Returns the first index of the input element
-     *
-     *  \param[in] elem The element to check
-     *  \return An optional value containing the index if it was found.
-     */
-    NODISCARD virtual Optional<size_t> firstIndexOf(T const& elem) const;
-
-    /*!
-     *  Returns the last index of the input element
-     *
-     *  \param[in] elem The element to check
-     *  \return An optional value containing the index if it was found.
-     */
-    NODISCARD virtual Optional<size_t> lastIndexOf(T const& elem) const;
-
-    /*!
      *  Returns an array containing the elements in range.
      *
      *  \param[in] from The index to start copying.
@@ -135,32 +95,9 @@ public:
      *  \param[in] condition The condition to check
      *  \return An array containing all elements matching the condition.
      */
-    virtual Array<T> arrayMatching(std::function<bool(T const&)> condition);
+    virtual Array<T> arrayMatching(std::function<bool(T const &)> condition) const;
 
-    /*!
-     * Removes all the duplicate elements from the array keeping only the first existing instances.
-     */
-    virtual void removeDuplicates();
-
-    /*!
-     *  Sorts the array, lowest to highest, using the quicksort algorithm.
-     */
-    virtual void sortAscending();
-
-    /*!
-     *  Sorts the array, highest to lowest, using the quicksort algorithm.
-     */
-    virtual void sortDescending();
-
-    /*!
-     *  Checks whether the array contains the input element.
-     *
-     *  \param[in] elem The element to check.
-     *  \return Whether the array contains the element.
-     */
-    NODISCARD virtual bool contains(T const& elem) const;
-
-    /*!
+ /*!
      *  Inserts an element at the input index.
      *
      *  \param[in] elem The element to insert
@@ -233,23 +170,7 @@ public:
      *  \return This array.
      */
     virtual Array<T>& operator=(Array<T>&& other) noexcept;
-
-    /*!
-     *  The Array equality operator.
-     *
-     *  \param[in] other The array to compare with.
-     *  \return Whether the arrays are equal.
-     */
-    virtual bool operator==(Array<T> const& other) const;
-
-    /*!
-     *  The Array not equal operator.
-     *
-     *  \param[in] other The array to compare with.
-     *  \return Whether the arrays are not equal.
-     */
-    virtual bool operator!=(Array<T> const& other) const;
-
+ 
     /*!
      *  Shorthand expression for append.
      *
@@ -324,43 +245,7 @@ protected:
     Allocator<T> allocator{};
 
 private:
-    /*!
-     *  Ascending Quicksort algorithm function.
-     *
-     *  \param[in] from Where to start ordering.
-     *  \param[in] to Where to stop ordering.
-     */
-    void internalSortAsc(Int64 from, Int64 to);
 
-    /*!
-     *  Descending Quicksort algorithm function.
-     *
-     *  \param[in] from Where to start ordering.
-     *  \param[in] to Where to stop ordering.
-     */
-    void internalSortDesc(Int64 from, Int64 to);
-
-    /*!
-     *  Partition function for ascending QuickSort algorithm.
-     *
-     *  \param[in] from Where to start ordering.
-     *  \param[in] to Where to stop ordering.
-     *  \return The partition result.
-     */
-    Int64 partitionAsc(Int64 from, Int64 to);
-
-    /*!
-     *  Partition function for descending QuickSort algorithm.
-     *
-     *  \param[in] from Where to start ordering.
-     *  \param[in] to Where to stop ordering.
-     *  \return The partition result.
-     */
-    Int64 partitionDesc(Int64 from, Int64 to);
-
-    /*!
-     * Allows String to access protected members to directly manipulate data.
-     */
     friend class String;
 
 };

@@ -8,8 +8,8 @@
  * \tparam T The type of object to manage
  */
 template <typename T>
-class UniquePointer : public Object
-{
+class UniquePointer final {
+ 
     /**
      * \brief The UniquePointer constructor used internally to manage an object
      * \param newPointer The pointer to manage.
@@ -40,7 +40,7 @@ public:
     /**
      * \brief The UniquePointer destructor. Releases the managed resource.
      */
-    ~UniquePointer() override;
+    ~UniquePointer();
 
     /**
      * \brief The UniquePointer copy constructor (deleted)

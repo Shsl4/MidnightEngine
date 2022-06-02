@@ -16,33 +16,30 @@
 
 #endif
 
-StackFrame::StackFrame(const char* function, const char* file, const char* library, size_t line) : lineNumber(file ? line : -1) {
+StackFrame::StackFrame(const char* function, const char* file, const char* library, Int64 line) : lineNumber(file ? line : -1) {
 
-    String string;
-    Array<String> storage;
-    
     if (function) {
-        string = function;
-        storage = string.split('\\');
-        this->functionName = storage.getAt(storage.getSize() - 1);
+        this->functionName = function;
     }
     else {
         this->functionName = "External function";
     }
 
     if (file) {
-        string = file;
-        storage = string.split('\\');
+        
+        const String string = file;
+        const Array<String> storage = string.split('\\');
+        
+        this->filePath = file;
         this->fileName = storage.getAt(storage.getSize() - 1);
+        
     }
     else {
         this->fileName = "External file";
     }
 
     if (library) {
-        string = library;
-        storage = string.split('\\');
-        this->libraryName = storage.getAt(storage.getSize() - 1);
+        this->libraryName = library;
     }
     else {
         this->libraryName = "External library";
@@ -67,13 +64,30 @@ bool StackFrame::operator<(const StackFrame& other) const {
     
 }
 
+String StackFrame::format() const {
+
+    if(this->lineNumber == -1) {
+
+        return fmt::format("{} <{}> | ({})",
+            this->functionName,
+            this->fileName,
+            this->libraryName);
+                
+    }
+    
+    return fmt::format("{} in file {} at line {} | ({})",
+                       this->functionName,
+                       this->fileName,
+                       this->lineNumber,
+                       this->libraryName);
+}
+
 #ifdef _WIN64
 
 Array<StackFrame> StackTrace::getStackTrace() {
 
     Array<StackFrame> stack;
     Allocator<char> allocator;
-    constexpr DWORD machineType = IMAGE_FILE_MACHINE_AMD64;
     HANDLE process = GetCurrentProcess();
     HANDLE thread = GetCurrentThread();
     STACKFRAME64 frame{};
@@ -107,9 +121,11 @@ Array<StackFrame> StackTrace::getStackTrace() {
     frame.AddrFrame.Mode = AddrModeFlat;
     
     if (SymInitialize(process, nullptr, true)) {
-                    
+        
+        constexpr DWORD machineType = IMAGE_FILE_MACHINE_AMD64;
+
         while (StackWalk64(machineType, process, thread, &frame, &context, nullptr,
-            SymFunctionTableAccess64, SymGetModuleBase64, nullptr)) {
+                           SymFunctionTableAccess64, SymGetModuleBase64, nullptr)) {
         
             const bool foundSymbol = SymGetSymFromAddr64(process, frame.AddrPC.Offset, &displacement, symbol);
         
@@ -168,7 +184,7 @@ Array<StackFrame> StackTrace::getStackTrace() {
 
         char* demangled = abi::__cxa_demangle(symName.toCString(), nullptr, nullptr, &status);
 
-        stack += StackFrame(status == 0 ? demangled : symName.toCString(), nullptr, libName.toCString(), 0);
+        stack += StackFrame(status == 0 ? demangled : symName.toCString(), nullptr, libName.toCString(), -1);
         
         if (status == 0) {
             free(demangled);

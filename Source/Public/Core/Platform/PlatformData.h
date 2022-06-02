@@ -8,9 +8,7 @@ struct ENGINE_API PlatformData {
     PlatformData() = default;
 
     PlatformData(int argc, const char **argv, void *window, float scaleFactor);
-
-    PlatformData& operator=(PlatformData const& other) = default;
-
+    
     int argc = 0;
     const char** argv = nullptr;
     void* mainWindow = nullptr;

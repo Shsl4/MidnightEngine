@@ -1,19 +1,25 @@
 #pragma once
 
-#include <Scene/SceneObject.h>
+#include <Scene/Actor.h>
 #include <Scene/CameraComponent.h>
 
 #include <Memory/WeakPointer.h>
 
-class FlyingCharacter : public SceneObject {
+class FlyingCharacter : public Actor {
 
-    using Super = SceneObject;
+    using Super = Actor;
 
 public:
+    
+    FlyingCharacter();
+    
     void mouseX(Int32 x);
     void mouseY(Int32 y);
-    void createComponents(Scene *scene, Transform transform) override;
 
+    NODISCARD FORCEINLINE float getMovementSpeed() const { return movementSpeed; }
+    
+    FORCEINLINE void setMovementSpeed(float speed) { this->movementSpeed = speed; }
+    
 protected:
 
     void setupInput(InputManager *manager) override;
@@ -43,6 +49,8 @@ protected:
 
 private:
 
-    WeakPointer<CameraComponent> camera = nullptr;
+    CameraComponent* camera = nullptr;
+
+    float movementSpeed = 1.0f;
 
 };

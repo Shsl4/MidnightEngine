@@ -4,7 +4,7 @@
 
 #include "Rendering/ShaderManager.h"
 
-class ShaderPrograms {
+class ENGINE_API ShaderPrograms {
 
 public:
 
@@ -14,6 +14,9 @@ public:
     static inline bgfx::ProgramHandle basicShader {};
     static inline bgfx::ProgramHandle materialShader {};
     static inline bgfx::ProgramHandle textureShader {};
+    static inline bgfx::ProgramHandle directionalLightShader {};
+    static inline bgfx::ProgramHandle pointLightShader {};
+    static inline bgfx::ProgramHandle skyboxShader {};
     
 private:
 
@@ -25,6 +28,9 @@ private:
         basicShader = ShaderManager::loadProgram("Basic");
         materialShader = ShaderManager::loadProgram("Material");
         textureShader = ShaderManager::loadProgram("Texture");
+        directionalLightShader = ShaderManager::loadProgram("DirectionalLight");
+        pointLightShader = ShaderManager::loadProgram("PointLight");
+        skyboxShader = ShaderManager::loadProgram("Skybox");
         
     }
 
@@ -34,7 +40,10 @@ private:
         destroy(basicShader);
         destroy(materialShader);
         destroy(textureShader);
-        
+        destroy(directionalLightShader);
+        destroy(pointLightShader);
+        destroy(skyboxShader);
+                
     }
         
 };

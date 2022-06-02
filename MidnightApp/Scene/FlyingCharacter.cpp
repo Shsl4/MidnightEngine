@@ -15,6 +15,13 @@ enum SpecialKeys {
 
 };
 
+FlyingCharacter::FlyingCharacter() {
+
+    this->camera = createComponent<CameraComponent>("CharacterCamera");
+    setRootComponent(camera);
+    
+}
+
 void FlyingCharacter::mouseX(const Int32 x) {
 
     // Add camera input on mouse movement.
@@ -26,14 +33,6 @@ void FlyingCharacter::mouseY(const Int32 y) {
 
     // Add camera input on mouse movement.
     camera->addCameraPitchInput(static_cast<float>(y) / 10.0f);
-
-}
-
-void FlyingCharacter::createComponents(Scene *scene, Transform transform) {
-
-    // Create a CameraComponent and set it as root.
-    this->camera = scene->createComponent<CameraComponent>(transform, 90.0f, 16.0f / 9.0f, 500.0f);
-    setRootComponent(camera.raw());
 
 }
 
@@ -70,9 +69,9 @@ void FlyingCharacter::update(float deltaTime) {
     Super::update(deltaTime);
 
     // Add movement input.
-    camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed), deltaTime);
-    camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed), deltaTime);
-    camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed), deltaTime);
+    camera->addMovementInput(camera->getForwardVector(), static_cast<float>(_wPressed - _sPressed) * movementSpeed, deltaTime);
+    camera->addMovementInput(camera->getRightVector(), static_cast<float>(_dPressed - _aPressed) * movementSpeed, deltaTime);
+    camera->addMovementInput(camera->getUpVector(), static_cast<float>(_spacePressed - _shiftPressed) * movementSpeed, deltaTime);
     camera->setFieldOfView(camera->getFieldOfView() + static_cast<float>(_downPressed - _upPressed) * 50.0f * deltaTime);
 
 }
