@@ -6,6 +6,6 @@ var searchData=
   ['matrix4_3',['Matrix4',['../struct_matrix4.html',1,'']]],
   ['memory_4',['Memory',['../class_memory.html',1,'']]],
   ['mesh_5',['Mesh',['../struct_mesh.html',1,'']]],
-  ['meshcomponent_6',['MeshComponent',['../class_mesh_component.html',1,'']]],
-  ['model_7',['Model',['../struct_model.html',1,'']]]
+  ['model_6',['Model',['../struct_model.html',1,'']]],
+  ['modelcomponent_7',['ModelComponent',['../class_model_component.html',1,'']]]
 ];

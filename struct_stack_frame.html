@@ -96,20 +96,26 @@ $(document).ready(function(){initNavTree('struct_stack_frame.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
+<p>A struct that holds information of a single stack frame including the function name, file name, line number and library name.  
+ <a href="struct_stack_frame.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_stack_trace_8h_source.html">StackTrace.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a076e02a22a2ea0678750ef95cb3a934f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a076e02a22a2ea0678750ef95cb3a934f">StackFrame</a> ()=default</td></tr>
 <tr class="separator:a076e02a22a2ea0678750ef95cb3a934f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e1967abd9665cafa4df1163ed7c7a0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a0e1967abd9665cafa4df1163ed7c7a0f">StackFrame</a> (const char *function, const char *file, const char *library, size_t line)</td></tr>
-<tr class="separator:a0e1967abd9665cafa4df1163ed7c7a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0162496d896a8c8a01cd0fe83c0d66"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#aff0162496d896a8c8a01cd0fe83c0d66">StackFrame</a> (const char *function, const char *file, const char *library, <a class="el" href="_engine_types_8h.html#a51b4c1b67123dbb4903672fa753e6dd1">Int64</a> line)</td></tr>
+<tr class="separator:aff0162496d896a8c8a01cd0fe83c0d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cd6587277ba62b5b25ecd5acacf6eba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a0cd6587277ba62b5b25ecd5acacf6eba">operator==</a> (const <a class="el" href="struct_stack_frame.html">StackFrame</a> &amp;other) const</td></tr>
 <tr class="separator:a0cd6587277ba62b5b25ecd5acacf6eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cca61c0ae921b89e6187fc9830b47b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a2cca61c0ae921b89e6187fc9830b47b1">operator!=</a> (const <a class="el" href="struct_stack_frame.html">StackFrame</a> &amp;other) const</td></tr>
 <tr class="separator:a2cca61c0ae921b89e6187fc9830b47b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1afc9e22148008f4a07e01a5cc574b05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a1afc9e22148008f4a07e01a5cc574b05">operator&lt;</a> (const <a class="el" href="struct_stack_frame.html">StackFrame</a> &amp;other) const</td></tr>
 <tr class="separator:a1afc9e22148008f4a07e01a5cc574b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476cd1cd39a5c2c41854013bcffdd1a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a476cd1cd39a5c2c41854013bcffdd1a3">format</a> () const</td></tr>
+<tr class="memdesc:a476cd1cd39a5c2c41854013bcffdd1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats the stack frame into a readable string.  <a href="struct_stack_frame.html#a476cd1cd39a5c2c41854013bcffdd1a3">More...</a><br /></td></tr>
+<tr class="separator:a476cd1cd39a5c2c41854013bcffdd1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -117,12 +123,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4d330ef9cd47f18a3f7890ed44db045d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9052921b461ccb36f79c19b435674515"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a9052921b461ccb36f79c19b435674515">fileName</a></td></tr>
 <tr class="separator:a9052921b461ccb36f79c19b435674515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14040598cb1a7d6e55517484ec8e2e80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a14040598cb1a7d6e55517484ec8e2e80">filePath</a></td></tr>
+<tr class="separator:a14040598cb1a7d6e55517484ec8e2e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8286890349cda585b4c5a2832db0d007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a8286890349cda585b4c5a2832db0d007">libraryName</a></td></tr>
 <tr class="separator:a8286890349cda585b4c5a2832db0d007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f44dc1e28408015337eba9410e8c259"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a8f44dc1e28408015337eba9410e8c259">lineNumber</a> = -1</td></tr>
-<tr class="separator:a8f44dc1e28408015337eba9410e8c259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3375a0f8eef0cf745d253dcc91607b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a51b4c1b67123dbb4903672fa753e6dd1">Int64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stack_frame.html#a0f3375a0f8eef0cf745d253dcc91607b">lineNumber</a> = -1</td></tr>
+<tr class="separator:a0f3375a0f8eef0cf745d253dcc91607b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >A struct that holds information of a single stack frame including the function name, file name, line number and library name. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a076e02a22a2ea0678750ef95cb3a934f" name="a076e02a22a2ea0678750ef95cb3a934f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a076e02a22a2ea0678750ef95cb3a934f">&#9670;&nbsp;</a></span>StackFrame() <span class="overload">[1/2]</span></h2>
 
@@ -148,8 +158,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0e1967abd9665cafa4df1163ed7c7a0f" name="a0e1967abd9665cafa4df1163ed7c7a0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e1967abd9665cafa4df1163ed7c7a0f">&#9670;&nbsp;</a></span>StackFrame() <span class="overload">[2/2]</span></h2>
+<a id="aff0162496d896a8c8a01cd0fe83c0d66" name="aff0162496d896a8c8a01cd0fe83c0d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0162496d896a8c8a01cd0fe83c0d66">&#9670;&nbsp;</a></span>StackFrame() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +185,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype"><a class="el" href="_engine_types_8h.html#a51b4c1b67123dbb4903672fa753e6dd1">Int64</a>&#160;</td>
           <td class="paramname"><em>line</em>&#160;</td>
         </tr>
         <tr>
@@ -189,6 +199,25 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a476cd1cd39a5c2c41854013bcffdd1a3" name="a476cd1cd39a5c2c41854013bcffdd1a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a476cd1cd39a5c2c41854013bcffdd1a3">&#9670;&nbsp;</a></span>format()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_string.html">String</a> StackFrame::format </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Formats the stack frame into a readable string. </p>
+
+</div>
+</div>
 <a id="a2cca61c0ae921b89e6187fc9830b47b1" name="a2cca61c0ae921b89e6187fc9830b47b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cca61c0ae921b89e6187fc9830b47b1">&#9670;&nbsp;</a></span>operator!=()</h2>
 
@@ -258,6 +287,20 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a14040598cb1a7d6e55517484ec8e2e80" name="a14040598cb1a7d6e55517484ec8e2e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14040598cb1a7d6e55517484ec8e2e80">&#9670;&nbsp;</a></span>filePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_string.html">String</a> StackFrame::filePath</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4d330ef9cd47f18a3f7890ed44db045d" name="a4d330ef9cd47f18a3f7890ed44db045d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d330ef9cd47f18a3f7890ed44db045d">&#9670;&nbsp;</a></span>functionName</h2>
 
@@ -286,14 +329,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8f44dc1e28408015337eba9410e8c259" name="a8f44dc1e28408015337eba9410e8c259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f44dc1e28408015337eba9410e8c259">&#9670;&nbsp;</a></span>lineNumber</h2>
+<a id="a0f3375a0f8eef0cf745d253dcc91607b" name="a0f3375a0f8eef0cf745d253dcc91607b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f3375a0f8eef0cf745d253dcc91607b">&#9670;&nbsp;</a></span>lineNumber</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a> StackFrame::lineNumber = -1</td>
+          <td class="memname"><a class="el" href="_engine_types_8h.html#a51b4c1b67123dbb4903672fa753e6dd1">Int64</a> StackFrame::lineNumber = -1</td>
         </tr>
       </table>
 </div><div class="memdoc">

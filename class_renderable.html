@@ -102,7 +102,7 @@ Inheritance diagram for Renderable:</div>
  <div class="center">
   <img src="class_renderable.png" usemap="#Renderable_map" alt=""/>
   <map id="Renderable_map" name="Renderable_map">
-<area href="class_mesh_component.html" title="A renderable component that represents a mesh." alt="MeshComponent" shape="rect" coords="0,56,106,80"/>
+<area href="class_model_component.html" title="A renderable component that represents a mesh." alt="ModelComponent" shape="rect" coords="0,56,110,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -112,8 +112,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa518dab4001997185c7ccdf3e389e1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2103eed2f7f54bca8ba1001907b367a9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderable.html#a2103eed2f7f54bca8ba1001907b367a9">~Renderable</a> ()=default</td></tr>
 <tr class="separator:a2103eed2f7f54bca8ba1001907b367a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d02709d871bd2bde97d41d933df5adf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderable.html#a7d02709d871bd2bde97d41d933df5adf">render</a> ()=0</td></tr>
-<tr class="separator:a7d02709d871bd2bde97d41d933df5adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16dfbfc80eb75173cf514a325c022bb6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderable.html#a16dfbfc80eb75173cf514a325c022bb6">render</a> (<a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a> state)=0</td></tr>
+<tr class="separator:a16dfbfc80eb75173cf514a325c022bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >An interface declaring an object as renderable </p>
@@ -169,8 +169,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7d02709d871bd2bde97d41d933df5adf" name="a7d02709d871bd2bde97d41d933df5adf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d02709d871bd2bde97d41d933df5adf">&#9670;&nbsp;</a></span>render()</h2>
+<a id="a16dfbfc80eb75173cf514a325c022bb6" name="a16dfbfc80eb75173cf514a325c022bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16dfbfc80eb75173cf514a325c022bb6">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +181,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void Renderable::render </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a>&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -193,7 +194,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p >A function called to render the renderable. </p>
 
-<p>Implemented in <a class="el" href="class_mesh_component.html#a5e81b47b99a57ea9aaf4a65626558faa">MeshComponent</a>.</p>
+<p>Implemented in <a class="el" href="class_model_component.html#a0bc7f834015e761aec309a11fb039cce">ModelComponent</a>.</p>
 
 </div>
 </div>

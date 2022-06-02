@@ -2,9 +2,10 @@ var class_shared_pointer =
 [
     [ "SharedPointer", "class_shared_pointer.html#ae7820282db0439e2578f69cbd2aa460c", null ],
     [ "SharedPointer", "class_shared_pointer.html#abb2079849cce0e8e45e53d86b3548ce5", null ],
-    [ "~SharedPointer", "class_shared_pointer.html#a3cd2c7c07f8ccf9a4ad18996820b585b", null ],
+    [ "~SharedPointer", "class_shared_pointer.html#ad45e725db8a8b03aa1c7eefdbdfbb4b9", null ],
     [ "SharedPointer", "class_shared_pointer.html#af0b56e525578dbc9d141671c06f6fcf0", null ],
     [ "SharedPointer", "class_shared_pointer.html#a51c839f6e069437aa06d01510d095db4", null ],
+    [ "SharedPointer", "class_shared_pointer.html#a59aa4b0a09c3083f626455cb6265fc01", null ],
     [ "SharedPointer", "class_shared_pointer.html#a736523cb4185e32aa6c883d0e3638ed8", null ],
     [ "SharedPointer", "class_shared_pointer.html#a9aa987ce6f8a59fd6995731288687143", null ],
     [ "discard", "class_shared_pointer.html#a436e05825bcccaab5437893a540e1187", null ],

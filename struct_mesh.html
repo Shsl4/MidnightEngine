@@ -101,12 +101,12 @@ $(document).ready(function(){initNavTree('struct_mesh.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7af435104e70e0db2572b51081688435"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a7af435104e70e0db2572b51081688435">Mesh</a> (<a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;vertices, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> &gt; const &amp;indexArray, <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt; meshTexture, <a class="el" href="class_string.html">String</a> name, <a class="el" href="class_string.html">String</a> path)</td></tr>
-<tr class="separator:a7af435104e70e0db2572b51081688435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045b879c3f6b8b31ebcc87db069eeead"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a045b879c3f6b8b31ebcc87db069eeead">Mesh</a> (<a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; const &amp;vertices, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> &gt; const &amp;indexArray, <a class="el" href="class_string.html">String</a> name, <a class="el" href="class_string.html">String</a> path)</td></tr>
+<tr class="separator:a045b879c3f6b8b31ebcc87db069eeead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5efe4da1a4c0971cfb037bd70304c303"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a5efe4da1a4c0971cfb037bd70304c303">~Mesh</a> ()</td></tr>
 <tr class="separator:a5efe4da1a4c0971cfb037bd70304c303"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec231bdf3e44789a7887d9ff10e031d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#aec231bdf3e44789a7887d9ff10e031d0">render</a> (<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> viewId, <a class="el" href="struct_material.html">Material</a> const &amp;material, bgfx::ProgramHandle program) const</td></tr>
-<tr class="separator:aec231bdf3e44789a7887d9ff10e031d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac42c63a2c7f57c1674879ff18de49a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#aac42c63a2c7f57c1674879ff18de49a0">render</a> (<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> viewId, <a class="el" href="struct_material.html">Material</a> const &amp;material, const <a class="el" href="struct_texture.html">Texture</a> *texture, bgfx::ProgramHandle program) const</td></tr>
+<tr class="separator:aac42c63a2c7f57c1674879ff18de49a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -126,8 +126,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a7634eacb7718182a9320588811801f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99bae7b57438bb188c752b423a9b7d02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a99bae7b57438bb188c752b423a9b7d02">filePath</a></td></tr>
 <tr class="separator:a99bae7b57438bb188c752b423a9b7d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a902ddab83cdf3f0e5e2af40ea6fb0eb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh.html#a902ddab83cdf3f0e5e2af40ea6fb0eb7">texture</a></td></tr>
-<tr class="separator:a902ddab83cdf3f0e5e2af40ea6fb0eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -139,8 +137,8 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A structure representing a mesh. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7af435104e70e0db2572b51081688435" name="a7af435104e70e0db2572b51081688435"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7af435104e70e0db2572b51081688435">&#9670;&nbsp;</a></span>Mesh()</h2>
+<a id="a045b879c3f6b8b31ebcc87db069eeead" name="a045b879c3f6b8b31ebcc87db069eeead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045b879c3f6b8b31ebcc87db069eeead">&#9670;&nbsp;</a></span>Mesh()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,12 +154,6 @@ Static Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> &gt; const &amp;&#160;</td>
           <td class="paramname"><em>indexArray</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt;&#160;</td>
-          <td class="paramname"><em>meshTexture</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,8 +195,8 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aec231bdf3e44789a7887d9ff10e031d0" name="aec231bdf3e44789a7887d9ff10e031d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec231bdf3e44789a7887d9ff10e031d0">&#9670;&nbsp;</a></span>render()</h2>
+<a id="aac42c63a2c7f57c1674879ff18de49a0" name="aac42c63a2c7f57c1674879ff18de49a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac42c63a2c7f57c1674879ff18de49a0">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,6 +212,12 @@ Static Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_material.html">Material</a> const &amp;&#160;</td>
           <td class="paramname"><em>material</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_texture.html">Texture</a> *&#160;</td>
+          <td class="paramname"><em>texture</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -338,20 +336,6 @@ Static Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_string.html">String</a> Mesh::meshName</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a902ddab83cdf3f0e5e2af40ea6fb0eb7" name="a902ddab83cdf3f0e5e2af40ea6fb0eb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a902ddab83cdf3f0e5e2af40ea6fb0eb7">&#9670;&nbsp;</a></span>texture</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="struct_texture.html">Texture</a>&gt; Mesh::texture</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -2,7 +2,7 @@ var class_unique_pointer =
 [
     [ "UniquePointer", "class_unique_pointer.html#a073f778b882441b8ffe394c6dbaa0ec2", null ],
     [ "UniquePointer", "class_unique_pointer.html#a92833f5387cfdfbc65f8be938159f006", null ],
-    [ "~UniquePointer", "class_unique_pointer.html#a12731ff06763378ea714f0d92383d2d4", null ],
+    [ "~UniquePointer", "class_unique_pointer.html#a547ba0d226a3b0b624a3adeeb41d655f", null ],
     [ "UniquePointer", "class_unique_pointer.html#a89eb555767ba2c5da8a382bb8ef44f02", null ],
     [ "UniquePointer", "class_unique_pointer.html#a999634993df21752cf840bbfcf60e1a5", null ],
     [ "discard", "class_unique_pointer.html#a108c45109b43da8f8182a39140ed0f3a", null ],

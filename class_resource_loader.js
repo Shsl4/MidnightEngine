@@ -9,5 +9,6 @@ var class_resource_loader =
     [ "loadModel", "class_resource_loader.html#aa6f4278da90a8d8c3e6b6184ccecee97", null ],
     [ "loadTexture", "class_resource_loader.html#a207f30e3cd2ec7dd8043e4f77b8fa1c2", null ],
     [ "loadedModels", "class_resource_loader.html#a53accb559ebf32abc660aca0c5c29a53", null ],
-    [ "loadedTextures", "class_resource_loader.html#ab57b7b9b5bd28a23e20e16dc4c13ff32", null ]
+    [ "loadedTextures", "class_resource_loader.html#ab57b7b9b5bd28a23e20e16dc4c13ff32", null ],
+    [ "missingTexture", "class_resource_loader.html#aaff3df32bc4f306783aac3e662e2fa96", null ]
 ];

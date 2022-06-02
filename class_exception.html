@@ -110,8 +110,14 @@ Inheritance diagram for Exception:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa16e98d4ff969024234173393b5f8e5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_exception.html#aa16e98d4ff969024234173393b5f8e5a">Exception</a> ()=delete</td></tr>
 <tr class="separator:aa16e98d4ff969024234173393b5f8e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1898c6513aa6ec13fac8f753bffb6bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_stack_frame.html">StackFrame</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_exception.html#af1898c6513aa6ec13fac8f753bffb6bd">getStackTrace</a> () const</td></tr>
-<tr class="separator:af1898c6513aa6ec13fac8f753bffb6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87859acfd74b19dc79b413a4995736be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_array.html">Array</a>&lt; struct <a class="el" href="struct_stack_frame.html">StackFrame</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_exception.html#a87859acfd74b19dc79b413a4995736be">getStackTrace</a> () const</td></tr>
+<tr class="separator:a87859acfd74b19dc79b413a4995736be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3720b02c6d9024d6165ca3713f9812e7"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:a3720b02c6d9024d6165ca3713f9812e7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_exception.html#a3720b02c6d9024d6165ca3713f9812e7">throwIf</a> (const bool condition, const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a3720b02c6d9024d6165ca3713f9812e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd9e24ab0d4a97997f85293bbe93238"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:a8cd9e24ab0d4a97997f85293bbe93238"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_exception.html#a8cd9e24ab0d4a97997f85293bbe93238">throwError</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a8cd9e24ab0d4a97997f85293bbe93238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -213,8 +219,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af1898c6513aa6ec13fac8f753bffb6bd" name="af1898c6513aa6ec13fac8f753bffb6bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1898c6513aa6ec13fac8f753bffb6bd">&#9670;&nbsp;</a></span>getStackTrace()</h2>
+<a id="a87859acfd74b19dc79b413a4995736be" name="a87859acfd74b19dc79b413a4995736be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87859acfd74b19dc79b413a4995736be">&#9670;&nbsp;</a></span>getStackTrace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,7 +229,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_stack_frame.html">StackFrame</a> &gt; Exception::getStackTrace </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> class <a class="el" href="class_array.html">Array</a>&lt; struct <a class="el" href="struct_stack_frame.html">StackFrame</a> &gt; Exception::getStackTrace </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -239,7 +245,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a676b9f5123e3fc7e85db3037f40ea460" name="a676b9f5123e3fc7e85db3037f40ea460"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a676b9f5123e3fc7e85db3037f40ea460">&#9670;&nbsp;</a></span>throwError()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a676b9f5123e3fc7e85db3037f40ea460">&#9670;&nbsp;</a></span>throwError() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,15 +275,45 @@ template&lt;typename ... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
+<a id="a8cd9e24ab0d4a97997f85293bbe93238" name="a8cd9e24ab0d4a97997f85293bbe93238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cd9e24ab0d4a97997f85293bbe93238">&#9670;&nbsp;</a></span>throwError() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::throwError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5c0904a945ec3e32cfd16e2c010c3020" name="a5c0904a945ec3e32cfd16e2c010c3020"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c0904a945ec3e32cfd16e2c010c3020">&#9670;&nbsp;</a></span>throwIf()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c0904a945ec3e32cfd16e2c010c3020">&#9670;&nbsp;</a></span>throwIf() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,9 +349,45 @@ template&lt;typename ... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3720b02c6d9024d6165ca3713f9812e7" name="a3720b02c6d9024d6165ca3713f9812e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3720b02c6d9024d6165ca3713f9812e7">&#9670;&nbsp;</a></span>throwIf() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::throwIf </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -343,8 +415,9 @@ template&lt;typename ... Args&gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/Public/Core/Exception/<a class="el" href="_exception_8h_source.html">Exception.h</a></li>
+<li>Source/Public/Core/Exception/<a class="el" href="_exception_8inl.html">Exception.inl</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

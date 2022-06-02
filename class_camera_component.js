@@ -2,11 +2,9 @@ var class_camera_component =
 [
     [ "Super", "class_camera_component.html#aed015d08a4263241b46e843ed2a96cdc", null ],
     [ "CameraComponent", "class_camera_component.html#a6f14fb3dfa5ca8cfbaae2936413837d8", null ],
-    [ "CameraComponent", "class_camera_component.html#add6a40e2858f6450bc0f9af824def7d4", null ],
     [ "addCameraPitchInput", "class_camera_component.html#a4a9c0e2072388aa4a30f4608e837a198", null ],
     [ "addCameraYawInput", "class_camera_component.html#aa79d004e67f790929c782ab8e96c70bc", null ],
     [ "addMovementInput", "class_camera_component.html#a7b24b240acd13f236facef68a7193fc5", null ],
-    [ "construct", "class_camera_component.html#a231b8915979048724ab1ea3ce371e978", null ],
     [ "getAspectRatio", "class_camera_component.html#a86336142cd764dc249b6e11a6142df7e", null ],
     [ "getFieldOfView", "class_camera_component.html#aa43d6ae057fd4f41a3052576ad01b429", null ],
     [ "getForwardVector", "class_camera_component.html#ac5c6559411566a39ede9165ed0a1aefa", null ],

@@ -1,7 +1,7 @@
 var class_ref_counter =
 [
     [ "RefCounter", "class_ref_counter.html#a760d2087221490b338d2eb7e07f72f79", null ],
-    [ "~RefCounter", "class_ref_counter.html#a612c12dfc7743b325a53ec2f6b89d9e9", null ],
+    [ "~RefCounter", "class_ref_counter.html#a19c47ae11f4e3ec2156248a5d196414c", null ],
     [ "RefCounter", "class_ref_counter.html#a49965eb49495184e4432365489616ed8", null ],
     [ "RefCounter", "class_ref_counter.html#a6199600b041a484279809ab83d173d59", null ],
     [ "decrease", "class_ref_counter.html#abfdbf677ecf8ae8ecbf3771e3c00fbb2", null ],

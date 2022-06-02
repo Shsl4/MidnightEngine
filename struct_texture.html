@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('struct_texture.html',''); initResizabl
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="struct_texture-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Texture Struct Reference</div></div>
 </div><!--header-->
@@ -100,27 +101,32 @@ $(document).ready(function(){initNavTree('struct_texture.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5cebded62fe67ad43df826c4ed7b88ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a5cebded62fe67ad43df826c4ed7b88ce">Texture</a> (<a class="el" href="class_string.html">String</a> name, <a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a> w, <a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a> h, void *data)</td></tr>
-<tr class="separator:a5cebded62fe67ad43df826c4ed7b88ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a> ()</td></tr>
+<tr class="memitem:a36f9317276b69689fb453d12d774a352"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a36f9317276b69689fb453d12d774a352">Texture</a> (<a class="el" href="class_string.html">String</a> name, <a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a> w, <a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a> h, void *data)</td></tr>
+<tr class="separator:a36f9317276b69689fb453d12d774a352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a> ()</td></tr>
 <tr class="separator:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60d63a8f89117ddf45262ee7b33264cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a60d63a8f89117ddf45262ee7b33264cc">use</a> (<a class="el" href="_engine_types_8h.html#ac82f32fb6f16dbdc32cb4076004e63c4">UInt8</a> index, bgfx::UniformHandle <a class="el" href="struct_texture.html#a3519111ddfa152a5527fa54d78fd2329">handle</a>) const</td></tr>
-<tr class="separator:a60d63a8f89117ddf45262ee7b33264cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b69207a7a6293e750af872765db96e2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a1b69207a7a6293e750af872765db96e2">use</a> (<a class="el" href="_engine_types_8h.html#ac82f32fb6f16dbdc32cb4076004e63c4">UInt8</a> index, bgfx::UniformHandle uniform) const</td></tr>
+<tr class="separator:a1b69207a7a6293e750af872765db96e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5166992211d1bace56cc46873d06da60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a5166992211d1bace56cc46873d06da60">textureName</a></td></tr>
+<tr class="memitem:a5166992211d1bace56cc46873d06da60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a5166992211d1bace56cc46873d06da60">textureName</a> = &quot;&quot;</td></tr>
 <tr class="separator:a5166992211d1bace56cc46873d06da60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a991c5c8cb1cc68fcc186cb17cab1509e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a991c5c8cb1cc68fcc186cb17cab1509e">textureWidth</a></td></tr>
-<tr class="separator:a991c5c8cb1cc68fcc186cb17cab1509e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a590cc5894dcb934dd8067f16995c00f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a590cc5894dcb934dd8067f16995c00f8">textureHeight</a></td></tr>
-<tr class="separator:a590cc5894dcb934dd8067f16995c00f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3519111ddfa152a5527fa54d78fd2329"><td class="memItemLeft" align="right" valign="top">struct TextureHandle *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a3519111ddfa152a5527fa54d78fd2329">handle</a></td></tr>
+<tr class="memitem:a9a93a422ff036d4a44cf9e26d1faeacc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a9a93a422ff036d4a44cf9e26d1faeacc">textureWidth</a> = 0</td></tr>
+<tr class="separator:a9a93a422ff036d4a44cf9e26d1faeacc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97885f64abc2ca122d4fa39eb7d01a4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a97885f64abc2ca122d4fa39eb7d01a4e">textureHeight</a> = 0</td></tr>
+<tr class="separator:a97885f64abc2ca122d4fa39eb7d01a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3519111ddfa152a5527fa54d78fd2329"><td class="memItemLeft" align="right" valign="top">struct TextureHandle *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a3519111ddfa152a5527fa54d78fd2329">handle</a> = nullptr</td></tr>
 <tr class="separator:a3519111ddfa152a5527fa54d78fd2329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a66179be276016021e80b1c67c047d4ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture.html#a66179be276016021e80b1c67c047d4ad">Texture</a> ()=default</td></tr>
+<tr class="separator:a66179be276016021e80b1c67c047d4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5cebded62fe67ad43df826c4ed7b88ce" name="a5cebded62fe67ad43df826c4ed7b88ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cebded62fe67ad43df826c4ed7b88ce">&#9670;&nbsp;</a></span>Texture()</h2>
+<a id="a36f9317276b69689fb453d12d774a352" name="a36f9317276b69689fb453d12d774a352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f9317276b69689fb453d12d774a352">&#9670;&nbsp;</a></span>Texture() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,13 +140,13 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a>&#160;</td>
           <td class="paramname"><em>h</em>, </td>
         </tr>
         <tr>
@@ -164,6 +170,9 @@ Public Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Texture::~Texture </td>
@@ -172,16 +181,49 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66179be276016021e80b1c67c047d4ad" name="a66179be276016021e80b1c67c047d4ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66179be276016021e80b1c67c047d4ad">&#9670;&nbsp;</a></span>Texture() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Texture::Texture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a60d63a8f89117ddf45262ee7b33264cc" name="a60d63a8f89117ddf45262ee7b33264cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60d63a8f89117ddf45262ee7b33264cc">&#9670;&nbsp;</a></span>use()</h2>
+<a id="a1b69207a7a6293e750af872765db96e2" name="a1b69207a7a6293e750af872765db96e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b69207a7a6293e750af872765db96e2">&#9670;&nbsp;</a></span>use()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Texture::use </td>
@@ -193,7 +235,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bgfx::UniformHandle&#160;</td>
-          <td class="paramname"><em>handle</em>&#160;</td>
+          <td class="paramname"><em>uniform</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -201,6 +243,11 @@ Public Attributes</h2></td></tr>
           <td></td><td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -213,21 +260,21 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct TextureHandle* Texture::handle</td>
+          <td class="memname">struct TextureHandle* Texture::handle = nullptr</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a590cc5894dcb934dd8067f16995c00f8" name="a590cc5894dcb934dd8067f16995c00f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a590cc5894dcb934dd8067f16995c00f8">&#9670;&nbsp;</a></span>textureHeight</h2>
+<a id="a97885f64abc2ca122d4fa39eb7d01a4e" name="a97885f64abc2ca122d4fa39eb7d01a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97885f64abc2ca122d4fa39eb7d01a4e">&#9670;&nbsp;</a></span>textureHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a> Texture::textureHeight</td>
+          <td class="memname"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a> Texture::textureHeight = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,21 +288,21 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_string.html">String</a> Texture::textureName</td>
+          <td class="memname"><a class="el" href="class_string.html">String</a> Texture::textureName = &quot;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a991c5c8cb1cc68fcc186cb17cab1509e" name="a991c5c8cb1cc68fcc186cb17cab1509e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a991c5c8cb1cc68fcc186cb17cab1509e">&#9670;&nbsp;</a></span>textureWidth</h2>
+<a id="a9a93a422ff036d4a44cf9e26d1faeacc" name="a9a93a422ff036d4a44cf9e26d1faeacc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a93a422ff036d4a44cf9e26d1faeacc">&#9670;&nbsp;</a></span>textureWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_types_8h.html#ac524bdfeb5d781872485d9321c881920">Int32</a> Texture::textureWidth</td>
+          <td class="memname"><a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a> Texture::textureWidth = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

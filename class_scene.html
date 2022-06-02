@@ -99,6 +99,9 @@ $(document).ready(function(){initNavTree('class_scene.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 
+<p>A scene is an object that represents the world. It holds Actors, and manages their lifetime.  
+ <a href="class_scene.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_scene_8h_source.html">Scene.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Scene:</div>
@@ -106,7 +109,7 @@ Inheritance diagram for Scene:</div>
  <div class="center">
   <img src="class_scene.png" usemap="#Scene_map" alt=""/>
   <map id="Scene_map" name="Scene_map">
-<area href="class_object.html" alt="Object" shape="rect" coords="0,0,49,24"/>
+<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="0,0,49,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -139,23 +142,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af1546d01ffafd2fdcac8af1778beed22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84915a8cb570818e714ac4ac695d2dc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a84915a8cb570818e714ac4ac695d2dc9">setWorldColor</a> (<a class="el" href="_engine_types_8h.html#a16bda7e33183fb876dbb944cbb556702">UInt32</a> color) const</td></tr>
 <tr class="separator:a84915a8cb570818e714ac4ac695d2dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c4a99c512bc0d228a123c51a98a80f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a59c4a99c512bc0d228a123c51a98a80f">getObjectByIndex</a> (size_t index) const</td></tr>
-<tr class="separator:a59c4a99c512bc0d228a123c51a98a80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a06e9793d7c776b13345e63d783dc7b"><td class="memTemplParams" colspan="2">template&lt;class T , typename ... Args&gt; </td></tr>
-<tr class="memitem:a4a06e9793d7c776b13345e63d783dc7b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#a4a06e9793d7c776b13345e63d783dc7b">createObject</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transform, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a4a06e9793d7c776b13345e63d783dc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc43bca4449a7e64699b9e3bdf3b3c16"><td class="memTemplParams" colspan="2">template&lt;class T , typename ... Args&gt; </td></tr>
-<tr class="memitem:abc43bca4449a7e64699b9e3bdf3b3c16"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#abc43bca4449a7e64699b9e3bdf3b3c16">createComponent</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;relativeTransform, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:abc43bca4449a7e64699b9e3bdf3b3c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62043882c84ad11bb80b9beb7aa83c4d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a62043882c84ad11bb80b9beb7aa83c4d">destroyObject</a> (<a class="el" href="class_scene_object.html">SceneObject</a> *object)</td></tr>
-<tr class="separator:a62043882c84ad11bb80b9beb7aa83c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71274cca9ec859fe5286fa1df39fe4c3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a71274cca9ec859fe5286fa1df39fe4c3">destroyComponent</a> (<a class="el" href="class_scene_component.html">SceneComponent</a> *component)</td></tr>
-<tr class="separator:a71274cca9ec859fe5286fa1df39fe4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a5ad7591b68118a20c43df49a079d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_actor.html">Actor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a50a5ad7591b68118a20c43df49a079d0">getObjectByIndex</a> (size_t index) const</td></tr>
+<tr class="separator:a50a5ad7591b68118a20c43df49a079d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca57275cd2cfc280d27a2ca12806cb30"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aca57275cd2cfc280d27a2ca12806cb30"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#aca57275cd2cfc280d27a2ca12806cb30">createObject</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transform=<a class="el" href="struct_transform.html#a7d923933607b5daa310fc0fcceb48edf">Transform::zero</a>())</td></tr>
+<tr class="separator:aca57275cd2cfc280d27a2ca12806cb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee5f6602db0b88d6b534f3e95059c075"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aee5f6602db0b88d6b534f3e95059c075"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#aee5f6602db0b88d6b534f3e95059c075">getFirstComponentOf</a> () const</td></tr>
+<tr class="separator:aee5f6602db0b88d6b534f3e95059c075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a570a809e5ef403144c29ccf0adfcf8f4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a570a809e5ef403144c29ccf0adfcf8f4">destroyActor</a> (<a class="el" href="class_actor.html">Actor</a> *object)</td></tr>
+<tr class="separator:a570a809e5ef403144c29ccf0adfcf8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467bfb65a4e6b3239e7376e9d9eeaeee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_camera_manager.html">CameraManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a467bfb65a4e6b3239e7376e9d9eeaeee">getCameraManager</a> () const</td></tr>
 <tr class="separator:a467bfb65a4e6b3239e7376e9d9eeaeee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e7205f534a1cc6f7137b514b1b00589"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a3e7205f534a1cc6f7137b514b1b00589"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#a3e7205f534a1cc6f7137b514b1b00589">getFirstComponentOfClass</a> () const</td></tr>
-<tr class="separator:a3e7205f534a1cc6f7137b514b1b00589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
 <tr class="separator:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,19 +170,21 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:abda1fdc000d8643eac63d7fddf66fdea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#abda1fdc000d8643eac63d7fddf66fdea">renderComponents</a> () const</td></tr>
-<tr class="separator:abda1fdc000d8643eac63d7fddf66fdea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8865a33b65aa5f08dd4baa25b8dfe7d1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a8865a33b65aa5f08dd4baa25b8dfe7d1">renderComponents</a> (<a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a> <a class="el" href="class_scene.html#a8a63b503d493bb1b5eec65b73e3de51c">state</a>) const</td></tr>
+<tr class="memdesc:a8865a33b65aa5f08dd4baa25b8dfe7d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders all renderable components in the scene. This function is called on the render thread.  <a href="class_scene.html#a8865a33b65aa5f08dd4baa25b8dfe7d1">More...</a><br /></td></tr>
+<tr class="separator:a8865a33b65aa5f08dd4baa25b8dfe7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53f14767786af47ed73cc0c9f8f69df2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a53f14767786af47ed73cc0c9f8f69df2">update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a53f14767786af47ed73cc0c9f8f69df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates every object on the scene.  <a href="class_scene.html#a53f14767786af47ed73cc0c9f8f69df2">More...</a><br /></td></tr>
 <tr class="separator:a53f14767786af47ed73cc0c9f8f69df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d950469e96c570c28ccd80f9eedf9bb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a2d950469e96c570c28ccd80f9eedf9bb">setupInput</a> (<a class="el" href="class_scene_object.html">SceneObject</a> *object)</td></tr>
-<tr class="separator:a2d950469e96c570c28ccd80f9eedf9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c4df0263db673289a4a1ba9ee51a29"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a60c4df0263db673289a4a1ba9ee51a29">setupInput</a> (<a class="el" href="class_actor.html">Actor</a> *object)</td></tr>
+<tr class="memdesc:a60c4df0263db673289a4a1ba9ee51a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows a newly created <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> to bind input events.  <a href="class_scene.html#a60c4df0263db673289a4a1ba9ee51a29">More...</a><br /></td></tr>
+<tr class="separator:a60c4df0263db673289a4a1ba9ee51a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a942d517f2c7db9813c9c7d6f7d66f7b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="class_scene_object.html">SceneObject</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a942d517f2c7db9813c9c7d6f7d66f7b8">registeredObjects</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_object.html">SceneObject</a>&gt;&gt;(50)</td></tr>
-<tr class="separator:a942d517f2c7db9813c9c7d6f7d66f7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a631d3a6b2653058823a62e47143c9c00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="class_scene_component.html">SceneComponent</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a631d3a6b2653058823a62e47143c9c00">registeredComponents</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_component.html">SceneComponent</a>&gt;&gt;(50)</td></tr>
-<tr class="separator:a631d3a6b2653058823a62e47143c9c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="class_actor.html">Actor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aae56ea2efa771d0e407dd5bd6f1a7d07">registeredActors</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_actor.html">Actor</a>&gt;&gt;(50)</td></tr>
+<tr class="memdesc:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">An automatically managed array storing references to all Actors in the scene. The Actors are automatically released when the scene is destroyed.  <a href="class_scene.html#aae56ea2efa771d0e407dd5bd6f1a7d07">More...</a><br /></td></tr>
+<tr class="separator:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6390d7d72550e5435215bb37d7f2b911"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_unique_pointer.html">UniquePointer</a>&lt; <a class="el" href="class_camera_manager.html">CameraManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6390d7d72550e5435215bb37d7f2b911">cameraManager</a></td></tr>
 <tr class="separator:a6390d7d72550e5435215bb37d7f2b911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a63b503d493bb1b5eec65b73e3de51c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene.html#ad10422293408a90b501d1b369ce49029">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a8a63b503d493bb1b5eec65b73e3de51c">state</a> = <a class="el" href="class_scene.html#ad10422293408a90b501d1b369ce49029aa5ae20aa7fda5bd38bf0dce98e65bd2d">State::Unloaded</a></td></tr>
@@ -203,7 +203,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ae228d33402c38cca8a29630b1876c0de inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A scene is an object that represents the world. It holds SceneComponents and SceneObjects, and manages their lifetimes. </p>
+<div class="textblock"><p >A scene is an object that represents the world. It holds Actors, and manages their lifetime. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ad10422293408a90b501d1b369ce49029" name="ad10422293408a90b501d1b369ce49029"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad10422293408a90b501d1b369ce49029">&#9670;&nbsp;</a></span>State</h2>
@@ -279,33 +279,23 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="abc43bca4449a7e64699b9e3bdf3b3c16" name="abc43bca4449a7e64699b9e3bdf3b3c16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc43bca4449a7e64699b9e3bdf3b3c16">&#9670;&nbsp;</a></span>createComponent()</h2>
+<a id="aca57275cd2cfc280d27a2ca12806cb30" name="aca57275cd2cfc280d27a2ca12806cb30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca57275cd2cfc280d27a2ca12806cb30">&#9670;&nbsp;</a></span>createObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , typename ... Args&gt; </div>
+template&lt;class T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt; Scene::createComponent </td>
+          <td class="memname">T * Scene::createObject </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_transform.html">Transform</a> const &amp;&#160;</td>
-          <td class="paramname"><em>relativeTransform</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>transform</em> = <code><a class="el" href="struct_transform.html#a7d923933607b5daa310fc0fcceb48edf">Transform::zero</a>()</code></td><td>)</td>
           <td></td>
-          <td class="paramtype">Args &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -314,81 +304,25 @@ template&lt;class T , typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Instantiates a new <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> in the scene</p>
+<p >Instantiates a new <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> in the scene</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> class to instantiate </td></tr>
-    <tr><td class="paramname">Args</td><td>A variadic template type </td></tr>
+    <tr><td class="paramname">T</td><td>The <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> class to instantiate </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">relativeTransform</td><td>The relative <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a>'s constructor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transform</td><td>The world <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The newly created <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly created <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> </dd></dl>
 
 </div>
 </div>
-<a id="a4a06e9793d7c776b13345e63d783dc7b" name="a4a06e9793d7c776b13345e63d783dc7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a06e9793d7c776b13345e63d783dc7b">&#9670;&nbsp;</a></span>createObject()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , typename ... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt; Scene::createObject </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_transform.html">Transform</a> const &amp;&#160;</td>
-          <td class="paramname"><em>transform</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Args &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Instantiates a new <a class="el" href="class_scene_object.html">SceneObject</a> in the scene</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The <a class="el" href="class_scene_object.html">SceneObject</a> class to instantiate </td></tr>
-    <tr><td class="paramname">Args</td><td>A variadic template type </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">transform</td><td>The world <a class="el" href="struct_transform.html">Transform</a> of the <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments to pass to the <a class="el" href="class_scene_object.html">SceneObject</a>'s constructor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The newly created <a class="el" href="class_scene_object.html">SceneObject</a> </dd></dl>
-
-</div>
-</div>
-<a id="a71274cca9ec859fe5286fa1df39fe4c3" name="a71274cca9ec859fe5286fa1df39fe4c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71274cca9ec859fe5286fa1df39fe4c3">&#9670;&nbsp;</a></span>destroyComponent()</h2>
+<a id="a570a809e5ef403144c29ccf0adfcf8f4" name="a570a809e5ef403144c29ccf0adfcf8f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a570a809e5ef403144c29ccf0adfcf8f4">&#9670;&nbsp;</a></span>destroyActor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -397,43 +331,9 @@ template&lt;class T , typename ... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Scene::destroyComponent </td>
+          <td class="memname">bool Scene::destroyActor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_scene_component.html">SceneComponent</a> *&#160;</td>
-          <td class="paramname"><em>component</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Destroys a <a class="el" href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...">SceneComponent</a> from the <a class="el" href="class_scene.html">Scene</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">component</td><td>The component to destroy </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether the component was destroyed </dd></dl>
-
-</div>
-</div>
-<a id="a62043882c84ad11bb80b9beb7aa83c4d" name="a62043882c84ad11bb80b9beb7aa83c4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62043882c84ad11bb80b9beb7aa83c4d">&#9670;&nbsp;</a></span>destroyObject()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Scene::destroyObject </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_actor.html">Actor</a> *&#160;</td>
           <td class="paramname"><em>object</em></td><td>)</td>
           <td></td>
         </tr>
@@ -444,7 +344,7 @@ template&lt;class T , typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Destroys a <a class="el" href="class_scene_object.html">SceneObject</a> from the <a class="el" href="class_scene.html">Scene</a>.</p>
+<p >Destroys a <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> from the <a class="el" href="class_scene.html" title="A scene is an object that represents the world. It holds Actors, and manages their lifetime.">Scene</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The object to destroy </td></tr>
@@ -477,24 +377,24 @@ template&lt;class T , typename ... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Gets this <a class="el" href="class_scene.html">Scene</a>'s <a class="el" href="class_camera_manager.html">CameraManager</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_scene.html">Scene</a> <a class="el" href="class_camera_manager.html">CameraManager</a>. </dd></dl>
+<p >Gets this <a class="el" href="class_scene.html" title="A scene is an object that represents the world. It holds Actors, and manages their lifetime.">Scene</a>'s <a class="el" href="class_camera_manager.html">CameraManager</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_scene.html" title="A scene is an object that represents the world. It holds Actors, and manages their lifetime.">Scene</a> <a class="el" href="class_camera_manager.html">CameraManager</a>. </dd></dl>
 
 </div>
 </div>
-<a id="a3e7205f534a1cc6f7137b514b1b00589" name="a3e7205f534a1cc6f7137b514b1b00589"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e7205f534a1cc6f7137b514b1b00589">&#9670;&nbsp;</a></span>getFirstComponentOfClass()</h2>
+<a id="aee5f6602db0b88d6b534f3e95059c075" name="aee5f6602db0b88d6b534f3e95059c075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee5f6602db0b88d6b534f3e95059c075">&#9670;&nbsp;</a></span>getFirstComponentOf()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;class T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; T &gt; Scene::getFirstComponentOfClass </td>
+          <td class="memname">T * Scene::getFirstComponentOf </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -509,14 +409,14 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a59c4a99c512bc0d228a123c51a98a80f" name="a59c4a99c512bc0d228a123c51a98a80f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59c4a99c512bc0d228a123c51a98a80f">&#9670;&nbsp;</a></span>getObjectByIndex()</h2>
+<a id="a50a5ad7591b68118a20c43df49a079d0" name="a50a5ad7591b68118a20c43df49a079d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50a5ad7591b68118a20c43df49a079d0">&#9670;&nbsp;</a></span>getObjectByIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_scene_object.html">SceneObject</a> * Scene::getObjectByIndex </td>
+          <td class="memname"><a class="el" href="class_actor.html">Actor</a> * Scene::getObjectByIndex </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -629,8 +529,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="abda1fdc000d8643eac63d7fddf66fdea" name="abda1fdc000d8643eac63d7fddf66fdea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abda1fdc000d8643eac63d7fddf66fdea">&#9670;&nbsp;</a></span>renderComponents()</h2>
+<a id="a8865a33b65aa5f08dd4baa25b8dfe7d1" name="a8865a33b65aa5f08dd4baa25b8dfe7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8865a33b65aa5f08dd4baa25b8dfe7d1">&#9670;&nbsp;</a></span>renderComponents()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,7 +541,8 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void Scene::renderComponents </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="_engine_types_8h.html#a81586a76c764e2556f67139907fa5440">UInt64</a>&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -651,12 +552,13 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Renders all renderable components in the scene. This function is called on the render thread. </p>
+
+<p>Renders all renderable components in the scene. This function is called on the render thread. </p>
 
 </div>
 </div>
-<a id="a2d950469e96c570c28ccd80f9eedf9bb" name="a2d950469e96c570c28ccd80f9eedf9bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d950469e96c570c28ccd80f9eedf9bb">&#9670;&nbsp;</a></span>setupInput()</h2>
+<a id="a60c4df0263db673289a4a1ba9ee51a29" name="a60c4df0263db673289a4a1ba9ee51a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c4df0263db673289a4a1ba9ee51a29">&#9670;&nbsp;</a></span>setupInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +569,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void Scene::setupInput </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_scene_object.html">SceneObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_actor.html">Actor</a> *&#160;</td>
           <td class="paramname"><em>object</em></td><td>)</td>
           <td></td>
         </tr>
@@ -678,10 +580,11 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Allows a newly created <a class="el" href="class_scene_object.html">SceneObject</a> to bind input events.</p>
+
+<p>Allows a newly created <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> to bind input events. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The target <a class="el" href="class_scene_object.html">SceneObject</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The target <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -754,7 +657,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Updates every object on the scene.</p>
+
+<p>Updates every object on the scene. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">deltaTime</td><td>The engine delta time </td></tr>
@@ -811,8 +715,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a631d3a6b2653058823a62e47143c9c00" name="a631d3a6b2653058823a62e47143c9c00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a631d3a6b2653058823a62e47143c9c00">&#9670;&nbsp;</a></span>registeredComponents</h2>
+<a id="aae56ea2efa771d0e407dd5bd6f1a7d07" name="aae56ea2efa771d0e407dd5bd6f1a7d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae56ea2efa771d0e407dd5bd6f1a7d07">&#9670;&nbsp;</a></span>registeredActors</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -821,7 +725,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_component.html">SceneComponent</a>&gt; &gt; Scene::registeredComponents = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_component.html">SceneComponent</a>&gt;&gt;(50)</td>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_actor.html">Actor</a>&gt; &gt; Scene::registeredActors = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_actor.html">Actor</a>&gt;&gt;(50)</td>
         </tr>
       </table>
   </td>
@@ -830,30 +734,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >An automatically managed array storing references to all SceneComponents in the scene. The SceneComponents are automatically released when the scene is destroyed. </p>
 
-</div>
-</div>
-<a id="a942d517f2c7db9813c9c7d6f7d66f7b8" name="a942d517f2c7db9813c9c7d6f7d66f7b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a942d517f2c7db9813c9c7d6f7d66f7b8">&#9670;&nbsp;</a></span>registeredObjects</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_object.html">SceneObject</a>&gt; &gt; Scene::registeredObjects = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_scene_object.html">SceneObject</a>&gt;&gt;(50)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >An automatically managed array storing references to all SceneObjects in the scene. The SceneObjects are automatically released when the scene is destroyed. </p>
+<p>An automatically managed array storing references to all Actors in the scene. The Actors are automatically released when the scene is destroyed. </p>
 
 </div>
 </div>
@@ -876,6 +758,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The scene's state. </p>
 
 </div>
 </div>

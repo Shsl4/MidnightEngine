@@ -107,49 +107,50 @@ $(document).ready(function(){initNavTree('_camera_manager_8h_source.html',''); i
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a6d0182f58638e66d90e403495370ddb0">   27</a></span>    <a class="code hl_function" href="class_camera_manager.html#a6d0182f58638e66d90e403495370ddb0">CameraManager</a>() = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a1d6525eea44366cf6f9676fe3c125d59">   34</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_weak_pointer.html">WeakPointer&lt;CameraComponent&gt;</a> <a class="code hl_function" href="class_camera_manager.html#a1d6525eea44366cf6f9676fe3c125d59">getActiveCamera</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> activeCamera;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">   43</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_function" href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">getScene</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> this-&gt;scene;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> registerCamera(<a class="code hl_class" href="class_weak_pointer.html">WeakPointer&lt;CameraComponent&gt;</a> camera);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> unregisterCamera(<a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* camera);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">bool</span> setActiveCamera(<a class="code hl_class" href="class_weak_pointer.html">WeakPointer&lt;CameraComponent&gt;</a>&amp; camera);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_camera_manager.html#aec123c2494958a78608195d713a18c66">   34</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* <a class="code hl_function" href="class_camera_manager.html#aec123c2494958a78608195d713a18c66">getActiveCamera</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_define" href="_exception_8h.html#a950313b5d9cffd5aa92c42b8984cf3ae">expect</a>(activeCamera, <span class="stringliteral">&quot;No active camera set&quot;</span>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> activeCamera;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">   44</a></span>    <a class="code hl_define" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_function" href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">getScene</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> this-&gt;scene;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> registerCamera(<a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* camera);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> unregisterCamera(<a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* camera);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> setActiveCamera(<a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* camera);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a4e5d42ac6653fb325d6a4d37beed5edc">   76</a></span>    <a class="code hl_class" href="class_array.html">Array&lt;WeakPointer&lt;CameraComponent&gt;</a>&gt; <a class="code hl_variable" href="class_camera_manager.html#a4e5d42ac6653fb325d6a4d37beed5edc">cameras</a>;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="class_camera_manager.html#af336a4f792687ee504f36e6c5d864e62">   81</a></span>    <a class="code hl_class" href="class_weak_pointer.html">WeakPointer&lt;CameraComponent&gt;</a> activeCamera = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">   86</a></span>    <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_variable" href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">scene</a>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_camera_manager.html#aa15087adefbb15a09524e6827ceb633f">   77</a></span>    <a class="code hl_class" href="class_array.html">Array&lt;CameraComponent*&gt;</a> <a class="code hl_variable" href="class_camera_manager.html#aa15087adefbb15a09524e6827ceb633f">cameras</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a9fc3b4acabc0432f1b6767caf802e21d">   82</a></span>    <a class="code hl_class" href="class_camera_component.html">CameraComponent</a>* activeCamera = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">   87</a></span>    <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_variable" href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">scene</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="ttc" id="a_array_8h_html"><div class="ttname"><a href="_array_8h.html">Array.h</a></div></div>
 <div class="ttc" id="a_camera_component_8h_html"><div class="ttname"><a href="_camera_component_8h.html">CameraComponent.h</a></div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:8</div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a724fb9f82013c782db5c3c12ea36aac8"><div class="ttname"><a href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a></div><div class="ttdeci">#define FORCEINLINE</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:7</div></div>
+<div class="ttc" id="a_exception_8h_html_a950313b5d9cffd5aa92c42b8984cf3ae"><div class="ttname"><a href="_exception_8h.html#a950313b5d9cffd5aa92c42b8984cf3ae">expect</a></div><div class="ttdeci">#define expect(condition, format)</div><div class="ttdef"><b>Definition:</b> Exception.h:77</div></div>
 <div class="ttc" id="a_object_8h_html"><div class="ttname"><a href="_object_8h.html">Object.h</a></div></div>
 <div class="ttc" id="a_weak_pointer_8h_html"><div class="ttname"><a href="_weak_pointer_8h.html">WeakPointer.h</a></div></div>
-<div class="ttc" id="aclass_array_html"><div class="ttname"><a href="class_array.html">Array</a></div><div class="ttdef"><b>Definition:</b> Array.h:18</div></div>
+<div class="ttc" id="aclass_array_html"><div class="ttname"><a href="class_array.html">Array</a></div><div class="ttdoc">A mutable array object that supports adding, inserting, removing, sorting and other utility functions...</div><div class="ttdef"><b>Definition:</b> Array.h:17</div></div>
 <div class="ttc" id="aclass_camera_component_html"><div class="ttname"><a href="class_camera_component.html">CameraComponent</a></div><div class="ttdef"><b>Definition:</b> CameraComponent.h:7</div></div>
 <div class="ttc" id="aclass_camera_manager_html"><div class="ttname"><a href="class_camera_manager.html">CameraManager</a></div><div class="ttdef"><b>Definition:</b> CameraManager.h:13</div></div>
-<div class="ttc" id="aclass_camera_manager_html_a1d6525eea44366cf6f9676fe3c125d59"><div class="ttname"><a href="class_camera_manager.html#a1d6525eea44366cf6f9676fe3c125d59">CameraManager::getActiveCamera</a></div><div class="ttdeci">FORCEINLINE WeakPointer&lt; CameraComponent &gt; getActiveCamera() const</div><div class="ttdef"><b>Definition:</b> CameraManager.h:34</div></div>
-<div class="ttc" id="aclass_camera_manager_html_a3ae5a98c3bc94b4e01e8e924af592a68"><div class="ttname"><a href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">CameraManager::scene</a></div><div class="ttdeci">Scene * scene</div><div class="ttdef"><b>Definition:</b> CameraManager.h:86</div></div>
-<div class="ttc" id="aclass_camera_manager_html_a4e5d42ac6653fb325d6a4d37beed5edc"><div class="ttname"><a href="class_camera_manager.html#a4e5d42ac6653fb325d6a4d37beed5edc">CameraManager::cameras</a></div><div class="ttdeci">Array&lt; WeakPointer&lt; CameraComponent &gt; &gt; cameras</div><div class="ttdef"><b>Definition:</b> CameraManager.h:76</div></div>
-<div class="ttc" id="aclass_camera_manager_html_a543f986215f83d7ee2d2e4d16d562663"><div class="ttname"><a href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">CameraManager::getScene</a></div><div class="ttdeci">FORCEINLINE Scene * getScene() const</div><div class="ttdef"><b>Definition:</b> CameraManager.h:43</div></div>
+<div class="ttc" id="aclass_camera_manager_html_a3ae5a98c3bc94b4e01e8e924af592a68"><div class="ttname"><a href="class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68">CameraManager::scene</a></div><div class="ttdeci">Scene * scene</div><div class="ttdef"><b>Definition:</b> CameraManager.h:87</div></div>
+<div class="ttc" id="aclass_camera_manager_html_a543f986215f83d7ee2d2e4d16d562663"><div class="ttname"><a href="class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663">CameraManager::getScene</a></div><div class="ttdeci">FORCEINLINE Scene * getScene() const</div><div class="ttdef"><b>Definition:</b> CameraManager.h:44</div></div>
 <div class="ttc" id="aclass_camera_manager_html_a6d0182f58638e66d90e403495370ddb0"><div class="ttname"><a href="class_camera_manager.html#a6d0182f58638e66d90e403495370ddb0">CameraManager::CameraManager</a></div><div class="ttdeci">CameraManager()=delete</div></div>
-<div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:11</div></div>
-<div class="ttc" id="aclass_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:29</div></div>
-<div class="ttc" id="aclass_weak_pointer_html"><div class="ttname"><a href="class_weak_pointer.html">WeakPointer</a></div><div class="ttdef"><b>Definition:</b> WeakPointer.h:11</div></div>
+<div class="ttc" id="aclass_camera_manager_html_aa15087adefbb15a09524e6827ceb633f"><div class="ttname"><a href="class_camera_manager.html#aa15087adefbb15a09524e6827ceb633f">CameraManager::cameras</a></div><div class="ttdeci">Array&lt; CameraComponent * &gt; cameras</div><div class="ttdef"><b>Definition:</b> CameraManager.h:77</div></div>
+<div class="ttc" id="aclass_camera_manager_html_aec123c2494958a78608195d713a18c66"><div class="ttname"><a href="class_camera_manager.html#aec123c2494958a78608195d713a18c66">CameraManager::getActiveCamera</a></div><div class="ttdeci">FORCEINLINE CameraComponent * getActiveCamera() const</div><div class="ttdef"><b>Definition:</b> CameraManager.h:34</div></div>
+<div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdoc">The default class for all the objects created and used by the engine. All classes but helpers should ...</div><div class="ttdef"><b>Definition:</b> Object.h:12</div></div>
+<div class="ttc" id="aclass_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdoc">A scene is an object that represents the world. It holds Actors, and manages their lifetime.</div><div class="ttdef"><b>Definition:</b> Scene.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

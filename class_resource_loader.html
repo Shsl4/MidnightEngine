@@ -105,7 +105,7 @@ Inheritance diagram for ResourceLoader:</div>
  <div class="center">
   <img src="class_resource_loader.png" usemap="#ResourceLoader_map" alt=""/>
   <map id="ResourceLoader_map" name="ResourceLoader_map">
-<area href="class_object.html" alt="Object" shape="rect" coords="0,0,106,24"/>
+<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="0,0,106,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="_engine_types_8h.html#ac82f32fb6f16dbdc32cb4076004e63c4">UInt8</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">loadFile</a> (<a class="el" href="class_string.html">String</a> const &amp;path)</td></tr>
-<tr class="memdesc:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html">Array</a>.  <a href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">More...</a><br /></td></tr>
+<tr class="memdesc:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html" title="A mutable array object that supports adding, inserting, removing, sorting and other utility functions...">Array</a>.  <a href="class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea">More...</a><br /></td></tr>
 <tr class="separator:ac1ca3227a2276ef4a59870c9ba8660ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:ae228d33402c38cca8a29630b1876c0de inherit pub_static_methods_class_object"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
@@ -164,6 +164,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ab57b7b9b5bd28a23e20e16dc4c13ff32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#ab57b7b9b5bd28a23e20e16dc4c13ff32">loadedTextures</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="struct_texture.html">Texture</a>&gt;&gt;(100)</td></tr>
 <tr class="memdesc:ab57b7b9b5bd28a23e20e16dc4c13ff32"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array containing every loaded texture.  <a href="class_resource_loader.html#ab57b7b9b5bd28a23e20e16dc4c13ff32">More...</a><br /></td></tr>
 <tr class="separator:ab57b7b9b5bd28a23e20e16dc4c13ff32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaff3df32bc4f306783aac3e662e2fa96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_loader.html#aaff3df32bc4f306783aac3e662e2fa96">missingTexture</a></td></tr>
+<tr class="separator:aaff3df32bc4f306783aac3e662e2fa96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac526a508a770400d55bf986629960007" name="ac526a508a770400d55bf986629960007"></a>
@@ -312,7 +314,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html">Array</a>. </p>
+<p>Opens a file in binary mode and stores all the data in an UInt8 <a class="el" href="class_array.html" title="A mutable array object that supports adding, inserting, removing, sorting and other utility functions...">Array</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>The path of the file to load. </td></tr>
@@ -437,6 +439,28 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>An array containing every loaded texture. </p>
+
+</div>
+</div>
+<a id="aaff3df32bc4f306783aac3e662e2fa96" name="aaff3df32bc4f306783aac3e662e2fa96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff3df32bc4f306783aac3e662e2fa96">&#9670;&nbsp;</a></span>missingTexture</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt;<a class="el" href="struct_texture.html">Texture</a>&gt; ResourceLoader::missingTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
