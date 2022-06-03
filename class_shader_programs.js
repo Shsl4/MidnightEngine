@@ -10,5 +10,6 @@ var class_shader_programs =
     [ "pointLightShader", "class_shader_programs.html#abeffd668c0b7e04b4b54c8ebd7d81c53", null ],
     [ "skyboxShader", "class_shader_programs.html#a1bc6352d5cad9cdafb0e32d470c28747", null ],
     [ "textureShader", "class_shader_programs.html#aed0fa2434b069a6032dff9f263ad736f", null ],
-    [ "unlit", "class_shader_programs.html#ae72b7f50d3a3df3ecb0fc735def57fef", null ]
+    [ "unlit", "class_shader_programs.html#ae72b7f50d3a3df3ecb0fc735def57fef", null ],
+    [ "wireframeShader", "class_shader_programs.html#a30dfbaf0b27194ec125d65bce09930a6", null ]
 ];

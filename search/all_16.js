@@ -10,5 +10,6 @@ var searchData=
   ['weakpointer_3c_20t_20_3e_7',['WeakPointer&lt; T &gt;',['../class_shared_pointer.html#a24ca3a94bc9dce5300cc53ef0f1de949',1,'SharedPointer']]],
   ['white_8',['white',['../struct_linear_colors.html#ac6be2c0f5e6c5208e790323fa411ad38',1,'LinearColors']]],
   ['windowheight_9',['windowHeight',['../struct_platform_data.html#aa79ec96cd0179882dea985954ca6b7ed',1,'PlatformData']]],
-  ['windowwidth_10',['windowWidth',['../struct_platform_data.html#a57b19e546efcba0c52eb0640630e54a7',1,'PlatformData']]]
+  ['windowwidth_10',['windowWidth',['../struct_platform_data.html#a57b19e546efcba0c52eb0640630e54a7',1,'PlatformData']]],
+  ['wireframeshader_11',['wireframeShader',['../class_shader_programs.html#a30dfbaf0b27194ec125d65bce09930a6',1,'ShaderPrograms']]]
 ];

@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"index.html#autotoc_md6":[2,2],
+"index.html#autotoc_md7":[3],
+"index.html#autotoc_md8":[4],
+"pages.html":[],
 "stb__image_8h.html":[8,0,0,0,0,10],
 "stb__image_8h.html#a077867644e156572eaf54d118f65e5a1":[8,0,0,0,0,10,31],
 "stb__image_8h.html#a093f86b90423ff020846c6d002c3296c":[8,0,0,0,0,10,30],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "struct_platform_data.html#a57b19e546efcba0c52eb0640630e54a7":[7,0,38,9],
 "struct_platform_data.html#a9ec9521fab6d70735b9f5ab586d2cab9":[7,0,38,2],
 "struct_platform_data.html#aa77fdde2b1b9d32b46a607aab6b1e1d6":[7,0,38,0],
-"struct_platform_data.html#aa79ec96cd0179882dea985954ca6b7ed":[7,0,38,8],
-"struct_platform_data.html#ac29e931fddacfec29be1c85ee832f12a":[7,0,38,5],
-"struct_platform_data.html#ac52694411097aa8d62539a0f3082ae35":[7,0,38,1],
-"struct_platform_data.html#acfc07be3f86b0e7505292ff89d884355":[7,0,38,6],
-"struct_stack_frame.html":[7,0,49]
+"struct_platform_data.html#aa79ec96cd0179882dea985954ca6b7ed":[7,0,38,8]
 };

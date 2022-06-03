@@ -18,7 +18,7 @@ var class_scene =
     [ "listComponents", "class_scene.html#ae1660dd05b8873cd080ffa8e780b6fe6", null ],
     [ "listObjects", "class_scene.html#ae1077d95b4141754cfc3aac5ad416a12", null ],
     [ "load", "class_scene.html#ae1b864ad69216f68b5c588477c87ec20", null ],
-    [ "renderComponents", "class_scene.html#a8865a33b65aa5f08dd4baa25b8dfe7d1", null ],
+    [ "renderComponents", "class_scene.html#abda1fdc000d8643eac63d7fddf66fdea", null ],
     [ "setupInput", "class_scene.html#a60c4df0263db673289a4a1ba9ee51a29", null ],
     [ "setWorldColor", "class_scene.html#a84915a8cb570818e714ac4ac695d2dc9", null ],
     [ "start", "class_scene.html#a2ec5c2aa1fe770f3f72e1ce71138ae94", null ],

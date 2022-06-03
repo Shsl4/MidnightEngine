@@ -2,8 +2,10 @@ var class_model_component =
 [
     [ "Super", "class_model_component.html#a0b4a78c0fa125c509608d98894e46d80", null ],
     [ "ModelComponent", "class_model_component.html#ab4eab94548947d80193a2a509621d834", null ],
+    [ "getMaterial", "class_model_component.html#ab31e603a6dd0b0b99e96ffabe1eb7b5e", null ],
     [ "getModel", "class_model_component.html#ac1f703b635bde2d1eda39bfb6fd7c9b4", null ],
-    [ "render", "class_model_component.html#a0bc7f834015e761aec309a11fb039cce", null ],
+    [ "render", "class_model_component.html#a08c1bb6c2bf1170578a5c69a618ae5d0", null ],
+    [ "setMaterial", "class_model_component.html#a792338d1a63dcc72a7d265b5e8a4358d", null ],
     [ "setModel", "class_model_component.html#a91d95cafa50a819e5d358064f2ebff36", null ],
     [ "setShader", "class_model_component.html#aeeba38c1939517c17a577635742eca23", null ],
     [ "setTexture", "class_model_component.html#ab87c4e630d8e8e3b024c7aa02cfc0f92", null ],

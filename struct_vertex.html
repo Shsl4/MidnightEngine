@@ -104,8 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae2152b82b92f1522812a1e2bb8c32ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc7efd68f5185e4f8152078920db4453"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#adc7efd68f5185e4f8152078920db4453">Vertex</a> (float x, float y, float z, float r, float g, float b, float a)</td></tr>
 <tr class="separator:adc7efd68f5185e4f8152078920db4453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcc16878394c5f68c4b0eb6f7a18d8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#a0bcc16878394c5f68c4b0eb6f7a18d8a">Vertex</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;pos, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;norm, <a class="el" href="struct_vector2.html">Vector2</a> const &amp;texCoords, <a class="el" href="struct_linear_color.html">LinearColor</a> const &amp;col)</td></tr>
-<tr class="separator:a0bcc16878394c5f68c4b0eb6f7a18d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe1a9e661543399fea044864b2f9d687"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#abe1a9e661543399fea044864b2f9d687">Vertex</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;pos, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;norm, <a class="el" href="struct_vector2.html">Vector2</a> const &amp;texCoords, <a class="el" href="struct_linear_color.html">LinearColor</a> const &amp;col, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;bcc)</td></tr>
+<tr class="separator:abe1a9e661543399fea044864b2f9d687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accca099e25d81843d047dde8e8739a37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#accca099e25d81843d047dde8e8739a37">Vertex</a> (float x, float y, float z, <a class="el" href="struct_linear_color.html">LinearColor</a> <a class="el" href="struct_vertex.html#a068076190dab207bd7d53330259ec4d9">color</a>)</td></tr>
 <tr class="separator:accca099e25d81843d047dde8e8739a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c558c054a0a2c970588c063073803a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">Vertex</a> (float x, float y, float z)</td></tr>
@@ -125,6 +125,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:adce2d4b3d1191c69328519bdf231c344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a068076190dab207bd7d53330259ec4d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#a068076190dab207bd7d53330259ec4d9">color</a> = <a class="el" href="struct_linear_colors.html#ac6be2c0f5e6c5208e790323fa411ad38">LinearColors::white</a></td></tr>
 <tr class="separator:a068076190dab207bd7d53330259ec4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f880620ce5d17e1ee260226aa8b5d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_vertex.html#ad7f880620ce5d17e1ee260226aa8b5d3">barycentric</a> = <a class="el" href="struct_vector3.html#a828fab71ad9172e6fb346fc4a1f19588">Vector3::zero</a></td></tr>
+<tr class="separator:ad7f880620ce5d17e1ee260226aa8b5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A vertex contains data about a point in space. Vertices are used to represent meshes. </p>
@@ -220,8 +222,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0bcc16878394c5f68c4b0eb6f7a18d8a" name="a0bcc16878394c5f68c4b0eb6f7a18d8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bcc16878394c5f68c4b0eb6f7a18d8a">&#9670;&nbsp;</a></span>Vertex() <span class="overload">[3/5]</span></h2>
+<a id="abe1a9e661543399fea044864b2f9d687" name="abe1a9e661543399fea044864b2f9d687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe1a9e661543399fea044864b2f9d687">&#9670;&nbsp;</a></span>Vertex() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +253,13 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_linear_color.html">LinearColor</a> const &amp;&#160;</td>
-          <td class="paramname"><em>col</em>&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
+          <td class="paramname"><em>bcc</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -412,6 +420,21 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad7f880620ce5d17e1ee260226aa8b5d3" name="ad7f880620ce5d17e1ee260226aa8b5d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f880620ce5d17e1ee260226aa8b5d3">&#9670;&nbsp;</a></span>barycentric</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> Vertex::barycentric = <a class="el" href="struct_vector3.html#a828fab71ad9172e6fb346fc4a1f19588">Vector3::zero</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >The barycentric coordinates. </p>
+
+</div>
+</div>
 <a id="a068076190dab207bd7d53330259ec4d9" name="a068076190dab207bd7d53330259ec4d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a068076190dab207bd7d53330259ec4d9">&#9670;&nbsp;</a></span>color</h2>
 

@@ -110,44 +110,47 @@ $(document).ready(function(){initNavTree('_shader_programs_8h_source.html',''); 
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_shader_programs.html#ae9c1c9e8b1dcafdd86c60fc5319f65e3">   17</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> bgfx::ProgramHandle directionalLightShader {};</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_shader_programs.html#abeffd668c0b7e04b4b54c8ebd7d81c53">   18</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> bgfx::ProgramHandle pointLightShader {};</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_shader_programs.html#a1bc6352d5cad9cdafb0e32d470c28747">   19</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> bgfx::ProgramHandle skyboxShader {};</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_shader_programs.html#a685a33b83a13f36aceea3ff940994ac9">   23</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_resource_loader.html">ResourceLoader</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">   25</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">makePrograms</a>() {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        unlit = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Unlit&quot;</span>);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        basicShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Basic&quot;</span>);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        materialShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Material&quot;</span>);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        textureShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Texture&quot;</span>);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        directionalLightShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;DirectionalLight&quot;</span>);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        pointLightShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;PointLight&quot;</span>);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        skyboxShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Skybox&quot;</span>);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">   37</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">destroyPrograms</a>() {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        destroy(unlit);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        destroy(basicShader);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        destroy(materialShader);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        destroy(textureShader);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        destroy(directionalLightShader);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        destroy(pointLightShader);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        destroy(skyboxShader);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_shader_programs.html#a30dfbaf0b27194ec125d65bce09930a6">   20</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> bgfx::ProgramHandle wireframeShader {};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_shader_programs.html#a685a33b83a13f36aceea3ff940994ac9">   24</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_resource_loader.html">ResourceLoader</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">   26</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">makePrograms</a>() {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        unlit = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Unlit&quot;</span>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        basicShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Basic&quot;</span>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        materialShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Material&quot;</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        textureShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Texture&quot;</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        directionalLightShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;DirectionalLight&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        pointLightShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;PointLight&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        skyboxShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Skybox&quot;</span>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        wireframeShader = <a class="code hl_function" href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a>(<span class="stringliteral">&quot;Wireframe&quot;</span>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">   39</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">destroyPrograms</a>() {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        destroy(unlit);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        destroy(basicShader);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        destroy(materialShader);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        destroy(textureShader);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        destroy(directionalLightShader);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        destroy(pointLightShader);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        destroy(skyboxShader);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        destroy(wireframeShader);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 <div class="ttc" id="a_engine_macros_8h_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:8</div></div>
 <div class="ttc" id="a_shader_manager_8h_html"><div class="ttname"><a href="_shader_manager_8h.html">ShaderManager.h</a></div></div>
 <div class="ttc" id="aclass_resource_loader_html"><div class="ttname"><a href="class_resource_loader.html">ResourceLoader</a></div><div class="ttdef"><b>Definition:</b> ResourceLoader.h:8</div></div>
 <div class="ttc" id="aclass_shader_manager_html_a3ace884c2910f9d3795a4ceb5037d43b"><div class="ttname"><a href="class_shader_manager.html#a3ace884c2910f9d3795a4ceb5037d43b">ShaderManager::loadProgram</a></div><div class="ttdeci">static bgfx::ProgramHandle loadProgram(String const &amp;name)</div><div class="ttdef"><b>Definition:</b> ShaderManager.cpp:29</div></div>
 <div class="ttc" id="aclass_shader_programs_html"><div class="ttname"><a href="class_shader_programs.html">ShaderPrograms</a></div><div class="ttdef"><b>Definition:</b> ShaderPrograms.h:7</div></div>
-<div class="ttc" id="aclass_shader_programs_html_ad2bae0a5a4984561922ff4f6098ccf97"><div class="ttname"><a href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">ShaderPrograms::destroyPrograms</a></div><div class="ttdeci">static void destroyPrograms()</div><div class="ttdef"><b>Definition:</b> ShaderPrograms.h:37</div></div>
+<div class="ttc" id="aclass_shader_programs_html_ad2bae0a5a4984561922ff4f6098ccf97"><div class="ttname"><a href="class_shader_programs.html#ad2bae0a5a4984561922ff4f6098ccf97">ShaderPrograms::destroyPrograms</a></div><div class="ttdeci">static void destroyPrograms()</div><div class="ttdef"><b>Definition:</b> ShaderPrograms.h:39</div></div>
 <div class="ttc" id="aclass_shader_programs_html_ae8bfd4c3a3dd6e354549879f86e5a344"><div class="ttname"><a href="class_shader_programs.html#ae8bfd4c3a3dd6e354549879f86e5a344">ShaderPrograms::ShaderPrograms</a></div><div class="ttdeci">ShaderPrograms()=delete</div></div>
-<div class="ttc" id="aclass_shader_programs_html_afd1b2584645c24c5515ea9af4c2d01d1"><div class="ttname"><a href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">ShaderPrograms::makePrograms</a></div><div class="ttdeci">static void makePrograms()</div><div class="ttdef"><b>Definition:</b> ShaderPrograms.h:25</div></div>
+<div class="ttc" id="aclass_shader_programs_html_afd1b2584645c24c5515ea9af4c2d01d1"><div class="ttname"><a href="class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1">ShaderPrograms::makePrograms</a></div><div class="ttdeci">static void makePrograms()</div><div class="ttdef"><b>Definition:</b> ShaderPrograms.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->
