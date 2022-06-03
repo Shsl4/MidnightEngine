@@ -32,6 +32,7 @@ static bgfx::VertexLayout getVertexLayout()
           .add(bgfx::Attrib::TexCoord0, 2, bgfx::AttribType::Float)
           .add(bgfx::Attrib::Normal, 3, bgfx::AttribType::Float)
           .add(bgfx::Attrib::Color0, 4, bgfx::AttribType::Float, true)
+          .add(bgfx::Attrib::Color1, 3, bgfx::AttribType::Float, false)
           .end();
 
     return layout;

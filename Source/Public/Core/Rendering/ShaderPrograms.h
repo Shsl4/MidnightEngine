@@ -17,6 +17,7 @@ public:
     static inline bgfx::ProgramHandle directionalLightShader {};
     static inline bgfx::ProgramHandle pointLightShader {};
     static inline bgfx::ProgramHandle skyboxShader {};
+    static inline bgfx::ProgramHandle wireframeShader {};
     
 private:
 
@@ -31,6 +32,7 @@ private:
         directionalLightShader = ShaderManager::loadProgram("DirectionalLight");
         pointLightShader = ShaderManager::loadProgram("PointLight");
         skyboxShader = ShaderManager::loadProgram("Skybox");
+        wireframeShader = ShaderManager::loadProgram("Wireframe");
         
     }
 
@@ -43,6 +45,7 @@ private:
         destroy(directionalLightShader);
         destroy(pointLightShader);
         destroy(skyboxShader);
+        destroy(wireframeShader);
                 
     }
         

@@ -133,7 +133,7 @@ protected:
     /*!
      *  \brief Renders all renderable components in the scene. This function is called on the render thread.
      */
-    virtual void renderComponents(UInt64 state) const;
+    virtual void renderComponents() const;
 
     /*!
      *  \brief Updates every object on the scene.

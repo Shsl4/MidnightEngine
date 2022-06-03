@@ -17,8 +17,8 @@ public:
             : position(Vector3(x, y, z)), color(LinearColor::fromLinearRGBA(r, g, b, a)) {
     }
 
-    Vertex(Vector3 const &pos, Vector3 const &norm, Vector2 const &texCoords, LinearColor const &col)
-            : position(pos), normal(norm), textureCoordinates(texCoords), color(col) {
+    Vertex(Vector3 const &pos, Vector3 const &norm, Vector2 const &texCoords, LinearColor const &col, Vector3 const& bcc)
+            : position(pos), textureCoordinates(texCoords), normal(norm), color(col), barycentric(bcc) {
 
     }
 
@@ -62,5 +62,10 @@ public:
      * The vertex color.
      */
     LinearColor color = LinearColors::white;
+    
+    /*!
+     * The barycentric coordinates.
+     */
+    Vector3 barycentric = Vector3::zero;
 
 };

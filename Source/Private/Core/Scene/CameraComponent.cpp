@@ -14,9 +14,11 @@ void CameraComponent::start() {
     
 }
 
+
 void CameraComponent::update(float deltaTime) {
     
     Super::update(deltaTime);
+
     
 }
 

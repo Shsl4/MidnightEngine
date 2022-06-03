@@ -73,7 +73,20 @@ bool ModelComponent::setShader(size_t index, bgfx::ProgramHandle handle) {
     
 }
 
-void ModelComponent::render(UInt64 state) {
+void ModelComponent::setMaterial(size_t index, Material const& material) const {
+    
+    if (index >= materials.getSize()) { return; }
+
+    materials[index] = material;
+    
+}
+
+
+Material& ModelComponent::getMaterial(size_t index) const {
+    return materials[index];
+}
+
+void ModelComponent::render() {
 
     // If a model is set
     if (!model.expired()){
@@ -81,8 +94,6 @@ void ModelComponent::render(UInt64 state) {
         // Render it.
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
         const auto light = getScene()->getFirstComponentOf<LightComponent>();
-
-        bgfx::setState(state);
         
         // Render it.
         model->render(viewId, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles, light);

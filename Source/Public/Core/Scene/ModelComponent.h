@@ -30,14 +30,16 @@ public:
     void setViewId(UInt16 id) {
         this->viewId = id;
     }
+    void setMaterial(size_t index, Material const& material) const;
     
+    NODISCARD Material& getMaterial(size_t index) const;
     NODISCARD WeakPointer<Model> getModel() const { return this->model; }
 
 private:
 
     using Super = SceneComponent;
 
-    void render(UInt64 state) override;
+    void render() override;
 
     WeakPointer<Model> model = nullptr;
 

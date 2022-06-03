@@ -75,6 +75,24 @@ void Model::render(UInt16 viewId,
             setUniform(Uniforms::lightSpecular, &Vector4::zero);
         }
 
+        if (programs[count].idx == ShaderPrograms::wireframeShader.idx) {
+            
+            constexpr UInt64 state = 0 | BGFX_STATE_WRITE_RGB | BGFX_STATE_WRITE_A |
+                    BGFX_STATE_WRITE_Z  | BGFX_STATE_MSAA | BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA);
+
+            bgfx::setState(state);
+            
+        }
+        else {
+
+            // Set our renderer state properties.
+            constexpr UInt64 state = 0 | BGFX_STATE_WRITE_RGB | BGFX_STATE_WRITE_A |
+                    BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_MSAA;
+
+            bgfx::setState(state);
+            
+        }
+
         mesh->render(viewId, materials[count], textures[count].valid() ? textures[count].raw() : nullptr, programs[count]);
         ++count;
         

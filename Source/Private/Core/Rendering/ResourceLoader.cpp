@@ -178,6 +178,25 @@ void ResourceLoader::loadTexture(String const& file)
     
 }
 
+
+Vector3 barycentric(Vector3 p, Vector3 a, Vector3 b, Vector3 c) {
+                
+    Vector3 v0 = b - a, v1 = c - a, v2 = p - a;
+    float d00 = Vector3::dot(v0, v0);
+    float d01 = Vector3::dot(v0, v1);
+    float d11 = Vector3::dot(v1, v1);
+    float d20 = Vector3::dot(v2, v0);
+    float d21 = Vector3::dot(v2, v1);
+    float denom = d00 * d11 - d01 * d01;
+    float v = (d11 * d20 - d01 * d21) / denom;
+    float w = (d00 * d21 - d01 * d20) / denom;
+    float u = 1.0f - v - w;
+
+    return { u, v, w };
+    
+}
+
+
 void ResourceLoader::loadModel(String const& file)
 {
 
@@ -203,13 +222,13 @@ void ResourceLoader::loadModel(String const& file)
 
     Array<SharedPointer<Mesh>> meshes;
     auto textures = Array<SharedPointer<Texture>>(scene->mNumMeshes);
-
+    
     for (size_t i = 0; i < scene->mNumMeshes; ++i) {
 
         const auto libMesh = scene->mMeshes[i];
         auto vertices = Array<Vertex>(libMesh->mNumVertices);
         auto indices = Array<UInt16>(10000);
-
+        
         for(size_t j = 0; j < libMesh->mNumVertices; ++j) {
             
             const auto pos = libMesh->mVertices[j];
@@ -232,7 +251,7 @@ void ResourceLoader::loadModel(String const& file)
                 
             }
         
-            vertices += Vertex(position, normal, texCoords, LinearColors::white);
+            vertices += Vertex(position, normal, texCoords, LinearColors::white, Vector3::zero);
             
         }
 
@@ -246,15 +265,38 @@ void ResourceLoader::loadModel(String const& file)
                 indices += libMesh->mFaces[j].mIndices[k];
             }
             
+        }
+        
+        Array<UInt32> t;
+        
+        for (size_t f = 0; f < libMesh->mNumFaces; ++f) {
+
+            if(fileName == "Donut") {
+                int a = 4;
+            }
+            
+            const auto face = libMesh->mFaces[f];
+            const auto numIndices = face.mNumIndices;
+    
+            assert(numIndices == 3);
+
+            // \todo Fix barycentric coordinates
+            auto& v1 = vertices[face.mIndices[0]];
+            auto& v2 = vertices[face.mIndices[f % 2 == 0 ? 1 : 2]];
+            auto& v3 = vertices[face.mIndices[f % 2 == 0 ? 2 : 1]];
+
+            v1.barycentric = barycentric(v1.position, v1.position, v2.position, v3.position);
+            v2.barycentric = barycentric(v2.position, v1.position, v2.position, v3.position);
+            v3.barycentric = barycentric(v3.position, v1.position, v2.position, v3.position);
             
         }
-
-        textures += nullptr;
-
-        meshes += SharedPointer<Mesh>::make(vertices, indices, fileName, path);
         
-    }
+        textures += nullptr;
+        
+        meshes += SharedPointer<Mesh>::make(vertices, indices, fileName, path);
 
+    }    
+    
     loadedModels += SharedPointer<Model>::make(meshes, textures, fileName);
     
     // Log a success message.

@@ -91,7 +91,7 @@ Actor* Scene::getObjectByIndex(size_t index) const {
     
 }
 
-void Scene::renderComponents(UInt64 state) const {
+void Scene::renderComponents() const {
     
     // For each registered Actor
     for (const auto& actor : registeredActors) {
@@ -101,7 +101,7 @@ void Scene::renderComponents(UInt64 state) const {
         if (actor->getRootComponent()->inherits<Renderable>()) {
 
             // Cast to renderable and call render.
-            actor->getRootComponent()->cast<Renderable>()->render(state);
+            actor->getRootComponent()->cast<Renderable>()->render();
 
         }
         
@@ -112,7 +112,7 @@ void Scene::renderComponents(UInt64 state) const {
             if (component->inherits<Renderable>()) {
 
                 // Cast to renderable and call render.
-                component->cast<Renderable>()->render(state);
+                component->cast<Renderable>()->render();
 
             }
             

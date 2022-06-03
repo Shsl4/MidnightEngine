@@ -130,9 +130,10 @@ void Engine::render() {
     bgfx::setViewRect(0, 0, 0, static_cast<UInt16>(platformData.renderWidth), static_cast<UInt16>(platformData.renderHeight));
     
     // Set our renderer state properties.
-    constexpr UInt64 state = 0 | BGFX_STATE_WRITE_R | BGFX_STATE_WRITE_G | BGFX_STATE_WRITE_B | BGFX_STATE_WRITE_A |
-            BGFX_STATE_WRITE_Z | BGFX_STATE_DEPTH_TEST_LESS | BGFX_STATE_MSAA;
+    constexpr UInt64 state = 0 | BGFX_STATE_WRITE_RGB | BGFX_STATE_WRITE_A |
+            BGFX_STATE_WRITE_Z  | BGFX_STATE_MSAA | BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA);
 
+    
     bgfx::setState(state);
 
     if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
@@ -144,7 +145,7 @@ void Engine::render() {
         bgfx::setViewTransform(0, camera->getViewMatrix().data, camera->getProjectionMatrix().data);
 
         // Render the components in our scene.
-        activeScene->renderComponents(state);
+        activeScene->renderComponents();
 
     }
 

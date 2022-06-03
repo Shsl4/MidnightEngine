@@ -116,6 +116,7 @@ public:
         skybox->setTexture(0, "Space");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
 
+
 #ifdef MULTI
         
         for (Int64 i = -4; i < 5; ++i) {
@@ -127,8 +128,10 @@ public:
 
 #else
 
-        this->model = createObject<ModelActor>(Transform({ 10.0f, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(10.0f)));
-        model->setModel("marble_bust_01_2k");
+        this->model = createObject<ModelActor>(Transform({ 0.0f, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(3.0f)));
+        model->setModel("Sphere");
+        model->setShader(0, ShaderPrograms::wireframeShader);
+        model->getMaterial(0).ambientColor = LinearColors::green;
 
 #endif
         
@@ -139,7 +142,7 @@ public:
         manager->bindEvent(this, KeyBind(SDLK_KP_2), EInputEvent::Pressed, &RenderScene::setTexture2);
         manager->bindEvent(this, KeyBind(SDLK_KP_3), EInputEvent::Pressed, &RenderScene::setTexture3);
         
-        this->character->setMovementSpeed(5.0f);
+        this->character->setMovementSpeed(1.0f);
         
     }
 
@@ -180,7 +183,7 @@ public:
         //this->light->getLightComponent()->setLightDirection({ sin(time), -1.0f, 0.0f});
 
 #ifndef MULTI
-        model->addWorldRotation({ 0.0f, 10.0f * deltaTime, 0.0f });
+        //model->addWorldRotation({ 0.0f, 10.0f * deltaTime, 0.0f });
 #endif
         //light->getLightComponent()->setDiffuseColor(LinearColor::fromLinearRGB(sin(time), cos(time), sin(2.0f * time)));
         
@@ -326,6 +329,23 @@ class MyEngine : public Engine {
 
 #define DEBUG_LEAKS
 
+Vector3 barycentric(Vector3 p, Vector3 a, Vector3 b, Vector3 c) {
+                
+    Vector3 v0 = b - a, v1 = c - a, v2 = p - a;
+    float d00 = Vector3::dot(v0, v0);
+    float d01 = Vector3::dot(v0, v1);
+    float d11 = Vector3::dot(v1, v1);
+    float d20 = Vector3::dot(v2, v0);
+    float d21 = Vector3::dot(v2, v1);
+    float denom = d00 * d11 - d01 * d01;
+    float v = (d11 * d20 - d01 * d21) / denom;
+    float w = (d00 * d21 - d01 * d20) / denom;
+    float u = 1.0f - v - w;
+
+    return { u, v, w };
+    
+}
+
 int main(const int argc, const char** argv) {
 
 #if defined(_WIN64) && defined(DEBUG_LEAKS)
@@ -344,6 +364,11 @@ int main(const int argc, const char** argv) {
         return pointer;
     });
 
+    /*
+    const Vector3 bcc[3] = { {1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f} };
+
+    Vector3 a = barycentric(Vector3::zero, bcc[0], bcc[1], bcc[2]);
+    */
     return 0;
 
 }
