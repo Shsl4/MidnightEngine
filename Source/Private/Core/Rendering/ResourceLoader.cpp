@@ -267,13 +267,7 @@ void ResourceLoader::loadModel(String const& file)
             
         }
         
-        Array<UInt32> t;
-        
         for (size_t f = 0; f < libMesh->mNumFaces; ++f) {
-
-            if(fileName == "Donut") {
-                int a = 4;
-            }
             
             const auto face = libMesh->mFaces[f];
             const auto numIndices = face.mNumIndices;

@@ -56,7 +56,6 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     physicsManager->init();
     
     this->platformData = data;
-    this->startTime = bx::getHPCounter();
 
     bgfx::reset(platformData.renderWidth, platformData.renderHeight, BGFX_RESET_HIDPI);
     
@@ -78,6 +77,8 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     
     onStart();
 
+    this->startTime = bx::getHPCounter();
+    
     return 0;
 
 }

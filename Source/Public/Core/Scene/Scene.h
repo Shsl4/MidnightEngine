@@ -89,7 +89,8 @@ public:
         
         // If the Actor did not setup a root component, create a default one.
         if (!actor->rootComponent) {
-            actor->rootComponent = actor->template createComponent<SceneComponent>("DefaultRoot");
+            SceneComponent* comp = actor->template createComponent<SceneComponent>("DefaultRoot");
+            comp->attachTo(actor.raw());
         }
 
         actor->setWorldTransform(transform);

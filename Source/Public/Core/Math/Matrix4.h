@@ -3,7 +3,7 @@
 #include <Core/EngineMacros.h>
 #include <Math/Transform.h>
 #include <Math/Vector4.h>
-
+#include <PhysX/foundation/PxMat44.h>
 /*!
  * A 4x4 Matrix structure implementing operators and primitives.
  */
@@ -33,7 +33,7 @@ struct ENGINE_API Matrix4 {
 
     bool operator==(Matrix4 const &other) const;
 
-    Vector4 operator[](size_t i) const;
+    Vector4 operator[](size_t col) const;
 
     void rotateX(float radians);
 

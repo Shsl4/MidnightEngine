@@ -228,6 +228,13 @@ public:
         return componentsOfType;
 
     }
+
+    /*!
+    * Sets the input component as this object's root component
+    *
+    *  \param[in] component The new root component
+    */
+    void setRootComponent(class SceneComponent *component);
     
 protected:
 
@@ -238,12 +245,7 @@ protected:
      */
     virtual void setupInput(class InputManager *manager);
 
-    /*!
-     * Sets the input component as this object's root component
-     *
-     *  \param[in] component The new root component
-     */
-    void setRootComponent(class SceneComponent *component);
+
 
 private:
 

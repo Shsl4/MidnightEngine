@@ -63,10 +63,10 @@ void Model::render(UInt16 viewId,
             
         }
 
-        if (const auto* directionalLight = light->cast<PointLightComponent>()) {
+        if (const auto* pointLight = light->cast<PointLightComponent>()) {
 
             lightsDirections += Vector4(0.0f);
-            attenuations += directionalLight->getAttenuation();
+            attenuations += pointLight->getAttenuation();
             
         }
             

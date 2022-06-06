@@ -188,7 +188,7 @@ private:
     /*!
      * The active render distance of the camera.
      */
-    float renderDistance = 3500.0f;
+    float renderDistance = FLT_MAX;
 
     /*!
      * The active camera speed.

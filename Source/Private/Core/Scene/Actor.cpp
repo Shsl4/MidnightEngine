@@ -18,7 +18,12 @@ void Actor::update(float deltaTime) {
 
 }
 
-void Actor::setRootComponent(SceneComponent* component) { component->attachTo(this); }
+void Actor::setRootComponent(SceneComponent* component) {
+    
+    component->parentActor = this;
+    rootComponent = component;
+
+}
 
 void Actor::onComponentAttached(SceneComponent* component) {}
 

@@ -26,9 +26,14 @@ public:
     NODISCARD bool hasGravityEnabled() const;
 
     NODISCARD FORCEINLINE physx::PxRigidBody* getRigidBody() const { return rigidBody; }
+
+    void makeSphereCollider(float radius = 1.0f);
+    void makeDynamicBoxCollider(Vector3 const& halfExtents = { 1.0f, 1.0f, 1.0f });
+    bool makeModelCollider(const struct Model* model);
     
 private:
 
     physx::PxRigidBody* rigidBody = nullptr;
+    static inline physx::PxMaterial* material = nullptr;
     
 };

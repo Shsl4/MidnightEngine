@@ -10,6 +10,8 @@
 
 #include <PhysX/extensions/PxSimpleFactory.h>
 
+#include "PxMaterial.h"
+
 Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
         
     this->value = 0;
@@ -31,8 +33,11 @@ Scene::Scene(PhysicsManager* manager) : cameraManager(UniquePointer<CameraManage
     sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
     
     physicsScene = physics->createScene(sceneDesc);
+
+    physx::PxMaterial* material = manager->getPhysicsMaterial();
     
-    physx::PxRigidStatic* groundPlane = PxCreatePlane(*physics, physx::PxPlane(0, 1, 0, 1), *manager->getPhysicsMaterial());
+    physx::PxRigidStatic* groundPlane = PxCreatePlane(*physics, physx::PxPlane(0, 1, 0, 1), *material);
+        
     physicsScene->addActor(*groundPlane);
     
 }
@@ -154,8 +159,7 @@ void Scene::renderComponents() const {
 }
 
 void Scene::update(const float deltaTime) {
-
-
+    
     // Updates all the registered Actors.
     for (auto const& object: registeredActors) {
         object->update(deltaTime);
