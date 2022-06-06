@@ -93,10 +93,9 @@ void ModelComponent::render() {
 
         // Render it.
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
-        const auto light = getScene()->getFirstComponentOf<LightComponent>();
         
         // Render it.
-        model->render(viewId, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles, light);
+        model->render(viewId, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles);
         
     }
     

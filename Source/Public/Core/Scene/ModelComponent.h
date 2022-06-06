@@ -30,6 +30,7 @@ public:
     void setViewId(UInt16 id) {
         this->viewId = id;
     }
+    
     void setMaterial(size_t index, Material const& material) const;
     
     NODISCARD Material& getMaterial(size_t index) const;

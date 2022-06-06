@@ -26,6 +26,6 @@ public:
 protected:
     
     LinearColor diffuseColor = LinearColors::white;
-    LinearColor specularColor = LinearColors::white;
+    LinearColor specularColor = LinearColors::black;
     
 };

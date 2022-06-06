@@ -68,6 +68,8 @@ public:
      */
     bool setActiveCamera(CameraComponent* camera);
 
+    bool setActiveCameraByIndex(size_t index);
+
 
 protected:
 

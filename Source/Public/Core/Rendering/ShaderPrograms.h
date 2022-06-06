@@ -23,7 +23,11 @@ private:
 
     friend class ResourceLoader;
 
+    static inline bool constructed = false;
+    
     static void makePrograms() {
+
+        if (constructed) { return; }
         
         unlit = ShaderManager::loadProgram("Unlit");
         basicShader = ShaderManager::loadProgram("Basic");
@@ -33,10 +37,14 @@ private:
         pointLightShader = ShaderManager::loadProgram("PointLight");
         skyboxShader = ShaderManager::loadProgram("Skybox");
         wireframeShader = ShaderManager::loadProgram("Wireframe");
+
+        constructed = true;
         
     }
 
     static void destroyPrograms() {
+
+        if (!constructed) { return; }
         
         destroy(unlit);
         destroy(basicShader);
@@ -46,6 +54,8 @@ private:
         destroy(pointLightShader);
         destroy(skyboxShader);
         destroy(wireframeShader);
+
+        constructed = false;
                 
     }
         

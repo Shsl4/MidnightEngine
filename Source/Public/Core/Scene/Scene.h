@@ -10,6 +10,9 @@
 #include <Memory/UniquePointer.h>
 #include <Logging/Logger.h>
 
+#include "PxScene.h"
+#include "Physics/PhysicsManager.h"
+
 struct ENGINE_API Color {
 
     static void setByte(UInt32& bytes, UInt8 byte, int pos) {
@@ -29,17 +32,20 @@ struct ENGINE_API Color {
 class ENGINE_API Scene : public Object {
 
 public:
+    
     enum class State {
+        
         Unloaded,
         Loading,
         Loaded,
         Unloading
+        
     };
 
     /*!
      * The scene constructor. Initializes the private variables.
      */
-    Scene();
+    Scene(PhysicsManager* manager);
 
     /*!
     * Loads the scene. It sets up and constructs every object in the scene.
@@ -73,7 +79,7 @@ public:
      *  \return The newly created Actor
      */
     template <class T>
-    T* createObject(Transform const& transform = Transform::zero()) {
+    T* createActor(Transform const& transform = Transform::zero()) {
 
         // Check if the class we are trying to instantiate is a Actor.
         static_assert(std::is_base_of_v<Actor, T>, "T should inherit from Actor");
@@ -83,7 +89,8 @@ public:
         
         // If the Actor did not setup a root component, create a default one.
         if (!actor->rootComponent) {
-            actor->rootComponent = actor->template createComponent<SceneComponent>("DefaultRoot");
+            SceneComponent* comp = actor->template createComponent<SceneComponent>("DefaultRoot");
+            comp->attachTo(actor.raw());
         }
 
         actor->setWorldTransform(transform);
@@ -102,9 +109,13 @@ public:
     T* getFirstComponentOf() const {
 
         for (auto& actor : registeredActors) {
+            
             if (actor->getFirstComponentOf<T>()) {
+                
                 return actor->getFirstComponentOf<T>();
+                
             }
+            
         }
 
         return nullptr;
@@ -125,6 +136,10 @@ public:
      *  \return The Scene CameraManager.
      */
     FORCEINLINE CameraManager* getCameraManager() const { return this->cameraManager.raw(); }
+
+    Array<class LightComponent*> lights = Array<class LightComponent*>();
+    
+    FORCEINLINE physx::PxScene* getPhysicsScene() const { return this->physicsScene; }
 
 protected:
     
@@ -149,11 +164,17 @@ protected:
      */
     virtual void setupInput(Actor* object);
 
+    void updatePhysics(float deltaTime);
+
+    void waitForPhysics();
+
     /*!
      *  \brief An automatically managed array storing references to all Actors in the scene.
      *  The Actors are automatically released when the scene is destroyed.
      */
     Array<SharedPointer<Actor>> registeredActors = Array<SharedPointer<Actor>>(50);
+
+    Array<Actor*> pendingDestroy = Array<Actor*>(50);
 
     /*!
      * The scene's CameraManager.
@@ -165,4 +186,6 @@ protected:
      */
     State state = State::Unloaded;
 
+    physx::PxScene* physicsScene;
+    
 };

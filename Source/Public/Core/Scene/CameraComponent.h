@@ -133,6 +133,10 @@ public:
      */
     NODISCARD Vector3 getForwardVector() const override;
 
+    void setWorldPosition(const Vector3 &position) override;
+
+    void setWorldRotation(const Vector3 &rotation) override;
+
 private:
 
     /*!
@@ -188,7 +192,7 @@ private:
     /*!
      * The active render distance of the camera.
      */
-    float renderDistance = 3500.0f;
+    float renderDistance = FLT_MAX;
 
     /*!
      * The active camera speed.

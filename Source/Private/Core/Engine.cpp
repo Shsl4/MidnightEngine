@@ -35,6 +35,7 @@ Engine::Engine() {
     this->inputManager = UniquePointer<InputManager>::make();
     this->perfWindow = UniquePointer<PerformanceWindow>::make();
     this->resourceLoader = UniquePointer<ResourceLoader>::make();
+    this->physicsManager = UniquePointer<PhysicsManager>::make();
 
 }
 
@@ -51,9 +52,10 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
         return 1;
 
     }
+
+    physicsManager->init();
     
     this->platformData = data;
-    this->startTime = bx::getHPCounter();
 
     bgfx::reset(platformData.renderWidth, platformData.renderHeight, BGFX_RESET_HIDPI);
     
@@ -62,7 +64,7 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
 
     // Initializes our UI system.
     imguiCreate();
-
+        
     resourceLoader->init();
         
     // Add an input event. If the escape key is pressed, the engine will exit. This will be removed later.
@@ -75,6 +77,8 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
     
     onStart();
 
+    this->startTime = bx::getHPCounter();
+    
     return 0;
 
 }
@@ -91,14 +95,18 @@ void Engine::update() {
     deltaTime = time - lastTime;
     lastTime = time;
     
-    // Update our input system.
-    inputManager->update();
-    
     // Only update the scene if it is loaded
     if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
         
+        activeScene->updatePhysics(deltaTime);
+
+        // Update our input system.
+        inputManager->update();
+
         // Update the current scene.
         activeScene->update(deltaTime);
+
+        activeScene->waitForPhysics();
 
     }
 
@@ -219,6 +227,7 @@ void Engine::cleanup() {
     activeScene = nullptr;
     resourceLoader.release();
     perfWindow.release();
+    physicsManager.release();
 
     imguiDestroy();
 

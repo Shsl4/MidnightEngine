@@ -14,6 +14,8 @@
 #include <Scene/Scene.h>
 #include <Console/Console.h>
 
+#include <Physics/PhysicsManager.h>
+
 /*!
  *  \brief The main engine class.
  */
@@ -137,6 +139,11 @@ public:
     {
         return resourceLoader.raw();
     }
+ 
+    FORCEINLINE const PhysicsManager* getPhysicsManager() const
+    {
+        return physicsManager.raw();
+    }
 
 protected:
 
@@ -151,7 +158,7 @@ protected:
         
         schedule(Threads::Render, [this]()
         {
-            activeScene = SharedPointer<SceneClass>::make();
+            activeScene = SharedPointer<SceneClass>::make(physicsManager.raw());
             Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
             activeScene->load();
             Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
@@ -238,6 +245,8 @@ private:
      * The currently loaded Scene.
      */
     SharedPointer<Scene> activeScene;
+ 
+    UniquePointer<PhysicsManager> physicsManager;
 
     /*!
     * The engine resource loader.
@@ -245,7 +254,7 @@ private:
     UniquePointer<ResourceLoader> resourceLoader;
  
     UniquePointer<PerformanceWindow> perfWindow;
-
+ 
     std::vector<std::function<void()>> renderThreadTasks;
     std::vector<std::function<void()>> mainThreadTasks;
  

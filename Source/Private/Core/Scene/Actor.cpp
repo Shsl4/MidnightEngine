@@ -18,7 +18,12 @@ void Actor::update(float deltaTime) {
 
 }
 
-void Actor::setRootComponent(SceneComponent* component) { component->attachTo(this); }
+void Actor::setRootComponent(SceneComponent* component) {
+    
+    component->parentActor = this;
+    rootComponent = component;
+
+}
 
 void Actor::onComponentAttached(SceneComponent* component) {}
 
@@ -32,10 +37,14 @@ Scene* Actor::getScene() const {
     return Engine::getInstance()->getActiveScene().valid() ? Engine::getInstance()->getActiveScene().raw() : nullptr;
 }
 
-void Actor::checkCameraManager(Component* component) {
+void Actor::registerManagers(Component* component) {
     
     if (component->inherits<CameraComponent>()) {
         getScene()->getCameraManager()->registerCamera(component->cast<CameraComponent>());
+    }
+    
+    if (component->inherits<LightComponent>()) {
+        getScene()->lights += component->cast<LightComponent>();
     }
     
 }

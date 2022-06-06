@@ -4,6 +4,15 @@
 #include <Memory/UniquePointer.h>
 #include <bgfx/bgfx.h>
 
+#include <PhysX/extensions/PxDefaultSimulationFilterShader.h>
+#include <PhysX/PxRigidDynamic.h>
+#include <PhysX/PxRigidStatic.h>
+
+#include <PhysX/extensions/PxSimpleFactory.h>
+
+#include "PxMaterial.h"
+#include <Utilities/ArrayUtils.h>
+
 Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
         
     this->value = 0;
@@ -14,20 +23,38 @@ Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
         
 }
 
-Scene::Scene() : cameraManager(UniquePointer<CameraManager>::make(this)) {
+Scene::Scene(PhysicsManager* manager) : cameraManager(UniquePointer<CameraManager>::make(this)) {
     
+    physx::PxPhysics* physics = manager->getPhysics();
+    
+    auto sceneDesc = physx::PxSceneDesc(physics->getTolerancesScale());
+    
+    sceneDesc.gravity = physx::PxVec3(0, -9.81f, 0);
+    sceneDesc.cpuDispatcher = manager->getCPUDispatcher();
+    sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+    
+    physicsScene = physics->createScene(sceneDesc);
+
+    physx::PxMaterial* material = manager->getPhysicsMaterial();
+
 }
 
-void Scene::load()
-{
+void Scene::load() {
+    
     this->state = State::Loading;
+    
+    PhysicsManager::updatePvdClient(physicsScene);
+    
     start();
+    
     this->state = State::Loaded;
 }
 
 void Scene::cleanup()
 {
     this->state = State::Unloading;
+
+    physicsScene->lockWrite(__FILE__, __LINE__);
     
     const auto inputManager = Engine::getInstance()->getInputManager();
 
@@ -38,6 +65,12 @@ void Scene::cleanup()
     registeredActors.clear();
     
     setWorldColor(0);
+    
+    physicsScene->simulate(0.1f);
+
+    physicsScene->fetchResults(true);
+
+    physicsScene->release();
 
     this->state = State::Unloaded;
 }
@@ -96,6 +129,10 @@ void Scene::renderComponents() const {
     // For each registered Actor
     for (const auto& actor : registeredActors) {
 
+        if(!actor.valid() || ArrayUtils::contains(pendingDestroy, actor.raw())){
+            continue;
+        }
+
         // \todo refactor this mess
         // If it is renderable
         if (actor->getRootComponent()->inherits<Renderable>()) {
@@ -123,7 +160,25 @@ void Scene::renderComponents() const {
 }
 
 void Scene::update(const float deltaTime) {
-    
+
+
+    for(const auto* actor : pendingDestroy){
+
+        size_t i = 0;
+
+        for (auto const& e : registeredActors) {
+            if (actor == e.raw()) {
+                break;
+            }
+            ++i;
+        }
+
+        registeredActors.removeAt(i);
+
+    }
+
+    pendingDestroy.clear();
+
     // Updates all the registered Actors.
     for (auto const& object: registeredActors) {
         object->update(deltaTime);
@@ -138,20 +193,23 @@ void Scene::setupInput(Actor *object) {
 
 }
 
+void Scene::updatePhysics(float deltaTime) {
+
+    physicsScene->lockWrite(__FILE__, __LINE__);
+    physicsScene->simulate(deltaTime);
+    
+}
+
+void Scene::waitForPhysics()
+{
+    physicsScene->fetchResults(true);
+    physicsScene->unlockWrite();
+}
+
 bool Scene::destroyActor(Actor* object) {
 
     if (!object) { return false; }
-    
-    size_t i = 0;
-    
-    for (auto const& e : registeredActors) {
-        if (object == e.raw()) {
-            break;
-        }
-        ++i;
-    }
-    
-    registeredActors.removeAt(i);
 
-    return true;    
+    pendingDestroy += object;
+
 }

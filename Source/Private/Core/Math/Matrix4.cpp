@@ -11,9 +11,12 @@ Matrix4 Matrix4::operator+(Matrix4 const &other) const {
 
     Matrix4 m;
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            m.data[i][j] = this->data[i][j] + other.data[i][j];
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            m.data[col][row] = this->data[col][row] + other.data[col][row];
+            
         }
     }
 
@@ -25,10 +28,14 @@ Matrix4 Matrix4::operator-(Matrix4 const &other) const {
 
     Matrix4 m;
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            m.data[i][j] = this->data[i][j] - other.data[i][j];
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            m.data[col][row] = this->data[col][row] - other.data[col][row];
+            
         }
+        
     }
 
     return m;
@@ -36,16 +43,17 @@ Matrix4 Matrix4::operator-(Matrix4 const &other) const {
 }
 
 Matrix4 Matrix4::operator*(Matrix4 const &other) const {
-    Matrix4 newMatrix = Matrix4();
+    
+    auto newMatrix = Matrix4();
 
-    for (size_t i = 0; i < 4; i++) {
+    for (size_t col = 0; col < 4; col++) {
 
-        for (size_t j = 0; j < 4; j++) {
+        for (size_t row = 0; row < 4; row++) {
 
-            newMatrix.data[i][j] = 0;
+            newMatrix.data[col][row] = 0;
 
             for (size_t k = 0; k < 4; k++) {
-                newMatrix.data[i][j] += this->data[i][k] * other.data[k][j];
+                newMatrix.data[col][row] += this->data[col][k] * other.data[k][row];
             }
 
         }
@@ -60,10 +68,14 @@ Matrix4 Matrix4::operator*(const float scale) const {
 
     Matrix4 m;
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            m.data[i][j] = this->data[i][j] * scale;
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            m.data[col][row] = this->data[col][row] * scale;
+            
         }
+        
     }
 
     return m;
@@ -91,11 +103,16 @@ void Matrix4::operator*=(const float scale) {
 }
 
 Matrix4 &Matrix4::operator=(const float newData[4][4]) {
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            this->data[i][j] = newData[i][j];
+    
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            this->data[col][row] = newData[col][row];
+            
         }
     }
+    
     return *this;
 }
 
@@ -105,19 +122,26 @@ void Matrix4::operator*=(Matrix4 const &other) {
 
 void Matrix4::operator+=(Matrix4 const &other) {
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            this->data[i][j] += other.data[i][j];
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            this->data[col][row] += other.data[col][row];
+            
         }
+        
     }
 
 }
 
 void Matrix4::operator-=(Matrix4 const &other) {
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            this->data[i][j] -= other.data[i][j];
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            this->data[col][row] -= other.data[col][row];
+            
         }
     }
 
@@ -125,23 +149,28 @@ void Matrix4::operator-=(Matrix4 const &other) {
 
 bool Matrix4::operator==(Matrix4 const &other) const {
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            if (this->data[i][j] != other.data[i][j]) {
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            if (this->data[col][row] != other.data[col][row]) {
 
                 return false;
 
             }
 
         }
+        
     }
 
     return true;
 
 }
 
-Vector4 Matrix4::operator[](const size_t i) const {
-    return { data[i][0], data[i][1], data[i][2], data[i][3] };
+Vector4 Matrix4::operator[](const size_t col) const {
+    
+    return { data[col][0], data[col][1], data[col][2], data[col][3] };
+    
 }
 
 void Matrix4::rotateX(const float radians) {
@@ -152,8 +181,8 @@ void Matrix4::rotateX(const float radians) {
     Matrix4 newMatrix = identity();
 
     newMatrix.data[1][1] = cosT;
-    newMatrix.data[1][2] = -sinT;
-    newMatrix.data[2][1] = sinT;
+    newMatrix.data[2][1] = -sinT;
+    newMatrix.data[1][2] = sinT;
     newMatrix.data[2][2] = cosT;
 
     *this *= newMatrix;
@@ -168,8 +197,8 @@ void Matrix4::rotateY(const float radians) {
     Matrix4 newMatrix = identity();
 
     newMatrix.data[0][0] = cosT;
-    newMatrix.data[0][2] = sinT;
-    newMatrix.data[2][0] = -sinT;
+    newMatrix.data[2][0] = sinT;
+    newMatrix.data[0][2] = -sinT;
     newMatrix.data[2][2] = cosT;
 
     *this *= newMatrix;
@@ -184,8 +213,8 @@ void Matrix4::rotateZ(const float radians) {
     Matrix4 newMatrix = identity();
 
     newMatrix.data[0][0] = cosT;
-    newMatrix.data[0][1] = sinT;
     newMatrix.data[1][0] = -sinT;
+    newMatrix.data[0][1] = sinT;
     newMatrix.data[1][1] = cosT;
 
     *this *= newMatrix;
@@ -352,9 +381,12 @@ Matrix4 Matrix4::identity() {
 
     Matrix4 m;
 
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 4; j++) {
-            m.data[i][j] = (i == j);
+    for (size_t col = 0; col < 4; col++) {
+        
+        for (size_t row = 0; row < 4; row++) {
+            
+            m.data[col][row] = col == row;
+            
         }
     }
 
@@ -366,9 +398,9 @@ Matrix4 Matrix4::fill(const float value) {
 
     Matrix4 m;
 
-    for (auto& i : m.data)
+    for (auto& col : m.data)
     {
-        for (float& j : i)
+        for (float& j : col)
         {
             j = value;
         }
