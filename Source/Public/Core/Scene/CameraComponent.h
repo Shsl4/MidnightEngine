@@ -133,6 +133,10 @@ public:
      */
     NODISCARD Vector3 getForwardVector() const override;
 
+    void setWorldPosition(const Vector3 &position) override;
+
+    void setWorldRotation(const Vector3 &rotation) override;
+
 private:
 
     /*!

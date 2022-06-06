@@ -174,6 +174,8 @@ protected:
      */
     Array<SharedPointer<Actor>> registeredActors = Array<SharedPointer<Actor>>(50);
 
+    Array<Actor*> pendingDestroy = Array<Actor*>(50);
+
     /*!
      * The scene's CameraManager.
      */

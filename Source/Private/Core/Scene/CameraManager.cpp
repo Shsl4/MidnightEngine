@@ -23,6 +23,18 @@ bool CameraManager::setActiveCamera(CameraComponent* camera) {
 
 }
 
+bool CameraManager::setActiveCameraByIndex(size_t index){
+
+    if(index >= cameras.getSize()){
+        return false;
+    }
+
+    activeCamera = cameras[index];
+
+    return true;
+
+}
+
 void CameraManager::registerCamera(CameraComponent* camera) {
     
     // Append the camera to the registered camera array.

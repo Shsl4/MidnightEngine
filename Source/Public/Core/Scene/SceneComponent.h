@@ -141,18 +141,18 @@ public:
      *
      *  \param[in] position The new position
      */
-    void setWorldPosition(Vector3 const& position);
+    virtual void setWorldPosition(Vector3 const& position);
 
     /**
      *  \brief Sets the world rotation of this component.
      * 
      *  \param rotation The new world rotation.
      */
-    void setWorldRotation(Vector3 const& rotation);
+    virtual void setWorldRotation(Vector3 const& rotation);
 
-    void setWorldScale(Vector3 const& scale);
+    virtual void setWorldScale(Vector3 const& scale);
 
-    void setWorldTransform(Transform const& transformToSet);
+    virtual void setWorldTransform(Transform const& transformToSet);
 
     void rotateAround(Vector3 const& position, Vector3 const& axis, Vector3 const& rotation);
 

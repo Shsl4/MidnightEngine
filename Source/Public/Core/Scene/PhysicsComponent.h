@@ -9,6 +9,8 @@ public:
     
     PhysicsComponent() = default;
 
+    ~PhysicsComponent() override;
+
     void start() override;
 
     void update(float deltaTime) override;
@@ -25,15 +27,20 @@ public:
 
     NODISCARD bool hasGravityEnabled() const;
 
-    NODISCARD FORCEINLINE physx::PxRigidBody* getRigidBody() const { return rigidBody; }
+    NODISCARD FORCEINLINE physx::PxRigidActor* getRigidBody() const { return rigidActor; }
 
-    void makeSphereCollider(float radius = 1.0f);
+    void makeDynamicSphereCollider(float radius = 1.0f);
+    void makeStaticSphereCollider(float radius = 1.0f);
     void makeDynamicBoxCollider(Vector3 const& halfExtents = { 1.0f, 1.0f, 1.0f });
-    bool makeModelCollider(const struct Model* model);
-    
+    void makeStaticBoxCollider(Vector3 const& halfExtents = { 1.0f, 1.0f, 1.0f });
+    void makeDynamicCapsuleCollider(float radius = 1.0f, float halfHeight = 1.0f);
+    void makeStaticCapsuleCollider(float radius = 1.0f, float halfHeight = 1.0f);
+
+    bool makeModelCollider(struct Model* model);
+
 private:
 
-    physx::PxRigidBody* rigidBody = nullptr;
+    physx::PxRigidActor* rigidActor = nullptr;
     static inline physx::PxMaterial* material = nullptr;
-    
+
 };

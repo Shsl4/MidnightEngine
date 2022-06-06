@@ -21,66 +21,7 @@
 #include "extensions/PxSimpleFactory.h"
 #include "SDL2/SDL_keycode.h"
 
-class ActorFactory {
-
-public:
-    
-    static Actor* makePointLightActor(Scene* scene, Vector3 const& position, LinearColor const& color) {
-        
-        auto* actor = scene->createActor<Actor>(Transform(position));
-        auto* comp = actor->createComponent<PointLightComponent>("PointLight");
-        comp->setDiffuseColor(color);
-        comp->attachTo(actor);
-
-        return actor;
-        
-    }
-
-    static Actor* makeDirectionalLightActor(Scene* scene, Vector3 const& direction, LinearColor const& color) {
-        
-        auto* actor = scene->createActor<Actor>();
-        auto* comp = actor->createComponent<DirectionalLightComponent>("DirectionalLight");
-        comp->setLightDirection(direction);
-        comp->setDiffuseColor(color);
-        comp->attachTo(actor);
-
-        return actor;
-        
-    }
-
-    static Actor* makeModelActor(Scene* scene, String const& modelPath, Vector3 const& position = Vector3::zero,
-        Vector3 const& rotation = Vector3::zero, Vector3 const& scale = Vector3::one) {
-        
-        auto* actor = scene->createActor<Actor>(Transform(position, rotation, scale));
-        auto* comp = actor->createComponent<ModelComponent>("Model");
-        comp->setModel(modelPath);
-        comp->attachTo(actor);
-        comp->setWorldTransform({ position, rotation, scale });
-
-        return actor;
-        
-    }
-
-    static Actor* makePhysicsModelActor(Scene* scene, String const& modelPath, Vector3 const& position = Vector3::zero,
-        Vector3 const& rotation = Vector3::zero, Vector3 const& scale = Vector3::one) {
-        
-        auto* actor = scene->createActor<Actor>(Transform(position, rotation, scale));
-        auto* physicsComp = actor->createComponent<PhysicsComponent>("Collision");
-        auto* model = actor->createComponent<ModelComponent>("Model");
-        
-        actor->setRootComponent(physicsComp);
-        model->attachTo(physicsComp);
-
-        actor->setWorldTransform({ position, rotation, scale });
-        
-        model->setModel(modelPath);
-        physicsComp->makeSphereCollider();
-
-        return actor;
-        
-    }
-    
-};
+#include <ActorFactory.h>
 
 class SpaceScene : public Scene {
 
@@ -155,13 +96,19 @@ protected:
 
         setWorldColor(Color(0, 0, 0).value);
 
+        ActorFactory::makeCameraActor(this, Transform( { 0.0f, 12.0f, 8.0f }, { -90.0f, -45.0f, 0.0f }));
+        ActorFactory::makeCameraActor(this, Transform( { 0.0f, -4.0f, -27.0f }, { 90.0f, -20.0f, 0.0f }));
+
         this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
+
+        this->character->setMovementSpeed(50.0f);
+
         this->skybox = ActorFactory::makeModelActor(this, "SkyCube", {}, { 90.0f, 0.0f, 0.0f}, Vector3(10000.0f));
-        this->plane = ActorFactory::makeModelActor(this, "Plane", { 0.0f, -1.0f, 0.0f}, { 90.0f, 0.0f, 0.0f}, Vector3(1000.0f));
+        //this->plane = ActorFactory::makeModelActor(this, "Plane", { 0.0f, -1.0f, 0.0f}, { 90.0f, 0.0f, 0.0f}, Vector3(1000.0f));
         this->light = ActorFactory::makeDirectionalLightActor(this, {0.5f, -1.0f, 0.0f}, LinearColor::fromRGB(106, 77, 102));
 
-        plane->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
-        plane->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColor::fromLinearRGB(0.8f, 0.8f, 0.8f);
+        //plane->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
+        //plane->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColor::fromLinearRGB(0.8f, 0.8f, 0.8f);
 
         auto* comp = skybox->getFirstComponentOf<ModelComponent>();
         comp->setTexture(0, "Space");
@@ -178,32 +125,45 @@ protected:
 
 #else
 
-        this->model = ActorFactory::makePhysicsModelActor(this, "Sphere", {0.0f, 0.0f, 0.0f});
-        
-        for (Int64 i = 1; i < 100; ++i ) {
 
-            ActorFactory::makePhysicsModelActor(this, "Sphere", {0.0f, 10.0f * i, 0.0f});
+        for (int i = 0; i < 5; ++i) {
+
+            if(i % 2 == 0){
+                ActorFactory::makeStaticMeshCollider(this, "Cascade", { {0, -20.0f * i, 0}, { 180.0f, 0.0f, 0.0f}});
+            }
+            else{
+                ActorFactory::makeStaticMeshCollider(this, "Cascade", { {0, -20.0f * i, -15.0f}, { 0.0f, 0.0f, 180.0f}});
+            }
+
+        }
+
+        for (int i = 0; i < 100; ++i) {
+
+            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere", 1.0f,
+                                                ActorFactory::CollisionType::Dynamic,
+                                                Transform({ 0.0f, 10.0f * i, 0.0f }));
+
+            ActorFactory::makeBoxCollisionActor(this, "Cube", Vector3(1.0f),
+                                                ActorFactory::CollisionType::Dynamic,
+                                                Transform({ 5.0f, 10.0f * i, 0.0f }));
+
+            ActorFactory::makeBoxCollisionActor(this, "Cube", Vector3(1.0f),
+                                                ActorFactory::CollisionType::Dynamic,
+                                                Transform({ -5.0f, 10.0f * i, 0.0f }));
+
+        }
+
+        /*
+        for (Int64 i = 1; i < 200; ++i ) {
+
+            ActorFactory::makeBoxCollisionActor(this, "Cube");
+
             //model->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
             //model->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
             
         }
-        
-        for (Int64 i = 1; i < 100; ++i ) {
 
-            ActorFactory::makePhysicsModelActor(this, "Sphere", {10.0f, 10.0f * i, 0.0f});
-            //model->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
-            //model->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
-            
-        }
-
-        for (Int64 i = 1; i < 100; ++i ) {
-
-            ActorFactory::makePhysicsModelActor(this, "Sphere", {-10.0f, 10.0f * i, 0.0f});
-            //model->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
-            //model->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
-            
-        }
-
+*/
 
 #endif
 
@@ -218,30 +178,29 @@ protected:
         manager->bindEvent(this, KeyBind(SDLK_KP_5), EInputEvent::Pressed, &RenderScene::imp2);
         manager->bindEvent(this, KeyBind(SDLK_KP_6), EInputEvent::Pressed, &RenderScene::imp3);
         
-        this->character->setMovementSpeed(50.0f);
 
         for (const auto& actor : this->registeredActors) {
             actor->start();
         }
 
+        /*
+        physx::PxRigidStatic* groundPlane = PxCreatePlane(*physics, physx::PxPlane(0, 1, 0, 1), *material);
+
+        physicsScene->addActor(*groundPlane);
+         */
+
     }
 
     void imp() {
-
-        model->getFirstComponentOf<PhysicsComponent>()->addImpulse({0, 0, 10});
-        
+        getCameraManager()->setActiveCameraByIndex(0);
     }
     
     void imp2() {
-
-        model->getFirstComponentOf<PhysicsComponent>()->addImpulse({30, 100, 0});
-        
+        getCameraManager()->setActiveCameraByIndex(1);
     }
     
     void imp3() {
-
-        model->getFirstComponentOf<PhysicsComponent>()->setSimulatePhysics(true);
-        
+        getCameraManager()->setActiveCameraByIndex(2);
     }
     
     void setTexture0() {
@@ -310,12 +269,24 @@ class MyEngine : public Engine {
         const auto posNode = CommandNode::make("scene.object.pos");
         const auto deleteObjNode = CommandNode::make("scene.object.delete");
         const auto listCompNode = CommandNode::make("scene.component.list");
+        const auto camInfoNode = CommandNode::make("camera.info");
 
         unloadNode->setNodeDescription("Unloads the active scene.");
         loadNode->setNodeDescription("Loads a scene.");
         addMeshNode->setNodeDescription("Adds a mesh to the current scene");
         listObjNode->setNodeDescription("Lists the objects present in the scene.");
         deleteObjNode->setNodeDescription("Removes an object in the scene.");
+        camInfoNode->setNodeDescription("Gets info about the current camera.");
+
+        camInfoNode->addExecutable([this](const auto* context){
+
+            auto scene = getActiveScene();
+            Vector3 pos = scene->getCameraManager()->getActiveCamera()->getWorldPosition();
+            Vector3 rot = scene->getCameraManager()->getActiveCamera()->getWorldRotation();
+
+            Console::getLogger()->info("Camera Info: \nPosition: x: {}, y: {}, z: {}\nRotation: x: {}, y: {}, z: {}", pos.x, pos.y, pos.z, rot.x, rot.y, rot.z);
+
+        });
 
         unloadNode->addExecutable([this](const auto* context) { unloadScene(); });
 
@@ -394,6 +365,7 @@ class MyEngine : public Engine {
         Console::registerCommand(deleteObjNode);
         Console::registerCommand(listCompNode);
         Console::registerCommand(posNode);
+        Console::registerCommand(camInfoNode);
 
         Console::exec("scene.load RenderScene");
 

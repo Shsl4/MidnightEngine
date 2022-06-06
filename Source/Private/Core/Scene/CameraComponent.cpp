@@ -125,3 +125,13 @@ void CameraComponent::updateProjectionMatrix() {
     projectionMatrix = Matrix4::perspective(fieldOfView, aspectRatio, 0.01f, renderDistance);
     
 }
+
+void CameraComponent::setWorldPosition(const Vector3 &position) {
+    SceneComponent::setWorldPosition(position);
+    updateViewMatrix();
+}
+
+void CameraComponent::setWorldRotation(const Vector3 &rotation) {
+    SceneComponent::setWorldRotation(rotation);
+    updateViewMatrix();
+}

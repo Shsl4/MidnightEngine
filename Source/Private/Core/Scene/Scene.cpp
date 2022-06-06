@@ -11,6 +11,7 @@
 #include <PhysX/extensions/PxSimpleFactory.h>
 
 #include "PxMaterial.h"
+#include <Utilities/ArrayUtils.h>
 
 Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
         
@@ -35,11 +36,7 @@ Scene::Scene(PhysicsManager* manager) : cameraManager(UniquePointer<CameraManage
     physicsScene = physics->createScene(sceneDesc);
 
     physx::PxMaterial* material = manager->getPhysicsMaterial();
-    
-    physx::PxRigidStatic* groundPlane = PxCreatePlane(*physics, physx::PxPlane(0, 1, 0, 1), *material);
-        
-    physicsScene->addActor(*groundPlane);
-    
+
 }
 
 void Scene::load() {
@@ -132,6 +129,10 @@ void Scene::renderComponents() const {
     // For each registered Actor
     for (const auto& actor : registeredActors) {
 
+        if(!actor.valid() || ArrayUtils::contains(pendingDestroy, actor.raw())){
+            continue;
+        }
+
         // \todo refactor this mess
         // If it is renderable
         if (actor->getRootComponent()->inherits<Renderable>()) {
@@ -159,7 +160,25 @@ void Scene::renderComponents() const {
 }
 
 void Scene::update(const float deltaTime) {
-    
+
+
+    for(const auto* actor : pendingDestroy){
+
+        size_t i = 0;
+
+        for (auto const& e : registeredActors) {
+            if (actor == e.raw()) {
+                break;
+            }
+            ++i;
+        }
+
+        registeredActors.removeAt(i);
+
+    }
+
+    pendingDestroy.clear();
+
     // Updates all the registered Actors.
     for (auto const& object: registeredActors) {
         object->update(deltaTime);
@@ -190,17 +209,7 @@ void Scene::waitForPhysics()
 bool Scene::destroyActor(Actor* object) {
 
     if (!object) { return false; }
-    
-    size_t i = 0;
-    
-    for (auto const& e : registeredActors) {
-        if (object == e.raw()) {
-            break;
-        }
-        ++i;
-    }
-    
-    registeredActors.removeAt(i);
 
-    return true;    
+    pendingDestroy += object;
+
 }

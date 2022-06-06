@@ -3,6 +3,7 @@
 #include <Scene/Scene.h>
 #include <PhysX/PxRigidBody.h>
 #include <PhysX/PxRigidDynamic.h>
+#include <PhysX/PxRigidStatic.h>
 #include <PhysX/extensions/PxSimpleFactory.h>
 
 #include "Engine.h"
@@ -23,10 +24,10 @@ void PhysicsComponent::update(float deltaTime) {
 
     SceneComponent::update(deltaTime);
 
-    if(!rigidBody) { return; }
+    if(!rigidActor) { return; }
     
-    const auto p = rigidBody->getGlobalPose().p;
-    const auto m = PxMat44(rigidBody->getGlobalPose());
+    const auto p = rigidActor->getGlobalPose().p;
+    const auto m = PxMat44(rigidActor->getGlobalPose());
     
     const float r00 = m.column0[0];
     const float r10 = m.column0[1];
@@ -60,38 +61,42 @@ void PhysicsComponent::setup(Scene* scene) {
 void PhysicsComponent::addImpulse(Vector3 const& direction) const {
 
     if(!isSimulatingPhysics()) { return; }
-    
-    const PxVec3 pxVector = { direction.x, direction.y, direction.z };
-    rigidBody->addForce(pxVector, PxForceMode::eIMPULSE);
+
+    if(auto* dynamic = rigidActor->is<PxRigidBody>()){
+
+        const PxVec3 pxVector = { direction.x, direction.y, direction.z };
+        dynamic->addForce(pxVector, PxForceMode::eIMPULSE);
+
+    }
 
 }
 
 void PhysicsComponent::setEnableGravity(bool value) const {
 
-    rigidBody->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, !value);
+    rigidActor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, !value);
     
 }
 
 void PhysicsComponent::setSimulatePhysics(bool value) const { 
     
-    rigidBody->setActorFlag(PxActorFlag::eDISABLE_SIMULATION, !value);
+    rigidActor->setActorFlag(PxActorFlag::eDISABLE_SIMULATION, !value);
     setEnableGravity(value);
     
 }
 
 bool PhysicsComponent::isSimulatingPhysics() const {
     
-    return !rigidBody->getActorFlags().isSet(PxActorFlag::eDISABLE_SIMULATION);
+    return !rigidActor->getActorFlags().isSet(PxActorFlag::eDISABLE_SIMULATION);
 
 }
 
 bool PhysicsComponent::hasGravityEnabled() const {
 
-    return !rigidBody->getActorFlags().isSet(PxActorFlag::eDISABLE_GRAVITY);
+    return !rigidActor->getActorFlags().isSet(PxActorFlag::eDISABLE_GRAVITY);
     
 }
 
-void PhysicsComponent::makeSphereCollider(float radius) {
+void PhysicsComponent::makeDynamicSphereCollider(float radius) {
 
     const auto* scene = getScene();
     auto* physicsScene = scene->getPhysicsScene();
@@ -100,14 +105,19 @@ void PhysicsComponent::makeSphereCollider(float radius) {
     const auto geometry = physx::PxSphereGeometry(radius);
 
     Vector3 position = getWorldPosition();
-    
-    rigidBody = PxCreateDynamic(physics, PxTransform(*reinterpret_cast<PxVec3*>(&position)), geometry , *material, 10.0f);
-        
-    rigidBody->setAngularDamping(0.5f);
-    rigidBody->setLinearVelocity(PxVec3(0, 0, 0));
-    rigidBody->setMass(10.0f);
-    PxRigidBodyExt::updateMassAndInertia(*rigidBody, 10.0f);
-    physicsScene->addActor(*rigidBody);
+    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+
+    auto* dynamic = PxCreateDynamic(physics, tr, geometry , *material, 10.0f);
+
+    dynamic->setAngularDamping(0.5f);
+    dynamic->setLinearVelocity(PxVec3(0, 0, 0));
+    dynamic->setMass(10.0f);
+
+    PxRigidBodyExt::updateMassAndInertia(*dynamic, 10.0f);
+
+    rigidActor = dynamic;
+
+    physicsScene->addActor(*rigidActor);
         
 }
 
@@ -120,24 +130,100 @@ void PhysicsComponent::makeDynamicBoxCollider(Vector3 const& halfExtents) {
     const Vector3 position = getWorldPosition();
     const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
     const auto geometry = PxBoxGeometry(halfExtents.x, halfExtents.y, halfExtents.z);
-    rigidBody = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
+    auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
+
+    dynamic->setAngularDamping(0.5f);
+    dynamic->setLinearVelocity(PxVec3(0, 0, 0));
+    dynamic->setMass(10.0f);
     
-    rigidBody->setAngularDamping(0.5f);
-    rigidBody->setLinearVelocity(PxVec3(0, 0, 0));
-    rigidBody->setMass(10.0f);
-    
-    PxRigidBodyExt::updateMassAndInertia(*rigidBody, 10.0f);
-    
-    physicsScene->addActor(*rigidBody);
+    PxRigidBodyExt::updateMassAndInertia(*dynamic, 10.0f);
+
+    rigidActor = dynamic;
+
+    physicsScene->addActor(*rigidActor);
     
 }
 
-bool PhysicsComponent::makeModelCollider(const Model* model) {
+void PhysicsComponent::makeDynamicCapsuleCollider(float radius, float halfHeight){
 
     const auto* scene = getScene();
     auto* physicsScene = scene->getPhysicsScene();
     auto& physics = physicsScene->getPhysics();
-    
+
+    const Vector3 position = getWorldPosition();
+    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    const auto geometry = PxCapsuleGeometry(radius,halfHeight);
+    auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
+
+    dynamic->setAngularDamping(0.5f);
+    dynamic->setLinearVelocity(PxVec3(0, 0, 0));
+    dynamic->setMass(10.0f);
+
+    PxRigidBodyExt::updateMassAndInertia(*dynamic, 10.0f);
+
+    rigidActor = dynamic;
+
+    physicsScene->addActor(*rigidActor);
+
+}
+
+void PhysicsComponent::makeStaticSphereCollider(float radius) {
+
+    const auto* scene = getScene();
+    auto* physicsScene = scene->getPhysicsScene();
+    auto& physics = physicsScene->getPhysics();
+
+    const auto geometry = physx::PxSphereGeometry(radius);
+
+    Vector3 position = getWorldPosition();
+    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+
+    auto* rigidStatic = PxCreateDynamic(physics, tr, geometry , *material, 10.0f);
+
+    rigidActor = rigidStatic;
+
+    physicsScene->addActor(*rigidActor);
+}
+
+void PhysicsComponent::makeStaticBoxCollider(const Vector3 &halfExtents) {
+
+    const auto* scene = getScene();
+    auto* physicsScene = scene->getPhysicsScene();
+    auto& physics = physicsScene->getPhysics();
+
+    const Vector3 position = getWorldPosition();
+    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    const auto geometry = PxBoxGeometry(halfExtents.x, halfExtents.y, halfExtents.z);
+    auto* rigidStatic = PxCreateStatic(physics, tr, geometry, *material);
+
+    rigidActor = rigidStatic;
+
+    physicsScene->addActor(*rigidActor);
+}
+
+void PhysicsComponent::makeStaticCapsuleCollider(float radius, float halfHeight){
+
+    const auto* scene = getScene();
+    auto* physicsScene = scene->getPhysicsScene();
+    auto& physics = physicsScene->getPhysics();
+
+    const Vector3 position = getWorldPosition();
+    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    const auto geometry = PxCapsuleGeometry(radius,halfHeight);
+    auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
+
+    rigidActor = dynamic;
+
+    physicsScene->addActor(*rigidActor);
+
+}
+
+bool PhysicsComponent::makeModelCollider(Model* model) {
+
+    const auto* scene = getScene();
+    auto* physicsScene = scene->getPhysicsScene();
+    auto& physics = physicsScene->getPhysics();
+
     const auto mesh = model->getMesh(0);
 
     auto positions = Array<Vector3>(mesh->vertexCount);
@@ -146,46 +232,50 @@ bool PhysicsComponent::makeModelCollider(const Model* model) {
     for (size_t i = 0; i < mesh->vertexCount; i++) {
         positions += mesh->data[i].position;
     }
-    
+
     for (size_t i = 0; i < mesh->indexCount; i++) {
         indices += mesh->indices[i];
     }
-    
+
     PxConvexMeshDesc convexDesc;
     convexDesc.points.count     = mesh->vertexCount;
     convexDesc.points.stride    = sizeof(Vector3);
     convexDesc.points.data      = positions.begin();
     convexDesc.flags            = PxConvexFlag::eCOMPUTE_CONVEX;
-    
+
     PxDefaultMemoryOutputStream buf;
     PxConvexMeshCookingResult::Enum result;
-    
+
     const auto cooking = Engine::getInstance()->getPhysicsManager()->getCooking();
-    
+
     cooking->cookConvexMesh(convexDesc, buf, &result);
 
     if (result != PxConvexMeshCookingResult::eSUCCESS) {
         Console::getLogger()->error("Failed to cook convex mesh.");
         return false;
     }
-    
+
     PxConvexMesh* convexMesh = cooking->createConvexMesh(convexDesc, physics.getPhysicsInsertionCallback());
 
     const auto convexGeometry = PxConvexMeshGeometry(convexMesh);
 
-    const Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    Matrix4 m = Matrix4::modelMatrix(getWorldTransform());
+    PxMat44 mat = *reinterpret_cast<PxMat44*>(&m);
 
-    rigidBody = PxCreateDynamic(physics, tr, convexGeometry, *material, 10.0f);
-        
-    rigidBody->setAngularDamping(0.5f);
-    rigidBody->setLinearVelocity(PxVec3(0, 0, 0));
-    rigidBody->setMass(10.0f);
-    
-    PxRigidBodyExt::updateMassAndInertia(*rigidBody, 10.0f);
-    
-    physicsScene->addActor(*rigidBody);
+    const auto tr = PxTransform(mat);
+
+    auto* rigidStatic = PxCreateStatic(physics, tr, convexGeometry, *material);
+
+    rigidActor = rigidStatic;
+
+    physicsScene->addActor(*rigidActor);
 
     return true;
-   
+
+}
+
+PhysicsComponent::~PhysicsComponent() {
+
+    rigidActor->release();
+
 }
