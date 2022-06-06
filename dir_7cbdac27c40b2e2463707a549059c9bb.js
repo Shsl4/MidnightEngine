@@ -6,6 +6,7 @@ var dir_7cbdac27c40b2e2463707a549059c9bb =
     [ "CameraManager.cpp", "_camera_manager_8cpp.html", null ],
     [ "Component.cpp", "_component_8cpp.html", null ],
     [ "ModelComponent.cpp", "_model_component_8cpp.html", null ],
+    [ "PhysicsComponent.cpp", "_physics_component_8cpp.html", null ],
     [ "Scene.cpp", "_scene_8cpp.html", null ],
     [ "SceneComponent.cpp", "_scene_component_8cpp.html", null ]
 ];

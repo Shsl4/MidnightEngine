@@ -48,18 +48,26 @@ var hierarchy =
             [ "DirectionalLightComponent", "class_directional_light_component.html", null ],
             [ "PointLightComponent", "class_point_light_component.html", null ]
           ] ],
-          [ "ModelComponent", "class_model_component.html", null ]
+          [ "ModelComponent", "class_model_component.html", null ],
+          [ "PhysicsComponent", "class_physics_component.html", null ]
         ] ]
       ] ],
       [ "Console", "class_console.html", null ],
       [ "Engine", "class_engine.html", null ],
       [ "InputManager", "class_input_manager.html", null ],
+      [ "PhysicsManager", "class_physics_manager.html", null ],
       [ "ResourceLoader", "class_resource_loader.html", null ],
       [ "Scene", "class_scene.html", null ]
     ] ],
     [ "Optional< T >", "class_optional.html", null ],
     [ "PerformanceWindow", "class_performance_window.html", null ],
     [ "PlatformData", "struct_platform_data.html", null ],
+    [ "physx::PxAllocatorCallback", null, [
+      [ "PhysXAllocator", "class_phys_x_allocator.html", null ]
+    ] ],
+    [ "physx::PxErrorCallback", null, [
+      [ "PhysXErrorCallback", "class_phys_x_error_callback.html", null ]
+    ] ],
     [ "Random", "class_random.html", null ],
     [ "RefCounter", "class_ref_counter.html", null ],
     [ "Renderable", "class_renderable.html", [

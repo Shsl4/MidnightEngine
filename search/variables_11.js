@@ -3,7 +3,7 @@ var searchData=
   ['s_5fframetime_0',['s_frameTime',['../class_performance_window.html#a6984cf0ee1b5b13d044f2c23560d6d9b',1,'PerformanceWindow']]],
   ['s_5fresourcecolor_1',['s_resourceColor',['../class_performance_window.html#ae61538200251816de83d88eb76d1da7e',1,'PerformanceWindow']]],
   ['s_5fshowstats_2',['s_showStats',['../class_performance_window.html#ab11df225732fe6ca9541e7b4613ef954',1,'PerformanceWindow']]],
-  ['scale_3',['scale',['../struct_transform.html#a2b4006024b283c6af2813e78e7092364',1,'Transform']]],
+  ['scale_3',['scale',['../class_physics_manager.html#acfb0d9bf48342d37cc835c6acaf1ba5c',1,'PhysicsManager::scale()'],['../struct_transform.html#a2b4006024b283c6af2813e78e7092364',1,'Transform::scale()']]],
   ['scaleonly_4',['scaleOnly',['../struct_attachment_properties.html#a3ce46300a5e947573620deb150495dd3',1,'AttachmentProperties']]],
   ['scene_5',['scene',['../class_camera_manager.html#a3ae5a98c3bc94b4e01e8e924af592a68',1,'CameraManager']]],
   ['sharedpointer_3c_20t_20_3e_6',['SharedPointer&lt; T &gt;',['../class_weak_pointer.html#a90f79a5504acbfe3b8f5100300dd6248',1,'WeakPointer']]],

@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('class_scene.html',''); initResizable()
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -124,8 +125,8 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad10176d75a9cc0da56626f682d083507"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#ad10176d75a9cc0da56626f682d083507">Scene</a> ()</td></tr>
-<tr class="separator:ad10176d75a9cc0da56626f682d083507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469223f3668f714959c5713385ad37a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a469223f3668f714959c5713385ad37a0">Scene</a> (<a class="el" href="class_physics_manager.html">PhysicsManager</a> *manager)</td></tr>
+<tr class="separator:a469223f3668f714959c5713385ad37a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1b864ad69216f68b5c588477c87ec20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#ae1b864ad69216f68b5c588477c87ec20">load</a> ()</td></tr>
 <tr class="separator:ae1b864ad69216f68b5c588477c87ec20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ec5c2aa1fe770f3f72e1ce71138ae94"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a2ec5c2aa1fe770f3f72e1ce71138ae94">start</a> ()=0</td></tr>
@@ -144,9 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a84915a8cb570818e714ac4ac695d2dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a5ad7591b68118a20c43df49a079d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_actor.html">Actor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a50a5ad7591b68118a20c43df49a079d0">getObjectByIndex</a> (size_t index) const</td></tr>
 <tr class="separator:a50a5ad7591b68118a20c43df49a079d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca57275cd2cfc280d27a2ca12806cb30"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:aca57275cd2cfc280d27a2ca12806cb30"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#aca57275cd2cfc280d27a2ca12806cb30">createObject</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transform=<a class="el" href="struct_transform.html#a7d923933607b5daa310fc0fcceb48edf">Transform::zero</a>())</td></tr>
-<tr class="separator:aca57275cd2cfc280d27a2ca12806cb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa4e42d381c93ccc1746705e0939b2e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a5aa4e42d381c93ccc1746705e0939b2e"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#a5aa4e42d381c93ccc1746705e0939b2e">createActor</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transform=<a class="el" href="struct_transform.html#a7d923933607b5daa310fc0fcceb48edf">Transform::zero</a>())</td></tr>
+<tr class="separator:a5aa4e42d381c93ccc1746705e0939b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee5f6602db0b88d6b534f3e95059c075"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aee5f6602db0b88d6b534f3e95059c075"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_scene.html#aee5f6602db0b88d6b534f3e95059c075">getFirstComponentOf</a> () const</td></tr>
 <tr class="separator:aee5f6602db0b88d6b534f3e95059c075"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +155,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a570a809e5ef403144c29ccf0adfcf8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467bfb65a4e6b3239e7376e9d9eeaeee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_camera_manager.html">CameraManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a467bfb65a4e6b3239e7376e9d9eeaeee">getCameraManager</a> () const</td></tr>
 <tr class="separator:a467bfb65a4e6b3239e7376e9d9eeaeee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b360bf8eab5cf145c34aa729da44f87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> physx::PxScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a8b360bf8eab5cf145c34aa729da44f87">getPhysicsScene</a> () const</td></tr>
+<tr class="separator:a8b360bf8eab5cf145c34aa729da44f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a226f2ae2af766b77d83c09a4d766b725">~Object</a> ()=default</td></tr>
 <tr class="separator:a226f2ae2af766b77d83c09a4d766b725 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,6 +171,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9a069a0987f79dd335dcc5f6a740d7a inherit pub_methods_class_object"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_object.html#af9a069a0987f79dd335dcc5f6a740d7a">inherits</a> ()</td></tr>
 <tr class="separator:af9a069a0987f79dd335dcc5f6a740d7a inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af71a2ea7147f7f8ed052ecffaab4c472"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; class <a class="el" href="class_light_component.html">LightComponent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#af71a2ea7147f7f8ed052ecffaab4c472">lights</a> = <a class="el" href="class_array.html">Array</a>&lt;class <a class="el" href="class_light_component.html">LightComponent</a>*&gt;()</td></tr>
+<tr class="separator:af71a2ea7147f7f8ed052ecffaab4c472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:abda1fdc000d8643eac63d7fddf66fdea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#abda1fdc000d8643eac63d7fddf66fdea">renderComponents</a> () const</td></tr>
@@ -179,16 +187,24 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a60c4df0263db673289a4a1ba9ee51a29"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a60c4df0263db673289a4a1ba9ee51a29">setupInput</a> (<a class="el" href="class_actor.html">Actor</a> *object)</td></tr>
 <tr class="memdesc:a60c4df0263db673289a4a1ba9ee51a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows a newly created <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> to bind input events.  <a href="class_scene.html#a60c4df0263db673289a4a1ba9ee51a29">More...</a><br /></td></tr>
 <tr class="separator:a60c4df0263db673289a4a1ba9ee51a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebee443fe6493a9baacb135b37ab9e78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aebee443fe6493a9baacb135b37ab9e78">updatePhysics</a> (float deltaTime)</td></tr>
+<tr class="separator:aebee443fe6493a9baacb135b37ab9e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57404bf7e0c4e31406c46d64b905c905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a57404bf7e0c4e31406c46d64b905c905">waitForPhysics</a> ()</td></tr>
+<tr class="separator:a57404bf7e0c4e31406c46d64b905c905"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="class_actor.html">Actor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aae56ea2efa771d0e407dd5bd6f1a7d07">registeredActors</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt;<a class="el" href="class_actor.html">Actor</a>&gt;&gt;(50)</td></tr>
 <tr class="memdesc:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">An automatically managed array storing references to all Actors in the scene. The Actors are automatically released when the scene is destroyed.  <a href="class_scene.html#aae56ea2efa771d0e407dd5bd6f1a7d07">More...</a><br /></td></tr>
 <tr class="separator:aae56ea2efa771d0e407dd5bd6f1a7d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab68d73a7c3a239ab9db777a3ef18f56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_actor.html">Actor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aab68d73a7c3a239ab9db777a3ef18f56">pendingDestroy</a> = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_actor.html">Actor</a>*&gt;(50)</td></tr>
+<tr class="separator:aab68d73a7c3a239ab9db777a3ef18f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6390d7d72550e5435215bb37d7f2b911"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_unique_pointer.html">UniquePointer</a>&lt; <a class="el" href="class_camera_manager.html">CameraManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6390d7d72550e5435215bb37d7f2b911">cameraManager</a></td></tr>
 <tr class="separator:a6390d7d72550e5435215bb37d7f2b911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a63b503d493bb1b5eec65b73e3de51c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene.html#ad10422293408a90b501d1b369ce49029">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a8a63b503d493bb1b5eec65b73e3de51c">state</a> = <a class="el" href="class_scene.html#ad10422293408a90b501d1b369ce49029aa5ae20aa7fda5bd38bf0dce98e65bd2d">State::Unloaded</a></td></tr>
 <tr class="separator:a8a63b503d493bb1b5eec65b73e3de51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe9a1e543c0bead80c3eb68f126bc312"><td class="memItemLeft" align="right" valign="top">physx::PxScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#abe9a1e543c0bead80c3eb68f126bc312">physicsScene</a></td></tr>
+<tr class="separator:abe9a1e543c0bead80c3eb68f126bc312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -234,8 +250,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad10176d75a9cc0da56626f682d083507" name="ad10176d75a9cc0da56626f682d083507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad10176d75a9cc0da56626f682d083507">&#9670;&nbsp;</a></span>Scene()</h2>
+<a id="a469223f3668f714959c5713385ad37a0" name="a469223f3668f714959c5713385ad37a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469223f3668f714959c5713385ad37a0">&#9670;&nbsp;</a></span>Scene()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +259,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Scene::Scene </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_physics_manager.html">PhysicsManager</a> *&#160;</td>
+          <td class="paramname"><em>manager</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -279,8 +296,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aca57275cd2cfc280d27a2ca12806cb30" name="aca57275cd2cfc280d27a2ca12806cb30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca57275cd2cfc280d27a2ca12806cb30">&#9670;&nbsp;</a></span>createObject()</h2>
+<a id="a5aa4e42d381c93ccc1746705e0939b2e" name="a5aa4e42d381c93ccc1746705e0939b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aa4e42d381c93ccc1746705e0939b2e">&#9670;&nbsp;</a></span>createActor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -291,7 +308,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T * Scene::createObject </td>
+          <td class="memname">T * Scene::createActor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_transform.html">Transform</a> const &amp;&#160;</td>
           <td class="paramname"><em>transform</em> = <code><a class="el" href="struct_transform.html#a7d923933607b5daa310fc0fcceb48edf">Transform::zero</a>()</code></td><td>)</td>
@@ -423,6 +440,31 @@ template&lt;class T &gt; </div>
           <td> const</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b360bf8eab5cf145c34aa729da44f87" name="a8b360bf8eab5cf145c34aa729da44f87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b360bf8eab5cf145c34aa729da44f87">&#9670;&nbsp;</a></span>getPhysicsScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> physx::PxScene * Scene::getPhysicsScene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -667,6 +709,57 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a id="aebee443fe6493a9baacb135b37ab9e78" name="aebee443fe6493a9baacb135b37ab9e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebee443fe6493a9baacb135b37ab9e78">&#9670;&nbsp;</a></span>updatePhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::updatePhysics </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57404bf7e0c4e31406c46d64b905c905" name="a57404bf7e0c4e31406c46d64b905c905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57404bf7e0c4e31406c46d64b905c905">&#9670;&nbsp;</a></span>waitForPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::waitForPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a id="a3e1914489e4bed4f9f23cdeab34a43dc" name="a3e1914489e4bed4f9f23cdeab34a43dc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e1914489e4bed4f9f23cdeab34a43dc">&#9670;&nbsp;</a></span>Engine</h2>
@@ -711,6 +804,64 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 <p >The scene's <a class="el" href="class_camera_manager.html">CameraManager</a>. </p>
+
+</div>
+</div>
+<a id="af71a2ea7147f7f8ed052ecffaab4c472" name="af71a2ea7147f7f8ed052ecffaab4c472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af71a2ea7147f7f8ed052ecffaab4c472">&#9670;&nbsp;</a></span>lights</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;class <a class="el" href="class_light_component.html">LightComponent</a>*&gt; Scene::lights = <a class="el" href="class_array.html">Array</a>&lt;class <a class="el" href="class_light_component.html">LightComponent</a>*&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab68d73a7c3a239ab9db777a3ef18f56" name="aab68d73a7c3a239ab9db777a3ef18f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab68d73a7c3a239ab9db777a3ef18f56">&#9670;&nbsp;</a></span>pendingDestroy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_actor.html">Actor</a>*&gt; Scene::pendingDestroy = <a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_actor.html">Actor</a>*&gt;(50)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe9a1e543c0bead80c3eb68f126bc312" name="abe9a1e543c0bead80c3eb68f126bc312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe9a1e543c0bead80c3eb68f126bc312">&#9670;&nbsp;</a></span>physicsScene</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">physx::PxScene* Scene::physicsScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

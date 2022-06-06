@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('class_math.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_math-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Math Class Reference</div></div>
 </div><!--header-->
@@ -116,9 +117,17 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac6813fdc6a7607d50e7d35b7b30ce033"><td class="memTemplParams" colspan="2">template&lt;typename NumberType &gt; </td></tr>
 <tr class="memitem:ac6813fdc6a7607d50e7d35b7b30ce033"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> NumberType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033">toRadians</a> (NumberType degrees)</td></tr>
 <tr class="separator:ac6813fdc6a7607d50e7d35b7b30ce033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae076068caf649582d6da9a035cdf43f8"><td class="memTemplParams" colspan="2">template&lt;typename NumberType &gt; </td></tr>
+<tr class="memitem:ae076068caf649582d6da9a035cdf43f8"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> NumberType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_math.html#ae076068caf649582d6da9a035cdf43f8">toDegrees</a> (NumberType radians)</td></tr>
+<tr class="separator:ae076068caf649582d6da9a035cdf43f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a070a1dad2abcb5a6c8d2bef992d4595e"><td class="memTemplParams" colspan="2">template&lt;typename NumberType &gt; </td></tr>
 <tr class="memitem:a070a1dad2abcb5a6c8d2bef992d4595e"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> NumberType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_math.html#a070a1dad2abcb5a6c8d2bef992d4595e">lerp</a> (NumberType const &amp;from, NumberType const &amp;to, float deltaTime)</td></tr>
 <tr class="separator:a070a1dad2abcb5a6c8d2bef992d4595e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab4e967443b228d8dcb2c2ccb40ae38dd"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_math.html#ab4e967443b228d8dcb2c2ccb40ae38dd">pi</a> = 3.14159265359f</td></tr>
+<tr class="separator:ab4e967443b228d8dcb2c2ccb40ae38dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A utility class containing templated math operations </p>
@@ -363,6 +372,34 @@ template&lt;typename NumberType &gt; </div>
 
 </div>
 </div>
+<a id="ae076068caf649582d6da9a035cdf43f8" name="ae076068caf649582d6da9a035cdf43f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae076068caf649582d6da9a035cdf43f8">&#9670;&nbsp;</a></span>toDegrees()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NumberType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> NumberType Math::toDegrees </td>
+          <td>(</td>
+          <td class="paramtype">NumberType&#160;</td>
+          <td class="paramname"><em>radians</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac6813fdc6a7607d50e7d35b7b30ce033" name="ac6813fdc6a7607d50e7d35b7b30ce033"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6813fdc6a7607d50e7d35b7b30ce033">&#9670;&nbsp;</a></span>toRadians()</h2>
 
@@ -385,6 +422,29 @@ template&lt;typename NumberType &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab4e967443b228d8dcb2c2ccb40ae38dd" name="ab4e967443b228d8dcb2c2ccb40ae38dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e967443b228d8dcb2c2ccb40ae38dd">&#9670;&nbsp;</a></span>pi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr float Math::pi = 3.14159265359f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

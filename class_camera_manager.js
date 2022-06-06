@@ -6,6 +6,7 @@ var class_camera_manager =
     [ "getScene", "class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663", null ],
     [ "registerCamera", "class_camera_manager.html#ad4b77a26417d0953ea4a252b93864ec4", null ],
     [ "setActiveCamera", "class_camera_manager.html#ab5da5ff608bb467145c218bfa595b5cd", null ],
+    [ "setActiveCameraByIndex", "class_camera_manager.html#a50777b93672469896e87493e3e168248", null ],
     [ "unregisterCamera", "class_camera_manager.html#a805dd220e61eeaeb0b4745e6f3cea7c1", null ],
     [ "activeCamera", "class_camera_manager.html#a9fc3b4acabc0432f1b6767caf802e21d", null ],
     [ "cameras", "class_camera_manager.html#aa15087adefbb15a09524e6827ceb633f", null ],

@@ -16,6 +16,8 @@ var class_camera_component =
     [ "setAspectRatio", "class_camera_component.html#afc0c38e9f7da08bb132efb4ed91e0e66", null ],
     [ "setFieldOfView", "class_camera_component.html#aa54287384cd36513b98ea593b0685a84", null ],
     [ "setRenderDistance", "class_camera_component.html#abb914e99a3f13cf1311ec8e0c12e3c98", null ],
+    [ "setWorldPosition", "class_camera_component.html#ae1144af27d5a91d67b99eb8dc68f9d06", null ],
+    [ "setWorldRotation", "class_camera_component.html#a377dfc4d93cb649bd25e93aeb5069647", null ],
     [ "start", "class_camera_component.html#a490c3158a238e496b011a64b0c9b0c2f", null ],
     [ "update", "class_camera_component.html#ac2712b497f7422a2459305b9e163e5f5", null ],
     [ "updateMatrices", "class_camera_component.html#a37b574c0c31ce11dc1de0e1ed5219760", null ],

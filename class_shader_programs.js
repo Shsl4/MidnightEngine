@@ -5,6 +5,7 @@ var class_shader_programs =
     [ "makePrograms", "class_shader_programs.html#afd1b2584645c24c5515ea9af4c2d01d1", null ],
     [ "ResourceLoader", "class_shader_programs.html#a685a33b83a13f36aceea3ff940994ac9", null ],
     [ "basicShader", "class_shader_programs.html#a7bec6139a81f01524dfc5fdada425df9", null ],
+    [ "constructed", "class_shader_programs.html#ad5fa1c70e27fcda7c9e6f54babdc882b", null ],
     [ "directionalLightShader", "class_shader_programs.html#ae9c1c9e8b1dcafdd86c60fc5319f65e3", null ],
     [ "materialShader", "class_shader_programs.html#aeea1f443ba8d01a2d68a37e7eec93ec7", null ],
     [ "pointLightShader", "class_shader_programs.html#abeffd668c0b7e04b4b54c8ebd7d81c53", null ],

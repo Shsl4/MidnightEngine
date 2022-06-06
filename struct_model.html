@@ -103,6 +103,8 @@ $(document).ready(function(){initNavTree('struct_model.html',''); initResizable(
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a25eae9a512f3b69ece203ff433be54ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a25eae9a512f3b69ece203ff433be54ca">Model</a> (<a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> &gt; &gt; <a class="el" href="struct_model.html#a46d7311359c02406b01ca5c8c602b635">meshes</a>, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt; &gt; textures, <a class="el" href="class_string.html">String</a> name)</td></tr>
 <tr class="separator:a25eae9a512f3b69ece203ff433be54ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a89ef478cb2f665df06a29c8dc0afd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a3a89ef478cb2f665df06a29c8dc0afd5">getMesh</a> (const size_t index) const</td></tr>
+<tr class="separator:a3a89ef478cb2f665df06a29c8dc0afd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62b6d842550aab4de27289368dd2c7b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a62b6d842550aab4de27289368dd2c7b6">getMeshCount</a> () const</td></tr>
 <tr class="separator:a62b6d842550aab4de27289368dd2c7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d644c7e3b964bb43bed0f92fa14a13b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a0d644c7e3b964bb43bed0f92fa14a13b">getTextureCount</a> () const</td></tr>
@@ -113,8 +115,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3c5da2b4d7e5680a18eb83abf02b6546"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d4fa929d60a297a761f343f4d526f19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_material.html">Material</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a0d4fa929d60a297a761f343f4d526f19">getMaterials</a> () const</td></tr>
 <tr class="separator:a0d4fa929d60a297a761f343f4d526f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bbdbc9e404fddb6a71b46832f9492c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a4bbdbc9e404fddb6a71b46832f9492c3">render</a> (<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> viewId, <a class="el" href="struct_vector4.html">Vector4</a> const &amp;view, <a class="el" href="struct_matrix4.html">Matrix4</a> const &amp;transform, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt; &gt; const &amp;textures, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_material.html">Material</a> &gt; const &amp;materials, <a class="el" href="class_array.html">Array</a>&lt; bgfx::ProgramHandle &gt; const &amp;programs, <a class="el" href="class_light_component.html">LightComponent</a> *light) const</td></tr>
-<tr class="separator:a4bbdbc9e404fddb6a71b46832f9492c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5799e473e6677022551306b7caabe7d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model.html#a5799e473e6677022551306b7caabe7d2">render</a> (<a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> viewId, <a class="el" href="struct_vector4.html">Vector4</a> const &amp;view, <a class="el" href="struct_matrix4.html">Matrix4</a> const &amp;transform, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; <a class="el" href="struct_texture.html">Texture</a> &gt; &gt; const &amp;textures, <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_material.html">Material</a> &gt; const &amp;materials, <a class="el" href="class_array.html">Array</a>&lt; bgfx::ProgramHandle &gt; const &amp;programs) const</td></tr>
+<tr class="separator:a5799e473e6677022551306b7caabe7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -181,6 +183,32 @@ Private Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="struct_material.html">Material</a> &gt; Model::getMaterials </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a89ef478cb2f665df06a29c8dc0afd5" name="a3a89ef478cb2f665df06a29c8dc0afd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a89ef478cb2f665df06a29c8dc0afd5">&#9670;&nbsp;</a></span>getMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="class_shared_pointer.html">SharedPointer</a>&lt; <a class="el" href="struct_mesh.html">Mesh</a> &gt; Model::getMesh </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -285,8 +313,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4bbdbc9e404fddb6a71b46832f9492c3" name="a4bbdbc9e404fddb6a71b46832f9492c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bbdbc9e404fddb6a71b46832f9492c3">&#9670;&nbsp;</a></span>render()</h2>
+<a id="a5799e473e6677022551306b7caabe7d2" name="a5799e473e6677022551306b7caabe7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5799e473e6677022551306b7caabe7d2">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,13 +353,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_array.html">Array</a>&lt; bgfx::ProgramHandle &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>programs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_light_component.html">LightComponent</a> *&#160;</td>
-          <td class="paramname"><em>light</em>&#160;</td>
+          <td class="paramname"><em>programs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

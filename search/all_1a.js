@@ -8,11 +8,14 @@ var searchData=
   ['_7emesh_5',['~Mesh',['../struct_mesh.html#a5efe4da1a4c0971cfb037bd70304c303',1,'Mesh']]],
   ['_7eobject_6',['~Object',['../class_object.html#a226f2ae2af766b77d83c09a4d766b725',1,'Object']]],
   ['_7eoptional_7',['~Optional',['../class_optional.html#a45557bde636d60b1a7c3a089b4e579bb',1,'Optional']]],
-  ['_7erefcounter_8',['~RefCounter',['../class_ref_counter.html#a19c47ae11f4e3ec2156248a5d196414c',1,'RefCounter']]],
-  ['_7erenderable_9',['~Renderable',['../class_renderable.html#a2103eed2f7f54bca8ba1001907b367a9',1,'Renderable']]],
-  ['_7eresourceloader_10',['~ResourceLoader',['../class_resource_loader.html#aa8a4b91f3310679b013cf956380671e2',1,'ResourceLoader']]],
-  ['_7esharedpointer_11',['~SharedPointer',['../class_shared_pointer.html#ad45e725db8a8b03aa1c7eefdbdfbb4b9',1,'SharedPointer']]],
-  ['_7etexture_12',['~Texture',['../struct_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a',1,'Texture']]],
-  ['_7euniquepointer_13',['~UniquePointer',['../class_unique_pointer.html#a547ba0d226a3b0b624a3adeeb41d655f',1,'UniquePointer']]],
-  ['_7eweakpointer_14',['~WeakPointer',['../class_weak_pointer.html#aa1ffd187654a19b59b8009b8aa9d2a92',1,'WeakPointer']]]
+  ['_7ephysicscomponent_8',['~PhysicsComponent',['../class_physics_component.html#ab1981966b1b73befaafbb7a09d0e1078',1,'PhysicsComponent']]],
+  ['_7ephysicsmanager_9',['~PhysicsManager',['../class_physics_manager.html#af071d35af0fd714cd6e5a7005f560022',1,'PhysicsManager']]],
+  ['_7ephysxallocator_10',['~PhysXAllocator',['../class_phys_x_allocator.html#a3aa0c257b1bf524c4fcd26b46bc38813',1,'PhysXAllocator']]],
+  ['_7erefcounter_11',['~RefCounter',['../class_ref_counter.html#a19c47ae11f4e3ec2156248a5d196414c',1,'RefCounter']]],
+  ['_7erenderable_12',['~Renderable',['../class_renderable.html#a2103eed2f7f54bca8ba1001907b367a9',1,'Renderable']]],
+  ['_7eresourceloader_13',['~ResourceLoader',['../class_resource_loader.html#aa8a4b91f3310679b013cf956380671e2',1,'ResourceLoader']]],
+  ['_7esharedpointer_14',['~SharedPointer',['../class_shared_pointer.html#ad45e725db8a8b03aa1c7eefdbdfbb4b9',1,'SharedPointer']]],
+  ['_7etexture_15',['~Texture',['../struct_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a',1,'Texture']]],
+  ['_7euniquepointer_16',['~UniquePointer',['../class_unique_pointer.html#a547ba0d226a3b0b624a3adeeb41d655f',1,'UniquePointer']]],
+  ['_7eweakpointer_17',['~WeakPointer',['../class_weak_pointer.html#aa1ffd187654a19b59b8009b8aa9d2a92',1,'WeakPointer']]]
 ];

@@ -6,7 +6,8 @@ var searchData=
   ['deltatime_3',['deltaTime',['../class_engine.html#a767c164560c26f7f096506a9c2b95b03',1,'Engine']]],
   ['diffusecolor_4',['diffuseColor',['../struct_material.html#af85b2271fdef98144e0bb325fa2d9850',1,'Material::diffuseColor()'],['../class_light_component.html#ad8e50be7155d5c97930106c2650d4f19',1,'LightComponent::diffuseColor()']]],
   ['directionallightshader_5',['directionalLightShader',['../class_shader_programs.html#ae9c1c9e8b1dcafdd86c60fc5319f65e3',1,'ShaderPrograms']]],
-  ['double_6',['Double',['../_console_types_8h.html#ae7731a893109b41a186a62effd64cdda',1,'ConsoleTypes.h']]],
-  ['down_7',['down',['../struct_vector3.html#ab3cfe72501f9796cc13fa8a3808c448d',1,'Vector3']]],
-  ['dpiscale_8',['dpiScale',['../struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620',1,'PlatformData']]]
+  ['dispatcher_6',['dispatcher',['../class_physics_manager.html#a5635db4354e46729ccb0424b15c85dcb',1,'PhysicsManager']]],
+  ['double_7',['Double',['../_console_types_8h.html#ae7731a893109b41a186a62effd64cdda',1,'ConsoleTypes.h']]],
+  ['down_8',['down',['../struct_vector3.html#ab3cfe72501f9796cc13fa8a3808c448d',1,'Vector3']]],
+  ['dpiscale_9',['dpiScale',['../struct_platform_data.html#a137b46a5d3c998d3f8d9ff3ac68cc620',1,'PlatformData']]]
 ];

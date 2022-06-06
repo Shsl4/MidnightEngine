@@ -108,11 +108,12 @@ Inheritance diagram for SceneComponent:</div>
  <div class="center">
   <img src="class_scene_component.png" usemap="#SceneComponent_map" alt=""/>
   <map id="SceneComponent_map" name="SceneComponent_map">
-<area href="class_component.html" alt="Component" shape="rect" coords="173,56,336,80"/>
-<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="173,0,336,24"/>
+<area href="class_component.html" alt="Component" shape="rect" coords="259,56,422,80"/>
+<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="259,0,422,24"/>
 <area href="class_camera_component.html" alt="CameraComponent" shape="rect" coords="0,168,163,192"/>
 <area href="class_light_component.html" alt="LightComponent" shape="rect" coords="173,168,336,192"/>
 <area href="class_model_component.html" title="A renderable component that represents a mesh." alt="ModelComponent" shape="rect" coords="346,168,509,192"/>
+<area href="class_physics_component.html" alt="PhysicsComponent" shape="rect" coords="519,168,682,192"/>
 <area href="class_directional_light_component.html" alt="DirectionalLightComponent" shape="rect" coords="86,224,249,248"/>
 <area href="class_point_light_component.html" alt="PointLightComponent" shape="rect" coords="259,224,422,248"/>
   </map>
@@ -120,6 +121,8 @@ Inheritance diagram for SceneComponent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:aa1896cf9601c860955e62bf20edfd1dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd">setup</a> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
+<tr class="separator:aa1896cf9601c860955e62bf20edfd1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace90ba7d763ceb30c95a21819f3a6470"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ace90ba7d763ceb30c95a21819f3a6470">start</a> () override</td></tr>
 <tr class="memdesc:ace90ba7d763ceb30c95a21819f3a6470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>.  <a href="class_scene_component.html#ace90ba7d763ceb30c95a21819f3a6470">More...</a><br /></td></tr>
 <tr class="separator:ace90ba7d763ceb30c95a21819f3a6470"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,15 +166,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aef87f8a17905f24ffaaaafb28d27563a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa19fb9b538ccc40a2cccee12b94c68fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa19fb9b538ccc40a2cccee12b94c68fe">addWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToAdd)</td></tr>
 <tr class="separator:aa19fb9b538ccc40a2cccee12b94c68fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2278681e514f292e80880cfde1c30e63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2278681e514f292e80880cfde1c30e63">setWorldPosition</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position)</td></tr>
+<tr class="memitem:a2278681e514f292e80880cfde1c30e63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a2278681e514f292e80880cfde1c30e63">setWorldPosition</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position)</td></tr>
 <tr class="memdesc:a2278681e514f292e80880cfde1c30e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the component's position in world space.  <a href="class_scene_component.html#a2278681e514f292e80880cfde1c30e63">More...</a><br /></td></tr>
 <tr class="separator:a2278681e514f292e80880cfde1c30e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd15f850f121a7da3437f7ebdfdca87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#addd15f850f121a7da3437f7ebdfdca87">setWorldRotation</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
+<tr class="memitem:addd15f850f121a7da3437f7ebdfdca87"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#addd15f850f121a7da3437f7ebdfdca87">setWorldRotation</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
 <tr class="memdesc:addd15f850f121a7da3437f7ebdfdca87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the world rotation of this component.  <a href="class_scene_component.html#addd15f850f121a7da3437f7ebdfdca87">More...</a><br /></td></tr>
 <tr class="separator:addd15f850f121a7da3437f7ebdfdca87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad538f61a7844892170ab1c944db9072b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ad538f61a7844892170ab1c944db9072b">setWorldScale</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;scale)</td></tr>
+<tr class="memitem:ad538f61a7844892170ab1c944db9072b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ad538f61a7844892170ab1c944db9072b">setWorldScale</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;scale)</td></tr>
 <tr class="separator:ad538f61a7844892170ab1c944db9072b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a5a0306cf04cfb83e1759dc5a47504b68">setWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToSet)</td></tr>
+<tr class="memitem:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#a5a0306cf04cfb83e1759dc5a47504b68">setWorldTransform</a> (<a class="el" href="struct_transform.html">Transform</a> const &amp;transformToSet)</td></tr>
 <tr class="separator:a5a0306cf04cfb83e1759dc5a47504b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8c4e68f6233c6f0848a5cfb15aaf55e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa8c4e68f6233c6f0848a5cfb15aaf55e">rotateAround</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;position, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;axis, <a class="el" href="struct_vector3.html">Vector3</a> const &amp;rotation)</td></tr>
 <tr class="separator:aa8c4e68f6233c6f0848a5cfb15aaf55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -905,11 +908,42 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aa1896cf9601c860955e62bf20edfd1dd" name="aa1896cf9601c860955e62bf20edfd1dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1896cf9601c860955e62bf20edfd1dd">&#9670;&nbsp;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneComponent::setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_scene.html">Scene</a> *&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_physics_component.html#a352b9442fdff4c7996de264dc76550d2">PhysicsComponent</a>.</p>
+
+</div>
+</div>
 <a id="a2278681e514f292e80880cfde1c30e63" name="a2278681e514f292e80880cfde1c30e63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2278681e514f292e80880cfde1c30e63">&#9670;&nbsp;</a></span>setWorldPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SceneComponent::setWorldPosition </td>
@@ -919,6 +953,11 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Sets the component's position in world space. </p>
@@ -929,6 +968,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
+<p>Reimplemented in <a class="el" href="class_camera_component.html#ae1144af27d5a91d67b99eb8dc68f9d06">CameraComponent</a>.</p>
+
 </div>
 </div>
 <a id="addd15f850f121a7da3437f7ebdfdca87" name="addd15f850f121a7da3437f7ebdfdca87"></a>
@@ -936,6 +977,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SceneComponent::setWorldRotation </td>
@@ -945,6 +989,11 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Sets the world rotation of this component. </p>
@@ -955,6 +1004,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
+<p>Reimplemented in <a class="el" href="class_camera_component.html#a377dfc4d93cb649bd25e93aeb5069647">CameraComponent</a>.</p>
+
 </div>
 </div>
 <a id="ad538f61a7844892170ab1c944db9072b" name="ad538f61a7844892170ab1c944db9072b"></a>
@@ -962,6 +1013,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SceneComponent::setWorldScale </td>
@@ -971,6 +1025,11 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -980,6 +1039,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SceneComponent::setWorldTransform </td>
@@ -989,6 +1051,11 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

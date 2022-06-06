@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('class_uniforms.html',''); initResizabl
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="class_uniforms-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Uniforms Class Reference</div></div>
@@ -131,6 +132,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:ad5630e823d85a3ae6e2e574ad43c405c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a333c3940817375b1974964aa4660ca0f"><td class="memItemLeft" align="right" valign="top">static bgfx::UniformHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uniforms.html#a333c3940817375b1974964aa4660ca0f">lightAttenuation</a> {}</td></tr>
 <tr class="separator:a333c3940817375b1974964aa4660ca0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7b620edf9ffc952231330812ce25ef3"><td class="memItemLeft" align="right" valign="top">static bgfx::UniformHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uniforms.html#ad7b620edf9ffc952231330812ce25ef3">lightData</a> {}</td></tr>
+<tr class="separator:ad7b620edf9ffc952231330812ce25ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -138,6 +141,11 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:af55f9e50d8b46f2643212e3c161d0f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e38b30369ffb201d4b8dc8fbf6fa82e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uniforms.html#a9e38b30369ffb201d4b8dc8fbf6fa82e">destroyUniforms</a> ()</td></tr>
 <tr class="separator:a9e38b30369ffb201d4b8dc8fbf6fa82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:aeacedc9e4027e77ce0f573202541a55d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uniforms.html#aeacedc9e4027e77ce0f573202541a55d">constructed</a> = false</td></tr>
+<tr class="separator:aeacedc9e4027e77ce0f573202541a55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -245,6 +253,28 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="aeacedc9e4027e77ce0f573202541a55d" name="aeacedc9e4027e77ce0f573202541a55d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeacedc9e4027e77ce0f573202541a55d">&#9670;&nbsp;</a></span>constructed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Uniforms::constructed = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a3605c0a7ea6bf577f635a0152269305f" name="a3605c0a7ea6bf577f635a0152269305f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3605c0a7ea6bf577f635a0152269305f">&#9670;&nbsp;</a></span>lightAmbient</h2>
 
@@ -278,6 +308,28 @@ Friends</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">bgfx::UniformHandle Uniforms::lightAttenuation {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7b620edf9ffc952231330812ce25ef3" name="ad7b620edf9ffc952231330812ce25ef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7b620edf9ffc952231330812ce25ef3">&#9670;&nbsp;</a></span>lightData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bgfx::UniformHandle Uniforms::lightData {}</td>
         </tr>
       </table>
   </td>

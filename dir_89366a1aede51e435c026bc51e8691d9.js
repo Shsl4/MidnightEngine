@@ -25,9 +25,7 @@ var dir_89366a1aede51e435c026bc51e8691d9 =
     [ "Texture.h", "_texture_8h.html", [
       [ "Texture", "struct_texture.html", "struct_texture" ]
     ] ],
-    [ "Uniforms.h", "_uniforms_8h.html", [
-      [ "Uniforms", "class_uniforms.html", "class_uniforms" ]
-    ] ],
+    [ "Uniforms.h", "_uniforms_8h.html", "_uniforms_8h" ],
     [ "Vertex.h", "_vertex_8h.html", [
       [ "Vertex", "struct_vertex.html", "struct_vertex" ]
     ] ]

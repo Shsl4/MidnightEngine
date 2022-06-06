@@ -4,7 +4,7 @@ var searchData=
   ['activecamera_1',['activeCamera',['../class_camera_manager.html#a9fc3b4acabc0432f1b6767caf802e21d',1,'CameraManager']]],
   ['activescene_2',['activeScene',['../class_engine.html#a4326e4a3506c2528f05632f83ec82210',1,'Engine']]],
   ['all_3',['all',['../struct_attachment_properties.html#a6cb733c1b75452a85cdb3e5a98e25e86',1,'AttachmentProperties']]],
-  ['allocator_4',['allocator',['../class_array.html#ab72451423fd0e6f2d43965f3b65df907',1,'Array::allocator()'],['../class_shared_pointer.html#abaaae1d871ce3c3a9f5d4ce36900f503',1,'SharedPointer::allocator()'],['../class_unique_pointer.html#afe777f574079a3db61d581578a75ac6e',1,'UniquePointer::allocator()'],['../class_optional.html#ae1502baefc1e47b6e440aa862073b495',1,'Optional::allocator()']]],
+  ['allocator_4',['allocator',['../class_physics_manager.html#aabada523fbefb9227e2500c09b3b7bff',1,'PhysicsManager::allocator()'],['../class_array.html#ab72451423fd0e6f2d43965f3b65df907',1,'Array::allocator()'],['../class_shared_pointer.html#abaaae1d871ce3c3a9f5d4ce36900f503',1,'SharedPointer::allocator()'],['../class_unique_pointer.html#afe777f574079a3db61d581578a75ac6e',1,'UniquePointer::allocator()'],['../class_optional.html#ae1502baefc1e47b6e440aa862073b495',1,'Optional::allocator()']]],
   ['alt_5',['alt',['../struct_key_bind.html#a54be5a4a52af2308a3e4c718eb658a01',1,'KeyBind']]],
   ['alt_6',['Alt',['../_input_enums_8h.html#a7d99a6d1f8766d52346b73a4a6f940b6',1,'InputEnums.h']]],
   ['ambientcolor_7',['ambientColor',['../struct_material.html#a2b7ed0cf9e375a1e31f96cfa222b11df',1,'Material']]],

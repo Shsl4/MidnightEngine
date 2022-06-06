@@ -21,6 +21,9 @@ var dir_a766cac15a68536f602a557ed27a2c4f =
     [ "ModelComponent.h", "_model_component_8h.html", [
       [ "ModelComponent", "class_model_component.html", "class_model_component" ]
     ] ],
+    [ "PhysicsComponent.h", "_physics_component_8h.html", [
+      [ "PhysicsComponent", "class_physics_component.html", "class_physics_component" ]
+    ] ],
     [ "PointLightComponent.h", "_point_light_component_8h.html", [
       [ "PointLightComponent", "class_point_light_component.html", "class_point_light_component" ]
     ] ],

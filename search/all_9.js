@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['id_0',['id',['../class_logger.html#aaabcccefafde34459dc12aab8a970a19',1,'Logger::id()'],['../struct_input_manager_1_1_axis_bind_entry.html#a028724218521ccb0c8b766152e4aae88',1,'InputManager::AxisBindEntry::id()'],['../struct_input_manager_1_1_key_bind_entry.html#a0aa9fb2874075279a84151a261ef1c4c',1,'InputManager::KeyBindEntry::id()']]],
+  ['id_0',['id',['../class_logger.html#aaabcccefafde34459dc12aab8a970a19',1,'Logger::id()'],['../struct_input_manager_1_1_key_bind_entry.html#a0aa9fb2874075279a84151a261ef1c4c',1,'InputManager::KeyBindEntry::id()'],['../struct_input_manager_1_1_axis_bind_entry.html#a028724218521ccb0c8b766152e4aae88',1,'InputManager::AxisBindEntry::id()']]],
   ['identity_1',['identity',['../struct_matrix4.html#ae18fb8816a056e54953c6a4da7e8161d',1,'Matrix4::identity()'],['../struct_matrix3.html#a3dcc2cfa41fbf7ae5bc2463f2d04dbaf',1,'Matrix3::identity()']]],
   ['idle_2',['Idle',['../class_logger.html#ad69061ca3e08f0ba9ddf9fe4204736d5ae599161956d626eda4cb0a5ffb85271c',1,'Logger']]],
   ['iename_3',['IEName',['../class_i_e_name.html',1,'']]],
@@ -12,7 +12,7 @@ var searchData=
   ['indices_9',['indices',['../struct_mesh.html#adc64112d938b6664cf8c5646690d51b8',1,'Mesh']]],
   ['info_10',['info',['../class_logger.html#a7c55f3c85c43f2968f7052676f290a84',1,'Logger']]],
   ['inherits_11',['inherits',['../class_object.html#af9a069a0987f79dd335dcc5f6a740d7a',1,'Object']]],
-  ['init_12',['init',['../class_console.html#a134738ea8002554c08cece0737db9534',1,'Console::init()'],['../class_engine.html#a935057cf3d91a9173d0081e799e30cbd',1,'Engine::init()'],['../class_resource_loader.html#aec1de383b15ac523640949bb19d61457',1,'ResourceLoader::init()']]],
+  ['init_12',['init',['../class_physics_manager.html#a1df39fe0f0618d54634d74809b7e9584',1,'PhysicsManager::init()'],['../class_console.html#a134738ea8002554c08cece0737db9534',1,'Console::init()'],['../class_engine.html#a935057cf3d91a9173d0081e799e30cbd',1,'Engine::init()'],['../class_resource_loader.html#aec1de383b15ac523640949bb19d61457',1,'ResourceLoader::init()']]],
   ['initengine_13',['initEngine',['../class_entry.html#aabb623c8e6ed73d509b89944535f9f73',1,'Entry']]],
   ['inputenums_2eh_14',['InputEnums.h',['../_input_enums_8h.html',1,'']]],
   ['inputmanager_15',['InputManager',['../class_input_manager.html#ad87c25e67ad7234a8173ecabd816facd',1,'InputManager']]],
@@ -38,5 +38,6 @@ var searchData=
   ['isobject_35',['isObject',['../class_object.html#ae228d33402c38cca8a29630b1876c0de',1,'Object']]],
   ['isrootcomponent_36',['isRootComponent',['../class_scene_component.html#afa079d2b205cd7c6bcffd5425fdacb13',1,'SceneComponent']]],
   ['isrunning_37',['isRunning',['../class_engine.html#ab2c9f8f5a98bc20f7a2bb69c1319b18b',1,'Engine']]],
-  ['isvalid_38',['isValid',['../class_actor.html#a33d940a0ca730a4b81066288aee5497d',1,'Actor']]]
+  ['issimulatingphysics_38',['isSimulatingPhysics',['../class_physics_component.html#aab035e07d47b951391b1567d638ec5fa',1,'PhysicsComponent']]],
+  ['isvalid_39',['isValid',['../class_actor.html#a33d940a0ca730a4b81066288aee5497d',1,'Actor']]]
 ];
