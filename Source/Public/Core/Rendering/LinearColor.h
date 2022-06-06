@@ -76,10 +76,10 @@ struct ENGINE_API LinearColor {
     bool operator==(LinearColor const& other) const{
         return (r == other.r) && (g == other.g) && (b == other.b) && (a == other.a);
     }
-    
-private:
 
     LinearColor() = default;
+    
+private:
 
     float r = 0.0f;
     float g = 0.0f;

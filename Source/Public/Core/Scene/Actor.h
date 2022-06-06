@@ -185,16 +185,20 @@ public:
         SharedPointer<T> component = SharedPointer<T>::make();
 
         component->name = componentName;
-        
+                
         components += component;
 
-        checkCameraManager(component.raw());
+        if(component->template inherits<SceneComponent>()) {
+            component->template cast<SceneComponent>()->setup(getScene());
+        }
+        
+        registerManagers(component.raw());
 
         return component.raw();
 
     }
 
-    void checkCameraManager(Component *component);
+    void registerManagers(Component *component);
     
     template<class T>
     T* getFirstComponentOf() const {

@@ -54,6 +54,9 @@ class ENGINE_API SceneComponent : public Component {
     friend class Scene;
 
 public:
+
+    virtual void setup(Scene* scene);
+ 
     /*!
      *  \brief Start is called when the scene has finished loading and constructing all components.
      *  It is called from the parent Actor.
@@ -89,14 +92,12 @@ public:
      */
     void detachFromComponent();
 
-
     /*!
      *  \brief Gets the component's position in world space.
      *
      *  \return The component's world position
      */
     NODISCARD FORCEINLINE Vector3 getWorldPosition() const { return this->transform.position; }
-
 
     /*!
      *  \brief Gets the component's rotation in world space.

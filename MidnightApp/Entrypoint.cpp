@@ -8,6 +8,7 @@
 #include <Platform/Entry.h>
 
 #include <Scene/ModelActor.h>
+#include <Scene/PhysicsModelActor.h>
 #include <Scene/FlyingCharacter.h>
 #include <Scene/ModelComponent.h>
 
@@ -16,43 +17,45 @@
 
 #include <Scene/PointLightComponent.h>
 
+#include "PxRigidBody.h"
 #include "SDL2/SDL_keycode.h"
 
-class LightActor : public Actor {
-    
+class ActorFactory {
+
 public:
+    
+    static Actor* makePointLightActor(Scene* scene, Vector3 const& position, LinearColor const& color) {
+        
+        auto* actor = scene->createActor<Actor>(Transform(position));
+        auto* comp = actor->createComponent<PointLightComponent>("PointLight");
+        comp->setDiffuseColor(color);
+        comp->attachTo(actor);
 
-    LightActor() {
-
-        this->light = createComponent<DirectionalLightComponent>("DirectionalLight");
-        this->model = createComponent<ModelComponent>("Model");
-        light->setLightDirection({1.0f, -1.0f, 0.0f});
-        setRootComponent(model);
-        light->attachTo(model);
+        return actor;
         
     }
 
-    FORCEINLINE DirectionalLightComponent* getLightComponent() const {
-        return light;
+    static Actor* makeDirectionalLightActor(Scene* scene, Vector3 const& direction, LinearColor const& color) {
+        
+        auto* actor = scene->createActor<Actor>();
+        auto* comp = actor->createComponent<DirectionalLightComponent>("DirectionalLight");
+        comp->setLightDirection(direction);
+        comp->setDiffuseColor(color);
+        comp->attachTo(actor);
+
+        return actor;
+        
     }
-    
-private:
-    
-    DirectionalLightComponent* light;
-    ModelComponent* model;
-    Vector3 rotation = Vector3::zero;
     
 };
 
-class SpaceScene : public Scene
-{
+class SpaceScene : public Scene {
 
 public:
+    
+    NODISCARD FORCEINLINE String getSceneName() const override { return "SpaceScene"; }
 
-    NODISCARD FORCEINLINE String getSceneName() const override
-    {
-        return "SpaceScene";
-    }
+    explicit SpaceScene(PhysicsManager* const manager) : Scene(manager) { }
 
 protected:
     
@@ -60,62 +63,70 @@ protected:
 
         setWorldColor(Color(10, 10, 10).value);
 
-        this->planet1 = createObject<ModelActor>();
-        this->planet2 = createObject<ModelActor>(Transform({ 3.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.25f)));
-        this->planet3 = createObject<ModelActor>(Transform({ 4.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, Vector3(0.125f)));
-        
-        this->planet1->setModel("Sphere");
-        this->planet2->setModel("Sphere");
-        this->planet3->setModel("Sphere");
-        
-        this->light = createObject<LightActor>(Transform({ 0.0f, 0.0f, 0.0f }, {}, { 0.25f, 0.25f, 0.25f }));
+        this->planet1 = createActor<ModelActor>();
+        this->planet2 = createActor<ModelActor>(Transform({3.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, Vector3(0.25f)));
+        this->planet3 = createActor<ModelActor>(Transform({4.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, Vector3(0.125f)));
 
-        this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
+        this->planet1->setModel("SmoothSphere");
+        this->planet2->setModel("SmoothSphere");
+        this->planet3->setModel("SmoothSphere");
+
+        this->light = ActorFactory::makeDirectionalLightActor(this, {0.5f, -1.0f, 0.0f}, LinearColors::white);
+        
+        this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
 
         planet2->attachTo(planet1);
         planet3->attachTo(planet2);
 
     }
-    
+
     void update(const float deltaTime) override {
 
         Scene::update(deltaTime);
 
         const float time = Engine::getInstance()->getTime();
-        
-        planet1->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
-        planet2->addWorldRotation({ 0.0f, 50.0f * deltaTime, 0.0f });
-        this->light->addWorldPosition({ 0.0f, sin(time) * deltaTime, 0.0f });
-        
+
+        planet1->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        planet2->addWorldRotation({0.0f, 25.0f * deltaTime, 0.0f});
+        this->light->addWorldPosition({0.0f, sin(time) * deltaTime, 0.0f});
+
     }
-        
+
     FlyingCharacter* character = nullptr;
-    LightActor* light = nullptr;
-    
+    Actor* light = nullptr;
+
     ModelActor* planet1 = nullptr;
     ModelActor* planet2 = nullptr;
     ModelActor* planet3 = nullptr;
-    
+
 };
 
-class RenderScene : public Scene
-{
+class RenderScene : public Scene {
+
 public:
+    
+    explicit RenderScene(PhysicsManager* const manager) : Scene(manager) { }
+
+    NODISCARD FORCEINLINE String getSceneName() const override { return "RenderScene"; }
+
+protected:
     
     void start() override {
 
         setWorldColor(Color(0, 0, 0).value);
+
+        this->skybox = createActor<ModelActor>(Transform({}, {-90.0f, 0.0f, 0.0f}, Vector3(1000.0f)));
+        this->plane = createActor<ModelActor>(Transform({ 0, -1, 0 }, {-90.0f, 0.0f, 0.0f}, Vector3(10000.0f, 10000.0f, 1)));
+        this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
+        this->light = ActorFactory::makeDirectionalLightActor(this, {0.5f, -1.0f, 0.0f}, LinearColor::fromRGB(106, 77, 102));
         
-        this->skybox = createObject<ModelActor>(Transform({}, { -90.0f, 0.0f, 0.0f }, Vector3(1000.0f)));
-        this->character = createObject<FlyingCharacter>({ { -5.0f, 5.0f, 0.0f }, { 0.0f, -45.0f, 0.0f } });
-        this->light = createObject<LightActor>(Transform({}, {}, { 0.25f, 0.25f, 0.25f }));
-
-        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
-
+        plane->setModel("Plane");
+        plane->setShader(0, ShaderPrograms::unlit);
+        plane->getMaterial(0).ambientColor = LinearColor::fromLinearRGB(0.8, 0.8, 0.8);
+        
         skybox->setModel("SkyCube");
         skybox->setTexture(0, "Space");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
-
 
 #ifdef MULTI
         
@@ -128,56 +139,81 @@ public:
 
 #else
 
-        this->model = createObject<ModelActor>(Transform({ 0.0f, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(3.0f)));
+        this->model = createActor<PhysicsModelActor>(Transform({0.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f}, Vector3(1.0f)));
         model->setModel("Sphere");
         model->setShader(0, ShaderPrograms::wireframeShader);
-        model->getMaterial(0).ambientColor = LinearColors::green;
+        model->getMaterial(0).ambientColor = LinearColors::white;
+        
+        //this->model = createObject<PhysicsModelActor>(Transform({0.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f}, Vector3(1.0f)));
+        //model->setModel("Sphere");
+        //model->setShader(0, ShaderPrograms::wireframeShader);
+        //model->getMaterial(0).ambientColor = LinearColors::red;
 
 #endif
-        
+
         InputManager* manager = Engine::getInstance()->getInputManager();
 
         manager->bindEvent(this, KeyBind(SDLK_KP_0), EInputEvent::Pressed, &RenderScene::setTexture0);
         manager->bindEvent(this, KeyBind(SDLK_KP_1), EInputEvent::Pressed, &RenderScene::setTexture1);
         manager->bindEvent(this, KeyBind(SDLK_KP_2), EInputEvent::Pressed, &RenderScene::setTexture2);
         manager->bindEvent(this, KeyBind(SDLK_KP_3), EInputEvent::Pressed, &RenderScene::setTexture3);
+
+        manager->bindEvent(this, KeyBind(SDLK_KP_4), EInputEvent::Pressed, &RenderScene::imp);
+        manager->bindEvent(this, KeyBind(SDLK_KP_5), EInputEvent::Pressed, &RenderScene::imp2);
+        manager->bindEvent(this, KeyBind(SDLK_KP_6), EInputEvent::Pressed, &RenderScene::imp3);
         
-        this->character->setMovementSpeed(1.0f);
-        
+        this->character->setMovementSpeed(5.0f);
+
     }
 
+    void imp() {
+
+        model->getPhysicsComponent()->addImpulse({0, 0, 10});
+    }
+    
+    void imp2() {
+
+        model->getPhysicsComponent()->addImpulse({10, 0, 0});
+    }
+    
+    void imp3() {
+
+        model->getPhysicsComponent()->setSimulatePhysics(true);
+        
+    }
+    
     void setTexture0() {
-        light->getLightComponent()->setDiffuseColor(LinearColors::white);
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
         skybox->setModel("Sphere");
         skybox->setTexture(0, "brown_photostudio_02_4k");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
     }
 
     void setTexture1() {
-        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(174, 160, 154));
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColor::fromRGB(174, 160, 154));
         skybox->setModel("Sphere");
         skybox->setTexture(0, "moonless_golf_4k");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
     }
 
     void setTexture2() {
-        light->getLightComponent()->setDiffuseColor(LinearColors::white);
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
         skybox->setModel("Sphere");
         skybox->setTexture(0, "studio_small_09_4k");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
     }
 
     void setTexture3() {
-        light->getLightComponent()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
         skybox->setModel("SkyCube");
         skybox->setTexture(0, "Space");
         skybox->setShader(0, ShaderPrograms::skyboxShader);
     }
-    
+
     void update(const float deltaTime) override {
 
         Scene::update(deltaTime);
-
+        
         //const float time = Engine::getInstance()->getTime();
 
         //this->light->getLightComponent()->setLightDirection({ sin(time), -1.0f, 0.0f});
@@ -186,23 +222,19 @@ public:
         //model->addWorldRotation({ 0.0f, 10.0f * deltaTime, 0.0f });
 #endif
         //light->getLightComponent()->setDiffuseColor(LinearColor::fromLinearRGB(sin(time), cos(time), sin(2.0f * time)));
-        
-    }
-    
-    NODISCARD FORCEINLINE String getSceneName() const override
-    {
-        return "RenderScene";
+
     }
 
     ModelActor* skybox = nullptr;
-    ModelActor* model = nullptr;
+    ModelActor* plane = nullptr;
+    PhysicsModelActor* model = nullptr;
     FlyingCharacter* character = nullptr;
-    LightActor* light = nullptr;
+    Actor* light = nullptr;
 
 };
 
 class MyEngine : public Engine {
-    
+
     void onStart() override {
 
         const auto unloadNode = CommandNode::make("scene.unload");
@@ -219,82 +251,61 @@ class MyEngine : public Engine {
         listObjNode->setNodeDescription("Lists the objects present in the scene.");
         deleteObjNode->setNodeDescription("Removes an object in the scene.");
 
-        unloadNode->addExecutable([this](const auto* context) {
-            unloadScene();
-        });
+        unloadNode->addExecutable([this](const auto* context) { unloadScene(); });
 
         loadNode->addArgument("sceneName", ArgumentType::String)
                 ->addExecutable([this](const auto* context) {
-                    
-                    if(String sceneName = context->getString("sceneName"); sceneName == "SpaceScene")
-                    {
+                    if (String sceneName = context->getString("sceneName"); sceneName == "SpaceScene") {
                         loadScene<SpaceScene>();
                     }
-                    else if(sceneName == "RenderScene")
-                    {
-                        loadScene<RenderScene>();
-                    }
-                    else
-                    {
-                        CommandError::throwError("The scene \"{}\" does not exist.", sceneName);
-                    }                    
-                    
+                    else if (sceneName == "RenderScene") { loadScene<RenderScene>(); }
+                    else { CommandError::throwError("The scene \"{}\" does not exist.", sceneName); }
                 });
-        
-        auto* node = addMeshNode->addArgument("modelName", ArgumentType::String);
-        
-        node->addExecutable([this](const auto* context) {
 
+        auto* node = addMeshNode->addArgument("modelName", ArgumentType::String);
+
+        node->addExecutable([this](const auto* context) {
             CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
             const String modelName = context->getString("modelName");
-                       
-            getActiveScene()->createObject<ModelActor>()->setModel(modelName);                       
-                                              
+
+            getActiveScene()->createActor<ModelActor>()->setModel(modelName);
         });
 
         node->addArgument("x", ArgumentType::Double)
             ->addArgument("y", ArgumentType::Double)
             ->addArgument("z", ArgumentType::Double)
             ->addExecutable([this](const auto* context) {
-
                 CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
                 const String modelName = context->getString("modelName");
                 const auto x = static_cast<float>(context->getDouble("x"));
                 const auto y = static_cast<float>(context->getDouble("y"));
                 const auto z = static_cast<float>(context->getDouble("z"));
-                       
-                getActiveScene()->createObject<ModelActor>(Transform(Vector3(x, y, z)))->setModel(modelName);                       
-                                              
+
+                getActiveScene()->createActor<ModelActor>(Transform(Vector3(x, y, z)))->setModel(modelName);
             });
 
-        listObjNode->addExecutable([this](const auto* context)
-        {
+        listObjNode->addExecutable([this](const auto* context) {
             CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
-            getActiveScene()->listObjects();            
+            getActiveScene()->listObjects();
         });
-        
-        listCompNode->addExecutable([this](const auto* context)
-        {
+
+        listCompNode->addExecutable([this](const auto* context) {
             CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
-            getActiveScene()->listComponents();            
+            getActiveScene()->listComponents();
         });
 
         deleteObjNode->addArgument("index", ArgumentType::Int64)
                      ->addExecutable([this](const auto* context) {
-
                          CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
                          const Int64 index = context->getInt64("index");
-                         
+
                          getActiveScene()->destroyActor(getActiveScene()->getObjectByIndex(index));
-                         
                      });
 
-        posNode->addArgument("index", ArgumentType::Int64)->addExecutable([this](const auto* context)
-        {
-
+        posNode->addArgument("index", ArgumentType::Int64)->addExecutable([this](const auto* context) {
             CommandError::throwIf(!getActiveScene().valid(), "No scene is loaded.");
 
             const Int64 index = context->getInt64("index");
@@ -305,10 +316,9 @@ class MyEngine : public Engine {
 
             const auto pos = object->getWorldPosition();
             Console::getLogger()->info("Position for {} ({}): {{ {}, {}, {} }}", object->getClassName(),
-                fmt::ptr(object), pos.x, pos.y, pos.z);
-            
+                                       fmt::ptr(object), pos.x, pos.y, pos.z);
         });
-        
+
         Console::registerCommand(loadNode);
         Console::registerCommand(unloadNode);
         Console::registerCommand(addMeshNode);
@@ -316,35 +326,16 @@ class MyEngine : public Engine {
         Console::registerCommand(deleteObjNode);
         Console::registerCommand(listCompNode);
         Console::registerCommand(posNode);
-        
+
         Console::exec("scene.load RenderScene");
 
     }
 
-    void onUpdate() override {
-
-    }
+    void onUpdate() override { }
 
 };
 
 #define DEBUG_LEAKS
-
-Vector3 barycentric(Vector3 p, Vector3 a, Vector3 b, Vector3 c) {
-                
-    Vector3 v0 = b - a, v1 = c - a, v2 = p - a;
-    float d00 = Vector3::dot(v0, v0);
-    float d01 = Vector3::dot(v0, v1);
-    float d11 = Vector3::dot(v1, v1);
-    float d20 = Vector3::dot(v2, v0);
-    float d21 = Vector3::dot(v2, v1);
-    float denom = d00 * d11 - d01 * d01;
-    float v = (d11 * d20 - d01 * d21) / denom;
-    float w = (d00 * d21 - d01 * d20) / denom;
-    float u = 1.0f - v - w;
-
-    return { u, v, w };
-    
-}
 
 int main(const int argc, const char** argv) {
 
@@ -359,16 +350,9 @@ int main(const int argc, const char** argv) {
     const auto entry = UniquePointer<Entry>::make();
     const auto engine = UniquePointer<MyEngine>::make();
     const auto pointer = engine.raw();
-    
-    entry->entry(argc, argv, [pointer]() {
-        return pointer;
-    });
 
-    /*
-    const Vector3 bcc[3] = { {1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f} };
+    entry->entry(argc, argv, [pointer]() { return pointer; });
 
-    Vector3 a = barycentric(Vector3::zero, bcc[0], bcc[1], bcc[2]);
-    */
     return 0;
 
 }

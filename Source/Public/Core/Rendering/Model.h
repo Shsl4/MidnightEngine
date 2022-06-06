@@ -6,8 +6,11 @@
 #include <Scene/LightComponent.h>
 
 struct Model {
+    
     Model(Array<SharedPointer<Mesh>> meshes, Array<SharedPointer<Texture>> textures, String name);
 
+    FORCEINLINE SharedPointer<Mesh> getMesh(const size_t index) const { return this->meshes[index]; }
+    
     FORCEINLINE size_t getMeshCount() const { return this->meshes.getSize(); }
     
     FORCEINLINE size_t getTextureCount() const { return this->boundTextures.getSize(); }
@@ -31,8 +34,7 @@ struct Model {
                 Matrix4 const& transform,
                 Array<WeakPointer<Texture>> const& textures,
                 Array<Material> const& materials,
-                Array<bgfx::ProgramHandle> const& programs,
-                LightComponent* light) const;
+                Array<bgfx::ProgramHandle> const& programs) const;
 
     String modelName;
 

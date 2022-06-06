@@ -15,6 +15,8 @@ const AttachmentProperties AttachmentProperties::noLocation = { false, true, tru
 const AttachmentProperties AttachmentProperties::noRotation = { true, false, true };
 const AttachmentProperties AttachmentProperties::noScale = { true, true, false };
 
+void SceneComponent::setup(Scene* scene) { }
+
 void SceneComponent::start() {
 
     // Call start on every child component
@@ -85,6 +87,10 @@ bool SceneComponent::attachTo(SceneComponent *other, AttachmentProperties proper
 
     this->attachmentProperties = properties;
 
+    if(!getParentActor()) {
+        setParentActor(other->getParentActor());
+    }
+
     return true;
 
 }
@@ -136,7 +142,7 @@ Vector3 SceneComponent::getRelativeScale() const
 
 Scene* SceneComponent::getScene() const {
 
-    // If there is no parent actor, return nullptr.
+    // If there is no parent actor, throw an error.
     expectf(getParentActor(), "{} has no parent actor.", getName());
 
     // Return the scene of the parent actor.

@@ -11,6 +11,8 @@ class ENGINE_API Math {
 
 public:
 
+    static constexpr float pi = 3.14159265359f;
+    
     template<typename NumberType>
     FORCEINLINE static NumberType clamp(NumberType a, NumberType min, NumberType max) {
         return a > max ? max : (a < min ? min : a);
@@ -57,6 +59,11 @@ public:
     template<typename NumberType>
     FORCEINLINE static NumberType toRadians(NumberType degrees) {
         return degrees * static_cast<NumberType>(0.01745329252f);
+    }
+
+    template<typename NumberType>
+    FORCEINLINE static NumberType toDegrees(NumberType radians) {
+        return radians * 180.0f / pi;
     }
 
     template<typename NumberType>

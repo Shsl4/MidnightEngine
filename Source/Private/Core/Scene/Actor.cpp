@@ -32,10 +32,14 @@ Scene* Actor::getScene() const {
     return Engine::getInstance()->getActiveScene().valid() ? Engine::getInstance()->getActiveScene().raw() : nullptr;
 }
 
-void Actor::checkCameraManager(Component* component) {
+void Actor::registerManagers(Component* component) {
     
     if (component->inherits<CameraComponent>()) {
         getScene()->getCameraManager()->registerCamera(component->cast<CameraComponent>());
+    }
+    
+    if (component->inherits<LightComponent>()) {
+        getScene()->lights += component->cast<LightComponent>();
     }
     
 }
