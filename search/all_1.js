@@ -39,7 +39,7 @@ var searchData=
   ['append_36',['append',['../class_array.html#a6ef3e571fa0862940091b96533a066ab',1,'Array::append(Array&lt; T &gt; const &amp;arr)'],['../class_array.html#a90ced94bf01ad70ad207bf3d6f9017a1',1,'Array::append(T const &amp;elem)']]],
   ['argc_37',['argc',['../struct_platform_data.html#a9ec9521fab6d70735b9f5ab586d2cab9',1,'PlatformData']]],
   ['argument_38',['Argument',['../_console_types_8h.html#a6ea7a844951c45e60653e78d6ddb8d8f',1,'ConsoleTypes.h']]],
-  ['argumentcommandnode_39',['ArgumentCommandNode',['../class_argument_command_node.html#a756182c0357bbd11e993606324d5c2ef',1,'ArgumentCommandNode::ArgumentCommandNode()'],['../class_argument_command_node.html',1,'ArgumentCommandNode'],['../class_argument_command_node.html#ae26c055f02f07fe57c1aee8ab82697b9',1,'ArgumentCommandNode::ArgumentCommandNode()']]],
+  ['argumentcommandnode_39',['ArgumentCommandNode',['../class_argument_command_node.html#a756182c0357bbd11e993606324d5c2ef',1,'ArgumentCommandNode::ArgumentCommandNode(String name, ArgumentType type)'],['../class_argument_command_node.html#ae26c055f02f07fe57c1aee8ab82697b9',1,'ArgumentCommandNode::ArgumentCommandNode()=delete'],['../class_argument_command_node.html',1,'ArgumentCommandNode']]],
   ['argumentcommandnode_2ecpp_40',['ArgumentCommandNode.cpp',['../_argument_command_node_8cpp.html',1,'']]],
   ['argumentcommandnode_2eh_41',['ArgumentCommandNode.h',['../_argument_command_node_8h.html',1,'']]],
   ['argumentname_42',['argumentName',['../struct_command_context_1_1_entry.html#aa75dd4315e51ce775b096f753d048245',1,'CommandContext::Entry']]],
@@ -61,6 +61,6 @@ var searchData=
   ['attachmentproperties_58',['AttachmentProperties',['../struct_attachment_properties.html',1,'']]],
   ['attachto_59',['attachTo',['../class_actor.html#ac9aa13dd8cc927100700c0c571c4ab87',1,'Actor::attachTo()'],['../class_scene_component.html#aec11f5fea9b2ed058388c1255f6feea1',1,'SceneComponent::attachTo(Actor *actor, AttachmentProperties properties=AttachmentProperties::noScale)'],['../class_scene_component.html#a8d2ead1b769e5f2b447c402e264faa80',1,'SceneComponent::attachTo(SceneComponent *other, AttachmentProperties properties=AttachmentProperties::noScale)']]],
   ['autodestroy_60',['autoDestroy',['../class_allocator.html#a8d6584c7c10d39acef1c51c178b542db',1,'Allocator']]],
-  ['axisbindentry_61',['AxisBindEntry',['../struct_input_manager_1_1_axis_bind_entry.html#a407360337d0e4fba8fcb7f72e415a73b',1,'InputManager::AxisBindEntry::AxisBindEntry()'],['../struct_input_manager_1_1_axis_bind_entry.html',1,'InputManager::AxisBindEntry']]],
-  ['axisevents_62',['axisEvents',['../class_input_manager.html#a581a297ab50b26766a56214c88b13a5c',1,'InputManager']]]
+  ['axisbindentry_61',['AxisBindEntry',['../struct_input_manager_1_1_axis_bind_entry.html#ae5ec686e6a6f56cdac26157f8d8b8d44',1,'InputManager::AxisBindEntry::AxisBindEntry()=default'],['../struct_input_manager_1_1_axis_bind_entry.html#a407360337d0e4fba8fcb7f72e415a73b',1,'InputManager::AxisBindEntry::AxisBindEntry(void *object, EAxisType type, std::function&lt; void(Int32)&gt; function, size_t id)'],['../struct_input_manager_1_1_axis_bind_entry.html',1,'InputManager::AxisBindEntry']]],
+  ['axisevents_62',['axisEvents',['../class_input_manager.html#a67d74781dbc0465805929af54776471b',1,'InputManager']]]
 ];

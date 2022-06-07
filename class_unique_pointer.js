@@ -1,6 +1,7 @@
 var class_unique_pointer =
 [
     [ "UniquePointer", "class_unique_pointer.html#a073f778b882441b8ffe394c6dbaa0ec2", null ],
+    [ "UniquePointer", "class_unique_pointer.html#a49f36f0e74c990c2cf0b88a76110aab9", null ],
     [ "UniquePointer", "class_unique_pointer.html#a92833f5387cfdfbc65f8be938159f006", null ],
     [ "~UniquePointer", "class_unique_pointer.html#a547ba0d226a3b0b624a3adeeb41d655f", null ],
     [ "UniquePointer", "class_unique_pointer.html#a89eb555767ba2c5da8a382bb8ef44f02", null ],

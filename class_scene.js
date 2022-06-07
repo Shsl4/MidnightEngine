@@ -27,7 +27,7 @@ var class_scene =
     [ "updatePhysics", "class_scene.html#ae348983b05355b0db5a171642c9fc810", null ],
     [ "waitForPhysics", "class_scene.html#ad302a371a5901e0547c2b05f6d889bc2", null ],
     [ "Engine", "class_scene.html#a3e1914489e4bed4f9f23cdeab34a43dc", null ],
-    [ "cameraManager", "class_scene.html#a6390d7d72550e5435215bb37d7f2b911", null ],
+    [ "cameraManager", "class_scene.html#a6a2d2b290a8ab9df1a9dd68c30eed52d", null ],
     [ "lights", "class_scene.html#af71a2ea7147f7f8ed052ecffaab4c472", null ],
     [ "pendingDestroy", "class_scene.html#aab68d73a7c3a239ab9db777a3ef18f56", null ],
     [ "physicsScene", "class_scene.html#abe9a1e543c0bead80c3eb68f126bc312", null ],

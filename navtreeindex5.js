@@ -1,5 +1,12 @@
 var NAVTREEINDEX5 =
 {
+"struct_linear_color.html#ab3de1f18a846167f868be7dadb319974":[7,0,24,0],
+"struct_linear_color.html#ac64568829d8eceb93059b2f0a4cf17a3":[7,0,24,9],
+"struct_linear_color.html#adb5e17d039aff817978e3acd23072d36":[7,0,24,12],
+"struct_linear_color.html#ae520da81c4f79f8694f5bd2b50717d1a":[7,0,24,8],
+"struct_linear_color.html#af56140a215ecc772b8410ec9d4dc69b3":[7,0,24,15],
+"struct_linear_color.html#afb2a1d66140fd1b4200fdf307c187b4a":[7,0,24,1],
+"struct_linear_colors.html":[7,0,25],
 "struct_linear_colors.html#a1e3964b7d1a9527b28f6f33870d08236":[7,0,25,2],
 "struct_linear_colors.html#a4055f66303a15d771283499c492de80f":[7,0,25,1],
 "struct_linear_colors.html#a569fa77fa8f84128ca9a291a1a0b2280":[7,0,25,3],

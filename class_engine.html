@@ -224,10 +224,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1f54367361475ee0e643a65ebc940f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bfc2a68c900a360838e515c3dabe83c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_unique_pointer.html">UniquePointer</a>&lt; <a class="el" href="class_performance_window.html">PerformanceWindow</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a2bfc2a68c900a360838e515c3dabe83c">perfWindow</a></td></tr>
 <tr class="separator:a2bfc2a68c900a360838e515c3dabe83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a596de8726c60aa9a659b95bf2c758bff"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a596de8726c60aa9a659b95bf2c758bff">renderThreadTasks</a></td></tr>
-<tr class="separator:a596de8726c60aa9a659b95bf2c758bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d673c51977144aef8ddfa08113c2403"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a6d673c51977144aef8ddfa08113c2403">mainThreadTasks</a></td></tr>
-<tr class="separator:a6d673c51977144aef8ddfa08113c2403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfde7a9653abffd1f5e90085ab15fd2b"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#adfde7a9653abffd1f5e90085ab15fd2b">renderMutex</a></td></tr>
+<tr class="separator:adfde7a9653abffd1f5e90085ab15fd2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338cd1c81bd14e5ab2d83b70ac24cfdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a338cd1c81bd14e5ab2d83b70ac24cfdd">renderThreadTasks</a></td></tr>
+<tr class="separator:a338cd1c81bd14e5ab2d83b70ac24cfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f0922d7fdad31ff705390736b59732"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a00f0922d7fdad31ff705390736b59732">mainThreadTasks</a></td></tr>
+<tr class="separator:a00f0922d7fdad31ff705390736b59732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -1058,8 +1060,8 @@ template&lt;class SceneClass &gt; </div>
 
 </div>
 </div>
-<a id="a6d673c51977144aef8ddfa08113c2403" name="a6d673c51977144aef8ddfa08113c2403"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d673c51977144aef8ddfa08113c2403">&#9670;&nbsp;</a></span>mainThreadTasks</h2>
+<a id="a00f0922d7fdad31ff705390736b59732" name="a00f0922d7fdad31ff705390736b59732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00f0922d7fdad31ff705390736b59732">&#9670;&nbsp;</a></span>mainThreadTasks</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1068,7 +1070,7 @@ template&lt;class SceneClass &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::function&lt;void()&gt; &gt; Engine::mainThreadTasks</td>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;std::function&lt;void()&gt; &gt; Engine::mainThreadTasks</td>
         </tr>
       </table>
   </td>
@@ -1121,6 +1123,7 @@ template&lt;class SceneClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The engine physics manager. </p>
 
 </div>
 </div>
@@ -1147,8 +1150,8 @@ template&lt;class SceneClass &gt; </div>
 
 </div>
 </div>
-<a id="a596de8726c60aa9a659b95bf2c758bff" name="a596de8726c60aa9a659b95bf2c758bff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a596de8726c60aa9a659b95bf2c758bff">&#9670;&nbsp;</a></span>renderThreadTasks</h2>
+<a id="adfde7a9653abffd1f5e90085ab15fd2b" name="adfde7a9653abffd1f5e90085ab15fd2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfde7a9653abffd1f5e90085ab15fd2b">&#9670;&nbsp;</a></span>renderMutex</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1157,7 +1160,29 @@ template&lt;class SceneClass &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::function&lt;void()&gt; &gt; Engine::renderThreadTasks</td>
+          <td class="memname">std::mutex Engine::renderMutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a338cd1c81bd14e5ab2d83b70ac24cfdd" name="a338cd1c81bd14e5ab2d83b70ac24cfdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338cd1c81bd14e5ab2d83b70ac24cfdd">&#9670;&nbsp;</a></span>renderThreadTasks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;std::function&lt;void()&gt; &gt; Engine::renderThreadTasks</td>
         </tr>
       </table>
   </td>

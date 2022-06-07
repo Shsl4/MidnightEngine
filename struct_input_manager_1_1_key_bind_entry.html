@@ -98,6 +98,8 @@ $(document).ready(function(){initNavTree('struct_input_manager_1_1_key_bind_entr
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af1ea3d7c34882c088e1db4c2b203c764"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#af1ea3d7c34882c088e1db4c2b203c764">KeyBindEntry</a> ()=default</td></tr>
+<tr class="separator:af1ea3d7c34882c088e1db4c2b203c764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf004de0d78280f17b65dc1873b5df0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#adf004de0d78280f17b65dc1873b5df0e">KeyBindEntry</a> (void *<a class="el" href="struct_input_manager_1_1_key_bind_entry.html#a68ecdca2d6e8f2712916455804446151">object</a>, <a class="el" href="struct_key_bind.html">KeyBind</a> <a class="el" href="struct_input_manager_1_1_key_bind_entry.html#a9bebe74e2f72444db37eff3be7f0247f">keyBind</a>, std::function&lt; void()&gt; <a class="el" href="struct_input_manager_1_1_key_bind_entry.html#ad12ba93b7d8a13065acf14dd9e3e6c16">function</a>, size_t <a class="el" href="struct_input_manager_1_1_key_bind_entry.html#a0aa9fb2874075279a84151a261ef1c4c">id</a>)</td></tr>
 <tr class="separator:adf004de0d78280f17b65dc1873b5df0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8304806569de6966bf1d6651607a2ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#ad8304806569de6966bf1d6651607a2ee">operator==</a> (<a class="el" href="struct_input_manager_1_1_key_bind_entry.html">KeyBindEntry</a> const &amp;other) const</td></tr>
@@ -111,12 +113,37 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9bebe74e2f72444db37eff3be7f0247f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad12ba93b7d8a13065acf14dd9e3e6c16"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#ad12ba93b7d8a13065acf14dd9e3e6c16">function</a></td></tr>
 <tr class="separator:ad12ba93b7d8a13065acf14dd9e3e6c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0aa9fb2874075279a84151a261ef1c4c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#a0aa9fb2874075279a84151a261ef1c4c">id</a></td></tr>
+<tr class="memitem:a0aa9fb2874075279a84151a261ef1c4c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_input_manager_1_1_key_bind_entry.html#a0aa9fb2874075279a84151a261ef1c4c">id</a> = 0</td></tr>
 <tr class="separator:a0aa9fb2874075279a84151a261ef1c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af1ea3d7c34882c088e1db4c2b203c764" name="af1ea3d7c34882c088e1db4c2b203c764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ea3d7c34882c088e1db4c2b203c764">&#9670;&nbsp;</a></span>KeyBindEntry() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">InputManager::KeyBindEntry::KeyBindEntry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="adf004de0d78280f17b65dc1873b5df0e" name="adf004de0d78280f17b65dc1873b5df0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf004de0d78280f17b65dc1873b5df0e">&#9670;&nbsp;</a></span>KeyBindEntry()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adf004de0d78280f17b65dc1873b5df0e">&#9670;&nbsp;</a></span>KeyBindEntry() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,7 +239,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t InputManager::KeyBindEntry::id</td>
+          <td class="memname">size_t InputManager::KeyBindEntry::id = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

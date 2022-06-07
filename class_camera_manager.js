@@ -2,6 +2,7 @@ var class_camera_manager =
 [
     [ "CameraManager", "class_camera_manager.html#aeea50357b51b6c1d580ed56c2a1b34df", null ],
     [ "CameraManager", "class_camera_manager.html#a6d0182f58638e66d90e403495370ddb0", null ],
+    [ "~CameraManager", "class_camera_manager.html#a1a787f3a583c281f18ba9fc21497eb3b", null ],
     [ "getActiveCamera", "class_camera_manager.html#aec123c2494958a78608195d713a18c66", null ],
     [ "getScene", "class_camera_manager.html#a543f986215f83d7ee2d2e4d16d562663", null ],
     [ "registerCamera", "class_camera_manager.html#ad4b77a26417d0953ea4a252b93864ec4", null ],
