@@ -15,17 +15,17 @@ public:
         this->specularColor = color;
     }
     
-    FORCEINLINE LinearColor getDiffuseColor() const {
+    FORCEINLINE LinearColor& getDiffuseColor() {
         return this->diffuseColor;
     }
     
-    FORCEINLINE LinearColor getSpecularColor() const {
+    FORCEINLINE LinearColor& getSpecularColor() {
         return this->specularColor;
     }
 
 protected:
     
     LinearColor diffuseColor = LinearColors::white;
-    LinearColor specularColor = LinearColors::black;
+    LinearColor specularColor = LinearColor::fromRGB(100.0f, 100.0f, 100.0f);
     
 };

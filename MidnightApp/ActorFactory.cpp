@@ -4,6 +4,8 @@
 
 #include <ActorFactory.h>
 
+#include "Scene/SpotLightComponent.h"
+
 class AutoDestroyComponent : public SceneComponent{
 
 public:
@@ -37,6 +39,19 @@ Actor *ActorFactory::makePointLightActor(Scene *scene, const Vector3 &position, 
 
 }
 
+Actor* ActorFactory::makeSpotLightActor(Scene* scene, Vector3 const& position, Vector3 const& direction, LinearColor const& color) {
+    
+    auto* actor = scene->createActor<Actor>();
+    auto* comp = actor->createComponent<SpotLightComponent>("SpotLight");
+    actor->setRootComponent(comp);
+    actor->setWorldPosition(position);
+    comp->setLightDirection(direction);
+    comp->setDiffuseColor(color);
+
+    return actor;
+    
+}
+
 Actor *ActorFactory::makeDirectionalLightActor(Scene *scene, const Vector3 &direction, const LinearColor &color) {
 
     auto* actor = scene->createActor<Actor>();
@@ -49,33 +64,7 @@ Actor *ActorFactory::makeDirectionalLightActor(Scene *scene, const Vector3 &dire
 
 }
 
-Actor *ActorFactory::makeCapsuleCollisionActor(Scene *scene, const String &modelPath, float capsuleRadius,
-                                               float capsuleHalfHeight, ActorFactory::CollisionType type,
-                                               const Transform &transform) {
-
-    auto* actor = scene->createActor<Actor>();
-    auto* physicsComp = actor->createComponent<PhysicsComponent>("Collision");
-    auto* model = actor->createComponent<ModelComponent>("Model");
-
-    actor->setRootComponent(physicsComp);
-    model->attachTo(physicsComp);
-
-    actor->setWorldTransform(transform);
-
-    model->setModel(modelPath);
-
-    if (type == CollisionType::Dynamic){
-        physicsComp->makeDynamicCapsuleCollider(capsuleRadius, capsuleHalfHeight);
-    }
-    else{
-        physicsComp->makeStaticCapsuleCollider(capsuleRadius, capsuleHalfHeight);
-    }
-
-    return actor;
-
-}
-
-Actor *ActorFactory::makeBoxCollisionActor(Scene *scene, const String &modelPath, const Vector3 &halfExtents,
+Actor *ActorFactory::makeBoxCollisionActor(Scene *scene, const String &modelName, String const& textureName, const Vector3 &halfExtents,
                                            ActorFactory::CollisionType type, const Transform &transform) {
 
     auto* actor = scene->createActor<Actor>();
@@ -87,7 +76,7 @@ Actor *ActorFactory::makeBoxCollisionActor(Scene *scene, const String &modelPath
 
     actor->setWorldTransform(transform);
 
-    model->setModel(modelPath);
+    model->setModel(modelName);
 
     if (type == CollisionType::Dynamic) {
         physicsComp->makeDynamicBoxCollider(halfExtents);
@@ -98,11 +87,16 @@ Actor *ActorFactory::makeBoxCollisionActor(Scene *scene, const String &modelPath
         physicsComp->makeStaticBoxCollider(halfExtents);
     }
 
+    if(model->getModel().valid() && !textureName.isEmpty()) {
+        model->setTexture(0, textureName);
+        model->getMaterial(0).ambientColor = LinearColors::white;
+    }
+
     return actor;
 
 }
 
-Actor *ActorFactory::makeSphereCollisionActor(Scene *scene, const String &modelPath, float sphereRadius,
+Actor *ActorFactory::makeSphereCollisionActor(Scene *scene, const String &modelName, String const& textureName, float sphereRadius,
                                               ActorFactory::CollisionType type, const Transform &transform) {
 
     auto* actor = scene->createActor<Actor>();
@@ -114,7 +108,7 @@ Actor *ActorFactory::makeSphereCollisionActor(Scene *scene, const String &modelP
 
     actor->setWorldTransform(transform);
 
-    model->setModel(modelPath);
+    model->setModel(modelName);
 
     if (type == CollisionType::Dynamic) {
         physicsComp->makeDynamicSphereCollider(sphereRadius);
@@ -125,24 +119,33 @@ Actor *ActorFactory::makeSphereCollisionActor(Scene *scene, const String &modelP
         physicsComp->makeStaticSphereCollider(sphereRadius);
     }
 
-    return actor;
-
-}
-
-Actor *ActorFactory::makeModelActor(Scene *scene, const String &modelPath, const Vector3 &position,
-                                    const Vector3 &rotation, const Vector3 &scale) {
-
-    auto* actor = scene->createActor<Actor>(Transform(position, rotation, scale));
-    auto* comp = actor->createComponent<ModelComponent>("Model");
-    comp->setModel(modelPath);
-    comp->attachTo(actor);
-    comp->setWorldTransform({ position, rotation, scale });
+    if(model->getModel().valid() && !textureName.isEmpty()) {
+        model->setTexture(0, textureName);
+        model->getMaterial(0).ambientColor = LinearColors::white;
+    }
 
     return actor;
 
 }
 
-Actor *ActorFactory::makeStaticMeshCollider(Scene *scene, const String &modelPath, Transform const& transform) {
+Actor *ActorFactory::makeModelActor(Scene *scene, const String &modelName, String const& textureName, Transform const& transform) {
+
+    auto* actor = scene->createActor<Actor>(transform);
+    auto* model = actor->createComponent<ModelComponent>("Model");
+    model->setModel(modelName);
+    model->attachTo(actor);
+    model->setWorldTransform(transform);
+
+    if(model->getModel().valid() && !textureName.isEmpty()) {
+        model->setTexture(0, textureName);
+        model->getMaterial(0).ambientColor = LinearColors::white;
+    }
+    
+    return actor;
+
+}
+
+Actor *ActorFactory::makeStaticMeshCollider(Scene *scene, const String &modelName, String const& textureName, Transform const& transform) {
 
     auto* actor = scene->createActor<Actor>();
     auto* physicsComp = actor->createComponent<PhysicsComponent>("Collision");
@@ -153,12 +156,17 @@ Actor *ActorFactory::makeStaticMeshCollider(Scene *scene, const String &modelPat
 
     actor->setWorldTransform(transform);
 
-    bool result = model->setModel(modelPath);
+    bool result = model->setModel(modelName);
 
     if(result){
         physicsComp->makeModelCollider(model->getModel().raw());
     }
 
+    if(model->getModel().valid() && !textureName.isEmpty()) {
+        model->setTexture(0, textureName);
+        model->getMaterial(0).ambientColor = LinearColors::white;
+    }
+    
     return actor;
 
 }

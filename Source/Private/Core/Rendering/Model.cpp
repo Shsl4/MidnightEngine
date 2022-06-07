@@ -7,6 +7,8 @@
 #include <Scene/PointLightComponent.h>
 #include <Scene/DirectionalLightComponent.h>
 
+#include "Scene/SpotLightComponent.h"
+
 Model::Model(Array<SharedPointer<Mesh>> meshes, Array<SharedPointer<Texture>> textures, String name) :
     modelName(std::move(name)), boundTextures(std::move(textures)), meshes(std::move(meshes)) {
 
@@ -48,6 +50,7 @@ void Model::render(UInt16 viewId,
     auto lightsSpecular = Array<LinearColor>(lights.getSize());
     auto lightsDirections = Array<Vector4>(lights.getSize());
     auto attenuations = Array<Vector4>(lights.getSize());
+    auto additionalLightData = Array<Vector4>(lights.getSize());
     
     for (auto* light : lights) {
 
@@ -60,19 +63,29 @@ void Model::render(UInt16 viewId,
             
             lightsDirections += Vector4(directionalLight->getLightDirection());
             attenuations += Vector4(0.0f);
-            
+            additionalLightData += Vector4(0.0f);
+
         }
 
         if (const auto* pointLight = light->cast<PointLightComponent>()) {
 
             lightsDirections += Vector4(0.0f);
             attenuations += pointLight->getAttenuation();
+            additionalLightData += Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+
+        }
+        
+        if (const auto* spotLight = light->cast<SpotLightComponent>()) {
+
+            lightsDirections += Vector4(spotLight->getLightDirection());
+            attenuations += spotLight->getAttenuation();
+            additionalLightData += Vector4(2.0f, spotLight->getCutoff(), spotLight->getOuterCutoff(), 0.0f);
             
         }
             
     }
-
-    size_t count = 0;
+    
+    size_t meshIndex = 0;
     
     for (auto const& mesh : meshes) {
         
@@ -87,14 +100,15 @@ void Model::render(UInt16 viewId,
             setUniform(Uniforms::lightSpecular, lightsSpecular.begin(), size);
             setUniform(Uniforms::lightDirection, lightsDirections.begin(), size);
             setUniform(Uniforms::lightAttenuation, attenuations.begin(), size);
+            setUniform(Uniforms::additionalLightData, additionalLightData.begin(), size);
             
         }
         
-        auto lightCount = Vector4(size, 1.0f, 1.0f, 1.0f);
+        auto data = Vector4(size, textures[meshIndex].valid(), 1.0f, 1.0f);
 
-        setUniform(Uniforms::lightData, &lightCount);
+        setUniform(Uniforms::additionalData, &data);
 
-        if (programs[count].idx == ShaderPrograms::wireframeShader.idx) {
+        if (programs[meshIndex].idx == ShaderPrograms::wireframeShader.idx) {
             
             constexpr UInt64 state = 0 | BGFX_STATE_WRITE_RGB | BGFX_STATE_WRITE_A |
                     BGFX_STATE_WRITE_Z | BGFX_STATE_MSAA | BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA);
@@ -111,10 +125,13 @@ void Model::render(UInt16 viewId,
             bgfx::setState(state);
             
         }
+
+        Texture* texture = textures[meshIndex].valid() ? textures[meshIndex].raw() : nullptr;
         
-        mesh->render(viewId, materials[count], textures[count].valid() ? textures[count].raw() : nullptr, programs[count]);
-        ++count;
+        mesh->render(viewId, materials[meshIndex], texture, programs[meshIndex]);
+        ++meshIndex;
         
     }   
     
 }
+

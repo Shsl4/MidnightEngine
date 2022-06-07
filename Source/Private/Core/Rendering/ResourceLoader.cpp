@@ -20,6 +20,7 @@
 #include "bimg/decode.h"
 #include "bx/file.h"
 #include "Utilities/ArrayUtils.h"
+#include "Utilities/Random.h"
 
 ResourceLoader::~ResourceLoader() {
     
@@ -139,6 +140,14 @@ WeakPointer<Texture> ResourceLoader::getTexture(String const& name) const {
     Console::getLogger()->error("Tried to get texture named {} which does not exist.", name);
 
     return missingTexture;
+    
+}
+
+String ResourceLoader::getRandomTexture() const {
+
+    auto index = Random::randomInteger<size_t>(0, loadedTextures.getSize() - 1);
+
+    return loadedTextures[index]->textureName;
     
 }
 

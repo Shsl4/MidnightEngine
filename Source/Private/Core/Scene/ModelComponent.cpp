@@ -43,6 +43,11 @@ bool ModelComponent::setTexture(size_t index, String const& name) {
         
     if(model.valid()) {
 
+        if(name.isEmpty()) {
+            textures[index] = nullptr;
+            return true;
+        }
+
         const auto texture = Engine::getInstance()->getResourceLoader()->getTexture(name);
 
         if(texture.valid()) {
@@ -87,7 +92,9 @@ Material& ModelComponent::getMaterial(size_t index) const {
 }
 
 void ModelComponent::render() {
-
+    
+    if(!visible) return;
+    
     // If a model is set
     if (!model.expired()){
 

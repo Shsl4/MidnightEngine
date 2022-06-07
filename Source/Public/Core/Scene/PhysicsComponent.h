@@ -33,8 +33,6 @@ public:
     void makeStaticSphereCollider(float radius = 1.0f);
     void makeDynamicBoxCollider(Vector3 const& halfExtents = { 1.0f, 1.0f, 1.0f });
     void makeStaticBoxCollider(Vector3 const& halfExtents = { 1.0f, 1.0f, 1.0f });
-    void makeDynamicCapsuleCollider(float radius = 1.0f, float halfHeight = 1.0f);
-    void makeStaticCapsuleCollider(float radius = 1.0f, float halfHeight = 1.0f);
 
     bool makeModelCollider(struct Model* model);
 

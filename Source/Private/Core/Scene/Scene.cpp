@@ -46,6 +46,8 @@ void Scene::load() {
     PhysicsManager::updatePvdClient(physicsScene);
     
     start();
+
+    for (const auto& actor : this->registeredActors) { actor->start(); }
     
     this->state = State::Loaded;
 }
@@ -193,15 +195,14 @@ void Scene::setupInput(Actor *object) {
 
 }
 
-void Scene::updatePhysics(float deltaTime) {
+void Scene::updatePhysics(float deltaTime) const {
 
     physicsScene->lockWrite(__FILE__, __LINE__);
     physicsScene->simulate(deltaTime);
     
 }
 
-void Scene::waitForPhysics()
-{
+void Scene::waitForPhysics() const {
     physicsScene->fetchResults(true);
     physicsScene->unlockWrite();
 }
@@ -211,5 +212,7 @@ bool Scene::destroyActor(Actor* object) {
     if (!object) { return false; }
 
     pendingDestroy += object;
+
+    return true;
 
 }

@@ -22,27 +22,38 @@ public:
 
     static Actor* makeCameraActor(Scene* scene, Transform const& transform = Transform());
 
-    static Actor* makePointLightActor(Scene* scene, Vector3 const& position, LinearColor const& color);
-
     static Actor* makeDirectionalLightActor(Scene* scene, Vector3 const& direction, LinearColor const& color);
 
-    static Actor* makeModelActor(Scene* scene, String const& modelPath, Vector3 const& position = Vector3::zero,
-                                 Vector3 const& rotation = Vector3::zero, Vector3 const& scale = Vector3::one);
+    static Actor* makePointLightActor(Scene* scene, Vector3 const& position, LinearColor const& color);
 
-    static Actor* makeSphereCollisionActor(Scene* scene, String const& modelPath, float sphereRadius = 1.0f,
+    static Actor* makeSpotLightActor(Scene* scene,
+                                     Vector3 const& position = {},
+                                     Vector3 const& direction = {0.0f, -1.0f, 0.0f},
+                                     LinearColor const& color = LinearColors::white);
+
+
+    static Actor* makeModelActor(Scene* scene,
+                                 String const& modelName,
+                                 String const& textureName = "",
+                                 Transform const& transform = Transform());
+
+    static Actor* makeSphereCollisionActor(Scene* scene,
+                                           String const& modelName,
+                                           String const& textureName = "",
+                                           float sphereRadius = 1.0f,
                                            CollisionType type = CollisionType::Dynamic,
                                            Transform const& transform = Transform());
 
-    static Actor* makeBoxCollisionActor(Scene* scene, String const& modelPath,
+    static Actor* makeBoxCollisionActor(Scene* scene,
+                                        String const& modelName,
+                                        String const& textureName = "",
                                         Vector3 const& halfExtents = Vector3(1.0f),
                                         CollisionType type = CollisionType::Dynamic,
                                         Transform const& transform = Transform());
 
-    static Actor* makeCapsuleCollisionActor(Scene* scene, String const& modelPath, float capsuleRadius = 1.0f,
-                                            float capsuleHalfHeight = 1.0f,
-                                            CollisionType type = CollisionType::Dynamic,
-                                            Transform const& transform = Transform());
-
-    static Actor* makeStaticMeshCollider(Scene* scene, String const& modelPath, Transform const& transform = Transform());
+    static Actor* makeStaticMeshCollider(Scene* scene,
+                                         String const& modelName,
+                                         String const& textureName = "",
+                                         Transform const& transform = Transform());
 
 };

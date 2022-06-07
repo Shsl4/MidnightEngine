@@ -2,6 +2,7 @@
 #include <bgfx/bgfx.h>
 #include <Rendering/ShaderManager.h>
 #include <Rendering/Uniforms.h>
+#include <Core/Engine.h>
 
 #define HandleWrapper(name, type)                                \
                                                                  \
@@ -68,6 +69,9 @@ void Mesh::render(UInt16 viewId, Material const& material, const Texture* textur
 
     if(texture) {
         texture->use(0, Uniforms::textureHandle);
+    }
+    else {
+        Engine::getInstance()->getResourceLoader()->getTexture("Missing")->use(0, Uniforms::textureHandle);
     }
         
     submit(viewId, program);

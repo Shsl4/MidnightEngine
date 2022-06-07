@@ -22,7 +22,8 @@ public:
     static inline bgfx::UniformHandle lightDiffuse {};
     static inline bgfx::UniformHandle lightSpecular {};
     static inline bgfx::UniformHandle lightAttenuation {};
-    static inline bgfx::UniformHandle lightData {};
+    static inline bgfx::UniformHandle additionalData {};
+    static inline bgfx::UniformHandle additionalLightData {};
 
 private:
 
@@ -46,7 +47,8 @@ private:
         lightDiffuse = createUniform("lightDiffuseColor", bgfx::UniformType::Vec4, MAX_LIGHTS);
         lightSpecular = createUniform("lightSpecularColor", bgfx::UniformType::Vec4, MAX_LIGHTS);
         lightAttenuation = createUniform("lightAttenuation", bgfx::UniformType::Vec4, MAX_LIGHTS);
-        lightData = createUniform("lightData", bgfx::UniformType::Vec4);
+        additionalLightData = createUniform("additionalLightData", bgfx::UniformType::Vec4, MAX_LIGHTS);
+        additionalData = createUniform("additionalData", bgfx::UniformType::Vec4);
 
         constructed = true;
 
@@ -68,7 +70,8 @@ private:
         destroy(lightDiffuse);
         destroy(lightSpecular);
         destroy(lightAttenuation);
-        destroy(lightData);
+        destroy(additionalData);
+        destroy(additionalLightData);
         
         constructed = false;
         

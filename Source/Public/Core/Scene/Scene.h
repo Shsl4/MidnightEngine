@@ -164,9 +164,9 @@ protected:
      */
     virtual void setupInput(Actor* object);
 
-    void updatePhysics(float deltaTime);
+    void updatePhysics(float deltaTime) const;
 
-    void waitForPhysics();
+    void waitForPhysics() const;
 
     /*!
      *  \brief An automatically managed array storing references to all Actors in the scene.

@@ -29,6 +29,8 @@ public:
      *  \return The texture or nullptr if it wasn't found.
      */
     NODISCARD WeakPointer<Texture> getTexture(String const& name) const;
+
+    NODISCARD String getRandomTexture() const;
  
     /*!
      *  \brief Opens a file in binary mode and stores all the data in an UInt8 Array.

@@ -103,9 +103,11 @@ void PhysicsComponent::makeDynamicSphereCollider(float radius) {
     auto& physics = physicsScene->getPhysics();
     
     const auto geometry = physx::PxSphereGeometry(radius);
+    
+    Matrix4 m = Matrix4::modelMatrix(getWorldTransform());
+    const PxMat44 mat = *reinterpret_cast<PxMat44*>(&m);
 
-    Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    const auto tr = PxTransform(mat);
 
     auto* dynamic = PxCreateDynamic(physics, tr, geometry , *material, 10.0f);
 
@@ -126,9 +128,12 @@ void PhysicsComponent::makeDynamicBoxCollider(Vector3 const& halfExtents) {
     const auto* scene = getScene();
     auto* physicsScene = scene->getPhysicsScene();
     auto& physics = physicsScene->getPhysics();
+        
+    Matrix4 m = Matrix4::modelMatrix(getWorldTransform());
+    const PxMat44 mat = *reinterpret_cast<PxMat44*>(&m);
+
+    const auto tr = PxTransform(mat);
     
-    const Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
     const auto geometry = PxBoxGeometry(halfExtents.x, halfExtents.y, halfExtents.z);
     auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
 
@@ -144,29 +149,6 @@ void PhysicsComponent::makeDynamicBoxCollider(Vector3 const& halfExtents) {
     
 }
 
-void PhysicsComponent::makeDynamicCapsuleCollider(float radius, float halfHeight){
-
-    const auto* scene = getScene();
-    auto* physicsScene = scene->getPhysicsScene();
-    auto& physics = physicsScene->getPhysics();
-
-    const Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
-    const auto geometry = PxCapsuleGeometry(radius,halfHeight);
-    auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
-
-    dynamic->setAngularDamping(0.5f);
-    dynamic->setLinearVelocity(PxVec3(0, 0, 0));
-    dynamic->setMass(10.0f);
-
-    PxRigidBodyExt::updateMassAndInertia(*dynamic, 10.0f);
-
-    rigidActor = dynamic;
-
-    physicsScene->addActor(*rigidActor);
-
-}
-
 void PhysicsComponent::makeStaticSphereCollider(float radius) {
 
     const auto* scene = getScene();
@@ -174,11 +156,13 @@ void PhysicsComponent::makeStaticSphereCollider(float radius) {
     auto& physics = physicsScene->getPhysics();
 
     const auto geometry = physx::PxSphereGeometry(radius);
+    
+    Matrix4 m = Matrix4::modelMatrix(getWorldTransform());
+    const PxMat44 mat = *reinterpret_cast<PxMat44*>(&m);
 
-    Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    const auto tr = PxTransform(mat);
 
-    auto* rigidStatic = PxCreateDynamic(physics, tr, geometry , *material, 10.0f);
+    auto* rigidStatic = PxCreateStatic(physics, tr, geometry , *material);
 
     rigidActor = rigidStatic;
 
@@ -192,30 +176,18 @@ void PhysicsComponent::makeStaticBoxCollider(const Vector3 &halfExtents) {
     auto& physics = physicsScene->getPhysics();
 
     const Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
+    
+    Matrix4 m = Matrix4::modelMatrix(getWorldTransform());
+    const PxMat44 mat = *reinterpret_cast<PxMat44*>(&m);
+
+    const auto tr = PxTransform(mat);
+    
     const auto geometry = PxBoxGeometry(halfExtents.x, halfExtents.y, halfExtents.z);
     auto* rigidStatic = PxCreateStatic(physics, tr, geometry, *material);
 
     rigidActor = rigidStatic;
 
     physicsScene->addActor(*rigidActor);
-}
-
-void PhysicsComponent::makeStaticCapsuleCollider(float radius, float halfHeight){
-
-    const auto* scene = getScene();
-    auto* physicsScene = scene->getPhysicsScene();
-    auto& physics = physicsScene->getPhysics();
-
-    const Vector3 position = getWorldPosition();
-    const auto tr = PxTransform(PxVec3(position.x, position.y, position.z));
-    const auto geometry = PxCapsuleGeometry(radius,halfHeight);
-    auto* dynamic = PxCreateDynamic(physics, tr, geometry, *material, 10.0f);
-
-    rigidActor = dynamic;
-
-    physicsScene->addActor(*rigidActor);
-
 }
 
 bool PhysicsComponent::makeModelCollider(Model* model) {
@@ -276,6 +248,8 @@ bool PhysicsComponent::makeModelCollider(Model* model) {
 
 PhysicsComponent::~PhysicsComponent() {
 
-    rigidActor->release();
+    if(rigidActor) {
+        rigidActor->release();
+    }
 
 }

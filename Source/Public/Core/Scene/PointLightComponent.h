@@ -14,6 +14,14 @@ public:
         return { constant, linear, quadratic, 1.0f };
     }
 
+    NODISCARD FORCEINLINE float getConstant() const { return constant; }
+    NODISCARD FORCEINLINE float getLinear() const { return linear; }
+    NODISCARD FORCEINLINE float getQuadratic() const { return quadratic; }
+
+    void setConstant(const float value) { this->constant = value; }
+    void setLinear(const float value) { this->linear = value; }
+    void setQuadratic(const float value) { this->quadratic = value; }
+
 private:
 
     float constant = 1.0f;

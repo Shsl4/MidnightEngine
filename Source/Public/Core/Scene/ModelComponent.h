@@ -36,6 +36,14 @@ public:
     NODISCARD Material& getMaterial(size_t index) const;
     NODISCARD WeakPointer<Model> getModel() const { return this->model; }
 
+    FORCEINLINE void setVisible(bool value) {
+        this->visible = value;
+    }
+
+    NODISCARD FORCEINLINE bool isVisible() const {
+         return this->visible;
+    }
+    
 private:
 
     using Super = SceneComponent;
@@ -48,6 +56,8 @@ private:
     Array<Material> materials = Array<Material>(0);
     Array<bgfx::ProgramHandle> handles = Array<bgfx::ProgramHandle>(0);
 
+    bool visible = true;
+    
     UInt16 viewId = 0;
     
 };
