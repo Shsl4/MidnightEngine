@@ -82,6 +82,91 @@ protected:
 
 };
 
+class TestScene : public Scene {
+
+public:
+
+    NODISCARD FORCEINLINE String getSceneName() const override { return "TestScene"; }
+
+    explicit TestScene(PhysicsManager* const manager) : Scene(manager) { }
+
+protected:
+
+    void start() override {
+
+        setWorldColor(Color(10, 10, 10).value);
+
+        this->planet1 = ActorFactory::makeModelActor(this, "Sphere");
+        this->skybox = ActorFactory::makeModelActor(this, "SkyCube", {}, { 90.0f, 0.0f, 0.0f }, Vector3(0.0f));
+        this->light = ActorFactory::makeDirectionalLightActor(this, { 0.5f, -1.0f, 0.0f }, LinearColors::white);
+        this->character = createActor<FlyingCharacter>({ {-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f} });
+
+        planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
+
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setTexture(0, "Space");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+
+        InputManager* manager = Engine::getInstance()->getInputManager();
+        manager->bindEvent(this, KeyBind(SDLK_l), EInputEvent::Pressed, &TestScene::setLight);
+        manager->bindEvent(this, KeyBind(SDLK_f), EInputEvent::Pressed, &TestScene::setWireframe);
+        manager->bindEvent(this, KeyBind(SDLK_k), EInputEvent::Pressed, &TestScene::setSkybox);
+
+
+    }
+
+    void setSkybox() {
+        activeSkybox = !activeSkybox;
+    }
+
+    void setLight() {
+        activateLight = !activateLight;
+    }
+    
+    void setWireframe() {
+        wireframe = !wireframe;
+    }
+
+    void update(const float deltaTime) override {
+
+        Scene::update(deltaTime);
+        const float time = Engine::getInstance()->getTime();
+
+        planet1->addWorldRotation({ 5.0f * deltaTime, 50.0f * deltaTime, 0.0f });
+
+        if (activateLight) {
+            planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::directionalLightShader);
+            light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::red);
+        }
+        if (wireframe) {
+            planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
+            planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
+        }
+        if (!activateLight && !wireframe) {
+            planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
+            planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
+        }
+        if (activeSkybox) {
+            skybox->getFirstComponentOf<ModelComponent>()->setWorldScale(Vector3(100000.0f));
+        }
+        else skybox->getFirstComponentOf<ModelComponent>()->setWorldScale(Vector3(0.0f));
+
+
+
+
+    }
+
+    FlyingCharacter* character = nullptr;
+    Actor* skybox = nullptr;
+    Actor* light = nullptr;
+    Actor* planet1 = nullptr;
+    bool activateLight = 0;
+    bool wireframe = 0;
+    bool activeSkybox = 0;
+
+};
+
+
 class RenderScene : public Scene {
 
 public:
@@ -104,26 +189,14 @@ protected:
         this->character->setMovementSpeed(50.0f);
 
         this->skybox = ActorFactory::makeModelActor(this, "SkyCube", {}, { 90.0f, 0.0f, 0.0f}, Vector3(10000.0f));
-        //this->plane = ActorFactory::makeModelActor(this, "Plane", { 0.0f, -1.0f, 0.0f}, { 90.0f, 0.0f, 0.0f}, Vector3(1000.0f));
         this->light = ActorFactory::makeDirectionalLightActor(this, {0.5f, -1.0f, 0.0f}, LinearColor::fromRGB(106, 77, 102));
+        this->pointLight = ActorFactory::makePointLightActor(this, { 0.5f, -1.0f, 0.0f }, LinearColors::blue);
 
-        //plane->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
-        //plane->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColor::fromLinearRGB(0.8f, 0.8f, 0.8f);
+
 
         auto* comp = skybox->getFirstComponentOf<ModelComponent>();
         comp->setTexture(0, "Space");
         comp->setShader(0, ShaderPrograms::skyboxShader);
-
-#ifdef MULTI
-        
-        for (Int64 i = -4; i < 5; ++i) {
-
-            this->model = createObject<ModelActor>(Transform({ 10.0f * i, 0.0f, 0.0f }, { 90.0f, 0.0f, 0.0f }, Vector3(10.0f)));
-            model->setModel("marble_bust_01_2k");
-            
-        }
-
-#else
 
 
         for (int i = 0; i < 5; ++i) {
@@ -164,19 +237,16 @@ protected:
         }
 
 */
-
-#endif
-
         InputManager* manager = Engine::getInstance()->getInputManager();
 
-        manager->bindEvent(this, KeyBind(SDLK_KP_0), EInputEvent::Pressed, &RenderScene::setTexture0);
-        manager->bindEvent(this, KeyBind(SDLK_KP_1), EInputEvent::Pressed, &RenderScene::setTexture1);
-        manager->bindEvent(this, KeyBind(SDLK_KP_2), EInputEvent::Pressed, &RenderScene::setTexture2);
-        manager->bindEvent(this, KeyBind(SDLK_KP_3), EInputEvent::Pressed, &RenderScene::setTexture3);
+        manager->bindEvent(this, KeyBind(SDLK_1), EInputEvent::Pressed, &RenderScene::setTexture0);
+        manager->bindEvent(this, KeyBind(SDLK_2), EInputEvent::Pressed, &RenderScene::setTexture1);
+        manager->bindEvent(this, KeyBind(SDLK_3), EInputEvent::Pressed, &RenderScene::setTexture2);
+        manager->bindEvent(this, KeyBind(SDLK_4), EInputEvent::Pressed, &RenderScene::setTexture3);
 
-        manager->bindEvent(this, KeyBind(SDLK_KP_4), EInputEvent::Pressed, &RenderScene::imp);
-        manager->bindEvent(this, KeyBind(SDLK_KP_5), EInputEvent::Pressed, &RenderScene::imp2);
-        manager->bindEvent(this, KeyBind(SDLK_KP_6), EInputEvent::Pressed, &RenderScene::imp3);
+        manager->bindEvent(this, KeyBind(SDLK_5), EInputEvent::Pressed, &RenderScene::imp);
+        manager->bindEvent(this, KeyBind(SDLK_6), EInputEvent::Pressed, &RenderScene::imp2);
+        manager->bindEvent(this, KeyBind(SDLK_7), EInputEvent::Pressed, &RenderScene::imp3);
         
 
         for (const auto& actor : this->registeredActors) {
@@ -238,15 +308,7 @@ protected:
     void update(const float deltaTime) override {
 
         Scene::update(deltaTime);
-        
-        //const float time = Engine::getInstance()->getTime();
-
-        //this->light->getLightComponent()->setLightDirection({ sin(time), -1.0f, 0.0f});
-
-#ifndef MULTI
-        //model->addWorldRotation({ 0.0f, 10.0f * deltaTime, 0.0f });
-#endif
-        //light->getLightComponent()->setDiffuseColor(LinearColor::fromLinearRGB(sin(time), cos(time), sin(2.0f * time)));
+        pointLight->getFirstComponentOf<PointLightComponent>()->setConstant(0.5);
 
     }
 
@@ -255,6 +317,7 @@ protected:
     Actor* model = nullptr;
     FlyingCharacter* character = nullptr;
     Actor* light = nullptr;
+    Actor* pointLight = nullptr;
 
 };
 
@@ -296,6 +359,7 @@ class MyEngine : public Engine {
                         loadScene<SpaceScene>();
                     }
                     else if (sceneName == "RenderScene") { loadScene<RenderScene>(); }
+                    else if (sceneName == "TestScene") { loadScene<TestScene>(); }
                     else { CommandError::throwError("The scene \"{}\" does not exist.", sceneName); }
                 });
 
@@ -367,7 +431,7 @@ class MyEngine : public Engine {
         Console::registerCommand(posNode);
         Console::registerCommand(camInfoNode);
 
-        Console::exec("scene.load RenderScene");
+        Console::exec("scene.load TestScene");
 
     }
 

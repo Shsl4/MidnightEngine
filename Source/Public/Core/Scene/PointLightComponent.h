@@ -14,6 +14,10 @@ public:
         return { constant, linear, quadratic, 1.0f };
     }
 
+    void setConstant(float value) {
+        constant = value;
+    }
+
 private:
 
     float constant = 1.0f;
