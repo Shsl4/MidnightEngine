@@ -334,7 +334,6 @@ void Array<T>::clear() {
 
 template<typename T>
 T& Array<T>::getAt(size_t index) const {
-    //OutOfBoundsException::throwIf(index < size, "Index out of bounds");
     if (index >= size) {
         throw std::runtime_error("Index out of bounds");
     }

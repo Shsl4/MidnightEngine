@@ -8,6 +8,13 @@ CameraManager::CameraManager(Scene* owner) : cameras(15), scene(owner) {
 
 }
 
+CameraManager::~CameraManager() {
+
+    this->activeCamera = nullptr;
+    cameras.clear();
+    
+}
+
 bool CameraManager::setActiveCamera(CameraComponent* camera) {
 
     // If the pointer is valid and the camera is registered.

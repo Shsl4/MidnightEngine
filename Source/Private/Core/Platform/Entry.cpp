@@ -20,6 +20,8 @@
 
 #endif
 
+//#define MIDNIGHT_FULLSCREEN
+
 int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, std::function<Engine*()> const& provider) {
 
     SDL_Window* window = SDL_CreateWindow("Main Window", 1280 / 4, 720 / 4, 1280, 720, 0);

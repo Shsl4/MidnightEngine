@@ -179,7 +179,7 @@ protected:
     /*!
      * The scene's CameraManager.
      */
-    UniquePointer<CameraManager> cameraManager;
+    SharedPointer<CameraManager> cameraManager = nullptr;
 
     /*!
      * The scene's state.

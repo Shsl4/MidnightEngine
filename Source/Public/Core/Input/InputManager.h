@@ -17,6 +17,8 @@ class ENGINE_API InputManager : public Object {
 
     struct KeyBindEntry {
 
+        KeyBindEntry() = default;
+
         KeyBindEntry(void* object, KeyBind keyBind, std::function<void()> function, size_t id) : object(object), keyBind(keyBind),
         function(std::move(function)), id(id) {
 
@@ -29,12 +31,14 @@ class ENGINE_API InputManager : public Object {
         void* object = nullptr;
         KeyBind keyBind;
         std::function<void()> function;
-        size_t id;
+        size_t id = 0;
 
     };    
     
     struct AxisBindEntry {
 
+        AxisBindEntry() = default;
+        
         AxisBindEntry(void* object, EAxisType type, std::function<void(Int32)> function, size_t id) : object(object),
             type(type), function(std::move(function)), id(id) {
 
@@ -47,7 +51,7 @@ class ENGINE_API InputManager : public Object {
         void* object = nullptr;
         EAxisType type;
         std::function<void(Int32)> function;
-        size_t id;
+        size_t id = 0;
 
     };
 
@@ -64,10 +68,10 @@ public:
         
         switch (type) {
             case EInputEvent::Pressed:
-                keyDownEvents.push_back(KeyBindEntry(target, key, function, nextId));
+                keyDownEvents += (KeyBindEntry(target, key, function, nextId));
                 break;
             case EInputEvent::Released:
-                keyUpEvents.push_back(KeyBindEntry(target, key, function, nextId));
+                keyUpEvents += (KeyBindEntry(target, key, function, nextId));
                 break;
         }
         
@@ -75,61 +79,25 @@ public:
 
     }
 
-    void unbindAll(void* target) {
+    void unbindAll(void* target);
 
-        for (size_t i = 0; i < keyDownEvents.size();) {
-            
-            if (keyDownEvents[i].object == target) {
-                keyDownEvents.erase(keyDownEvents.begin() + i);
-                i = 0;
-            }
-            else {
-                ++i;
-            }
-        }
-
-        for (size_t i = 0; i < keyUpEvents.size();) {
-
-            if (keyUpEvents[i].object == target) {
-                keyUpEvents.erase(keyUpEvents.begin() + i);
-                i = 0;
-            }
-            else {
-                ++i;
-            }
-        }
-
-        for (size_t i = 0; i < axisEvents.size();) {
-
-            if (axisEvents[i].object == target) {
-                axisEvents.erase(axisEvents.begin() + i);
-                i = 0;
-            }
-            else{
-                ++i;
-            }
-
-        }
-
-    }
-    
     template<class T>
     void bindAxis(T *target, EAxisType type, void(T::* f)(Int32)) {
 
         const auto function = std::bind(f, target, std::placeholders::_1);
-        axisEvents.push_back(AxisBindEntry(target, type, function, nextId));
+        axisEvents += (AxisBindEntry(target, type, function, nextId));
         ++nextId;
 
     }
 
 private:
 
-    static void invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>&);
+    static void invokeIfMatch(const KeyBind &kb, Array<KeyBindEntry> const& array);
     
     size_t nextId = 0;
 
-    std::vector<KeyBindEntry> keyDownEvents;
-    std::vector<KeyBindEntry> keyUpEvents;
-    std::vector<AxisBindEntry> axisEvents;
+    Array<KeyBindEntry> keyDownEvents;
+    Array<KeyBindEntry> keyUpEvents;
+    Array<AxisBindEntry> axisEvents;
     
 };

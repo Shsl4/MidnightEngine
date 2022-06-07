@@ -84,8 +84,14 @@ int Engine::init(int argc, const char **argv, PlatformData const& data) {
 }
 
 void Engine::update() {
-
+    
     if (!isRunning()) { return; }
+    
+    for (auto const& task : mainThreadTasks) {
+        task();
+    }
+
+    mainThreadTasks.clear();
     
     const Int64 now = bx::getHPCounter();
     const Int64 freq = bx::getHPFrequency();
@@ -93,29 +99,34 @@ void Engine::update() {
     // Calculate the current frame time, last frame time and delta time.
     time = static_cast<float>(now - startTime) / static_cast<float>(freq);
     deltaTime = time - lastTime;
+
     lastTime = time;
+
+    // Update our input system.
+    inputManager->update();    
     
     // Only update the scene if it is loaded
     if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
-        
+                
+        renderMutex.lock();
+                
         activeScene->updatePhysics(deltaTime);
-
-        // Update our input system.
-        inputManager->update();
-
+        
         // Update the current scene.
         activeScene->update(deltaTime);
 
         activeScene->waitForPhysics();
 
+        renderMutex.unlock();
+
     }
 
     onUpdate();
-
+    
 }
 
 void Engine::render() {
-
+    
     for (auto const& task : renderThreadTasks) {
         task();
     }
@@ -143,9 +154,11 @@ void Engine::render() {
 
     
     bgfx::setState(state);
-
+    
+    renderMutex.lock();
+    
     if (activeScene.valid() && activeScene->getState() == Scene::State::Loaded) {
-
+        
         // Get the active camera.
         const auto camera = activeScene->getCameraManager()->getActiveCamera();
 
@@ -156,6 +169,8 @@ void Engine::render() {
         activeScene->renderComponents();
 
     }
+    
+    renderMutex.unlock();
 
     // Render the frame.
     bgfx::frame();
@@ -168,10 +183,10 @@ void Engine::schedule(Threads thread, std::function<void()> const& function)
     switch (thread)
     {
     case Threads::Main:
-        mainThreadTasks.push_back(function);
+        mainThreadTasks += function;
         break;
     case Threads::Render:
-        renderThreadTasks.push_back(function);
+        renderThreadTasks += function;
         break;
     case Threads::New:
 #ifdef __APPLE__
@@ -189,17 +204,13 @@ void Engine::unloadScene() {
 
     if (activeScene.valid())
     {
+        renderMutex.lock();
         Console::getLogger()->info("Unloading scene {}...", activeScene->getSceneName());
-        
-        schedule(Threads::Render, [this]()
-        {
-            
-            String name = activeScene->getSceneName();
-            activeScene->cleanup();
-            activeScene = nullptr;
-            Console::getLogger()->info("Unloaded scene {}.", name);
-            
-        });
+        String name = activeScene->getSceneName();
+        activeScene->cleanup();
+        activeScene = nullptr;
+        Console::getLogger()->info("Unloaded scene {}.", name);
+        renderMutex.unlock();
     }
 
 }

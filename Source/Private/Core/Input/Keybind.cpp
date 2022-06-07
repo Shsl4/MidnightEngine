@@ -39,6 +39,18 @@ KeyBind::KeyBind(const Int32 key, UInt16 mods) {
 
 }
 
+KeyBind::KeyBind(Int32 key, bool shift, bool ctrl) {
+    
+    this->key = key;
+    this->shift = shift;
+    this->control = ctrl;
+    this->alt = false;
+    this->command = false;
+    this->isMouseButton = false;
+    this->isModifierKey = shift || control || command || alt;
+    
+}
+
 bool KeyBind::operator==(const KeyBind& other) const {
 
     if (other.key != this->key) return false;
@@ -48,7 +60,7 @@ bool KeyBind::operator==(const KeyBind& other) const {
     if (other.alt != this->alt) return false;
     if (other.isMouseButton != this->isMouseButton) return false;
     if (other.isModifierKey != this->isModifierKey) return false;
-
+    
     return true;
 
 }

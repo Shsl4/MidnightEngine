@@ -17,6 +17,9 @@ class UniquePointer final {
     explicit UniquePointer(T* newPointer);
 
 public:
+ 
+    UniquePointer(nullptr_t) { }
+
     /**
      * \brief Creates a new UniquePointer of type T
      * \tparam Args A variadic template type

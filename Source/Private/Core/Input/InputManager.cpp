@@ -1,9 +1,11 @@
 #include <Input/InputManager.h>
 #include <SDL2/SDL.h>
 
-void InputManager::invokeIfMatch(const KeyBind &kb, const std::vector<KeyBindEntry>& arr) {
+#include "Console/Console.h"
 
-    for (auto const &e: arr) {
+void InputManager::invokeIfMatch(const KeyBind &kb, Array<KeyBindEntry> const& array) {
+
+    for (auto const &e: array) {
         if (e.keyBind == kb || (e.keyBind.isModifierKey && e.keyBind.key == kb.key)) {
             e.function();
         }
@@ -47,8 +49,8 @@ void InputManager::update() const {
                 invokeIfMatch(KeyBind(event.button.button), keyUpEvents);
                 break;
 
-            case SDL_KEYDOWN:
-
+        case SDL_KEYDOWN:
+            
                 invokeIfMatch(KeyBind(sym, mod), keyDownEvents);
                 break;
 
@@ -60,6 +62,44 @@ void InputManager::update() const {
             default:
                 break;
                 
+        }
+
+    }
+
+}
+
+void InputManager::unbindAll(void* target) {
+
+    for (size_t i = 0; i < keyDownEvents.getSize();) {
+            
+        if (keyDownEvents[i].object == target) {
+            keyDownEvents.removeAt(i);
+            i = 0;
+        }
+        else {
+            ++i;
+        }
+    }
+
+    for (size_t i = 0; i < keyUpEvents.getSize();) {
+
+        if (keyUpEvents[i].object == target) {
+            keyUpEvents.removeAt(i);
+            i = 0;
+        }
+        else {
+            ++i;
+        }
+    }
+
+    for (size_t i = 0; i < axisEvents.getSize();) {
+
+        if (axisEvents[i].object == target) {
+            axisEvents.removeAt(i);
+            i = 0;
+        }
+        else{
+            ++i;
         }
 
     }

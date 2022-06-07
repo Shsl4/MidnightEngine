@@ -26,6 +26,8 @@ public:
      */
     CameraManager() = delete;
 
+    ~CameraManager() override;
+
     /*!
      * Returns the camera currently used for rendering.
      *

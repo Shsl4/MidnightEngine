@@ -23,7 +23,9 @@ Color::Color(const UInt8 red, const UInt8 green, const UInt8 blue) {
         
 }
 
-Scene::Scene(PhysicsManager* manager) : cameraManager(UniquePointer<CameraManager>::make(this)) {
+Scene::Scene(PhysicsManager* manager) {
+
+    this->cameraManager = SharedPointer<CameraManager>::make(this);
     
     physx::PxPhysics* physics = manager->getPhysics();
     
@@ -64,15 +66,17 @@ void Scene::cleanup()
         inputManager->unbindAll(e.raw());
     }
 
+    inputManager->unbindAll(this);
+    
     registeredActors.clear();
     
     setWorldColor(0);
     
     physicsScene->simulate(0.1f);
-
     physicsScene->fetchResults(true);
-
     physicsScene->release();
+    
+    cameraManager = nullptr;
 
     this->state = State::Unloaded;
 }
@@ -162,8 +166,7 @@ void Scene::renderComponents() const {
 }
 
 void Scene::update(const float deltaTime) {
-
-
+    
     for(const auto* actor : pendingDestroy){
 
         size_t i = 0;

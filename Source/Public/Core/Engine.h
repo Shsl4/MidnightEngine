@@ -16,15 +16,14 @@
 
 #include <Physics/PhysicsManager.h>
 
+#include <mutex>
+
 /*!
  *  \brief The main engine class.
  */
-class ENGINE_API Engine : public Object
-{
+class ENGINE_API Engine : public Object {
 public:
- 
-    enum class Threads
-    {
+    enum class Threads {
         Main,
         Render,
         New
@@ -65,105 +64,74 @@ public:
      *
      *  \return The engine instance.
      */
-    FORCEINLINE static Engine* getInstance()
-    {
-        return instance;
-    }
+    FORCEINLINE static Engine* getInstance() { return instance; }
 
     /*!
      * Returns the platform data.
      *
      *  \return The platform data.
      */
-    FORCEINLINE PlatformData getPlatformData() const
-    {
-        return platformData;
-    }
+    FORCEINLINE PlatformData getPlatformData() const { return platformData; }
 
     /*!
      * Checks whether the engine is running.
      *
      *  \return Whether the engine is running.
      */
-    FORCEINLINE bool isRunning() const
-    {
-        return this->running;
-    }
+    FORCEINLINE bool isRunning() const { return this->running; }
 
     /*!
      * Returns the engine main thread delta time.
      *
      * \return The engine delta time.
      */
-    FORCEINLINE float getDeltaTime() const
-    {
-        return this->deltaTime;
-    }
+    FORCEINLINE float getDeltaTime() const { return this->deltaTime; }
 
     /*!
      * Returns the time (in seconds) elapsed since the engine was started.
      *
      *  \return The engine time in seconds.
      */
-    FORCEINLINE float getTime() const
-    {
-        return time;
-    }
+    FORCEINLINE float getTime() const { return time; }
 
     /*!
      * Returns the currently loaded engine scene.
      *
      * \return The active scene.
      */
-    FORCEINLINE WeakPointer<Scene> getActiveScene() const
-    {
-        return activeScene.weak();
-    }
+    FORCEINLINE WeakPointer<Scene> getActiveScene() const { return activeScene.weak(); }
 
     /*!
      * Returns the engine InputManager instance.
      *
      * \return The engine InputManager.
      */
-    FORCEINLINE InputManager* getInputManager() const
-    {
-        return inputManager.raw();
-    }
+    FORCEINLINE InputManager* getInputManager() const { return inputManager.raw(); }
 
     /*!
      * Returns the engine InputManager instance.
      *
      * \return The engine InputManager.
      */
-    FORCEINLINE const ResourceLoader* getResourceLoader() const
-    {
-        return resourceLoader.raw();
-    }
- 
-    FORCEINLINE const PhysicsManager* getPhysicsManager() const
-    {
-        return physicsManager.raw();
-    }
+    FORCEINLINE const ResourceLoader* getResourceLoader() const { return resourceLoader.raw(); }
+
+    FORCEINLINE const PhysicsManager* getPhysicsManager() const { return physicsManager.raw(); }
 
 protected:
-
     void schedule(Threads thread, std::function<void()> const& function);
 
     template <class SceneClass>
-    void loadScene()
-    {
+    void loadScene() {
+     
         static_assert(std::is_convertible_v<SceneClass*, Scene*>, "SceneClass must publicly inherit Scene");
 
         unloadScene();
-        
-        schedule(Threads::Render, [this]()
-        {
-            activeScene = SharedPointer<SceneClass>::make(physicsManager.raw());
-            Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
-            activeScene->load();
-            Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
-        });
-     
+
+        activeScene = SharedPointer<SceneClass>::make(physicsManager.raw());
+        Console::getLogger()->info("Loading scene of type {}...", activeScene->getClassName());
+        activeScene->load();
+        Console::getLogger()->success("Successfully loaded scene {}", activeScene->getSceneName());
+
     }
 
     void unloadScene();
@@ -173,7 +141,6 @@ protected:
     virtual void onUpdate() = 0;
 
 private:
-    
     friend class Entry;
     friend class Console;
 
@@ -240,22 +207,27 @@ private:
      * The engine InputManager.
      */
     UniquePointer<InputManager> inputManager;
- 
+
     /*!
      * The currently loaded Scene.
      */
     SharedPointer<Scene> activeScene;
- 
+
+    /*!
+     * The engine physics manager.
+     */
     UniquePointer<PhysicsManager> physicsManager;
 
     /*!
     * The engine resource loader.
     */
     UniquePointer<ResourceLoader> resourceLoader;
- 
+
     UniquePointer<PerformanceWindow> perfWindow;
- 
-    std::vector<std::function<void()>> renderThreadTasks;
-    std::vector<std::function<void()>> mainThreadTasks;
- 
+
+    std::mutex renderMutex;
+
+    Array<std::function<void()>> renderThreadTasks;
+    Array<std::function<void()>> mainThreadTasks;
+
 };

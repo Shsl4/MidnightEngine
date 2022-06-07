@@ -7,23 +7,17 @@
 #include <Memory/WeakPointer.h>
 #include <Platform/Entry.h>
 
-#include <Scene/PhysicsModelActor.h>
 #include <Scene/FlyingCharacter.h>
 #include <Scene/ModelComponent.h>
 
 #include <Rendering/ShaderPrograms.h>
 #include <Scene/DirectionalLightComponent.h>
 
-#include <Scene/PointLightComponent.h>
-
-#include "PxRigidBody.h"
-#include "PxRigidStatic.h"
-#include "extensions/PxSimpleFactory.h"
-#include "SDL2/SDL_keycode.h"
+#include <SDL2/SDL_keycode.h>
 
 #include <ActorFactory.h>
 
-#include "Scene/SpotLightComponent.h"
+#include <Scene/SpotLightComponent.h>
 
 class SpaceScene : public Scene {
 
@@ -96,6 +90,7 @@ protected:
 
         ActorFactory::makeCameraActor(this, Transform({0.0f, 12.0f, 8.0f}, {-90.0f, -45.0f, 0.0f}));
         ActorFactory::makeCameraActor(this, Transform({0.0f, -4.0f, -27.0f}, {90.0f, -20.0f, 0.0f}));
+        ActorFactory::makeCameraActor(this, Transform({-60.0f, -5.0f, -25.0f}, {17.5f, -25.0f, 0.0f}));
 
         this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
 
@@ -127,33 +122,13 @@ protected:
                                                      {{0, -20.0f * i, 0}, {180.0f, 0.0f, 0.0f}});
             }
             else {
+                
                 ActorFactory::makeStaticMeshCollider(this,
                                                      "Cascade",
                                                      "",
                                                      {{0, -20.0f * i, -15.0f}, {0.0f, 0.0f, 180.0f}});
             }
         }
-
-        for (int i = 0; i < 100; ++i) {
-            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
-                                                   Engine::getInstance()->getResourceLoader()->getRandomTexture()
-                                                   , 1.0f,
-                                                   ActorFactory::CollisionType::Dynamic,
-                                                   Transform({0.0f, 10.0f * i, 0.0f}));
-
-            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
-                                                   Engine::getInstance()->getResourceLoader()->getRandomTexture()
-                                                   , 1.0f,
-                                                   ActorFactory::CollisionType::Dynamic,
-                                                   Transform({5.0f, 10.0f * i, 0.0f}));
-
-            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
-                                                   Engine::getInstance()->getResourceLoader()->getRandomTexture()
-                                                   , 1.0f,
-                                                   ActorFactory::CollisionType::Dynamic,
-                                                   Transform({-5.0f, 10.0f * i, 0.0f}));
-        }
-
 
         InputManager* manager = Engine::getInstance()->getInputManager();
 
@@ -162,9 +137,10 @@ protected:
         manager->bindEvent(this, KeyBind(SDLK_KP_2), EInputEvent::Pressed, &RenderScene::setTexture2);
         manager->bindEvent(this, KeyBind(SDLK_KP_3), EInputEvent::Pressed, &RenderScene::setTexture3);
 
-        manager->bindEvent(this, KeyBind(SDLK_KP_4), EInputEvent::Pressed, &RenderScene::imp);
-        manager->bindEvent(this, KeyBind(SDLK_KP_5), EInputEvent::Pressed, &RenderScene::imp2);
-        manager->bindEvent(this, KeyBind(SDLK_KP_6), EInputEvent::Pressed, &RenderScene::imp3);
+        manager->bindEvent(this, KeyBind(SDLK_1), EInputEvent::Pressed, &RenderScene::imp);
+        manager->bindEvent(this, KeyBind(SDLK_2), EInputEvent::Pressed, &RenderScene::imp2);
+        manager->bindEvent(this, KeyBind(SDLK_3), EInputEvent::Pressed, &RenderScene::imp3);
+        manager->bindEvent(this, KeyBind(SDLK_4), EInputEvent::Pressed, &RenderScene::imp4);
 
     }
 
@@ -173,6 +149,8 @@ protected:
     void imp2() { getCameraManager()->setActiveCameraByIndex(1); }
 
     void imp3() { getCameraManager()->setActiveCameraByIndex(2); }
+
+    void imp4() { getCameraManager()->setActiveCameraByIndex(3); }
 
     void setTexture0() {
         light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
@@ -206,8 +184,36 @@ protected:
         comp->setShader(0, ShaderPrograms::skyboxShader);
     }
 
-    void update(const float deltaTime) override { Scene::update(deltaTime); }
+    void update(const float deltaTime) override {
 
+        Scene::update(deltaTime);
+
+        float time = Engine::getInstance()->getTime();
+        
+        if (time - counter >= 0.2f) {
+
+            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
+                                       Engine::getInstance()->getResourceLoader()->getRandomTexture()
+                                       , 1.0f,
+                                       ActorFactory::CollisionType::Dynamic,
+                                       Transform({x * 4.0f, 10.0f, 0.0f}));
+
+            counter = time;
+            
+            if(x == 2.0f) {
+                x = -2.0f;
+            }
+            else {
+                x += 1.0f;
+            }
+            
+        }
+
+        
+    }
+
+    float x = -2.0f;
+    float counter = 0.0f;
     Actor* skybox = nullptr;
     Actor* plane = nullptr;
     Actor* model = nullptr;
@@ -346,7 +352,7 @@ protected:
 
     void setSkybox() {
 
-        auto* model = skybox->getFirstComponentOf<ModelComponent>();
+        auto* model = this->skybox->getFirstComponentOf<ModelComponent>();
         model->setVisible(!model->isVisible());
 
     }
@@ -499,11 +505,36 @@ class MyEngine : public Engine {
         Console::registerCommand(posNode);
         Console::registerCommand(camInfoNode);
 
-        Console::exec("scene.load TestScene");
+        Console::exec("scene.load RenderScene");
+
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F1), EInputEvent::Pressed, &MyEngine::loadScene<RenderScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F2), EInputEvent::Pressed, &MyEngine::loadScene<SpaceScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F3), EInputEvent::Pressed, &MyEngine::loadScene<TestScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F4), EInputEvent::Pressed, &MyEngine::loadScene<SpotlightScene>);
 
     }
 
-    void onUpdate() override { }
+    float counter = 0.0f;
+    bool b = false;
+    void onUpdate() override {
+
+        float time = getTime();
+
+        if(time - counter >= 0.1f) {
+
+            if(b) {
+                loadScene<RenderScene>();
+            }
+            else {
+                loadScene<SpaceScene>();
+            }
+
+            b = !b;
+            counter = time;
+            
+        }
+                
+    }
 
 };
 
@@ -511,7 +542,7 @@ class MyEngine : public Engine {
 
 int main(const int argc, const char** argv) {
 
-#if defined(_WIN64) && defined(DEBUG_LEAKS)
+#if defined(_WIN64) && defined(DEBUG_LEAKS) && defined(DEBUG)
 
     // Enables memory leak check on Windows
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
