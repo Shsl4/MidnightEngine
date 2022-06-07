@@ -103,11 +103,12 @@ Inheritance diagram for LightComponent:</div>
  <div class="center">
   <img src="class_light_component.png" usemap="#LightComponent_map" alt=""/>
   <map id="LightComponent_map" name="LightComponent_map">
-<area href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach..." alt="SceneComponent" shape="rect" coords="86,112,249,136"/>
-<area href="class_component.html" alt="Component" shape="rect" coords="86,56,249,80"/>
-<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="86,0,249,24"/>
+<area href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach..." alt="SceneComponent" shape="rect" coords="173,112,336,136"/>
+<area href="class_component.html" alt="Component" shape="rect" coords="173,56,336,80"/>
+<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="173,0,336,24"/>
 <area href="class_directional_light_component.html" alt="DirectionalLightComponent" shape="rect" coords="0,224,163,248"/>
 <area href="class_point_light_component.html" alt="PointLightComponent" shape="rect" coords="173,224,336,248"/>
+<area href="class_spot_light_component.html" alt="SpotLightComponent" shape="rect" coords="346,224,509,248"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -117,10 +118,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa20ce65711fc57e3fd9e7c11328fbe01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af43e3e6ef81acf1ed84a07a7b1fb9b28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#af43e3e6ef81acf1ed84a07a7b1fb9b28">setSpecularColor</a> (const <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;color)</td></tr>
 <tr class="separator:af43e3e6ef81acf1ed84a07a7b1fb9b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21564cbe9e15687a708e66b3476ad5c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#a21564cbe9e15687a708e66b3476ad5c8">getDiffuseColor</a> () const</td></tr>
-<tr class="separator:a21564cbe9e15687a708e66b3476ad5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a69daf331808fa9bfb7b1e77c3d4bc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#a8a69daf331808fa9bfb7b1e77c3d4bc3">getSpecularColor</a> () const</td></tr>
-<tr class="separator:a8a69daf331808fa9bfb7b1e77c3d4bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb349874e837357713309ff0a4febb89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#abb349874e837357713309ff0a4febb89">getDiffuseColor</a> ()</td></tr>
+<tr class="separator:abb349874e837357713309ff0a4febb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a425b862bca3569f857e9dcd312ca6abd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#a425b862bca3569f857e9dcd312ca6abd">getSpecularColor</a> ()</td></tr>
+<tr class="separator:a425b862bca3569f857e9dcd312ca6abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_scene_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_scene_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_scene_component.html">SceneComponent</a></td></tr>
 <tr class="memitem:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd">setup</a> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
 <tr class="separator:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -232,7 +233,7 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad8e50be7155d5c97930106c2650d4f19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#ad8e50be7155d5c97930106c2650d4f19">diffuseColor</a> = <a class="el" href="struct_linear_colors.html#ac6be2c0f5e6c5208e790323fa411ad38">LinearColors::white</a></td></tr>
 <tr class="separator:ad8e50be7155d5c97930106c2650d4f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb160da3a11caa08a948510df4796be4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#acb160da3a11caa08a948510df4796be4">specularColor</a> = <a class="el" href="struct_linear_colors.html#a4055f66303a15d771283499c492de80f">LinearColors::black</a></td></tr>
+<tr class="memitem:acb160da3a11caa08a948510df4796be4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#acb160da3a11caa08a948510df4796be4">specularColor</a> = <a class="el" href="struct_linear_color.html#a0179078820ddc666b58cad259687c934">LinearColor::fromRGB</a>(100.0f, 100.0f, 100.0f)</td></tr>
 <tr class="separator:acb160da3a11caa08a948510df4796be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -247,8 +248,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a26dc8149f7c4a818b84cc362ed223ed2 inherit pro_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a21564cbe9e15687a708e66b3476ad5c8" name="a21564cbe9e15687a708e66b3476ad5c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21564cbe9e15687a708e66b3476ad5c8">&#9670;&nbsp;</a></span>getDiffuseColor()</h2>
+<a id="abb349874e837357713309ff0a4febb89" name="abb349874e837357713309ff0a4febb89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb349874e837357713309ff0a4febb89">&#9670;&nbsp;</a></span>getDiffuseColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,10 +258,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> LightComponent::getDiffuseColor </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp; LightComponent::getDiffuseColor </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -272,8 +273,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a8a69daf331808fa9bfb7b1e77c3d4bc3" name="a8a69daf331808fa9bfb7b1e77c3d4bc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a69daf331808fa9bfb7b1e77c3d4bc3">&#9670;&nbsp;</a></span>getSpecularColor()</h2>
+<a id="a425b862bca3569f857e9dcd312ca6abd" name="a425b862bca3569f857e9dcd312ca6abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a425b862bca3569f857e9dcd312ca6abd">&#9670;&nbsp;</a></span>getSpecularColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -282,10 +283,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> LightComponent::getSpecularColor </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp; LightComponent::getSpecularColor </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -382,7 +383,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_linear_color.html">LinearColor</a> LightComponent::specularColor = <a class="el" href="struct_linear_colors.html#a4055f66303a15d771283499c492de80f">LinearColors::black</a></td>
+          <td class="memname"><a class="el" href="struct_linear_color.html">LinearColor</a> LightComponent::specularColor = <a class="el" href="struct_linear_color.html#a0179078820ddc666b58cad259687c934">LinearColor::fromRGB</a>(100.0f, 100.0f, 100.0f)</td>
         </tr>
       </table>
   </td>

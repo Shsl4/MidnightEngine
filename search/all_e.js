@@ -32,5 +32,6 @@ var searchData=
   ['optional_29',['Optional',['../class_optional.html',1,'Optional&lt; T &gt;'],['../class_optional.html#a8a149dbfdbf327c72b835fa55cf6d35d',1,'Optional::Optional(T const &amp;v)'],['../class_optional.html#a2e813d2614535e5a006dadd3499500a8',1,'Optional::Optional(T *v)'],['../class_optional.html#a14f981e4dd785c7989bfc3b16979cbd6',1,'Optional::Optional(Args ...args)'],['../class_optional.html#a840a0055ec9c16b310f27f4e14390bec',1,'Optional::Optional(Optional&lt; T &gt; const &amp;opt)'],['../class_optional.html#a4c62611500a1879a949efe69f45c2340',1,'Optional::Optional(T &amp;&amp;v)'],['../class_optional.html#a8f87c8d71726260149b759c1d8109b19',1,'Optional::Optional()=default']]],
   ['optional_2eh_30',['Optional.h',['../_optional_8h.html',1,'']]],
   ['optional_2einl_31',['Optional.inl',['../_optional_8inl.html',1,'']]],
-  ['orthographic_32',['orthographic',['../struct_matrix4.html#a5541c5dd2c9c4e6bd5c9e670828f1805',1,'Matrix4']]]
+  ['orthographic_32',['orthographic',['../struct_matrix4.html#a5541c5dd2c9c4e6bd5c9e670828f1805',1,'Matrix4']]],
+  ['outercutoff_33',['outerCutoff',['../class_spot_light_component.html#a72505f34b76e6c3a9cccb8aed22f1261',1,'SpotLightComponent']]]
 ];

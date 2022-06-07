@@ -35,14 +35,14 @@ var searchData=
   ['component_2ecpp_32',['Component.cpp',['../_component_8cpp.html',1,'']]],
   ['component_2eh_33',['Component.h',['../_component_8h.html',1,'']]],
   ['components_34',['components',['../class_actor.html#a0c4c073da8ae4b4b3d62fa8e08792067',1,'Actor']]],
-  ['console_35',['Console',['../class_console.html',1,'Console'],['../class_console.html#ae3c51a9aa96c7e41b27d83e976a15a97',1,'Console::Console()'],['../class_engine.html#aaa98810874c67664127370c7d8dc2ece',1,'Engine::Console()']]],
+  ['console_35',['Console',['../class_console.html',1,'Console'],['../class_engine.html#aaa98810874c67664127370c7d8dc2ece',1,'Engine::Console()'],['../class_console.html#ae3c51a9aa96c7e41b27d83e976a15a97',1,'Console::Console()']]],
   ['console_2ecpp_36',['Console.cpp',['../_console_8cpp.html',1,'']]],
   ['console_2eh_37',['Console.h',['../_console_8h.html',1,'']]],
   ['consolehelp_38',['consoleHelp',['../class_console.html#a01901a8dbf11c8596a96fe9d8738e47e',1,'Console']]],
   ['consoleloop_39',['consoleLoop',['../class_console.html#a7210e84d2c16156cd81dde98c37baf65',1,'Console']]],
   ['consolethread_40',['consoleThread',['../class_console.html#a37e1072f17c0cd93c62bd9ccf50a5886',1,'Console']]],
   ['consoletypes_2eh_41',['ConsoleTypes.h',['../_console_types_8h.html',1,'']]],
-  ['constant_42',['constant',['../class_point_light_component.html#a1f1f8f5f1a4be3b09f2a4124267504b7',1,'PointLightComponent']]],
+  ['constant_42',['constant',['../class_point_light_component.html#a1f1f8f5f1a4be3b09f2a4124267504b7',1,'PointLightComponent::constant()'],['../class_spot_light_component.html#a677804038ec2298ec585efc0873a0320',1,'SpotLightComponent::constant()']]],
   ['construct_43',['construct',['../class_allocator.html#a693f5d246eea6c06ef3a41af64142574',1,'Allocator']]],
   ['constructed_44',['constructed',['../class_shader_programs.html#ad5fa1c70e27fcda7c9e6f54babdc882b',1,'ShaderPrograms::constructed()'],['../class_uniforms.html#aeacedc9e4027e77ce0f573202541a55d',1,'Uniforms::constructed()']]],
   ['contains_45',['contains',['../class_array_utils.html#ac6de3000fa78f83120424e2268e79a5f',1,'ArrayUtils']]],
@@ -59,5 +59,6 @@ var searchData=
   ['createactor_56',['createActor',['../class_scene.html#a5aa4e42d381c93ccc1746705e0939b2e',1,'Scene']]],
   ['createcomponent_57',['createComponent',['../class_actor.html#a5d07bd80c2d33c3b726871e7ffc10fc9',1,'Actor']]],
   ['creategenerator_58',['createGenerator',['../class_random.html#a3dcdd4b9f0e7a24cde8985816238250f',1,'Random']]],
-  ['cross_59',['cross',['../struct_vector3.html#a88d6042b4b2258ea5c831d9d519fa94f',1,'Vector3::cross(Vector3 const &amp;other) const'],['../struct_vector3.html#a8f324c7483c9681312ac966f452d7061',1,'Vector3::cross(Vector3 const &amp;a, Vector3 const &amp;b)']]]
+  ['cross_59',['cross',['../struct_vector3.html#a88d6042b4b2258ea5c831d9d519fa94f',1,'Vector3::cross(Vector3 const &amp;other) const'],['../struct_vector3.html#a8f324c7483c9681312ac966f452d7061',1,'Vector3::cross(Vector3 const &amp;a, Vector3 const &amp;b)']]],
+  ['cutoff_60',['cutoff',['../class_spot_light_component.html#ae1466115610821473703230cf68144c4',1,'SpotLightComponent']]]
 ];

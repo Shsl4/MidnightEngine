@@ -34,5 +34,9 @@ var dir_a766cac15a68536f602a557ed27a2c4f =
     [ "SceneComponent.h", "_scene_component_8h.html", [
       [ "AttachmentProperties", "struct_attachment_properties.html", "struct_attachment_properties" ],
       [ "SceneComponent", "class_scene_component.html", "class_scene_component" ]
+    ] ],
+    [ "SpotLightComponent.cpp", "_spot_light_component_8cpp.html", null ],
+    [ "SpotLightComponent.h", "_spot_light_component_8h.html", [
+      [ "SpotLightComponent", "class_spot_light_component.html", "class_spot_light_component" ]
     ] ]
 ];

@@ -6,5 +6,6 @@ var searchData=
   ['vertexcount_3',['vertexCount',['../struct_mesh.html#ab2c547a474958f58b13b865cf46d89f9',1,'Mesh']]],
   ['viewid_4',['viewId',['../class_model_component.html#acce241f89cbd11f5c6e330e7ea031892',1,'ModelComponent']]],
   ['viewmatrix_5',['viewMatrix',['../class_camera_component.html#a0fb745e162ef4a3bb1918c6f63e4e8e6',1,'CameraComponent']]],
-  ['viewposition_6',['viewPosition',['../class_uniforms.html#aeb253cdc2b710599b2e0953ddf55afef',1,'Uniforms']]]
+  ['viewposition_6',['viewPosition',['../class_uniforms.html#aeb253cdc2b710599b2e0953ddf55afef',1,'Uniforms']]],
+  ['visible_7',['visible',['../class_model_component.html#a736907ad93bc7ba71a3a84360bf82a52',1,'ModelComponent']]]
 ];

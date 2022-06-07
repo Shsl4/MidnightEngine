@@ -136,6 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab31e603a6dd0b0b99e96ffabe1eb7b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1f703b635bde2d1eda39bfb6fd7c9b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; <a class="el" href="struct_model.html">Model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#ac1f703b635bde2d1eda39bfb6fd7c9b4">getModel</a> () const</td></tr>
 <tr class="separator:ac1f703b635bde2d1eda39bfb6fd7c9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e6037f574a43dd6b0e8a762ddad4fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#af2e6037f574a43dd6b0e8a762ddad4fd">setVisible</a> (bool value)</td></tr>
+<tr class="separator:af2e6037f574a43dd6b0e8a762ddad4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a904ea63ab22057769d73881b73f7b2c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#a904ea63ab22057769d73881b73f7b2c1">isVisible</a> () const</td></tr>
+<tr class="separator:a904ea63ab22057769d73881b73f7b2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_scene_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_scene_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_scene_component.html">SceneComponent</a></td></tr>
 <tr class="memitem:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd">setup</a> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
 <tr class="separator:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -268,6 +272,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a7881367e7ebc7beca1727ab7f1fd8b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22b9fbccfeb5daca4afcfc21178c48ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; bgfx::ProgramHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#a22b9fbccfeb5daca4afcfc21178c48ca">handles</a> = <a class="el" href="class_array.html">Array</a>&lt;bgfx::ProgramHandle&gt;(0)</td></tr>
 <tr class="separator:a22b9fbccfeb5daca4afcfc21178c48ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a736907ad93bc7ba71a3a84360bf82a52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#a736907ad93bc7ba71a3a84360bf82a52">visible</a> = true</td></tr>
+<tr class="separator:a736907ad93bc7ba71a3a84360bf82a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce241f89cbd11f5c6e330e7ea031892"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_component.html#acce241f89cbd11f5c6e330e7ea031892">viewId</a> = 0</td></tr>
 <tr class="separator:acce241f89cbd11f5c6e330e7ea031892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -363,6 +369,31 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="class_weak_pointer.html">WeakPointer</a>&lt; <a class="el" href="struct_model.html">Model</a> &gt; ModelComponent::getModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a904ea63ab22057769d73881b73f7b2c1" name="a904ea63ab22057769d73881b73f7b2c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a904ea63ab22057769d73881b73f7b2c1">&#9670;&nbsp;</a></span>isVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> bool ModelComponent::isVisible </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -533,6 +564,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="af2e6037f574a43dd6b0e8a762ddad4fd" name="af2e6037f574a43dd6b0e8a762ddad4fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e6037f574a43dd6b0e8a762ddad4fd">&#9670;&nbsp;</a></span>setVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void ModelComponent::setVisible </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7d57b8a5b3035ae5140f631536a2455f" name="a7d57b8a5b3035ae5140f631536a2455f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d57b8a5b3035ae5140f631536a2455f">&#9670;&nbsp;</a></span>update()</h2>
 
@@ -669,6 +726,28 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="_engine_types_8h.html#afab11e51a98da69a0956ae5110641c8d">UInt16</a> ModelComponent::viewId = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a736907ad93bc7ba71a3a84360bf82a52" name="a736907ad93bc7ba71a3a84360bf82a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a736907ad93bc7ba71a3a84360bf82a52">&#9670;&nbsp;</a></span>visible</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ModelComponent::visible = true</td>
         </tr>
       </table>
   </td>

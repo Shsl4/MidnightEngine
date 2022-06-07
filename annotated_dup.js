@@ -55,6 +55,7 @@ var annotated_dup =
     [ "ShaderManager", "class_shader_manager.html", "class_shader_manager" ],
     [ "ShaderPrograms", "class_shader_programs.html", "class_shader_programs" ],
     [ "SharedPointer", "class_shared_pointer.html", "class_shared_pointer" ],
+    [ "SpotLightComponent", "class_spot_light_component.html", "class_spot_light_component" ],
     [ "StackFrame", "struct_stack_frame.html", "struct_stack_frame" ],
     [ "StackTrace", "class_stack_trace.html", "class_stack_trace" ],
     [ "stbi_io_callbacks", "structstbi__io__callbacks.html", "structstbi__io__callbacks" ],

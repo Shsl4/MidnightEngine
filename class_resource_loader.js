@@ -3,6 +3,7 @@ var class_resource_loader =
     [ "ResourceLoader", "class_resource_loader.html#ac526a508a770400d55bf986629960007", null ],
     [ "~ResourceLoader", "class_resource_loader.html#aa8a4b91f3310679b013cf956380671e2", null ],
     [ "getModel", "class_resource_loader.html#a11d2df9272aa6181e06e4b131aff3340", null ],
+    [ "getRandomTexture", "class_resource_loader.html#afe3b0816f004a10b5c40487729b6f065", null ],
     [ "getTexture", "class_resource_loader.html#a2512ca31e695f3df8ac41e3ea9a0b38b", null ],
     [ "init", "class_resource_loader.html#aec1de383b15ac523640949bb19d61457", null ],
     [ "loadFile", "class_resource_loader.html#ac1ca3227a2276ef4a59870c9ba8660ea", null ],

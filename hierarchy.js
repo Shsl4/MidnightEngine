@@ -46,7 +46,8 @@ var hierarchy =
           [ "CameraComponent", "class_camera_component.html", null ],
           [ "LightComponent", "class_light_component.html", [
             [ "DirectionalLightComponent", "class_directional_light_component.html", null ],
-            [ "PointLightComponent", "class_point_light_component.html", null ]
+            [ "PointLightComponent", "class_point_light_component.html", null ],
+            [ "SpotLightComponent", "class_spot_light_component.html", null ]
           ] ],
           [ "ModelComponent", "class_model_component.html", null ],
           [ "PhysicsComponent", "class_physics_component.html", null ]

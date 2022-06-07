@@ -9,10 +9,11 @@ var searchData=
   ['commandtree_6',['commandTree',['../class_console.html#a495ef92050407c932a3a2413b5459825',1,'Console']]],
   ['components_7',['components',['../class_actor.html#a0c4c073da8ae4b4b3d62fa8e08792067',1,'Actor']]],
   ['consolethread_8',['consoleThread',['../class_console.html#a37e1072f17c0cd93c62bd9ccf50a5886',1,'Console']]],
-  ['constant_9',['constant',['../class_point_light_component.html#a1f1f8f5f1a4be3b09f2a4124267504b7',1,'PointLightComponent']]],
+  ['constant_9',['constant',['../class_point_light_component.html#a1f1f8f5f1a4be3b09f2a4124267504b7',1,'PointLightComponent::constant()'],['../class_spot_light_component.html#a677804038ec2298ec585efc0873a0320',1,'SpotLightComponent::constant()']]],
   ['constructed_10',['constructed',['../class_shader_programs.html#ad5fa1c70e27fcda7c9e6f54babdc882b',1,'ShaderPrograms::constructed()'],['../class_uniforms.html#aeacedc9e4027e77ce0f573202541a55d',1,'Uniforms::constructed()']]],
   ['control_11',['control',['../struct_key_bind.html#ab1f201a4611e6b9b0a97e85b45488553',1,'KeyBind']]],
   ['control_12',['Control',['../_input_enums_8h.html#a0da83e35f29c11f7f3c637234f2149f9',1,'InputEnums.h']]],
   ['cooking_13',['cooking',['../class_physics_manager.html#a6e897ffb8a099b675eb48bc69c01743d',1,'PhysicsManager']]],
-  ['counter_14',['counter',['../class_shared_pointer.html#a2d79d219f717290fca531668901ef9cf',1,'SharedPointer::counter()'],['../class_weak_pointer.html#af111bead0418da884841b497e95dca92',1,'WeakPointer::counter()']]]
+  ['counter_14',['counter',['../class_shared_pointer.html#a2d79d219f717290fca531668901ef9cf',1,'SharedPointer::counter()'],['../class_weak_pointer.html#af111bead0418da884841b497e95dca92',1,'WeakPointer::counter()']]],
+  ['cutoff_15',['cutoff',['../class_spot_light_component.html#ae1466115610821473703230cf68144c4',1,'SpotLightComponent']]]
 ];

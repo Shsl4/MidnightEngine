@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MidnightEngine: PhysicsComponent Class Reference</title>
+<title>MidnightEngine: SpotLightComponent Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('class_physics_component.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_spot_light_component.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,62 +91,67 @@ $(document).ready(function(){initNavTree('class_physics_component.html',''); ini
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
-<a href="class_physics_component-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PhysicsComponent Class Reference</div></div>
+<a href="class_spot_light_component-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">SpotLightComponent Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_physics_component_8h_source.html">PhysicsComponent.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_spot_light_component_8h_source.html">SpotLightComponent.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for PhysicsComponent:</div>
+Inheritance diagram for SpotLightComponent:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_physics_component.png" usemap="#PhysicsComponent_map" alt=""/>
-  <map id="PhysicsComponent_map" name="PhysicsComponent_map">
-<area href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach..." alt="SceneComponent" shape="rect" coords="0,112,119,136"/>
-<area href="class_component.html" alt="Component" shape="rect" coords="0,56,119,80"/>
-<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="0,0,119,24"/>
+  <img src="class_spot_light_component.png" usemap="#SpotLightComponent_map" alt=""/>
+  <map id="SpotLightComponent_map" name="SpotLightComponent_map">
+<area href="class_light_component.html" alt="LightComponent" shape="rect" coords="0,168,127,192"/>
+<area href="class_scene_component.html" title="SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach..." alt="SceneComponent" shape="rect" coords="0,112,127,136"/>
+<area href="class_component.html" alt="Component" shape="rect" coords="0,56,127,80"/>
+<area href="class_object.html" title="The default class for all the objects created and used by the engine. All classes but helpers should ..." alt="Object" shape="rect" coords="0,0,127,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afe585926c1d323cec3e796fb7129867b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#afe585926c1d323cec3e796fb7129867b">PhysicsComponent</a> ()=default</td></tr>
-<tr class="separator:afe585926c1d323cec3e796fb7129867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1981966b1b73befaafbb7a09d0e1078"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#ab1981966b1b73befaafbb7a09d0e1078">~PhysicsComponent</a> () override</td></tr>
-<tr class="separator:ab1981966b1b73befaafbb7a09d0e1078"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae164f6f3438710754bbbe3ed7ca91c44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#ae164f6f3438710754bbbe3ed7ca91c44">start</a> () override</td></tr>
-<tr class="memdesc:ae164f6f3438710754bbbe3ed7ca91c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>.  <a href="class_physics_component.html#ae164f6f3438710754bbbe3ed7ca91c44">More...</a><br /></td></tr>
-<tr class="separator:ae164f6f3438710754bbbe3ed7ca91c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e167f47f2c2e15724fe0627354769f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a6e167f47f2c2e15724fe0627354769f0">update</a> (float deltaTime) override</td></tr>
-<tr class="memdesc:a6e167f47f2c2e15724fe0627354769f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>.  <a href="class_physics_component.html#a6e167f47f2c2e15724fe0627354769f0">More...</a><br /></td></tr>
-<tr class="separator:a6e167f47f2c2e15724fe0627354769f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a352b9442fdff4c7996de264dc76550d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a352b9442fdff4c7996de264dc76550d2">setup</a> (<a class="el" href="class_scene.html">Scene</a> *scene) override</td></tr>
-<tr class="separator:a352b9442fdff4c7996de264dc76550d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ee6c42b3214c9ca0e6c71ddf501431b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a0ee6c42b3214c9ca0e6c71ddf501431b">addImpulse</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;direction) const</td></tr>
-<tr class="separator:a0ee6c42b3214c9ca0e6c71ddf501431b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90a5792469ccda14afa5c62964ae7047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a90a5792469ccda14afa5c62964ae7047">setEnableGravity</a> (bool value) const</td></tr>
-<tr class="separator:a90a5792469ccda14afa5c62964ae7047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca6e0580d0d227f065ab0681a633ee13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#aca6e0580d0d227f065ab0681a633ee13">setSimulatePhysics</a> (bool value) const</td></tr>
-<tr class="separator:aca6e0580d0d227f065ab0681a633ee13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab035e07d47b951391b1567d638ec5fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#aab035e07d47b951391b1567d638ec5fa">isSimulatingPhysics</a> () const</td></tr>
-<tr class="separator:aab035e07d47b951391b1567d638ec5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a226b48a2b56ba2888097045e7a2d936a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a226b48a2b56ba2888097045e7a2d936a">hasGravityEnabled</a> () const</td></tr>
-<tr class="separator:a226b48a2b56ba2888097045e7a2d936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a919eef83dbaa50f6ea0bc4ed23379"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> physx::PxRigidActor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#ae3a919eef83dbaa50f6ea0bc4ed23379">getRigidBody</a> () const</td></tr>
-<tr class="separator:ae3a919eef83dbaa50f6ea0bc4ed23379"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c7d7a099b1563223f53ca0baa2c8d66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a1c7d7a099b1563223f53ca0baa2c8d66">makeDynamicSphereCollider</a> (float radius=1.0f)</td></tr>
-<tr class="separator:a1c7d7a099b1563223f53ca0baa2c8d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f62de30e98fe5c8979a560d29e2896e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a4f62de30e98fe5c8979a560d29e2896e">makeStaticSphereCollider</a> (float radius=1.0f)</td></tr>
-<tr class="separator:a4f62de30e98fe5c8979a560d29e2896e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3e2a2497c012c0fcbff29246ba9f63e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#ac3e2a2497c012c0fcbff29246ba9f63e">makeDynamicBoxCollider</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;halfExtents={ 1.0f, 1.0f, 1.0f })</td></tr>
-<tr class="separator:ac3e2a2497c012c0fcbff29246ba9f63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61f2fe5f1841e841b05f04386d8c3d0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a61f2fe5f1841e841b05f04386d8c3d0a">makeStaticBoxCollider</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;halfExtents={ 1.0f, 1.0f, 1.0f })</td></tr>
-<tr class="separator:a61f2fe5f1841e841b05f04386d8c3d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8cccb56f30f60f1462fc2eb9388a1db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#af8cccb56f30f60f1462fc2eb9388a1db">makeModelCollider</a> (struct <a class="el" href="struct_model.html">Model</a> *model)</td></tr>
-<tr class="separator:af8cccb56f30f60f1462fc2eb9388a1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e4eb036586483f5b503f83d24502a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a85e4eb036586483f5b503f83d24502a2">getAttenuation</a> () const</td></tr>
+<tr class="separator:a85e4eb036586483f5b503f83d24502a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb8cdb1d3f624d5484247541b8a9b21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector4.html">Vector4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a9cb8cdb1d3f624d5484247541b8a9b21">getSpotlightData</a> () const</td></tr>
+<tr class="separator:a9cb8cdb1d3f624d5484247541b8a9b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb371170c2a1d094c1a610f2f550afc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a4eb371170c2a1d094c1a610f2f550afc">getCutoff</a> () const</td></tr>
+<tr class="separator:a4eb371170c2a1d094c1a610f2f550afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f00139cd7fbc41a15a5e93ffb9d4ad5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a5f00139cd7fbc41a15a5e93ffb9d4ad5">getOuterCutoff</a> () const</td></tr>
+<tr class="separator:a5f00139cd7fbc41a15a5e93ffb9d4ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47043e13d413dfbaa14094f1c303e585"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a47043e13d413dfbaa14094f1c303e585">getConstant</a> () const</td></tr>
+<tr class="separator:a47043e13d413dfbaa14094f1c303e585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6890365c0d27ac271783f943653ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a0f6890365c0d27ac271783f943653ca0">getLinear</a> () const</td></tr>
+<tr class="separator:a0f6890365c0d27ac271783f943653ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c322fbf44a09651763491eac94a56b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#aa8c322fbf44a09651763491eac94a56b">getQuadratic</a> () const</td></tr>
+<tr class="separator:aa8c322fbf44a09651763491eac94a56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36ae8b65d867114004e59b96ceb404f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a36ae8b65d867114004e59b96ceb404f9">getLightDirection</a> () const</td></tr>
+<tr class="separator:a36ae8b65d867114004e59b96ceb404f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994eabb2fac8e0d7933bdb740c2f8ea3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a994eabb2fac8e0d7933bdb740c2f8ea3">setCutoff</a> (const float degrees)</td></tr>
+<tr class="separator:a994eabb2fac8e0d7933bdb740c2f8ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5597a7c4aabb6630883418342c38c4c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a5597a7c4aabb6630883418342c38c4c1">setOuterCutoff</a> (const float degrees)</td></tr>
+<tr class="separator:a5597a7c4aabb6630883418342c38c4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b5ad0749070682b0379d6769915ad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a92b5ad0749070682b0379d6769915ad5">setConstant</a> (const float value)</td></tr>
+<tr class="separator:a92b5ad0749070682b0379d6769915ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a895ee7ce1e0e2bc7daea6f1cd27bc7a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a895ee7ce1e0e2bc7daea6f1cd27bc7a1">setLinear</a> (const float value)</td></tr>
+<tr class="separator:a895ee7ce1e0e2bc7daea6f1cd27bc7a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a775030b57ad2d8ce052ea990226272ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a775030b57ad2d8ce052ea990226272ba">setQuadratic</a> (const float value)</td></tr>
+<tr class="separator:a775030b57ad2d8ce052ea990226272ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c2c3478806ec2c0919665cba156758"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a24c2c3478806ec2c0919665cba156758">setLightDirection</a> (<a class="el" href="struct_vector3.html">Vector3</a> const &amp;direction)</td></tr>
+<tr class="separator:a24c2c3478806ec2c0919665cba156758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_light_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_light_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_light_component.html">LightComponent</a></td></tr>
+<tr class="memitem:aa20ce65711fc57e3fd9e7c11328fbe01 inherit pub_methods_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#aa20ce65711fc57e3fd9e7c11328fbe01">setDiffuseColor</a> (const <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;color)</td></tr>
+<tr class="separator:aa20ce65711fc57e3fd9e7c11328fbe01 inherit pub_methods_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43e3e6ef81acf1ed84a07a7b1fb9b28 inherit pub_methods_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#af43e3e6ef81acf1ed84a07a7b1fb9b28">setSpecularColor</a> (const <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;color)</td></tr>
+<tr class="separator:af43e3e6ef81acf1ed84a07a7b1fb9b28 inherit pub_methods_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb349874e837357713309ff0a4febb89 inherit pub_methods_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#abb349874e837357713309ff0a4febb89">getDiffuseColor</a> ()</td></tr>
+<tr class="separator:abb349874e837357713309ff0a4febb89 inherit pub_methods_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a425b862bca3569f857e9dcd312ca6abd inherit pub_methods_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_linear_color.html">LinearColor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#a425b862bca3569f857e9dcd312ca6abd">getSpecularColor</a> ()</td></tr>
+<tr class="separator:a425b862bca3569f857e9dcd312ca6abd inherit pub_methods_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_scene_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_scene_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_scene_component.html">SceneComponent</a></td></tr>
+<tr class="memitem:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd">setup</a> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
+<tr class="separator:aa1896cf9601c860955e62bf20edfd1dd inherit pub_methods_class_scene_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace90ba7d763ceb30c95a21819f3a6470 inherit pub_methods_class_scene_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_component.html#ace90ba7d763ceb30c95a21819f3a6470">start</a> () override</td></tr>
 <tr class="memdesc:ace90ba7d763ceb30c95a21819f3a6470 inherit pub_methods_class_scene_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>.  <a href="class_scene_component.html#ace90ba7d763ceb30c95a21819f3a6470">More...</a><br /></td></tr>
 <tr class="separator:ace90ba7d763ceb30c95a21819f3a6470 inherit pub_methods_class_scene_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,13 +258,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a0613f41aa0d5fa446093b1c983bcdaf7"><td class="memItemLeft" align="right" valign="top">physx::PxRigidActor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a0613f41aa0d5fa446093b1c983bcdaf7">rigidActor</a> = nullptr</td></tr>
-<tr class="separator:a0613f41aa0d5fa446093b1c983bcdaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
-Static Private Attributes</h2></td></tr>
-<tr class="memitem:a662af73a0089a31ac2b29f15ce743660"><td class="memItemLeft" align="right" valign="top">static physx::PxMaterial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a662af73a0089a31ac2b29f15ce743660">material</a> = nullptr</td></tr>
-<tr class="separator:a662af73a0089a31ac2b29f15ce743660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1466115610821473703230cf68144c4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#ae1466115610821473703230cf68144c4">cutoff</a> = cos(<a class="el" href="class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033">Math::toRadians</a>(25.0f))</td></tr>
+<tr class="separator:ae1466115610821473703230cf68144c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72505f34b76e6c3a9cccb8aed22f1261"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a72505f34b76e6c3a9cccb8aed22f1261">outerCutoff</a> = cos(<a class="el" href="class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033">Math::toRadians</a>(35.0f))</td></tr>
+<tr class="separator:a72505f34b76e6c3a9cccb8aed22f1261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a677804038ec2298ec585efc0873a0320"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a677804038ec2298ec585efc0873a0320">constant</a> = 1.0f</td></tr>
+<tr class="separator:a677804038ec2298ec585efc0873a0320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85faf49b5726f020213b0a89c75a7d6c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#a85faf49b5726f020213b0a89c75a7d6c">linear</a> = 0.09f</td></tr>
+<tr class="separator:a85faf49b5726f020213b0a89c75a7d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d0ba254b31937f31210be63f8d6118"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#ae8d0ba254b31937f31210be63f8d6118">quadratic</a> = 0.032f</td></tr>
+<tr class="separator:ae8d0ba254b31937f31210be63f8d6118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a2069573778abef937631ee5129e63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spot_light_component.html#ae3a2069573778abef937631ee5129e63">lightDirection</a> = <a class="el" href="struct_vector3.html">Vector3</a>(0.0f, -1.0f, 0.0f)</td></tr>
+<tr class="separator:ae3a2069573778abef937631ee5129e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -271,79 +281,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a26dc8149f7c4a818b84cc362ed223ed2 inherit pro_methods_class_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component.html#a26dc8149f7c4a818b84cc362ed223ed2">setParentActor</a> (<a class="el" href="class_actor.html">Actor</a> *parent)</td></tr>
 <tr class="memdesc:a26dc8149f7c4a818b84cc362ed223ed2 inherit pro_methods_class_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a> this <a class="el" href="class_component.html">Component</a> is attached to.  <a href="class_component.html#a26dc8149f7c4a818b84cc362ed223ed2">More...</a><br /></td></tr>
 <tr class="separator:a26dc8149f7c4a818b84cc362ed223ed2 inherit pro_methods_class_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_light_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_light_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_light_component.html">LightComponent</a></td></tr>
+<tr class="memitem:ad8e50be7155d5c97930106c2650d4f19 inherit pro_attribs_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#ad8e50be7155d5c97930106c2650d4f19">diffuseColor</a> = <a class="el" href="struct_linear_colors.html#ac6be2c0f5e6c5208e790323fa411ad38">LinearColors::white</a></td></tr>
+<tr class="separator:ad8e50be7155d5c97930106c2650d4f19 inherit pro_attribs_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb160da3a11caa08a948510df4796be4 inherit pro_attribs_class_light_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_linear_color.html">LinearColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_component.html#acb160da3a11caa08a948510df4796be4">specularColor</a> = <a class="el" href="struct_linear_color.html#a0179078820ddc666b58cad259687c934">LinearColor::fromRGB</a>(100.0f, 100.0f, 100.0f)</td></tr>
+<tr class="separator:acb160da3a11caa08a948510df4796be4 inherit pro_attribs_class_light_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afe585926c1d323cec3e796fb7129867b" name="afe585926c1d323cec3e796fb7129867b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe585926c1d323cec3e796fb7129867b">&#9670;&nbsp;</a></span>PhysicsComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">PhysicsComponent::PhysicsComponent </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab1981966b1b73befaafbb7a09d0e1078" name="ab1981966b1b73befaafbb7a09d0e1078"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1981966b1b73befaafbb7a09d0e1078">&#9670;&nbsp;</a></span>~PhysicsComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">PhysicsComponent::~PhysicsComponent </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0ee6c42b3214c9ca0e6c71ddf501431b" name="a0ee6c42b3214c9ca0e6c71ddf501431b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ee6c42b3214c9ca0e6c71ddf501431b">&#9670;&nbsp;</a></span>addImpulse()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::addImpulse </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
-          <td class="paramname"><em>direction</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae3a919eef83dbaa50f6ea0bc4ed23379" name="ae3a919eef83dbaa50f6ea0bc4ed23379"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3a919eef83dbaa50f6ea0bc4ed23379">&#9670;&nbsp;</a></span>getRigidBody()</h2>
+<a id="a85e4eb036586483f5b503f83d24502a2" name="a85e4eb036586483f5b503f83d24502a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e4eb036586483f5b503f83d24502a2">&#9670;&nbsp;</a></span>getAttenuation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +298,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> physx::PxRigidActor * PhysicsComponent::getRigidBody </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector4.html">Vector4</a> SpotLightComponent::getAttenuation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -367,262 +313,340 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a226b48a2b56ba2888097045e7a2d936a" name="a226b48a2b56ba2888097045e7a2d936a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a226b48a2b56ba2888097045e7a2d936a">&#9670;&nbsp;</a></span>hasGravityEnabled()</h2>
+<a id="a47043e13d413dfbaa14094f1c303e585" name="a47043e13d413dfbaa14094f1c303e585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47043e13d413dfbaa14094f1c303e585">&#9670;&nbsp;</a></span>getConstant()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool PhysicsComponent::hasGravityEnabled </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float SpotLightComponent::getConstant </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aab035e07d47b951391b1567d638ec5fa" name="aab035e07d47b951391b1567d638ec5fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab035e07d47b951391b1567d638ec5fa">&#9670;&nbsp;</a></span>isSimulatingPhysics()</h2>
+<a id="a4eb371170c2a1d094c1a610f2f550afc" name="a4eb371170c2a1d094c1a610f2f550afc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb371170c2a1d094c1a610f2f550afc">&#9670;&nbsp;</a></span>getCutoff()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool PhysicsComponent::isSimulatingPhysics </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float SpotLightComponent::getCutoff </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ac3e2a2497c012c0fcbff29246ba9f63e" name="ac3e2a2497c012c0fcbff29246ba9f63e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3e2a2497c012c0fcbff29246ba9f63e">&#9670;&nbsp;</a></span>makeDynamicBoxCollider()</h2>
+<a id="a36ae8b65d867114004e59b96ceb404f9" name="a36ae8b65d867114004e59b96ceb404f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36ae8b65d867114004e59b96ceb404f9">&#9670;&nbsp;</a></span>getLightDirection()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PhysicsComponent::makeDynamicBoxCollider </td>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector3.html">Vector3</a> SpotLightComponent::getLightDirection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f6890365c0d27ac271783f943653ca0" name="a0f6890365c0d27ac271783f943653ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f6890365c0d27ac271783f943653ca0">&#9670;&nbsp;</a></span>getLinear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float SpotLightComponent::getLinear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f00139cd7fbc41a15a5e93ffb9d4ad5" name="a5f00139cd7fbc41a15a5e93ffb9d4ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f00139cd7fbc41a15a5e93ffb9d4ad5">&#9670;&nbsp;</a></span>getOuterCutoff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float SpotLightComponent::getOuterCutoff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8c322fbf44a09651763491eac94a56b" name="aa8c322fbf44a09651763491eac94a56b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c322fbf44a09651763491eac94a56b">&#9670;&nbsp;</a></span>getQuadratic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a> <a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> float SpotLightComponent::getQuadratic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9cb8cdb1d3f624d5484247541b8a9b21" name="a9cb8cdb1d3f624d5484247541b8a9b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cb8cdb1d3f624d5484247541b8a9b21">&#9670;&nbsp;</a></span>getSpotlightData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a> <a class="el" href="struct_vector4.html">Vector4</a> SpotLightComponent::getSpotlightData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92b5ad0749070682b0379d6769915ad5" name="a92b5ad0749070682b0379d6769915ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b5ad0749070682b0379d6769915ad5">&#9670;&nbsp;</a></span>setConstant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpotLightComponent::setConstant </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a994eabb2fac8e0d7933bdb740c2f8ea3" name="a994eabb2fac8e0d7933bdb740c2f8ea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994eabb2fac8e0d7933bdb740c2f8ea3">&#9670;&nbsp;</a></span>setCutoff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpotLightComponent::setCutoff </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>degrees</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24c2c3478806ec2c0919665cba156758" name="a24c2c3478806ec2c0919665cba156758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c2c3478806ec2c0919665cba156758">&#9670;&nbsp;</a></span>setLightDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpotLightComponent::setLightDirection </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
-          <td class="paramname"><em>halfExtents</em> = <code>{&#160;1.0f,&#160;1.0f,&#160;1.0f&#160;}</code></td><td>)</td>
+          <td class="paramname"><em>direction</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a1c7d7a099b1563223f53ca0baa2c8d66" name="a1c7d7a099b1563223f53ca0baa2c8d66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c7d7a099b1563223f53ca0baa2c8d66">&#9670;&nbsp;</a></span>makeDynamicSphereCollider()</h2>
+<a id="a895ee7ce1e0e2bc7daea6f1cd27bc7a1" name="a895ee7ce1e0e2bc7daea6f1cd27bc7a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a895ee7ce1e0e2bc7daea6f1cd27bc7a1">&#9670;&nbsp;</a></span>setLinear()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PhysicsComponent::makeDynamicSphereCollider </td>
+          <td class="memname">void SpotLightComponent::setLinear </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>radius</em> = <code>1.0f</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af8cccb56f30f60f1462fc2eb9388a1db" name="af8cccb56f30f60f1462fc2eb9388a1db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8cccb56f30f60f1462fc2eb9388a1db">&#9670;&nbsp;</a></span>makeModelCollider()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool PhysicsComponent::makeModelCollider </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="struct_model.html">Model</a> *&#160;</td>
-          <td class="paramname"><em>model</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a61f2fe5f1841e841b05f04386d8c3d0a" name="a61f2fe5f1841e841b05f04386d8c3d0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61f2fe5f1841e841b05f04386d8c3d0a">&#9670;&nbsp;</a></span>makeStaticBoxCollider()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::makeStaticBoxCollider </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> const &amp;&#160;</td>
-          <td class="paramname"><em>halfExtents</em> = <code>{&#160;1.0f,&#160;1.0f,&#160;1.0f&#160;}</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4f62de30e98fe5c8979a560d29e2896e" name="a4f62de30e98fe5c8979a560d29e2896e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f62de30e98fe5c8979a560d29e2896e">&#9670;&nbsp;</a></span>makeStaticSphereCollider()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::makeStaticSphereCollider </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>radius</em> = <code>1.0f</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a90a5792469ccda14afa5c62964ae7047" name="a90a5792469ccda14afa5c62964ae7047"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90a5792469ccda14afa5c62964ae7047">&#9670;&nbsp;</a></span>setEnableGravity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::setEnableGravity </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">const float&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aca6e0580d0d227f065ab0681a633ee13" name="aca6e0580d0d227f065ab0681a633ee13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca6e0580d0d227f065ab0681a633ee13">&#9670;&nbsp;</a></span>setSimulatePhysics()</h2>
+<a id="a5597a7c4aabb6630883418342c38c4c1" name="a5597a7c4aabb6630883418342c38c4c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5597a7c4aabb6630883418342c38c4c1">&#9670;&nbsp;</a></span>setOuterCutoff()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PhysicsComponent::setSimulatePhysics </td>
+          <td class="memname">void SpotLightComponent::setOuterCutoff </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>degrees</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a775030b57ad2d8ce052ea990226272ba" name="a775030b57ad2d8ce052ea990226272ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a775030b57ad2d8ce052ea990226272ba">&#9670;&nbsp;</a></span>setQuadratic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpotLightComponent::setQuadratic </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a352b9442fdff4c7996de264dc76550d2" name="a352b9442fdff4c7996de264dc76550d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a352b9442fdff4c7996de264dc76550d2">&#9670;&nbsp;</a></span>setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::setup </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_scene.html">Scene</a> *&#160;</td>
-          <td class="paramname"><em>scene</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Reimplemented from <a class="el" href="class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd">SceneComponent</a>.</p>
-
-</div>
-</div>
-<a id="ae164f6f3438710754bbbe3ed7ca91c44" name="ae164f6f3438710754bbbe3ed7ca91c44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae164f6f3438710754bbbe3ed7ca91c44">&#9670;&nbsp;</a></span>start()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::start </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Start is called when the scene has finished loading and constructing all components. It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>. </p>
-
-<p>Implements <a class="el" href="class_component.html#adef0f642e0ed12a9b29afe587b912972">Component</a>.</p>
-
-</div>
-</div>
-<a id="a6e167f47f2c2e15724fe0627354769f0" name="a6e167f47f2c2e15724fe0627354769f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e167f47f2c2e15724fe0627354769f0">&#9670;&nbsp;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PhysicsComponent::update </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>deltaTime</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Update is called on every engine tick which is NOT tied to rendering thread (and therefore not tied to the frame rate). It is called from the parent <a class="el" href="class_actor.html" title="An Actor represents an entity that holds SceneComponents in a scene.">Actor</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">deltaTime</td><td>The engine tick delta time </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_component.html#a9152b930559c4ece4ea5ddd3e6e4b22b">Component</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a662af73a0089a31ac2b29f15ce743660" name="a662af73a0089a31ac2b29f15ce743660"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a662af73a0089a31ac2b29f15ce743660">&#9670;&nbsp;</a></span>material</h2>
+<a id="a677804038ec2298ec585efc0873a0320" name="a677804038ec2298ec585efc0873a0320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677804038ec2298ec585efc0873a0320">&#9670;&nbsp;</a></span>constant</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -631,29 +655,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">physx::PxMaterial* PhysicsComponent::material = nullptr</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0613f41aa0d5fa446093b1c983bcdaf7" name="a0613f41aa0d5fa446093b1c983bcdaf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0613f41aa0d5fa446093b1c983bcdaf7">&#9670;&nbsp;</a></span>rigidActor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">physx::PxRigidActor* PhysicsComponent::rigidActor = nullptr</td>
+          <td class="memname">float SpotLightComponent::constant = 1.0f</td>
         </tr>
       </table>
   </td>
@@ -665,9 +667,118 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/Public/Core/Scene/<a class="el" href="_physics_component_8h_source.html">PhysicsComponent.h</a></li>
-<li>Source/Private/Core/Scene/<a class="el" href="_physics_component_8cpp.html">PhysicsComponent.cpp</a></li>
+<a id="ae1466115610821473703230cf68144c4" name="ae1466115610821473703230cf68144c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1466115610821473703230cf68144c4">&#9670;&nbsp;</a></span>cutoff</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLightComponent::cutoff = cos(<a class="el" href="class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033">Math::toRadians</a>(25.0f))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3a2069573778abef937631ee5129e63" name="ae3a2069573778abef937631ee5129e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a2069573778abef937631ee5129e63">&#9670;&nbsp;</a></span>lightDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector3.html">Vector3</a> SpotLightComponent::lightDirection = <a class="el" href="struct_vector3.html">Vector3</a>(0.0f, -1.0f, 0.0f)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85faf49b5726f020213b0a89c75a7d6c" name="a85faf49b5726f020213b0a89c75a7d6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85faf49b5726f020213b0a89c75a7d6c">&#9670;&nbsp;</a></span>linear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLightComponent::linear = 0.09f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72505f34b76e6c3a9cccb8aed22f1261" name="a72505f34b76e6c3a9cccb8aed22f1261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72505f34b76e6c3a9cccb8aed22f1261">&#9670;&nbsp;</a></span>outerCutoff</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLightComponent::outerCutoff = cos(<a class="el" href="class_math.html#ac6813fdc6a7607d50e7d35b7b30ce033">Math::toRadians</a>(35.0f))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae8d0ba254b31937f31210be63f8d6118" name="ae8d0ba254b31937f31210be63f8d6118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d0ba254b31937f31210be63f8d6118">&#9670;&nbsp;</a></span>quadratic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpotLightComponent::quadratic = 0.032f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>Source/Public/Core/Scene/<a class="el" href="_spot_light_component_8h_source.html">SpotLightComponent.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -675,7 +786,7 @@ Additional Inherited Members</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="class_physics_component.html">PhysicsComponent</a></li>
+    <li class="navelem"><a class="el" href="class_spot_light_component.html">SpotLightComponent</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

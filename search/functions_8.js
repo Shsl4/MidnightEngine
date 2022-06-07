@@ -19,5 +19,6 @@ var searchData=
   ['isrootcomponent_16',['isRootComponent',['../class_scene_component.html#afa079d2b205cd7c6bcffd5425fdacb13',1,'SceneComponent']]],
   ['isrunning_17',['isRunning',['../class_engine.html#ab2c9f8f5a98bc20f7a2bb69c1319b18b',1,'Engine']]],
   ['issimulatingphysics_18',['isSimulatingPhysics',['../class_physics_component.html#aab035e07d47b951391b1567d638ec5fa',1,'PhysicsComponent']]],
-  ['isvalid_19',['isValid',['../class_actor.html#a33d940a0ca730a4b81066288aee5497d',1,'Actor']]]
+  ['isvalid_19',['isValid',['../class_actor.html#a33d940a0ca730a4b81066288aee5497d',1,'Actor']]],
+  ['isvisible_20',['isVisible',['../class_model_component.html#a904ea63ab22057769d73881b73f7b2c1',1,'ModelComponent']]]
 ];
