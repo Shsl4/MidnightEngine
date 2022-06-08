@@ -37,19 +37,19 @@ uniform vec4 lightSpecularColor[MAX_LIGHTS];
 // x = lightType, y = SL Cutoff, z = SL OuterCutoff
 uniform vec4 additionalLightData[MAX_LIGHTS];
 
-// x = lightCount, y = hasTexture
+// x = lightCount, y = hasTexturem z = has normalTexture
 uniform vec4 additionalData;
 
 #define lightCount additionalData[0]
 #define hasTexture additionalData[1]
 
-vec4 computeDirectionalLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lDir){
+vec4 computeDirectionalLight(vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lDir){
 
     // Ambient
     vec4 ambient = vec4(0.0, 0.0, 0.0, 0.0);
     
-    if(hasTex){
-        ambient = matAmbient * texture2D(texSampler, vec3(texCoords, 1.0)) * lAmbient;
+    if(additionalData[1]){
+        ambient = matAmbient * texture2D(texDiffuse, texCoords) * lAmbient;
     }
     else{
         ambient = matAmbient * lAmbient;
@@ -61,8 +61,8 @@ vec4 computeDirectionalLight(bool hasTex, sampler2D texSampler, vec2 texCoords, 
     float diff = max(dot(norm, lightDir), 0.0);
     vec4 diffuse = vec4(0.0, 0.0, 0.0, 0.0);
 
-    if(hasTex){
-        diffuse = matDiffuse * lDiffuse * diff * texture2D(texSampler, vec3(texCoords, 1.0));
+    if(additionalData[1]){
+        diffuse = matDiffuse * lDiffuse * diff * texture2D(texDiffuse, texCoords);
     }
     else{
         diffuse = lDiffuse * (diff * matDiffuse);
@@ -78,20 +78,28 @@ vec4 computeDirectionalLight(bool hasTex, sampler2D texSampler, vec2 texCoords, 
 
 }
 
-vec4 computePointLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lPos, vec4 lAtt){
+vec4 computePointLight(vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lPos, vec4 lAtt){
 
     float constant = lAtt.x;
     float lin = lAtt.y;
     float quadratic = lAtt.z;
 
     float dist = length(lPos.xyz - position);
-    float attenuation = 1.0 / (constant + lin * dist + quadratic * (dist * dist));
+
+    float attenuation = 1.0;
+
+    if(quadratic == 0 && lin == 0){
+        attenuation = 1.0 / (constant);
+    }
+    else{
+        attenuation = 1.0 / (constant + lin * dist + quadratic * (dist * dist));
+    }
 
     // Ambient
     vec4 ambient = vec4(0.0, 0.0, 0.0, 0.0);
     
-    if(hasTex){
-        ambient = texture2D(texSampler, texCoords) * lAmbient * attenuation;
+    if(additionalData[1]){
+        ambient = texture2D(texDiffuse, texCoords) * lAmbient * attenuation;
     }
     else{
         ambient = matAmbient * lAmbient * attenuation;
@@ -104,8 +112,8 @@ vec4 computePointLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 p
 
     vec4 diffuse = vec4(0.0, 0.0, 0.0, 0.0);
 
-    if(hasTex){
-        diffuse = lDiffuse * (diff * texture2D(texSampler, texCoords)) * attenuation;
+    if(additionalData[1]){
+        diffuse = lDiffuse * (diff * texture2D(texDiffuse, texCoords)) * attenuation;
     }
     else{
         diffuse = lDiffuse * (diff * matDiffuse) * attenuation;
@@ -121,7 +129,7 @@ vec4 computePointLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 p
 
 }
 
-vec4 computeSpotLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lPos, vec4 lDir, vec4 lAtt, float cutoff, float outerCutoff){
+vec4 computeSpotLight(vec2 texCoords, vec3 position, vec3 normal, vec3 viewp, vec4 lAmbient, vec4 lDiffuse, vec4 lSpecular, vec4 lPos, vec4 lDir, vec4 lAtt, float cutoff, float outerCutoff){
 
     float constant = lAtt.x;
     float lin = lAtt.y;
@@ -133,8 +141,8 @@ vec4 computeSpotLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 po
     // Ambient
     vec4 ambient = vec4(0.0, 0.0, 0.0, 0.0);
     
-    if(hasTex){
-        ambient = texture2D(texSampler, texCoords) * lAmbient * attenuation;
+    if(additionalData[1]){
+        ambient = texture2D(texDiffuse, texCoords) * lAmbient * attenuation;
     }
     else{
         ambient = matAmbient * lAmbient * attenuation;
@@ -146,8 +154,8 @@ vec4 computeSpotLight(bool hasTex, sampler2D texSampler, vec2 texCoords, vec3 po
     float diff = max(dot(norm, lightDir), 0.0);
     vec4 diffuse = vec4(0.0, 0.0, 0.0, 0.0);
 
-    if(hasTex){
-        diffuse = lDiffuse * (diff * texture2D(texSampler, texCoords)) * attenuation;
+    if(additionalData[1]){
+        diffuse = lDiffuse * (diff * texture2D(texDiffuse, texCoords)) * attenuation;
     }
     else{
         diffuse = lDiffuse * (diff * matDiffuse) * attenuation;
@@ -177,9 +185,7 @@ void main() {
 
         if(lightType == 0.0){
 
-            finalColor += computeDirectionalLight(hasTexture,
-                texDiffuse,
-                v_texcoord0,
+            finalColor += computeDirectionalLight(v_texcoord0,
                 v_pos, 
                 v_normal,
                 viewPos.xyz, 
@@ -191,9 +197,7 @@ void main() {
         }
         else if(lightType == 1.0){
 
-            finalColor += computePointLight(hasTexture,
-                texDiffuse,
-                v_texcoord0,
+            finalColor += computePointLight(v_texcoord0,
                 v_pos, 
                 v_normal, 
                 viewPos.xyz, 
@@ -208,9 +212,7 @@ void main() {
             float cutoff = additionalLightData[i].y;
             float outerCutoff = additionalLightData[i].z;
 
-            finalColor += computeSpotLight(hasTexture,
-                texDiffuse,
-                v_texcoord0,
+            finalColor += computeSpotLight(v_texcoord0,
                 v_pos, 
                 v_normal, 
                 viewPos.xyz, 

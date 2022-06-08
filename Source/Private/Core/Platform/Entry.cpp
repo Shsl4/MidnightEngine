@@ -20,7 +20,7 @@
 
 #endif
 
-//#define MIDNIGHT_FULLSCREEN
+#define MIDNIGHT_FULLSCREEN
 
 int Entry::entry([[maybe_unused]] int argc, [[maybe_unused]] const char** argv, std::function<Engine*()> const& provider) {
 

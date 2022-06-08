@@ -18,6 +18,10 @@
 #include <ActorFactory.h>
 
 #include <Scene/SpotLightComponent.h>
+#include <PhysX/extensions/PxDefaultSimulationFilterShader.h>
+#include <PhysX/PxRigidDynamic.h>
+#include <PhysX/PxRigidStatic.h>
+#include <PhysX/extensions/PxSimpleFactory.h>
 
 class SpaceScene : public Scene {
 
@@ -111,7 +115,7 @@ protected:
 
 
         auto* comp = skybox->getFirstComponentOf<ModelComponent>();
-        comp->setTexture(0, "mahhdi");
+        comp->setTexture(0, "2k_stars_milky_way");
         comp->setShader(0, ShaderPrograms::skyboxShader);
 
         for (int i = 0; i < 5; ++i) {
@@ -122,7 +126,6 @@ protected:
                                                      {{0, -20.0f * i, 0}, {180.0f, 0.0f, 0.0f}});
             }
             else {
-                
                 ActorFactory::makeStaticMeshCollider(this,
                                                      "Cascade",
                                                      "",
@@ -141,6 +144,7 @@ protected:
         manager->bindEvent(this, KeyBind(SDLK_2), EInputEvent::Pressed, &RenderScene::imp2);
         manager->bindEvent(this, KeyBind(SDLK_3), EInputEvent::Pressed, &RenderScene::imp3);
         manager->bindEvent(this, KeyBind(SDLK_4), EInputEvent::Pressed, &RenderScene::imp4);
+        manager->bindEvent(this, KeyBind(SDLK_5), EInputEvent::Pressed, &RenderScene::imp5);
 
     }
 
@@ -151,6 +155,8 @@ protected:
     void imp3() { getCameraManager()->setActiveCameraByIndex(2); }
 
     void imp4() { getCameraManager()->setActiveCameraByIndex(3); }
+
+    void imp5() { state = !state; }
 
     void setTexture0() {
         light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
@@ -189,32 +195,172 @@ protected:
         Scene::update(deltaTime);
 
         float time = Engine::getInstance()->getTime();
-        
-        if (time - counter >= 0.2f) {
 
-            Actor* a = ActorFactory::makeSphereCollisionActor(this, "marble_bust_01_2k",
-                                       ""
-                                       , 1.0f,
-                                       ActorFactory::CollisionType::Dynamic,
-                                       Transform({x * 4.0f, 10.0f, 0.0f}));
-            a->getFirstComponentOf<ModelComponent>()->setWorldScale(Vector3(3.0f));
+        if (time - counter >= 0.05f) {
             
-            counter = time;
-            
-            if(x == 2.0f) {
-                x = -2.0f;
+            if (state) {
+                
+                ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
+                                                       Engine::getInstance()->getResourceLoader()->getRandomTexture()
+                                                       , 1.0f,
+                                                       ActorFactory::CollisionType::Dynamic,
+                                                       Transform({0.0f, 10.0f, 0.0f}));
+
+                ActorFactory::makeBoxCollisionActor(this, "Cube",
+                                                    Engine::getInstance()->getResourceLoader()->getRandomTexture(),
+                                                    Vector3(1.0f), ActorFactory::CollisionType::Dynamic,
+                                                    Transform({0.0f, 10.0f, 0.0f}));
+                
             }
             else {
-                x += 1.0f;
+                ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
+                                                       Engine::getInstance()->getResourceLoader()->getRandomTexture()
+                                                       , 1.0f,
+                                                       ActorFactory::CollisionType::Dynamic,
+                                                       Transform({x * 4.0f, 10.0f, 0.0f}));
             }
-            
+
+
+            counter = time;
+
+            if (x == 2.0f) { x = -2.0f; }
+            else { x += 1.0f; }
         }
 
-        
+
     }
 
+    bool state = false;
     float x = -2.0f;
     float counter = 0.0f;
+    Actor* skybox = nullptr;
+    Actor* plane = nullptr;
+    Actor* model = nullptr;
+    FlyingCharacter* character = nullptr;
+    Actor* light = nullptr;
+
+};
+
+class PhysXScene : public Scene {
+
+public:
+    explicit PhysXScene(PhysicsManager* const manager) : Scene(manager) { }
+
+    NODISCARD FORCEINLINE String getSceneName() const override { return "PhysXScene"; }
+
+protected:
+    void start() override {
+
+        setWorldColor(Color(0, 0, 0).value);
+
+        this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
+
+        this->skybox = ActorFactory::makeModelActor(this,
+                                                    "SkyCube",
+                                                    "",
+                                                    {
+                                                        {},
+                                                        {90.0f, 0.0f, 0.0f},
+                                                        Vector3(10000.0f)
+                                                    });
+
+
+        this->plane = ActorFactory::makeModelActor(this, "Plane", "", {
+                                                       {0, -1, 0}, {-90.0f, 0.0f, 0.0f}, Vector3(10000.0f, 10000.0f, 1)
+                                                   });
+
+        this->light = ActorFactory::makeDirectionalLightActor(this,
+                                                              {0.5f, -1.0f, 0.0f},
+                                                              LinearColor::fromRGB(106, 77, 102));
+
+        plane->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
+        plane->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColor::fromLinearRGB(
+            0.8f, 0.8f, 0.8f);
+
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setTexture(0, "Space");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+
+        this->model = ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
+                                                             ""
+                                                             , 1.0f,
+                                                             ActorFactory::CollisionType::Dynamic,
+                                                             Transform({0.0f, 0.0f, 0.0f}));
+        model->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::materialShader);
+        model->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::red;
+
+        auto* physicsScene = this->getPhysicsScene();
+        auto& physics = physicsScene->getPhysics();
+
+        auto* material = physics.createMaterial(2.0f, 0.5f, 0.5f);
+
+
+        physx::PxRigidStatic* groundPlane = PxCreatePlane(physics, physx::PxPlane(0, 1, 0, 1), *material);
+        physicsScene->addActor(*groundPlane);
+
+
+        InputManager* manager = Engine::getInstance()->getInputManager();
+
+        manager->bindEvent(this, KeyBind(SDLK_1), EInputEvent::Pressed, &PhysXScene::setTexture0);
+        manager->bindEvent(this, KeyBind(SDLK_2), EInputEvent::Pressed, &PhysXScene::setTexture1);
+        manager->bindEvent(this, KeyBind(SDLK_3), EInputEvent::Pressed, &PhysXScene::setTexture2);
+        manager->bindEvent(this, KeyBind(SDLK_4), EInputEvent::Pressed, &PhysXScene::setTexture3);
+
+        manager->bindEvent(this, KeyBind(SDLK_5), EInputEvent::Pressed, &PhysXScene::imp);
+        manager->bindEvent(this, KeyBind(SDLK_6), EInputEvent::Pressed, &PhysXScene::imp2);
+        manager->bindEvent(this, KeyBind(SDLK_7), EInputEvent::Pressed, &PhysXScene::imp3);
+        manager->bindEvent(this, KeyBind(SDLK_8), EInputEvent::Pressed, &PhysXScene::imp4);
+        manager->bindEvent(this, KeyBind(SDLK_8), EInputEvent::Pressed, &PhysXScene::imp5);
+
+
+        for (const auto& actor : this->registeredActors) { actor->start(); }
+
+    }
+
+    void imp() { model->getFirstComponentOf<PhysicsComponent>()->addImpulse({10, 0, 10}); }
+
+    void imp2() { model->getFirstComponentOf<PhysicsComponent>()->addImpulse({-10, 0, 0}); }
+
+    void imp3() { model->getFirstComponentOf<PhysicsComponent>()->addImpulse({0, 0, 10}); }
+
+    void imp4() { model->getFirstComponentOf<PhysicsComponent>()->addImpulse({0, 0, -10}); }
+
+    void imp5() { model->getFirstComponentOf<PhysicsComponent>()->addImpulse({0, 50, 0}); }
+
+    void setTexture0() {
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setModel("Sphere");
+        comp->setTexture(0, "brown_photostudio_02_4k");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture1() {
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColor::fromRGB(174, 160, 154));
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setModel("Sphere");
+        comp->setTexture(0, "moonless_golf_4k");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture2() {
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setModel("Sphere");
+        comp->setTexture(0, "studio_small_09_4k");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void setTexture3() {
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColor::fromRGB(106, 77, 102));
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setModel("SkyCube");
+        comp->setTexture(0, "Space");
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+    }
+
+    void update(const float deltaTime) override { Scene::update(deltaTime); }
+
     Actor* skybox = nullptr;
     Actor* plane = nullptr;
     Actor* model = nullptr;
@@ -226,14 +372,13 @@ protected:
 class ModelScene : public Scene {
 
 public:
-
     explicit ModelScene(PhysicsManager* const manager) : Scene(manager) { }
-    
+
     void start() override {
 
-        ActorFactory::makeModelActor(this, "food_apple_01_2k", "food_apple_01_diff_2k", { {}, {-90.0f, 0.0f, 0.0f}});
-        ActorFactory::makeDirectionalLightActor(this, { -0.5f, -1.0f, 0.0f }, LinearColors::white);
-        createActor<FlyingCharacter>();        
+        ActorFactory::makeModelActor(this, "marble_bust_01_2k", "", {{}, {-90.0f, 0.0f, 0.0f}});
+        ActorFactory::makeDirectionalLightActor(this, {-0.5f, -1.0f, 0.0f}, LinearColors::white);
+        createActor<FlyingCharacter>({ { 0.0f, 0.25f, 1.0f }, { -90.0f, 0.0f, 0.0f } });
     }
 
     NODISCARD FORCEINLINE String getSceneName() const override { return "ModelScene"; };
@@ -319,13 +464,11 @@ private:
 class DemoScene : public Scene {
 
 public:
-    
-    NODISCARD FORCEINLINE String getSceneName() const override { return "TestScene"; }
+    NODISCARD FORCEINLINE String getSceneName() const override { return "DemoScene"; }
 
     explicit DemoScene(PhysicsManager* const manager) : Scene(manager) { }
 
 protected:
-    
     void start() override {
 
         setWorldColor(Color(10, 10, 10).value);
@@ -370,6 +513,7 @@ protected:
         model->setVisible(!model->isVisible());
 
     }
+
     void toggleVisible() {
 
         auto* model = this->planet1->getFirstComponentOf<ModelComponent>();
@@ -386,25 +530,25 @@ protected:
         skybox->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
         skybox->getFirstComponentOf<ModelComponent>()->setTexture(0, "2k_stars_milky_way");
         skybox->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::skyboxShader);
-        
+
         light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
-        
+
     }
-    
+
     void setUnlit() {
 
         planet1->getFirstComponentOf<ModelComponent>()->setModel("SmoothSphere");
         planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
         planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
-        
+
     }
 
     void setWireframe() {
-        
+
         planet1->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
         planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
         planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
-        
+
         skybox->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
         skybox->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
         skybox->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
@@ -414,7 +558,7 @@ protected:
     void update(const float deltaTime) override {
 
         Scene::update(deltaTime);
-        
+
         planet1->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
 
         rot += 10.0f * deltaTime;
@@ -427,6 +571,173 @@ protected:
     Actor* skybox = nullptr;
     Actor* light = nullptr;
     Actor* planet1 = nullptr;
+
+};
+
+class SolarSystem : public Scene {
+
+public:
+    NODISCARD FORCEINLINE String getSceneName() const override { return "SolarSystem"; }
+
+    explicit SolarSystem(PhysicsManager* const manager) : Scene(manager) { }
+
+protected:
+    void start() override {
+
+        setWorldColor(Color(10, 10, 10).value);
+
+        this->earth = ActorFactory::makeModelActor(this,
+                                                   "SmoothSphere",
+                                                   "2k_earth_daymap",
+                                                   Transform({12.30f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                             {0.50f, 0.50f, 0.50f}));
+
+        this->moon = ActorFactory::makeModelActor(this,
+                                                  "SmoothSphere",
+                                                  "2k_moon",
+                                                  Transform({13.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                            {0.05f, 0.05f, 0.05f}));
+
+        this->sun = ActorFactory::makeModelActor(this,
+                                                 "SmoothSphere",
+                                                 "2k_sun",
+                                                 Transform({0.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                           {2.0f, 2.0f, 2.0f}));
+
+        this->mercury = ActorFactory::makeModelActor(this,
+                                                     "SmoothSphere",
+                                                     "2k_mercury",
+                                                     Transform({4.58f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                               {0.10f, 0.10f, 0.10f}));
+
+        this->venus = ActorFactory::makeModelActor(this,
+                                                   "SmoothSphere",
+                                                   "2k_venus_surface",
+                                                   Transform({8.08f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                             {0.50f, 0.50f, 0.50f}));
+
+        this->mars = ActorFactory::makeModelActor(this,
+                                                  "SmoothSphere",
+                                                  "2k_mars",
+                                                  Transform({14.28f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                            {0.25f, 0.25f, 0.25f}));
+
+        this->jupiter = ActorFactory::makeModelActor(this,
+                                                     "SmoothSphere",
+                                                     "2k_jupiter",
+                                                     Transform({19.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                               {1.00f, 1.00f, 1.00f}));
+
+        this->saturn = ActorFactory::makeModelActor(this,
+                                                    "SmoothSphere",
+                                                    "2k_saturn",
+                                                    Transform({25.0f, 0.0f, 0.0f}, {90.0f, 0.0f, 0.0f},
+                                                              {1.00f, 1.00f, 1.00f}));
+
+        this->belt = ActorFactory::makeModelActor(this,
+                                                  "SmoothSphere",
+                                                  "2k_belt",
+                                                  Transform({25.0f, 0.0f, 0.0f}, {}, {2.00f, 0.05f, 2.00f}));
+
+
+        this->sun->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->mercury->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->venus->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->earth->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->moon->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->mars->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->jupiter->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->venus->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->saturn->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+        this->belt->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4::zero;
+
+        this->sun->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
+
+        //this->planet2->attachTo(planet1);
+        //this->moon->attachTo(earth);
+        this->belt->attachTo(saturn);
+        this->moon->attachTo(earth);
+
+        this->skybox = ActorFactory::makeModelActor(this,
+                                                    "SkyCube",
+                                                    "2k_stars_milky_way",
+                                                    {{}, {0.0f, 0.0f, 0.0f}, Vector3(10000.0f)});
+
+        //ActorFactory::makeDirectionalLightActor(this, {0.0f, -1.0f, 0.0f }, LinearColors::white);
+
+        this->light = ActorFactory::makePointLightActor(this, {}, LinearColors::white);
+
+        this->light->getFirstComponentOf<PointLightComponent>()->setSpecularColor(LinearColors::black);
+        this->light->getFirstComponentOf<PointLightComponent>()->setLinear(0.0f);
+        this->light->getFirstComponentOf<PointLightComponent>()->setConstant(1.0f);
+        this->light->getFirstComponentOf<PointLightComponent>()->setQuadratic(0.0f);
+
+        this->character = createActor<FlyingCharacter>({{-5.0f, 5.0f, 0.0f}, {0.0f, -45.0f, 0.0f}});
+
+        earth->getFirstComponentOf<ModelComponent>()->setModel("SmoothSphere");
+        earth->getFirstComponentOf<ModelComponent>()->setTexture(0, "2k_earth_daymap");
+        earth->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::materialShader);
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
+
+        auto* comp = skybox->getFirstComponentOf<ModelComponent>();
+        comp->setShader(0, ShaderPrograms::skyboxShader);
+
+    }
+
+    void update(const float deltaTime) override {
+
+        Scene::update(deltaTime);
+
+        const float time = Engine::getInstance()->getTime();
+
+        earth->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        moon->addWorldRotation({0.0f, 25.0f * deltaTime, 0.0f});
+        sun->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        mercury->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        venus->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        mars->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        jupiter->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+        saturn->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
+
+        //moon->getRootComponent()->rotateAround(earth->getWorldPosition(), earth->getForwardVector(), { 0.0f, 0.0f, 0.0f });
+        earth->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot2, 0.0f});
+        mercury->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot, 0.0f});
+        venus->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot1, 0.0f});
+        mars->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot3, 0.0f});
+        jupiter->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot4, 0.0f});
+        saturn->getRootComponent()->rotateAround({}, {1.0f, 0.0f, 0.0f}, {0.0f, rot5, 0.0f});
+
+        rot += 10.0f * deltaTime;
+        rot1 += 8.0f * deltaTime;
+        rot2 += 7.0f * deltaTime;
+        rot3 += 6.0f * deltaTime;
+        rot4 += 5.0f * deltaTime;
+        rot5 += 4.0f * deltaTime;
+        rot6 = +14.0f * deltaTime;
+
+    }
+
+    float rot = 0.0f;
+    float rot1 = 0.0f;
+    float rot2 = 0.0f;
+    float rot3 = 0.0f;
+    float rot4 = 0.0f;
+    float rot5 = 0.0f;
+    float rot6 = 0.0f;
+
+    FlyingCharacter* character = nullptr;
+    Actor* skybox = nullptr;
+    Actor* light = nullptr;
+    Actor* earth = nullptr;
+    Actor* moon = nullptr;
+    Actor* sun = nullptr;
+    Actor* mercury = nullptr;
+    Actor* venus = nullptr;
+    Actor* mars = nullptr;
+    Actor* jupiter = nullptr;
+    Actor* saturn = nullptr;
+    Actor* belt = nullptr;
+    //Actor* light2 = nullptr;
 
 };
 
@@ -468,7 +779,8 @@ class MyEngine : public Engine {
                     }
                     else if (sceneName == "RenderScene") { loadScene<RenderScene>(); }
                     else if (sceneName == "SpotlightScene") { loadScene<SpotlightScene>(); }
-                    else if (sceneName == "TestScene") { loadScene<DemoScene>(); }
+                    else if (sceneName == "SolarSystem") { loadScene<SolarSystem>(); }
+                    else if (sceneName == "DemoScene") { loadScene<DemoScene>(); }
                     else if (sceneName == "ModelScene") { loadScene<ModelScene>(); }
                     else { CommandError::throwError("The scene \"{}\" does not exist.", sceneName); }
                 });
@@ -539,19 +851,19 @@ class MyEngine : public Engine {
         Console::registerCommand(posNode);
         Console::registerCommand(camInfoNode);
 
-        Console::exec("scene.load ModelScene");
+        Console::exec("scene.load DemoScene");
 
-        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F1), EInputEvent::Pressed, &MyEngine::loadScene<RenderScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F1), EInputEvent::Pressed, &MyEngine::loadScene<DemoScene>);
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F2), EInputEvent::Pressed, &MyEngine::loadScene<SpaceScene>);
-        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F3), EInputEvent::Pressed, &MyEngine::loadScene<DemoScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F3), EInputEvent::Pressed, &MyEngine::loadScene<SolarSystem>);
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F4), EInputEvent::Pressed, &MyEngine::loadScene<SpotlightScene>);
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F5), EInputEvent::Pressed, &MyEngine::loadScene<ModelScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F6), EInputEvent::Pressed, &MyEngine::loadScene<RenderScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F7), EInputEvent::Pressed, &MyEngine::loadScene<PhysXScene>);
 
     }
 
-    void onUpdate() override {
-      
-    }
+    void onUpdate() override { }
 
 };
 
@@ -570,7 +882,7 @@ int main(const int argc, const char** argv) {
     const auto pointer = engine.raw();
 
     entry->entry(argc, argv, [pointer]() { return pointer; });
-    
+
     return 0;
 
 }
