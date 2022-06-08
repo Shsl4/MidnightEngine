@@ -8,7 +8,7 @@
 void ModelComponent::update(float deltaTime) {
 
     Super::update(deltaTime);
-    
+
 }
 
 bool ModelComponent::setModel(String const& name) {
@@ -17,6 +17,8 @@ bool ModelComponent::setModel(String const& name) {
 
     if(loadedModel.valid()) {
 
+        modMutex.lock();
+        
         textures.clear();
         handles.clear();
         materials.clear();
@@ -26,6 +28,8 @@ bool ModelComponent::setModel(String const& name) {
         this->textures = this->model->getTextures();
         this->handles = this->model->getPrograms();
         this->materials = this->model->getMaterials();
+
+        modMutex.unlock();
         
         return true;
 
@@ -43,8 +47,11 @@ bool ModelComponent::setTexture(size_t index, String const& name) {
         
     if(model.valid()) {
 
+        modMutex.lock();
+        
         if(name.isEmpty()) {
             textures[index] = nullptr;
+            modMutex.unlock();
             return true;
         }
 
@@ -52,8 +59,11 @@ bool ModelComponent::setTexture(size_t index, String const& name) {
 
         if(texture.valid()) {
             textures[index] = texture;
+            modMutex.unlock();
             return true;
-        }        
+        }
+
+        modMutex.unlock();
         
     }
 
@@ -68,8 +78,10 @@ bool ModelComponent::setShader(size_t index, bgfx::ProgramHandle handle) {
     }
 
     if(model.valid()) {
-
+        
+        modMutex.lock();
         handles[index] = handle;
+        modMutex.unlock();
         return true;
         
     }
@@ -78,12 +90,14 @@ bool ModelComponent::setShader(size_t index, bgfx::ProgramHandle handle) {
     
 }
 
-void ModelComponent::setMaterial(size_t index, Material const& material) const {
+void ModelComponent::setMaterial(size_t index, Material const& material) {
     
     if (index >= materials.getSize()) { return; }
-
-    materials[index] = material;
     
+    modMutex.lock();
+    materials[index] = material;
+    modMutex.unlock();
+
 }
 
 
@@ -98,11 +112,15 @@ void ModelComponent::render() {
     // If a model is set
     if (!model.expired()){
 
+        modMutex.lock();
+        
         // Render it.
         const auto view = Vector4(getScene()->getCameraManager()->getActiveCamera()->getWorldPosition());
         
         // Render it.
         model->render(viewId, view, Matrix4::modelMatrix(getWorldTransform()), textures, materials, handles);
+
+        modMutex.unlock();
         
     }
     

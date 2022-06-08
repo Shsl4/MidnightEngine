@@ -97,7 +97,7 @@ protected:
         this->character->setMovementSpeed(50.0f);
 
         this->skybox = ActorFactory::makeModelActor(this,
-                                                    "SkyCube",
+                                                    "SmoothSphere",
                                                     "",
                                                     {
                                                         {},
@@ -111,7 +111,7 @@ protected:
 
 
         auto* comp = skybox->getFirstComponentOf<ModelComponent>();
-        comp->setTexture(0, "Space");
+        comp->setTexture(0, "mahhdi");
         comp->setShader(0, ShaderPrograms::skyboxShader);
 
         for (int i = 0; i < 5; ++i) {
@@ -192,12 +192,13 @@ protected:
         
         if (time - counter >= 0.2f) {
 
-            ActorFactory::makeSphereCollisionActor(this, "SmoothSphere",
-                                       Engine::getInstance()->getResourceLoader()->getRandomTexture()
+            Actor* a = ActorFactory::makeSphereCollisionActor(this, "marble_bust_01_2k",
+                                       ""
                                        , 1.0f,
                                        ActorFactory::CollisionType::Dynamic,
                                        Transform({x * 4.0f, 10.0f, 0.0f}));
-
+            a->getFirstComponentOf<ModelComponent>()->setWorldScale(Vector3(3.0f));
+            
             counter = time;
             
             if(x == 2.0f) {
@@ -220,6 +221,22 @@ protected:
     FlyingCharacter* character = nullptr;
     Actor* light = nullptr;
 
+};
+
+class ModelScene : public Scene {
+
+public:
+
+    explicit ModelScene(PhysicsManager* const manager) : Scene(manager) { }
+    
+    void start() override {
+
+        ActorFactory::makeModelActor(this, "food_apple_01_2k", "food_apple_01_diff_2k", { {}, {-90.0f, 0.0f, 0.0f}});
+        ActorFactory::makeDirectionalLightActor(this, { -0.5f, -1.0f, 0.0f }, LinearColors::white);
+        createActor<FlyingCharacter>();        
+    }
+
+    NODISCARD FORCEINLINE String getSceneName() const override { return "ModelScene"; };
 };
 
 class SpotlightScene : public Scene {
@@ -299,14 +316,16 @@ private:
     Actor* light = nullptr;
 };
 
-class TestScene : public Scene {
+class DemoScene : public Scene {
 
 public:
+    
     NODISCARD FORCEINLINE String getSceneName() const override { return "TestScene"; }
 
-    explicit TestScene(PhysicsManager* const manager) : Scene(manager) { }
+    explicit DemoScene(PhysicsManager* const manager) : Scene(manager) { }
 
 protected:
+    
     void start() override {
 
         setWorldColor(Color(10, 10, 10).value);
@@ -315,13 +334,6 @@ protected:
                                                      "SmoothSphere",
                                                      "2k_earth_daymap",
                                                      {{}, {90.0f, 0.0f, 0.0f}});
-
-        this->planet2 = ActorFactory::makeModelActor(this,
-                                                     "SmoothSphere",
-                                                     "2k_moon",
-                                                     Transform({3.0f, 0.0f, 0.0f}, {}, {0.25f, 0.25f, 0.25f}));
-
-        //this->planet2->attachTo(planet1);
 
         this->skybox = ActorFactory::makeModelActor(this,
                                                     "SkyCube",
@@ -336,6 +348,7 @@ protected:
 
         planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
         planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).specular = Vector4(0.0f);
+        planet1->getFirstComponentOf<ModelComponent>()->setVisible(false);
 
         auto* comp = skybox->getFirstComponentOf<ModelComponent>();
         comp->setShader(0, ShaderPrograms::skyboxShader);
@@ -343,10 +356,11 @@ protected:
 
         InputManager* manager = Engine::getInstance()->getInputManager();
 
-        manager->bindEvent(this, KeyBind(SDLK_l), EInputEvent::Pressed, &TestScene::setLight);
-        manager->bindEvent(this, KeyBind(SDLK_f), EInputEvent::Pressed, &TestScene::setWireframe);
-        manager->bindEvent(this, KeyBind(SDLK_k), EInputEvent::Pressed, &TestScene::setSkybox);
-        manager->bindEvent(this, KeyBind(SDLK_u), EInputEvent::Pressed, &TestScene::setUnlit);
+        manager->bindEvent(this, KeyBind(SDLK_1), EInputEvent::Pressed, &DemoScene::toggleVisible);
+        manager->bindEvent(this, KeyBind(SDLK_2), EInputEvent::Pressed, &DemoScene::setWireframe);
+        manager->bindEvent(this, KeyBind(SDLK_3), EInputEvent::Pressed, &DemoScene::setSkybox);
+        manager->bindEvent(this, KeyBind(SDLK_4), EInputEvent::Pressed, &DemoScene::setLight);
+        manager->bindEvent(this, KeyBind(SDLK_0), EInputEvent::Pressed, &DemoScene::setUnlit);
 
     }
 
@@ -356,32 +370,52 @@ protected:
         model->setVisible(!model->isVisible());
 
     }
+    void toggleVisible() {
 
-    void setLight() {
-        planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::materialShader);
-        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
+        auto* model = this->planet1->getFirstComponentOf<ModelComponent>();
+        model->setVisible(!model->isVisible());
+
     }
 
+    void setLight() {
+
+        planet1->getFirstComponentOf<ModelComponent>()->setModel("SmoothSphere");
+        planet1->getFirstComponentOf<ModelComponent>()->setTexture(0, "2k_earth_daymap");
+        planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::materialShader);
+
+        skybox->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
+        skybox->getFirstComponentOf<ModelComponent>()->setTexture(0, "2k_stars_milky_way");
+        skybox->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::skyboxShader);
+        
+        light->getFirstComponentOf<LightComponent>()->setDiffuseColor(LinearColors::white);
+        
+    }
+    
     void setUnlit() {
+
+        planet1->getFirstComponentOf<ModelComponent>()->setModel("SmoothSphere");
         planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::unlit);
         planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
+        
     }
 
     void setWireframe() {
+        
+        planet1->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
         planet1->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
         planet1->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
+        
+        skybox->getFirstComponentOf<ModelComponent>()->setModel("Sphere");
+        skybox->getFirstComponentOf<ModelComponent>()->setShader(0, ShaderPrograms::wireframeShader);
+        skybox->getFirstComponentOf<ModelComponent>()->getMaterial(0).ambientColor = LinearColors::white;
+
     }
 
     void update(const float deltaTime) override {
 
         Scene::update(deltaTime);
-
-        const float time = Engine::getInstance()->getTime();
-
+        
         planet1->addWorldRotation({0.0f, 50.0f * deltaTime, 0.0f});
-        planet2->addWorldRotation({0.0f, 25.0f * deltaTime, 0.0f});
-
-        planet2->getRootComponent()->rotateAround({}, {0.0f, 1.0f, 0.0f}, {rot, 0.0f, rot});
 
         rot += 10.0f * deltaTime;
 
@@ -393,7 +427,6 @@ protected:
     Actor* skybox = nullptr;
     Actor* light = nullptr;
     Actor* planet1 = nullptr;
-    Actor* planet2 = nullptr;
 
 };
 
@@ -435,7 +468,8 @@ class MyEngine : public Engine {
                     }
                     else if (sceneName == "RenderScene") { loadScene<RenderScene>(); }
                     else if (sceneName == "SpotlightScene") { loadScene<SpotlightScene>(); }
-                    else if (sceneName == "TestScene") { loadScene<TestScene>(); }
+                    else if (sceneName == "TestScene") { loadScene<DemoScene>(); }
+                    else if (sceneName == "ModelScene") { loadScene<ModelScene>(); }
                     else { CommandError::throwError("The scene \"{}\" does not exist.", sceneName); }
                 });
 
@@ -505,12 +539,13 @@ class MyEngine : public Engine {
         Console::registerCommand(posNode);
         Console::registerCommand(camInfoNode);
 
-        Console::exec("scene.load RenderScene");
+        Console::exec("scene.load ModelScene");
 
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F1), EInputEvent::Pressed, &MyEngine::loadScene<RenderScene>);
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F2), EInputEvent::Pressed, &MyEngine::loadScene<SpaceScene>);
-        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F3), EInputEvent::Pressed, &MyEngine::loadScene<TestScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F3), EInputEvent::Pressed, &MyEngine::loadScene<DemoScene>);
         getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F4), EInputEvent::Pressed, &MyEngine::loadScene<SpotlightScene>);
+        getInputManager()->bindEvent<MyEngine>(this, KeyBind(SDLK_F5), EInputEvent::Pressed, &MyEngine::loadScene<ModelScene>);
 
     }
 
@@ -519,9 +554,6 @@ class MyEngine : public Engine {
     }
 
 };
-
-#define DEBUG_LEAKS
-#include <unistd.h>
 
 int main(const int argc, const char** argv) {
 
@@ -538,9 +570,7 @@ int main(const int argc, const char** argv) {
     const auto pointer = engine.raw();
 
     entry->entry(argc, argv, [pointer]() { return pointer; });
-
-    sleep(10);
-
+    
     return 0;
 
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <mutex>
 #include <Scene/SceneComponent.h>
 #include <Rendering/Renderable.h>
 #include <Rendering/LinearColor.h>
@@ -31,7 +32,7 @@ public:
         this->viewId = id;
     }
     
-    void setMaterial(size_t index, Material const& material) const;
+    void setMaterial(size_t index, Material const& material);
     
     NODISCARD Material& getMaterial(size_t index) const;
     NODISCARD WeakPointer<Model> getModel() const { return this->model; }
@@ -44,12 +45,18 @@ public:
          return this->visible;
     }
     
+    NODISCARD FORCEINLINE bool isRendering() const {
+         return this->rendering;
+    }
+    
 private:
 
     using Super = SceneComponent;
 
     void render() override;
 
+    std::mutex modMutex;
+    
     WeakPointer<Model> model = nullptr;
 
     Array<WeakPointer<Texture>> textures = Array<WeakPointer<Texture>>(0);
@@ -57,6 +64,7 @@ private:
     Array<bgfx::ProgramHandle> handles = Array<bgfx::ProgramHandle>(0);
 
     bool visible = true;
+    bool rendering = false;
     
     UInt16 viewId = 0;
     
