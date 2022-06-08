@@ -19,7 +19,7 @@ var searchData=
   ['setgreen_16',['setGreen',['../struct_linear_color.html#adb5e17d039aff817978e3acd23072d36',1,'LinearColor']]],
   ['setlightdirection_17',['setLightDirection',['../class_spot_light_component.html#a24c2c3478806ec2c0919665cba156758',1,'SpotLightComponent::setLightDirection()'],['../class_directional_light_component.html#ac1766885f923f13418335e0d948be5cb',1,'DirectionalLightComponent::setLightDirection()']]],
   ['setlinear_18',['setLinear',['../class_point_light_component.html#aa5d45d749bba46f79b2132c9f43cb9ce',1,'PointLightComponent::setLinear()'],['../class_spot_light_component.html#a895ee7ce1e0e2bc7daea6f1cd27bc7a1',1,'SpotLightComponent::setLinear()']]],
-  ['setmaterial_19',['setMaterial',['../class_model_component.html#a792338d1a63dcc72a7d265b5e8a4358d',1,'ModelComponent']]],
+  ['setmaterial_19',['setMaterial',['../class_model_component.html#a62db527e865627a08fc97ba67cd392c3',1,'ModelComponent']]],
   ['setmodel_20',['setModel',['../class_model_component.html#a91d95cafa50a819e5d358064f2ebff36',1,'ModelComponent']]],
   ['setnodedescription_21',['setNodeDescription',['../class_command_node.html#aa37ab820fa3ed49db48dc6b5767bf8a1',1,'CommandNode']]],
   ['setoutercutoff_22',['setOuterCutoff',['../class_spot_light_component.html#a5597a7c4aabb6630883418342c38c4c1',1,'SpotLightComponent']]],
