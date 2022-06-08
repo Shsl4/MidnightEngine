@@ -12,7 +12,7 @@ var searchData=
   ['refcounter_9',['RefCounter',['../class_ref_counter.html#a6199600b041a484279809ab83d173d59',1,'RefCounter::RefCounter(RefCounter &amp;&amp;other) noexcept=delete'],['../class_ref_counter.html#a49965eb49495184e4432365489616ed8',1,'RefCounter::RefCounter(const RefCounter &amp;other)=delete'],['../class_ref_counter.html#a760d2087221490b338d2eb7e07f72f79',1,'RefCounter::RefCounter()=default']]],
   ['registercamera_10',['registerCamera',['../class_camera_manager.html#ad4b77a26417d0953ea4a252b93864ec4',1,'CameraManager']]],
   ['registercommand_11',['registerCommand',['../class_console.html#a7eb83fed7a2072f89dbbdb32178bb17f',1,'Console']]],
-  ['registermanagers_12',['registerManagers',['../class_actor.html#a151389f414843e21df5d7c4c1c539f74',1,'Actor']]],
+  ['registermanagers_12',['registerManagers',['../class_actor.html#ae3359887748af96387743220672e7c31',1,'Actor']]],
   ['registernode_13',['registerNode',['../class_command_tree.html#ac67419c600ad7a17be93fd57d4ebbca5',1,'CommandTree::registerNode()'],['../class_console.html#a1fa5841e1a0c8f362e280980e4d7b00c',1,'Console::registerNode()']]],
   ['release_14',['release',['../class_allocator.html#a07618997fb9c6334707c806bd96a9df9',1,'Allocator::release()'],['../class_unique_pointer.html#aaadbcb5fb6770c3814426cee5b49e064',1,'UniquePointer::release()']]],
   ['removeat_15',['removeAt',['../class_array.html#a44e97229792cf410862671a1e9fb42fc',1,'Array']]],

@@ -6,6 +6,5 @@ var searchData=
   ['commandcontext_3',['CommandContext',['../class_command_context.html',1,'']]],
   ['commandnode_4',['CommandNode',['../class_command_node.html',1,'']]],
   ['commandtree_5',['CommandTree',['../class_command_tree.html',1,'']]],
-  ['component_6',['Component',['../class_component.html',1,'']]],
-  ['console_7',['Console',['../class_console.html',1,'']]]
+  ['console_6',['Console',['../class_console.html',1,'']]]
 ];

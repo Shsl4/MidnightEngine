@@ -4,6 +4,7 @@ var annotated_dup =
       [ "formatter< String >", "structfmt_1_1formatter_3_01_string_01_4.html", "structfmt_1_1formatter_3_01_string_01_4" ]
     ] ],
     [ "Actor", "class_actor.html", "class_actor" ],
+    [ "ActorComponent", "class_actor_component.html", "class_actor_component" ],
     [ "Allocator", "class_allocator.html", "class_allocator" ],
     [ "ArgumentCommandNode", "class_argument_command_node.html", "class_argument_command_node" ],
     [ "Array", "class_array.html", "class_array" ],
@@ -15,7 +16,6 @@ var annotated_dup =
     [ "CommandContext", "class_command_context.html", "class_command_context" ],
     [ "CommandNode", "class_command_node.html", "class_command_node" ],
     [ "CommandTree", "class_command_tree.html", "class_command_tree" ],
-    [ "Component", "class_component.html", "class_component" ],
     [ "Console", "class_console.html", "class_console" ],
     [ "DirectionalLightComponent", "class_directional_light_component.html", "class_directional_light_component" ],
     [ "Engine", "class_engine.html", "class_engine" ],

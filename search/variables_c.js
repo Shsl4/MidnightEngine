@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../class_component.html#acf12509f5baeb0096cad073f7d3575d4',1,'Component']]],
+  ['name_0',['name',['../class_actor_component.html#aba25d6bcfeb9671b43c2a963712c13ca',1,'ActorComponent']]],
   ['nextid_1',['nextId',['../class_input_manager.html#a15b63e140ba6fb6bdc37f4309550ee37',1,'InputManager']]],
   ['nodedescription_2',['nodeDescription',['../class_command_node.html#a5bb1800c058b2584531d3a0d1c9847bb',1,'CommandNode']]],
   ['nodename_3',['nodeName',['../class_command_node.html#a87754649de7a10fbd87501e7deb61b19',1,'CommandNode']]],

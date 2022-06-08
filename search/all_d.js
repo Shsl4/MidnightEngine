@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../class_component.html#acf12509f5baeb0096cad073f7d3575d4',1,'Component']]],
+  ['name_0',['name',['../class_actor_component.html#aba25d6bcfeb9671b43c2a963712c13ca',1,'ActorComponent']]],
   ['negate_1',['negate',['../struct_vector3.html#a1732a736c8acaf9983f89fdd7139a347',1,'Vector3']]],
   ['new_2',['New',['../class_engine.html#a9d834ee462d92ba4250e1964c5acd0f8a03c2e7e41ffc181a4e84080b4710e81e',1,'Engine']]],
   ['nextid_3',['nextId',['../class_input_manager.html#a15b63e140ba6fb6bdc37f4309550ee37',1,'InputManager']]],

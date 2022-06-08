@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('_scene_component_8h_source.html',''); 
 <div class="contents">
 <a href="_scene_component_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_component_8h.html">Scene/Component.h</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_actor_component_8h.html">Scene/ActorComponent.h</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="_transform_8h.html">Math/Transform.h</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="_array_8h.html">Memory/Array.h</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_unique_pointer_8h.html">Memory/UniquePointer.h</a>&gt;</span></div>
@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('_scene_component_8h_source.html',''); 
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_scene_component.html">   47</a></span><span class="keyword">class </span><a class="code hl_define" href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a> <a class="code hl_class" href="class_scene_component.html">SceneComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_component.html">Component</a> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_scene_component.html">   47</a></span><span class="keyword">class </span><a class="code hl_define" href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a> <a class="code hl_class" href="class_scene_component.html">SceneComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_actor_component.html">ActorComponent</a> {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_scene_component.html#a3174049ef7ecb7972ec845ffc03e2f52">   52</a></span>    <span class="keyword">using</span> <a class="code hl_class" href="class_object.html">Super</a> = <a class="code hl_class" href="class_object.html">Object</a>;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
@@ -140,7 +140,7 @@ $(document).ready(function(){initNavTree('_scene_component_8h_source.html',''); 
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setup(<a class="code hl_class" href="class_scene.html">Scene</a>* scene);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setup(<span class="keyword">class</span> <a class="code hl_class" href="class_scene.html">Scene</a>* scene);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_scene.html#a2ec5c2aa1fe770f3f72e1ce71138ae94">start</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
@@ -217,16 +217,16 @@ $(document).ready(function(){initNavTree('_scene_component_8h_source.html',''); 
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="class_scene_component.html#a8b2a0e40d784c5ccddc6194d57eaded3">  234</a></span>    <a class="code hl_struct" href="struct_attachment_properties.html">AttachmentProperties</a> <a class="code hl_variable" href="class_scene_component.html#a8b2a0e40d784c5ccddc6194d57eaded3">attachmentProperties</a>;</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>};</div>
+<div class="ttc" id="a_actor_component_8h_html"><div class="ttname"><a href="_actor_component_8h.html">ActorComponent.h</a></div></div>
 <div class="ttc" id="a_array_8h_html"><div class="ttname"><a href="_array_8h.html">Array.h</a></div></div>
-<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="_engine_macros_8h.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:8</div></div>
 <div class="ttc" id="a_engine_macros_8h_html_a724fb9f82013c782db5c3c12ea36aac8"><div class="ttname"><a href="_engine_macros_8h.html#a724fb9f82013c782db5c3c12ea36aac8">FORCEINLINE</a></div><div class="ttdeci">#define FORCEINLINE</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:7</div></div>
 <div class="ttc" id="a_engine_macros_8h_html_abf13e44576a768044e199191d4f26f7e"><div class="ttname"><a href="_engine_macros_8h.html#abf13e44576a768044e199191d4f26f7e">NODISCARD</a></div><div class="ttdeci">#define NODISCARD</div><div class="ttdef"><b>Definition:</b> EngineMacros.h:24</div></div>
 <div class="ttc" id="a_transform_8h_html"><div class="ttname"><a href="_transform_8h.html">Transform.h</a></div></div>
 <div class="ttc" id="a_unique_pointer_8h_html"><div class="ttname"><a href="_unique_pointer_8h.html">UniquePointer.h</a></div></div>
+<div class="ttc" id="aclass_actor_component_html"><div class="ttname"><a href="class_actor_component.html">ActorComponent</a></div><div class="ttdef"><b>Definition:</b> ActorComponent.h:6</div></div>
 <div class="ttc" id="aclass_actor_html"><div class="ttname"><a href="class_actor.html">Actor</a></div><div class="ttdoc">An Actor represents an entity that holds SceneComponents in a scene.</div><div class="ttdef"><b>Definition:</b> Actor.h:12</div></div>
 <div class="ttc" id="aclass_array_html"><div class="ttname"><a href="class_array.html">Array</a></div><div class="ttdoc">A mutable array object that supports adding, inserting, removing, sorting and other utility functions...</div><div class="ttdef"><b>Definition:</b> Array.h:17</div></div>
-<div class="ttc" id="aclass_component_html"><div class="ttname"><a href="class_component.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:6</div></div>
 <div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdoc">The default class for all the objects created and used by the engine. All classes but helpers should ...</div><div class="ttdef"><b>Definition:</b> Object.h:12</div></div>
 <div class="ttc" id="aclass_scene_component_html"><div class="ttname"><a href="class_scene_component.html">SceneComponent</a></div><div class="ttdoc">SceneComponents are the lowest class representing something in a scene. SceneComponents can be attach...</div><div class="ttdef"><b>Definition:</b> SceneComponent.h:47</div></div>
 <div class="ttc" id="aclass_scene_component_html_a18ad5e45091ffae294f16d0c746abd2f"><div class="ttname"><a href="class_scene_component.html#a18ad5e45091ffae294f16d0c746abd2f">SceneComponent::getWorldPosition</a></div><div class="ttdeci">NODISCARD FORCEINLINE Vector3 getWorldPosition() const</div><div class="ttdoc">Gets the component's position in world space.</div><div class="ttdef"><b>Definition:</b> SceneComponent.h:100</div></div>

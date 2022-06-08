@@ -5,7 +5,7 @@ var searchData=
   ['red_2',['red',['../struct_linear_colors.html#ad9dbad2b14376e6a91dd2554263e7afa',1,'LinearColors']]],
   ['ref_3',['ref',['../class_ref_counter.html#ad71c30178a2aef509f822643c2abcab2',1,'RefCounter']]],
   ['refallocator_4',['refAllocator',['../class_shared_pointer.html#ae60893a46ec646ddfb9ff2e92c1b7852',1,'SharedPointer::refAllocator()'],['../class_weak_pointer.html#ae57b5346594391f73543ef602029ad43',1,'WeakPointer::refAllocator()']]],
-  ['registered_5',['registered',['../class_component.html#a0be81f3820b982bacac84a7f5dad59c4',1,'Component']]],
+  ['registered_5',['registered',['../class_actor_component.html#afcaae0bf7a6558fa856f5c337281ffaa',1,'ActorComponent']]],
   ['registeredactors_6',['registeredActors',['../class_scene.html#aae56ea2efa771d0e407dd5bd6f1a7d07',1,'Scene']]],
   ['renderdistance_7',['renderDistance',['../class_camera_component.html#a85aa22e4a1d8b23c3641cec746e5f325',1,'CameraComponent']]],
   ['renderheight_8',['renderHeight',['../struct_platform_data.html#acfc07be3f86b0e7505292ff89d884355',1,'PlatformData']]],

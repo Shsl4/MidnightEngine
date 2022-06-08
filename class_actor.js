@@ -24,7 +24,7 @@ var class_actor =
     [ "isValid", "class_actor.html#a33d940a0ca730a4b81066288aee5497d", null ],
     [ "onComponentAttached", "class_actor.html#a17ffeb1da6e9a1208bb8098cf07cc00f", null ],
     [ "onComponentDetached", "class_actor.html#a8ea0f8c41e6113f514cd7fe13868c8a5", null ],
-    [ "registerManagers", "class_actor.html#a151389f414843e21df5d7c4c1c539f74", null ],
+    [ "registerManagers", "class_actor.html#ae3359887748af96387743220672e7c31", null ],
     [ "setRootComponent", "class_actor.html#a840f75caa9f812f20daddcc01cc6c1e0", null ],
     [ "setupInput", "class_actor.html#a3e08a1915f5c3665e5497f79feb9734c", null ],
     [ "setWorldPosition", "class_actor.html#a725f13f9f1e2a4be2284bebbe31648ec", null ],

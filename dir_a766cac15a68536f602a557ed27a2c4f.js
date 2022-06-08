@@ -3,14 +3,14 @@ var dir_a766cac15a68536f602a557ed27a2c4f =
     [ "Actor.h", "_actor_8h.html", [
       [ "Actor", "class_actor.html", "class_actor" ]
     ] ],
+    [ "ActorComponent.h", "_actor_component_8h.html", [
+      [ "ActorComponent", "class_actor_component.html", "class_actor_component" ]
+    ] ],
     [ "CameraComponent.h", "_camera_component_8h.html", [
       [ "CameraComponent", "class_camera_component.html", "class_camera_component" ]
     ] ],
     [ "CameraManager.h", "_camera_manager_8h.html", [
       [ "CameraManager", "class_camera_manager.html", "class_camera_manager" ]
-    ] ],
-    [ "Component.h", "_component_8h.html", [
-      [ "Component", "class_component.html", "class_component" ]
     ] ],
     [ "DirectionalLightComponent.h", "_directional_light_component_8h.html", [
       [ "DirectionalLightComponent", "class_directional_light_component.html", "class_directional_light_component" ]

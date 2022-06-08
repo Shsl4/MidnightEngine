@@ -10,10 +10,8 @@ var searchData=
   ['commandnode_2eh_7',['CommandNode.h',['../_command_node_8h.html',1,'']]],
   ['commandtree_2ecpp_8',['CommandTree.cpp',['../_command_tree_8cpp.html',1,'']]],
   ['commandtree_2eh_9',['CommandTree.h',['../_command_tree_8h.html',1,'']]],
-  ['component_2ecpp_10',['Component.cpp',['../_component_8cpp.html',1,'']]],
-  ['component_2eh_11',['Component.h',['../_component_8h.html',1,'']]],
-  ['console_2ecpp_12',['Console.cpp',['../_console_8cpp.html',1,'']]],
-  ['console_2eh_13',['Console.h',['../_console_8h.html',1,'']]],
-  ['consoletypes_2eh_14',['ConsoleTypes.h',['../_console_types_8h.html',1,'']]],
-  ['core_2eh_15',['Core.h',['../_core_8h.html',1,'']]]
+  ['console_2ecpp_10',['Console.cpp',['../_console_8cpp.html',1,'']]],
+  ['console_2eh_11',['Console.h',['../_console_8h.html',1,'']]],
+  ['consoletypes_2eh_12',['ConsoleTypes.h',['../_console_types_8h.html',1,'']]],
+  ['core_2eh_13',['Core.h',['../_core_8h.html',1,'']]]
 ];

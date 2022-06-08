@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parentactor_0',['parentActor',['../class_component.html#a22caa8b913c74e12739232db68b09e9f',1,'Component']]],
+  ['parentactor_0',['parentActor',['../class_actor_component.html#a4ac2adae011129f696b3242b2f925bd8',1,'ActorComponent']]],
   ['parentcomponent_1',['parentComponent',['../class_scene_component.html#a27aff1bbcaa669abcb79fe53434daa82',1,'SceneComponent']]],
   ['pendingdestroy_2',['pendingDestroy',['../class_actor.html#a3058d169d702c70f9d07670141179ff6',1,'Actor::pendingDestroy()'],['../class_scene.html#aab68d73a7c3a239ab9db777a3ef18f56',1,'Scene::pendingDestroy()']]],
   ['perfwindow_3',['perfWindow',['../class_engine.html#a2bfc2a68c900a360838e515c3dabe83c',1,'Engine']]],

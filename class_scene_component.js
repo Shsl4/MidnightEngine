@@ -26,7 +26,7 @@ var class_scene_component =
     [ "getWorldTransform", "class_scene_component.html#aeba48559e12804921d59cd81fb9c1d8e", null ],
     [ "isRootComponent", "class_scene_component.html#afa079d2b205cd7c6bcffd5425fdacb13", null ],
     [ "rotateAround", "class_scene_component.html#aa8c4e68f6233c6f0848a5cfb15aaf55e", null ],
-    [ "setup", "class_scene_component.html#aa1896cf9601c860955e62bf20edfd1dd", null ],
+    [ "setup", "class_scene_component.html#a9d9e15fa6fec7369fbd93bcc0612645a", null ],
     [ "setWorldPosition", "class_scene_component.html#a2278681e514f292e80880cfde1c30e63", null ],
     [ "setWorldRotation", "class_scene_component.html#addd15f850f121a7da3437f7ebdfdca87", null ],
     [ "setWorldScale", "class_scene_component.html#ad538f61a7844892170ab1c944db9072b", null ],

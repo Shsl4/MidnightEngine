@@ -34,14 +34,7 @@ var hierarchy =
     [ "Model", "struct_model.html", null ],
     [ "Object", "class_object.html", [
       [ "Actor", "class_actor.html", null ],
-      [ "CameraManager", "class_camera_manager.html", null ],
-      [ "CommandContext", "class_command_context.html", null ],
-      [ "CommandNode", "class_command_node.html", [
-        [ "ArgumentCommandNode", "class_argument_command_node.html", null ],
-        [ "ExecutableCommandNode", "class_executable_command_node.html", null ]
-      ] ],
-      [ "CommandTree", "class_command_tree.html", null ],
-      [ "Component", "class_component.html", [
+      [ "ActorComponent", "class_actor_component.html", [
         [ "SceneComponent", "class_scene_component.html", [
           [ "CameraComponent", "class_camera_component.html", null ],
           [ "LightComponent", "class_light_component.html", [
@@ -53,6 +46,13 @@ var hierarchy =
           [ "PhysicsComponent", "class_physics_component.html", null ]
         ] ]
       ] ],
+      [ "CameraManager", "class_camera_manager.html", null ],
+      [ "CommandContext", "class_command_context.html", null ],
+      [ "CommandNode", "class_command_node.html", [
+        [ "ArgumentCommandNode", "class_argument_command_node.html", null ],
+        [ "ExecutableCommandNode", "class_executable_command_node.html", null ]
+      ] ],
+      [ "CommandTree", "class_command_tree.html", null ],
       [ "Console", "class_console.html", null ],
       [ "Engine", "class_engine.html", null ],
       [ "InputManager", "class_input_manager.html", null ],
