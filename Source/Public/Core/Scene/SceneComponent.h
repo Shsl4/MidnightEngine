@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Scene/Component.h>
+#include <Scene/ActorComponent.h>
 #include <Math/Transform.h>
 #include <Memory/Array.h>
 #include <Memory/UniquePointer.h>
@@ -44,7 +44,7 @@ private:
  *  SceneComponents can be attached together. Each component can have multiple children, but a unique parent.
  *  The root component should then be attached to a parent Actor.
  */
-class ENGINE_API SceneComponent : public Component {
+class ENGINE_API SceneComponent : public ActorComponent {
 
     /*!
      *  Defining Super class
@@ -55,7 +55,7 @@ class ENGINE_API SceneComponent : public Component {
 
 public:
 
-    virtual void setup(Scene* scene);
+    virtual void setup(class Scene* scene);
  
     /*!
      *  \brief Start is called when the scene has finished loading and constructing all components.

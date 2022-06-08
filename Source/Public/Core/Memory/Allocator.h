@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cstring>
+#include <utility>
+
+#include <Memory/Memory.h>
 
 /*!
  *  \brief An object allowing to manage memory for objects of type T.

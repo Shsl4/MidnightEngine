@@ -514,31 +514,14 @@ class MyEngine : public Engine {
 
     }
 
-    float counter = 0.0f;
-    bool b = false;
     void onUpdate() override {
-
-        float time = getTime();
-
-        if(time - counter >= 0.1f) {
-
-            if(b) {
-                loadScene<RenderScene>();
-            }
-            else {
-                loadScene<SpaceScene>();
-            }
-
-            b = !b;
-            counter = time;
-            
-        }
-                
+      
     }
 
 };
 
 #define DEBUG_LEAKS
+#include <unistd.h>
 
 int main(const int argc, const char** argv) {
 
@@ -555,6 +538,8 @@ int main(const int argc, const char** argv) {
     const auto pointer = engine.raw();
 
     entry->entry(argc, argv, [pointer]() { return pointer; });
+
+    sleep(10);
 
     return 0;
 

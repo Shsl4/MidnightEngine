@@ -1,4 +1,5 @@
-﻿#include <Physics/PhysXAllocator.h>
+#include <Physics/PhysXAllocator.h>
+#include <Core/Engine.h>
 
 #ifdef _WIN64
 
@@ -16,6 +17,10 @@ void* PhysXAllocator::allocate(size_t size, const char* typeName, const char* fi
 
     return _aligned_malloc(size, 16);
 
+#elif defined(__APPLE__)
+    
+    return malloc(size);
+    
 #else
 
     return aligned_alloc(size, 16);

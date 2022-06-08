@@ -2,23 +2,36 @@ set(PHYSX_VERSION 4.1.0)
 
 file(GLOB_RECURSE PHYSX_HEADERS ${CMAKE_CURRENT_LIST_DIR}/PhysX-${PHYSX_VERSION}/include/*.h*)
 set(THIRD_PARTY_HEADERS ${THIRD_PARTY_HEADERS} ${PHYSX_HEADERS})
+set(PHYSX_PATH ${CMAKE_CURRENT_LIST_DIR}/PhysX-${PHYSX_VERSION})
 
 if(WIN32)
 
-set(PHYSX_PATH ${CMAKE_CURRENT_LIST_DIR}/PhysX-${PHYSX_VERSION})
+set(PHYSX_DEBUG_LIBS ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysX_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXCommon_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXFoundation_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXCooking_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXPvdSDK_static_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXFoundation_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXExtensions_static_64.lib)
 
-set(PHYSX_DEBUG_LIB ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysX_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXCommon_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXFoundation_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXCooking_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXPvdSDK_static_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXFoundation_64.lib ${PHYSX_PATH}/lib/Windows/x64/Debug/PhysXExtensions_static_64.lib)
+set(PHYSX_DEBUG_DYLIBS ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysX_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXCommon_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXFoundation_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXCooking_64.dll)
 
-set(PHYSX_DEBUG_DYLIB ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysX_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXCommon_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXFoundation_64.dll ${PHYSX_PATH}/bin/Windows/x64/Debug/PhysXCooking_64.dll)
+set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${PHYSX_DEBUG_LIBS})
+set(THIRD_PARTY_DEBUG_DYLIBS ${THIRD_PARTY_DEBUG_DYLIBS} ${PHYSX_DEBUG_DYLIBS})
 
-set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${PHYSX_DEBUG_LIB})
-set(THIRD_PARTY_DEBUG_DYLIBS ${THIRD_PARTY_DEBUG_DYLIBS} ${PHYSX_DEBUG_DYLIB})
+elseif(APPLE)
+
+set(PHYSX_DEBUG_LIBS ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysX_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXCommon_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXFoundation_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXCooking_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXPvdSDK_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXFoundation_static_64.a ${PHYSX_PATH}/lib/macOS/arm64/Debug/libPhysXExtensions_static_64.a)
+
+set(PHYSX_DEBUG_DYLIBS ${PHYSX_DEBUG_LIBS})
+
+set(THIRD_PARTY_RELEASE_LIBS ${THIRD_PARTY_RELEASE_LIBS} ${PHYSX_DEBUG_LIBS})
+set(THIRD_PARTY_RELEASE_DYLIBS ${THIRD_PARTY_RELEASE_DYLIBS} ${PHYSX_DEBUG_DYLIBS})
 
 else()
 
 message(FATAL "Need to compile PhysX")
 
 endif()
+
+message(STATUS ${PHYSX_DEBUG_LIBS})
+
+set(THIRD_PARTY_DEBUG_LIBS ${THIRD_PARTY_DEBUG_LIBS} ${PHYSX_DEBUG_LIBS})
+set(THIRD_PARTY_DEBUG_DYLIBS ${THIRD_PARTY_DEBUG_DYLIBS} ${PHYSX_DEBUG_DYLIBS})
 
 set(THIRD_PARTY_INCLUDE_PATH ${THIRD_PARTY_INCLUDE_PATH} ${CMAKE_CURRENT_LIST_DIR}/PhysX-${PHYSX_VERSION}/include/ ${CMAKE_CURRENT_LIST_DIR}/PhysX-${PHYSX_VERSION}/include/PhysX)
 

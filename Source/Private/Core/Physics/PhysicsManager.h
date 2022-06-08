@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <PhysX/PxFoundation.h>
 #include <PhysX/PxPhysics.h>
@@ -21,11 +21,11 @@ public:
     void init();
     void destroy() const;
 
-    FORCEINLINE NODISCARD physx::PxFoundation* getFoundation() const { return foundation; }
-    FORCEINLINE NODISCARD physx::PxPhysics* getPhysics() const { return physics; }
-    FORCEINLINE NODISCARD physx::PxCpuDispatcher* getCPUDispatcher() const { return dispatcher; }
-    FORCEINLINE NODISCARD physx::PxMaterial* getPhysicsMaterial() const { return material; }
-    FORCEINLINE NODISCARD physx::PxCooking* getCooking() const { return cooking; }
+    FORCEINLINE physx::PxFoundation* getFoundation() const { return foundation; }
+    FORCEINLINE physx::PxPhysics* getPhysics() const { return physics; }
+    FORCEINLINE physx::PxCpuDispatcher* getCPUDispatcher() const { return dispatcher; }
+    FORCEINLINE physx::PxMaterial* getPhysicsMaterial() const { return material; }
+    FORCEINLINE physx::PxCooking* getCooking() const { return cooking; }
 
     static void updatePvdClient(physx::PxScene* scene);
 

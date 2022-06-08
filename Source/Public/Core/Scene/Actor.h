@@ -177,7 +177,7 @@ public:
     T* createComponent(String const& componentName = "") {
 
         // Check if the class we are trying to instantiate is a Component.
-        static_assert(std::is_base_of_v<Component, T>, "T should inherit from Component");
+        static_assert(std::is_base_of_v<ActorComponent, T>, "T should inherit from Component");
 
         static_assert(!std::is_pointer_v<T>, "T should not be a pointer. Use the raw type instead.");
         
@@ -198,7 +198,7 @@ public:
 
     }
 
-    void registerManagers(Component *component);
+    void registerManagers(ActorComponent *component);
     
     template<class T>
     T* getFirstComponentOf() const {
